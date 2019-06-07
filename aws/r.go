@@ -3029,17 +3029,6 @@ Provides an AWS App Mesh route resource.
 
 Provides an AWS App Mesh virtual node resource.
 
-## Breaking Changes
-
-Because of backward incompatible API changes (read [here](https://github.com/awslabs/aws-app-mesh-examples/issues/92)), ` + "`" + `aws_appmesh_virtual_node` + "`" + ` resource definitions created with provider versions earlier than v2.3.0 will need to be modified:
-
-* Rename the ` + "`" + `service_name` + "`" + ` attribute of the ` + "`" + `dns` + "`" + ` object to ` + "`" + `hostname` + "`" + `.
-
-* Replace the ` + "`" + `backends` + "`" + ` attribute of the ` + "`" + `spec` + "`" + ` object with one or more ` + "`" + `backend` + "`" + ` configuration blocks,
-setting ` + "`" + `virtual_service_name` + "`" + ` to the name of the service.
-
-The Terraform state associated with existing resources will automatically be migrated.
-
 `,
 			Arguments: []resource.Argument{
 
@@ -3215,18 +3204,6 @@ The Terraform state associated with existing resources will automatically be mig
 			Description: `
 
 Provides an AWS App Mesh virtual router resource.
-
-## Breaking Changes
-
-Because of backward incompatible API changes (read [here](https://github.com/awslabs/aws-app-mesh-examples/issues/92) and [here](https://github.com/awslabs/aws-app-mesh-examples/issues/94)), ` + "`" + `aws_appmesh_virtual_router` + "`" + ` resource definitions created with provider versions earlier than v2.3.0 will need to be modified:
-
-* Remove service ` + "`" + `service_names` + "`" + ` from the ` + "`" + `spec` + "`" + ` argument.
-AWS has created a ` + "`" + `aws_appmesh_virtual_service` + "`" + ` resource for each of service names.
-These resource can be imported using ` + "`" + `terraform import` + "`" + `.
-
-* Add a ` + "`" + `listener` + "`" + ` configuration block to the ` + "`" + `spec` + "`" + ` argument.
-
-The Terraform state associated with existing resources will automatically be migrated.
 
 `,
 			Arguments: []resource.Argument{
@@ -10111,11 +10088,6 @@ server reboots. See the AWS Docs on [RDS Maintenance][2] for more information.
 the raw state as plain-text. [Read more about sensitive data in
 state](/docs/state/sensitive-data.html).
 
-## RDS Instance Class Types
-Amazon RDS supports three types of instance classes: Standard, Memory Optimized,
-and Burstable Performance. For more information please read the AWS RDS documentation
-about [DB Instance Class Types](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
-
 `,
 			Arguments: []resource.Argument{
 
@@ -11186,7 +11158,34 @@ Provides an RDS DB subnet group resource.
 			Type:             "aws_default_network_acl",
 			Category:         "",
 			ShortDescription: "Manage the default Network ACL resource.",
-			Description:      ``,
+			Description: `
+
+Provides a resource to manage the default AWS Network ACL. VPC Only.
+
+Each VPC created in AWS comes with a Default Network ACL that can be managed, but not
+destroyed. **This is an advanced resource**, and has special caveats to be aware
+of when using it. Please read this document in its entirety before using this
+resource.
+
+The ` + "`" + `aws_default_network_acl` + "`" + ` behaves differently from normal resources, in that
+Terraform does not _create_ this resource, but instead attempts to "adopt" it
+into management. We can do this because each VPC created has a Default Network
+ACL that cannot be destroyed, and is created with a known set of default rules.
+
+When Terraform first adopts the Default Network ACL, it **immediately removes all
+rules in the ACL**. It then proceeds to create any rules specified in the
+configuration. This step is required so that only the rules specified in the
+configuration are created.
+
+This resource treats its inline rules as absolute; only the rules defined
+inline are created, and any additions/removals external to this resource will
+result in diffs being shown. For these reasons, this resource is incompatible with the
+` + "`" + `aws_network_acl_rule` + "`" + ` resource.
+
+For more information about Network ACLs, see the AWS Documentation on
+[Network ACLs][aws-network-acls].
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11318,7 +11317,41 @@ Provides an RDS DB subnet group resource.
 			Type:             "aws_default_route_table",
 			Category:         "",
 			ShortDescription: "Provides a resource to manage a Default VPC Routing Table.",
-			Description:      ``,
+			Description: `
+
+Provides a resource to manage a Default VPC Routing Table.
+
+Each VPC created in AWS comes with a Default Route Table that can be managed, but not
+destroyed. **This is an advanced resource**, and has special caveats to be aware
+of when using it. Please read this document in its entirety before using this
+resource. It is recommended you **do not** use both ` + "`" + `aws_default_route_table` + "`" + ` to
+manage the default route table **and** use the ` + "`" + `aws_main_route_table_association` + "`" + `,
+due to possible conflict in routes.
+
+The ` + "`" + `aws_default_route_table` + "`" + ` behaves differently from normal resources, in that
+Terraform does not _create_ this resource, but instead attempts to "adopt" it
+into management. We can do this because each VPC created has a Default Route
+Table that cannot be destroyed, and is created with a single route.
+
+When Terraform first adopts the Default Route Table, it **immediately removes all
+defined routes**. It then proceeds to create any routes specified in the
+configuration. This step is required so that only the routes specified in the
+configuration present in the Default Route Table.
+
+For more information about Route Tables, see the AWS Documentation on
+[Route Tables][aws-route-tables].
+
+For more information about managing normal Route Tables in Terraform, see our
+documentation on [aws_route_table][tf-route-tables].
+
+~> **NOTE on Route Tables and Routes:** Terraform currently
+provides both a standalone [Route resource](route.html) and a Route Table resource with routes
+defined in-line. At this time you cannot use a Route Table with in-line routes
+in conjunction with any Route resources. Doing so will cause
+a conflict of rule settings and will overwrite routes.
+
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11415,7 +11448,35 @@ Provides an RDS DB subnet group resource.
 			Type:             "aws_default_security_group",
 			Category:         "",
 			ShortDescription: "Manage the default Security Group resource.",
-			Description:      ``,
+			Description: `
+
+Provides a resource to manage the default AWS Security Group.
+
+For EC2 Classic accounts, each region comes with a Default Security Group.
+Additionally, each VPC created in AWS comes with a Default Security Group that can be managed, but not
+destroyed. **This is an advanced resource**, and has special caveats to be aware
+of when using it. Please read this document in its entirety before using this
+resource.
+
+The ` + "`" + `aws_default_security_group` + "`" + ` behaves differently from normal resources, in that
+Terraform does not _create_ this resource, but instead "adopts" it
+into management. We can do this because these default security groups cannot be
+destroyed, and are created with a known set of default ingress/egress rules.
+
+When Terraform first adopts the Default Security Group, it **immediately removes all
+ingress and egress rules in the Security Group**. It then proceeds to create any rules specified in the
+configuration. This step is required so that only the rules specified in the
+configuration are created.
+
+This resource treats its inline rules as absolute; only the rules defined
+inline are created, and any additions/removals external to this resource will
+result in diff shown. For these reasons, this resource is incompatible with the
+` + "`" + `aws_security_group_rule` + "`" + ` resource.
+
+For more information about Default Security Groups, see the AWS Documentation on
+[Default Security Groups][aws-default-security-groups].
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11863,7 +11924,16 @@ into management.
 			Type:             "aws_devicefarm_project",
 			Category:         "",
 			ShortDescription: "Provides a Devicefarm project",
-			Description:      ``,
+			Description: `
+
+Provides a resource to manage AWS Device Farm Projects. 
+Please keep in mind that this feature is only supported on the "us-west-2" region.
+This resource will error if you try to create a project in another region.
+
+For more information about Device Farm Projects, see the AWS Documentation on
+[Device Farm Projects][aws-get-project].
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16273,105 +16343,7 @@ See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/Am
 
 Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_service` + "`" + `.
 
-## Example Usage
-
-` + "`" + `` + "`" + `` + "`" + `hcl
-resource "aws_ecs_task_definition" "service" {
-  family                = "service"
-  container_definitions = "${file("task-definitions/service.json")}"
-
-  volume {
-    name      = "service-storage"
-    host_path = "/ecs/service-storage"
-  }
-
-  placement_constraints {
-    type       = "memberOf"
-    expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
-  }
-}
-` + "`" + `` + "`" + `` + "`" + `
-
-The referenced ` + "`" + `task-definitions/service.json` + "`" + ` file contains a valid JSON document,
-which is shown below, and its content is going to be passed directly into the
-` + "`" + `container_definitions` + "`" + ` attribute as a string. Please note that this example
-contains only a small subset of the available parameters.
-
-` + "`" + `` + "`" + `` + "`" + `json
-[
-  {
-    "name": "first",
-    "image": "service-first",
-    "cpu": 10,
-    "memory": 512,
-    "essential": true,
-    "portMappings": [
-      {
-        "containerPort": 80,
-        "hostPort": 80
-      }
-    ]
-  },
-  {
-    "name": "second",
-    "image": "service-second",
-    "cpu": 10,
-    "memory": 256,
-    "essential": true,
-    "portMappings": [
-      {
-        "containerPort": 443,
-        "hostPort": 443
-      }
-    ]
-  }
-]
-` + "`" + `` + "`" + `` + "`" + `
-
-## Argument Reference
-
-### Top-Level Arguments
-
-* ` + "`" + `family` + "`" + ` - (Required) A unique name for your task definition.
-* ` + "`" + `container_definitions` + "`" + ` - (Required) A list of valid [container definitions]
-(http://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_ContainerDefinition.html) provided as a
-single valid JSON document. Please note that you should only provide values that are part of the container
-definition document. For a detailed description of what parameters are available, see the [Task Definition Parameters]
-(https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html) section from the
-official [Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide).
-
-~> **NOTE**: Proper escaping is required for JSON field values containing quotes (` + "`" + `"` + "`" + `) such as ` + "`" + `environment` + "`" + ` values. If directly setting the JSON, they should be escaped as ` + "`" + `\"` + "`" + ` in the JSON,  e.g. ` + "`" + `"value": "I \"love\" escaped quotes"` + "`" + `. If using a Terraform variable value, they should be escaped as ` + "`" + `\\\"` + "`" + ` in the variable, e.g. ` + "`" + `value = "I \\\"love\\\" escaped quotes"` + "`" + ` in the variable and ` + "`" + `"value": "${var.myvariable}"` + "`" + ` in the JSON.
-
-* ` + "`" + `task_role_arn` + "`" + ` - (Optional) The ARN of IAM role that allows your Amazon ECS container task to make calls to other AWS services.
-* ` + "`" + `execution_role_arn` + "`" + ` - (Optional) The Amazon Resource Name (ARN) of the task execution role that the Amazon ECS container agent and the Docker daemon can assume.
-* ` + "`" + `network_mode` + "`" + ` - (Optional) The Docker networking mode to use for the containers in the task. The valid values are ` + "`" + `none` + "`" + `, ` + "`" + `bridge` + "`" + `, ` + "`" + `awsvpc` + "`" + `, and ` + "`" + `host` + "`" + `.
-* ` + "`" + `ipc_mode` + "`" + ` - (Optional) The IPC resource namespace to be used for the containers in the task The valid values are ` + "`" + `host` + "`" + `, ` + "`" + `task` + "`" + `, and ` + "`" + `none` + "`" + `.
-* ` + "`" + `pid_mode` + "`" + ` - (Optional) The process namespace to use for the containers in the task. The valid values are ` + "`" + `host` + "`" + ` and ` + "`" + `task` + "`" + `.
-* ` + "`" + `volume` + "`" + ` - (Optional) A set of [volume blocks](#volume-block-arguments) that containers in your task may use.
-* ` + "`" + `placement_constraints` + "`" + ` - (Optional) A set of [placement constraints](#placement-constraints-arguments) rules that are taken into consideration during task placement. Maximum number of ` + "`" + `placement_constraints` + "`" + ` is ` + "`" + `10` + "`" + `.
-* ` + "`" + `cpu` + "`" + ` - (Optional) The number of cpu units used by the task. If the ` + "`" + `requires_compatibilities` + "`" + ` is ` + "`" + `FARGATE` + "`" + ` this field is required.
-* ` + "`" + `memory` + "`" + ` - (Optional) The amount (in MiB) of memory used by the task. If the ` + "`" + `requires_compatibilities` + "`" + ` is ` + "`" + `FARGATE` + "`" + ` this field is required.
-* ` + "`" + `requires_compatibilities` + "`" + ` - (Optional) A set of launch types required by the task. The valid values are ` + "`" + `EC2` + "`" + ` and ` + "`" + `FARGATE` + "`" + `.
-* ` + "`" + `tags` + "`" + ` - (Optional) Key-value mapping of resource tags
-
-#### Volume Block Arguments
-
-* ` + "`" + `name` + "`" + ` - (Required) The name of the volume. This name is referenced in the ` + "`" + `sourceVolume` + "`" + `
-parameter of container definition in the ` + "`" + `mountPoints` + "`" + ` section.
-* ` + "`" + `host_path` + "`" + ` - (Optional) The path on the host container instance that is presented to the container. If not set, ECS will create a nonpersistent data volume that starts empty and is deleted after the task has finished.
-* ` + "`" + `docker_volume_configuration` + "`" + ` - (Optional) Used to configure a [docker volume](#docker-volume-configuration-arguments)
-
-#### Docker Volume Configuration Arguments
-
-For more information, see [Specifying a Docker volume in your Task Definition Developer Guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-volumes.html#specify-volume-config)
-
-* ` + "`" + `scope` + "`" + ` - (Optional) The scope for the Docker volume, which determines its lifecycle, either ` + "`" + `task` + "`" + ` or ` + "`" + `shared` + "`" + `.  Docker volumes that are scoped to a ` + "`" + `task` + "`" + ` are automatically provisioned when the task starts and destroyed when the task stops. Docker volumes that are ` + "`" + `scoped` + "`" + ` as shared persist after the task stops.
-* ` + "`" + `autoprovision` + "`" + ` - (Optional) If this value is ` + "`" + `true` + "`" + `, the Docker volume is created if it does not already exist. *Note*: This field is only used if the scope is ` + "`" + `shared` + "`" + `.
-* ` + "`" + `driver` + "`" + ` - (Optional) The Docker volume driver to use. The driver value must match the driver name provided by Docker because it is used for task placement.
-* ` + "`" + `driver_opts` + "`" + ` - (Optional) A map of Docker driver specific options.
-* ` + "`" + `labels` + "`" + ` - (Optional) A map of custom metadata to add to your Docker volume.
-
-###`,
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22278,7 +22250,16 @@ Provides an IAM user.
 			Type:             "aws_iam_user_group_membership",
 			Category:         "",
 			ShortDescription: "Provides a resource for adding an IAM User to IAM Groups without conflicting with itself.",
-			Description:      ``,
+			Description: `
+
+Provides a resource for adding an [IAM User][2] to [IAM Groups][1]. This
+resource can be used multiple times with the same user for non-overlapping
+groups.
+
+To exclusively manage the users in a group, see the
+[` + "`" + `aws_iam_group_membership` + "`" + ` resource][3].
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27804,54 +27785,6 @@ Attaches a load balancer policy to an ELB backend server.
 
 Attaches a load balancer policy to an ELB Listener.
 
-
-## Example Usage for Custom Policy
-
-` + "`" + `` + "`" + `` + "`" + `hcl
-resource "aws_elb" "wu-tang" {
-  name               = "wu-tang"
-  availability_zones = ["us-east-1a"]
-
-  listener {
-    instance_port      = 443
-    instance_protocol  = "http"
-    lb_port            = 443
-    lb_protocol        = "https"
-    ssl_certificate_id = "arn:aws:iam::000000000000:server-certificate/wu-tang.net"
-  }
-
-  tags = {
-    Name = "wu-tang"
-  }
-}
-
-resource "aws_load_balancer_policy" "wu-tang-ssl" {
-  load_balancer_name = "${aws_elb.wu-tang.name}"
-  policy_name        = "wu-tang-ssl"
-  policy_type_name   = "SSLNegotiationPolicyType"
-
-  policy_attribute {
-    name  = "ECDHE-ECDSA-AES128-GCM-SHA256"
-    value = "true"
-  }
-
-  policy_attribute {
-    name  = "Protocol-TLSv1.2"
-    value = "true"
-  }
-}
-
-resource "aws_load_balancer_listener_policy" "wu-tang-listener-policies-443" {
-  load_balancer_name = "${aws_elb.wu-tang.name}"
-  load_balancer_port = 443
-
-  policy_names = [
-    "${aws_load_balancer_policy.wu-tang-ssl.policy_name}",
-  ]
-}
-` + "`" + `` + "`" + `` + "`" + `
-
-This example shows how to customize the TLS settings of an HTTPS listener.
 
 `,
 			Arguments: []resource.Argument{
@@ -35284,7 +35217,17 @@ Provides a Resource Group.
 			Type:             "aws_route",
 			Category:         "",
 			ShortDescription: "Provides a resource to create a routing entry in a VPC routing table.",
-			Description:      ``,
+			Description: `
+
+Provides a resource to create a routing table entry (a route) in a VPC routing table.
+
+~> **NOTE on Route Tables and Routes:** Terraform currently
+provides both a standalone Route resource and a [Route Table](route_table.html) resource with routes
+defined in-line. At this time you cannot use a Route Table with in-line routes
+in conjunction with any Route resources. Doing so will cause
+a conflict of rule settings and will overwrite rules.
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36064,7 +36007,30 @@ Manages a Route53 Hosted Zone VPC association. VPC associations can only be made
 			Type:             "aws_route_table",
 			Category:         "",
 			ShortDescription: "Provides a resource to create a VPC routing table.",
-			Description:      ``,
+			Description: `
+
+Provides a resource to create a VPC routing table.
+
+~> **NOTE on Route Tables and Routes:** Terraform currently
+provides both a standalone [Route resource](route.html) and a Route Table resource with routes
+defined in-line. At this time you cannot use a Route Table with in-line routes
+in conjunction with any Route resources. Doing so will cause
+a conflict of rule settings and will overwrite rules.
+
+~> **NOTE on ` + "`" + `gateway_id` + "`" + ` and ` + "`" + `nat_gateway_id` + "`" + `:** The AWS API is very forgiving with these two
+attributes and the ` + "`" + `aws_route_table` + "`" + ` resource can be created with a NAT ID specified as a Gateway ID attribute.
+This _will_ lead to a permanent diff between your configuration and statefile, as the API returns the correct
+parameters in the returned route table. If you're experiencing constant diffs in your ` + "`" + `aws_route_table` + "`" + ` resources,
+the first thing to check is whether or not you're specifying a NAT ID instead of a Gateway ID, or vice-versa.
+
+~> **NOTE on ` + "`" + `propagating_vgws` + "`" + ` and the ` + "`" + `aws_vpn_gateway_route_propagation` + "`" + ` resource:**
+If the ` + "`" + `propagating_vgws` + "`" + ` argument is present, it's not supported to _also_
+define route propagations using ` + "`" + `aws_vpn_gateway_route_propagation` + "`" + `, since
+this resource will delete any propagating gateways not explicitly listed in
+` + "`" + `propagating_vgws` + "`" + `. Omit this argument when defining route propagation using
+the separate resource.
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38415,23 +38381,6 @@ Provides an SES domain DKIM generation resource.
 
 Domain ownership needs to be confirmed first using [ses_domain_identity Resource](/docs/providers/aws/r/ses_domain_identity.html)
 
-## Argument Reference
-
-The following arguments are supported:
-
-* ` + "`" + `domain` + "`" + ` - (Required) Verified domain name to generate DKIM tokens for.
-
-## Attributes Reference
-
-In addition to all arguments above, the following attributes are exported:
-
-* ` + "`" + `dkim_tokens` + "`" + ` - DKIM tokens generated by SES.
-  These tokens should be used to create CNAME records used to verify SES Easy DKIM.
-  See below for an example of how this might be achieved
-  when the domain is hosted in Route 53 and managed by Terraform. 
-  Find out more about verifying domains in Amazon SES 
-  in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
-
 `,
 			Arguments: []resource.Argument{
 
@@ -38462,26 +38411,6 @@ In addition to all arguments above, the following attributes are exported:
 			Description: `
 
 Provides an SES domain identity resource
-
-## Argument Reference
-
-The following arguments are supported:
-
-* ` + "`" + `domain` + "`" + ` - (Required) The domain name to assign to SES
-
-## Attributes Reference
-
-In addition to all arguments above, the following attributes are exported:
-
-* ` + "`" + `arn` + "`" + ` - The ARN of the domain identity.
-
-* ` + "`" + `verification_token` + "`" + ` - A code which when added to the domain as a TXT record
-  will signal to SES that the owner of the domain has authorised SES to act on
-  their behalf. The domain identity will be in state "verification pending"
-  until this is done. See below for an example of how this might be achieved
-  when the domain is hosted in Route 53 and managed by Terraform.  Find out
-  more about verifying domains in Amazon SES in the [AWS SES
-  docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html).
 
 `,
 			Arguments: []resource.Argument{
@@ -41951,7 +41880,64 @@ Provides an SWF Domain resource.
 			Type:             "aws_transfer_server",
 			Category:         "",
 			ShortDescription: "Provides a AWS Transfer Server resource.",
-			Description:      ``,
+			Description: `
+
+Provides a AWS Transfer Server resource.
+
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+resource "aws_iam_role" "foo" {
+  name = "tf-test-transfer-server-iam-role"
+
+  assume_role_policy = <<EOF
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+		"Effect": "Allow",
+		"Principal": {
+			"Service": "transfer.amazonaws.com"
+		},
+		"Action": "sts:AssumeRole"
+		}
+	]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "foo" {
+  name = "tf-test-transfer-server-iam-policy-%s"
+  role = "${aws_iam_role.foo.id}"
+
+  policy = <<POLICY
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+		"Sid": "AllowFullAccesstoCloudWatchLogs",
+		"Effect": "Allow",
+		"Action": [
+			"logs:*"
+		],
+		"Resource": "*"
+		}
+	]
+}
+POLICY
+}
+
+resource "aws_transfer_server" "foo" {
+  identity_provider_type = "SERVICE_MANAGED"
+  logging_role           = "${aws_iam_role.foo.arn}"
+
+  tags = {
+    NAME = "tf-acc-test-transfer-server"
+    ENV  = "test"
+  }
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42028,7 +42014,78 @@ Provides an SWF Domain resource.
 			Type:             "aws_transfer_ssh_key",
 			Category:         "",
 			ShortDescription: "Provides a AWS Transfer SSH Public Key resource.",
-			Description:      ``,
+			Description: `
+
+Provides a AWS Transfer User SSH Key resource.
+
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+resource "aws_transfer_server" "foo" {
+  identity_provider_type = "SERVICE_MANAGED"
+
+  tags = {
+    NAME = "tf-acc-test-transfer-server"
+  }
+}
+
+resource "aws_iam_role" "foo" {
+  name = "tf-test-transfer-user-iam-role-%s"
+
+  assume_role_policy = <<EOF
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+		"Effect": "Allow",
+		"Principal": {
+			"Service": "transfer.amazonaws.com"
+		},
+		"Action": "sts:AssumeRole"
+		}
+	]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "foo" {
+  name = "tf-test-transfer-user-iam-policy-%s"
+  role = "${aws_iam_role.foo.id}"
+
+  policy = <<POLICY
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "AllowFullAccesstoS3",
+			"Effect": "Allow",
+			"Action": [
+				"s3:*"
+			],
+			"Resource": "*"
+		}
+	]
+}
+POLICY
+}
+
+resource "aws_transfer_user" "foo" {
+  server_id = "${aws_transfer_server.foo.id}"
+  user_name = "tftestuser"
+  role      = "${aws_iam_role.foo.arn}"
+
+  tags = {
+    NAME = "tftestuser"
+  }
+}
+
+resource "aws_transfer_ssh_key" "foo" {
+  server_id = "${aws_transfer_server.foo.id}"
+  user_name = "${aws_transfer_user.foo.user_name}"
+  body      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQD3F6tyPEFEzV0LX3X8BsXdMsQz1x2cEikKDEY0aIj41qgxMCP/iteneqXSIFZBp5vizPvaoIR3Um9xK7PGoW8giupGn+EPuxIA4cDM4vzOqOkiMPhz5XK0whEjkVzTo4+S0puvDZuwIsdiW9mxhJc7tgBNL0cYlWSYVkz4G/fslNfRPW5mYAM49f4fhtxPb5ok4Q2Lg9dPKVHO/Bgeu5woMc7RY0p1ej6D4CKFE6lymSDJpW0YHX/wqE9+cfEauh7xZcG0q9t2ta6F6fmX0agvpFyZo8aFbXeUBr7osSCJNgvavWbM/06niWrOvYX2xwWdhXmXSrbX8ZbabVohBK41 example@example.com"
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42054,7 +42111,68 @@ Provides an SWF Domain resource.
 			Type:             "aws_transfer_user",
 			Category:         "",
 			ShortDescription: "Provides a AWS Transfer User resource.",
-			Description:      ``,
+			Description: `
+
+Provides a AWS Transfer User resource. Managing SSH keys can be accomplished with the [` + "`" + `aws_transfer_ssh_key` + "`" + ` resource](/docs/providers/aws/r/transfer_ssh_key.html).
+
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+resource "aws_transfer_server" "foo" {
+  identity_provider_type = "SERVICE_MANAGED"
+
+  tags = {
+    NAME = "tf-acc-test-transfer-server"
+  }
+}
+
+resource "aws_iam_role" "foo" {
+  name = "tf-test-transfer-user-iam-role"
+
+  assume_role_policy = <<EOF
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+		"Effect": "Allow",
+		"Principal": {
+			"Service": "transfer.amazonaws.com"
+		},
+		"Action": "sts:AssumeRole"
+		}
+	]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "foo" {
+  name = "tf-test-transfer-user-iam-policy"
+  role = "${aws_iam_role.foo.id}"
+
+  policy = <<POLICY
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "AllowFullAccesstoS3",
+			"Effect": "Allow",
+			"Action": [
+				"s3:*"
+			],
+			"Resource": "*"
+		}
+	]
+}
+POLICY
+}
+
+resource "aws_transfer_user" "foo" {
+  server_id = "${aws_transfer_server.foo.id}"
+  user_name = "tftestuser"
+  role      = "${aws_iam_role.foo.arn}"
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43211,7 +43329,136 @@ connection into management.
 			Type:             "aws_vpc_peering_options",
 			Category:         "",
 			ShortDescription: "Provides a resource to manage VPC peering connection options.",
-			Description:      ``,
+			Description: `
+
+Provides a resource to manage VPC peering connection options.
+
+~> **NOTE on VPC Peering Connections and VPC Peering Connection Options:** Terraform provides
+both a standalone VPC Peering Connection Options and a [VPC Peering Connection](vpc_peering.html)
+resource with ` + "`" + `accepter` + "`" + ` and ` + "`" + `requester` + "`" + ` attributes. Do not manage options for the same VPC peering
+connection in both a VPC Peering Connection resource and a VPC Peering Connection Options resource.
+Doing so will cause a conflict of options and will overwrite the options.
+Using a VPC Peering Connection Options resource decouples management of the connection options from
+management of the VPC Peering Connection and allows options to be set correctly in cross-account scenarios.
+
+Basic usage:
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+resource "aws_vpc" "foo" {
+  cidr_block = "10.0.0.0/16"
+}
+
+resource "aws_vpc" "bar" {
+  cidr_block = "10.1.0.0/16"
+}
+
+resource "aws_vpc_peering_connection" "foo" {
+  vpc_id      = "${aws_vpc.foo.id}"
+  peer_vpc_id = "${aws_vpc.bar.id}"
+  auto_accept = true
+}
+
+resource "aws_vpc_peering_connection_options" "foo" {
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.foo.id}"
+
+  accepter {
+    allow_remote_vpc_dns_resolution = true
+  }
+
+  requester {
+    allow_vpc_to_remote_classic_link = true
+    allow_classic_link_to_remote_vpc = true
+  }
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+Basic cross-account usage:
+
+` + "`" + `` + "`" + `` + "`" + `hcl
+provider "aws" {
+  alias = "requester"
+
+  # Requester's credentials.
+}
+
+provider "aws" {
+  alias = "accepter"
+
+  # Accepter's credentials.
+}
+
+resource "aws_vpc" "main" {
+  provider = "aws.requester"
+
+  cidr_block = "10.0.0.0/16"
+
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+resource "aws_vpc" "peer" {
+  provider = "aws.accepter"
+
+  cidr_block = "10.1.0.0/16"
+
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+}
+
+data "aws_caller_identity" "peer" {
+  provider = "aws.accepter"
+}
+
+# Requester's side of the connection.
+resource "aws_vpc_peering_connection" "peer" {
+  provider = "aws.requester"
+
+  vpc_id        = "${aws_vpc.main.id}"
+  peer_vpc_id   = "${aws_vpc.peer.id}"
+  peer_owner_id = "${data.aws_caller_identity.peer.account_id}"
+  auto_accept   = false
+
+  tags = {
+    Side = "Requester"
+  }
+}
+
+# Accepter's side of the connection.
+resource "aws_vpc_peering_connection_accepter" "peer" {
+  provider = "aws.accepter"
+
+  vpc_peering_connection_id = "${aws_vpc_peering_connection.peer.id}"
+  auto_accept               = true
+
+  tags = {
+    Side = "Accepter"
+  }
+}
+
+resource "aws_vpc_peering_connection_options" "requester" {
+  provider = "aws.requester"
+
+  # As options can't be set until the connection has been accepted
+  # create an explicit dependency on the accepter.
+  vpc_peering_connection_id = "${aws_vpc_peering_connection_accepter.peer.id}"
+
+  requester {
+    allow_remote_vpc_dns_resolution = true
+  }
+}
+
+resource "aws_vpc_peering_connection_options" "accepter" {
+  provider = "aws.accepter"
+
+  vpc_peering_connection_id = "${aws_vpc_peering_connection_accepter.peer.id}"
+
+  accepter {
+    allow_remote_vpc_dns_resolution = true
+  }
+}
+` + "`" + `` + "`" + `` + "`" + `
+
+`,
 			Arguments: []resource.Argument{
 
 				resource.Attribute{

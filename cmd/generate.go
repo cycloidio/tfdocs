@@ -79,7 +79,7 @@ func getShortDescription(b []byte) string {
 	return standardizeSpaces(string(res[1]))
 }
 
-var descriptionRe = regexp.MustCompile(`(?ms)#\sResource:\s[\w\d-_]+(.+)##\sExample\sUsage`)
+var descriptionRe = regexp.MustCompile(`(?ms)#\s(?:Resource|Data\sSource):\s[\w\d-_]+(.+?)##[^#]+`)
 
 func getDescription(b []byte) string {
 	res := descriptionRe.FindSubmatch(b)
