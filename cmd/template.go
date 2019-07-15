@@ -23,10 +23,15 @@ const (
 				{{ range .Resources }}
 					resource.Resource{
 						Name: "{{ .Name }}",
-						Type: "aws_{{ .Type }}",
+						Type: "{{ .Type }}",
 						Category: "{{ .Category }}",
 						ShortDescription: "{{ .ShortDescription }}",
 						Description: ` + "`{{ .Description }}`" + `,
+						Keywords: []string{
+							{{ range .Keywords }}
+							  "{{ . }}",
+							{{ end }}
+						},
 						Arguments: []resource.Argument{
 							{{ range .Arguments }}
 								resource.Attribute{

@@ -6,16 +6,76 @@ import (
 	"go/format"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
 
+	"github.com/PuerkitoBio/goquery"
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 func main() {
 	docsPath := filepath.Join("providers", "aws", "website", "docs")
+	sidebarPath := filepath.Join("providers", "aws", "website", "aws.erb")
+
+	// categories has as key the resource name and as value the category
+	// they belong to
+	// The DataSources are not here
+	categories := make(map[string]string)
+
+	// The type it's hard to guess.
+	// * On the .markdown, the `Resource: ` sometimes has with or without aws_, and some
+	// times it does not match
+	// * The `page_title` the smae
+	// * File name does not match always
+	// The only valid solution is to read the sidebar and get the URL which is the file
+	// and use the Text to set as type
+	fileType := make(map[string]string)
+
+	body, err := ioutil.ReadFile(sidebarPath)
+	if err != nil {
+		panic(err)
+	}
+
+	doc, err := goquery.NewDocumentFromReader(bytes.NewBuffer(body))
+	if err != nil {
+		panic(err)
+	}
+
+	doc.Find(".nav.docs-sidenav > li").Each(func(_ int, s *goquery.Selection) {
+		var cat string
+		s.Find("a").Each(func(i int, s *goquery.Selection) {
+			text := s.Text()
+
+			if i == 0 {
+				cat = text
+				return
+			}
+
+			// Set the href of the link with the actual type of it
+			href, _ := s.Attr("href")
+			paths := strings.Split(href, "/")
+			fileName := strings.Split(paths[len(paths)-1], ".")[0]
+
+			// We want to ignore the 'Data Sources'
+			// as they all are the same category
+			if cat == "Data Sources" {
+				fileType[fmt.Sprintf("d_%s", fileName)] = text
+				return
+			}
+
+			fileType[fmt.Sprintf("r_%s", fileName)] = text
+			if v, ok := categories[text]; ok {
+				log.Fatalf("the resource %q found with category %q and also on %q", text, v, cat)
+			}
+			categories[text] = cat
+		})
+	})
+
+	//spew.Dump(fileType)
+	//panic("")
 
 	for _, t := range []string{"r", "d"} {
 		files, err := ioutil.ReadDir(filepath.Join(docsPath, t))
@@ -35,13 +95,33 @@ func main() {
 			if err != nil {
 				panic(err)
 			}
-			resources = append(resources, resource.Resource{
-				Type:             trimResourceType(f.Name()),
+
+			fileName := fmt.Sprintf("%s_%s", t, strings.Split(f.Name(), ".")[0])
+			rt, ok := fileType[fileName]
+			if !ok {
+				log.Printf("the file %q of %q has no type, name used was %q", f.Name(), t, fileName)
+				continue
+			}
+
+			r := resource.Resource{
+				Type:             rt,
 				ShortDescription: getShortDescription(body),
 				Description:      getDescription(body),
 				Arguments:        getArguments(body),
 				Attributes:       getAttributes(body),
-			})
+			}
+			if t == "d" {
+				r.Category = "Data Sources"
+			} else {
+				c, ok := categories[rt]
+				if !ok {
+					log.Printf("the resource %q has no category", rt)
+					continue
+				}
+				r.Category = c
+				r.Keywords = categoryToKeywords(c)
+			}
+			resources = append(resources, r)
 		}
 
 		buff := &bytes.Buffer{}
@@ -65,8 +145,33 @@ func main() {
 	}
 }
 
-func trimResourceType(n string) string {
-	return strings.Split(n, ".")[0]
+var categoryReplacer = strings.NewReplacer("(", "", ")", "", "/", "")
+
+func categoryToKeywords(c string) []string {
+	ws := strings.Split(strings.ToLower(c), " ")
+
+	res := make([]string, 0, len(ws))
+	for _, w := range ws {
+		if w == "resources" {
+			continue
+		}
+		w = categoryReplacer.Replace(w)
+		res = append(res, w)
+	}
+
+	return res
+}
+
+//var resourceTypeRe = regexp.MustCompile(`(?ms)#\s(?:Resource|Data\sSource):\s([\w\d-_]+)\n`)
+
+var resourceTypeRe = regexp.MustCompile(`(?ms)page_title:\s"[\w\d\-_]+:\s([\w\d\-_]+)"`)
+
+func getResourceType(b []byte) string {
+	res := resourceTypeRe.FindSubmatch(b)
+	if len(res) != 2 {
+		return ""
+	}
+	return standardizeSpaces(string(res[1]))
 }
 
 var shortDescriptionRe = regexp.MustCompile(`(?ms)description:\s(?:\|-)?([^#]+)+---`)
