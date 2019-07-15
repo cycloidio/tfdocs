@@ -10,7 +10,7 @@ var (
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_acm_certificate",
-			Category:         "",
+			Category:         "ACM Resources",
 			ShortDescription: "Requests and manages a certificate from Amazon Certificate Manager (ACM).",
 			Description: `
 
@@ -33,6 +33,10 @@ It's recommended to specify ` + "`" + `create_before_destroy = true` + "`" + ` i
 which is currently in use (eg, by [` + "`" + `aws_lb_listener` + "`" + `](lb_listener.html)).
 
 `,
+			Keywords: []string{
+
+				"acm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -167,7 +171,7 @@ which is currently in use (eg, by [` + "`" + `aws_lb_listener` + "`" + `](lb_lis
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_acm_certificate_validation",
-			Category:         "",
+			Category:         "ACM Resources",
 			ShortDescription: "Waits for and checks successful validation of an ACM certificate.",
 			Description: `
 
@@ -182,6 +186,10 @@ deploy the required validation records and wait for validation to complete.
 
 
 `,
+			Keywords: []string{
+
+				"acm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -200,7 +208,7 @@ deploy the required validation records and wait for validation to complete.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_acmpca_certificate_authority",
-			Category:         "",
+			Category:         "ACM PCA Resources",
 			ShortDescription: "Provides a resource to manage AWS Certificate Manager Private Certificate Authorities",
 			Description: `
 
@@ -209,6 +217,12 @@ Provides a resource to manage AWS Certificate Manager Private Certificate Author
 ~> **NOTE:** Creating this resource will leave the certificate authority in a ` + "`" + `PENDING_CERTIFICATE` + "`" + ` status, which means it cannot yet issue certificates. To complete this setup, you must fully sign the certificate authority CSR available in the ` + "`" + `certificate_signing_request` + "`" + ` attribute and import the signed certificate outside of Terraform. Terraform can support another resource to manage that workflow automatically in the future.
 
 `,
+			Keywords: []string{
+
+				"acm",
+
+				"pca",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -453,7 +467,7 @@ Provides a resource to manage AWS Certificate Manager Private Certificate Author
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ami",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Creates and manages a custom Amazon Machine Image (AMI).",
 			Description: `
 
@@ -467,6 +481,10 @@ If you just want to share an existing AMI with another AWS account,
 it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -626,7 +644,7 @@ it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ami_copy",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Duplicates an existing Amazon Machine Image (AMI)",
 			Description: `
 
@@ -643,6 +661,10 @@ Copying an AMI can take several minutes. The creation of this resource will
 block until the new AMI is available for use on new instances.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -707,7 +729,7 @@ block until the new AMI is available for use on new instances.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ami_from_instance",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Creates an Amazon Machine Image (AMI) from an EBS-backed EC2 instance",
 			Description: `
 
@@ -730,6 +752,10 @@ the generated AMI. Users may taint or otherwise recreate the resource in order
 to produce a fresh snapshot.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -784,13 +810,17 @@ to produce a fresh snapshot.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ami_launch_permission",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Adds launch permission to Amazon Machine Image (AMI).",
 			Description: `
 
 Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -820,7 +850,7 @@ Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_account",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides a settings of an API Gateway Account.",
 			Description: `
 
@@ -829,6 +859,12 @@ Provides a settings of an API Gateway Account. Settings is applied region-wide p
 -> **Note:** As there is no API method for deleting account settings or resetting it to defaults, destroying this resource will keep your account settings intact
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -873,7 +909,7 @@ Provides a settings of an API Gateway Account. Settings is applied region-wide p
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_api_key",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway API Key.",
 			Description: `
 
@@ -882,6 +918,12 @@ Provides an API Gateway API Key.
 ~> **NOTE:** Since the API Gateway usage plans feature was launched on August 11, 2016, usage plans are now **required** to associate an API key with an API stage.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -951,13 +993,19 @@ Provides an API Gateway API Key.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_authorizer",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Authorizer.",
 			Description: `
 
 Provides an API Gateway Authorizer.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1011,7 +1059,7 @@ Provides an API Gateway Authorizer.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_base_path_mapping",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Connects a custom domain with a deployed API",
 			Description: `
 
@@ -1020,6 +1068,12 @@ with a deployed API so that its methods can be called via the
 custom domain name.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1048,13 +1102,19 @@ custom domain name.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_client_certificate",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Client Certificate.",
 			Description: `
 
 Provides an API Gateway Client Certificate.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1109,7 +1169,7 @@ Provides an API Gateway Client Certificate.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_deployment",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Deployment.",
 			Description: `
 
@@ -1119,6 +1179,12 @@ Provides an API Gateway Deployment.
 you might need to add an explicit ` + "`" + `depends_on = ["aws_api_gateway_integration.name"]` + "`" + `.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1193,13 +1259,19 @@ you might need to add an explicit ` + "`" + `depends_on = ["aws_api_gateway_inte
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_documentation_part",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides a settings of an API Gateway Documentation Part.",
 			Description: `
 
 Provides a settings of an API Gateway Documentation Part.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1259,13 +1331,19 @@ Provides a settings of an API Gateway Documentation Part.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_documentation_version",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides a resource to manage an API Gateway Documentation Version.",
 			Description: `
 
 Provides a resource to manage an API Gateway Documentation Version.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1289,7 +1367,7 @@ Provides a resource to manage an API Gateway Documentation Version.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_domain_name",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Registers a custom domain name for use with AWS API Gateway.",
 			Description: `
 
@@ -1318,6 +1396,12 @@ the ` + "`" + `regional_domain_name` + "`" + ` attribute.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1437,13 +1521,19 @@ the ` + "`" + `regional_domain_name` + "`" + ` attribute.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_gateway_response",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Gateway Response for a REST API Gateway.",
 			Description: `
 
 Provides an API Gateway Gateway Response for a REST API Gateway.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1477,13 +1567,19 @@ Provides an API Gateway Gateway Response for a REST API Gateway.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_integration",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an HTTP Method Integration for an API Gateway Integration.",
 			Description: `
 
 Provides an HTTP Method Integration for an API Gateway Integration.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1572,7 +1668,7 @@ Provides an HTTP Method Integration for an API Gateway Integration.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_integration_response",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an HTTP Method Integration Response for an API Gateway Resource.",
 			Description: `
 
@@ -1582,6 +1678,12 @@ Provides an HTTP Method Integration Response for an API Gateway Resource.
 you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean runs.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1630,13 +1732,19 @@ you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean run
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_method",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides a HTTP Method for an API Gateway Resource.",
 			Description: `
 
 Provides a HTTP Method for an API Gateway Resource.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1695,13 +1803,19 @@ Provides a HTTP Method for an API Gateway Resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_method_response",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an HTTP Method Response for an API Gateway Resource.",
 			Description: `
 
 Provides an HTTP Method Response for an API Gateway Resource.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1740,13 +1854,19 @@ Provides an HTTP Method Response for an API Gateway Resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_method_settings",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Method Settings, e.g. logging or monitoring.",
 			Description: `
 
 Provides an API Gateway Method Settings, e.g. logging or monitoring.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1825,13 +1945,19 @@ Provides an API Gateway Method Settings, e.g. logging or monitoring.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_model",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides a Model for a API Gateway.",
 			Description: `
 
 Provides a Model for a API Gateway.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1876,13 +2002,19 @@ Provides a Model for a API Gateway.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_request_validator",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Manages an API Gateway Request Validator.",
 			Description: `
 
 Manages an API Gateway Request Validator.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1922,13 +2054,19 @@ Manages an API Gateway Request Validator.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_resource",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Resource.",
 			Description: `
 
 Provides an API Gateway Resource.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -1973,13 +2111,19 @@ Provides an API Gateway Resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_rest_api",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway REST API.",
 			Description: `
 
 Provides an API Gateway REST API.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2074,13 +2218,19 @@ Provides an API Gateway REST API.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_stage",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Stage.",
 			Description: `
 
 Provides an API Gateway Stage.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2190,13 +2340,19 @@ Provides an API Gateway Stage.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_usage_plan",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Usage Plan.",
 			Description: `
 
 Provides an API Gateway Usage Plan.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2306,13 +2462,19 @@ Provides an API Gateway Usage Plan.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_usage_plan_key",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway Usage Plan Key.",
 			Description: `
 
 Provides an API Gateway Usage Plan Key.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2397,13 +2559,19 @@ Provides an API Gateway Usage Plan Key.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_vpc_link",
-			Category:         "",
+			Category:         "API Gateway Resources",
 			ShortDescription: "Provides an API Gateway VPC Link.",
 			Description: `
 
 Provides an API Gateway VPC Link.
 
 `,
+			Keywords: []string{
+
+				"api",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2438,13 +2606,25 @@ Provides an API Gateway VPC Link.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_app_cookie_stickiness_policy",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Provides an application cookie stickiness policy, which allows an ELB to wed its stickiness cookie to a cookie generated by your application.",
 			Description: `
 
 Provides an application cookie stickiness policy, which allows an ELB to wed its sticky cookie's expiration to a cookie generated by your application.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2524,13 +2704,19 @@ Provides an application cookie stickiness policy, which allows an ELB to wed its
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appautoscaling_policy",
-			Category:         "",
+			Category:         "Application Autoscaling Resources",
 			ShortDescription: "Provides an Application AutoScaling Policy resource.",
 			Description: `
 
 Provides an Application AutoScaling Policy resource.
 
 `,
+			Keywords: []string{
+
+				"application",
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2710,13 +2896,19 @@ Provides an Application AutoScaling Policy resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appautoscaling_scheduled_action",
-			Category:         "",
+			Category:         "Application Autoscaling Resources",
 			ShortDescription: "Provides an Application AutoScaling ScheduledAction resource.",
 			Description: `
 
 Provides an Application AutoScaling ScheduledAction resource.
 
 `,
+			Keywords: []string{
+
+				"application",
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2786,13 +2978,19 @@ Provides an Application AutoScaling ScheduledAction resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appautoscaling_target",
-			Category:         "",
+			Category:         "Application Autoscaling Resources",
 			ShortDescription: "Provides an Application AutoScaling ScalableTarget resource.",
 			Description: `
 
 Provides an Application AutoScaling ScalableTarget resource. To manage policies which get attached to the target, see the [` + "`" + `aws_appautoscaling_policy` + "`" + ` resource](/docs/providers/aws/r/appautoscaling_policy.html).
 
 `,
+			Keywords: []string{
+
+				"application",
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2831,13 +3029,17 @@ Provides an Application AutoScaling ScalableTarget resource. To manage policies 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_mesh",
-			Category:         "",
+			Category:         "AppMesh Resources",
 			ShortDescription: "Provides an AWS App Mesh service mesh resource.",
 			Description: `
 
 Provides an AWS App Mesh service mesh resource.
 
 `,
+			Keywords: []string{
+
+				"appmesh",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -2902,13 +3104,17 @@ Provides an AWS App Mesh service mesh resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_route",
-			Category:         "",
+			Category:         "AppMesh Resources",
 			ShortDescription: "Provides an AWS App Mesh route resource.",
 			Description: `
 
 Provides an AWS App Mesh route resource.
 
 `,
+			Keywords: []string{
+
+				"appmesh",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3023,13 +3229,17 @@ Provides an AWS App Mesh route resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_virtual_node",
-			Category:         "",
+			Category:         "AppMesh Resources",
 			ShortDescription: "Provides an AWS App Mesh virtual node resource.",
 			Description: `
 
 Provides an AWS App Mesh virtual node resource.
 
 `,
+			Keywords: []string{
+
+				"appmesh",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3199,13 +3409,17 @@ Provides an AWS App Mesh virtual node resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_virtual_router",
-			Category:         "",
+			Category:         "AppMesh Resources",
 			ShortDescription: "Provides an AWS App Mesh virtual router resource.",
 			Description: `
 
 Provides an AWS App Mesh virtual router resource.
 
 `,
+			Keywords: []string{
+
+				"appmesh",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3290,13 +3504,17 @@ Provides an AWS App Mesh virtual router resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_virtual_service",
-			Category:         "",
+			Category:         "AppMesh Resources",
 			ShortDescription: "Provides an AWS App Mesh virtual service resource.",
 			Description: `
 
 Provides an AWS App Mesh virtual service resource.
 
 `,
+			Keywords: []string{
+
+				"appmesh",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3381,13 +3599,17 @@ Provides an AWS App Mesh virtual service resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appsync_api_key",
-			Category:         "",
+			Category:         "AppSync Resources",
 			ShortDescription: "Provides an AppSync API Key.",
 			Description: `
 
 Provides an AppSync API Key.
 
 `,
+			Keywords: []string{
+
+				"appsync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3432,13 +3654,17 @@ Provides an AppSync API Key.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appsync_datasource",
-			Category:         "",
+			Category:         "AppSync Resources",
 			ShortDescription: "Provides an AppSync DataSource.",
 			Description: `
 
 Provides an AppSync DataSource.
 
 `,
+			Keywords: []string{
+
+				"appsync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3538,13 +3764,17 @@ Provides an AppSync DataSource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appsync_graphql_api",
-			Category:         "",
+			Category:         "AppSync Resources",
 			ShortDescription: "Provides an AppSync GraphQL API.",
 			Description: `
 
 Provides an AppSync GraphQL API.
 
 `,
+			Keywords: []string{
+
+				"appsync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3669,13 +3899,17 @@ Provides an AppSync GraphQL API.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_appsync_resolver",
-			Category:         "",
+			Category:         "AppSync Resources",
 			ShortDescription: "Provides an AppSync Resolver.",
 			Description: `
 
 Provides an AppSync Resolver.
 
 `,
+			Keywords: []string{
+
+				"appsync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3725,13 +3959,17 @@ Provides an AppSync Resolver.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_athena_database",
-			Category:         "",
+			Category:         "Athena Resources",
 			ShortDescription: "Provides an Athena database.",
 			Description: `
 
 Provides an Athena database.
 
 `,
+			Keywords: []string{
+
+				"athena",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3781,13 +4019,17 @@ Provides an Athena database.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_athena_named_query",
-			Category:         "",
+			Category:         "Athena Resources",
 			ShortDescription: "Provides an Athena Named Query resource.",
 			Description: `
 
 Provides an Athena Named Query resource.
 
 `,
+			Keywords: []string{
+
+				"athena",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3827,7 +4069,7 @@ Provides an Athena Named Query resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_attachment",
-			Category:         "",
+			Category:         "Autoscaling Resources",
 			ShortDescription: "Provides an AutoScaling Group Attachment resource.",
 			Description: `
 
@@ -3841,6 +4083,10 @@ load balancers in conjunction with an ASG Attachment resource. Doing so will cau
 conflict and will overwrite attachments.
 
 `,
+			Keywords: []string{
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -3864,7 +4110,7 @@ conflict and will overwrite attachments.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_group",
-			Category:         "",
+			Category:         "Autoscaling Resources",
 			ShortDescription: "Provides an AutoScaling Group resource.",
 			Description: `
 
@@ -3873,6 +4119,10 @@ Provides an AutoScaling Group resource.
 -> **Note:** You must specify either ` + "`" + `launch_configuration` + "`" + `, ` + "`" + `launch_template` + "`" + `, or ` + "`" + `mixed_instances_policy` + "`" + `.
 
 `,
+			Keywords: []string{
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4171,8 +4421,8 @@ Provides an AutoScaling Group resource.
 
 		resource.Resource{
 			Name:             "",
-			Type:             "aws_autoscaling_lifecycle_hooks",
-			Category:         "",
+			Type:             "aws_autoscaling_lifecycle_hook",
+			Category:         "Autoscaling Resources",
 			ShortDescription: "Provides an AutoScaling Lifecycle Hooks resource.",
 			Description: `
 
@@ -4191,6 +4441,10 @@ behavior. If you need hooks to run on all instances, add them with
 but take care to not duplicate those hooks with this resource.
 
 `,
+			Keywords: []string{
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4239,7 +4493,7 @@ but take care to not duplicate those hooks with this resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_notification",
-			Category:         "",
+			Category:         "Autoscaling Resources",
 			ShortDescription: "Provides an AutoScaling Group with Notification support",
 			Description: `
 
@@ -4248,6 +4502,10 @@ the ` + "`" + `notifications` + "`" + ` map to a [Notification Configuration][2]
 Services, and are applied to each AutoScaling Group you supply.
 
 `,
+			Keywords: []string{
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4271,7 +4529,7 @@ Services, and are applied to each AutoScaling Group you supply.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_policy",
-			Category:         "",
+			Category:         "Autoscaling Resources",
 			ShortDescription: "Provides an AutoScaling Scaling Group resource.",
 			Description: `
 
@@ -4284,6 +4542,10 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 (policy-based) scaling.
 
 `,
+			Keywords: []string{
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4473,13 +4735,17 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_schedule",
-			Category:         "",
+			Category:         "Autoscaling Resources",
 			ShortDescription: "Provides an AutoScaling Schedule resource.",
 			Description: `
 
 Provides an AutoScaling Schedule resource.
 
 `,
+			Keywords: []string{
+
+				"autoscaling",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4539,13 +4805,17 @@ Provides an AutoScaling Schedule resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_backup_plan",
-			Category:         "",
+			Category:         "Backup Resources",
 			ShortDescription: "Provides an AWS Backup plan resource.",
 			Description: `
 
 Provides an AWS Backup plan resource.
 
 `,
+			Keywords: []string{
+
+				"backup",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4600,13 +4870,17 @@ Provides an AWS Backup plan resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_backup_selection",
-			Category:         "",
+			Category:         "Backup Resources",
 			ShortDescription: "Manages selection conditions for AWS Backup plan resources.",
 			Description: `
 
 Manages selection conditions for AWS Backup plan resources.
 
 `,
+			Keywords: []string{
+
+				"backup",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4666,13 +4940,17 @@ Manages selection conditions for AWS Backup plan resources.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_backup_vault",
-			Category:         "",
+			Category:         "Backup Resources",
 			ShortDescription: "Provides an AWS Backup vault resource.",
 			Description: `
 
 Provides an AWS Backup vault resource.
 
 `,
+			Keywords: []string{
+
+				"backup",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4727,7 +5005,7 @@ Provides an AWS Backup vault resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_batch_compute_environment",
-			Category:         "",
+			Category:         "Batch Resources",
 			ShortDescription: "Creates a AWS Batch compute environment.",
 			Description: `
 
@@ -4740,6 +5018,10 @@ For information about compute environment, see [Compute Environments][2] .
    otherwise, the policy may be destroyed too soon and the compute environment will then get stuck in the ` + "`" + `DELETING` + "`" + ` state, see [Troubleshooting AWS Batch][3] .
 
 `,
+			Keywords: []string{
+
+				"batch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4899,13 +5181,17 @@ For information about compute environment, see [Compute Environments][2] .
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_batch_job_definition",
-			Category:         "",
+			Category:         "Batch Resources",
 			ShortDescription: "Provides a Batch Job Definition resource.",
 			Description: `
 
 Provides a Batch Job Definition resource.
 
 `,
+			Keywords: []string{
+
+				"batch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -4975,13 +5261,17 @@ Provides a Batch Job Definition resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_batch_job_queue",
-			Category:         "",
+			Category:         "Batch Resources",
 			ShortDescription: "Provides a Batch Job Queue resource.",
 			Description: `
 
 Provides a Batch Job Queue resource.
 
 `,
+			Keywords: []string{
+
+				"batch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5021,13 +5311,17 @@ Provides a Batch Job Queue resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_budgets_budget",
-			Category:         "",
+			Category:         "Budgets Resources",
 			ShortDescription: "Provides a budgets budget resource.",
 			Description: `
 
 Provides a budgets budget resource. Budgets use the cost visualisation provided by Cost Explorer to show you the status of your budgets, to provide forecasts of your estimated costs, and to track your AWS usage, including your free tier usage.
 
 `,
+			Keywords: []string{
+
+				"budgets",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5277,13 +5571,17 @@ Provides a budgets budget resource. Budgets use the cost visualisation provided 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloud9_environment_ec2",
-			Category:         "",
+			Category:         "Cloud9 Resources",
 			ShortDescription: "Provides a Cloud9 EC2 Development Environment.",
 			Description: `
 
 Provides a Cloud9 EC2 Development Environment.
 
 `,
+			Keywords: []string{
+
+				"cloud9",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5353,13 +5651,17 @@ Provides a Cloud9 EC2 Development Environment.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudformation_stack",
-			Category:         "",
+			Category:         "CloudFormation Resources",
 			ShortDescription: "Provides a CloudFormation Stack resource.",
 			Description: `
 
 Provides a CloudFormation Stack resource.
 
 `,
+			Keywords: []string{
+
+				"cloudformation",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5454,7 +5756,7 @@ Provides a CloudFormation Stack resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudformation_stack_set",
-			Category:         "",
+			Category:         "CloudFormation Resources",
 			ShortDescription: "Manages a CloudFormation Stack Set.",
 			Description: `
 
@@ -5465,6 +5767,10 @@ Manages a CloudFormation Stack Set. Stack Sets allow CloudFormation templates to
 ~> **NOTE:** All ` + "`" + `NoEcho` + "`" + ` template parameters must be ignored with the ` + "`" + `lifecycle` + "`" + ` configuration block ` + "`" + `ignore_changes` + "`" + ` argument.
 
 `,
+			Keywords: []string{
+
+				"cloudformation",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5549,7 +5855,7 @@ Manages a CloudFormation Stack Set. Stack Sets allow CloudFormation templates to
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudformation_stack_set_instance",
-			Category:         "",
+			Category:         "CloudFormation Resources",
 			ShortDescription: "Manages a CloudFormation Stack Set Instance.",
 			Description: `
 
@@ -5560,6 +5866,10 @@ Manages a CloudFormation Stack Set Instance. Instances are managed in the accoun
 ~> **NOTE:** To retain the Stack during Terraform resource destroy, ensure ` + "`" + `retain_stack = true` + "`" + ` has been successfully applied into the Terraform state first. This must be completed _before_ an apply that would destroy the resource.
 
 `,
+			Keywords: []string{
+
+				"cloudformation",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5644,7 +5954,7 @@ Manages a CloudFormation Stack Set Instance. Instances are managed in the accoun
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudfront_distribution",
-			Category:         "",
+			Category:         "CloudFront Resources",
 			ShortDescription: "Provides a CloudFront web distribution resource.",
 			Description: `
 
@@ -5661,6 +5971,10 @@ blocked. If you need to delete a distribution that is enabled and you do not
 want to wait, you need to use the ` + "`" + `retain_on_delete` + "`" + ` flag.
 
 `,
+			Keywords: []string{
+
+				"cloudfront",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5815,7 +6129,7 @@ want to wait, you need to use the ` + "`" + `retain_on_delete` + "`" + ` flag.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudfront_origin_access_identity",
-			Category:         "",
+			Category:         "CloudFront Resources",
 			ShortDescription: "Provides a CloudFront origin access identity.",
 			Description: `
 
@@ -5827,6 +6141,10 @@ origin access identities, see
 [Using an Origin Access Identity to Restrict Access to Your Amazon S3 Content][2].
 
 `,
+			Keywords: []string{
+
+				"cloudfront",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5896,11 +6214,15 @@ origin access identities, see
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudfront_public_key",
-			Category:         "",
+			Category:         "CloudFront Resources",
 			ShortDescription: "Provides a CloudFront Public Key which you add to CloudFront to use with features like field-level encryption.",
 			Description: `
 
 `,
+			Keywords: []string{
+
+				"cloudfront",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -5960,7 +6282,7 @@ origin access identities, see
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudhsm_v2_cluster",
-			Category:         "",
+			Category:         "CloudHSM v2 Resources",
 			ShortDescription: "Provides a CloudHSM v2 resource.",
 			Description: `
 
@@ -5976,6 +6298,12 @@ If you need to delete a cluster, you have to remove its HSM modules first.
 To initialize cluster you have to sign CSR and upload it.
 
 `,
+			Keywords: []string{
+
+				"cloudhsm",
+
+				"v2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6105,13 +6433,19 @@ To initialize cluster you have to sign CSR and upload it.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudhsm_v2_hsm",
-			Category:         "",
+			Category:         "CloudHSM v2 Resources",
 			ShortDescription: "Provides a CloudHSM v2 HSM module resource.",
 			Description: `
 
 Creates an HSM module in Amazon CloudHSM v2 cluster.
 
 `,
+			Keywords: []string{
+
+				"cloudhsm",
+
+				"v2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6171,7 +6505,7 @@ Creates an HSM module in Amazon CloudHSM v2 cluster.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudtrail",
-			Category:         "",
+			Category:         "CloudTrail Resources",
 			ShortDescription: "Provides a CloudTrail resource.",
 			Description: `
 
@@ -6182,6 +6516,10 @@ Provides a CloudTrail resource.
 ~> *NOTE:* For an organization trail, this resource must be in the master account of the organization.
 
 `,
+			Keywords: []string{
+
+				"cloudtrail",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6291,13 +6629,17 @@ Provides a CloudTrail resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_dashboard",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Dashboard resource.",
 			Description: `
 
 Provides a CloudWatch Dashboard resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6327,13 +6669,17 @@ Provides a CloudWatch Dashboard resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_event_permission",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a resource to create a CloudWatch Events permission to support cross-account events in the current account default event bus.",
 			Description: `
 
 Provides a resource to create a CloudWatch Events permission to support cross-account events in the current account default event bus.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6388,13 +6734,17 @@ Provides a resource to create a CloudWatch Events permission to support cross-ac
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_event_rule",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Event Rule resource.",
 			Description: `
 
 Provides a CloudWatch Event Rule resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6454,13 +6804,17 @@ Provides a CloudWatch Event Rule resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_event_target",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Event Target resource.",
 			Description: `
 
 Provides a CloudWatch Event Target resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6624,13 +6978,17 @@ Provides a CloudWatch Event Target resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_destination",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Logs destination.",
 			Description: `
 
 Provides a CloudWatch Logs destination resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6665,13 +7023,17 @@ Provides a CloudWatch Logs destination resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_destination_policy",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Logs destination policy.",
 			Description: `
 
 Provides a CloudWatch Logs destination policy resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6690,13 +7052,17 @@ Provides a CloudWatch Logs destination policy resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_group",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Log Group resource.",
 			Description: `
 
 Provides a CloudWatch Log Group resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6741,13 +7107,17 @@ Provides a CloudWatch Log Group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_metric_filter",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Log Metric Filter resource.",
 			Description: `
 
 Provides a CloudWatch Log Metric Filter resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6807,13 +7177,17 @@ Provides a CloudWatch Log Metric Filter resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_resource_policy",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a resource to manage a CloudWatch log resource policy",
 			Description: `
 
 Provides a resource to manage a CloudWatch log resource policy.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6843,13 +7217,17 @@ Provides a resource to manage a CloudWatch log resource policy.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_stream",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Log Stream resource.",
 			Description: `
 
 Provides a CloudWatch Log Stream resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6879,13 +7257,17 @@ Provides a CloudWatch Log Stream resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_subscription_filter",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Logs subscription filter.",
 			Description: `
 
 Provides a CloudWatch Logs subscription filter resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -6924,13 +7306,17 @@ Provides a CloudWatch Logs subscription filter resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_metric_alarm",
-			Category:         "",
+			Category:         "CloudWatch Resources",
 			ShortDescription: "Provides a CloudWatch Metric Alarm resource.",
 			Description: `
 
 Provides a CloudWatch Metric Alarm resource.
 
 `,
+			Keywords: []string{
+
+				"cloudwatch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -7105,13 +7491,17 @@ Provides a CloudWatch Metric Alarm resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codebuild_project",
-			Category:         "",
+			Category:         "CodeBuild Resources",
 			ShortDescription: "Provides a CodeBuild Project resource.",
 			Description: `
 
 Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_webhook` + "`" + ` resource](/docs/providers/aws/r/codebuild_webhook.html), which manages the webhook to the source (e.g. the "rebuild every time a code change is pushed" option in the CodeBuild web console).
 
 `,
+			Keywords: []string{
+
+				"codebuild",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -7461,13 +7851,17 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codebuild_webhook",
-			Category:         "",
+			Category:         "CodeBuild Resources",
 			ShortDescription: "Provides a CodeBuild Webhook resource.",
 			Description: `
 
 Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild service to trigger builds from source code repositories. Depending on the source type of the CodeBuild project, the CodeBuild service may also automatically create and delete the actual repository webhook as well.
 
 `,
+			Keywords: []string{
+
+				"codebuild",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -7527,7 +7921,7 @@ Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild serv
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codecommit_repository",
-			Category:         "",
+			Category:         "CodeCommit Resources",
 			ShortDescription: "Provides a CodeCommit Repository Resource.",
 			Description: `
 
@@ -7538,6 +7932,10 @@ in all regions - available regions are listed
 [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#codecommit_region).
 
 `,
+			Keywords: []string{
+
+				"codecommit",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -7602,7 +8000,7 @@ in all regions - available regions are listed
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codecommit_trigger",
-			Category:         "",
+			Category:         "CodeCommit Resources",
 			ShortDescription: "Provides a CodeCommit Trigger Resource.",
 			Description: `
 
@@ -7613,6 +8011,10 @@ in all regions - available regions are listed
 [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#codecommit_region).
 
 `,
+			Keywords: []string{
+
+				"codecommit",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -7651,13 +8053,17 @@ in all regions - available regions are listed
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codedeploy_app",
-			Category:         "",
+			Category:         "CodeDeploy Resources",
 			ShortDescription: "Provides a CodeDeploy application.",
 			Description: `
 
 Provides a CodeDeploy application to be used as a basis for deployments
 
 `,
+			Keywords: []string{
+
+				"codedeploy",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -7697,13 +8103,17 @@ Provides a CodeDeploy application to be used as a basis for deployments
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codedeploy_deployment_config",
-			Category:         "",
+			Category:         "CodeDeploy Resources",
 			ShortDescription: "Provides a CodeDeploy deployment config.",
 			Description: `
 
 Provides a CodeDeploy deployment config for an application
 
 `,
+			Keywords: []string{
+
+				"codedeploy",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -7798,7 +8208,7 @@ Provides a CodeDeploy deployment config for an application
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codedeploy_deployment_group",
-			Category:         "",
+			Category:         "CodeDeploy Resources",
 			ShortDescription: "Provides a CodeDeploy deployment group.",
 			Description: `
 
@@ -7807,6 +8217,10 @@ Provides a CodeDeploy Deployment Group for a CodeDeploy Application
 ~> **NOTE on blue/green deployments:** When using ` + "`" + `green_fleet_provisioning_option` + "`" + ` with the ` + "`" + `COPY_AUTO_SCALING_GROUP` + "`" + ` action, CodeDeploy will create a new ASG with a different name. This ASG is _not_ managed by terraform and will conflict with existing configuration and state. You may want to use a different approach to managing deployments that involve multiple ASG, such as ` + "`" + `DISCOVER_EXISTING` + "`" + ` with separate blue and green ASG.
 
 `,
+			Keywords: []string{
+
+				"codedeploy",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8076,7 +8490,7 @@ Provides a CodeDeploy Deployment Group for a CodeDeploy Application
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codepipeline",
-			Category:         "",
+			Category:         "CodePipeline Resources",
 			ShortDescription: "Provides a CodePipeline",
 			Description: `
 
@@ -8085,6 +8499,10 @@ Provides a CodePipeline.
 ~> **NOTE on ` + "`" + `aws_codepipeline` + "`" + `:** - the ` + "`" + `GITHUB_TOKEN` + "`" + ` environment variable must be set if the GitHub provider is specified.
 
 `,
+			Keywords: []string{
+
+				"codepipeline",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8209,13 +8627,17 @@ Provides a CodePipeline.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_codepipeline_webhook",
-			Category:         "",
+			Category:         "CodePipeline Resources",
 			ShortDescription: "Provides a CodePipeline Webhook",
 			Description: `
 
 Provides a CodePipeline Webhook.
 
 `,
+			Keywords: []string{
+
+				"codepipeline",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8290,13 +8712,17 @@ Provides a CodePipeline Webhook.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_identity_pool",
-			Category:         "",
+			Category:         "Cognito Resources",
 			ShortDescription: "Provides an AWS Cognito Identity Pool.",
 			Description: `
 
 Provides an AWS Cognito Identity Pool.
 
 `,
+			Keywords: []string{
+
+				"cognito",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8326,13 +8752,17 @@ Provides an AWS Cognito Identity Pool.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_identity_pool_roles_attachment",
-			Category:         "",
+			Category:         "Cognito Resources",
 			ShortDescription: "Provides an AWS Cognito Identity Pool Roles Attachment.",
 			Description: `
 
 Provides an AWS Cognito Identity Pool Roles Attachment.
 
 `,
+			Keywords: []string{
+
+				"cognito",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8352,13 +8782,17 @@ Provides an AWS Cognito Identity Pool Roles Attachment.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_identity_provider",
-			Category:         "",
+			Category:         "Cognito Resources",
 			ShortDescription: "Provides a Cognito User Identity Provider resource.",
 			Description: `
 
 Provides a Cognito User Identity Provider resource.
 
 `,
+			Keywords: []string{
+
+				"cognito",
+			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
@@ -8366,13 +8800,17 @@ Provides a Cognito User Identity Provider resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_resource_server",
-			Category:         "",
+			Category:         "Cognito Resources",
 			ShortDescription: "Provides a Cognito Resource Server.",
 			Description: `
 
 Provides a Cognito Resource Server.
 
 `,
+			Keywords: []string{
+
+				"cognito",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8417,13 +8855,17 @@ Provides a Cognito Resource Server.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_group",
-			Category:         "",
+			Category:         "Cognito Resources",
 			ShortDescription: "Provides a Cognito User Group resource.",
 			Description: `
 
 Provides a Cognito User Group resource.
 
 `,
+			Keywords: []string{
+
+				"cognito",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8457,13 +8899,17 @@ Provides a Cognito User Group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_pool",
-			Category:         "",
+			Category:         "Cognito Resources",
 			ShortDescription: "Provides a Cognito User Pool resource.",
 			Description: `
 
 Provides a Cognito User Pool resource.
 
 `,
+			Keywords: []string{
+
+				"cognito",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8578,13 +9024,17 @@ Provides a Cognito User Pool resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_pool_client",
-			Category:         "",
+			Category:         "Cognito Resources",
 			ShortDescription: "Provides a Cognito User Pool Client resource.",
 			Description: `
 
 Provides a Cognito User Pool Client resource.
 
 `,
+			Keywords: []string{
+
+				"cognito",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8684,13 +9134,17 @@ Provides a Cognito User Pool Client resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_pool_domain",
-			Category:         "",
+			Category:         "Cognito Resources",
 			ShortDescription: "Provides a Cognito User Pool Domain resource.",
 			Description: `
 
 Provides a Cognito User Pool Domain resource.
 
 `,
+			Keywords: []string{
+
+				"cognito",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8755,13 +9209,17 @@ Provides a Cognito User Pool Domain resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_config_aggregate_authorization",
-			Category:         "",
+			Category:         "Config Resources",
 			ShortDescription: "Manages an AWS Config Aggregate Authorization.",
 			Description: `
 
 Manages an AWS Config Aggregate Authorization
 
 `,
+			Keywords: []string{
+
+				"config",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8791,7 +9249,7 @@ Manages an AWS Config Aggregate Authorization
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_config_config_rule",
-			Category:         "",
+			Category:         "Config Resources",
 			ShortDescription: "Provides an AWS Config Rule.",
 			Description: `
 
@@ -8800,6 +9258,10 @@ Provides an AWS Config Rule.
 ~> **Note:** Config Rule requires an existing [Configuration Recorder](/docs/providers/aws/r/config_configuration_recorder.html) to be present. Use of ` + "`" + `depends_on` + "`" + ` is recommended (as shown below) to avoid race conditions.
 
 `,
+			Keywords: []string{
+
+				"config",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -8929,13 +9391,17 @@ Provides an AWS Config Rule.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_config_configuration_aggregator",
-			Category:         "",
+			Category:         "Config Resources",
 			ShortDescription: "Manages an AWS Config Configuration Aggregator.",
 			Description: `
 
 Manages an AWS Config Configuration Aggregator
 
 `,
+			Keywords: []string{
+
+				"config",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9000,7 +9466,7 @@ Manages an AWS Config Configuration Aggregator
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_config_configuration_recorder",
-			Category:         "",
+			Category:         "Config Resources",
 			ShortDescription: "Provides an AWS Config Configuration Recorder.",
 			Description: `
 
@@ -9009,6 +9475,10 @@ Provides an AWS Config Configuration Recorder. Please note that this resource **
 ~> **Note:** _Starting_ the Configuration Recorder requires a [delivery channel](/docs/providers/aws/r/config_delivery_channel.html) (while delivery channel creation requires Configuration Recorder). This is why [` + "`" + `aws_config_configuration_recorder_status` + "`" + `](/docs/providers/aws/r/config_configuration_recorder_status.html) is a separate resource.
 
 `,
+			Keywords: []string{
+
+				"config",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9058,7 +9528,7 @@ Provides an AWS Config Configuration Recorder. Please note that this resource **
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_config_configuration_recorder_status",
-			Category:         "",
+			Category:         "Config Resources",
 			ShortDescription: "Manages status of an AWS Config Configuration Recorder.",
 			Description: `
 
@@ -9067,6 +9537,10 @@ Manages status (recording / stopped) of an AWS Config Configuration Recorder.
 ~> **Note:** Starting Configuration Recorder requires a [Delivery Channel](/docs/providers/aws/r/config_delivery_channel.html) to be present. Use of ` + "`" + `depends_on` + "`" + ` (as shown below) is recommended to avoid race conditions.
 
 `,
+			Keywords: []string{
+
+				"config",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9085,7 +9559,7 @@ Manages status (recording / stopped) of an AWS Config Configuration Recorder.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_config_delivery_channel",
-			Category:         "",
+			Category:         "Config Resources",
 			ShortDescription: "Provides an AWS Config Delivery Channel.",
 			Description: `
 
@@ -9094,6 +9568,10 @@ Provides an AWS Config Delivery Channel.
 ~> **Note:** Delivery Channel requires a [Configuration Recorder](/docs/providers/aws/r/config_configuration_recorder.html) to be present. Use of ` + "`" + `depends_on` + "`" + ` (as shown below) is recommended to avoid race conditions.
 
 `,
+			Keywords: []string{
+
+				"config",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9143,7 +9621,7 @@ Provides an AWS Config Delivery Channel.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_cur_report_definition",
-			Category:         "",
+			Category:         "Cost and Usage Report Resources",
 			ShortDescription: "Provides a Cost and Usage Report Definition.",
 			Description: `
 
@@ -9154,6 +9632,16 @@ Manages Cost and Usage Report Definitions.
 ~> *NOTE:* If AWS Organizations is enabled, only the master account can use this resource.
 
 `,
+			Keywords: []string{
+
+				"cost",
+
+				"and",
+
+				"usage",
+
+				"report",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9207,13 +9695,17 @@ Manages Cost and Usage Report Definitions.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_customer_gateway",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a customer gateway inside a VPC. These objects can be connected to VPN gateways via VPN connections, and allow you to establish tunnels between your network and the VPC.",
 			Description: `
 
 Provides a customer gateway inside a VPC. These objects can be connected to VPN gateways via VPN connections, and allow you to establish tunnels between your network and the VPC.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9293,7 +9785,7 @@ Provides a customer gateway inside a VPC. These objects can be connected to VPN 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_agent",
-			Category:         "",
+			Category:         "DataSync Resources",
 			ShortDescription: "Manages an AWS DataSync Agent in the provider region",
 			Description: `
 
@@ -9302,6 +9794,10 @@ Manages an AWS DataSync Agent deployed on premises.
 ~> **NOTE:** One of ` + "`" + `activation_key` + "`" + ` or ` + "`" + `ip_address` + "`" + ` must be provided for resource creation (agent activation). Neither is required for resource import. If using ` + "`" + `ip_address` + "`" + `, Terraform must be able to make an HTTP (port 80) GET request to the specified IP address from where it is running. The agent will turn off that HTTP server after activation.
 
 `,
+			Keywords: []string{
+
+				"datasync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9361,7 +9857,7 @@ Manages an AWS DataSync Agent deployed on premises.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_location_efs",
-			Category:         "",
+			Category:         "DataSync Resources",
 			ShortDescription: "Manages an EFS Location within AWS DataSync.",
 			Description: `
 
@@ -9370,6 +9866,10 @@ Manages an AWS DataSync EFS Location.
 ~> **NOTE:** The EFS File System must have a mounted EFS Mount Target before creating this resource.
 
 `,
+			Keywords: []string{
+
+				"datasync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9429,7 +9929,7 @@ Manages an AWS DataSync EFS Location.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_location_nfs",
-			Category:         "",
+			Category:         "DataSync Resources",
 			ShortDescription: "Manages an AWS DataSync NFS Location",
 			Description: `
 
@@ -9438,6 +9938,10 @@ Manages an NFS Location within AWS DataSync.
 ~> **NOTE:** The DataSync Agents must be available before creating this resource.
 
 `,
+			Keywords: []string{
+
+				"datasync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9492,13 +9996,17 @@ Manages an NFS Location within AWS DataSync.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_location_s3",
-			Category:         "",
+			Category:         "DataSync Resources",
 			ShortDescription: "Manages an AWS DataSync S3 Location",
 			Description: `
 
 Manages an S3 Location within AWS DataSync.
 
 `,
+			Keywords: []string{
+
+				"datasync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9553,13 +10061,17 @@ Manages an S3 Location within AWS DataSync.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_task",
-			Category:         "",
+			Category:         "DataSync Resources",
 			ShortDescription: "Manages an AWS DataSync Task",
 			Description: `
 
 Manages an AWS DataSync Task, which represents a configuration for synchronization. Starting an execution of these DataSync Tasks (actually synchronizing files) is performed outside of this Terraform resource.
 
 `,
+			Keywords: []string{
+
+				"datasync",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9674,13 +10186,21 @@ Manages an AWS DataSync Task, which represents a configuration for synchronizati
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dax_cluster",
-			Category:         "",
+			Category:         "DynamoDB Accelerator (DAX) Resources",
 			ShortDescription: "Provides an DAX Cluster resource.",
 			Description: `
 
 Provides a DAX Cluster resource.
 
 `,
+			Keywords: []string{
+
+				"dynamodb",
+
+				"accelerator",
+
+				"dax",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9765,13 +10285,21 @@ Provides a DAX Cluster resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dax_parameter_group",
-			Category:         "",
+			Category:         "DynamoDB Accelerator (DAX) Resources",
 			ShortDescription: "Provides an DAX Parameter Group resource.",
 			Description: `
 
 Provides a DAX Parameter Group resource.
 
 `,
+			Keywords: []string{
+
+				"dynamodb",
+
+				"accelerator",
+
+				"dax",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9806,13 +10334,21 @@ Provides a DAX Parameter Group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dax_subnet_group",
-			Category:         "",
+			Category:         "DynamoDB Accelerator (DAX) Resources",
 			ShortDescription: "Provides an DAX Subnet Group resource.",
 			Description: `
 
 Provides a DAX Subnet Group resource.
 
 `,
+			Keywords: []string{
+
+				"dynamodb",
+
+				"accelerator",
+
+				"dax",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9837,13 +10373,17 @@ Provides a DAX Subnet Group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_cluster_snapshot",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Manages a RDS database cluster snapshot.",
 			Description: `
 
 Manages a RDS database cluster snapshot for Aurora clusters. For managing RDS database instance snapshots, see the [` + "`" + `aws_db_snapshot` + "`" + ` resource](/docs/providers/aws/r/db_snapshot.html).
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -9993,13 +10533,17 @@ Manages a RDS database cluster snapshot for Aurora clusters. For managing RDS da
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_event_subscription",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Provides a DB event subscription resource.",
 			Description: `
 
 Provides a DB event subscription resource.
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -10063,7 +10607,7 @@ Provides a DB event subscription resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_instance",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Provides an RDS instance resource.",
 			Description: `
 
@@ -10089,6 +10633,10 @@ the raw state as plain-text. [Read more about sensitive data in
 state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -10588,7 +11136,7 @@ state](/docs/state/sensitive-data.html).
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_instance_role_association",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Manages a RDS DB Instance association with an IAM Role.",
 			Description: `
 
@@ -10600,6 +11148,10 @@ Manages a RDS DB Instance association with an IAM Role. Example use cases:
 -> To manage the RDS DB Instance IAM Role for [Enhanced Monitoring](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html), see the ` + "`" + `aws_db_instance` + "`" + ` resource ` + "`" + `monitoring_role_arn` + "`" + ` argument instead.
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -10634,7 +11186,7 @@ Manages a RDS DB Instance association with an IAM Role. Example use cases:
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_option_group",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Provides an RDS DB option group resource.",
 			Description: `
 
@@ -10645,6 +11197,10 @@ Provides an RDS DB option group resource. Documentation of the available options
 * [Oracle Options](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.Oracle.Options.html)
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -10749,7 +11305,7 @@ Provides an RDS DB option group resource. Documentation of the available options
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_parameter_group",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Provides an RDS DB parameter group resource.",
 			Description: `
 
@@ -10761,6 +11317,10 @@ Provides an RDS DB parameter group resource .Documentation of the available para
 * [PostgreSQL Parameters](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.html#Appendix.PostgreSQL.CommonDBATasks.Parameters)
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -10835,7 +11395,7 @@ Provides an RDS DB parameter group resource .Documentation of the available para
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_security_group",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Provides an RDS security group resource.",
 			Description: `
 
@@ -10845,6 +11405,10 @@ EC2-Classic Platform. For instances inside a VPC, use the
 attribute instead.
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -10914,13 +11478,17 @@ attribute instead.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_snapshot",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Manages a RDS database instance snapshot.",
 			Description: `
 
 Manages a RDS database instance snapshot. For managing RDS database cluster snapshots, see the [` + "`" + `aws_db_cluster_snapshot` + "`" + ` resource](/docs/providers/aws/r/db_cluster_snapshot.html).
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11095,13 +11663,17 @@ Manages a RDS database instance snapshot. For managing RDS database cluster snap
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_db_subnet_group",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Provides an RDS DB subnet group resource.",
 			Description: `
 
 Provides an RDS DB subnet group resource.
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11156,7 +11728,7 @@ Provides an RDS DB subnet group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_default_network_acl",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Manage the default Network ACL resource.",
 			Description: `
 
@@ -11186,6 +11758,10 @@ For more information about Network ACLs, see the AWS Documentation on
 [Network ACLs][aws-network-acls].
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11315,7 +11891,7 @@ For more information about Network ACLs, see the AWS Documentation on
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_default_route_table",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to manage a Default VPC Routing Table.",
 			Description: `
 
@@ -11352,6 +11928,10 @@ a conflict of rule settings and will overwrite routes.
 
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11446,7 +12026,7 @@ a conflict of rule settings and will overwrite routes.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_default_security_group",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Manage the default Security Group resource.",
 			Description: `
 
@@ -11477,6 +12057,10 @@ For more information about Default Security Groups, see the AWS Documentation on
 [Default Security Groups][aws-default-security-groups].
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11576,7 +12160,7 @@ For more information about Default Security Groups, see the AWS Documentation on
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_default_subnet",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Manage a default VPC subnet resource.",
 			Description: `
 
@@ -11588,6 +12172,10 @@ Terraform does not _create_ this resource, but instead "adopts" it
 into management.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11667,7 +12255,7 @@ into management.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_default_vpc",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Manage the default VPC resource.",
 			Description: `
 
@@ -11683,6 +12271,10 @@ Terraform does not _create_ this resource, but instead "adopts" it
 into management.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11862,7 +12454,7 @@ into management.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_default_vpc_dhcp_options",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Manage the default VPC DHCP Options resource.",
 			Description: `
 
@@ -11878,6 +12470,10 @@ Terraform does not _create_ this resource, but instead "adopts" it
 into management.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11922,7 +12518,7 @@ into management.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_devicefarm_project",
-			Category:         "",
+			Category:         "Device Farm Resources",
 			ShortDescription: "Provides a Devicefarm project",
 			Description: `
 
@@ -11934,6 +12530,12 @@ For more information about Device Farm Projects, see the AWS Documentation on
 [Device Farm Projects][aws-get-project].
 
 `,
+			Keywords: []string{
+
+				"device",
+
+				"farm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11958,13 +12560,19 @@ For more information about Device Farm Projects, see the AWS Documentation on
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_directory_service_conditional_forwarder",
-			Category:         "",
+			Category:         "Directory Service Resources",
 			ShortDescription: "Provides a conditional forwarder for managed Microsoft AD in AWS Directory Service.",
 			Description: `
 
 Provides a conditional forwarder for managed Microsoft AD in AWS Directory Service.
 
 `,
+			Keywords: []string{
+
+				"directory",
+
+				"service",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -11988,7 +12596,7 @@ Provides a conditional forwarder for managed Microsoft AD in AWS Directory Servi
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_directory_service_directory",
-			Category:         "",
+			Category:         "Directory Service Resources",
 			ShortDescription: "Provides a directory in AWS Directory Service.",
 			Description: `
 
@@ -11998,6 +12606,12 @@ Provides a Simple or Managed Microsoft directory in AWS Directory Service.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"directory",
+
+				"service",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -12132,13 +12746,23 @@ Provides a Simple or Managed Microsoft directory in AWS Directory Service.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dlm_lifecycle_policy",
-			Category:         "",
+			Category:         "Data Lifecycle Manager (DLM) Resources",
 			ShortDescription: "Provides a Data Lifecycle Manager (DLM) lifecycle policy for managing snapshots.",
 			Description: `
 
 Provides a [Data Lifecycle Manager (DLM) lifecycle policy](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html) for managing snapshots.
 
 `,
+			Keywords: []string{
+
+				"data",
+
+				"lifecycle",
+
+				"manager",
+
+				"dlm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -12222,7 +12846,7 @@ Provides a [Data Lifecycle Manager (DLM) lifecycle policy](https://docs.aws.amaz
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_certificate",
-			Category:         "",
+			Category:         "Database Migration Service (DMS) Resources",
 			ShortDescription: "Provides a DMS (Data Migration Service) certificate resource.",
 			Description: `
 
@@ -12232,6 +12856,16 @@ Provides a DMS (Data Migration Service) certificate resource. DMS certificates c
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"database",
+
+				"migration",
+
+				"service",
+
+				"dms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -12266,7 +12900,7 @@ Provides a DMS (Data Migration Service) certificate resource. DMS certificates c
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_endpoint",
-			Category:         "",
+			Category:         "Database Migration Service (DMS) Resources",
 			ShortDescription: "Provides a DMS (Data Migration Service) endpoint resource.",
 			Description: `
 
@@ -12276,6 +12910,16 @@ Provides a DMS (Data Migration Service) endpoint resource. DMS endpoints can be 
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"database",
+
+				"migration",
+
+				"service",
+
+				"dms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -12375,13 +13019,23 @@ Provides a DMS (Data Migration Service) endpoint resource. DMS endpoints can be 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_replication_instance",
-			Category:         "",
+			Category:         "Database Migration Service (DMS) Resources",
 			ShortDescription: "Provides a DMS (Data Migration Service) replication instance resource.",
 			Description: `
 
 Provides a DMS (Data Migration Service) replication instance resource. DMS replication instances can be created, updated, deleted, and imported.
 
 `,
+			Keywords: []string{
+
+				"database",
+
+				"migration",
+
+				"service",
+
+				"dms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -12491,13 +13145,23 @@ Provides a DMS (Data Migration Service) replication instance resource. DMS repli
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_replication_subnet_group",
-			Category:         "",
+			Category:         "Database Migration Service (DMS) Resources",
 			ShortDescription: "Provides a DMS (Data Migration Service) subnet group resource.",
 			Description: `
 
 Provides a DMS (Data Migration Service) replication subnet group resource. DMS replication subnet groups can be created, updated, deleted, and imported.
 
 `,
+			Keywords: []string{
+
+				"database",
+
+				"migration",
+
+				"service",
+
+				"dms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -12537,13 +13201,23 @@ Provides a DMS (Data Migration Service) replication subnet group resource. DMS r
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_replication_task",
-			Category:         "",
+			Category:         "Database Migration Service (DMS) Resources",
 			ShortDescription: "Provides a DMS (Data Migration Service) replication task resource.",
 			Description: `
 
 Provides a DMS (Data Migration Service) replication task resource. DMS replication tasks can be created, updated, deleted, and imported.
 
 `,
+			Keywords: []string{
+
+				"database",
+
+				"migration",
+
+				"service",
+
+				"dms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -12608,7 +13282,7 @@ Provides a DMS (Data Migration Service) replication task resource. DMS replicati
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_cluster",
-			Category:         "",
+			Category:         "DocumentDB Resources",
 			ShortDescription: "Manages a DocDB Aurora Cluster",
 			Description: `
 
@@ -12626,6 +13300,10 @@ phase because a modification has not yet taken place. You can use the
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"documentdb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -12825,7 +13503,7 @@ phase because a modification has not yet taken place. You can use the
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_cluster_instance",
-			Category:         "",
+			Category:         "DocumentDB Resources",
 			ShortDescription: "Provides an DocDB Cluster Resource Instance",
 			Description: `
 
@@ -12839,6 +13517,10 @@ Cluster, or you may specify different Cluster Instance resources with various
 ` + "`" + `instance_class` + "`" + ` sizes.
 
 `,
+			Keywords: []string{
+
+				"documentdb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13003,13 +13685,17 @@ Cluster, or you may specify different Cluster Instance resources with various
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_cluster_parameter_group",
-			Category:         "",
+			Category:         "DocumentDB Resources",
 			ShortDescription: "Manages a DocumentDB Cluster Parameter Group",
 			Description: `
 
 Manages a DocumentDB Cluster Parameter Group
 
 `,
+			Keywords: []string{
+
+				"documentdb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13084,13 +13770,17 @@ Manages a DocumentDB Cluster Parameter Group
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_cluster_snapshot",
-			Category:         "",
+			Category:         "DocumentDB Resources",
 			ShortDescription: "Manages a DocDB database cluster snapshot.",
 			Description: `
 
 Manages a DocDB database cluster snapshot for DocDB clusters.
 
 `,
+			Keywords: []string{
+
+				"documentdb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13220,13 +13910,17 @@ Manages a DocDB database cluster snapshot for DocDB clusters.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_subnet_group",
-			Category:         "",
+			Category:         "DocumentDB Resources",
 			ShortDescription: "Provides an DocumentDB subnet group resource.",
 			Description: `
 
 Provides an DocumentDB subnet group resource.
 
 `,
+			Keywords: []string{
+
+				"documentdb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13281,13 +13975,19 @@ Provides an DocumentDB subnet group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_bgp_peer",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a Direct Connect BGP peer resource.",
 			Description: `
 
 Provides a Direct Connect BGP peer resource.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13367,13 +14067,19 @@ Provides a Direct Connect BGP peer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_connection",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a Connection of Direct Connect.",
 			Description: `
 
 Provides a Connection of Direct Connect.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13453,13 +14159,19 @@ Provides a Connection of Direct Connect.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_connection_association",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Associates a Direct Connect Connection with a LAG.",
 			Description: `
 
 Associates a Direct Connect Connection with a LAG.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13478,13 +14190,19 @@ Associates a Direct Connect Connection with a LAG.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_gateway",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a Direct Connect Gateway.",
 			Description: `
 
 Provides a Direct Connect Gateway.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13524,7 +14242,7 @@ Provides a Direct Connect Gateway.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_gateway_association",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Associates a Direct Connect Gateway with a VGW or transit gateway.",
 			Description: `
 
@@ -13535,6 +14253,12 @@ in the AWS account that owns the VGW or transit gateway and then accept the prop
 by creating an ` + "`" + `aws_dx_gateway_association` + "`" + ` resource with the ` + "`" + `proposal_id` + "`" + ` and ` + "`" + `associated_gateway_owner_account_id` + "`" + ` attributes set.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13614,13 +14338,19 @@ by creating an ` + "`" + `aws_dx_gateway_association` + "`" + ` resource with th
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_gateway_association_proposal",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Manages a Direct Connect Gateway Association Proposal.",
 			Description: `
 
 Manages a Direct Connect Gateway Association Proposal, typically for enabling cross-account associations. For single account associations, see the [` + "`" + `aws_dx_gateway_association` + "`" + ` resource](/docs/providers/aws/r/dx_gateway_association.html).
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13685,7 +14415,7 @@ Manages a Direct Connect Gateway Association Proposal, typically for enabling cr
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_hosted_private_virtual_interface",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a Direct Connect hosted private virtual interface resource.",
 			Description: `
 
@@ -13693,6 +14423,12 @@ Provides a Direct Connect hosted private virtual interface resource. This resour
 A hosted virtual interface is a virtual interface that is owned by another AWS account.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13792,7 +14528,7 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_hosted_private_virtual_interface_accepter",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a resource to manage the accepter's side of a Direct Connect hosted private virtual interface.",
 			Description: `
 
@@ -13800,6 +14536,12 @@ Provides a resource to manage the accepter's side of a Direct Connect hosted pri
 This resource accepts ownership of a private virtual interface created by another AWS account.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13849,7 +14591,7 @@ This resource accepts ownership of a private virtual interface created by anothe
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_hosted_public_virtual_interface",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a Direct Connect hosted public virtual interface resource.",
 			Description: `
 
@@ -13857,6 +14599,12 @@ Provides a Direct Connect hosted public virtual interface resource. This resourc
 A hosted virtual interface is a virtual interface that is owned by another AWS account.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13946,7 +14694,7 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_hosted_public_virtual_interface_accepter",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a resource to manage the accepter's side of a Direct Connect hosted public virtual interface.",
 			Description: `
 
@@ -13954,6 +14702,12 @@ Provides a resource to manage the accepter's side of a Direct Connect hosted pub
 This resource accepts ownership of a public virtual interface created by another AWS account.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -13993,7 +14747,7 @@ This resource accepts ownership of a public virtual interface created by another
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_lag",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a Direct Connect LAG.",
 			Description: `
 
@@ -14002,6 +14756,12 @@ Provides a Direct Connect LAG. Connections can be added to the LAG via the [` + 
 ~> *NOTE:* When creating a LAG, Direct Connect requires creating a Connection. Terraform will remove this unmanaged connection during resource creation.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14066,13 +14826,19 @@ Provides a Direct Connect LAG. Connections can be added to the LAG via the [` + 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_private_virtual_interface",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a Direct Connect private virtual interface resource.",
 			Description: `
 
 Provides a Direct Connect private virtual interface resource.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14182,13 +14948,19 @@ Provides a Direct Connect private virtual interface resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_public_virtual_interface",
-			Category:         "",
+			Category:         "Direct Connect Resources",
 			ShortDescription: "Provides a Direct Connect public virtual interface resource.",
 			Description: `
 
 Provides a Direct Connect public virtual interface resource.
 
 `,
+			Keywords: []string{
+
+				"direct",
+
+				"connect",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14278,7 +15050,7 @@ Provides a Direct Connect public virtual interface resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dynamodb_global_table",
-			Category:         "",
+			Category:         "DynamoDB Resources",
 			ShortDescription: "Provides a resource to create a DynamoDB Global Table",
 			Description: `
 
@@ -14287,6 +15059,10 @@ Provides a resource to manage a DynamoDB Global Table. These are layered on top 
 ~> Note: There are many restrictions before you can properly create DynamoDB Global Tables in multiple regions. See the [AWS DynamoDB Global Table Requirements](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables_reqs_bestpractices.html) for more information.
 
 `,
+			Keywords: []string{
+
+				"dynamodb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14331,7 +15107,7 @@ Provides a resource to manage a DynamoDB Global Table. These are layered on top 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dynamodb_table",
-			Category:         "",
+			Category:         "DynamoDB Resources",
 			ShortDescription: "Provides a DynamoDB table resource",
 			Description: `
 
@@ -14340,6 +15116,10 @@ Provides a DynamoDB table resource
 ~> **Note:** It is recommended to use ` + "`" + `lifecycle` + "`" + ` [` + "`" + `ignore_changes` + "`" + `](/docs/configuration/resources.html#ignore_changes) for ` + "`" + `read_capacity` + "`" + ` and/or ` + "`" + `write_capacity` + "`" + ` if there's [autoscaling policy](/docs/providers/aws/r/appautoscaling_policy.html) attached to the table.
 
 `,
+			Keywords: []string{
+
+				"dynamodb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14564,7 +15344,7 @@ Provides a DynamoDB table resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_dynamodb_table_item",
-			Category:         "",
+			Category:         "DynamoDB Resources",
 			ShortDescription: "Provides a DynamoDB table item resource",
 			Description: `
 
@@ -14574,6 +15354,10 @@ Provides a DynamoDB table item resource
   You should perform **regular backups** of all data in the table, see [AWS docs for more](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html).
 
 `,
+			Keywords: []string{
+
+				"dynamodb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14602,13 +15386,17 @@ Provides a DynamoDB table item resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_snapshot",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an elastic block storage snapshot resource.",
 			Description: `
 
 Creates a Snapshot of an EBS Volume.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14713,13 +15501,17 @@ Creates a Snapshot of an EBS Volume.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_snapshot_copy",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Duplicates an existing Amazon snapshot",
 			Description: `
 
 Creates a Snapshot of a snapshot.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14829,13 +15621,17 @@ Creates a Snapshot of a snapshot.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_volume",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an elastic block storage resource.",
 			Description: `
 
 Manages a single EBS volume.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14900,13 +15696,17 @@ Manages a single EBS volume.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_capacity_reservation",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an EC2 Capacity Reservation. This allows you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration.",
 			Description: `
 
 Provides an EC2 Capacity Reservation. This allows you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -14981,7 +15781,7 @@ Provides an EC2 Capacity Reservation. This allows you to reserve capacity for yo
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_client_vpn_endpoint",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an AWS Client VPN endpoint for OpenVPN clients.",
 			Description: `
 
@@ -14989,6 +15789,10 @@ Provides an AWS Client VPN endpoint for OpenVPN clients. For more information on
 [AWS Client VPN Administrator's Guide](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html).
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15098,7 +15902,7 @@ Provides an AWS Client VPN endpoint for OpenVPN clients. For more information on
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_client_vpn_network_association",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides network associations for AWS Client VPN endpoints.",
 			Description: `
 
@@ -15106,6 +15910,10 @@ Provides network associations for AWS Client VPN endpoints. For more information
 [AWS Client VPN Administrator's Guide](https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/what-is.html).
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15165,13 +15973,17 @@ Provides network associations for AWS Client VPN endpoints. For more information
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_fleet",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides a resource to manage EC2 Fleets",
 			Description: `
 
 Provides a resource to manage EC2 Fleets.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15366,13 +16178,17 @@ Provides a resource to manage EC2 Fleets.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Manages an EC2 Transit Gateway",
 			Description: `
 
 Manages an EC2 Transit Gateway.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15472,13 +16288,17 @@ Manages an EC2 Transit Gateway.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Manages an EC2 Transit Gateway Route",
 			Description: `
 
 Manages an EC2 Transit Gateway Route.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15513,13 +16333,17 @@ Manages an EC2 Transit Gateway Route.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route_table",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Manages an EC2 Transit Gateway Route Table",
 			Description: `
 
 Manages an EC2 Transit Gateway Route Table.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15569,13 +16393,17 @@ Manages an EC2 Transit Gateway Route Table.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route_table_association",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Manages an EC2 Transit Gateway Route Table association",
 			Description: `
 
 Manages an EC2 Transit Gateway Route Table association.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15625,13 +16453,17 @@ Manages an EC2 Transit Gateway Route Table association.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route_table_propagation",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Manages an EC2 Transit Gateway Route Table propagation",
 			Description: `
 
 Manages an EC2 Transit Gateway Route Table propagation.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15681,13 +16513,17 @@ Manages an EC2 Transit Gateway Route Table propagation.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_vpc_attachment",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Manages an EC2 Transit Gateway VPC Attachment",
 			Description: `
 
 Manages an EC2 Transit Gateway VPC Attachment. For examples of custom route table association and propagation, see the EC2 Transit Gateway Networking Examples Guide.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15757,7 +16593,7 @@ Manages an EC2 Transit Gateway VPC Attachment. For examples of custom route tabl
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_vpc_attachment_accepter",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Manages the accepter's side of an EC2 Transit Gateway VPC Attachment",
 			Description: `
 
@@ -15770,6 +16606,10 @@ and the accepter can use the ` + "`" + `aws_ec2_transit_gateway_vpc_attachment_a
 connection into management.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15869,7 +16709,7 @@ connection into management.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ecr_lifecycle_policy",
-			Category:         "",
+			Category:         "ECR Resources",
 			ShortDescription: "Manages an ECR repository lifecycle policy.",
 			Description: `
 
@@ -15880,6 +16720,10 @@ Manages an ECR repository lifecycle policy.
 ~> **NOTE:** The AWS ECR API seems to reorder rules based on ` + "`" + `rulePriority` + "`" + `. If you define multiple rules that are not sorted in ascending ` + "`" + `rulePriority` + "`" + ` order in the Terraform code, the resource will be flagged for recreation every ` + "`" + `terraform plan` + "`" + `.
 
 `,
+			Keywords: []string{
+
+				"ecr",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15919,7 +16763,7 @@ Manages an ECR repository lifecycle policy.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ecr_repository",
-			Category:         "",
+			Category:         "ECR Resources",
 			ShortDescription: "Provides an EC2 Container Registry Repository.",
 			Description: `
 
@@ -15930,6 +16774,10 @@ in all regions - available regions are listed
 [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#ecr_region).
 
 `,
+			Keywords: []string{
+
+				"ecr",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -15989,7 +16837,7 @@ in all regions - available regions are listed
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ecr_repository_policy",
-			Category:         "",
+			Category:         "ECR Resources",
 			ShortDescription: "Provides an ECR Repository Policy.",
 			Description: `
 
@@ -16002,6 +16850,10 @@ in all regions - available regions are listed
 [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#ecr_region).
 
 `,
+			Keywords: []string{
+
+				"ecr",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16041,13 +16893,17 @@ in all regions - available regions are listed
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_cluster",
-			Category:         "",
+			Category:         "ECS Resources",
 			ShortDescription: "Provides an ECS cluster.",
 			Description: `
 
 Provides an ECS cluster.
 
 `,
+			Keywords: []string{
+
+				"ecs",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16087,7 +16943,7 @@ Provides an ECS cluster.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_service",
-			Category:         "",
+			Category:         "ECS Resources",
 			ShortDescription: "Provides an ECS service.",
 			Description: `
 
@@ -16098,6 +16954,10 @@ Provides an ECS service - effectively a task that is expected to run until an er
 See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html).
 
 `,
+			Keywords: []string{
+
+				"ecs",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16337,13 +17197,17 @@ See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/Am
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_task_definition",
-			Category:         "",
+			Category:         "ECS Resources",
 			ShortDescription: "Manages a revision of an ECS task definition.",
 			Description: `
 
 Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_service` + "`" + `.
 
 `,
+			Keywords: []string{
+
+				"ecs",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16498,13 +17362,17 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_efs_file_system",
-			Category:         "",
+			Category:         "EFS Resources",
 			ShortDescription: "Provides an Elastic File System (EFS) resource.",
 			Description: `
 
 Provides an Elastic File System (EFS) resource.
 
 `,
+			Keywords: []string{
+
+				"efs",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16579,13 +17447,17 @@ Provides an Elastic File System (EFS) resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_efs_mount_target",
-			Category:         "",
+			Category:         "EFS Resources",
 			ShortDescription: "Provides an Elastic File System (EFS) mount target.",
 			Description: `
 
 Provides an Elastic File System (EFS) mount target.
 
 `,
+			Keywords: []string{
+
+				"efs",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16655,7 +17527,7 @@ Provides an Elastic File System (EFS) mount target.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_egress_only_internet_gateway",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to create a VPC Egress Only Internet Gateway.",
 			Description: `
 
@@ -16665,6 +17537,10 @@ over IPv6 from instances in your VPC to the Internet, and prevents hosts
 outside of your VPC from initiating an IPv6 connection with your instance.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16689,7 +17565,7 @@ outside of your VPC from initiating an IPv6 connection with your instance.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_eip",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an Elastic IP resource.",
 			Description: `
 
@@ -16700,6 +17576,10 @@ Provides an Elastic IP resource.
 ~> **Note:** Do not use ` + "`" + `network_interface` + "`" + ` to associate the EIP to ` + "`" + `aws_lb` + "`" + ` or ` + "`" + `aws_nat_gateway` + "`" + ` resources. Instead use the ` + "`" + `allocation_id` + "`" + ` available in those resources to allow AWS to manage the association, otherwise you will see ` + "`" + `AuthFailure` + "`" + ` errors.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16829,7 +17709,7 @@ Provides an Elastic IP resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_eip_association",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an AWS EIP Association",
 			Description: `
 
@@ -16842,6 +17722,10 @@ disassociate Elastic IPs from AWS Instances and Network Interfaces.
 pre-existing or distributed to customers or users and therefore cannot be changed.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -16941,13 +17825,17 @@ pre-existing or distributed to customers or users and therefore cannot be change
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_eks_cluster",
-			Category:         "",
+			Category:         "EKS Resources",
 			ShortDescription: "Manages an EKS Cluster",
 			Description: `
 
 Manages an EKS Cluster.
 
 `,
+			Keywords: []string{
+
+				"eks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -17102,7 +17990,7 @@ Manages an EKS Cluster.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_application",
-			Category:         "",
+			Category:         "Elastic Beanstalk Resources",
 			ShortDescription: "Provides an Elastic Beanstalk Application Resource",
 			Description: `
 
@@ -17114,6 +18002,12 @@ This resource creates an application that has one configuration template named
 ` + "`" + `default` + "`" + `, and no application versions
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"beanstalk",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -17168,7 +18062,7 @@ This resource creates an application that has one configuration template named
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_application_version",
-			Category:         "",
+			Category:         "Elastic Beanstalk Resources",
 			ShortDescription: "Provides an Elastic Beanstalk Application Version Resource",
 			Description: `
 
@@ -17190,6 +18084,12 @@ Elastic Beanstalk Application. For example &lt;revision&gt;-&lt;environment&gt;.
 </ol>
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"beanstalk",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -17244,7 +18144,7 @@ Elastic Beanstalk Application. For example &lt;revision&gt;-&lt;environment&gt;.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_configuration_template",
-			Category:         "",
+			Category:         "Elastic Beanstalk Resources",
 			ShortDescription: "Provides an Elastic Beanstalk Configuration Template",
 			Description: `
 
@@ -17253,6 +18153,12 @@ a specific application and are used to deploy different versions of the
 application with the same configuration settings.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"beanstalk",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -17291,7 +18197,7 @@ application with the same configuration settings.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_environment",
-			Category:         "",
+			Category:         "Elastic Beanstalk Resources",
 			ShortDescription: "Provides an Elastic Beanstalk Environment Resource",
 			Description: `
 
@@ -17303,6 +18209,12 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 ` + "`" + `production` + "`" + `.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"beanstalk",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -17471,14 +18383,20 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 
 		resource.Resource{
 			Name:             "",
-			Type:             "aws_elastic_transcoder_pipeline",
-			Category:         "",
+			Type:             "aws_elastictranscoder_pipeline",
+			Category:         "Elastic Transcoder Resources",
 			ShortDescription: "Provides an Elastic Transcoder pipeline resource.",
 			Description: `
 
 Provides an Elastic Transcoder pipeline resource.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"transcoder",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -17606,14 +18524,20 @@ Provides an Elastic Transcoder pipeline resource.
 
 		resource.Resource{
 			Name:             "",
-			Type:             "aws_elastic_transcoder_preset",
-			Category:         "",
+			Type:             "aws_elastictranscoder_preset",
+			Category:         "Elastic Transcoder Resources",
 			ShortDescription: "Provides an Elastic Transcoder preset resource.",
 			Description: `
 
 Provides an Elastic Transcoder preset resource.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"transcoder",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -17907,7 +18831,7 @@ Provides an Elastic Transcoder preset resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_cluster",
-			Category:         "",
+			Category:         "ElastiCache Resources",
 			ShortDescription: "Provides an ElastiCache Cluster resource.",
 			Description: `
 
@@ -17923,6 +18847,10 @@ change immediately. Using ` + "`" + `apply_immediately` + "`" + ` can result in 
 See the AWS Docs on [Modifying an ElastiCache Cache Cluster][2] for more information.
 
 `,
+			Keywords: []string{
+
+				"elasticache",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -18007,7 +18935,7 @@ See the AWS Docs on [Modifying an ElastiCache Cache Cluster][2] for more informa
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_parameter_group",
-			Category:         "",
+			Category:         "ElastiCache Resources",
 			ShortDescription: "Provides an ElastiCache parameter group resource.",
 			Description: `
 
@@ -18016,6 +18944,10 @@ Provides an ElastiCache parameter group resource.
 ~> **NOTE:** Attempting to remove the ` + "`" + `reserved-memory` + "`" + ` parameter when ` + "`" + `family` + "`" + ` is set to ` + "`" + `redis2.6` + "`" + ` or ` + "`" + `redis2.8` + "`" + ` may show a perpetual difference in Terraform due to an Elasticache API limitation. Leave that parameter configured with any value to workaround the issue.
 
 `,
+			Keywords: []string{
+
+				"elasticache",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -18065,7 +18997,7 @@ Provides an ElastiCache parameter group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_replication_group",
-			Category:         "",
+			Category:         "ElastiCache Resources",
 			ShortDescription: "Provides an ElastiCache Replication Group resource.",
 			Description: `
 
@@ -18082,6 +19014,10 @@ immediately. Using ` + "`" + `apply_immediately` + "`" + ` can result in a brief
 servers reboots.
 
 `,
+			Keywords: []string{
+
+				"elasticache",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -18271,7 +19207,7 @@ servers reboots.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_security_group",
-			Category:         "",
+			Category:         "ElastiCache Resources",
 			ShortDescription: "Provides an ElastiCache Security Group to control access to one or more cache clusters.",
 			Description: `
 
@@ -18283,6 +19219,10 @@ ElastiCache cluster **outside** of a VPC. If you are using a VPC, see the
 [ElastiCache Subnet Group resource](elasticache_subnet_group.html).
 
 `,
+			Keywords: []string{
+
+				"elasticache",
+			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
@@ -18290,7 +19230,7 @@ ElastiCache cluster **outside** of a VPC. If you are using a VPC, see the
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_subnet_group",
-			Category:         "",
+			Category:         "ElastiCache Resources",
 			ShortDescription: "Provides an ElastiCache Subnet Group resource.",
 			Description: `
 
@@ -18301,6 +19241,10 @@ ElastiCache cluster **inside** of a VPC. If you are on EC2 Classic, see the
 [ElastiCache Security Group resource](elasticache_security_group.html).
 
 `,
+			Keywords: []string{
+
+				"elasticache",
+			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
@@ -18308,13 +19252,17 @@ ElastiCache cluster **inside** of a VPC. If you are on EC2 Classic, see the
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticsearch_domain",
-			Category:         "",
+			Category:         "ElasticSearch Resources",
 			ShortDescription: "Terraform resource for managing an AWS Elasticsearch Domain.",
 			Description: `
 
 Manages an AWS Elasticsearch Domain.
 
 `,
+			Keywords: []string{
+
+				"elasticsearch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -18569,13 +19517,17 @@ Manages an AWS Elasticsearch Domain.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticsearch_domain_policy",
-			Category:         "",
+			Category:         "ElasticSearch Resources",
 			ShortDescription: "Provides an Elasticsearch Domain Policy.",
 			Description: `
 
 Allows setting policy to an Elasticsearch domain while referencing domain attributes (e.g. ARN)
 
 `,
+			Keywords: []string{
+
+				"elasticsearch",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -18594,7 +19546,7 @@ Allows setting policy to an Elasticsearch domain while referencing domain attrib
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elb",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Provides an Elastic Load Balancer resource.",
 			Description: `
 
@@ -18610,6 +19562,18 @@ instances in conjunction with a ELB Attachment resources. Doing so will cause a
 conflict and will overwrite attachments.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -18844,7 +19808,7 @@ conflict and will overwrite attachments.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_elb_attachment",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Provides an Elastic Load Balancer Attachment resource.",
 			Description: `
 
@@ -18858,6 +19822,18 @@ instances in conjunction with an ELB Attachment resource. Doing so will cause a
 conflict and will overwrite attachments.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -18876,7 +19852,7 @@ conflict and will overwrite attachments.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_emr_cluster",
-			Category:         "",
+			Category:         "Elastic Map Reduce (EMR) Resources",
 			ShortDescription: "Provides an Elastic MapReduce Cluster",
 			Description: `
 
@@ -18889,6 +19865,16 @@ To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/Management
 -> Support for [Instance Fleets](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.html#emr-plan-instance-fleets) will be made available in an upcoming release.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"map",
+
+				"reduce",
+
+				"emr",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19393,7 +20379,7 @@ To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/Management
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_emr_instance_group",
-			Category:         "",
+			Category:         "Elastic Map Reduce (EMR) Resources",
 			ShortDescription: "Provides an Elastic MapReduce Cluster Instance Group",
 			Description: `
 
@@ -19405,6 +20391,16 @@ web interface. Instance Groups are destroyed when the EMR Cluster is destroyed.
 Terraform will resize any Instance Group to zero when destroying the resource.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"map",
+
+				"reduce",
+
+				"emr",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19454,13 +20450,23 @@ Terraform will resize any Instance Group to zero when destroying the resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_emr_security_configuration",
-			Category:         "",
+			Category:         "Elastic Map Reduce (EMR) Resources",
 			ShortDescription: "Provides a resource to manage AWS EMR Security Configurations",
 			Description: `
 
 Provides a resource to manage AWS EMR Security Configurations
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"map",
+
+				"reduce",
+
+				"emr",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19525,7 +20531,7 @@ Provides a resource to manage AWS EMR Security Configurations
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_flow_log",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a VPC/Subnet/ENI Flow Log",
 			Description: `
 
@@ -19533,6 +20539,10 @@ Provides a VPC/Subnet/ENI Flow Log to capture IP traffic for a specific network
 interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucket.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19592,13 +20602,17 @@ interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucke
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_gamelift_alias",
-			Category:         "",
+			Category:         "Gamelift Resources",
 			ShortDescription: "Provides a Gamelift Alias resource.",
 			Description: `
 
 Provides a Gamelift Alias resource.
 
 `,
+			Keywords: []string{
+
+				"gamelift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19658,13 +20672,17 @@ Provides a Gamelift Alias resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_gamelift_build",
-			Category:         "",
+			Category:         "Gamelift Resources",
 			ShortDescription: "Provides a Gamelift Build resource.",
 			Description: `
 
 Provides an Gamelift Build resource.
 
 `,
+			Keywords: []string{
+
+				"gamelift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19719,13 +20737,17 @@ Provides an Gamelift Build resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_gamelift_fleet",
-			Category:         "",
+			Category:         "Gamelift Resources",
 			ShortDescription: "Provides a Gamelift Fleet resource.",
 			Description: `
 
 Provides a Gamelift Fleet resource.
 
 `,
+			Keywords: []string{
+
+				"gamelift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19870,13 +20892,17 @@ Provides a Gamelift Fleet resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_gamelift_game_session_queue",
-			Category:         "",
+			Category:         "Gamelift Resources",
 			ShortDescription: "Provides a Gamelift Game Session Queue resource.",
 			Description: `
 
 Provides an Gamelift Game Session Queue resource.
 
 `,
+			Keywords: []string{
+
+				"gamelift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19926,7 +20952,7 @@ Provides an Gamelift Game Session Queue resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glacier_vault",
-			Category:         "",
+			Category:         "Glacier Resources",
 			ShortDescription: "Provides a Glacier Vault.",
 			Description: `
 
@@ -19935,6 +20961,10 @@ Provides a Glacier Vault Resource. You can refer to the [Glacier Developer Guide
 ~> **NOTE:** When removing a Glacier Vault, the Vault must be empty.
 
 `,
+			Keywords: []string{
+
+				"glacier",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -19994,7 +21024,7 @@ Provides a Glacier Vault Resource. You can refer to the [Glacier Developer Guide
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glacier_vault_lock",
-			Category:         "",
+			Category:         "Glacier Resources",
 			ShortDescription: "Manages a Glacier Vault Lock.",
 			Description: `
 
@@ -20005,6 +21035,10 @@ Manages a Glacier Vault Lock. You can refer to the [Glacier Developer Guide](htt
 !> **WARNING:** Once a Glacier Vault Lock is completed, it is immutable. The deletion of the Glacier Vault Lock is not be possible and attempting to remove it from Terraform will return an error. Set the ` + "`" + `ignore_deletion_error` + "`" + ` argument to ` + "`" + `true` + "`" + ` and apply this configuration before attempting to delete this resource via Terraform or use ` + "`" + `terraform state rm` + "`" + ` to remove this resource from Terraform management.
 
 `,
+			Keywords: []string{
+
+				"glacier",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20044,13 +21078,19 @@ Manages a Glacier Vault Lock. You can refer to the [Glacier Developer Guide](htt
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_globalaccelerator_accelerator",
-			Category:         "",
+			Category:         "Global Accelerator Resources",
 			ShortDescription: "Provides a Global Accelerator accelerator.",
 			Description: `
 
 Provides a Global Accelerator accelerator.
 
 `,
+			Keywords: []string{
+
+				"global",
+
+				"accelerator",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20135,13 +21175,19 @@ Provides a Global Accelerator accelerator.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_globalaccelerator_listener",
-			Category:         "",
+			Category:         "Global Accelerator Resources",
 			ShortDescription: "Provides a Global Accelerator listener.",
 			Description: `
 
 Provides a Global Accelerator listener.
 
 `,
+			Keywords: []string{
+
+				"global",
+
+				"accelerator",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20191,13 +21237,17 @@ Provides a Global Accelerator listener.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_catalog_database",
-			Category:         "",
+			Category:         "Glue Resources",
 			ShortDescription: "Provides a Glue Catalog Database.",
 			Description: `
 
 Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality
 
 `,
+			Keywords: []string{
+
+				"glue",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20231,13 +21281,17 @@ Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_catalog_table",
-			Category:         "",
+			Category:         "Glue Resources",
 			ShortDescription: "Provides a Glue Catalog Table.",
 			Description: `
 
 Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality.
 
 `,
+			Keywords: []string{
+
+				"glue",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20421,7 +21475,7 @@ Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Gui
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_classifier",
-			Category:         "",
+			Category:         "Glue Resources",
 			ShortDescription: "Provides an Glue Classifier resource.",
 			Description: `
 
@@ -20430,6 +21484,10 @@ Provides a Glue Classifier resource.
 ~> **NOTE:** It is only valid to create one type of classifier (grok, JSON, or XML). Changing classifier types will recreate the classifier.
 
 `,
+			Keywords: []string{
+
+				"glue",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20479,13 +21537,17 @@ Provides a Glue Classifier resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_connection",
-			Category:         "",
+			Category:         "Glue Resources",
 			ShortDescription: "Provides an Glue Connection resource.",
 			Description: `
 
 Provides a Glue Connection resource.
 
 `,
+			Keywords: []string{
+
+				"glue",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20525,13 +21587,17 @@ Provides a Glue Connection resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_crawler",
-			Category:         "",
+			Category:         "Glue Resources",
 			ShortDescription: "Manages a Glue Crawler",
 			Description: `
 
 Manages a Glue Crawler. More information can be found in the [AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html)
 
 `,
+			Keywords: []string{
+
+				"glue",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20601,13 +21667,17 @@ Manages a Glue Crawler. More information can be found in the [AWS Glue Developer
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_job",
-			Category:         "",
+			Category:         "Glue Resources",
 			ShortDescription: "Provides an Glue Job resource.",
 			Description: `
 
 Provides a Glue Job resource.
 
 `,
+			Keywords: []string{
+
+				"glue",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20647,13 +21717,17 @@ Provides a Glue Job resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_security_configuration",
-			Category:         "",
+			Category:         "Glue Resources",
 			ShortDescription: "Manages a Glue Security Configuration",
 			Description: `
 
 Manages a Glue Security Configuration.
 
 `,
+			Keywords: []string{
+
+				"glue",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20718,13 +21792,17 @@ Manages a Glue Security Configuration.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_trigger",
-			Category:         "",
+			Category:         "Glue Resources",
 			ShortDescription: "Manages a Glue Trigger resource.",
 			Description: `
 
 Manages a Glue Trigger resource.
 
 `,
+			Keywords: []string{
+
+				"glue",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20784,7 +21862,7 @@ Manages a Glue Trigger resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_detector",
-			Category:         "",
+			Category:         "GuardDuty Resources",
 			ShortDescription: "Provides a resource to manage a GuardDuty detector",
 			Description: `
 
@@ -20793,6 +21871,10 @@ Provides a resource to manage a GuardDuty detector.
 ~> **NOTE:** Deleting this resource is equivalent to "disabling" GuardDuty for an AWS region, which removes all existing findings. You can set the ` + "`" + `enable` + "`" + ` attribute to ` + "`" + `false` + "`" + ` to instead "suspend" monitoring and feedback reporting while keeping existing data. See the [Suspending or Disabling Amazon GuardDuty documentation](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_suspend-disable.html) for more information.
 
 `,
+			Keywords: []string{
+
+				"guardduty",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20832,13 +21914,17 @@ Provides a resource to manage a GuardDuty detector.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_invite_accepter",
-			Category:         "",
+			Category:         "GuardDuty Resources",
 			ShortDescription: "Provides a resource to accept a pending GuardDuty invite on creation, ensure the detector has the correct master account on read, and disassociate with the master account upon removal.",
 			Description: `
 
 Provides a resource to accept a pending GuardDuty invite on creation, ensure the detector has the correct master account on read, and disassociate with the master account upon removal.
 
 `,
+			Keywords: []string{
+
+				"guardduty",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20868,7 +21954,7 @@ Provides a resource to accept a pending GuardDuty invite on creation, ensure the
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_ipset",
-			Category:         "",
+			Category:         "GuardDuty Resources",
 			ShortDescription: "Provides a resource to manage a GuardDuty IPSet",
 			Description: `
 
@@ -20877,6 +21963,10 @@ Provides a resource to manage a GuardDuty IPSet.
 ~> **Note:** Currently in GuardDuty, users from member accounts cannot upload and further manage IPSets. IPSets that are uploaded by the master account are imposed on GuardDuty functionality in its member accounts. See the [GuardDuty API Documentation](https://docs.aws.amazon.com/guardduty/latest/ug/create-ip-set.html)
 
 `,
+			Keywords: []string{
+
+				"guardduty",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20921,13 +22011,17 @@ Provides a resource to manage a GuardDuty IPSet.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_member",
-			Category:         "",
+			Category:         "GuardDuty Resources",
 			ShortDescription: "Provides a resource to manage a GuardDuty member",
 			Description: `
 
 Provides a resource to manage a GuardDuty member. To accept invitations in member accounts, see the [` + "`" + `aws_guardduty_invite_accepter` + "`" + ` resource](/docs/providers/aws/r/guardduty_invite_accepter.html).
 
 `,
+			Keywords: []string{
+
+				"guardduty",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -20987,7 +22081,7 @@ Provides a resource to manage a GuardDuty member. To accept invitations in membe
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_threatintelset",
-			Category:         "",
+			Category:         "GuardDuty Resources",
 			ShortDescription: "Provides a resource to manage a GuardDuty ThreatIntelSet",
 			Description: `
 
@@ -20996,6 +22090,10 @@ Provides a resource to manage a GuardDuty ThreatIntelSet.
 ~> **Note:** Currently in GuardDuty, users from member accounts cannot upload and further manage ThreatIntelSets. ThreatIntelSets that are uploaded by the master account are imposed on GuardDuty functionality in its member accounts. See the [GuardDuty API Documentation](https://docs.aws.amazon.com/guardduty/latest/ug/create-threat-intel-set.html)
 
 `,
+			Keywords: []string{
+
+				"guardduty",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21040,13 +22138,17 @@ Provides a resource to manage a GuardDuty ThreatIntelSet.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_access_key",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM access key. This is a set of credentials that allow API requests to be made as an IAM user.",
 			Description: `
 
 Provides an IAM access key. This is a set of credentials that allow API requests to be made as an IAM user.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21131,7 +22233,7 @@ Provides an IAM access key. This is a set of credentials that allow API requests
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_account_alias",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Manages the account alias for the AWS Account.",
 			Description: `
 
@@ -21140,6 +22242,10 @@ Provides an IAM access key. This is a set of credentials that allow API requests
 Manages the account alias for the AWS Account.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21153,7 +22259,7 @@ Manages the account alias for the AWS Account.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_account_password_policy",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Manages Password Policy for the AWS Account.",
 			Description: `
 
@@ -21164,6 +22270,10 @@ See more about [Account Password Policy](http://docs.aws.amazon.com/IAM/latest/U
 in the official AWS docs.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21228,13 +22338,17 @@ in the official AWS docs.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM group.",
 			Description: `
 
 Provides an IAM group.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21304,7 +22418,7 @@ Provides an IAM group.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group_membership",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides a top level resource to manage IAM Group membership for IAM Users.",
 			Description: `
 
@@ -21318,6 +22432,10 @@ more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
 [` + "`" + `aws_iam_user_group_membership` + "`" + ` resource][3].
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21357,13 +22475,17 @@ more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group_policy",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM policy attached to a group.",
 			Description: `
 
 Provides an IAM policy attached to a group.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21433,7 +22555,7 @@ Provides an IAM policy attached to a group.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group_policy_attachment",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Attaches a Managed IAM Policy to an IAM group",
 			Description: `
 
@@ -21442,6 +22564,10 @@ Attaches a Managed IAM Policy to an IAM group
 ~> **NOTE:** The usage of this resource conflicts with the ` + "`" + `aws_iam_policy_attachment` + "`" + ` resource and will permanently show a difference if both are defined.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
@@ -21449,7 +22575,7 @@ Attaches a Managed IAM Policy to an IAM group
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_instance_profile",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM instance profile.",
 			Description: `
 
@@ -21458,6 +22584,10 @@ Provides an IAM instance profile.
 ~> **NOTE:** Either ` + "`" + `role` + "`" + ` or ` + "`" + `roles` + "`" + ` (**deprecated**) must be specified.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21572,13 +22702,17 @@ Provides an IAM instance profile.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_openid_connect_provider",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM OpenID Connect provider.",
 			Description: `
 
 Provides an IAM OpenID Connect provider.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21613,13 +22747,17 @@ Provides an IAM OpenID Connect provider.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_policy",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM policy.",
 			Description: `
 
 Provides an IAM policy.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21714,7 +22852,7 @@ Provides an IAM policy.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_policy_attachment",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)",
 			Description: `
 
@@ -21725,6 +22863,10 @@ Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 ~> **NOTE:** The usage of this resource conflicts with the ` + "`" + `aws_iam_group_policy_attachment` + "`" + `, ` + "`" + `aws_iam_role_policy_attachment` + "`" + `, and ` + "`" + `aws_iam_user_policy_attachment` + "`" + ` resources and will permanently show a difference if both are defined.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21754,13 +22896,17 @@ Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_role",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM role.",
 			Description: `
 
 Provides an IAM role.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21875,13 +23021,17 @@ Provides an IAM role.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_role_policy",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM role policy.",
 			Description: `
 
 Provides an IAM role policy.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -21951,7 +23101,7 @@ Provides an IAM role policy.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_role_policy_attachment",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Attaches a Managed IAM Policy to an IAM role",
 			Description: `
 
@@ -21960,6 +23110,10 @@ Attaches a Managed IAM Policy to an IAM role
 ~> **NOTE:** The usage of this resource conflicts with the ` + "`" + `aws_iam_policy_attachment` + "`" + ` resource and will permanently show a difference if both are defined.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
@@ -21967,13 +23121,17 @@ Attaches a Managed IAM Policy to an IAM role
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_saml_provider",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM SAML provider.",
 			Description: `
 
 Provides an IAM SAML provider.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22013,7 +23171,7 @@ Provides an IAM SAML provider.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_server_certificate",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM Server Certificate",
 			Description: `
 
@@ -22032,6 +23190,10 @@ Certificates][2] in AWS Documentation.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22086,13 +23248,17 @@ Certificates][2] in AWS Documentation.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_service_linked_role",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM service-linked role.",
 			Description: `
 
 Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html).
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22177,13 +23343,17 @@ Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/Use
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM user.",
 			Description: `
 
 Provides an IAM user.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22248,7 +23418,7 @@ Provides an IAM user.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_group_membership",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides a resource for adding an IAM User to IAM Groups without conflicting with itself.",
 			Description: `
 
@@ -22260,6 +23430,10 @@ To exclusively manage the users in a group, see the
 [` + "`" + `aws_iam_group_membership` + "`" + ` resource][3].
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22299,7 +23473,7 @@ To exclusively manage the users in a group, see the
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_login_profile",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Manages an IAM User Login Profile",
 			Description: `
 
@@ -22308,6 +23482,10 @@ Manages an IAM User Login Profile with limited support for password creation dur
 -> To reset an IAM User login password via Terraform, you can use the [` + "`" + `terraform taint` + "`" + ` command](https://www.terraform.io/docs/commands/taint.html) or change any of the arguments.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22357,13 +23535,17 @@ Manages an IAM User Login Profile with limited support for password creation dur
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_policy",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Provides an IAM policy attached to a user.",
 			Description: `
 
 Provides an IAM policy attached to a user.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22413,7 +23595,7 @@ Provides an IAM policy attached to a user.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_policy_attachment",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Attaches a Managed IAM Policy to an IAM user",
 			Description: `
 
@@ -22422,6 +23604,10 @@ Attaches a Managed IAM Policy to an IAM user
 ~> **NOTE:** The usage of this resource conflicts with the ` + "`" + `aws_iam_policy_attachment` + "`" + ` resource and will permanently show a difference if both are defined.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
@@ -22429,13 +23615,17 @@ Attaches a Managed IAM Policy to an IAM user
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_ssh_key",
-			Category:         "",
+			Category:         "IAM Resources",
 			ShortDescription: "Uploads an SSH public key and associates it with the specified IAM user.",
 			Description: `
 
 Uploads an SSH public key and associates it with the specified IAM user.
 
 `,
+			Keywords: []string{
+
+				"iam",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22485,13 +23675,17 @@ Uploads an SSH public key and associates it with the specified IAM user.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_inspector_assessment_target",
-			Category:         "",
+			Category:         "Inspector Resources",
 			ShortDescription: "Provides a Inspector assessment target.",
 			Description: `
 
 Provides a Inspector assessment target
 
 `,
+			Keywords: []string{
+
+				"inspector",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22516,13 +23710,17 @@ Provides a Inspector assessment target
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_inspector_assessment_template",
-			Category:         "",
+			Category:         "Inspector Resources",
 			ShortDescription: "Provides a Inspector assessment template.",
 			Description: `
 
 Provides a Inspector assessment template
 
 `,
+			Keywords: []string{
+
+				"inspector",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22562,13 +23760,17 @@ Provides a Inspector assessment template
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_inspector_resource_group",
-			Category:         "",
+			Category:         "Inspector Resources",
 			ShortDescription: "Provides a Inspector resource group.",
 			Description: `
 
 Provides a Inspector resource group
 
 `,
+			Keywords: []string{
+
+				"inspector",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -22593,7 +23795,7 @@ Provides a Inspector resource group
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_instance",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an EC2 instance resource. This allows instances to be created, updated, and deleted. Instances also support provisioning.",
 			Description: `
 
@@ -22601,6 +23803,10 @@ Provides an EC2 instance resource. This allows instances to be created, updated,
 and deleted. Instances also support [provisioning](/docs/provisioners/index.html).
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23030,13 +24236,17 @@ and deleted. Instances also support [provisioning](/docs/provisioners/index.html
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_internet_gateway",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to create a VPC Internet Gateway.",
 			Description: `
 
 Provides a resource to create a VPC Internet Gateway.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23076,13 +24286,17 @@ Provides a resource to create a VPC Internet Gateway.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_certificate",
-			Category:         "",
+			Category:         "IoT Resources",
 			ShortDescription: "Creates and manages an AWS IoT certificate.",
 			Description: `
 
 Creates and manages an AWS IoT certificate.
 
 `,
+			Keywords: []string{
+
+				"iot",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23112,13 +24326,17 @@ Creates and manages an AWS IoT certificate.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_policy",
-			Category:         "",
+			Category:         "IoT Resources",
 			ShortDescription: "Provides an IoT policy.",
 			Description: `
 
 Provides an IoT policy.
 
 `,
+			Keywords: []string{
+
+				"iot",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23178,13 +24396,17 @@ Provides an IoT policy.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_policy_attachment",
-			Category:         "",
+			Category:         "IoT Resources",
 			ShortDescription: "Provides an IoT policy attachment.",
 			Description: `
 
 Provides an IoT policy attachment.
 
 `,
+			Keywords: []string{
+
+				"iot",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23203,13 +24425,17 @@ Provides an IoT policy attachment.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_role_alias",
-			Category:         "",
+			Category:         "IoT Resources",
 			ShortDescription: "Provides an IoT role alias.",
 			Description: `
 
 Provides an IoT role alias.
 
 `,
+			Keywords: []string{
+
+				"iot",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23244,13 +24470,17 @@ Provides an IoT role alias.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_thing",
-			Category:         "",
+			Category:         "IoT Resources",
 			ShortDescription: "Creates and manages an AWS IoT Thing.",
 			Description: `
 
 Creates and manages an AWS IoT Thing.
 
 `,
+			Keywords: []string{
+
+				"iot",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23305,13 +24535,17 @@ Creates and manages an AWS IoT Thing.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_thing_principal_attachment",
-			Category:         "",
+			Category:         "IoT Resources",
 			ShortDescription: "Provides AWS IoT Thing Principal attachment.",
 			Description: `
 
 Attaches Principal to AWS IoT Thing.
 
 `,
+			Keywords: []string{
+
+				"iot",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23330,13 +24564,17 @@ Attaches Principal to AWS IoT Thing.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_thing_type",
-			Category:         "",
+			Category:         "IoT Resources",
 			ShortDescription: "Creates and manages an AWS IoT Thing Type.",
 			Description: `
 
 Creates and manages an AWS IoT Thing Type.
 
 `,
+			Keywords: []string{
+
+				"iot",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23376,11 +24614,15 @@ Creates and manages an AWS IoT Thing Type.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_topic_rule",
-			Category:         "",
+			Category:         "IoT Resources",
 			ShortDescription: "Creates and manages an AWS IoT topic rule",
 			Description: `
 
 `,
+			Keywords: []string{
+
+				"iot",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23645,7 +24887,7 @@ Creates and manages an AWS IoT Thing Type.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_key_pair",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides a Key Pair resource. Currently this supports importing an existing key pair but not creating a new key pair.",
 			Description: `
 
@@ -23660,6 +24902,10 @@ When importing an existing key pair the public key material may be in any format
 * SSH public key file format as specified in RFC4716
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -23704,7 +24950,7 @@ When importing an existing key pair the public key material may be in any format
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_kinesis_analytics_application",
-			Category:         "",
+			Category:         "Kinesis Resources",
 			ShortDescription: "Provides a AWS Kinesis Analytics Application",
 			Description: `
 
@@ -23714,6 +24960,10 @@ allows processing and analyzing streaming data using standard SQL.
 For more details, see the [Amazon Kinesis Analytics Documentation][1].
 
 `,
+			Keywords: []string{
+
+				"kinesis",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -24028,7 +25278,7 @@ For more details, see the [Amazon Kinesis Analytics Documentation][1].
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_kinesis_firehose_delivery_stream",
-			Category:         "",
+			Category:         "Kinesis Firehose Resources",
 			ShortDescription: "Provides a AWS Kinesis Firehose Delivery Stream",
 			Description: `
 
@@ -24037,6 +25287,12 @@ Provides a Kinesis Firehose Delivery Stream resource. Amazon Kinesis Firehose is
 For more details, see the [Amazon Kinesis Firehose Documentation][1].
 
 `,
+			Keywords: []string{
+
+				"kinesis",
+
+				"firehose",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -24531,7 +25787,7 @@ For more details, see the [Amazon Kinesis Firehose Documentation][1].
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_kinesis_stream",
-			Category:         "",
+			Category:         "Kinesis Resources",
 			ShortDescription: "Provides a AWS Kinesis Stream",
 			Description: `
 
@@ -24541,6 +25797,10 @@ scales elastically for real-time processing of streaming big data.
 For more details, see the [Amazon Kinesis Documentation][1].
 
 `,
+			Keywords: []string{
+
+				"kinesis",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -24625,7 +25885,7 @@ For more details, see the [Amazon Kinesis Documentation][1].
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_alias",
-			Category:         "",
+			Category:         "KMS Resources",
 			ShortDescription: "Provides a display name for a customer master key.",
 			Description: `
 
@@ -24634,6 +25894,10 @@ but API (hence Terraform too) allows you to create as many aliases as
 the [account limits](http://docs.aws.amazon.com/kms/latest/developerguide/limits.html) allow you.
 
 `,
+			Keywords: []string{
+
+				"kms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -24678,7 +25942,7 @@ the [account limits](http://docs.aws.amazon.com/kms/latest/developerguide/limits
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_ciphertext",
-			Category:         "",
+			Category:         "KMS Resources",
 			ShortDescription: "Provides ciphertext encrypted using a KMS key",
 			Description: `
 
@@ -24691,6 +25955,10 @@ the [` + "`" + `aws_kms_ciphertext` + "`" + ` data source](/docs/providers/aws/d
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"kms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -24725,7 +25993,7 @@ the [` + "`" + `aws_kms_ciphertext` + "`" + ` data source](/docs/providers/aws/d
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_external_key",
-			Category:         "",
+			Category:         "KMS Resources",
 			ShortDescription: "Manages a KMS Customer Master Key that uses external key material",
 			Description: `
 
@@ -24734,6 +26002,10 @@ Manages a KMS Customer Master Key that uses external key material. To instead ma
 ~> **Note:** All arguments including the key material will be stored in the raw state as plain-text. [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"kms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -24828,13 +26100,17 @@ Manages a KMS Customer Master Key that uses external key material. To instead ma
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_grant",
-			Category:         "",
+			Category:         "KMS Resources",
 			ShortDescription: "Provides a resource-based access control mechanism for KMS Customer Master Keys.",
 			Description: `
 
 Provides a resource-based access control mechanism for a KMS customer master key.
 
 `,
+			Keywords: []string{
+
+				"kms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -24909,13 +26185,17 @@ Provides a resource-based access control mechanism for a KMS customer master key
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_key",
-			Category:         "",
+			Category:         "KMS Resources",
 			ShortDescription: "Provides a KMS customer master key.",
 			Description: `
 
 Provides a KMS customer master key.
 
 `,
+			Keywords: []string{
+
+				"kms",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -24980,7 +26260,7 @@ Provides a KMS customer master key.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_alias",
-			Category:         "",
+			Category:         "Lambda Resources",
 			ShortDescription: "Creates a Lambda function alias.",
 			Description: `
 
@@ -24990,6 +26270,10 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 For information about function aliases, see [CreateAlias][2] and [AliasRoutingConfiguration][3] in the API docs.
 
 `,
+			Keywords: []string{
+
+				"lambda",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -25049,7 +26333,7 @@ For information about function aliases, see [CreateAlias][2] and [AliasRoutingCo
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_event_source_mapping",
-			Category:         "",
+			Category:         "Lambda Resources",
 			ShortDescription: "Provides a Lambda event source mapping. This allows Lambda functions to get events from Kinesis, DynamoDB and SQS",
 			Description: `
 
@@ -25059,6 +26343,10 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1].
 For information about event source mappings, see [CreateEventSourceMapping][2] in the API docs.
 
 `,
+			Keywords: []string{
+
+				"lambda",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -25158,7 +26446,7 @@ For information about event source mappings, see [CreateEventSourceMapping][2] i
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_function",
-			Category:         "",
+			Category:         "Lambda Resources",
 			ShortDescription: "Provides a Lambda Function resource. Lambda allows you to trigger execution of code in response to events in AWS. The Lambda Function itself includes source code and runtime configuration.",
 			Description: `
 
@@ -25167,6 +26455,10 @@ Provides a Lambda Function resource. Lambda allows you to trigger execution of c
 For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 
 `,
+			Keywords: []string{
+
+				"lambda",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -25391,7 +26683,7 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_layer_version",
-			Category:         "",
+			Category:         "Lambda Resources",
 			ShortDescription: "Provides a Lambda Layer Version resource. Lambda Layers allow you to reuse shared bits of code across multiple lambda functions.",
 			Description: `
 
@@ -25400,6 +26692,10 @@ Provides a Lambda Layer Version resource. Lambda Layers allow you to reuse share
 For information about Lambda Layers and how to use them, see [AWS Lambda Layers][1]
 
 `,
+			Keywords: []string{
+
+				"lambda",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -25494,7 +26790,7 @@ For information about Lambda Layers and how to use them, see [AWS Lambda Layers]
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_permission",
-			Category:         "",
+			Category:         "Lambda Resources",
 			ShortDescription: "Creates a Lambda function permission.",
 			Description: `
 
@@ -25502,6 +26798,10 @@ Creates a Lambda permission to allow external sources invoking the Lambda functi
 (e.g. CloudWatch Event Rule, SNS or S3).
 
 `,
+			Keywords: []string{
+
+				"lambda",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -25555,13 +26855,17 @@ Creates a Lambda permission to allow external sources invoking the Lambda functi
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_launch_configuration",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides a resource to create a new launch configuration, used for autoscaling groups.",
 			Description: `
 
 Provides a resource to create a new launch configuration, used for autoscaling groups.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -25751,13 +27055,17 @@ Provides a resource to create a new launch configuration, used for autoscaling g
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_launch_template",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an EC2 launch template resource. Can be used to create instances or auto scaling groups.",
 			Description: `
 
 Provides an EC2 launch template resource. Can be used to create instances or auto scaling groups.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -26182,7 +27490,7 @@ Provides an EC2 launch template resource. Can be used to create instances or aut
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lb",
-			Category:         "",
+			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
 			ShortDescription: "Provides a Load Balancer resource.",
 			Description: `
 
@@ -26191,6 +27499,18 @@ Provides a Load Balancer resource.
 ~> **Note:** ` + "`" + `aws_alb` + "`" + ` is known as ` + "`" + `aws_lb` + "`" + `. The functionality is identical.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"v2",
+
+				"albnlb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -26345,13 +27665,25 @@ Provides a Load Balancer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_cookie_stickiness_policy",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Provides a load balancer cookie stickiness policy, which allows an ELB to control the sticky session lifetime of the browser.",
 			Description: `
 
 Provides a load balancer cookie stickiness policy, which allows an ELB to control the sticky session lifetime of the browser.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -26431,7 +27763,7 @@ Provides a load balancer cookie stickiness policy, which allows an ELB to contro
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_listener",
-			Category:         "",
+			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
 			ShortDescription: "Provides a Load Balancer Listener resource.",
 			Description: `
 
@@ -26440,6 +27772,18 @@ Provides a Load Balancer Listener resource.
 ~> **Note:** ` + "`" + `aws_alb_listener` + "`" + ` is known as ` + "`" + `aws_lb_listener` + "`" + `. The functionality is identical.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"v2",
+
+				"albnlb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -26669,7 +28013,7 @@ Provides a Load Balancer Listener resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_listener_certificate",
-			Category:         "",
+			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
 			ShortDescription: "Provides a Load Balancer Listener Certificate resource.",
 			Description: `
 
@@ -26680,6 +28024,18 @@ This resource is for additional certificates and does not replace the default ce
 ~> **Note:** ` + "`" + `aws_alb_listener_certificate` + "`" + ` is known as ` + "`" + `aws_lb_listener_certificate` + "`" + `. The functionality is identical.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"v2",
+
+				"albnlb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -26698,7 +28054,7 @@ This resource is for additional certificates and does not replace the default ce
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_listener_rule",
-			Category:         "",
+			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
 			ShortDescription: "Provides a Load Balancer Listener Rule resource.",
 			Description: `
 
@@ -26707,6 +28063,18 @@ Provides a Load Balancer Listener Rule resource.
 ~> **Note:** ` + "`" + `aws_alb_listener_rule` + "`" + ` is known as ` + "`" + `aws_lb_listener_rule` + "`" + `. The functionality is identical.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"v2",
+
+				"albnlb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -26946,13 +28314,25 @@ Provides a Load Balancer Listener Rule resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_ssl_negotiation_policy",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Provides a load balancer SSL negotiation policy, which allows an ELB to control which ciphers and protocols are supported during SSL negotiations between a client and a load balancer.",
 			Description: `
 
 Provides a load balancer SSL negotiation policy, which allows an ELB to control the ciphers and protocols that are supported during SSL negotiations between a client and a load balancer.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27042,7 +28422,7 @@ Provides a load balancer SSL negotiation policy, which allows an ELB to control 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_target_group",
-			Category:         "",
+			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
 			ShortDescription: "Provides a Target Group resource for use with Load Balancers.",
 			Description: `
 
@@ -27051,6 +28431,18 @@ Provides a Target Group resource for use with Load Balancer resources.
 ~> **Note:** ` + "`" + `aws_alb_target_group` + "`" + ` is known as ` + "`" + `aws_lb_target_group` + "`" + `. The functionality is identical.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"v2",
+
+				"albnlb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27220,7 +28612,7 @@ Provides a Target Group resource for use with Load Balancer resources.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_target_group_attachment",
-			Category:         "",
+			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
 			ShortDescription: "Provides the ability to register instances and containers with a LB target group",
 			Description: `
 
@@ -27229,6 +28621,18 @@ Provides the ability to register instances and containers with an Application Lo
 ~> **Note:** ` + "`" + `aws_alb_target_group_attachment` + "`" + ` is known as ` + "`" + `aws_lb_target_group_attachment` + "`" + `. The functionality is identical.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"v2",
+
+				"albnlb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27263,7 +28667,7 @@ Provides the ability to register instances and containers with an Application Lo
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_licensemanager_association",
-			Category:         "",
+			Category:         "License Manager Resources",
 			ShortDescription: "Provides a License Manager association resource.",
 			Description: `
 
@@ -27272,6 +28676,12 @@ Provides a License Manager association.
 ~> **Note:** License configurations can also be associated with launch templates by specifying the ` + "`" + `license_specifications` + "`" + ` block for an ` + "`" + `aws_launch_template` + "`" + `.
 
 `,
+			Keywords: []string{
+
+				"license",
+
+				"manager",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27301,7 +28711,7 @@ Provides a License Manager association.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_licensemanager_license_configuration",
-			Category:         "",
+			Category:         "License Manager Resources",
 			ShortDescription: "Provides a License Manager license configuration resource.",
 			Description: `
 
@@ -27310,6 +28720,12 @@ Provides a License Manager license configuration resource.
 ~> **Note:** Removing the ` + "`" + `license_count` + "`" + ` attribute is not supported by the License Manager API - use ` + "`" + `terraform taint aws_licensemanager_license_configuration.<id>` + "`" + ` to recreate the resource instead.
 
 `,
+			Keywords: []string{
+
+				"license",
+
+				"manager",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27399,7 +28815,7 @@ Provides a License Manager license configuration resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_domain",
-			Category:         "",
+			Category:         "Lightsail Resources",
 			ShortDescription: "Provides an Lightsail Domain",
 			Description: `
 
@@ -27412,6 +28828,10 @@ this parameter to manage the DNS records for that domain.
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Keywords: []string{
+
+				"lightsail",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27446,7 +28866,7 @@ this parameter to manage the DNS records for that domain.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_instance",
-			Category:         "",
+			Category:         "Lightsail Resources",
 			ShortDescription: "Provides an Lightsail Instance",
 			Description: `
 
@@ -27457,6 +28877,10 @@ for more information.
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Keywords: []string{
+
+				"lightsail",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27516,7 +28940,7 @@ for more information.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_key_pair",
-			Category:         "",
+			Category:         "Lightsail Resources",
 			ShortDescription: "Provides an Lightsail Key Pair",
 			Description: `
 
@@ -27527,6 +28951,10 @@ Lightsail.
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Keywords: []string{
+
+				"lightsail",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27606,7 +29034,7 @@ Lightsail.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_static_ip",
-			Category:         "",
+			Category:         "Lightsail Resources",
 			ShortDescription: "Provides an Lightsail Static IP",
 			Description: `
 
@@ -27615,6 +29043,10 @@ Allocates a static IP address.
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Keywords: []string{
+
+				"lightsail",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27659,7 +29091,7 @@ Allocates a static IP address.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_static_ip_attachment",
-			Category:         "",
+			Category:         "Lightsail Resources",
 			ShortDescription: "Provides an Lightsail Static IP Attachment",
 			Description: `
 
@@ -27668,6 +29100,10 @@ Provides a static IP address attachment - relationship between a Lightsail stati
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Keywords: []string{
+
+				"lightsail",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27717,7 +29153,7 @@ Provides a static IP address attachment - relationship between a Lightsail stati
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_load_balancer_backend_server_policy",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Attaches a load balancer policy to an ELB backend server.",
 			Description: `
 
@@ -27725,6 +29161,18 @@ Attaches a load balancer policy to an ELB backend server.
 
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27779,7 +29227,7 @@ Attaches a load balancer policy to an ELB backend server.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_load_balancer_listener_policy",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Attaches a load balancer policy to an ELB Listener.",
 			Description: `
 
@@ -27787,6 +29235,18 @@ Attaches a load balancer policy to an ELB Listener.
 
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27841,13 +29301,25 @@ Attaches a load balancer policy to an ELB Listener.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_load_balancer_policy",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Provides a load balancer policy, which can be attached to an ELB listener or backend server.",
 			Description: `
 
 Provides a load balancer policy, which can be attached to an ELB listener or backend server.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27917,7 +29389,7 @@ Provides a load balancer policy, which can be attached to an ELB listener or bac
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_macie_member_account_association",
-			Category:         "",
+			Category:         "Macie Resources",
 			ShortDescription: "Associates an AWS account with Amazon Macie as a member account.",
 			Description: `
 
@@ -27926,6 +29398,10 @@ Associates an AWS account with Amazon Macie as a member account.
 ~> **NOTE:** Before using Amazon Macie for the first time it must be enabled manually. Instructions are [here](https://docs.aws.amazon.com/macie/latest/userguide/macie-setting-up.html#macie-setting-up-enable).
 
 `,
+			Keywords: []string{
+
+				"macie",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -27950,7 +29426,7 @@ Associates an AWS account with Amazon Macie as a member account.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_macie_s3_bucket_association",
-			Category:         "",
+			Category:         "Macie Resources",
 			ShortDescription: "Associates an S3 resource with Amazon Macie for monitoring and data classification.",
 			Description: `
 
@@ -27959,6 +29435,10 @@ Associates an S3 resource with Amazon Macie for monitoring and data classificati
 ~> **NOTE:** Before using Amazon Macie for the first time it must be enabled manually. Instructions are [here](https://docs.aws.amazon.com/macie/latest/userguide/macie-setting-up.html#macie-setting-up-enable).
 
 `,
+			Keywords: []string{
+
+				"macie",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28007,14 +29487,18 @@ Associates an S3 resource with Amazon Macie for monitoring and data classificati
 
 		resource.Resource{
 			Name:             "",
-			Type:             "aws_main_route_table_assoc",
-			Category:         "",
+			Type:             "aws_main_route_table_association",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource for managing the main routing table of a VPC.",
 			Description: `
 
 Provides a resource for managing the main routing table of a VPC.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28054,13 +29538,17 @@ Provides a resource for managing the main routing table of a VPC.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_media_package_channel",
-			Category:         "",
+			Category:         "MediaPackage Resources",
 			ShortDescription: "Provides an AWS Elemental MediaPackage Channel.",
 			Description: `
 
 Provides an AWS Elemental MediaPackage Channel.
 
 `,
+			Keywords: []string{
+
+				"mediapackage",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28155,13 +29643,17 @@ Provides an AWS Elemental MediaPackage Channel.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_media_store_container",
-			Category:         "",
+			Category:         "MediaStore Resources",
 			ShortDescription: "Provides a MediaStore Container.",
 			Description: `
 
 Provides a MediaStore Container.
 
 `,
+			Keywords: []string{
+
+				"mediastore",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28196,13 +29688,17 @@ Provides a MediaStore Container.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_media_store_container_policy",
-			Category:         "",
+			Category:         "MediaStore Resources",
 			ShortDescription: "Provides a MediaStore Container Policy.",
 			Description: `
 
 Provides a MediaStore Container Policy.
 
 `,
+			Keywords: []string{
+
+				"mediastore",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28221,7 +29717,7 @@ Provides a MediaStore Container Policy.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_mq_broker",
-			Category:         "",
+			Category:         "MQ Resources",
 			ShortDescription: "Provides an MQ Broker Resource",
 			Description: `
 
@@ -28243,6 +29739,10 @@ brief downtime as the broker reboots.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"mq",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28442,7 +29942,7 @@ brief downtime as the broker reboots.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_mq_configuration",
-			Category:         "",
+			Category:         "MQ Resources",
 			ShortDescription: "Provides an MQ configuration Resource",
 			Description: `
 
@@ -28451,6 +29951,10 @@ Provides an MQ Configuration Resource.
 For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/welcome.html).
 
 `,
+			Keywords: []string{
+
+				"mq",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28520,7 +30024,7 @@ For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aw
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_msk_cluster",
-			Category:         "",
+			Category:         "Managed Streaming for Kafka (MSK) Resources",
 			ShortDescription: "Terraform resource for managing an AWS Managed Streaming for Kafka cluster",
 			Description: `
 
@@ -28529,6 +30033,18 @@ Manages AWS Managed Streaming for Kafka cluster
 ~> **NOTE:** This AWS service is in Preview and may change before General Availability release. Backwards compatibility is not guaranteed between Terraform AWS Provider releases.
 
 `,
+			Keywords: []string{
+
+				"managed",
+
+				"streaming",
+
+				"for",
+
+				"kafka",
+
+				"msk",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28643,7 +30159,7 @@ Manages AWS Managed Streaming for Kafka cluster
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_msk_configuration",
-			Category:         "",
+			Category:         "Managed Streaming for Kafka (MSK) Resources",
 			ShortDescription: "Terraform resource for managing an Amazon Managed Streaming for Kafka configuration",
 			Description: `
 
@@ -28654,6 +30170,18 @@ Manages an Amazon Managed Streaming for Kafka configuration. More information ca
 ~> **NOTE:** This AWS service is in Preview and may change before General Availability release. Backwards compatibility is not guaranteed between Terraform AWS Provider releases.
 
 `,
+			Keywords: []string{
+
+				"managed",
+
+				"streaming",
+
+				"for",
+
+				"kafka",
+
+				"msk",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28703,13 +30231,17 @@ Manages an Amazon Managed Streaming for Kafka configuration. More information ca
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_nat_gateway",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to create a VPC NAT Gateway.",
 			Description: `
 
 Provides a resource to create a VPC NAT Gateway.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28794,7 +30326,7 @@ Provides a resource to create a VPC NAT Gateway.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_cluster",
-			Category:         "",
+			Category:         "Neptune Resources",
 			ShortDescription: "Provides an Neptune Cluster Resource",
 			Description: `
 
@@ -28809,6 +30341,10 @@ phase because a modification has not yet taken place. You can use the
 (see documentation below).
 
 `,
+			Keywords: []string{
+
+				"neptune",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -28998,7 +30534,7 @@ phase because a modification has not yet taken place. You can use the
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_cluster_instance",
-			Category:         "",
+			Category:         "Neptune Resources",
 			ShortDescription: "Provides an Neptune Cluster Resource Instance",
 			Description: `
 
@@ -29009,6 +30545,10 @@ meta-parameter to make multiple instances and join them all to the same Neptune 
 
 
 `,
+			Keywords: []string{
+
+				"neptune",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29173,13 +30713,17 @@ meta-parameter to make multiple instances and join them all to the same Neptune 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_cluster_parameter_group",
-			Category:         "",
+			Category:         "Neptune Resources",
 			ShortDescription: "Manages a Neptune Cluster Parameter Group",
 			Description: `
 
 Manages a Neptune Cluster Parameter Group
 
 `,
+			Keywords: []string{
+
+				"neptune",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29254,13 +30798,17 @@ Manages a Neptune Cluster Parameter Group
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_cluster_snapshot",
-			Category:         "",
+			Category:         "Neptune Resources",
 			ShortDescription: "Manages a Neptune database cluster snapshot.",
 			Description: `
 
 Manages a Neptune database cluster snapshot.
 
 `,
+			Keywords: []string{
+
+				"neptune",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29410,11 +30958,15 @@ Manages a Neptune database cluster snapshot.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_event_subscription",
-			Category:         "",
+			Category:         "Neptune Resources",
 			ShortDescription: "Provides a Neptune event subscription resource.",
 			Description: `
 
 `,
+			Keywords: []string{
+
+				"neptune",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29478,13 +31030,17 @@ Manages a Neptune database cluster snapshot.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_parameter_group",
-			Category:         "",
+			Category:         "Neptune Resources",
 			ShortDescription: "Manages a Neptune Parameter Group",
 			Description: `
 
 Manages a Neptune Parameter Group
 
 `,
+			Keywords: []string{
+
+				"neptune",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29549,13 +31105,17 @@ Manages a Neptune Parameter Group
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_subnet_group",
-			Category:         "",
+			Category:         "Neptune Resources",
 			ShortDescription: "Provides an Neptune subnet group resource.",
 			Description: `
 
 Provides an Neptune subnet group resource.
 
 `,
+			Keywords: []string{
+
+				"neptune",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29610,7 +31170,7 @@ Provides an Neptune subnet group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_network_acl",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides an network ACL resource.",
 			Description: `
 
@@ -29624,6 +31184,10 @@ in conjunction with any Network ACL Rule resources. Doing so will cause
 a conflict of rule settings and will overwrite rules.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29723,7 +31287,7 @@ a conflict of rule settings and will overwrite rules.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_network_acl_rule",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides an network ACL Rule resource.",
 			Description: `
 
@@ -29736,6 +31300,10 @@ in conjunction with any Network ACL Rule resources. Doing so will cause
 a conflict of rule settings and will overwrite rules.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29810,13 +31378,17 @@ a conflict of rule settings and will overwrite rules.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_network_interface",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides an Elastic network interface (ENI) resource.",
 			Description: `
 
 Provides an Elastic network interface (ENI) resource.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -29956,13 +31528,17 @@ Provides an Elastic network interface (ENI) resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_network_interface_attachment",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Attach an Elastic network interface (ENI) resource with EC2 instance.",
 			Description: `
 
 Attach an Elastic network interface (ENI) resource with EC2 instance.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -30027,7 +31603,7 @@ Attach an Elastic network interface (ENI) resource with EC2 instance.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_network_interface_sg_attachment",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Associates a security group with a network interface.",
 			Description: `
 
@@ -30046,6 +31622,10 @@ one or the other.
 [2]: /docs/providers/aws/r/network_interface.html
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -30064,13 +31644,17 @@ one or the other.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_application",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks application resource.",
 			Description: `
 
 Provides an OpsWorks application resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -30235,13 +31819,17 @@ Provides an OpsWorks application resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_custom_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks custom layer resource.",
 			Description: `
 
 Provides an OpsWorks custom layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -30371,13 +31959,17 @@ Provides an OpsWorks custom layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_ganglia_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks Ganglia layer resource.",
 			Description: `
 
 Provides an OpsWorks Ganglia layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -30517,13 +32109,17 @@ Provides an OpsWorks Ganglia layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_haproxy_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks HAProxy layer resource.",
 			Description: `
 
 Provides an OpsWorks haproxy layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -30678,13 +32274,17 @@ Provides an OpsWorks haproxy layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_instance",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks instance resource.",
 			Description: `
 
 Provides an OpsWorks instance resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -30979,13 +32579,17 @@ Provides an OpsWorks instance resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_java_app_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks Java application layer resource.",
 			Description: `
 
 Provides an OpsWorks Java application layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -31135,13 +32739,17 @@ Provides an OpsWorks Java application layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_memcached_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks memcached layer resource.",
 			Description: `
 
 Provides an OpsWorks memcached layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -31271,7 +32879,7 @@ Provides an OpsWorks memcached layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_mysql_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks MySQL layer resource.",
 			Description: `
 
@@ -31281,6 +32889,10 @@ Provides an OpsWorks MySQL layer resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -31415,13 +33027,17 @@ Provides an OpsWorks MySQL layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_nodejs_app_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks NodeJS application layer resource.",
 			Description: `
 
 Provides an OpsWorks NodeJS application layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -31551,13 +33167,17 @@ Provides an OpsWorks NodeJS application layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_permission",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks permission resource.",
 			Description: `
 
 Provides an OpsWorks permission resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -31602,13 +33222,17 @@ Provides an OpsWorks permission resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_php_app_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks PHP application layer resource.",
 			Description: `
 
 Provides an OpsWorks PHP application layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -31733,13 +33357,17 @@ Provides an OpsWorks PHP application layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_rails_app_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks Ruby on Rails application layer resource.",
 			Description: `
 
 Provides an OpsWorks Ruby on Rails application layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -31894,7 +33522,7 @@ Provides an OpsWorks Ruby on Rails application layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_rds_db_instance",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks RDS DB Instance resource.",
 			Description: `
 
@@ -31904,6 +33532,10 @@ Provides an OpsWorks RDS DB Instance resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -31943,13 +33575,17 @@ Provides an OpsWorks RDS DB Instance resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_stack",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks stack resource.",
 			Description: `
 
 Provides an OpsWorks stack resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32114,13 +33750,17 @@ Provides an OpsWorks stack resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_static_web_layer",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks static web server layer resource.",
 			Description: `
 
 Provides an OpsWorks static web server layer resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32240,13 +33880,17 @@ Provides an OpsWorks static web server layer resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_user_profile",
-			Category:         "",
+			Category:         "OpsWorks Resources",
 			ShortDescription: "Provides an OpsWorks User Profile resource.",
 			Description: `
 
 Provides an OpsWorks User Profile resource.
 
 `,
+			Keywords: []string{
+
+				"opsworks",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32286,7 +33930,7 @@ Provides an OpsWorks User Profile resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_account",
-			Category:         "",
+			Category:         "Organizations Resources",
 			ShortDescription: "Provides a resource to create a member account in the current AWS Organization.",
 			Description: `
 
@@ -32297,6 +33941,10 @@ Provides a resource to create a member account in the current organization.
 !> **WARNING:** Deleting this Terraform resource will only remove an AWS account from an organization. Terraform will not close the account. The member account must be prepared to be a standalone account beforehand. See the [AWS Organizations documentation](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html) for more information.
 
 `,
+			Keywords: []string{
+
+				"organizations",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32351,13 +33999,17 @@ Provides a resource to create a member account in the current organization.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_organization",
-			Category:         "",
+			Category:         "Organizations Resources",
 			ShortDescription: "Provides a resource to create an organization.",
 			Description: `
 
 Provides a resource to create an organization.
 
 `,
+			Keywords: []string{
+
+				"organizations",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32552,13 +34204,17 @@ Provides a resource to create an organization.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_organizational_unit",
-			Category:         "",
+			Category:         "Organizations Resources",
 			ShortDescription: "Provides a resource to create an organizational unit.",
 			Description: `
 
 Provides a resource to create an organizational unit.
 
 `,
+			Keywords: []string{
+
+				"organizations",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32648,13 +34304,17 @@ Provides a resource to create an organizational unit.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_policy",
-			Category:         "",
+			Category:         "Organizations Resources",
 			ShortDescription: "Provides a resource to manage an AWS Organizations policy.",
 			Description: `
 
 Provides a resource to manage an [AWS Organizations policy](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html).
 
 `,
+			Keywords: []string{
+
+				"organizations",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32704,13 +34364,17 @@ Provides a resource to manage an [AWS Organizations policy](https://docs.aws.ama
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_policy_attachment",
-			Category:         "",
+			Category:         "Organizations Resources",
 			ShortDescription: "Provides a resource to attach an AWS Organizations policy to an organization account, root, or unit.",
 			Description: `
 
 Provides a resource to attach an AWS Organizations policy to an organization account, root, or unit.
 
 `,
+			Keywords: []string{
+
+				"organizations",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32729,7 +34393,7 @@ Provides a resource to attach an AWS Organizations policy to an organization acc
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_adm_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint ADM Channel resource.",
 			Description: `
 
@@ -32740,6 +34404,10 @@ Provides a Pinpoint ADM (Amazon Device Messaging) Channel resource.
 
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32768,7 +34436,7 @@ Provides a Pinpoint ADM (Amazon Device Messaging) Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_apns_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint APNs Channel resource.",
 			Description: `
 
@@ -32778,6 +34446,10 @@ Provides a Pinpoint APNs Channel resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32831,7 +34503,7 @@ Provides a Pinpoint APNs Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_apns_sandbox_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint APNs Sandbox Channel resource.",
 			Description: `
 
@@ -32841,6 +34513,10 @@ Provides a Pinpoint APNs Sandbox Channel resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32894,7 +34570,7 @@ Provides a Pinpoint APNs Sandbox Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_apns_voip_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint APNs VoIP Channel resource.",
 			Description: `
 
@@ -32904,6 +34580,10 @@ Provides a Pinpoint APNs VoIP Channel resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -32957,7 +34637,7 @@ Provides a Pinpoint APNs VoIP Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_apns_voip_sandbox_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint APNs VoIP Sandbox Channel resource.",
 			Description: `
 
@@ -32967,6 +34647,10 @@ Provides a Pinpoint APNs VoIP Sandbox Channel resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33020,13 +34704,17 @@ Provides a Pinpoint APNs VoIP Sandbox Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_app",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint App resource.",
 			Description: `
 
 Provides a Pinpoint App resource.
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33116,7 +34804,7 @@ Provides a Pinpoint App resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_baidu_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint Baidu Channel resource.",
 			Description: `
 
@@ -33127,6 +34815,10 @@ Provides a Pinpoint Baidu Channel resource.
 
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33155,13 +34847,17 @@ Provides a Pinpoint Baidu Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_email_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint SMS Channel resource.",
 			Description: `
 
 Provides a Pinpoint SMS Channel resource.
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33206,13 +34902,17 @@ Provides a Pinpoint SMS Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_event_stream",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint Event Stream resource.",
 			Description: `
 
 Provides a Pinpoint Event Stream resource.
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33236,7 +34936,7 @@ Provides a Pinpoint Event Stream resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_gcm_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint GCM Channel resource.",
 			Description: `
 
@@ -33246,6 +34946,10 @@ Provides a Pinpoint GCM Channel resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33269,13 +34973,17 @@ Provides a Pinpoint GCM Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_sms_channel",
-			Category:         "",
+			Category:         "Pinpoint Resources",
 			ShortDescription: "Provides a Pinpoint SMS Channel resource.",
 			Description: `
 
 Provides a Pinpoint SMS Channel resource.
 
 `,
+			Keywords: []string{
+
+				"pinpoint",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33325,7 +35033,7 @@ Provides a Pinpoint SMS Channel resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_placement_group",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an EC2 placement group.",
 			Description: `
 
@@ -33333,6 +35041,10 @@ Provides an EC2 placement group. Read more about placement groups
 in [AWS Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html).
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33362,13 +35074,25 @@ in [AWS Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-grou
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_proxy_protocol_policy",
-			Category:         "",
+			Category:         "Elastic Load Balancing (ELB Classic) Resources",
 			ShortDescription: "Provides a proxy protocol policy, which allows an ELB to carry a client connection information to a backend.",
 			Description: `
 
 Provides a proxy protocol policy, which allows an ELB to carry a client connection information to a backend.
 
 `,
+			Keywords: []string{
+
+				"elastic",
+
+				"load",
+
+				"balancing",
+
+				"elb",
+
+				"classic",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33408,7 +35132,7 @@ Provides a proxy protocol policy, which allows an ELB to carry a client connecti
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ram_principal_association",
-			Category:         "",
+			Category:         "RAM Resources",
 			ShortDescription: "Provides a Resource Access Manager (RAM) principal association.",
 			Description: `
 
@@ -33417,6 +35141,10 @@ Provides a Resource Access Manager (RAM) principal association.
 ~> *NOTE:* For an AWS Account ID principal, the target account must accept the RAM association invitation after resource creation.
 
 `,
+			Keywords: []string{
+
+				"ram",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33446,7 +35174,7 @@ Provides a Resource Access Manager (RAM) principal association.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ram_resource_association",
-			Category:         "",
+			Category:         "RAM Resources",
 			ShortDescription: "Manages a Resource Access Manager (RAM) Resource Association.",
 			Description: `
 
@@ -33455,6 +35183,10 @@ Manages a Resource Access Manager (RAM) Resource Association.
 ~> *NOTE:* Certain AWS resources (e.g. EC2 Subnets) can only be shared in an AWS account that is a member of an AWS Organizations organization with organization-wide Resource Access Manager functionality enabled. See the [Resource Access Manager User Guide](https://docs.aws.amazon.com/ram/latest/userguide/what-is.html) and AWS service specific documentation for additional information.
 
 `,
+			Keywords: []string{
+
+				"ram",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33484,13 +35216,17 @@ Manages a Resource Access Manager (RAM) Resource Association.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ram_resource_share",
-			Category:         "",
+			Category:         "RAM Resources",
 			ShortDescription: "Manages a Resource Access Manager (RAM) Resource Share.",
 			Description: `
 
 Manages a Resource Access Manager (RAM) Resource Share. To association principals with the share, see the [` + "`" + `aws_ram_principal_association` + "`" + ` resource](/docs/providers/aws/r/ram_principal_association.html). To associate resources with the share, see the [` + "`" + `aws_ram_resource_association` + "`" + ` resource](/docs/providers/aws/r/ram_resource_association.html).
 
 `,
+			Keywords: []string{
+
+				"ram",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33535,7 +35271,7 @@ Manages a Resource Access Manager (RAM) Resource Share. To association principal
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Manages a RDS Aurora Cluster",
 			Description: `
 
@@ -33560,6 +35296,10 @@ for more information.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -33984,7 +35724,7 @@ for more information.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster_endpoint",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Manages a RDS Aurora Cluster Endpoint",
 			Description: `
 
@@ -33993,6 +35733,10 @@ You can refer to the [User Guide][1].
 
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -34057,7 +35801,7 @@ You can refer to the [User Guide][1].
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster_instance",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Provides an RDS Cluster Resource Instance",
 			Description: `
 
@@ -34077,6 +35821,10 @@ For more information on Amazon Aurora, see [Aurora on Amazon RDS][2] in the Amaz
 ~> **NOTE:** Deletion Protection from the RDS service can only be enabled at the cluster level, not for individual cluster instances. You can still add the [` + "`" + `prevent_destroy` + "`" + ` lifecycle behavior](https://www.terraform.io/docs/configuration/resources.html#prevent_destroy) to your Terraform resource configuration if you desire protection from accidental deletion.
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -34356,7 +36104,7 @@ For more information on Amazon Aurora, see [Aurora on Amazon RDS][2] in the Amaz
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster_parameter_group",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Provides an RDS DB cluster parameter group resource.",
 			Description: `
 
@@ -34366,6 +36114,10 @@ Provides an RDS DB cluster parameter group resource. Documentation of the availa
 * [Aurora PostgreSQL Parameters](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AuroraPostgreSQL.Reference.html)
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -34440,7 +36192,7 @@ Provides an RDS DB cluster parameter group resource. Documentation of the availa
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_global_cluster",
-			Category:         "",
+			Category:         "RDS Resources",
 			ShortDescription: "Manages a RDS Global Cluster",
 			Description: `
 
@@ -34451,6 +36203,10 @@ More information about Aurora global databases can be found in the [Aurora User 
 ~> **NOTE:** RDS only supports the ` + "`" + `aurora` + "`" + ` engine (MySQL 5.6 compatible) for Global Clusters at this time.
 
 `,
+			Keywords: []string{
+
+				"rds",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -34515,7 +36271,7 @@ More information about Aurora global databases can be found in the [Aurora User 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_cluster",
-			Category:         "",
+			Category:         "Redshift Resources",
 			ShortDescription: "Provides a Redshift Cluster resource.",
 			Description: `
 
@@ -34525,6 +36281,10 @@ Provides a Redshift Cluster Resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Keywords: []string{
+
+				"redshift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -34909,13 +36669,17 @@ Provides a Redshift Cluster Resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_event_subscription",
-			Category:         "",
+			Category:         "Redshift Resources",
 			ShortDescription: "Provides a Redshift event subscription resource.",
 			Description: `
 
 Provides a Redshift event subscription resource.
 
 `,
+			Keywords: []string{
+
+				"redshift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -34974,13 +36738,17 @@ Provides a Redshift event subscription resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_parameter_group",
-			Category:         "",
+			Category:         "Redshift Resources",
 			ShortDescription: "Provides a Redshift Cluster parameter group resource.",
 			Description: `
 
 Provides a Redshift Cluster parameter group resource.
 
 `,
+			Keywords: []string{
+
+				"redshift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35030,13 +36798,17 @@ Provides a Redshift Cluster parameter group resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_security_group",
-			Category:         "",
+			Category:         "Redshift Resources",
 			ShortDescription: "Provides a Redshift security group resource.",
 			Description: `
 
 Creates a new Amazon Redshift security group. You use security groups to control access to non-VPC clusters
 
 `,
+			Keywords: []string{
+
+				"redshift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35086,7 +36858,7 @@ Creates a new Amazon Redshift security group. You use security groups to control
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_snapshot_copy_grant",
-			Category:         "",
+			Category:         "Redshift Resources",
 			ShortDescription: "Creates a snapshot copy grant that allows AWS Redshift to encrypt copied snapshots with a customer master key from AWS KMS in a destination region.",
 			Description: `
 
@@ -35095,6 +36867,10 @@ Creates a snapshot copy grant that allows AWS Redshift to encrypt copied snapsho
 Note that the grant must exist in the destination region, and not in the region of the cluster.
 
 `,
+			Keywords: []string{
+
+				"redshift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35118,13 +36894,17 @@ Note that the grant must exist in the destination region, and not in the region 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_subnet_group",
-			Category:         "",
+			Category:         "Redshift Resources",
 			ShortDescription: "Provides a Redshift Subnet Group resource.",
 			Description: `
 
 Creates a new Amazon Redshift subnet group. You must provide a list of one or more subnets in your existing Amazon Virtual Private Cloud (Amazon VPC) when creating Amazon Redshift subnet group.
 
 `,
+			Keywords: []string{
+
+				"redshift",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35164,13 +36944,19 @@ Creates a new Amazon Redshift subnet group. You must provide a list of one or mo
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_resourcegroups_group",
-			Category:         "",
+			Category:         "Resource Groups Resources",
 			ShortDescription: "Provides a Resource Group.",
 			Description: `
 
 Provides a Resource Group.
 
 `,
+			Keywords: []string{
+
+				"resource",
+
+				"groups",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35215,7 +37001,7 @@ Provides a Resource Group.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to create a routing entry in a VPC routing table.",
 			Description: `
 
@@ -35228,6 +37014,10 @@ in conjunction with any Route resources. Doing so will cause
 a conflict of rule settings and will overwrite rules.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35297,13 +37087,17 @@ a conflict of rule settings and will overwrite rules.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_delegation_set",
-			Category:         "",
+			Category:         "Route53 Resources",
 			ShortDescription: "Provides a Route53 Delegation Set resource.",
 			Description: `
 
 Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API-actions-by-function.html#actions-by-function-reusable-delegation-sets) resource.
 
 `,
+			Keywords: []string{
+
+				"route53",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35338,13 +37132,17 @@ Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/A
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_health_check",
-			Category:         "",
+			Category:         "Route53 Resources",
 			ShortDescription: "Provides a Route53 health check.",
 			Description: `
 
 Provides a Route53 health check.
 
 `,
+			Keywords: []string{
+
+				"route53",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35448,7 +37246,7 @@ Provides a Route53 health check.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_query_log",
-			Category:         "",
+			Category:         "Route53 Resources",
 			ShortDescription: "Provides a Route53 query logging configuration resource.",
 			Description: `
 
@@ -35461,6 +37259,10 @@ the Route53 hosted zone must be public.
 See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html?console_help=true#query-logs-configuring) for additional details.
 
 `,
+			Keywords: []string{
+
+				"route53",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35490,13 +37292,17 @@ See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/la
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_record",
-			Category:         "",
+			Category:         "Route53 Resources",
 			ShortDescription: "Provides a Route53 record resource.",
 			Description: `
 
 Provides a Route53 record resource.
 
 `,
+			Keywords: []string{
+
+				"route53",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35641,13 +37447,19 @@ Provides a Route53 record resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_resolver_endpoint",
-			Category:         "",
+			Category:         "Route53 Resolver Resources",
 			ShortDescription: "Provides a Route 53 Resolver endpoint resource.",
 			Description: `
 
 Provides a Route 53 Resolver endpoint resource.
 
 `,
+			Keywords: []string{
+
+				"route53",
+
+				"resolver",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35722,13 +37534,19 @@ Provides a Route 53 Resolver endpoint resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_resolver_rule",
-			Category:         "",
+			Category:         "Route53 Resolver Resources",
 			ShortDescription: "Provides a Route53 Resolver rule.",
 			Description: `
 
 Provides a Route53 Resolver rule.
 
 `,
+			Keywords: []string{
+
+				"route53",
+
+				"resolver",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35813,13 +37631,19 @@ Provides a Route53 Resolver rule.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_resolver_rule_association",
-			Category:         "",
+			Category:         "Route53 Resolver Resources",
 			ShortDescription: "Provides a Route53 Resolver rule association.",
 			Description: `
 
 Provides a Route53 Resolver rule association.
 
 `,
+			Keywords: []string{
+
+				"route53",
+
+				"resolver",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35854,13 +37678,17 @@ Provides a Route53 Resolver rule association.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_zone",
-			Category:         "",
+			Category:         "Route53 Resources",
 			ShortDescription: "Manages a Route53 Hosted Zone",
 			Description: `
 
 Manages a Route53 Hosted Zone.
 
 `,
+			Keywords: []string{
+
+				"route53",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -35930,7 +37758,7 @@ Manages a Route53 Hosted Zone.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_zone_association",
-			Category:         "",
+			Category:         "Route53 Resources",
 			ShortDescription: "Manages a Route53 Hosted Zone VPC association",
 			Description: `
 
@@ -35941,6 +37769,10 @@ Manages a Route53 Hosted Zone VPC association. VPC associations can only be made
 ~> **NOTE:** Terraform provides both this standalone Zone VPC Association resource and exclusive VPC associations defined in-line in the [` + "`" + `aws_route53_zone` + "`" + ` resource](/docs/providers/aws/r/route53_zone.html) via ` + "`" + `vpc` + "`" + ` configuration blocks. At this time, you cannot use those in-line VPC associations in conjunction with this resource and the same zone ID otherwise it will cause a perpetual difference in plan output. You can optionally use the generic Terraform resource [lifecycle configuration block](/docs/configuration/resources.html#lifecycle) with ` + "`" + `ignore_changes` + "`" + ` in the ` + "`" + `aws_route53_zone` + "`" + ` resource to manage additional associations via this resource.
 
 `,
+			Keywords: []string{
+
+				"route53",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36005,7 +37837,7 @@ Manages a Route53 Hosted Zone VPC association. VPC associations can only be made
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route_table",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to create a VPC routing table.",
 			Description: `
 
@@ -36031,6 +37863,10 @@ this resource will delete any propagating gateways not explicitly listed in
 the separate resource.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36125,13 +37961,17 @@ the separate resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_route_table_association",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to create an association between a subnet and routing table.",
 			Description: `
 
 Provides a resource to create an association between a subnet and routing table.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36161,7 +38001,7 @@ Provides a resource to create an association between a subnet and routing table.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_account_public_access_block",
-			Category:         "",
+			Category:         "S3 Resources",
 			ShortDescription: "Manages S3 account-level Public Access Block Configuration",
 			Description: `
 
@@ -36172,6 +38012,10 @@ Manages S3 account-level Public Access Block configuration. For more information
 -> Advanced usage: To use a custom API endpoint for this Terraform resource, use the [` + "`" + `s3control` + "`" + ` endpoint provider configuration](/docs/providers/aws/index.html#s3control), not the ` + "`" + `s3` + "`" + ` endpoint provider configuration.
 
 `,
+			Keywords: []string{
+
+				"s3",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36216,13 +38060,17 @@ Manages S3 account-level Public Access Block configuration. For more information
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket",
-			Category:         "",
+			Category:         "S3 Resources",
 			ShortDescription: "Provides a S3 bucket resource.",
 			Description: `
 
 Provides a S3 bucket resource.
 
 `,
+			Keywords: []string{
+
+				"s3",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36622,13 +38470,17 @@ Provides a S3 bucket resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_inventory",
-			Category:         "",
+			Category:         "S3 Resources",
 			ShortDescription: "Provides a S3 bucket inventory configuration resource.",
 			Description: `
 
 Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html) resource.
 
 `,
+			Keywords: []string{
+
+				"s3",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36732,13 +38584,17 @@ Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/Amazo
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_metric",
-			Category:         "",
+			Category:         "S3 Resources",
 			ShortDescription: "Provides a S3 bucket metrics configuration resource.",
 			Description: `
 
 Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html) resource.
 
 `,
+			Keywords: []string{
+
+				"s3",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36772,7 +38628,7 @@ Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_notification",
-			Category:         "",
+			Category:         "S3 Resources",
 			ShortDescription: "Manages a S3 Bucket Notification Configuration",
 			Description: `
 
@@ -36781,6 +38637,10 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 ~> **NOTE:** S3 Buckets only support a single notification configuration. Declaring multiple ` + "`" + `aws_s3_bucket_notification` + "`" + ` resources to the same S3 Bucket will cause a perpetual difference in configuration.
 
 `,
+			Keywords: []string{
+
+				"s3",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -36884,13 +38744,17 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_object",
-			Category:         "",
+			Category:         "S3 Resources",
 			ShortDescription: "Provides a S3 bucket object resource.",
 			Description: `
 
 Provides a S3 bucket object resource.
 
 `,
+			Keywords: []string{
+
+				"s3",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37015,13 +38879,17 @@ Provides a S3 bucket object resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_policy",
-			Category:         "",
+			Category:         "S3 Resources",
 			ShortDescription: "Attaches a policy to an S3 bucket resource.",
 			Description: `
 
 Attaches a policy to an S3 bucket resource.
 
 `,
+			Keywords: []string{
+
+				"s3",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37040,13 +38908,17 @@ Attaches a policy to an S3 bucket resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_public_access_block",
-			Category:         "",
+			Category:         "S3 Resources",
 			ShortDescription: "Manages S3 bucket-level Public Access Block Configuration",
 			Description: `
 
 Manages S3 bucket-level Public Access Block configuration. For more information about these settings, see the [AWS S3 Block Public Access documentation](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 
 `,
+			Keywords: []string{
+
+				"s3",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37091,13 +38963,17 @@ Manages S3 bucket-level Public Access Block configuration. For more information 
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_endpoint",
-			Category:         "",
+			Category:         "Sagemaker Resources",
 			ShortDescription: "Provides a SageMaker Endpoint resource.",
 			Description: `
 
 Provides a SageMaker Endpoint resource.
 
 `,
+			Keywords: []string{
+
+				"sagemaker",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37142,13 +39018,17 @@ Provides a SageMaker Endpoint resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_endpoint_configuration",
-			Category:         "",
+			Category:         "Sagemaker Resources",
 			ShortDescription: "Provides a SageMaker Endpoint Configuration resource.",
 			Description: `
 
 Provides a SageMaker endpoint configuration resource.
 
 `,
+			Keywords: []string{
+
+				"sagemaker",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37213,13 +39093,17 @@ Provides a SageMaker endpoint configuration resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_model",
-			Category:         "",
+			Category:         "Sagemaker Resources",
 			ShortDescription: "Provides a SageMaker model resource.",
 			Description: `
 
 Provides a SageMaker model resource.
 
 `,
+			Keywords: []string{
+
+				"sagemaker",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37289,13 +39173,17 @@ Provides a SageMaker model resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_notebook_instance",
-			Category:         "",
+			Category:         "Sagemaker Resources",
 			ShortDescription: "Provides a Sagemaker Notebook Instance resource.",
 			Description: `
 
 Provides a Sagemaker Notebook Instance resource.
 
 `,
+			Keywords: []string{
+
+				"sagemaker",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37360,13 +39248,17 @@ Provides a Sagemaker Notebook Instance resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_notebook_instance_lifecycle_configuration",
-			Category:         "",
+			Category:         "Sagemaker Resources",
 			ShortDescription: "Provides a lifecycle configuration for SageMaker Notebook Instances.",
 			Description: `
 
 Provides a lifecycle configuration for SageMaker Notebook Instances.
 
 `,
+			Keywords: []string{
+
+				"sagemaker",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37401,13 +39293,19 @@ Provides a lifecycle configuration for SageMaker Notebook Instances.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_secretsmanager_secret",
-			Category:         "",
+			Category:         "Secrets Manager Resources",
 			ShortDescription: "Provides a resource to manage AWS Secrets Manager secret metadata",
 			Description: `
 
 Provides a resource to manage AWS Secrets Manager secret metadata. To manage a secret value, see the [` + "`" + `aws_secretsmanager_secret_version` + "`" + ` resource](/docs/providers/aws/r/secretsmanager_secret_version.html).
 
 `,
+			Keywords: []string{
+
+				"secrets",
+
+				"manager",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37497,7 +39395,7 @@ Provides a resource to manage AWS Secrets Manager secret metadata. To manage a s
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_secretsmanager_secret_version",
-			Category:         "",
+			Category:         "Secrets Manager Resources",
 			ShortDescription: "Provides a resource to manage AWS Secrets Manager secret version including its secret value",
 			Description: `
 
@@ -37506,6 +39404,12 @@ Provides a resource to manage AWS Secrets Manager secret version including its s
 ~> **NOTE:** If the ` + "`" + `AWSCURRENT` + "`" + ` staging label is present on this version during resource deletion, that label cannot be removed and will be skipped to prevent errors when fully deleting the secret. That label will leave this secret version active even after the resource is deleted from Terraform unless the secret itself is deleted. Move the ` + "`" + `AWSCURRENT` + "`" + ` staging label before or after deleting this resource from Terraform to fully trigger version deprecation if necessary.
 
 `,
+			Keywords: []string{
+
+				"secrets",
+
+				"manager",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37565,7 +39469,7 @@ Provides a resource to manage AWS Secrets Manager secret version including its s
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_security_group",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a security group resource.",
 			Description: `
 
@@ -37581,6 +39485,10 @@ a conflict of rule settings and will overwrite rules.
 ~> **NOTE:** Referencing Security Groups across VPC peering has certain restrictions. More information is available in the [VPC Peering User Guide](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html).
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37800,7 +39708,7 @@ a conflict of rule settings and will overwrite rules.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_security_group_rule",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides an security group rule resource.",
 			Description: `
 
@@ -37819,6 +39727,10 @@ a conflict of rule settings and will overwrite rules.
 ~> **NOTE:** Referencing Security Groups across VPC peering has certain restrictions. More information is available in the [VPC Peering User Guide](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-security-groups.html).
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37923,7 +39835,7 @@ a conflict of rule settings and will overwrite rules.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_securityhub_account",
-			Category:         "",
+			Category:         "Security Hub Resources",
 			ShortDescription: "Enables Security Hub for an AWS account.",
 			Description: `
 
@@ -37934,6 +39846,12 @@ Enables Security Hub for this AWS account.
 ~> **NOTE:** This AWS service is in Preview and may change before General Availability release. Backwards compatibility is not guaranteed between Terraform AWS Provider releases.
 
 `,
+			Keywords: []string{
+
+				"security",
+
+				"hub",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37953,7 +39871,7 @@ Enables Security Hub for this AWS account.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_securityhub_product_subscription",
-			Category:         "",
+			Category:         "Security Hub Resources",
 			ShortDescription: "Subscribes to a Security Hub product.",
 			Description: `
 
@@ -37962,6 +39880,12 @@ Subscribes to a Security Hub product.
 ~> **NOTE:** This AWS service is in Preview and may change before General Availability release. Backwards compatibility is not guaranteed between Terraform AWS Provider releases.
 
 `,
+			Keywords: []string{
+
+				"security",
+
+				"hub",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -37986,7 +39910,7 @@ Subscribes to a Security Hub product.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_securityhub_standards_subscription",
-			Category:         "",
+			Category:         "Security Hub Resources",
 			ShortDescription: "Subscribes to a Security Hub standard.",
 			Description: `
 
@@ -37995,6 +39919,12 @@ Subscribes to a Security Hub standard.
 ~> **NOTE:** This AWS service is in Preview and may change before General Availability release. Backwards compatibility is not guaranteed between Terraform AWS Provider releases.
 
 `,
+			Keywords: []string{
+
+				"security",
+
+				"hub",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38019,12 +39949,18 @@ Subscribes to a Security Hub standard.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_service_discovery_http_namespace",
-			Category:         "",
+			Category:         "Service Discovery Resources",
 			ShortDescription: "Provides a Service Discovery HTTP Namespace resource.",
 			Description: `
 
 
 `,
+			Keywords: []string{
+
+				"service",
+
+				"discovery",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38064,13 +40000,19 @@ Subscribes to a Security Hub standard.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_service_discovery_private_dns_namespace",
-			Category:         "",
+			Category:         "Service Discovery Resources",
 			ShortDescription: "Provides a Service Discovery Private DNS Namespace resource.",
 			Description: `
 
 Provides a Service Discovery Private DNS Namespace resource.
 
 `,
+			Keywords: []string{
+
+				"service",
+
+				"discovery",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38125,13 +40067,19 @@ Provides a Service Discovery Private DNS Namespace resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_service_discovery_public_dns_namespace",
-			Category:         "",
+			Category:         "Service Discovery Resources",
 			ShortDescription: "Provides a Service Discovery Public DNS Namespace resource.",
 			Description: `
 
 Provides a Service Discovery Public DNS Namespace resource.
 
 `,
+			Keywords: []string{
+
+				"service",
+
+				"discovery",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38181,13 +40129,19 @@ Provides a Service Discovery Public DNS Namespace resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_service_discovery_service",
-			Category:         "",
+			Category:         "Service Discovery Resources",
 			ShortDescription: "Provides a Service Discovery Service resource.",
 			Description: `
 
 Provides a Service Discovery Service resource.
 
 `,
+			Keywords: []string{
+
+				"service",
+
+				"discovery",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38287,13 +40241,19 @@ Provides a Service Discovery Service resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_servicecatalog_portfolio",
-			Category:         "",
+			Category:         "Service Catalog Resources",
 			ShortDescription: "Provides a resource to create a Service Catalog portfolio",
 			Description: `
 
 Provides a resource to create a Service Catalog Portfolio.
 
 `,
+			Keywords: []string{
+
+				"service",
+
+				"catalog",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38333,13 +40293,17 @@ Provides a resource to create a Service Catalog Portfolio.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_active_receipt_rule_set",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides a resource to designate the active SES receipt rule set",
 			Description: `
 
 Provides a resource to designate the active SES receipt rule set
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38353,13 +40317,17 @@ Provides a resource to designate the active SES receipt rule set
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_configuration_set",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES configuration set",
 			Description: `
 
 Provides an SES configuration set resource
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38373,7 +40341,7 @@ Provides an SES configuration set resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_domain_dkim",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES domain DKIM generation resource",
 			Description: `
 
@@ -38382,6 +40350,10 @@ Provides an SES domain DKIM generation resource.
 Domain ownership needs to be confirmed first using [ses_domain_identity Resource](/docs/providers/aws/r/ses_domain_identity.html)
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38406,13 +40378,17 @@ Domain ownership needs to be confirmed first using [ses_domain_identity Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_domain_identity",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES domain identity resource",
 			Description: `
 
 Provides an SES domain identity resource
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38447,7 +40423,7 @@ Provides an SES domain identity resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_domain_identity_verification",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Waits for and checks successful verification of an SES domain identity.",
 			Description: `
 
@@ -38460,6 +40436,10 @@ deploy the required DNS verification records, and wait for verification to compl
 ~> **WARNING:** This resource implements a part of the verification workflow. It does not represent a real-world entity in AWS, therefore changing or deleting this resource on its own has no immediate effect.
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38494,7 +40474,7 @@ deploy the required DNS verification records, and wait for verification to compl
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_domain_mail_from",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES domain MAIL FROM resource",
 			Description: `
 
@@ -38503,6 +40483,10 @@ Provides an SES domain MAIL FROM resource.
 ~> **NOTE:** For the MAIL FROM domain to be fully usable, this resource should be paired with the [aws_ses_domain_identity resource](/docs/providers/aws/r/ses_domain_identity.html). To validate the MAIL FROM domain, a DNS MX record is required. To pass SPF checks, a DNS TXT record may also be required. See the [Amazon SES MAIL FROM documentation](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html) for more information.
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38537,9 +40521,13 @@ Provides an SES domain MAIL FROM resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_email_identity",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES email identity resource",
 			Description:      ``,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38564,13 +40552,17 @@ Provides an SES domain MAIL FROM resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_event_destination",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES event destination",
 			Description: `
 
 Provides an SES event destination
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38644,13 +40636,17 @@ Provides an SES event destination
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_identity_notification_topic",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Setting AWS SES Identity Notification Topic",
 			Description: `
 
 Resource for managing SES Identity Notification Topics
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38674,13 +40670,17 @@ Resource for managing SES Identity Notification Topics
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_receipt_filter",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES receipt filter",
 			Description: `
 
 Provides an SES receipt filter resource
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38704,13 +40704,17 @@ Provides an SES receipt filter resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_receipt_rule",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES receipt rule resource",
 			Description: `
 
 Provides an SES receipt rule resource
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38919,13 +40923,17 @@ Provides an SES receipt rule resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_receipt_rule_set",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides an SES receipt rule set resource",
 			Description: `
 
 Provides an SES receipt rule set resource
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38939,13 +40947,17 @@ Provides an SES receipt rule set resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_template",
-			Category:         "",
+			Category:         "SES Resources",
 			ShortDescription: "Provides a resource to create a SES template",
 			Description: `
 
 Provides a resource to create a SES template.
 
 `,
+			Keywords: []string{
+
+				"ses",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -38985,13 +40997,21 @@ Provides a resource to create a SES template.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sfn_activity",
-			Category:         "",
+			Category:         "Step Function (SFN) Resources",
 			ShortDescription: "Provides a Step Function Activity resource.",
 			Description: `
 
 Provides a Step Function Activity resource
 
 `,
+			Keywords: []string{
+
+				"step",
+
+				"function",
+
+				"sfn",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39041,13 +41061,21 @@ Provides a Step Function Activity resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sfn_state_machine",
-			Category:         "",
+			Category:         "Step Function (SFN) Resources",
 			ShortDescription: "Provides a Step Function State Machine resource.",
 			Description: `
 
 Provides a Step Function State Machine resource
 
 `,
+			Keywords: []string{
+
+				"step",
+
+				"function",
+
+				"sfn",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39107,7 +41135,7 @@ Provides a Step Function State Machine resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_shield_protection",
-			Category:         "",
+			Category:         "Shield Resources",
 			ShortDescription: "Enables AWS Shield Advanced for a specific AWS resource.",
 			Description: `
 
@@ -39115,6 +41143,10 @@ Enables AWS Shield Advanced for a specific AWS resource.
 The resource can be an Amazon CloudFront distribution, Elastic Load Balancing load balancer, AWS Global Accelerator accelerator, Elastic IP Address, or an Amazon Route 53 hosted zone.
 
 `,
+			Keywords: []string{
+
+				"shield",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39144,13 +41176,17 @@ The resource can be an Amazon CloudFront distribution, Elastic Load Balancing lo
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_simpledb_domain",
-			Category:         "",
+			Category:         "SimpleDB Resources",
 			ShortDescription: "Provides a SimpleDB domain resource.",
 			Description: `
 
 Provides a SimpleDB domain resource
 
 `,
+			Keywords: []string{
+
+				"simpledb",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39175,13 +41211,17 @@ Provides a SimpleDB domain resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_snapshot_create_volume_permission",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Adds create volume permission to an EBS Snapshot",
 			Description: `
 
 Adds permission to create volumes off of a given EBS Snapshot.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39211,13 +41251,17 @@ Adds permission to create volumes off of a given EBS Snapshot.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_platform_application",
-			Category:         "",
+			Category:         "SNS Resources",
 			ShortDescription: "Provides an SNS platform application resource.",
 			Description: `
 
 Provides an SNS platform application resource
 
 `,
+			Keywords: []string{
+
+				"sns",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39302,13 +41346,17 @@ Provides an SNS platform application resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_sms_preferences",
-			Category:         "",
+			Category:         "SNS Resources",
 			ShortDescription: "Provides a way to set SNS SMS preferences.",
 			Description: `
 
 Provides a way to set SNS SMS preferences.
 
 `,
+			Keywords: []string{
+
+				"sns",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39347,13 +41395,17 @@ Provides a way to set SNS SMS preferences.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_topic",
-			Category:         "",
+			Category:         "SNS Resources",
 			ShortDescription: "Provides an SNS topic resource.",
 			Description: `
 
 Provides an SNS topic resource
 
 `,
+			Keywords: []string{
+
+				"sns",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39478,7 +41530,7 @@ Provides an SNS topic resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_topic_policy",
-			Category:         "",
+			Category:         "SNS Resources",
 			ShortDescription: "Provides an SNS topic policy resource.",
 			Description: `
 
@@ -39487,6 +41539,10 @@ Provides an SNS topic policy resource
 ~> **NOTE:** If a Principal is specified as just an AWS account ID rather than an ARN, AWS silently converts it to the ARN for the root user, causing future terraform plans to differ. To avoid this problem, just specify the full ARN, e.g. ` + "`" + `arn:aws:iam::123456789012:root` + "`" + `
 
 `,
+			Keywords: []string{
+
+				"sns",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39505,7 +41561,7 @@ Provides an SNS topic policy resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_topic_subscription",
-			Category:         "",
+			Category:         "SNS Resources",
 			ShortDescription: "Provides a resource for subscribing to SNS topics.",
 			Description: `
 
@@ -39523,6 +41579,10 @@ probably be SQS queues.
 ~> **NOTE:** If SNS topic and SQS queue are in different AWS accounts and different AWS regions it is important to recognize that the subscription needs to be initiated from the account with the SQS queue but in the region of the SNS topic.
 
 `,
+			Keywords: []string{
+
+				"sns",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39622,7 +41682,7 @@ probably be SQS queues.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_spot_datafeed_subscription",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides a Spot Datafeed Subscription resource.",
 			Description: `
 
@@ -39632,6 +41692,10 @@ To help you understand the charges for your Spot instances, Amazon EC2 provides 
 This data feed is sent to an Amazon S3 bucket that you specify when you subscribe to the data feed.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39650,7 +41714,7 @@ This data feed is sent to an Amazon S3 bucket that you specify when you subscrib
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_spot_fleet_request",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides a Spot Fleet Request resource.",
 			Description: `
 
@@ -39658,6 +41722,10 @@ Provides an EC2 Spot Fleet Request resource. This allows a fleet of Spot
 instances to be requested on the Spot market.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39772,7 +41840,7 @@ instances to be requested on the Spot market.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_spot_instance_request",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides a Spot Instance Request resource.",
 			Description: `
 
@@ -39801,6 +41869,10 @@ for more information.
 
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -39935,11 +42007,15 @@ for more information.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sqs_queue",
-			Category:         "",
+			Category:         "SQS Resources",
 			ShortDescription: "Provides a SQS resource.",
 			Description: `
 
 `,
+			Keywords: []string{
+
+				"sqs",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40039,7 +42115,7 @@ for more information.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_sqs_queue_policy",
-			Category:         "",
+			Category:         "SQS Resources",
 			ShortDescription: "Provides a SQS Queue Policy resource.",
 			Description: `
 
@@ -40047,6 +42123,10 @@ Allows you to set a policy of an SQS Queue
 while referencing ARN of the queue within the policy.
 
 `,
+			Keywords: []string{
+
+				"sqs",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40065,13 +42145,17 @@ while referencing ARN of the queue within the policy.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_activation",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Registers an on-premises server or virtual machine with Amazon EC2 so that it can be managed using Run Command.",
 			Description: `
 
 Registers an on-premises server or virtual machine with Amazon EC2 so that it can be managed using Run Command.
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40191,13 +42275,17 @@ Registers an on-premises server or virtual machine with Amazon EC2 so that it ca
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_association",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Associates an SSM Document to an instance or EC2 tag.",
 			Description: `
 
 Associates an SSM Document to an instance or EC2 tag.
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40312,7 +42400,7 @@ Associates an SSM Document to an instance or EC2 tag.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_document",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Provides an SSM Document resource",
 			Description: `
 
@@ -40323,6 +42411,10 @@ or greater can update their content once created, see [SSM Schema Features][1]. 
 schema version you must recreate the resource.
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40492,13 +42584,17 @@ schema version you must recreate the resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_maintenance_window",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Provides an SSM Maintenance Window resource",
 			Description: `
 
 Provides an SSM Maintenance Window resource
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40568,13 +42664,17 @@ Provides an SSM Maintenance Window resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_maintenance_window_target",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Provides an SSM Maintenance Window Target resource",
 			Description: `
 
 Provides an SSM Maintenance Window Target resource
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40624,13 +42724,17 @@ Provides an SSM Maintenance Window Target resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_maintenance_window_task",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Provides an SSM Maintenance Window Task resource",
 			Description: `
 
 Provides an SSM Maintenance Window Task resource
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40735,13 +42839,17 @@ Provides an SSM Maintenance Window Task resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_parameter",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Provides a SSM Parameter resource",
 			Description: `
 
 Provides an SSM Parameter resource.
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40846,7 +42954,7 @@ Provides an SSM Parameter resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_patch_baseline",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Provides an SSM Patch Baseline resource",
 			Description: `
 
@@ -40857,6 +42965,10 @@ both marked as optional fields, but the Patch Baseline requires that at least on
 of them is specified.
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40941,13 +43053,17 @@ of them is specified.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_patch_group",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Provides an SSM Patch Group resource",
 			Description: `
 
 Provides an SSM Patch Group resource
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -40977,13 +43093,17 @@ Provides an SSM Patch Group resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_resource_data_sync",
-			Category:         "",
+			Category:         "SSM Resources",
 			ShortDescription: "Provides a SSM resource data sync.",
 			Description: `
 
 Provides a SSM resource data sync.
 
 `,
+			Keywords: []string{
+
+				"ssm",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41027,7 +43147,7 @@ Provides a SSM resource data sync.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_cache",
-			Category:         "",
+			Category:         "Storage Gateway Resources",
 			ShortDescription: "Manages an AWS Storage Gateway cache",
 			Description: `
 
@@ -41036,6 +43156,12 @@ Manages an AWS Storage Gateway cache.
 ~> **NOTE:** The Storage Gateway API provides no method to remove a cache disk. Destroying this Terraform resource does not perform any Storage Gateway actions.
 
 `,
+			Keywords: []string{
+
+				"storage",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41065,7 +43191,7 @@ Manages an AWS Storage Gateway cache.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_cached_iscsi_volume",
-			Category:         "",
+			Category:         "Storage Gateway Resources",
 			ShortDescription: "Manages an AWS Storage Gateway cached iSCSI volume",
 			Description: `
 
@@ -41076,6 +43202,12 @@ Manages an AWS Storage Gateway cached iSCSI volume.
 ~> **NOTE:** The gateway must have an upload buffer added (e.g. via the [` + "`" + `aws_storagegateway_upload_buffer` + "`" + `](/docs/providers/aws/r/storagegateway_upload_buffer.html) resource) before the volume is operational to clients, however the Storage Gateway API will allow volume creation without error in that case and return volume status as ` + "`" + `UPLOAD BUFFER NOT CONFIGURED` + "`" + `.
 
 `,
+			Keywords: []string{
+
+				"storage",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41195,7 +43327,7 @@ Manages an AWS Storage Gateway cached iSCSI volume.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_gateway",
-			Category:         "",
+			Category:         "Storage Gateway Resources",
 			ShortDescription: "Manages an AWS Storage Gateway file, tape, or volume gateway in the provider region",
 			Description: `
 
@@ -41204,6 +43336,12 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 ~> NOTE: The Storage Gateway API requires the gateway to be connected to properly return information after activation. If you are receiving ` + "`" + `The specified gateway is not connected` + "`" + ` errors during resource creation (gateway activation), ensure your gateway instance meets the [Storage Gateway requirements](https://docs.aws.amazon.com/storagegateway/latest/userguide/Requirements.html).
 
 `,
+			Keywords: []string{
+
+				"storage",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41313,13 +43451,19 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_nfs_file_share",
-			Category:         "",
+			Category:         "Storage Gateway Resources",
 			ShortDescription: "Manages an AWS Storage Gateway NFS File Share",
 			Description: `
 
 Manages an AWS Storage Gateway NFS File Share.
 
 `,
+			Keywords: []string{
+
+				"storage",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41484,13 +43628,19 @@ Manages an AWS Storage Gateway NFS File Share.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_smb_file_share",
-			Category:         "",
+			Category:         "Storage Gateway Resources",
 			ShortDescription: "Manages an AWS Storage Gateway SMB File Share",
 			Description: `
 
 Manages an AWS Storage Gateway SMB File Share.
 
 `,
+			Keywords: []string{
+
+				"storage",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41660,7 +43810,7 @@ Manages an AWS Storage Gateway SMB File Share.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_upload_buffer",
-			Category:         "",
+			Category:         "Storage Gateway Resources",
 			ShortDescription: "Manages an AWS Storage Gateway upload buffer",
 			Description: `
 
@@ -41669,6 +43819,12 @@ Manages an AWS Storage Gateway upload buffer.
 ~> **NOTE:** The Storage Gateway API provides no method to remove an upload buffer disk. Destroying this Terraform resource does not perform any Storage Gateway actions.
 
 `,
+			Keywords: []string{
+
+				"storage",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41698,7 +43854,7 @@ Manages an AWS Storage Gateway upload buffer.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_working_storage",
-			Category:         "",
+			Category:         "Storage Gateway Resources",
 			ShortDescription: "Manages an AWS Storage Gateway working storage",
 			Description: `
 
@@ -41707,6 +43863,12 @@ Manages an AWS Storage Gateway working storage.
 ~> **NOTE:** The Storage Gateway API provides no method to remove a working storage disk. Destroying this Terraform resource does not perform any Storage Gateway actions.
 
 `,
+			Keywords: []string{
+
+				"storage",
+
+				"gateway",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41736,13 +43898,17 @@ Manages an AWS Storage Gateway working storage.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_subnet",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides an VPC subnet resource.",
 			Description: `
 
 Provides an VPC subnet resource.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41832,13 +43998,17 @@ Provides an VPC subnet resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_swf_domain",
-			Category:         "",
+			Category:         "SWF Resources",
 			ShortDescription: "Provides an SWF Domain resource",
 			Description: `
 
 Provides an SWF Domain resource.
 
 `,
+			Keywords: []string{
+
+				"swf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -41878,7 +44048,7 @@ Provides an SWF Domain resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_transfer_server",
-			Category:         "",
+			Category:         "Transfer Resources",
 			ShortDescription: "Provides a AWS Transfer Server resource.",
 			Description: `
 
@@ -41938,6 +44108,10 @@ resource "aws_transfer_server" "foo" {
 ` + "`" + `` + "`" + `` + "`" + `
 
 `,
+			Keywords: []string{
+
+				"transfer",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42012,7 +44186,7 @@ resource "aws_transfer_server" "foo" {
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_transfer_ssh_key",
-			Category:         "",
+			Category:         "Transfer Resources",
 			ShortDescription: "Provides a AWS Transfer SSH Public Key resource.",
 			Description: `
 
@@ -42086,6 +44260,10 @@ resource "aws_transfer_ssh_key" "foo" {
 ` + "`" + `` + "`" + `` + "`" + `
 
 `,
+			Keywords: []string{
+
+				"transfer",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42109,7 +44287,7 @@ resource "aws_transfer_ssh_key" "foo" {
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_transfer_user",
-			Category:         "",
+			Category:         "Transfer Resources",
 			ShortDescription: "Provides a AWS Transfer User resource.",
 			Description: `
 
@@ -42173,6 +44351,10 @@ resource "aws_transfer_user" "foo" {
 ` + "`" + `` + "`" + `` + "`" + `
 
 `,
+			Keywords: []string{
+
+				"transfer",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42222,7 +44404,7 @@ resource "aws_transfer_user" "foo" {
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_volume_attachment",
-			Category:         "",
+			Category:         "EC2 Resources",
 			ShortDescription: "Provides an AWS EBS Volume Attachment",
 			Description: `
 
@@ -42232,6 +44414,10 @@ detach volumes from AWS Instances.
 ~> **NOTE on EBS block devices:** If you use ` + "`" + `ebs_block_device` + "`" + ` on an ` + "`" + `aws_instance` + "`" + `, Terraform will assume management over the full set of non-root EBS block devices for the instance, and treats additional block devices as drift. For this reason, ` + "`" + `ebs_block_device` + "`" + ` cannot be mixed with external ` + "`" + `aws_ebs_volume` + "`" + ` + ` + "`" + `aws_ebs_volume_attachment` + "`" + ` resources for a given instance.
 
 `,
+			Keywords: []string{
+
+				"ec2",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42296,13 +44482,17 @@ detach volumes from AWS Instances.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a VPC resource.",
 			Description: `
 
 Provides a VPC resource.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42492,13 +44682,17 @@ Provides a VPC resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_dhcp_options",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a VPC DHCP Options resource.",
 			Description: `
 
 Provides a VPC DHCP Options resource.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42558,13 +44752,17 @@ Provides a VPC DHCP Options resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_dhcp_options_association",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a VPC DHCP Options Association resource.",
 			Description: `
 
 Provides a VPC DHCP Options Association resource.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42594,7 +44792,7 @@ Provides a VPC DHCP Options Association resource.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a VPC Endpoint resource.",
 			Description: `
 
@@ -42608,6 +44806,10 @@ Do not use the same resource ID in both a VPC Endpoint resource and a VPC Endpoi
 Doing so will cause a conflict of associations and will overwrite the association.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42742,7 +44944,7 @@ Doing so will cause a conflict of associations and will overwrite the associatio
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_connection_notification",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a VPC Endpoint connection notification resource.",
 			Description: `
 
@@ -42750,6 +44952,10 @@ Provides a VPC Endpoint connection notification resource.
 Connection notifications notify subscribers of VPC Endpoint events.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42809,13 +45015,17 @@ Connection notifications notify subscribers of VPC Endpoint events.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_route_table_association",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Manages a VPC Endpoint Route Table Association",
 			Description: `
 
 Manages a VPC Endpoint Route Table Association
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42845,7 +45055,7 @@ Manages a VPC Endpoint Route Table Association
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_service",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a VPC Endpoint Service resource.",
 			Description: `
 
@@ -42859,6 +45069,10 @@ a VPC Endpoint Service resource and a VPC Endpoint Service Allowed Principal res
 and will overwrite the association.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42953,7 +45167,7 @@ and will overwrite the association.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_service_allowed_principal",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to allow a principal to discover a VPC endpoint service.",
 			Description: `
 
@@ -42966,6 +45180,10 @@ a VPC Endpoint Service resource and a VPC Endpoint Service Allowed Principal res
 and will overwrite the association.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -42995,7 +45213,7 @@ and will overwrite the association.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_subnet_association",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to create an association between a VPC endpoint and a subnet.",
 			Description: `
 
@@ -43008,6 +45226,10 @@ attribute. Do not use the same subnet ID in both a VPC Endpoint resource and a V
 Association resource. Doing so will cause a conflict of associations and will overwrite the association.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43037,7 +45259,7 @@ Association resource. Doing so will cause a conflict of associations and will ov
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_ipv4_cidr_block_association",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Associate additional IPv4 CIDR blocks with a VPC",
 			Description: `
 
@@ -43047,6 +45269,10 @@ When a VPC is created, a primary IPv4 CIDR block for the VPC must be specified.
 The ` + "`" + `aws_vpc_ipv4_cidr_block_association` + "`" + ` resource allows further IPv4 CIDR blocks to be added to the VPC.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43075,8 +45301,8 @@ The ` + "`" + `aws_vpc_ipv4_cidr_block_association` + "`" + ` resource allows fu
 
 		resource.Resource{
 			Name:             "",
-			Type:             "aws_vpc_peering",
-			Category:         "",
+			Type:             "aws_vpc_peering_connection",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to manage a VPC peering connection.",
 			Description: `
 
@@ -43095,6 +45321,10 @@ VPC Peering Connections use the ` + "`" + `aws_vpc_peering_connection` + "`" + `
 connection and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + ` resource to manage the accepter's side of the connection.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43168,8 +45398,8 @@ connection and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + `
 
 		resource.Resource{
 			Name:             "",
-			Type:             "aws_vpc_peering_accepter",
-			Category:         "",
+			Type:             "aws_vpc_peering_connection_accepter",
+			Category:         "VPC Resources",
 			ShortDescription: "Manage the accepter's side of a VPC Peering Connection.",
 			Description: `
 
@@ -43183,6 +45413,10 @@ and the accepter can use the ` + "`" + `aws_vpc_peering_connection_accepter` + "
 connection into management.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43326,8 +45560,8 @@ connection into management.
 
 		resource.Resource{
 			Name:             "",
-			Type:             "aws_vpc_peering_options",
-			Category:         "",
+			Type:             "aws_vpc_peering_connection_options",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to manage VPC peering connection options.",
 			Description: `
 
@@ -43459,6 +45693,10 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 ` + "`" + `` + "`" + `` + "`" + `
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43498,7 +45736,7 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_connection",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Manages an EC2 VPN connection. These objects can be connected to customer gateways, and allow you to establish tunnels between your network and Amazon.",
 			Description: `
 
@@ -43511,6 +45749,10 @@ Manages an EC2 VPN connection. These objects can be connected to customer gatewa
 [Read more about this in the AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_VpnTunnelOptionsSpecification.html).
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43770,13 +46012,17 @@ Manages an EC2 VPN connection. These objects can be connected to customer gatewa
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_connection_route",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a static route between a VPN connection and a customer gateway.",
 			Description: `
 
 Provides a static route between a VPN connection and a customer gateway.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43816,13 +46062,17 @@ Provides a static route between a VPN connection and a customer gateway.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_gateway",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a resource to create a VPC VPN Gateway.",
 			Description: `
 
 Provides a resource to create a VPC VPN Gateway.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43862,7 +46112,7 @@ Provides a resource to create a VPC VPN Gateway.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_gateway_attachment",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Provides a Virtual Private Gateway attachment resource.",
 			Description: `
 
@@ -43874,6 +46124,10 @@ resource can also automatically attach the Virtual Private Gateway it creates
 to an existing VPC by setting the [` + "`" + `vpc_id` + "`" + `](vpn_gateway.html#vpc_id) attribute accordingly.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43913,7 +46167,7 @@ to an existing VPC by setting the [` + "`" + `vpc_id` + "`" + `](vpn_gateway.htm
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_gateway_route_propagation",
-			Category:         "",
+			Category:         "VPC Resources",
 			ShortDescription: "Requests automatic route propagation between a VPN gateway and a route table.",
 			Description: `
 
@@ -43924,6 +46178,10 @@ the ` + "`" + `propagating_vgws` + "`" + ` argument set. If that argument is set
 propagation not explicitly listed in its value will be removed.
 
 `,
+			Keywords: []string{
+
+				"vpc",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -43942,13 +46200,17 @@ propagation not explicitly listed in its value will be removed.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_byte_match_set",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF Byte Match Set resource.",
 			Description: `
 
 Provides a WAF Byte Match Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44008,13 +46270,17 @@ Provides a WAF Byte Match Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_geo_match_set",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF GeoMatchSet resource.",
 			Description: `
 
 Provides a WAF Geo Match Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44054,13 +46320,17 @@ Provides a WAF Geo Match Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_ipset",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF IPSet resource.",
 			Description: `
 
 Provides a WAF IPSet Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44110,13 +46380,17 @@ Provides a WAF IPSet Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_rate_based_rule",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF rule resource.",
 			Description: `
 
 Provides a WAF Rate Based Rule Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44176,13 +46450,17 @@ Provides a WAF Rate Based Rule Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_regex_match_set",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF Regex Match Set resource.",
 			Description: `
 
 Provides a WAF Regex Match Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44237,13 +46515,17 @@ Provides a WAF Regex Match Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_regex_pattern_set",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF Regex Pattern Set resource.",
 			Description: `
 
 Provides a WAF Regex Pattern Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44273,13 +46555,17 @@ Provides a WAF Regex Pattern Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_rule",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF rule resource.",
 			Description: `
 
 Provides a WAF Rule Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44329,13 +46615,17 @@ Provides a WAF Rule Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_rule_group",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF rule group resource.",
 			Description: `
 
 Provides a WAF Rule Group Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44395,13 +46685,17 @@ Provides a WAF Rule Group Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_size_constraint_set",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF Size Constraint Set resource.",
 			Description: `
 
 Provides a WAF Size Constraint Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44461,13 +46755,17 @@ Provides a WAF Size Constraint Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_sql_injection_match_set",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF SQL Injection Match Set resource.",
 			Description: `
 
 Provides a WAF SQL Injection Match Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44517,13 +46815,17 @@ Provides a WAF SQL Injection Match Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_web_acl",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF web access control group (ACL) resource.",
 			Description: `
 
 Provides a WAF Web ACL Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44633,13 +46935,17 @@ Provides a WAF Web ACL Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_xss_match_set",
-			Category:         "",
+			Category:         "WAF Resources",
 			ShortDescription: "Provides a AWS WAF XssMatchSet resource.",
 			Description: `
 
 Provides a WAF XSS Match Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44689,13 +46995,19 @@ Provides a WAF XSS Match Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_byte_match_set",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional ByteMatchSet resource for use with ALB.",
 			Description: `
 
 Provides a WAF Regional Byte Match Set Resource for use with Application Load Balancer.
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44755,13 +47067,19 @@ Provides a WAF Regional Byte Match Set Resource for use with Application Load Ba
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_geo_match_set",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional Geo Match Set resource.",
 			Description: `
 
 Provides a WAF Regional Geo Match Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44801,13 +47119,19 @@ Provides a WAF Regional Geo Match Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_ipset",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional IPSet resource for use with ALB.",
 			Description: `
 
 Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44857,13 +47181,19 @@ Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_rate_based_rule",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional rate based rule resource.",
 			Description: `
 
 Provides a WAF Rate Based Rule Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44923,13 +47253,19 @@ Provides a WAF Rate Based Rule Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_regex_match_set",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional Regex Match Set resource.",
 			Description: `
 
 Provides a WAF Regional Regex Match Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -44984,13 +47320,19 @@ Provides a WAF Regional Regex Match Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_regex_pattern_set",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional Regex Pattern Set resource.",
 			Description: `
 
 Provides a WAF Regional Regex Pattern Set Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45020,13 +47362,19 @@ Provides a WAF Regional Regex Pattern Set Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_rule",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides an AWS WAF Regional rule resource for use with ALB.",
 			Description: `
 
 Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45076,13 +47424,19 @@ Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_rule_group",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional Rule Group resource.",
 			Description: `
 
 Provides a WAF Regional Rule Group Resource
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45142,13 +47496,19 @@ Provides a WAF Regional Rule Group Resource
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_size_constraint_set",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides an AWS WAF Regional Size Constraint Set resource for use with ALB.",
 			Description: `
 
 Provides a WAF Regional Size Constraint Set Resource for use with Application Load Balancer.
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45208,13 +47568,19 @@ Provides a WAF Regional Size Constraint Set Resource for use with Application Lo
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_sql_injection_match_set",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional SqlInjectionMatchSet resource for use with ALB.",
 			Description: `
 
 Provides a WAF Regional SQL Injection Match Set Resource for use with Application Load Balancer.
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45264,13 +47630,19 @@ Provides a WAF Regional SQL Injection Match Set Resource for use with Applicatio
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_web_acl",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides a AWS WAF Regional web access control group (ACL) resource for use with ALB.",
 			Description: `
 
 Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45385,7 +47757,7 @@ Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_web_acl_association",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Manages an association with WAF Regional Web ACL",
 			Description: `
 
@@ -45394,6 +47766,12 @@ Manages an association with WAF Regional Web ACL.
 -> **Note:** An Application Load Balancer can only be associated with one WAF Regional WebACL.
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45423,13 +47801,19 @@ Manages an association with WAF Regional Web ACL.
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_xss_match_set",
-			Category:         "",
+			Category:         "WAF Regional Resources",
 			ShortDescription: "Provides an AWS WAF Regional XSS Match Set resource for use with ALB.",
 			Description: `
 
 Provides a WAF Regional XSS Match Set Resource for use with Application Load Balancer.
 
 `,
+			Keywords: []string{
+
+				"waf",
+
+				"regional",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45479,11 +47863,15 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_worklink_fleet",
-			Category:         "",
+			Category:         "WorkLink Resources",
 			ShortDescription: "Provides a AWS WorkLink Fleet resource.",
 			Description: `
 
 `,
+			Keywords: []string{
+
+				"worklink",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45603,11 +47991,15 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_worklink_website_certificate_authority_association",
-			Category:         "",
+			Category:         "WorkLink Resources",
 			ShortDescription: "Provides a AWS WorkLink Website Certificate Authority Association resource.",
 			Description: `
 
 `,
+			Keywords: []string{
+
+				"worklink",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
@@ -45642,13 +48034,17 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 		resource.Resource{
 			Name:             "",
 			Type:             "aws_xray_sampling_rule",
-			Category:         "",
+			Category:         "XRay Resources",
 			ShortDescription: "Creates and manages an AWS XRay Sampling Rule.",
 			Description: `
 
 Creates and manages an AWS XRay Sampling Rule.
 
 `,
+			Keywords: []string{
+
+				"xray",
+			},
 			Arguments: []resource.Argument{
 
 				resource.Attribute{
