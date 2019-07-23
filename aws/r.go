@@ -5,9 +5,9 @@ import (
 )
 
 var (
-	Resources = []Resource{
+	Resources = []*Resource{
 
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_acm_certificate",
 			Category:         "ACM Resources",
@@ -169,8 +169,7 @@ which is currently in use (eg, by [` + "`" + `aws_lb_listener` + "`" + `](lb_lis
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_acm_certificate_validation",
 			Category:         "ACM Resources",
@@ -210,8 +209,7 @@ deploy the required validation records and wait for validation to complete.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_acmpca_certificate_authority",
 			Category:         "ACM PCA Resources",
@@ -475,8 +473,7 @@ Provides a resource to manage AWS Certificate Manager Private Certificate Author
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ami",
 			Category:         "EC2 Resources",
@@ -654,8 +651,7 @@ it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ami_copy",
 			Category:         "EC2 Resources",
@@ -743,8 +739,7 @@ block until the new AMI is available for use on new instances.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ami_from_instance",
 			Category:         "EC2 Resources",
@@ -830,8 +825,7 @@ to produce a fresh snapshot.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ami_launch_permission",
 			Category:         "EC2 Resources",
@@ -876,8 +870,7 @@ Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_account",
 			Category:         "API Gateway Resources",
@@ -937,8 +930,7 @@ Provides a settings of an API Gateway Account. Settings is applied region-wide p
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_api_key",
 			Category:         "API Gateway Resources",
@@ -1023,8 +1015,7 @@ Provides an API Gateway API Key.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_authorizer",
 			Category:         "API Gateway Resources",
@@ -1091,8 +1082,7 @@ Provides an API Gateway Authorizer.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_base_path_mapping",
 			Category:         "API Gateway Resources",
@@ -1140,8 +1130,7 @@ custom domain name.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_client_certificate",
 			Category:         "API Gateway Resources",
@@ -1211,8 +1200,7 @@ Provides an API Gateway Client Certificate.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_deployment",
 			Category:         "API Gateway Resources",
@@ -1303,8 +1291,7 @@ you might need to add an explicit ` + "`" + `depends_on = ["aws_api_gateway_inte
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_documentation_part",
 			Category:         "API Gateway Resources",
@@ -1379,8 +1366,7 @@ Provides a settings of an API Gateway Documentation Part.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_documentation_version",
 			Category:         "API Gateway Resources",
@@ -1419,8 +1405,7 @@ Provides a resource to manage an API Gateway Documentation Version.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_domain_name",
 			Category:         "API Gateway Resources",
@@ -1577,8 +1562,7 @@ the ` + "`" + `regional_domain_name` + "`" + ` attribute.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_gateway_response",
 			Category:         "API Gateway Resources",
@@ -1625,8 +1609,7 @@ Provides an API Gateway Gateway Response for a REST API Gateway.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_integration",
 			Category:         "API Gateway Resources",
@@ -1728,8 +1711,7 @@ Provides an HTTP Method Integration for an API Gateway Integration.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_integration_response",
 			Category:         "API Gateway Resources",
@@ -1796,8 +1778,7 @@ you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean run
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_method",
 			Category:         "API Gateway Resources",
@@ -1869,8 +1850,7 @@ Provides a HTTP Method for an API Gateway Resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_method_response",
 			Category:         "API Gateway Resources",
@@ -1924,8 +1904,7 @@ Provides an HTTP Method Response for an API Gateway Resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_method_settings",
 			Category:         "API Gateway Resources",
@@ -2019,8 +1998,7 @@ Provides an API Gateway Method Settings, e.g. logging or monitoring.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_model",
 			Category:         "API Gateway Resources",
@@ -2078,8 +2056,7 @@ Provides a Model for a API Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_request_validator",
 			Category:         "API Gateway Resources",
@@ -2134,8 +2111,7 @@ Manages an API Gateway Request Validator.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_resource",
 			Category:         "API Gateway Resources",
@@ -2193,8 +2169,7 @@ Provides an API Gateway Resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_rest_api",
 			Category:         "API Gateway Resources",
@@ -2302,8 +2277,7 @@ Provides an API Gateway REST API.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_stage",
 			Category:         "API Gateway Resources",
@@ -2426,8 +2400,7 @@ Provides an API Gateway Stage.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_usage_plan",
 			Category:         "API Gateway Resources",
@@ -2552,8 +2525,7 @@ Provides an API Gateway Usage Plan.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_usage_plan_key",
 			Category:         "API Gateway Resources",
@@ -2655,8 +2627,7 @@ Provides an API Gateway Usage Plan Key.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_vpc_link",
 			Category:         "API Gateway Resources",
@@ -2706,8 +2677,7 @@ Provides an API Gateway VPC Link.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_app_cookie_stickiness_policy",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -2812,8 +2782,7 @@ Provides an application cookie stickiness policy, which allows an ELB to wed its
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appautoscaling_policy",
 			Category:         "Application Autoscaling Resources",
@@ -3008,8 +2977,7 @@ Provides an Application AutoScaling Policy resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appautoscaling_scheduled_action",
 			Category:         "Application Autoscaling Resources",
@@ -3096,8 +3064,7 @@ Provides an Application AutoScaling ScheduledAction resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appautoscaling_target",
 			Category:         "Application Autoscaling Resources",
@@ -3151,8 +3118,7 @@ Provides an Application AutoScaling ScalableTarget resource. To manage policies 
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_mesh",
 			Category:         "AppMesh Resources",
@@ -3228,8 +3194,7 @@ Provides an AWS App Mesh service mesh resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_route",
 			Category:         "AppMesh Resources",
@@ -3355,8 +3320,7 @@ Provides an AWS App Mesh route resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_virtual_node",
 			Category:         "AppMesh Resources",
@@ -3539,8 +3503,7 @@ Provides an AWS App Mesh virtual node resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_virtual_router",
 			Category:         "AppMesh Resources",
@@ -3638,8 +3601,7 @@ Provides an AWS App Mesh virtual router resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appmesh_virtual_service",
 			Category:         "AppMesh Resources",
@@ -3737,8 +3699,7 @@ Provides an AWS App Mesh virtual service resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appsync_api_key",
 			Category:         "AppSync Resources",
@@ -3796,8 +3757,7 @@ Provides an AppSync API Key.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appsync_datasource",
 			Category:         "AppSync Resources",
@@ -3908,8 +3868,7 @@ Provides an AppSync DataSource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appsync_graphql_api",
 			Category:         "AppSync Resources",
@@ -4047,8 +4006,7 @@ Provides an AppSync GraphQL API.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_appsync_resolver",
 			Category:         "AppSync Resources",
@@ -4109,8 +4067,7 @@ Provides an AppSync Resolver.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_athena_database",
 			Category:         "Athena Resources",
@@ -4171,8 +4128,7 @@ Provides an Athena database.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_athena_named_query",
 			Category:         "Athena Resources",
@@ -4225,8 +4181,7 @@ Provides an Athena Named Query resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_attachment",
 			Category:         "Autoscaling Resources",
@@ -4268,8 +4223,7 @@ conflict and will overwrite attachments.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_group",
 			Category:         "Autoscaling Resources",
@@ -4582,8 +4536,7 @@ Provides an AutoScaling Group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_lifecycle_hook",
 			Category:         "Autoscaling Resources",
@@ -4657,8 +4610,7 @@ but take care to not duplicate those hooks with this resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_notification",
 			Category:         "Autoscaling Resources",
@@ -4695,8 +4647,7 @@ Services, and are applied to each AutoScaling Group you supply.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_policy",
 			Category:         "Autoscaling Resources",
@@ -4903,8 +4854,7 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_schedule",
 			Category:         "Autoscaling Resources",
@@ -4975,8 +4925,7 @@ Provides an AutoScaling Schedule resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_backup_plan",
 			Category:         "Backup Resources",
@@ -5042,8 +4991,7 @@ Provides an AWS Backup plan resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_backup_selection",
 			Category:         "Backup Resources",
@@ -5114,8 +5062,7 @@ Manages selection conditions for AWS Backup plan resources.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_backup_vault",
 			Category:         "Backup Resources",
@@ -5181,8 +5128,7 @@ Provides an AWS Backup vault resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_batch_compute_environment",
 			Category:         "Batch Resources",
@@ -5361,8 +5307,7 @@ For information about compute environment, see [Compute Environments][2] .
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_batch_job_definition",
 			Category:         "Batch Resources",
@@ -5445,8 +5390,7 @@ Provides a Batch Job Definition resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_batch_job_queue",
 			Category:         "Batch Resources",
@@ -5499,8 +5443,7 @@ Provides a Batch Job Queue resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_budgets_budget",
 			Category:         "Budgets Resources",
@@ -5761,8 +5704,7 @@ Provides a budgets budget resource. Budgets use the cost visualisation provided 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloud9_environment_ec2",
 			Category:         "Cloud9 Resources",
@@ -5845,8 +5787,7 @@ Provides a Cloud9 EC2 Development Environment.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudformation_stack",
 			Category:         "CloudFormation Resources",
@@ -5952,8 +5893,7 @@ Provides a CloudFormation Stack resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudformation_stack_set",
 			Category:         "CloudFormation Resources",
@@ -6055,8 +5995,7 @@ Manages a CloudFormation Stack Set. Stack Sets allow CloudFormation templates to
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudformation_stack_set_instance",
 			Category:         "CloudFormation Resources",
@@ -6160,8 +6099,7 @@ Manages a CloudFormation Stack Set Instance. Instances are managed in the accoun
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudfront_distribution",
 			Category:         "CloudFront Resources",
@@ -6337,8 +6275,7 @@ want to wait, you need to use the ` + "`" + `retain_on_delete` + "`" + ` flag.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudfront_origin_access_identity",
 			Category:         "CloudFront Resources",
@@ -6428,8 +6365,7 @@ origin access identities, see
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudfront_public_key",
 			Category:         "CloudFront Resources",
@@ -6500,8 +6436,7 @@ origin access identities, see
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudhsm_v2_cluster",
 			Category:         "CloudHSM v2 Resources",
@@ -6653,8 +6588,7 @@ To initialize cluster you have to sign CSR and upload it.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudhsm_v2_hsm",
 			Category:         "CloudHSM v2 Resources",
@@ -6727,8 +6661,7 @@ Creates an HSM module in Amazon CloudHSM v2 cluster.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudtrail",
 			Category:         "CloudTrail Resources",
@@ -6851,8 +6784,7 @@ Provides a CloudTrail resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_dashboard",
 			Category:         "CloudWatch Resources",
@@ -6893,8 +6825,7 @@ Provides a CloudWatch Dashboard resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_event_permission",
 			Category:         "CloudWatch Resources",
@@ -6962,8 +6893,7 @@ Provides a resource to create a CloudWatch Events permission to support cross-ac
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_event_rule",
 			Category:         "CloudWatch Resources",
@@ -7036,8 +6966,7 @@ Provides a CloudWatch Event Rule resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_event_target",
 			Category:         "CloudWatch Resources",
@@ -7214,8 +7143,7 @@ Provides a CloudWatch Event Target resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_destination",
 			Category:         "CloudWatch Resources",
@@ -7263,8 +7191,7 @@ Provides a CloudWatch Logs destination resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_destination_policy",
 			Category:         "CloudWatch Resources",
@@ -7298,8 +7225,7 @@ Provides a CloudWatch Logs destination policy resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_group",
 			Category:         "CloudWatch Resources",
@@ -7357,8 +7283,7 @@ Provides a CloudWatch Log Group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_metric_filter",
 			Category:         "CloudWatch Resources",
@@ -7433,8 +7358,7 @@ Provides a CloudWatch Log Metric Filter resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_resource_policy",
 			Category:         "CloudWatch Resources",
@@ -7479,8 +7403,7 @@ Provides a resource to manage a CloudWatch log resource policy.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_stream",
 			Category:         "CloudWatch Resources",
@@ -7523,8 +7446,7 @@ Provides a CloudWatch Log Stream resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_subscription_filter",
 			Category:         "CloudWatch Resources",
@@ -7578,8 +7500,7 @@ Provides a CloudWatch Logs subscription filter resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_metric_alarm",
 			Category:         "CloudWatch Resources",
@@ -7767,8 +7688,7 @@ Provides a CloudWatch Metric Alarm resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codebuild_project",
 			Category:         "CodeBuild Resources",
@@ -8129,8 +8049,7 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codebuild_webhook",
 			Category:         "CodeBuild Resources",
@@ -8201,8 +8120,7 @@ Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild serv
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codecommit_repository",
 			Category:         "CodeCommit Resources",
@@ -8282,8 +8200,7 @@ in all regions - available regions are listed
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codecommit_trigger",
 			Category:         "CodeCommit Resources",
@@ -8337,8 +8254,7 @@ in all regions - available regions are listed
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codedeploy_app",
 			Category:         "CodeDeploy Resources",
@@ -8389,8 +8305,7 @@ Provides a CodeDeploy application to be used as a basis for deployments
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codedeploy_deployment_config",
 			Category:         "CodeDeploy Resources",
@@ -8498,8 +8413,7 @@ Provides a CodeDeploy deployment config for an application
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codedeploy_deployment_group",
 			Category:         "CodeDeploy Resources",
@@ -8784,8 +8698,7 @@ Provides a CodeDeploy Deployment Group for a CodeDeploy Application
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codepipeline",
 			Category:         "CodePipeline Resources",
@@ -8921,8 +8834,7 @@ Provides a CodePipeline.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codepipeline_webhook",
 			Category:         "CodePipeline Resources",
@@ -9008,8 +8920,7 @@ Provides a CodePipeline Webhook.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_identity_pool",
 			Category:         "Cognito Resources",
@@ -9052,8 +8963,7 @@ Provides an AWS Cognito Identity Pool.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_identity_pool_roles_attachment",
 			Category:         "Cognito Resources",
@@ -9090,8 +9000,7 @@ Provides an AWS Cognito Identity Pool Roles Attachment.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_identity_provider",
 			Category:         "Cognito Resources",
@@ -9112,8 +9021,7 @@ Provides a Cognito User Identity Provider resource.
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_resource_server",
 			Category:         "Cognito Resources",
@@ -9171,8 +9079,7 @@ Provides a Cognito Resource Server.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_group",
 			Category:         "Cognito Resources",
@@ -9219,8 +9126,7 @@ Provides a Cognito User Group resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_pool",
 			Category:         "Cognito Resources",
@@ -9348,8 +9254,7 @@ Provides a Cognito User Pool resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_pool_client",
 			Category:         "Cognito Resources",
@@ -9464,8 +9369,7 @@ Provides a Cognito User Pool Client resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_pool_domain",
 			Category:         "Cognito Resources",
@@ -9545,8 +9449,7 @@ Provides a Cognito User Pool Domain resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_config_aggregate_authorization",
 			Category:         "Config Resources",
@@ -9589,8 +9492,7 @@ Manages an AWS Config Aggregate Authorization
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_config_config_rule",
 			Category:         "Config Resources",
@@ -9733,8 +9635,7 @@ Provides an AWS Config Rule.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_config_configuration_aggregator",
 			Category:         "Config Resources",
@@ -9812,8 +9713,7 @@ Manages an AWS Config Configuration Aggregator
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_config_configuration_recorder",
 			Category:         "Config Resources",
@@ -9878,8 +9778,7 @@ Provides an AWS Config Configuration Recorder. Please note that this resource **
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_config_configuration_recorder_status",
 			Category:         "Config Resources",
@@ -9915,8 +9814,7 @@ Manages status (recording / stopped) of an AWS Config Configuration Recorder.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_config_delivery_channel",
 			Category:         "Config Resources",
@@ -9981,8 +9879,7 @@ Provides an AWS Config Delivery Channel.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cur_report_definition",
 			Category:         "Cost and Usage Report Resources",
@@ -10059,8 +9956,7 @@ Manages Cost and Usage Report Definitions.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_customer_gateway",
 			Category:         "VPC Resources",
@@ -10153,8 +10049,7 @@ Provides a customer gateway inside a VPC. These objects can be connected to VPN 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_agent",
 			Category:         "DataSync Resources",
@@ -10227,8 +10122,7 @@ Manages an AWS DataSync Agent deployed on premises.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_location_efs",
 			Category:         "DataSync Resources",
@@ -10303,8 +10197,7 @@ Manages an AWS DataSync EFS Location.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_location_nfs",
 			Category:         "DataSync Resources",
@@ -10374,8 +10267,7 @@ Manages an NFS Location within AWS DataSync.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_location_s3",
 			Category:         "DataSync Resources",
@@ -10443,8 +10335,7 @@ Manages an S3 Location within AWS DataSync.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_datasync_task",
 			Category:         "DataSync Resources",
@@ -10570,8 +10461,7 @@ Manages an AWS DataSync Task, which represents a configuration for synchronizati
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dax_cluster",
 			Category:         "DynamoDB Accelerator (DAX) Resources",
@@ -10671,8 +10561,7 @@ Provides a DAX Cluster resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dax_parameter_group",
 			Category:         "DynamoDB Accelerator (DAX) Resources",
@@ -10724,8 +10613,7 @@ Provides a DAX Parameter Group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dax_subnet_group",
 			Category:         "DynamoDB Accelerator (DAX) Resources",
@@ -10767,8 +10655,7 @@ Provides a DAX Subnet Group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_cluster_snapshot",
 			Category:         "RDS Resources",
@@ -10933,8 +10820,7 @@ Manages a RDS database cluster snapshot for Aurora clusters. For managing RDS da
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_event_subscription",
 			Category:         "RDS Resources",
@@ -11013,8 +10899,7 @@ Provides a DB event subscription resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_instance",
 			Category:         "RDS Resources",
@@ -11546,8 +11431,7 @@ state](/docs/state/sensitive-data.html).
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_instance_role_association",
 			Category:         "RDS Resources",
@@ -11604,8 +11488,7 @@ Manages a RDS DB Instance association with an IAM Role. Example use cases:
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_option_group",
 			Category:         "RDS Resources",
@@ -11729,8 +11612,7 @@ Provides an RDS DB option group resource. Documentation of the available options
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_parameter_group",
 			Category:         "RDS Resources",
@@ -11825,8 +11707,7 @@ Provides an RDS DB parameter group resource .Documentation of the available para
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_security_group",
 			Category:         "RDS Resources",
@@ -11914,8 +11795,7 @@ attribute instead.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_snapshot",
 			Category:         "RDS Resources",
@@ -12103,8 +11983,7 @@ Manages a RDS database instance snapshot. For managing RDS database cluster snap
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_subnet_group",
 			Category:         "RDS Resources",
@@ -12174,8 +12053,7 @@ Provides an RDS DB subnet group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_default_network_acl",
 			Category:         "VPC Resources",
@@ -12343,8 +12221,7 @@ For more information about Network ACLs, see the AWS Documentation on
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_default_route_table",
 			Category:         "VPC Resources",
@@ -12484,8 +12361,7 @@ a conflict of rule settings and will overwrite routes.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_default_security_group",
 			Category:         "VPC Resources",
@@ -12624,8 +12500,7 @@ For more information about Default Security Groups, see the AWS Documentation on
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_default_subnet",
 			Category:         "VPC Resources",
@@ -12723,8 +12598,7 @@ into management.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_default_vpc",
 			Category:         "VPC Resources",
@@ -12924,8 +12798,7 @@ into management.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_default_vpc_dhcp_options",
 			Category:         "VPC Resources",
@@ -12994,8 +12867,7 @@ into management.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_devicefarm_project",
 			Category:         "Device Farm Resources",
@@ -13040,8 +12912,7 @@ For more information about Device Farm Projects, see the AWS Documentation on
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_directory_service_conditional_forwarder",
 			Category:         "Directory Service Resources",
@@ -13080,8 +12951,7 @@ Provides a conditional forwarder for managed Microsoft AD in AWS Directory Servi
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_directory_service_directory",
 			Category:         "Directory Service Resources",
@@ -13230,8 +13100,7 @@ Provides a Simple or Managed Microsoft directory in AWS Directory Service.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dlm_lifecycle_policy",
 			Category:         "Data Lifecycle Manager (DLM) Resources",
@@ -13332,8 +13201,7 @@ Provides a [Data Lifecycle Manager (DLM) lifecycle policy](https://docs.aws.amaz
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_certificate",
 			Category:         "Database Migration Service (DMS) Resources",
@@ -13388,8 +13256,7 @@ Provides a DMS (Data Migration Service) certificate resource. DMS certificates c
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_endpoint",
 			Category:         "Database Migration Service (DMS) Resources",
@@ -13509,8 +13376,7 @@ Provides a DMS (Data Migration Service) endpoint resource. DMS endpoints can be 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_replication_instance",
 			Category:         "Database Migration Service (DMS) Resources",
@@ -13639,8 +13505,7 @@ Provides a DMS (Data Migration Service) replication instance resource. DMS repli
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_replication_subnet_group",
 			Category:         "Database Migration Service (DMS) Resources",
@@ -13701,8 +13566,7 @@ Provides a DMS (Data Migration Service) replication subnet group resource. DMS r
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dms_replication_task",
 			Category:         "Database Migration Service (DMS) Resources",
@@ -13786,8 +13650,7 @@ Provides a DMS (Data Migration Service) replication task resource. DMS replicati
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_cluster",
 			Category:         "DocumentDB Resources",
@@ -14011,8 +13874,7 @@ phase because a modification has not yet taken place. You can use the
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_cluster_instance",
 			Category:         "DocumentDB Resources",
@@ -14199,8 +14061,7 @@ Cluster, or you may specify different Cluster Instance resources with various
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_cluster_parameter_group",
 			Category:         "DocumentDB Resources",
@@ -14292,8 +14153,7 @@ Manages a DocumentDB Cluster Parameter Group
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_cluster_snapshot",
 			Category:         "DocumentDB Resources",
@@ -14438,8 +14298,7 @@ Manages a DocDB database cluster snapshot for DocDB clusters.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_docdb_subnet_group",
 			Category:         "DocumentDB Resources",
@@ -14509,8 +14368,7 @@ Provides an DocumentDB subnet group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_bgp_peer",
 			Category:         "Direct Connect Resources",
@@ -14607,8 +14465,7 @@ Provides a Direct Connect BGP peer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_connection",
 			Category:         "Direct Connect Resources",
@@ -14703,8 +14560,7 @@ Provides a Connection of Direct Connect.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_connection_association",
 			Category:         "Direct Connect Resources",
@@ -14740,8 +14596,7 @@ Associates a Direct Connect Connection with a LAG.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_gateway",
 			Category:         "Direct Connect Resources",
@@ -14796,8 +14651,7 @@ Provides a Direct Connect Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_gateway_association",
 			Category:         "Direct Connect Resources",
@@ -14898,8 +14752,7 @@ by creating an ` + "`" + `aws_dx_gateway_association` + "`" + ` resource with th
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_gateway_association_proposal",
 			Category:         "Direct Connect Resources",
@@ -14983,8 +14836,7 @@ Manages a Direct Connect Gateway Association Proposal, typically for enabling cr
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_hosted_private_virtual_interface",
 			Category:         "Direct Connect Resources",
@@ -15106,8 +14958,7 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_hosted_private_virtual_interface_accepter",
 			Category:         "Direct Connect Resources",
@@ -15181,8 +15032,7 @@ This resource accepts ownership of a private virtual interface created by anothe
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_hosted_public_virtual_interface",
 			Category:         "Direct Connect Resources",
@@ -15294,8 +15144,7 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_hosted_public_virtual_interface_accepter",
 			Category:         "Direct Connect Resources",
@@ -15359,8 +15208,7 @@ This resource accepts ownership of a public virtual interface created by another
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_lag",
 			Category:         "Direct Connect Resources",
@@ -15442,8 +15290,7 @@ Provides a Direct Connect LAG. Connections can be added to the LAG via the [` + 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_private_virtual_interface",
 			Category:         "Direct Connect Resources",
@@ -15572,8 +15419,7 @@ Provides a Direct Connect private virtual interface resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_public_virtual_interface",
 			Category:         "Direct Connect Resources",
@@ -15682,8 +15528,7 @@ Provides a Direct Connect public virtual interface resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dynamodb_global_table",
 			Category:         "DynamoDB Resources",
@@ -15743,8 +15588,7 @@ Provides a resource to manage a DynamoDB Global Table. These are layered on top 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dynamodb_table",
 			Category:         "DynamoDB Resources",
@@ -15982,8 +15826,7 @@ Provides a DynamoDB table resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dynamodb_table_item",
 			Category:         "DynamoDB Resources",
@@ -16028,8 +15871,7 @@ Provides a DynamoDB table item resource
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_snapshot",
 			Category:         "EC2 Resources",
@@ -16147,8 +15989,7 @@ Creates a Snapshot of an EBS Volume.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_snapshot_copy",
 			Category:         "EC2 Resources",
@@ -16273,8 +16114,7 @@ Creates a Snapshot of a snapshot.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_volume",
 			Category:         "EC2 Resources",
@@ -16352,8 +16192,7 @@ Manages a single EBS volume.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_capacity_reservation",
 			Category:         "EC2 Resources",
@@ -16441,8 +16280,7 @@ Provides an EC2 Capacity Reservation. This allows you to reserve capacity for yo
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_client_vpn_endpoint",
 			Category:         "EC2 Resources",
@@ -16568,8 +16406,7 @@ Provides an AWS Client VPN endpoint for OpenVPN clients. For more information on
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_client_vpn_network_association",
 			Category:         "EC2 Resources",
@@ -16647,8 +16484,7 @@ Provides network associations for AWS Client VPN endpoints. For more information
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_fleet",
 			Category:         "EC2 Resources",
@@ -16854,8 +16690,7 @@ Provides a resource to manage EC2 Fleets.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway",
 			Category:         "EC2 Resources",
@@ -16968,8 +16803,7 @@ Manages an EC2 Transit Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route",
 			Category:         "EC2 Resources",
@@ -17019,8 +16853,7 @@ Manages an EC2 Transit Gateway Route.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route_table",
 			Category:         "EC2 Resources",
@@ -17087,8 +16920,7 @@ Manages an EC2 Transit Gateway Route Table.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route_table_association",
 			Category:         "EC2 Resources",
@@ -17157,8 +16989,7 @@ Manages an EC2 Transit Gateway Route Table association.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route_table_propagation",
 			Category:         "EC2 Resources",
@@ -17227,8 +17058,7 @@ Manages an EC2 Transit Gateway Route Table propagation.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_vpc_attachment",
 			Category:         "EC2 Resources",
@@ -17315,8 +17145,7 @@ Manages an EC2 Transit Gateway VPC Attachment. For examples of custom route tabl
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_vpc_attachment_accepter",
 			Category:         "EC2 Resources",
@@ -17441,8 +17270,7 @@ connection into management.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecr_lifecycle_policy",
 			Category:         "ECR Resources",
@@ -17499,8 +17327,7 @@ Manages an ECR repository lifecycle policy.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecr_repository",
 			Category:         "ECR Resources",
@@ -17575,8 +17402,7 @@ in all regions - available regions are listed
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecr_repository_policy",
 			Category:         "ECR Resources",
@@ -17635,8 +17461,7 @@ in all regions - available regions are listed
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_cluster",
 			Category:         "ECS Resources",
@@ -17687,8 +17512,7 @@ Provides an ECS cluster.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_service",
 			Category:         "ECS Resources",
@@ -17943,8 +17767,7 @@ See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/Am
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_task_definition",
 			Category:         "ECS Resources",
@@ -18112,8 +17935,7 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_efs_file_system",
 			Category:         "EFS Resources",
@@ -18201,8 +18023,7 @@ Provides an Elastic File System (EFS) resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_efs_mount_target",
 			Category:         "EFS Resources",
@@ -18285,8 +18106,7 @@ Provides an Elastic File System (EFS) mount target.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_egress_only_internet_gateway",
 			Category:         "VPC Resources",
@@ -18331,8 +18151,7 @@ outside of your VPC from initiating an IPv6 connection with your instance.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_eip",
 			Category:         "EC2 Resources",
@@ -18477,8 +18296,7 @@ Provides an Elastic IP resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_eip_association",
 			Category:         "EC2 Resources",
@@ -18597,8 +18415,7 @@ pre-existing or distributed to customers or users and therefore cannot be change
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_eks_cluster",
 			Category:         "EKS Resources",
@@ -18764,8 +18581,7 @@ Manages an EKS Cluster.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_application",
 			Category:         "Elastic Beanstalk Resources",
@@ -18838,8 +18654,7 @@ This resource creates an application that has one configuration template named
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_application_version",
 			Category:         "Elastic Beanstalk Resources",
@@ -18924,8 +18739,7 @@ Elastic Beanstalk Application. For example &lt;revision&gt;-&lt;environment&gt;.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_configuration_template",
 			Category:         "Elastic Beanstalk Resources",
@@ -18981,8 +18795,7 @@ application with the same configuration settings.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_environment",
 			Category:         "Elastic Beanstalk Resources",
@@ -19170,8 +18983,7 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastictranscoder_pipeline",
 			Category:         "Elastic Transcoder Resources",
@@ -19315,8 +19127,7 @@ Provides an Elastic Transcoder pipeline resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastictranscoder_preset",
 			Category:         "Elastic Transcoder Resources",
@@ -19625,8 +19436,7 @@ Provides an Elastic Transcoder preset resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_cluster",
 			Category:         "ElastiCache Resources",
@@ -19731,8 +19541,7 @@ See the AWS Docs on [Modifying an ElastiCache Cache Cluster][2] for more informa
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_parameter_group",
 			Category:         "ElastiCache Resources",
@@ -19797,8 +19606,7 @@ Provides an ElastiCache parameter group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_replication_group",
 			Category:         "ElastiCache Resources",
@@ -20011,8 +19819,7 @@ servers reboots.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_security_group",
 			Category:         "ElastiCache Resources",
@@ -20038,8 +19845,7 @@ ElastiCache cluster **outside** of a VPC. If you are using a VPC, see the
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_subnet_group",
 			Category:         "ElastiCache Resources",
@@ -20064,8 +19870,7 @@ ElastiCache cluster **inside** of a VPC. If you are on EC2 Classic, see the
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticsearch_domain",
 			Category:         "ElasticSearch Resources",
@@ -20331,8 +20136,7 @@ Manages an AWS Elasticsearch Domain.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticsearch_domain_policy",
 			Category:         "ElasticSearch Resources",
@@ -20364,8 +20168,7 @@ Allows setting policy to an Elasticsearch domain while referencing domain attrib
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elb",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -20626,8 +20429,7 @@ conflict and will overwrite attachments.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elb_attachment",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -20672,8 +20474,7 @@ conflict and will overwrite attachments.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_emr_cluster",
 			Category:         "Elastic Map Reduce (EMR) Resources",
@@ -21201,8 +21002,7 @@ To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/Management
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_emr_instance_group",
 			Category:         "Elastic Map Reduce (EMR) Resources",
@@ -21276,8 +21076,7 @@ Terraform will resize any Instance Group to zero when destroying the resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_emr_security_configuration",
 			Category:         "Elastic Map Reduce (EMR) Resources",
@@ -21361,8 +21160,7 @@ Provides a resource to manage AWS EMR Security Configurations
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_flow_log",
 			Category:         "VPC Resources",
@@ -21436,8 +21234,7 @@ interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucke
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_gamelift_alias",
 			Category:         "Gamelift Resources",
@@ -21508,8 +21305,7 @@ Provides a Gamelift Alias resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_gamelift_build",
 			Category:         "Gamelift Resources",
@@ -21575,8 +21371,7 @@ Provides an Gamelift Build resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_gamelift_fleet",
 			Category:         "Gamelift Resources",
@@ -21732,8 +21527,7 @@ Provides a Gamelift Fleet resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_gamelift_game_session_queue",
 			Category:         "Gamelift Resources",
@@ -21798,8 +21592,7 @@ Provides an Gamelift Game Session Queue resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glacier_vault",
 			Category:         "Glacier Resources",
@@ -21872,8 +21665,7 @@ Provides a Glacier Vault Resource. You can refer to the [Glacier Developer Guide
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glacier_vault_lock",
 			Category:         "Glacier Resources",
@@ -21930,8 +21722,7 @@ Manages a Glacier Vault Lock. You can refer to the [Glacier Developer Guide](htt
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_globalaccelerator_accelerator",
 			Category:         "Global Accelerator Resources",
@@ -22029,8 +21820,7 @@ Provides a Global Accelerator accelerator.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_globalaccelerator_listener",
 			Category:         "Global Accelerator Resources",
@@ -22095,8 +21885,7 @@ Provides a Global Accelerator listener.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_catalog_database",
 			Category:         "Glue Resources",
@@ -22143,8 +21932,7 @@ Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer 
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_catalog_table",
 			Category:         "Glue Resources",
@@ -22341,8 +22129,7 @@ Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Gui
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_classifier",
 			Category:         "Glue Resources",
@@ -22405,8 +22192,7 @@ Provides a Glue Classifier resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_connection",
 			Category:         "Glue Resources",
@@ -22457,8 +22243,7 @@ Provides a Glue Connection resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_crawler",
 			Category:         "Glue Resources",
@@ -22539,8 +22324,7 @@ Manages a Glue Crawler. More information can be found in the [AWS Glue Developer
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_job",
 			Category:         "Glue Resources",
@@ -22591,8 +22375,7 @@ Provides a Glue Job resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_security_configuration",
 			Category:         "Glue Resources",
@@ -22670,8 +22453,7 @@ Manages a Glue Security Configuration.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_trigger",
 			Category:         "Glue Resources",
@@ -22742,8 +22524,7 @@ Manages a Glue Trigger resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_detector",
 			Category:         "GuardDuty Resources",
@@ -22796,8 +22577,7 @@ Provides a resource to manage a GuardDuty detector.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_invite_accepter",
 			Category:         "GuardDuty Resources",
@@ -22840,8 +22620,7 @@ Provides a resource to accept a pending GuardDuty invite on creation, ensure the
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_ipset",
 			Category:         "GuardDuty Resources",
@@ -22899,8 +22678,7 @@ Provides a resource to manage a GuardDuty IPSet.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_member",
 			Category:         "GuardDuty Resources",
@@ -22971,8 +22749,7 @@ Provides a resource to manage a GuardDuty member. To accept invitations in membe
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_guardduty_threatintelset",
 			Category:         "GuardDuty Resources",
@@ -23030,8 +22807,7 @@ Provides a resource to manage a GuardDuty ThreatIntelSet.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_access_key",
 			Category:         "IAM Resources",
@@ -23129,8 +22905,7 @@ Provides an IAM access key. This is a set of credentials that allow API requests
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_account_alias",
 			Category:         "IAM Resources",
@@ -23159,8 +22934,7 @@ Manages the account alias for the AWS Account.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_account_password_policy",
 			Category:         "IAM Resources",
@@ -23244,8 +23018,7 @@ in the official AWS docs.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group",
 			Category:         "IAM Resources",
@@ -23326,8 +23099,7 @@ Provides an IAM group.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group_membership",
 			Category:         "IAM Resources",
@@ -23387,8 +23159,7 @@ more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group_policy",
 			Category:         "IAM Resources",
@@ -23471,8 +23242,7 @@ Provides an IAM policy attached to a group.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group_policy_attachment",
 			Category:         "IAM Resources",
@@ -23497,8 +23267,7 @@ Attaches a Managed IAM Policy to an IAM group
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_instance_profile",
 			Category:         "IAM Resources",
@@ -23628,8 +23397,7 @@ Provides an IAM instance profile.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_openid_connect_provider",
 			Category:         "IAM Resources",
@@ -23679,8 +23447,7 @@ Provides an IAM OpenID Connect provider.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_policy",
 			Category:         "IAM Resources",
@@ -23786,8 +23553,7 @@ Provides an IAM policy.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_policy_attachment",
 			Category:         "IAM Resources",
@@ -23834,8 +23600,7 @@ Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_role",
 			Category:         "IAM Resources",
@@ -23961,8 +23726,7 @@ Provides an IAM role.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_role_policy",
 			Category:         "IAM Resources",
@@ -24045,8 +23809,7 @@ Provides an IAM role policy.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_role_policy_attachment",
 			Category:         "IAM Resources",
@@ -24071,8 +23834,7 @@ Attaches a Managed IAM Policy to an IAM role
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_saml_provider",
 			Category:         "IAM Resources",
@@ -24125,8 +23887,7 @@ Provides an IAM SAML provider.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_server_certificate",
 			Category:         "IAM Resources",
@@ -24206,8 +23967,7 @@ Certificates][2] in AWS Documentation.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_service_linked_role",
 			Category:         "IAM Resources",
@@ -24307,8 +24067,7 @@ Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/Use
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user",
 			Category:         "IAM Resources",
@@ -24384,8 +24143,7 @@ Provides an IAM user.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_group_membership",
 			Category:         "IAM Resources",
@@ -24445,8 +24203,7 @@ To exclusively manage the users in a group, see the
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_login_profile",
 			Category:         "IAM Resources",
@@ -24513,8 +24270,7 @@ Manages an IAM User Login Profile with limited support for password creation dur
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_policy",
 			Category:         "IAM Resources",
@@ -24577,8 +24333,7 @@ Provides an IAM policy attached to a user.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_policy_attachment",
 			Category:         "IAM Resources",
@@ -24603,8 +24358,7 @@ Attaches a Managed IAM Policy to an IAM user
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user_ssh_key",
 			Category:         "IAM Resources",
@@ -24669,8 +24423,7 @@ Uploads an SSH public key and associates it with the specified IAM user.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_inspector_assessment_target",
 			Category:         "Inspector Resources",
@@ -24708,8 +24461,7 @@ Provides a Inspector assessment target
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_inspector_assessment_template",
 			Category:         "Inspector Resources",
@@ -24762,8 +24514,7 @@ Provides a Inspector assessment template
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_inspector_resource_group",
 			Category:         "Inspector Resources",
@@ -24801,8 +24552,7 @@ Provides a Inspector resource group
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_instance",
 			Category:         "EC2 Resources",
@@ -25244,8 +24994,7 @@ and deleted. Instances also support [provisioning](/docs/provisioners/index.html
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_internet_gateway",
 			Category:         "VPC Resources",
@@ -25298,8 +25047,7 @@ Provides a resource to create a VPC Internet Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_certificate",
 			Category:         "IoT Resources",
@@ -25340,8 +25088,7 @@ Creates and manages an AWS IoT certificate.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_policy",
 			Category:         "IoT Resources",
@@ -25412,8 +25159,7 @@ Provides an IoT policy.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_policy_attachment",
 			Category:         "IoT Resources",
@@ -25445,8 +25191,7 @@ Provides an IoT policy attachment.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_role_alias",
 			Category:         "IoT Resources",
@@ -25494,8 +25239,7 @@ Provides an IoT role alias.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_thing",
 			Category:         "IoT Resources",
@@ -25561,8 +25305,7 @@ Creates and manages an AWS IoT Thing.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_thing_principal_attachment",
 			Category:         "IoT Resources",
@@ -25596,8 +25339,7 @@ Attaches Principal to AWS IoT Thing.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_thing_type",
 			Category:         "IoT Resources",
@@ -25650,8 +25392,7 @@ Creates and manages an AWS IoT Thing Type.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_topic_rule",
 			Category:         "IoT Resources",
@@ -25927,8 +25668,7 @@ Creates and manages an AWS IoT Thing Type.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_key_pair",
 			Category:         "EC2 Resources",
@@ -25994,8 +25734,7 @@ When importing an existing key pair the public key material may be in any format
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kinesis_analytics_application",
 			Category:         "Kinesis Resources",
@@ -26326,8 +26065,7 @@ For more details, see the [Amazon Kinesis Analytics Documentation][1].
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kinesis_firehose_delivery_stream",
 			Category:         "Kinesis Firehose Resources",
@@ -26839,8 +26577,7 @@ For more details, see the [Amazon Kinesis Firehose Documentation][1].
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kinesis_stream",
 			Category:         "Kinesis Resources",
@@ -26939,8 +26676,7 @@ For more details, see the [Amazon Kinesis Documentation][1].
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_alias",
 			Category:         "KMS Resources",
@@ -26998,8 +26734,7 @@ the [account limits](http://docs.aws.amazon.com/kms/latest/developerguide/limits
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_ciphertext",
 			Category:         "KMS Resources",
@@ -27051,8 +26786,7 @@ the [` + "`" + `aws_kms_ciphertext` + "`" + ` data source](/docs/providers/aws/d
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_external_key",
 			Category:         "KMS Resources",
@@ -27162,8 +26896,7 @@ Manages a KMS Customer Master Key that uses external key material. To instead ma
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_grant",
 			Category:         "KMS Resources",
@@ -27249,8 +26982,7 @@ Provides a resource-based access control mechanism for a KMS customer master key
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_key",
 			Category:         "KMS Resources",
@@ -27326,8 +27058,7 @@ Provides a KMS customer master key.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_alias",
 			Category:         "Lambda Resources",
@@ -27401,8 +27132,7 @@ For information about function aliases, see [CreateAlias][2] and [AliasRoutingCo
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_event_source_mapping",
 			Category:         "Lambda Resources",
@@ -27520,8 +27250,7 @@ For information about event source mappings, see [CreateEventSourceMapping][2] i
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_function",
 			Category:         "Lambda Resources",
@@ -27759,8 +27488,7 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_layer_version",
 			Category:         "Lambda Resources",
@@ -27870,8 +27598,7 @@ For information about Lambda Layers and how to use them, see [AWS Lambda Layers]
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_permission",
 			Category:         "Lambda Resources",
@@ -27937,8 +27664,7 @@ Creates a Lambda permission to allow external sources invoking the Lambda functi
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_launch_configuration",
 			Category:         "EC2 Resources",
@@ -28141,8 +27867,7 @@ Provides a resource to create a new launch configuration, used for autoscaling g
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_launch_template",
 			Category:         "EC2 Resources",
@@ -28580,8 +28305,7 @@ Provides an EC2 launch template resource. Can be used to create instances or aut
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb",
 			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
@@ -28757,8 +28481,7 @@ Provides a Load Balancer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_cookie_stickiness_policy",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -28863,8 +28586,7 @@ Provides a load balancer cookie stickiness policy, which allows an ELB to contro
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_listener",
 			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
@@ -29117,8 +28839,7 @@ Provides a Load Balancer Listener resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_listener_certificate",
 			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
@@ -29164,8 +28885,7 @@ This resource is for additional certificates and does not replace the default ce
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_listener_rule",
 			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
@@ -29430,8 +29150,7 @@ Provides a Load Balancer Listener Rule resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_ssl_negotiation_policy",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -29546,8 +29265,7 @@ Provides a load balancer SSL negotiation policy, which allows an ELB to control 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_target_group",
 			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
@@ -29742,8 +29460,7 @@ Provides a Target Group resource for use with Load Balancer resources.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_target_group_attachment",
 			Category:         "Elastic Load Balancing v2 (ALB/NLB) Resources",
@@ -29805,8 +29522,7 @@ Provides the ability to register instances and containers with an Application Lo
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_licensemanager_association",
 			Category:         "License Manager Resources",
@@ -29853,8 +29569,7 @@ Provides a License Manager association.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_licensemanager_license_configuration",
 			Category:         "License Manager Resources",
@@ -29961,8 +29676,7 @@ Provides a License Manager license configuration resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_domain",
 			Category:         "Lightsail Resources",
@@ -30014,8 +29728,7 @@ this parameter to manage the DNS records for that domain.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_instance",
 			Category:         "Lightsail Resources",
@@ -30090,8 +29803,7 @@ for more information.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_key_pair",
 			Category:         "Lightsail Resources",
@@ -30188,8 +29900,7 @@ Lightsail.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_static_ip",
 			Category:         "Lightsail Resources",
@@ -30249,8 +29960,7 @@ Allocates a static IP address.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lightsail_static_ip_attachment",
 			Category:         "Lightsail Resources",
@@ -30317,8 +30027,7 @@ Provides a static IP address attachment - relationship between a Lightsail stati
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_load_balancer_backend_server_policy",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -30399,8 +30108,7 @@ Attaches a load balancer policy to an ELB backend server.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_load_balancer_listener_policy",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -30479,8 +30187,7 @@ Attaches a load balancer policy to an ELB Listener.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_load_balancer_policy",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -30571,8 +30278,7 @@ Provides a load balancer policy, which can be attached to an ELB listener or bac
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_macie_member_account_association",
 			Category:         "Macie Resources",
@@ -30614,8 +30320,7 @@ Associates an AWS account with Amazon Macie as a member account.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_macie_s3_bucket_association",
 			Category:         "Macie Resources",
@@ -30682,8 +30387,7 @@ Associates an S3 resource with Amazon Macie for monitoring and data classificati
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_main_route_table_association",
 			Category:         "VPC Resources",
@@ -30740,8 +30444,7 @@ Provides a resource for managing the main routing table of a VPC.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_media_package_channel",
 			Category:         "MediaPackage Resources",
@@ -30851,8 +30554,7 @@ Provides an AWS Elemental MediaPackage Channel.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_media_store_container",
 			Category:         "MediaStore Resources",
@@ -30902,8 +30604,7 @@ Provides a MediaStore Container.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_media_store_container_policy",
 			Category:         "MediaStore Resources",
@@ -30939,8 +30640,7 @@ Provides a MediaStore Container Policy.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_mq_broker",
 			Category:         "MQ Resources",
@@ -31166,8 +30866,7 @@ brief downtime as the broker reboots.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_mq_configuration",
 			Category:         "MQ Resources",
@@ -31250,8 +30949,7 @@ For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aw
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_msk_cluster",
 			Category:         "Managed Streaming for Kafka (MSK) Resources",
@@ -31387,8 +31085,7 @@ Manages AWS Managed Streaming for Kafka cluster
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_msk_configuration",
 			Category:         "Managed Streaming for Kafka (MSK) Resources",
@@ -31461,8 +31158,7 @@ Manages an Amazon Managed Streaming for Kafka configuration. More information ca
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_nat_gateway",
 			Category:         "VPC Resources",
@@ -31560,8 +31256,7 @@ Provides a resource to create a VPC NAT Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_cluster",
 			Category:         "Neptune Resources",
@@ -31770,8 +31465,7 @@ phase because a modification has not yet taken place. You can use the
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_cluster_instance",
 			Category:         "Neptune Resources",
@@ -31953,8 +31647,7 @@ meta-parameter to make multiple instances and join them all to the same Neptune 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_cluster_parameter_group",
 			Category:         "Neptune Resources",
@@ -32044,8 +31737,7 @@ Manages a Neptune Cluster Parameter Group
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_cluster_snapshot",
 			Category:         "Neptune Resources",
@@ -32208,8 +31900,7 @@ Manages a Neptune database cluster snapshot.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_event_subscription",
 			Category:         "Neptune Resources",
@@ -32284,8 +31975,7 @@ Manages a Neptune database cluster snapshot.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_parameter_group",
 			Category:         "Neptune Resources",
@@ -32363,8 +32053,7 @@ Manages a Neptune Parameter Group
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_neptune_subnet_group",
 			Category:         "Neptune Resources",
@@ -32432,8 +32121,7 @@ Provides an Neptune subnet group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_network_acl",
 			Category:         "VPC Resources",
@@ -32553,8 +32241,7 @@ a conflict of rule settings and will overwrite rules.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_network_acl_rule",
 			Category:         "VPC Resources",
@@ -32650,8 +32337,7 @@ a conflict of rule settings and will overwrite rules.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_network_interface",
 			Category:         "VPC Resources",
@@ -32804,8 +32490,7 @@ Provides an Elastic network interface (ENI) resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_network_interface_attachment",
 			Category:         "VPC Resources",
@@ -32885,8 +32570,7 @@ Attach an Elastic network interface (ENI) resource with EC2 instance.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_network_interface_sg_attachment",
 			Category:         "VPC Resources",
@@ -32934,8 +32618,7 @@ one or the other.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_application",
 			Category:         "OpsWorks Resources",
@@ -33111,8 +32794,7 @@ Provides an OpsWorks application resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_custom_layer",
 			Category:         "OpsWorks Resources",
@@ -33255,8 +32937,7 @@ Provides an OpsWorks custom layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_ganglia_layer",
 			Category:         "OpsWorks Resources",
@@ -33409,8 +33090,7 @@ Provides an OpsWorks Ganglia layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_haproxy_layer",
 			Category:         "OpsWorks Resources",
@@ -33578,8 +33258,7 @@ Provides an OpsWorks haproxy layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_instance",
 			Category:         "OpsWorks Resources",
@@ -33885,8 +33564,7 @@ Provides an OpsWorks instance resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_java_app_layer",
 			Category:         "OpsWorks Resources",
@@ -34051,8 +33729,7 @@ Provides an OpsWorks Java application layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_memcached_layer",
 			Category:         "OpsWorks Resources",
@@ -34195,8 +33872,7 @@ Provides an OpsWorks memcached layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_mysql_layer",
 			Category:         "OpsWorks Resources",
@@ -34347,8 +34023,7 @@ Provides an OpsWorks MySQL layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_nodejs_app_layer",
 			Category:         "OpsWorks Resources",
@@ -34493,8 +34168,7 @@ Provides an OpsWorks NodeJS application layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_permission",
 			Category:         "OpsWorks Resources",
@@ -34550,8 +34224,7 @@ Provides an OpsWorks permission resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_php_app_layer",
 			Category:         "OpsWorks Resources",
@@ -34691,8 +34364,7 @@ Provides an OpsWorks PHP application layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_rails_app_layer",
 			Category:         "OpsWorks Resources",
@@ -34862,8 +34534,7 @@ Provides an OpsWorks Ruby on Rails application layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_rds_db_instance",
 			Category:         "OpsWorks Resources",
@@ -34921,8 +34592,7 @@ Provides an OpsWorks RDS DB Instance resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_stack",
 			Category:         "OpsWorks Resources",
@@ -35098,8 +34768,7 @@ Provides an OpsWorks stack resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_static_web_layer",
 			Category:         "OpsWorks Resources",
@@ -35234,8 +34903,7 @@ Provides an OpsWorks static web server layer resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_opsworks_user_profile",
 			Category:         "OpsWorks Resources",
@@ -35288,8 +34956,7 @@ Provides an OpsWorks User Profile resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_account",
 			Category:         "Organizations Resources",
@@ -35359,8 +35026,7 @@ Provides a resource to create a member account in the current organization.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_organization",
 			Category:         "Organizations Resources",
@@ -35566,8 +35232,7 @@ Provides a resource to create an organization.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_organizational_unit",
 			Category:         "Organizations Resources",
@@ -35670,8 +35335,7 @@ Provides a resource to create an organizational unit.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_policy",
 			Category:         "Organizations Resources",
@@ -35732,8 +35396,7 @@ Provides a resource to manage an [AWS Organizations policy](https://docs.aws.ama
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_organizations_policy_attachment",
 			Category:         "Organizations Resources",
@@ -35765,8 +35428,7 @@ Provides a resource to attach an AWS Organizations policy to an organization acc
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_adm_channel",
 			Category:         "Pinpoint Resources",
@@ -35812,8 +35474,7 @@ Provides a Pinpoint ADM (Amazon Device Messaging) Channel resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_apns_channel",
 			Category:         "Pinpoint Resources",
@@ -35883,8 +35544,7 @@ Provides a Pinpoint APNs Channel resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_apns_sandbox_channel",
 			Category:         "Pinpoint Resources",
@@ -35956,8 +35616,7 @@ Provides a Pinpoint APNs Sandbox Channel resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_apns_voip_channel",
 			Category:         "Pinpoint Resources",
@@ -36029,8 +35688,7 @@ Provides a Pinpoint APNs VoIP Channel resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_apns_voip_sandbox_channel",
 			Category:         "Pinpoint Resources",
@@ -36104,8 +35762,7 @@ Provides a Pinpoint APNs VoIP Sandbox Channel resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_app",
 			Category:         "Pinpoint Resources",
@@ -36206,8 +35863,7 @@ Provides a Pinpoint App resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_baidu_channel",
 			Category:         "Pinpoint Resources",
@@ -36253,8 +35909,7 @@ Provides a Pinpoint Baidu Channel resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_email_channel",
 			Category:         "Pinpoint Resources",
@@ -36312,8 +35967,7 @@ Provides a Pinpoint SMS Channel resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_event_stream",
 			Category:         "Pinpoint Resources",
@@ -36350,8 +36004,7 @@ Provides a Pinpoint Event Stream resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_gcm_channel",
 			Category:         "Pinpoint Resources",
@@ -36391,8 +36044,7 @@ Provides a Pinpoint GCM Channel resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pinpoint_sms_channel",
 			Category:         "Pinpoint Resources",
@@ -36455,8 +36107,7 @@ Provides a Pinpoint SMS Channel resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_placement_group",
 			Category:         "EC2 Resources",
@@ -36500,8 +36151,7 @@ in [AWS Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-grou
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_proxy_protocol_policy",
 			Category:         "Elastic Load Balancing (ELB Classic) Resources",
@@ -36564,8 +36214,7 @@ Provides a proxy protocol policy, which allows an ELB to carry a client connecti
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ram_principal_association",
 			Category:         "RAM Resources",
@@ -36610,8 +36259,7 @@ Provides a Resource Access Manager (RAM) principal association.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ram_resource_association",
 			Category:         "RAM Resources",
@@ -36656,8 +36304,7 @@ Manages a Resource Access Manager (RAM) Resource Association.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ram_resource_share",
 			Category:         "RAM Resources",
@@ -36715,8 +36362,7 @@ Manages a Resource Access Manager (RAM) Resource Share. To association principal
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster",
 			Category:         "RDS Resources",
@@ -37170,8 +36816,7 @@ for more information.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster_endpoint",
 			Category:         "RDS Resources",
@@ -37251,8 +36896,7 @@ You can refer to the [User Guide][1].
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster_instance",
 			Category:         "RDS Resources",
@@ -37558,8 +37202,7 @@ For more information on Amazon Aurora, see [Aurora on Amazon RDS][2] in the Amaz
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster_parameter_group",
 			Category:         "RDS Resources",
@@ -37652,8 +37295,7 @@ Provides an RDS DB cluster parameter group resource. Documentation of the availa
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_global_cluster",
 			Category:         "RDS Resources",
@@ -37735,8 +37377,7 @@ More information about Aurora global databases can be found in the [Aurora User 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_cluster",
 			Category:         "Redshift Resources",
@@ -38135,8 +37776,7 @@ Provides a Redshift Cluster Resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_event_subscription",
 			Category:         "Redshift Resources",
@@ -38208,8 +37848,7 @@ Provides a Redshift event subscription resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_parameter_group",
 			Category:         "Redshift Resources",
@@ -38272,8 +37911,7 @@ Provides a Redshift Cluster parameter group resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_security_group",
 			Category:         "Redshift Resources",
@@ -38336,8 +37974,7 @@ Creates a new Amazon Redshift security group. You use security groups to control
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_snapshot_copy_grant",
 			Category:         "Redshift Resources",
@@ -38378,8 +38015,7 @@ Note that the grant must exist in the destination region, and not in the region 
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_subnet_group",
 			Category:         "Redshift Resources",
@@ -38432,8 +38068,7 @@ Creates a new Amazon Redshift subnet group. You must provide a list of one or mo
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_resourcegroups_group",
 			Category:         "Resource Groups Resources",
@@ -38493,8 +38128,7 @@ Provides a Resource Group.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route",
 			Category:         "VPC Resources",
@@ -38581,8 +38215,7 @@ a conflict of rule settings and will overwrite rules.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_delegation_set",
 			Category:         "Route53 Resources",
@@ -38630,8 +38263,7 @@ Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/A
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_health_check",
 			Category:         "Route53 Resources",
@@ -38748,8 +38380,7 @@ Provides a Route53 health check.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_query_log",
 			Category:         "Route53 Resources",
@@ -38798,8 +38429,7 @@ See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/la
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_record",
 			Category:         "Route53 Resources",
@@ -38955,8 +38585,7 @@ Provides a Route53 record resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_resolver_endpoint",
 			Category:         "Route53 Resolver Resources",
@@ -39044,8 +38673,7 @@ Provides a Route 53 Resolver endpoint resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_resolver_rule",
 			Category:         "Route53 Resolver Resources",
@@ -39143,8 +38771,7 @@ Provides a Route53 Resolver rule.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_resolver_rule_association",
 			Category:         "Route53 Resolver Resources",
@@ -39194,8 +38821,7 @@ Provides a Route53 Resolver rule association.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_zone",
 			Category:         "Route53 Resources",
@@ -39276,8 +38902,7 @@ Manages a Route53 Hosted Zone.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_zone_association",
 			Category:         "Route53 Resources",
@@ -39359,8 +38984,7 @@ Manages a Route53 Hosted Zone VPC association. VPC associations can only be made
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route_table",
 			Category:         "VPC Resources",
@@ -39487,8 +39111,7 @@ the separate resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route_table_association",
 			Category:         "VPC Resources",
@@ -39533,8 +39156,7 @@ Provides a resource to create an association between a subnet and routing table.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_account_public_access_block",
 			Category:         "S3 Resources",
@@ -39600,8 +39222,7 @@ Manages S3 account-level Public Access Block configuration. For more information
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket",
 			Category:         "S3 Resources",
@@ -40012,8 +39633,7 @@ Provides a S3 bucket resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_inventory",
 			Category:         "S3 Resources",
@@ -40130,8 +39750,7 @@ Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/Amazo
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_metric",
 			Category:         "S3 Resources",
@@ -40178,8 +39797,7 @@ Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_notification",
 			Category:         "S3 Resources",
@@ -40298,8 +39916,7 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_object",
 			Category:         "S3 Resources",
@@ -40437,8 +40054,7 @@ Provides a S3 bucket object resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_policy",
 			Category:         "S3 Resources",
@@ -40470,8 +40086,7 @@ Attaches a policy to an S3 bucket resource.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_public_access_block",
 			Category:         "S3 Resources",
@@ -40533,8 +40148,7 @@ Manages S3 bucket-level Public Access Block configuration. For more information 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_endpoint",
 			Category:         "Sagemaker Resources",
@@ -40590,8 +40204,7 @@ Provides a SageMaker Endpoint resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_endpoint_configuration",
 			Category:         "Sagemaker Resources",
@@ -40669,8 +40282,7 @@ Provides a SageMaker endpoint configuration resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_model",
 			Category:         "Sagemaker Resources",
@@ -40751,8 +40363,7 @@ Provides a SageMaker model resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_notebook_instance",
 			Category:         "Sagemaker Resources",
@@ -40830,8 +40441,7 @@ Provides a Sagemaker Notebook Instance resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sagemaker_notebook_instance_lifecycle_configuration",
 			Category:         "Sagemaker Resources",
@@ -40883,8 +40493,7 @@ Provides a lifecycle configuration for SageMaker Notebook Instances.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_secretsmanager_secret",
 			Category:         "Secrets Manager Resources",
@@ -40989,8 +40598,7 @@ Provides a resource to manage AWS Secrets Manager secret metadata. To manage a s
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_secretsmanager_secret_version",
 			Category:         "Secrets Manager Resources",
@@ -41069,8 +40677,7 @@ Provides a resource to manage AWS Secrets Manager secret version including its s
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_security_group",
 			Category:         "VPC Resources",
@@ -41312,8 +40919,7 @@ a conflict of rule settings and will overwrite rules.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_security_group_rule",
 			Category:         "VPC Resources",
@@ -41445,8 +41051,7 @@ a conflict of rule settings and will overwrite rules.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_securityhub_account",
 			Category:         "Security Hub Resources",
@@ -41485,8 +41090,7 @@ Enables Security Hub for this AWS account.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_securityhub_product_subscription",
 			Category:         "Security Hub Resources",
@@ -41530,8 +41134,7 @@ Subscribes to a Security Hub product.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_securityhub_standards_subscription",
 			Category:         "Security Hub Resources",
@@ -41575,8 +41178,7 @@ Subscribes to a Security Hub standard.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_service_discovery_http_namespace",
 			Category:         "Service Discovery Resources",
@@ -41630,8 +41232,7 @@ Subscribes to a Security Hub standard.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_service_discovery_private_dns_namespace",
 			Category:         "Service Discovery Resources",
@@ -41703,8 +41304,7 @@ Provides a Service Discovery Private DNS Namespace resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_service_discovery_public_dns_namespace",
 			Category:         "Service Discovery Resources",
@@ -41771,8 +41371,7 @@ Provides a Service Discovery Public DNS Namespace resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_service_discovery_service",
 			Category:         "Service Discovery Resources",
@@ -41883,8 +41482,7 @@ Provides a Service Discovery Service resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_servicecatalog_portfolio",
 			Category:         "Service Catalog Resources",
@@ -41939,8 +41537,7 @@ Provides a resource to create a Service Catalog Portfolio.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_active_receipt_rule_set",
 			Category:         "SES Resources",
@@ -41971,8 +41568,7 @@ Provides a resource to designate the active SES receipt rule set
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_configuration_set",
 			Category:         "SES Resources",
@@ -41999,8 +41595,7 @@ Provides an SES configuration set resource
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_domain_dkim",
 			Category:         "SES Resources",
@@ -42040,8 +41635,7 @@ Domain ownership needs to be confirmed first using [ses_domain_identity Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_domain_identity",
 			Category:         "SES Resources",
@@ -42089,8 +41683,7 @@ Provides an SES domain identity resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_domain_identity_verification",
 			Category:         "SES Resources",
@@ -42146,8 +41739,7 @@ deploy the required DNS verification records, and wait for verification to compl
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_domain_mail_from",
 			Category:         "SES Resources",
@@ -42199,8 +41791,7 @@ Provides an SES domain MAIL FROM resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_email_identity",
 			Category:         "SES Resources",
@@ -42234,8 +41825,7 @@ Provides an SES domain MAIL FROM resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_event_destination",
 			Category:         "SES Resources",
@@ -42322,8 +41912,7 @@ Provides an SES event destination
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_identity_notification_topic",
 			Category:         "SES Resources",
@@ -42362,8 +41951,7 @@ Resource for managing SES Identity Notification Topics
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_receipt_filter",
 			Category:         "SES Resources",
@@ -42400,8 +41988,7 @@ Provides an SES receipt filter resource
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_receipt_rule",
 			Category:         "SES Resources",
@@ -42623,8 +42210,7 @@ Provides an SES receipt rule resource
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_receipt_rule_set",
 			Category:         "SES Resources",
@@ -42653,8 +42239,7 @@ Provides an SES receipt rule set resource
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ses_template",
 			Category:         "SES Resources",
@@ -42705,8 +42290,7 @@ Provides a resource to create a SES template.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sfn_activity",
 			Category:         "Step Function (SFN) Resources",
@@ -42771,8 +42355,7 @@ Provides a Step Function Activity resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sfn_state_machine",
 			Category:         "Step Function (SFN) Resources",
@@ -42849,8 +42432,7 @@ Provides a Step Function State Machine resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_shield_protection",
 			Category:         "Shield Resources",
@@ -42892,8 +42474,7 @@ The resource can be an Amazon CloudFront distribution, Elastic Load Balancing lo
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_simpledb_domain",
 			Category:         "SimpleDB Resources",
@@ -42929,8 +42510,7 @@ Provides a SimpleDB domain resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_snapshot_create_volume_permission",
 			Category:         "EC2 Resources",
@@ -42977,8 +42557,7 @@ Adds permission to create volumes off of a given EBS Snapshot.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_platform_application",
 			Category:         "SNS Resources",
@@ -43076,8 +42655,7 @@ Provides an SNS platform application resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_sms_preferences",
 			Category:         "SNS Resources",
@@ -43129,8 +42707,7 @@ Provides a way to set SNS SMS preferences.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_topic",
 			Category:         "SNS Resources",
@@ -43266,8 +42843,7 @@ Provides an SNS topic resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_topic_policy",
 			Category:         "SNS Resources",
@@ -43301,8 +42877,7 @@ Provides an SNS topic policy resource
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_topic_subscription",
 			Category:         "SNS Resources",
@@ -43426,8 +43001,7 @@ probably be SQS queues.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_spot_datafeed_subscription",
 			Category:         "EC2 Resources",
@@ -43464,8 +43038,7 @@ This data feed is sent to an Amazon S3 bucket that you specify when you subscrib
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_spot_fleet_request",
 			Category:         "EC2 Resources",
@@ -43596,8 +43169,7 @@ instances to be requested on the Spot market.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_spot_instance_request",
 			Category:         "EC2 Resources",
@@ -43769,8 +43341,7 @@ for more information.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sqs_queue",
 			Category:         "SQS Resources",
@@ -43879,8 +43450,7 @@ for more information.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sqs_queue_policy",
 			Category:         "SQS Resources",
@@ -43913,8 +43483,7 @@ while referencing ARN of the queue within the policy.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_activation",
 			Category:         "SSM Resources",
@@ -44045,8 +43614,7 @@ Registers an on-premises server or virtual machine with Amazon EC2 so that it ca
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_association",
 			Category:         "SSM Resources",
@@ -44172,8 +43740,7 @@ Associates an SSM Document to an instance or EC2 tag.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_document",
 			Category:         "SSM Resources",
@@ -44358,8 +43925,7 @@ schema version you must recreate the resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_maintenance_window",
 			Category:         "SSM Resources",
@@ -44442,8 +44008,7 @@ Provides an SSM Maintenance Window resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_maintenance_window_target",
 			Category:         "SSM Resources",
@@ -44508,8 +44073,7 @@ Provides an SSM Maintenance Window Target resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_maintenance_window_task",
 			Category:         "SSM Resources",
@@ -44629,8 +44193,7 @@ Provides an SSM Maintenance Window Task resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_parameter",
 			Category:         "SSM Resources",
@@ -44746,8 +44309,7 @@ Provides an SSM Parameter resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_patch_baseline",
 			Category:         "SSM Resources",
@@ -44849,8 +44411,7 @@ of them is specified.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_patch_group",
 			Category:         "SSM Resources",
@@ -44893,8 +44454,7 @@ Provides an SSM Patch Group resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_resource_data_sync",
 			Category:         "SSM Resources",
@@ -44953,8 +44513,7 @@ Provides a SSM resource data sync.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_cache",
 			Category:         "Storage Gateway Resources",
@@ -45001,8 +44560,7 @@ Manages an AWS Storage Gateway cache.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_cached_iscsi_volume",
 			Category:         "Storage Gateway Resources",
@@ -45145,8 +44703,7 @@ Manages an AWS Storage Gateway cached iSCSI volume.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_gateway",
 			Category:         "Storage Gateway Resources",
@@ -45271,8 +44828,7 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_nfs_file_share",
 			Category:         "Storage Gateway Resources",
@@ -45456,8 +45012,7 @@ Manages an AWS Storage Gateway NFS File Share.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_smb_file_share",
 			Category:         "Storage Gateway Resources",
@@ -45646,8 +45201,7 @@ Manages an AWS Storage Gateway SMB File Share.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_upload_buffer",
 			Category:         "Storage Gateway Resources",
@@ -45696,8 +45250,7 @@ Manages an AWS Storage Gateway upload buffer.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_working_storage",
 			Category:         "Storage Gateway Resources",
@@ -45744,8 +45297,7 @@ Manages an AWS Storage Gateway working storage.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_subnet",
 			Category:         "VPC Resources",
@@ -45846,8 +45398,7 @@ Provides an VPC subnet resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_swf_domain",
 			Category:         "SWF Resources",
@@ -45898,8 +45449,7 @@ Provides an SWF Domain resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_transfer_server",
 			Category:         "Transfer Resources",
@@ -46038,8 +45588,7 @@ resource "aws_transfer_server" "foo" {
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_transfer_ssh_key",
 			Category:         "Transfer Resources",
@@ -46143,8 +45692,7 @@ resource "aws_transfer_ssh_key" "foo" {
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_transfer_user",
 			Category:         "Transfer Resources",
@@ -46262,8 +45810,7 @@ resource "aws_transfer_user" "foo" {
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_volume_attachment",
 			Category:         "EC2 Resources",
@@ -46344,8 +45891,7 @@ detach volumes from AWS Instances.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc",
 			Category:         "VPC Resources",
@@ -46544,8 +46090,7 @@ Provides a VPC resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_dhcp_options",
 			Category:         "VPC Resources",
@@ -46618,8 +46163,7 @@ Provides a VPC DHCP Options resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_dhcp_options_association",
 			Category:         "VPC Resources",
@@ -46664,8 +46208,7 @@ Provides a VPC DHCP Options Association resource.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint",
 			Category:         "VPC Resources",
@@ -46818,8 +46361,7 @@ Doing so will cause a conflict of associations and will overwrite the associatio
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_connection_notification",
 			Category:         "VPC Resources",
@@ -46895,8 +46437,7 @@ Connection notifications notify subscribers of VPC Endpoint events.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_route_table_association",
 			Category:         "VPC Resources",
@@ -46943,8 +46484,7 @@ Manages a VPC Endpoint Route Table Association
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_service",
 			Category:         "VPC Resources",
@@ -47059,8 +46599,7 @@ and will overwrite the association.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_service_allowed_principal",
 			Category:         "VPC Resources",
@@ -47113,8 +46652,7 @@ and will overwrite the association.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_subnet_association",
 			Category:         "VPC Resources",
@@ -47165,8 +46703,7 @@ Association resource. Doing so will cause a conflict of associations and will ov
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_ipv4_cidr_block_association",
 			Category:         "VPC Resources",
@@ -47216,8 +46753,7 @@ The ` + "`" + `aws_vpc_ipv4_cidr_block_association` + "`" + ` resource allows fu
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_peering_connection",
 			Category:         "VPC Resources",
@@ -47317,8 +46853,7 @@ connection and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + `
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_peering_connection_accepter",
 			Category:         "VPC Resources",
@@ -47485,8 +47020,7 @@ connection into management.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_peering_connection_options",
 			Category:         "VPC Resources",
@@ -47666,8 +47200,7 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_connection",
 			Category:         "VPC Resources",
@@ -47946,8 +47479,7 @@ Manages an EC2 VPN connection. These objects can be connected to customer gatewa
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_connection_route",
 			Category:         "VPC Resources",
@@ -48002,8 +47534,7 @@ Provides a static route between a VPN connection and a customer gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_gateway",
 			Category:         "VPC Resources",
@@ -48056,8 +47587,7 @@ Provides a resource to create a VPC VPN Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_gateway_attachment",
 			Category:         "VPC Resources",
@@ -48117,8 +47647,7 @@ to an existing VPC by setting the [` + "`" + `vpc_id` + "`" + `](vpn_gateway.htm
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_gateway_route_propagation",
 			Category:         "VPC Resources",
@@ -48158,8 +47687,7 @@ propagation not explicitly listed in its value will be removed.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_byte_match_set",
 			Category:         "WAF Resources",
@@ -48234,8 +47762,7 @@ Provides a WAF Byte Match Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_geo_match_set",
 			Category:         "WAF Resources",
@@ -48290,8 +47817,7 @@ Provides a WAF Geo Match Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_ipset",
 			Category:         "WAF Resources",
@@ -48352,8 +47878,7 @@ Provides a WAF IPSet Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_rate_based_rule",
 			Category:         "WAF Resources",
@@ -48428,8 +47953,7 @@ Provides a WAF Rate Based Rule Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_regex_match_set",
 			Category:         "WAF Resources",
@@ -48499,8 +48023,7 @@ Provides a WAF Regex Match Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_regex_pattern_set",
 			Category:         "WAF Resources",
@@ -48545,8 +48068,7 @@ Provides a WAF Regex Pattern Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_rule",
 			Category:         "WAF Resources",
@@ -48607,8 +48129,7 @@ Provides a WAF Rule Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_rule_group",
 			Category:         "WAF Resources",
@@ -48681,8 +48202,7 @@ Provides a WAF Rule Group Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_size_constraint_set",
 			Category:         "WAF Resources",
@@ -48757,8 +48277,7 @@ Provides a WAF Size Constraint Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_sql_injection_match_set",
 			Category:         "WAF Resources",
@@ -48825,8 +48344,7 @@ Provides a WAF SQL Injection Match Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_web_acl",
 			Category:         "WAF Resources",
@@ -48949,8 +48467,7 @@ Provides a WAF Web ACL Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_waf_xss_match_set",
 			Category:         "WAF Resources",
@@ -49015,8 +48532,7 @@ Provides a WAF XSS Match Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_byte_match_set",
 			Category:         "WAF Regional Resources",
@@ -49095,8 +48611,7 @@ Provides a WAF Regional Byte Match Set Resource for use with Application Load Ba
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_geo_match_set",
 			Category:         "WAF Regional Resources",
@@ -49155,8 +48670,7 @@ Provides a WAF Regional Geo Match Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_ipset",
 			Category:         "WAF Regional Resources",
@@ -49221,8 +48735,7 @@ Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_rate_based_rule",
 			Category:         "WAF Regional Resources",
@@ -49301,8 +48814,7 @@ Provides a WAF Rate Based Rule Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_regex_match_set",
 			Category:         "WAF Regional Resources",
@@ -49376,8 +48888,7 @@ Provides a WAF Regional Regex Match Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_regex_pattern_set",
 			Category:         "WAF Regional Resources",
@@ -49426,8 +48937,7 @@ Provides a WAF Regional Regex Pattern Set Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_rule",
 			Category:         "WAF Regional Resources",
@@ -49492,8 +49002,7 @@ Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_rule_group",
 			Category:         "WAF Regional Resources",
@@ -49570,8 +49079,7 @@ Provides a WAF Regional Rule Group Resource
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_size_constraint_set",
 			Category:         "WAF Regional Resources",
@@ -49650,8 +49158,7 @@ Provides a WAF Regional Size Constraint Set Resource for use with Application Lo
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_sql_injection_match_set",
 			Category:         "WAF Regional Resources",
@@ -49722,8 +49229,7 @@ Provides a WAF Regional SQL Injection Match Set Resource for use with Applicatio
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_web_acl",
 			Category:         "WAF Regional Resources",
@@ -49855,8 +49361,7 @@ Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_web_acl_association",
 			Category:         "WAF Regional Resources",
@@ -49907,8 +49412,7 @@ Manages an association with WAF Regional Web ACL.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_wafregional_xss_match_set",
 			Category:         "WAF Regional Resources",
@@ -49977,8 +49481,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_worklink_fleet",
 			Category:         "WorkLink Resources",
@@ -50107,8 +49610,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_worklink_website_certificate_authority_association",
 			Category:         "WorkLink Resources",
@@ -50158,8 +49660,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_xray_sampling_rule",
 			Category:         "XRay Resources",
@@ -50263,4 +49764,516 @@ Creates and manages an AWS XRay Sampling Rule.
 			},
 		},
 	}
+
+	resourcesMap = map[string]int{
+
+		"aws_acm_certificate":                                     0,
+		"aws_acm_certificate_validation":                          1,
+		"aws_acmpca_certificate_authority":                        2,
+		"aws_ami":                                                 3,
+		"aws_ami_copy":                                            4,
+		"aws_ami_from_instance":                                   5,
+		"aws_ami_launch_permission":                               6,
+		"aws_api_gateway_account":                                 7,
+		"aws_api_gateway_api_key":                                 8,
+		"aws_api_gateway_authorizer":                              9,
+		"aws_api_gateway_base_path_mapping":                       10,
+		"aws_api_gateway_client_certificate":                      11,
+		"aws_api_gateway_deployment":                              12,
+		"aws_api_gateway_documentation_part":                      13,
+		"aws_api_gateway_documentation_version":                   14,
+		"aws_api_gateway_domain_name":                             15,
+		"aws_api_gateway_gateway_response":                        16,
+		"aws_api_gateway_integration":                             17,
+		"aws_api_gateway_integration_response":                    18,
+		"aws_api_gateway_method":                                  19,
+		"aws_api_gateway_method_response":                         20,
+		"aws_api_gateway_method_settings":                         21,
+		"aws_api_gateway_model":                                   22,
+		"aws_api_gateway_request_validator":                       23,
+		"aws_api_gateway_resource":                                24,
+		"aws_api_gateway_rest_api":                                25,
+		"aws_api_gateway_stage":                                   26,
+		"aws_api_gateway_usage_plan":                              27,
+		"aws_api_gateway_usage_plan_key":                          28,
+		"aws_api_gateway_vpc_link":                                29,
+		"aws_app_cookie_stickiness_policy":                        30,
+		"aws_appautoscaling_policy":                               31,
+		"aws_appautoscaling_scheduled_action":                     32,
+		"aws_appautoscaling_target":                               33,
+		"aws_appmesh_mesh":                                        34,
+		"aws_appmesh_route":                                       35,
+		"aws_appmesh_virtual_node":                                36,
+		"aws_appmesh_virtual_router":                              37,
+		"aws_appmesh_virtual_service":                             38,
+		"aws_appsync_api_key":                                     39,
+		"aws_appsync_datasource":                                  40,
+		"aws_appsync_graphql_api":                                 41,
+		"aws_appsync_resolver":                                    42,
+		"aws_athena_database":                                     43,
+		"aws_athena_named_query":                                  44,
+		"aws_autoscaling_attachment":                              45,
+		"aws_autoscaling_group":                                   46,
+		"aws_autoscaling_lifecycle_hook":                          47,
+		"aws_autoscaling_notification":                            48,
+		"aws_autoscaling_policy":                                  49,
+		"aws_autoscaling_schedule":                                50,
+		"aws_backup_plan":                                         51,
+		"aws_backup_selection":                                    52,
+		"aws_backup_vault":                                        53,
+		"aws_batch_compute_environment":                           54,
+		"aws_batch_job_definition":                                55,
+		"aws_batch_job_queue":                                     56,
+		"aws_budgets_budget":                                      57,
+		"aws_cloud9_environment_ec2":                              58,
+		"aws_cloudformation_stack":                                59,
+		"aws_cloudformation_stack_set":                            60,
+		"aws_cloudformation_stack_set_instance":                   61,
+		"aws_cloudfront_distribution":                             62,
+		"aws_cloudfront_origin_access_identity":                   63,
+		"aws_cloudfront_public_key":                               64,
+		"aws_cloudhsm_v2_cluster":                                 65,
+		"aws_cloudhsm_v2_hsm":                                     66,
+		"aws_cloudtrail":                                          67,
+		"aws_cloudwatch_dashboard":                                68,
+		"aws_cloudwatch_event_permission":                         69,
+		"aws_cloudwatch_event_rule":                               70,
+		"aws_cloudwatch_event_target":                             71,
+		"aws_cloudwatch_log_destination":                          72,
+		"aws_cloudwatch_log_destination_policy":                   73,
+		"aws_cloudwatch_log_group":                                74,
+		"aws_cloudwatch_log_metric_filter":                        75,
+		"aws_cloudwatch_log_resource_policy":                      76,
+		"aws_cloudwatch_log_stream":                               77,
+		"aws_cloudwatch_log_subscription_filter":                  78,
+		"aws_cloudwatch_metric_alarm":                             79,
+		"aws_codebuild_project":                                   80,
+		"aws_codebuild_webhook":                                   81,
+		"aws_codecommit_repository":                               82,
+		"aws_codecommit_trigger":                                  83,
+		"aws_codedeploy_app":                                      84,
+		"aws_codedeploy_deployment_config":                        85,
+		"aws_codedeploy_deployment_group":                         86,
+		"aws_codepipeline":                                        87,
+		"aws_codepipeline_webhook":                                88,
+		"aws_cognito_identity_pool":                               89,
+		"aws_cognito_identity_pool_roles_attachment":              90,
+		"aws_cognito_identity_provider":                           91,
+		"aws_cognito_resource_server":                             92,
+		"aws_cognito_user_group":                                  93,
+		"aws_cognito_user_pool":                                   94,
+		"aws_cognito_user_pool_client":                            95,
+		"aws_cognito_user_pool_domain":                            96,
+		"aws_config_aggregate_authorization":                      97,
+		"aws_config_config_rule":                                  98,
+		"aws_config_configuration_aggregator":                     99,
+		"aws_config_configuration_recorder":                       100,
+		"aws_config_configuration_recorder_status":                101,
+		"aws_config_delivery_channel":                             102,
+		"aws_cur_report_definition":                               103,
+		"aws_customer_gateway":                                    104,
+		"aws_datasync_agent":                                      105,
+		"aws_datasync_location_efs":                               106,
+		"aws_datasync_location_nfs":                               107,
+		"aws_datasync_location_s3":                                108,
+		"aws_datasync_task":                                       109,
+		"aws_dax_cluster":                                         110,
+		"aws_dax_parameter_group":                                 111,
+		"aws_dax_subnet_group":                                    112,
+		"aws_db_cluster_snapshot":                                 113,
+		"aws_db_event_subscription":                               114,
+		"aws_db_instance":                                         115,
+		"aws_db_instance_role_association":                        116,
+		"aws_db_option_group":                                     117,
+		"aws_db_parameter_group":                                  118,
+		"aws_db_security_group":                                   119,
+		"aws_db_snapshot":                                         120,
+		"aws_db_subnet_group":                                     121,
+		"aws_default_network_acl":                                 122,
+		"aws_default_route_table":                                 123,
+		"aws_default_security_group":                              124,
+		"aws_default_subnet":                                      125,
+		"aws_default_vpc":                                         126,
+		"aws_default_vpc_dhcp_options":                            127,
+		"aws_devicefarm_project":                                  128,
+		"aws_directory_service_conditional_forwarder":             129,
+		"aws_directory_service_directory":                         130,
+		"aws_dlm_lifecycle_policy":                                131,
+		"aws_dms_certificate":                                     132,
+		"aws_dms_endpoint":                                        133,
+		"aws_dms_replication_instance":                            134,
+		"aws_dms_replication_subnet_group":                        135,
+		"aws_dms_replication_task":                                136,
+		"aws_docdb_cluster":                                       137,
+		"aws_docdb_cluster_instance":                              138,
+		"aws_docdb_cluster_parameter_group":                       139,
+		"aws_docdb_cluster_snapshot":                              140,
+		"aws_docdb_subnet_group":                                  141,
+		"aws_dx_bgp_peer":                                         142,
+		"aws_dx_connection":                                       143,
+		"aws_dx_connection_association":                           144,
+		"aws_dx_gateway":                                          145,
+		"aws_dx_gateway_association":                              146,
+		"aws_dx_gateway_association_proposal":                     147,
+		"aws_dx_hosted_private_virtual_interface":                 148,
+		"aws_dx_hosted_private_virtual_interface_accepter":        149,
+		"aws_dx_hosted_public_virtual_interface":                  150,
+		"aws_dx_hosted_public_virtual_interface_accepter":         151,
+		"aws_dx_lag":                                              152,
+		"aws_dx_private_virtual_interface":                        153,
+		"aws_dx_public_virtual_interface":                         154,
+		"aws_dynamodb_global_table":                               155,
+		"aws_dynamodb_table":                                      156,
+		"aws_dynamodb_table_item":                                 157,
+		"aws_ebs_snapshot":                                        158,
+		"aws_ebs_snapshot_copy":                                   159,
+		"aws_ebs_volume":                                          160,
+		"aws_ec2_capacity_reservation":                            161,
+		"aws_ec2_client_vpn_endpoint":                             162,
+		"aws_ec2_client_vpn_network_association":                  163,
+		"aws_ec2_fleet":                                           164,
+		"aws_ec2_transit_gateway":                                 165,
+		"aws_ec2_transit_gateway_route":                           166,
+		"aws_ec2_transit_gateway_route_table":                     167,
+		"aws_ec2_transit_gateway_route_table_association":         168,
+		"aws_ec2_transit_gateway_route_table_propagation":         169,
+		"aws_ec2_transit_gateway_vpc_attachment":                  170,
+		"aws_ec2_transit_gateway_vpc_attachment_accepter":         171,
+		"aws_ecr_lifecycle_policy":                                172,
+		"aws_ecr_repository":                                      173,
+		"aws_ecr_repository_policy":                               174,
+		"aws_ecs_cluster":                                         175,
+		"aws_ecs_service":                                         176,
+		"aws_ecs_task_definition":                                 177,
+		"aws_efs_file_system":                                     178,
+		"aws_efs_mount_target":                                    179,
+		"aws_egress_only_internet_gateway":                        180,
+		"aws_eip":                                                 181,
+		"aws_eip_association":                                     182,
+		"aws_eks_cluster":                                         183,
+		"aws_elastic_beanstalk_application":                       184,
+		"aws_elastic_beanstalk_application_version":               185,
+		"aws_elastic_beanstalk_configuration_template":            186,
+		"aws_elastic_beanstalk_environment":                       187,
+		"aws_elastictranscoder_pipeline":                          188,
+		"aws_elastictranscoder_preset":                            189,
+		"aws_elasticache_cluster":                                 190,
+		"aws_elasticache_parameter_group":                         191,
+		"aws_elasticache_replication_group":                       192,
+		"aws_elasticache_security_group":                          193,
+		"aws_elasticache_subnet_group":                            194,
+		"aws_elasticsearch_domain":                                195,
+		"aws_elasticsearch_domain_policy":                         196,
+		"aws_elb":                                                 197,
+		"aws_elb_attachment":                                      198,
+		"aws_emr_cluster":                                         199,
+		"aws_emr_instance_group":                                  200,
+		"aws_emr_security_configuration":                          201,
+		"aws_flow_log":                                            202,
+		"aws_gamelift_alias":                                      203,
+		"aws_gamelift_build":                                      204,
+		"aws_gamelift_fleet":                                      205,
+		"aws_gamelift_game_session_queue":                         206,
+		"aws_glacier_vault":                                       207,
+		"aws_glacier_vault_lock":                                  208,
+		"aws_globalaccelerator_accelerator":                       209,
+		"aws_globalaccelerator_listener":                          210,
+		"aws_glue_catalog_database":                               211,
+		"aws_glue_catalog_table":                                  212,
+		"aws_glue_classifier":                                     213,
+		"aws_glue_connection":                                     214,
+		"aws_glue_crawler":                                        215,
+		"aws_glue_job":                                            216,
+		"aws_glue_security_configuration":                         217,
+		"aws_glue_trigger":                                        218,
+		"aws_guardduty_detector":                                  219,
+		"aws_guardduty_invite_accepter":                           220,
+		"aws_guardduty_ipset":                                     221,
+		"aws_guardduty_member":                                    222,
+		"aws_guardduty_threatintelset":                            223,
+		"aws_iam_access_key":                                      224,
+		"aws_iam_account_alias":                                   225,
+		"aws_iam_account_password_policy":                         226,
+		"aws_iam_group":                                           227,
+		"aws_iam_group_membership":                                228,
+		"aws_iam_group_policy":                                    229,
+		"aws_iam_group_policy_attachment":                         230,
+		"aws_iam_instance_profile":                                231,
+		"aws_iam_openid_connect_provider":                         232,
+		"aws_iam_policy":                                          233,
+		"aws_iam_policy_attachment":                               234,
+		"aws_iam_role":                                            235,
+		"aws_iam_role_policy":                                     236,
+		"aws_iam_role_policy_attachment":                          237,
+		"aws_iam_saml_provider":                                   238,
+		"aws_iam_server_certificate":                              239,
+		"aws_iam_service_linked_role":                             240,
+		"aws_iam_user":                                            241,
+		"aws_iam_user_group_membership":                           242,
+		"aws_iam_user_login_profile":                              243,
+		"aws_iam_user_policy":                                     244,
+		"aws_iam_user_policy_attachment":                          245,
+		"aws_iam_user_ssh_key":                                    246,
+		"aws_inspector_assessment_target":                         247,
+		"aws_inspector_assessment_template":                       248,
+		"aws_inspector_resource_group":                            249,
+		"aws_instance":                                            250,
+		"aws_internet_gateway":                                    251,
+		"aws_iot_certificate":                                     252,
+		"aws_iot_policy":                                          253,
+		"aws_iot_policy_attachment":                               254,
+		"aws_iot_role_alias":                                      255,
+		"aws_iot_thing":                                           256,
+		"aws_iot_thing_principal_attachment":                      257,
+		"aws_iot_thing_type":                                      258,
+		"aws_iot_topic_rule":                                      259,
+		"aws_key_pair":                                            260,
+		"aws_kinesis_analytics_application":                       261,
+		"aws_kinesis_firehose_delivery_stream":                    262,
+		"aws_kinesis_stream":                                      263,
+		"aws_kms_alias":                                           264,
+		"aws_kms_ciphertext":                                      265,
+		"aws_kms_external_key":                                    266,
+		"aws_kms_grant":                                           267,
+		"aws_kms_key":                                             268,
+		"aws_lambda_alias":                                        269,
+		"aws_lambda_event_source_mapping":                         270,
+		"aws_lambda_function":                                     271,
+		"aws_lambda_layer_version":                                272,
+		"aws_lambda_permission":                                   273,
+		"aws_launch_configuration":                                274,
+		"aws_launch_template":                                     275,
+		"aws_lb":                                                  276,
+		"aws_lb_cookie_stickiness_policy":                         277,
+		"aws_lb_listener":                                         278,
+		"aws_lb_listener_certificate":                             279,
+		"aws_lb_listener_rule":                                    280,
+		"aws_lb_ssl_negotiation_policy":                           281,
+		"aws_lb_target_group":                                     282,
+		"aws_lb_target_group_attachment":                          283,
+		"aws_licensemanager_association":                          284,
+		"aws_licensemanager_license_configuration":                285,
+		"aws_lightsail_domain":                                    286,
+		"aws_lightsail_instance":                                  287,
+		"aws_lightsail_key_pair":                                  288,
+		"aws_lightsail_static_ip":                                 289,
+		"aws_lightsail_static_ip_attachment":                      290,
+		"aws_load_balancer_backend_server_policy":                 291,
+		"aws_load_balancer_listener_policy":                       292,
+		"aws_load_balancer_policy":                                293,
+		"aws_macie_member_account_association":                    294,
+		"aws_macie_s3_bucket_association":                         295,
+		"aws_main_route_table_association":                        296,
+		"aws_media_package_channel":                               297,
+		"aws_media_store_container":                               298,
+		"aws_media_store_container_policy":                        299,
+		"aws_mq_broker":                                           300,
+		"aws_mq_configuration":                                    301,
+		"aws_msk_cluster":                                         302,
+		"aws_msk_configuration":                                   303,
+		"aws_nat_gateway":                                         304,
+		"aws_neptune_cluster":                                     305,
+		"aws_neptune_cluster_instance":                            306,
+		"aws_neptune_cluster_parameter_group":                     307,
+		"aws_neptune_cluster_snapshot":                            308,
+		"aws_neptune_event_subscription":                          309,
+		"aws_neptune_parameter_group":                             310,
+		"aws_neptune_subnet_group":                                311,
+		"aws_network_acl":                                         312,
+		"aws_network_acl_rule":                                    313,
+		"aws_network_interface":                                   314,
+		"aws_network_interface_attachment":                        315,
+		"aws_network_interface_sg_attachment":                     316,
+		"aws_opsworks_application":                                317,
+		"aws_opsworks_custom_layer":                               318,
+		"aws_opsworks_ganglia_layer":                              319,
+		"aws_opsworks_haproxy_layer":                              320,
+		"aws_opsworks_instance":                                   321,
+		"aws_opsworks_java_app_layer":                             322,
+		"aws_opsworks_memcached_layer":                            323,
+		"aws_opsworks_mysql_layer":                                324,
+		"aws_opsworks_nodejs_app_layer":                           325,
+		"aws_opsworks_permission":                                 326,
+		"aws_opsworks_php_app_layer":                              327,
+		"aws_opsworks_rails_app_layer":                            328,
+		"aws_opsworks_rds_db_instance":                            329,
+		"aws_opsworks_stack":                                      330,
+		"aws_opsworks_static_web_layer":                           331,
+		"aws_opsworks_user_profile":                               332,
+		"aws_organizations_account":                               333,
+		"aws_organizations_organization":                          334,
+		"aws_organizations_organizational_unit":                   335,
+		"aws_organizations_policy":                                336,
+		"aws_organizations_policy_attachment":                     337,
+		"aws_pinpoint_adm_channel":                                338,
+		"aws_pinpoint_apns_channel":                               339,
+		"aws_pinpoint_apns_sandbox_channel":                       340,
+		"aws_pinpoint_apns_voip_channel":                          341,
+		"aws_pinpoint_apns_voip_sandbox_channel":                  342,
+		"aws_pinpoint_app":                                        343,
+		"aws_pinpoint_baidu_channel":                              344,
+		"aws_pinpoint_email_channel":                              345,
+		"aws_pinpoint_event_stream":                               346,
+		"aws_pinpoint_gcm_channel":                                347,
+		"aws_pinpoint_sms_channel":                                348,
+		"aws_placement_group":                                     349,
+		"aws_proxy_protocol_policy":                               350,
+		"aws_ram_principal_association":                           351,
+		"aws_ram_resource_association":                            352,
+		"aws_ram_resource_share":                                  353,
+		"aws_rds_cluster":                                         354,
+		"aws_rds_cluster_endpoint":                                355,
+		"aws_rds_cluster_instance":                                356,
+		"aws_rds_cluster_parameter_group":                         357,
+		"aws_rds_global_cluster":                                  358,
+		"aws_redshift_cluster":                                    359,
+		"aws_redshift_event_subscription":                         360,
+		"aws_redshift_parameter_group":                            361,
+		"aws_redshift_security_group":                             362,
+		"aws_redshift_snapshot_copy_grant":                        363,
+		"aws_redshift_subnet_group":                               364,
+		"aws_resourcegroups_group":                                365,
+		"aws_route":                                               366,
+		"aws_route53_delegation_set":                              367,
+		"aws_route53_health_check":                                368,
+		"aws_route53_query_log":                                   369,
+		"aws_route53_record":                                      370,
+		"aws_route53_resolver_endpoint":                           371,
+		"aws_route53_resolver_rule":                               372,
+		"aws_route53_resolver_rule_association":                   373,
+		"aws_route53_zone":                                        374,
+		"aws_route53_zone_association":                            375,
+		"aws_route_table":                                         376,
+		"aws_route_table_association":                             377,
+		"aws_s3_account_public_access_block":                      378,
+		"aws_s3_bucket":                                           379,
+		"aws_s3_bucket_inventory":                                 380,
+		"aws_s3_bucket_metric":                                    381,
+		"aws_s3_bucket_notification":                              382,
+		"aws_s3_bucket_object":                                    383,
+		"aws_s3_bucket_policy":                                    384,
+		"aws_s3_bucket_public_access_block":                       385,
+		"aws_sagemaker_endpoint":                                  386,
+		"aws_sagemaker_endpoint_configuration":                    387,
+		"aws_sagemaker_model":                                     388,
+		"aws_sagemaker_notebook_instance":                         389,
+		"aws_sagemaker_notebook_instance_lifecycle_configuration": 390,
+		"aws_secretsmanager_secret":                               391,
+		"aws_secretsmanager_secret_version":                       392,
+		"aws_security_group":                                      393,
+		"aws_security_group_rule":                                 394,
+		"aws_securityhub_account":                                 395,
+		"aws_securityhub_product_subscription":                    396,
+		"aws_securityhub_standards_subscription":                  397,
+		"aws_service_discovery_http_namespace":                    398,
+		"aws_service_discovery_private_dns_namespace":             399,
+		"aws_service_discovery_public_dns_namespace":              400,
+		"aws_service_discovery_service":                           401,
+		"aws_servicecatalog_portfolio":                            402,
+		"aws_ses_active_receipt_rule_set":                         403,
+		"aws_ses_configuration_set":                               404,
+		"aws_ses_domain_dkim":                                     405,
+		"aws_ses_domain_identity":                                 406,
+		"aws_ses_domain_identity_verification":                    407,
+		"aws_ses_domain_mail_from":                                408,
+		"aws_ses_email_identity":                                  409,
+		"aws_ses_event_destination":                               410,
+		"aws_ses_identity_notification_topic":                     411,
+		"aws_ses_receipt_filter":                                  412,
+		"aws_ses_receipt_rule":                                    413,
+		"aws_ses_receipt_rule_set":                                414,
+		"aws_ses_template":                                        415,
+		"aws_sfn_activity":                                        416,
+		"aws_sfn_state_machine":                                   417,
+		"aws_shield_protection":                                   418,
+		"aws_simpledb_domain":                                     419,
+		"aws_snapshot_create_volume_permission":                   420,
+		"aws_sns_platform_application":                            421,
+		"aws_sns_sms_preferences":                                 422,
+		"aws_sns_topic":                                           423,
+		"aws_sns_topic_policy":                                    424,
+		"aws_sns_topic_subscription":                              425,
+		"aws_spot_datafeed_subscription":                          426,
+		"aws_spot_fleet_request":                                  427,
+		"aws_spot_instance_request":                               428,
+		"aws_sqs_queue":                                           429,
+		"aws_sqs_queue_policy":                                    430,
+		"aws_ssm_activation":                                      431,
+		"aws_ssm_association":                                     432,
+		"aws_ssm_document":                                        433,
+		"aws_ssm_maintenance_window":                              434,
+		"aws_ssm_maintenance_window_target":                       435,
+		"aws_ssm_maintenance_window_task":                         436,
+		"aws_ssm_parameter":                                       437,
+		"aws_ssm_patch_baseline":                                  438,
+		"aws_ssm_patch_group":                                     439,
+		"aws_ssm_resource_data_sync":                              440,
+		"aws_storagegateway_cache":                                441,
+		"aws_storagegateway_cached_iscsi_volume":                  442,
+		"aws_storagegateway_gateway":                              443,
+		"aws_storagegateway_nfs_file_share":                       444,
+		"aws_storagegateway_smb_file_share":                       445,
+		"aws_storagegateway_upload_buffer":                        446,
+		"aws_storagegateway_working_storage":                      447,
+		"aws_subnet":                                              448,
+		"aws_swf_domain":                                          449,
+		"aws_transfer_server":                                     450,
+		"aws_transfer_ssh_key":                                    451,
+		"aws_transfer_user":                                       452,
+		"aws_volume_attachment":                                   453,
+		"aws_vpc":                                                 454,
+		"aws_vpc_dhcp_options":                                    455,
+		"aws_vpc_dhcp_options_association":                        456,
+		"aws_vpc_endpoint":                                        457,
+		"aws_vpc_endpoint_connection_notification":                458,
+		"aws_vpc_endpoint_route_table_association":                459,
+		"aws_vpc_endpoint_service":                                460,
+		"aws_vpc_endpoint_service_allowed_principal":              461,
+		"aws_vpc_endpoint_subnet_association":                     462,
+		"aws_vpc_ipv4_cidr_block_association":                     463,
+		"aws_vpc_peering_connection":                              464,
+		"aws_vpc_peering_connection_accepter":                     465,
+		"aws_vpc_peering_connection_options":                      466,
+		"aws_vpn_connection":                                      467,
+		"aws_vpn_connection_route":                                468,
+		"aws_vpn_gateway":                                         469,
+		"aws_vpn_gateway_attachment":                              470,
+		"aws_vpn_gateway_route_propagation":                       471,
+		"aws_waf_byte_match_set":                                  472,
+		"aws_waf_geo_match_set":                                   473,
+		"aws_waf_ipset":                                           474,
+		"aws_waf_rate_based_rule":                                 475,
+		"aws_waf_regex_match_set":                                 476,
+		"aws_waf_regex_pattern_set":                               477,
+		"aws_waf_rule":                                            478,
+		"aws_waf_rule_group":                                      479,
+		"aws_waf_size_constraint_set":                             480,
+		"aws_waf_sql_injection_match_set":                         481,
+		"aws_waf_web_acl":                                         482,
+		"aws_waf_xss_match_set":                                   483,
+		"aws_wafregional_byte_match_set":                          484,
+		"aws_wafregional_geo_match_set":                           485,
+		"aws_wafregional_ipset":                                   486,
+		"aws_wafregional_rate_based_rule":                         487,
+		"aws_wafregional_regex_match_set":                         488,
+		"aws_wafregional_regex_pattern_set":                       489,
+		"aws_wafregional_rule":                                    490,
+		"aws_wafregional_rule_group":                              491,
+		"aws_wafregional_size_constraint_set":                     492,
+		"aws_wafregional_sql_injection_match_set":                 493,
+		"aws_wafregional_web_acl":                                 494,
+		"aws_wafregional_web_acl_association":                     495,
+		"aws_wafregional_xss_match_set":                           496,
+		"aws_worklink_fleet":                                      497,
+		"aws_worklink_website_certificate_authority_association":  498,
+		"aws_xray_sampling_rule":                                  499,
+	}
 )
+
+func GetResource(r string) (*resouce.Resource, error) {
+	rs, ok := resourcesMap[r]
+	if !ok {
+		return nil, fmt.Errorf("resource %q not found", r)
+	}
+	return Resources[rs]
+}

@@ -20,3 +20,8 @@ type Attribute struct {
 	// It'll be on the Documentation too
 	//Required      bool
 }
+
+// AddMetadata adds the key with the value to the Metadata field
+func (r *Resource) AddMetadata(key string, value interface{}) {
+	r.Metadata[key] = value
+}

@@ -16,12 +16,12 @@ const (
 
 		var (
 			{{ if eq .Type "r" }}
-				Resources = []Resource{
+				Resources = []*Resource{
 			{{ else }}
-				DataSources = []Resource{
+				DataSources = []*Resource{
 			{{ end }}
 				{{ range .Resources }}
-					resource.Resource{
+					&resource.Resource{
 						Name: "{{ .Name }}",
 						Type: "{{ .Type }}",
 						Category: "{{ .Category }}",
@@ -49,9 +49,36 @@ const (
 							{{ end }}
 						},
 					},
-				{{ end }}
+				{{- end }}
+			}
+			{{ if eq .Type "r" }}
+				resourcesMap = map[string]int{
+			{{ else }}
+				dataSourcesMap = map[string]Resource{
+			{{ end }}
+				{{ range $index, $el := .Resources }}
+					"{{ .Type }}": {{ $index }},
+				{{- end }}
 			}
 		)
+
+		{{ if eq .Type "r" }}
+			func GetResource(r string) (*resouce.Resource, error) {
+				rs, ok := resourcesMap[r]
+				if !ok {
+					return nil, fmt.Errorf("resource %q not found", r)
+				}
+				return Resources[rs]
+			}
+		{{ else }}
+			func GetDataSource(r string) (*resouce.Resource, error) {
+				rs, ok := dataSourcesMap[r]
+				if !ok {
+					return nil, fmt.Errorf("datasource %q not found", r)
+				}
+				return DataSources[rs]
+			}
+		{{ end }}
 	`
 )
 

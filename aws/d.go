@@ -5,9 +5,9 @@ import (
 )
 
 var (
-	DataSources = []Resource{
+	DataSources = []*Resource{
 
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_acm_certificate",
 			Category:         "Data Sources",
@@ -55,8 +55,7 @@ it by domain without having to hard code the ARNs as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_acmpca_certificate_authority",
 			Category:         "Data Sources",
@@ -237,8 +236,7 @@ Get information on a AWS Certificate Manager Private Certificate Authority (ACM 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ami",
 			Category:         "Data Sources",
@@ -670,8 +668,7 @@ resources.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ami_ids",
 			Category:         "Data Sources",
@@ -706,8 +703,7 @@ Use this data source to get a list of AMI IDs matching the specified criteria.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_api_key",
 			Category:         "Data Sources",
@@ -759,8 +755,7 @@ example to supply credentials for a dependency microservice.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_resource",
 			Category:         "Data Sources",
@@ -817,8 +812,7 @@ To fetch the Resource, you must provide the REST API id as well as the full path
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_rest_api",
 			Category:         "Data Sources",
@@ -862,8 +856,7 @@ error if there is more than one match.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_api_gateway_vpc_link",
 			Category:         "Data Sources",
@@ -897,8 +890,7 @@ error if there is more than one match.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_arn",
 			Category:         "Data Sources",
@@ -969,8 +961,7 @@ Parses an Amazon Resource Name (ARN) into its constituent parts.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_group",
 			Category:         "Data Sources",
@@ -1161,8 +1152,7 @@ Use this data source to get information on an existing autoscaling group.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_autoscaling_groups",
 			Category:         "Data Sources",
@@ -1214,8 +1204,7 @@ ASGs within a specific region. This will allow you to pass a list of AutoScaling
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_availability_zone",
 			Category:         "Data Sources",
@@ -1306,8 +1295,7 @@ which provides a list of the available zones.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_availability_zones",
 			Category:         "Data Sources",
@@ -1363,8 +1351,7 @@ which provides some details about a specific availability zone.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_batch_compute_environment",
 			Category:         "Data Sources",
@@ -1456,8 +1443,7 @@ compute environment within AWS Batch.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_batch_job_queue",
 			Category:         "Data Sources",
@@ -1559,8 +1545,7 @@ job queue within AWS Batch.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_billing_service_account",
 			Category:         "Data Sources",
@@ -1585,8 +1570,7 @@ Use this data source to get the Account ID of the [AWS Billing and Cost Manageme
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_caller_identity",
 			Category:         "Data Sources",
@@ -1633,8 +1617,7 @@ which Terraform is authorized.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_canonical_user_id",
 			Category:         "Data Sources",
@@ -1671,8 +1654,7 @@ for the effective account in which Terraform is working.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudformation_export",
 			Category:         "Data Sources",
@@ -1716,8 +1698,7 @@ exports specified in the [Output](http://docs.aws.amazon.com/AWSCloudFormation/l
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudformation_stack",
 			Category:         "Data Sources",
@@ -1839,8 +1820,7 @@ outputs and other useful data including the template body.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudhsm_v2_cluster",
 			Category:         "Data Sources",
@@ -1956,8 +1936,7 @@ Use this data source to get information about a CloudHSM v2 cluster
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudtrail_service_account",
 			Category:         "Data Sources",
@@ -1999,8 +1978,7 @@ in a given region for the purpose of allowing CloudTrail to store trail data in 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cloudwatch_log_group",
 			Category:         "Data Sources",
@@ -2041,8 +2019,7 @@ Use this data source to get information about an AWS Cloudwatch Log Group
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_codecommit_repository",
 			Category:         "Data Sources",
@@ -2103,8 +2080,7 @@ The CodeCommit Repository data source allows the ARN, Repository ID, Repository 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cognito_user_pools",
 			Category:         "Data Sources",
@@ -2135,8 +2111,7 @@ Use this data source to get a list of cognito user pools.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_cur_report_definition",
 			Category:         "Data Sources",
@@ -2241,8 +2216,7 @@ Use this data source to get information on an AWS Cost and Usage Report Definiti
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_cluster_snapshot",
 			Category:         "Data Sources",
@@ -2441,8 +2415,7 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_event_categories",
 			Category:         "Data Sources",
@@ -2471,8 +2444,7 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_instance",
 			Category:         "Data Sources",
@@ -2863,8 +2835,7 @@ Use this data source to get information about an RDS instance
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_db_snapshot",
 			Category:         "Data Sources",
@@ -3083,8 +3054,7 @@ See the [` + "`" + `aws_db_cluster_snapshot` + "`" + ` data source](/docs/provid
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dx_gateway",
 			Category:         "Data Sources",
@@ -3135,8 +3105,7 @@ Retrieve information about a Direct Connect Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_dynamodb_table",
 			Category:         "Data Sources",
@@ -3156,8 +3125,7 @@ Provides information about a DynamoDB table.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_snapshot",
 			Category:         "Data Sources",
@@ -3318,8 +3286,7 @@ Use this data source to get information about an EBS Snapshot for use when provi
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_snapshot_ids",
 			Category:         "Data Sources",
@@ -3350,8 +3317,7 @@ criteria.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ebs_volume",
 			Category:         "Data Sources",
@@ -3488,8 +3454,7 @@ resources.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway",
 			Category:         "Data Sources",
@@ -3655,8 +3620,7 @@ Get information on an EC2 Transit Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_route_table",
 			Category:         "Data Sources",
@@ -3742,8 +3706,7 @@ Get information on an EC2 Transit Gateway Route Table.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_vpc_attachment",
 			Category:         "Data Sources",
@@ -3859,8 +3822,7 @@ Get information on an EC2 Transit Gateway VPC Attachment.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ec2_transit_gateway_vpn_attachment",
 			Category:         "Data Sources",
@@ -3906,8 +3868,7 @@ Get information on an EC2 Transit Gateway VPN Attachment.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecr_image",
 			Category:         "Data Sources",
@@ -3973,8 +3934,7 @@ The ECR Image data source allows the details of an image with a particular tag o
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecr_repository",
 			Category:         "Data Sources",
@@ -4035,8 +3995,7 @@ The ECR Repository data source allows the ARN, Repository URI and Registry ID to
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_cluster",
 			Category:         "Data Sources",
@@ -4108,8 +4067,7 @@ cluster within an AWS ECS service.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_container_definition",
 			Category:         "Data Sources",
@@ -4216,8 +4174,7 @@ a specific container within an AWS ECS service.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_service",
 			Category:         "Data Sources",
@@ -4294,8 +4251,7 @@ Service within a AWS ECS Cluster.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ecs_task_definition",
 			Category:         "Data Sources",
@@ -4368,8 +4324,7 @@ a specific AWS ECS task definition.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_efs_file_system",
 			Category:         "Data Sources",
@@ -4455,8 +4410,7 @@ Provides information about an Elastic File System (EFS).
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_efs_mount_target",
 			Category:         "Data Sources",
@@ -4547,8 +4501,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_eip",
 			Category:         "Data Sources",
@@ -4704,8 +4657,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_eks_cluster",
 			Category:         "Data Sources",
@@ -4856,8 +4808,7 @@ Retrieve information about an EKS Cluster.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_eks_cluster_auth",
 			Category:         "Data Sources",
@@ -4893,8 +4844,7 @@ server configured.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_application",
 			Category:         "Data Sources",
@@ -4985,8 +4935,7 @@ Retrieve information about an Elastic Beanstalk Application.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_hosted_zone",
 			Category:         "Data Sources",
@@ -5027,8 +4976,7 @@ Use this data source to get the ID of an [elastic beanstalk hosted zone](http://
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elastic_beanstalk_solution_stack",
 			Category:         "Data Sources",
@@ -5064,8 +5012,7 @@ Use this data source to get the name of a elastic beanstalk solution stack.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_cluster",
 			Category:         "Data Sources",
@@ -5161,8 +5108,7 @@ Use this data source to get information about an Elasticache Cluster
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elasticache_replication_group",
 			Category:         "Data Sources",
@@ -5268,8 +5214,7 @@ Use this data source to get information about an Elasticache Replication Group.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elb",
 			Category:         "Data Sources",
@@ -5285,8 +5230,7 @@ Use this data source to get information about an Elasticache Replication Group.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elb_hosted_zone_id",
 			Category:         "Data Sources",
@@ -5318,8 +5262,7 @@ in a given region for the purpose of using in an AWS Route53 Alias.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_elb_service_account",
 			Category:         "Data Sources",
@@ -5361,8 +5304,7 @@ in a given region for the purpose of whitelisting in S3 bucket policy.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_glue_script",
 			Category:         "Data Sources",
@@ -5463,8 +5405,7 @@ Use this data source to generate a Glue script from a Directed Acyclic Graph (DA
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_account_alias",
 			Category:         "Data Sources",
@@ -5491,8 +5432,7 @@ for the effective account in which Terraform is working.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_group",
 			Category:         "Data Sources",
@@ -5545,8 +5485,7 @@ properties without having to hard code ARNs as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_instance_profile",
 			Category:         "Data Sources",
@@ -5629,8 +5568,7 @@ instance profile properties without having to hard code ARNs as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_policy",
 			Category:         "Data Sources",
@@ -5697,8 +5635,7 @@ instance profile properties without having to hard code ARNs as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_policy_document",
 			Category:         "Data Sources",
@@ -5789,8 +5726,7 @@ valid to use literal JSON strings within your configuration, or to use the
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_role",
 			Category:         "Data Sources",
@@ -5903,8 +5839,7 @@ properties without having to hard code ARNs as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_server_certificate",
 			Category:         "Data Sources",
@@ -5939,8 +5874,7 @@ Use this data source to lookup information about IAM Server Certificates.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iam_user",
 			Category:         "Data Sources",
@@ -6013,8 +5947,7 @@ properties without having to hard code ARNs or unique IDs as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_inspector_rules_packages",
 			Category:         "Data Sources",
@@ -6036,8 +5969,7 @@ configured in the provider.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_instance",
 			Category:         "Data Sources",
@@ -6519,8 +6451,7 @@ resources.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_instances",
 			Category:         "Data Sources",
@@ -6592,8 +6523,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_internet_gateway",
 			Category:         "Data Sources",
@@ -6664,8 +6594,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_iot_endpoint",
 			Category:         "Data Sources",
@@ -6696,8 +6625,7 @@ Returns a unique endpoint specific to the AWS account making the call.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ip_ranges",
 			Category:         "Data Sources",
@@ -6768,8 +6696,7 @@ Use this data source to get the IP ranges of various AWS products and services. 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kinesis_stream",
 			Category:         "Data Sources",
@@ -6883,8 +6810,7 @@ For more details, see the [Amazon Kinesis Documentation][1].
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_alias",
 			Category:         "Data Sources",
@@ -6937,8 +6863,7 @@ without having to hard code the ARN as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_ciphertext",
 			Category:         "Data Sources",
@@ -6985,8 +6910,7 @@ resource](/docs/providers/aws/r/kms_ciphertext.html).
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_key",
 			Category:         "Data Sources",
@@ -7007,8 +6931,7 @@ resource](/docs/providers/aws/r/kms_ciphertext.html).
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_kms_secrets",
 			Category:         "Data Sources",
@@ -7056,8 +6979,7 @@ Decrypt multiple secrets from data encrypted with the AWS KMS service.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_function",
 			Category:         "Data Sources",
@@ -7279,8 +7201,7 @@ Decrypt multiple secrets from data encrypted with the AWS KMS service.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_invocation",
 			Category:         "Data Sources",
@@ -7333,8 +7254,7 @@ invocation type.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lambda_layer_version",
 			Category:         "Data Sources",
@@ -7446,8 +7366,7 @@ invocation type.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_launch_configuration",
 			Category:         "Data Sources",
@@ -7778,8 +7697,7 @@ Provides information about a Launch Configuration.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_launch_template",
 			Category:         "Data Sources",
@@ -8060,8 +7978,7 @@ Provides information about a Launch Template.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb",
 			Category:         "Data Sources",
@@ -8092,8 +8009,7 @@ with it, etc.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_listener",
 			Category:         "Data Sources",
@@ -8129,8 +8045,7 @@ information specific to the listener in question.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_lb_target_group",
 			Category:         "Data Sources",
@@ -8161,8 +8076,7 @@ an LB Target Group for use in other resources, given LB Target Group name.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_mq_broker",
 			Category:         "Data Sources",
@@ -8187,8 +8101,7 @@ Provides information about a MQ Broker.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_msk_cluster",
 			Category:         "Data Sources",
@@ -8269,8 +8182,7 @@ Get information on an Amazon MSK Cluster.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_nat_gateway",
 			Category:         "Data Sources",
@@ -8366,8 +8278,7 @@ Provides details about a specific Nat Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_network_acls",
 			Category:         "Data Sources",
@@ -8416,8 +8327,7 @@ Provides details about a specific Nat Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_network_interface",
 			Category:         "Data Sources",
@@ -8629,8 +8539,7 @@ Provides details about a specific Nat Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_network_interfaces",
 			Category:         "Data Sources",
@@ -8674,8 +8583,7 @@ Provides details about a specific Nat Gateway.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_partition",
 			Category:         "Data Sources",
@@ -8689,8 +8597,7 @@ Use this data source to lookup current AWS partition in which Terraform is worki
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_prefix_list",
 			Category:         "Data Sources",
@@ -8752,8 +8659,7 @@ rules.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_pricing_product",
 			Category:         "Data Sources",
@@ -8790,8 +8696,7 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ram_resource_share",
 			Category:         "Data Sources",
@@ -8867,8 +8772,7 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_rds_cluster",
 			Category:         "Data Sources",
@@ -8888,8 +8792,7 @@ Provides information about a RDS cluster.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_cluster",
 			Category:         "Data Sources",
@@ -9200,8 +9103,7 @@ Provides details about a specific redshift cluster.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_redshift_service_account",
 			Category:         "Data Sources",
@@ -9243,8 +9145,7 @@ in a given region for the purpose of allowing Redshift to store audit data in S3
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_region",
 			Category:         "Data Sources",
@@ -9305,8 +9206,7 @@ configuration from its parent module.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route",
 			Category:         "Data Sources",
@@ -9375,8 +9275,7 @@ connection associated with a CIDR value.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_delegation_set",
 			Category:         "Data Sources",
@@ -9408,8 +9307,7 @@ This data source allows to find a list of name servers associated with a specifi
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route53_zone",
 			Category:         "Data Sources",
@@ -9492,8 +9390,7 @@ This data source allows to find a Hosted Zone ID given Hosted Zone name and cert
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route_table",
 			Category:         "Data Sources",
@@ -9688,8 +9585,7 @@ the Route Table.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_route_tables",
 			Category:         "Data Sources",
@@ -9740,8 +9636,7 @@ This resource can be useful for getting back a list of route table ids to be ref
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket",
 			Category:         "Data Sources",
@@ -9845,8 +9740,7 @@ Distribution.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_s3_bucket_object",
 			Category:         "Data Sources",
@@ -10050,8 +9944,7 @@ _optionally_ (see below) content of an object stored inside S3 bucket.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_secretsmanager_secret",
 			Category:         "Data Sources",
@@ -10167,8 +10060,7 @@ Retrieve metadata information about a Secrets Manager secret. To retrieve a secr
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_secretsmanager_secret_version",
 			Category:         "Data Sources",
@@ -10249,8 +10141,7 @@ Retrieve information about a Secrets Manager secret version, including its secre
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_security_group",
 			Category:         "Data Sources",
@@ -10325,8 +10216,7 @@ VPC that the security group belongs to.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_security_groups",
 			Category:         "Data Sources",
@@ -10373,8 +10263,7 @@ outside of Terraform.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sns_topic",
 			Category:         "Data Sources",
@@ -10407,8 +10296,7 @@ without having to hard code the ARNs as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_sqs_queue",
 			Category:         "Data Sources",
@@ -10451,8 +10339,7 @@ the ARNs as input.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_document",
 			Category:         "Data Sources",
@@ -10513,8 +10400,7 @@ Gets the contents of the specified Systems Manager document.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_ssm_parameter",
 			Category:         "Data Sources",
@@ -10559,8 +10445,7 @@ Provides an SSM Parameter data source.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_storagegateway_local_disk",
 			Category:         "Data Sources",
@@ -10611,8 +10496,7 @@ Retrieve information about a Storage Gateway local disk. The disk identifier is 
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_subnet",
 			Category:         "Data Sources",
@@ -10712,8 +10596,7 @@ VPC that the subnet belongs to.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_subnet_ids",
 			Category:         "Data Sources",
@@ -10766,8 +10649,7 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_transfer_server",
 			Category:         "Data Sources",
@@ -10849,8 +10731,7 @@ resources.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc",
 			Category:         "Data Sources",
@@ -11025,8 +10906,7 @@ VPC.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_dhcp_options",
 			Category:         "Data Sources",
@@ -11152,8 +11032,7 @@ Retrieve information about an EC2 DHCP Options configuration.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint",
 			Category:         "Data Sources",
@@ -11310,8 +11189,7 @@ a specific VPC endpoint.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_endpoint_service",
 			Category:         "Data Sources",
@@ -11408,8 +11286,7 @@ can be specified when creating a VPC endpoint within the region configured in th
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpc_peering_connection",
 			Category:         "Data Sources",
@@ -11546,8 +11423,7 @@ a specific VPC peering connection.
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpcs",
 			Category:         "Data Sources",
@@ -11595,8 +11471,7 @@ The following example retrieves a list of VPC Ids with a custom tag of ` + "`" +
 				},
 			},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_vpn_gateway",
 			Category:         "Data Sources",
@@ -11657,8 +11532,7 @@ a specific VPN gateway.
 			},
 			Attributes: []resource.Argument{},
 		},
-
-		resource.Resource{
+		&resource.Resource{
 			Name:             "",
 			Type:             "aws_workspaces_bundle",
 			Category:         "Data Sources",
@@ -11705,4 +11579,143 @@ Use this data source to get information about a Workspaces Bundle.
 			},
 		},
 	}
+
+	dataSourcesMap = map[string]Resource{
+
+		"aws_acm_certificate":                    0,
+		"aws_acmpca_certificate_authority":       1,
+		"aws_ami":                                2,
+		"aws_ami_ids":                            3,
+		"aws_api_gateway_api_key":                4,
+		"aws_api_gateway_resource":               5,
+		"aws_api_gateway_rest_api":               6,
+		"aws_api_gateway_vpc_link":               7,
+		"aws_arn":                                8,
+		"aws_autoscaling_group":                  9,
+		"aws_autoscaling_groups":                 10,
+		"aws_availability_zone":                  11,
+		"aws_availability_zones":                 12,
+		"aws_batch_compute_environment":          13,
+		"aws_batch_job_queue":                    14,
+		"aws_billing_service_account":            15,
+		"aws_caller_identity":                    16,
+		"aws_canonical_user_id":                  17,
+		"aws_cloudformation_export":              18,
+		"aws_cloudformation_stack":               19,
+		"aws_cloudhsm_v2_cluster":                20,
+		"aws_cloudtrail_service_account":         21,
+		"aws_cloudwatch_log_group":               22,
+		"aws_codecommit_repository":              23,
+		"aws_cognito_user_pools":                 24,
+		"aws_cur_report_definition":              25,
+		"aws_db_cluster_snapshot":                26,
+		"aws_db_event_categories":                27,
+		"aws_db_instance":                        28,
+		"aws_db_snapshot":                        29,
+		"aws_dx_gateway":                         30,
+		"aws_dynamodb_table":                     31,
+		"aws_ebs_snapshot":                       32,
+		"aws_ebs_snapshot_ids":                   33,
+		"aws_ebs_volume":                         34,
+		"aws_ec2_transit_gateway":                35,
+		"aws_ec2_transit_gateway_route_table":    36,
+		"aws_ec2_transit_gateway_vpc_attachment": 37,
+		"aws_ec2_transit_gateway_vpn_attachment": 38,
+		"aws_ecr_image":                          39,
+		"aws_ecr_repository":                     40,
+		"aws_ecs_cluster":                        41,
+		"aws_ecs_container_definition":           42,
+		"aws_ecs_service":                        43,
+		"aws_ecs_task_definition":                44,
+		"aws_efs_file_system":                    45,
+		"aws_efs_mount_target":                   46,
+		"aws_eip":                                47,
+		"aws_eks_cluster":                        48,
+		"aws_eks_cluster_auth":                   49,
+		"aws_elastic_beanstalk_application":      50,
+		"aws_elastic_beanstalk_hosted_zone":      51,
+		"aws_elastic_beanstalk_solution_stack":   52,
+		"aws_elasticache_cluster":                53,
+		"aws_elasticache_replication_group":      54,
+		"aws_elb":                                55,
+		"aws_elb_hosted_zone_id":                 56,
+		"aws_elb_service_account":                57,
+		"aws_glue_script":                        58,
+		"aws_iam_account_alias":                  59,
+		"aws_iam_group":                          60,
+		"aws_iam_instance_profile":               61,
+		"aws_iam_policy":                         62,
+		"aws_iam_policy_document":                63,
+		"aws_iam_role":                           64,
+		"aws_iam_server_certificate":             65,
+		"aws_iam_user":                           66,
+		"aws_inspector_rules_packages":           67,
+		"aws_instance":                           68,
+		"aws_instances":                          69,
+		"aws_internet_gateway":                   70,
+		"aws_iot_endpoint":                       71,
+		"aws_ip_ranges":                          72,
+		"aws_kinesis_stream":                     73,
+		"aws_kms_alias":                          74,
+		"aws_kms_ciphertext":                     75,
+		"aws_kms_key":                            76,
+		"aws_kms_secrets":                        77,
+		"aws_lambda_function":                    78,
+		"aws_lambda_invocation":                  79,
+		"aws_lambda_layer_version":               80,
+		"aws_launch_configuration":               81,
+		"aws_launch_template":                    82,
+		"aws_lb":                                 83,
+		"aws_lb_listener":                        84,
+		"aws_lb_target_group":                    85,
+		"aws_mq_broker":                          86,
+		"aws_msk_cluster":                        87,
+		"aws_nat_gateway":                        88,
+		"aws_network_acls":                       89,
+		"aws_network_interface":                  90,
+		"aws_network_interfaces":                 91,
+		"aws_partition":                          92,
+		"aws_prefix_list":                        93,
+		"aws_pricing_product":                    94,
+		"aws_ram_resource_share":                 95,
+		"aws_rds_cluster":                        96,
+		"aws_redshift_cluster":                   97,
+		"aws_redshift_service_account":           98,
+		"aws_region":                             99,
+		"aws_route":                              100,
+		"aws_route53_delegation_set":             101,
+		"aws_route53_zone":                       102,
+		"aws_route_table":                        103,
+		"aws_route_tables":                       104,
+		"aws_s3_bucket":                          105,
+		"aws_s3_bucket_object":                   106,
+		"aws_secretsmanager_secret":              107,
+		"aws_secretsmanager_secret_version":      108,
+		"aws_security_group":                     109,
+		"aws_security_groups":                    110,
+		"aws_sns_topic":                          111,
+		"aws_sqs_queue":                          112,
+		"aws_ssm_document":                       113,
+		"aws_ssm_parameter":                      114,
+		"aws_storagegateway_local_disk":          115,
+		"aws_subnet":                             116,
+		"aws_subnet_ids":                         117,
+		"aws_transfer_server":                    118,
+		"aws_vpc":                                119,
+		"aws_vpc_dhcp_options":                   120,
+		"aws_vpc_endpoint":                       121,
+		"aws_vpc_endpoint_service":               122,
+		"aws_vpc_peering_connection":             123,
+		"aws_vpcs":                               124,
+		"aws_vpn_gateway":                        125,
+		"aws_workspaces_bundle":                  126,
+	}
 )
+
+func GetDataSource(r string) (*resouce.Resource, error) {
+	rs, ok := dataSourcesMap[r]
+	if !ok {
+		return nil, fmt.Errorf("datasource %q not found", r)
+	}
+	return DataSources[rs]
+}
