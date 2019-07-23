@@ -36,6 +36,8 @@ which is currently in use (eg, by [` + "`" + `aws_lb_listener` + "`" + `](lb_lis
 			Keywords: []string{
 
 				"acm",
+
+				"certificate",
 			},
 			Arguments: []resource.Argument{
 
@@ -189,6 +191,10 @@ deploy the required validation records and wait for validation to complete.
 			Keywords: []string{
 
 				"acm",
+
+				"certificate",
+
+				"validation",
 			},
 			Arguments: []resource.Argument{
 
@@ -222,6 +228,12 @@ Provides a resource to manage AWS Certificate Manager Private Certificate Author
 				"acm",
 
 				"pca",
+
+				"acmpca",
+
+				"certificate",
+
+				"authority",
 			},
 			Arguments: []resource.Argument{
 
@@ -484,6 +496,8 @@ it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 			Keywords: []string{
 
 				"ec2",
+
+				"ami",
 			},
 			Arguments: []resource.Argument{
 
@@ -664,6 +678,10 @@ block until the new AMI is available for use on new instances.
 			Keywords: []string{
 
 				"ec2",
+
+				"ami",
+
+				"copy",
 			},
 			Arguments: []resource.Argument{
 
@@ -755,6 +773,12 @@ to produce a fresh snapshot.
 			Keywords: []string{
 
 				"ec2",
+
+				"ami",
+
+				"from",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -820,6 +844,12 @@ Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
 			Keywords: []string{
 
 				"ec2",
+
+				"ami",
+
+				"launch",
+
+				"permission",
 			},
 			Arguments: []resource.Argument{
 
@@ -864,6 +894,8 @@ Provides a settings of an API Gateway Account. Settings is applied region-wide p
 				"api",
 
 				"gateway",
+
+				"account",
 			},
 			Arguments: []resource.Argument{
 
@@ -923,6 +955,8 @@ Provides an API Gateway API Key.
 				"api",
 
 				"gateway",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -1005,6 +1039,8 @@ Provides an API Gateway Authorizer.
 				"api",
 
 				"gateway",
+
+				"authorizer",
 			},
 			Arguments: []resource.Argument{
 
@@ -1073,6 +1109,12 @@ custom domain name.
 				"api",
 
 				"gateway",
+
+				"base",
+
+				"path",
+
+				"mapping",
 			},
 			Arguments: []resource.Argument{
 
@@ -1114,6 +1156,10 @@ Provides an API Gateway Client Certificate.
 				"api",
 
 				"gateway",
+
+				"client",
+
+				"certificate",
 			},
 			Arguments: []resource.Argument{
 
@@ -1184,6 +1230,8 @@ you might need to add an explicit ` + "`" + `depends_on = ["aws_api_gateway_inte
 				"api",
 
 				"gateway",
+
+				"deployment",
 			},
 			Arguments: []resource.Argument{
 
@@ -1271,6 +1319,10 @@ Provides a settings of an API Gateway Documentation Part.
 				"api",
 
 				"gateway",
+
+				"documentation",
+
+				"part",
 			},
 			Arguments: []resource.Argument{
 
@@ -1343,6 +1395,10 @@ Provides a resource to manage an API Gateway Documentation Version.
 				"api",
 
 				"gateway",
+
+				"documentation",
+
+				"version",
 			},
 			Arguments: []resource.Argument{
 
@@ -1401,6 +1457,10 @@ the ` + "`" + `regional_domain_name` + "`" + ` attribute.
 				"api",
 
 				"gateway",
+
+				"domain",
+
+				"name",
 			},
 			Arguments: []resource.Argument{
 
@@ -1533,6 +1593,8 @@ Provides an API Gateway Gateway Response for a REST API Gateway.
 				"api",
 
 				"gateway",
+
+				"response",
 			},
 			Arguments: []resource.Argument{
 
@@ -1579,6 +1641,8 @@ Provides an HTTP Method Integration for an API Gateway Integration.
 				"api",
 
 				"gateway",
+
+				"integration",
 			},
 			Arguments: []resource.Argument{
 
@@ -1683,6 +1747,10 @@ you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean run
 				"api",
 
 				"gateway",
+
+				"integration",
+
+				"response",
 			},
 			Arguments: []resource.Argument{
 
@@ -1744,6 +1812,8 @@ Provides a HTTP Method for an API Gateway Resource.
 				"api",
 
 				"gateway",
+
+				"method",
 			},
 			Arguments: []resource.Argument{
 
@@ -1815,6 +1885,10 @@ Provides an HTTP Method Response for an API Gateway Resource.
 				"api",
 
 				"gateway",
+
+				"method",
+
+				"response",
 			},
 			Arguments: []resource.Argument{
 
@@ -1866,6 +1940,10 @@ Provides an API Gateway Method Settings, e.g. logging or monitoring.
 				"api",
 
 				"gateway",
+
+				"method",
+
+				"settings",
 			},
 			Arguments: []resource.Argument{
 
@@ -1957,6 +2035,8 @@ Provides a Model for a API Gateway.
 				"api",
 
 				"gateway",
+
+				"model",
 			},
 			Arguments: []resource.Argument{
 
@@ -2014,6 +2094,10 @@ Manages an API Gateway Request Validator.
 				"api",
 
 				"gateway",
+
+				"request",
+
+				"validator",
 			},
 			Arguments: []resource.Argument{
 
@@ -2066,6 +2150,8 @@ Provides an API Gateway Resource.
 				"api",
 
 				"gateway",
+
+				"resource",
 			},
 			Arguments: []resource.Argument{
 
@@ -2123,6 +2209,8 @@ Provides an API Gateway REST API.
 				"api",
 
 				"gateway",
+
+				"rest",
 			},
 			Arguments: []resource.Argument{
 
@@ -2230,6 +2318,8 @@ Provides an API Gateway Stage.
 				"api",
 
 				"gateway",
+
+				"stage",
 			},
 			Arguments: []resource.Argument{
 
@@ -2352,6 +2442,10 @@ Provides an API Gateway Usage Plan.
 				"api",
 
 				"gateway",
+
+				"usage",
+
+				"plan",
 			},
 			Arguments: []resource.Argument{
 
@@ -2474,6 +2568,12 @@ Provides an API Gateway Usage Plan Key.
 				"api",
 
 				"gateway",
+
+				"usage",
+
+				"plan",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -2571,6 +2671,10 @@ Provides an API Gateway VPC Link.
 				"api",
 
 				"gateway",
+
+				"vpc",
+
+				"link",
 			},
 			Arguments: []resource.Argument{
 
@@ -2624,6 +2728,14 @@ Provides an application cookie stickiness policy, which allows an ELB to wed its
 				"elb",
 
 				"classic",
+
+				"app",
+
+				"cookie",
+
+				"stickiness",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -2716,6 +2828,10 @@ Provides an Application AutoScaling Policy resource.
 				"application",
 
 				"autoscaling",
+
+				"appautoscaling",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -2908,6 +3024,12 @@ Provides an Application AutoScaling ScheduledAction resource.
 				"application",
 
 				"autoscaling",
+
+				"appautoscaling",
+
+				"scheduled",
+
+				"action",
 			},
 			Arguments: []resource.Argument{
 
@@ -2990,6 +3112,10 @@ Provides an Application AutoScaling ScalableTarget resource. To manage policies 
 				"application",
 
 				"autoscaling",
+
+				"appautoscaling",
+
+				"target",
 			},
 			Arguments: []resource.Argument{
 
@@ -3039,6 +3165,8 @@ Provides an AWS App Mesh service mesh resource.
 			Keywords: []string{
 
 				"appmesh",
+
+				"mesh",
 			},
 			Arguments: []resource.Argument{
 
@@ -3114,6 +3242,8 @@ Provides an AWS App Mesh route resource.
 			Keywords: []string{
 
 				"appmesh",
+
+				"route",
 			},
 			Arguments: []resource.Argument{
 
@@ -3239,6 +3369,10 @@ Provides an AWS App Mesh virtual node resource.
 			Keywords: []string{
 
 				"appmesh",
+
+				"virtual",
+
+				"node",
 			},
 			Arguments: []resource.Argument{
 
@@ -3419,6 +3553,10 @@ Provides an AWS App Mesh virtual router resource.
 			Keywords: []string{
 
 				"appmesh",
+
+				"virtual",
+
+				"router",
 			},
 			Arguments: []resource.Argument{
 
@@ -3514,6 +3652,10 @@ Provides an AWS App Mesh virtual service resource.
 			Keywords: []string{
 
 				"appmesh",
+
+				"virtual",
+
+				"service",
 			},
 			Arguments: []resource.Argument{
 
@@ -3609,6 +3751,10 @@ Provides an AppSync API Key.
 			Keywords: []string{
 
 				"appsync",
+
+				"api",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -3664,6 +3810,8 @@ Provides an AppSync DataSource.
 			Keywords: []string{
 
 				"appsync",
+
+				"datasource",
 			},
 			Arguments: []resource.Argument{
 
@@ -3774,6 +3922,10 @@ Provides an AppSync GraphQL API.
 			Keywords: []string{
 
 				"appsync",
+
+				"graphql",
+
+				"api",
 			},
 			Arguments: []resource.Argument{
 
@@ -3909,6 +4061,8 @@ Provides an AppSync Resolver.
 			Keywords: []string{
 
 				"appsync",
+
+				"resolver",
 			},
 			Arguments: []resource.Argument{
 
@@ -3969,6 +4123,8 @@ Provides an Athena database.
 			Keywords: []string{
 
 				"athena",
+
+				"database",
 			},
 			Arguments: []resource.Argument{
 
@@ -4029,6 +4185,10 @@ Provides an Athena Named Query resource.
 			Keywords: []string{
 
 				"athena",
+
+				"named",
+
+				"query",
 			},
 			Arguments: []resource.Argument{
 
@@ -4086,6 +4246,8 @@ conflict and will overwrite attachments.
 			Keywords: []string{
 
 				"autoscaling",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -4122,6 +4284,8 @@ Provides an AutoScaling Group resource.
 			Keywords: []string{
 
 				"autoscaling",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -4444,6 +4608,10 @@ but take care to not duplicate those hooks with this resource.
 			Keywords: []string{
 
 				"autoscaling",
+
+				"lifecycle",
+
+				"hook",
 			},
 			Arguments: []resource.Argument{
 
@@ -4505,6 +4673,8 @@ Services, and are applied to each AutoScaling Group you supply.
 			Keywords: []string{
 
 				"autoscaling",
+
+				"notification",
 			},
 			Arguments: []resource.Argument{
 
@@ -4545,6 +4715,8 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 			Keywords: []string{
 
 				"autoscaling",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -4745,6 +4917,8 @@ Provides an AutoScaling Schedule resource.
 			Keywords: []string{
 
 				"autoscaling",
+
+				"schedule",
 			},
 			Arguments: []resource.Argument{
 
@@ -4815,6 +4989,8 @@ Provides an AWS Backup plan resource.
 			Keywords: []string{
 
 				"backup",
+
+				"plan",
 			},
 			Arguments: []resource.Argument{
 
@@ -4880,6 +5056,8 @@ Manages selection conditions for AWS Backup plan resources.
 			Keywords: []string{
 
 				"backup",
+
+				"selection",
 			},
 			Arguments: []resource.Argument{
 
@@ -4950,6 +5128,8 @@ Provides an AWS Backup vault resource.
 			Keywords: []string{
 
 				"backup",
+
+				"vault",
 			},
 			Arguments: []resource.Argument{
 
@@ -5021,6 +5201,10 @@ For information about compute environment, see [Compute Environments][2] .
 			Keywords: []string{
 
 				"batch",
+
+				"compute",
+
+				"environment",
 			},
 			Arguments: []resource.Argument{
 
@@ -5191,6 +5375,10 @@ Provides a Batch Job Definition resource.
 			Keywords: []string{
 
 				"batch",
+
+				"job",
+
+				"definition",
 			},
 			Arguments: []resource.Argument{
 
@@ -5271,6 +5459,10 @@ Provides a Batch Job Queue resource.
 			Keywords: []string{
 
 				"batch",
+
+				"job",
+
+				"queue",
 			},
 			Arguments: []resource.Argument{
 
@@ -5321,6 +5513,8 @@ Provides a budgets budget resource. Budgets use the cost visualisation provided 
 			Keywords: []string{
 
 				"budgets",
+
+				"budget",
 			},
 			Arguments: []resource.Argument{
 
@@ -5581,6 +5775,10 @@ Provides a Cloud9 EC2 Development Environment.
 			Keywords: []string{
 
 				"cloud9",
+
+				"environment",
+
+				"ec2",
 			},
 			Arguments: []resource.Argument{
 
@@ -5661,6 +5859,8 @@ Provides a CloudFormation Stack resource.
 			Keywords: []string{
 
 				"cloudformation",
+
+				"stack",
 			},
 			Arguments: []resource.Argument{
 
@@ -5770,6 +5970,10 @@ Manages a CloudFormation Stack Set. Stack Sets allow CloudFormation templates to
 			Keywords: []string{
 
 				"cloudformation",
+
+				"stack",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -5869,6 +6073,12 @@ Manages a CloudFormation Stack Set Instance. Instances are managed in the accoun
 			Keywords: []string{
 
 				"cloudformation",
+
+				"stack",
+
+				"set",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -5974,6 +6184,8 @@ want to wait, you need to use the ` + "`" + `retain_on_delete` + "`" + ` flag.
 			Keywords: []string{
 
 				"cloudfront",
+
+				"distribution",
 			},
 			Arguments: []resource.Argument{
 
@@ -6144,6 +6356,12 @@ origin access identities, see
 			Keywords: []string{
 
 				"cloudfront",
+
+				"origin",
+
+				"access",
+
+				"identity",
 			},
 			Arguments: []resource.Argument{
 
@@ -6222,6 +6440,10 @@ origin access identities, see
 			Keywords: []string{
 
 				"cloudfront",
+
+				"public",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -6303,6 +6525,8 @@ To initialize cluster you have to sign CSR and upload it.
 				"cloudhsm",
 
 				"v2",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -6445,6 +6669,8 @@ Creates an HSM module in Amazon CloudHSM v2 cluster.
 				"cloudhsm",
 
 				"v2",
+
+				"hsm",
 			},
 			Arguments: []resource.Argument{
 
@@ -6639,6 +6865,8 @@ Provides a CloudWatch Dashboard resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"dashboard",
 			},
 			Arguments: []resource.Argument{
 
@@ -6679,6 +6907,10 @@ Provides a resource to create a CloudWatch Events permission to support cross-ac
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"event",
+
+				"permission",
 			},
 			Arguments: []resource.Argument{
 
@@ -6744,6 +6976,10 @@ Provides a CloudWatch Event Rule resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"event",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -6814,6 +7050,10 @@ Provides a CloudWatch Event Target resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"event",
+
+				"target",
 			},
 			Arguments: []resource.Argument{
 
@@ -6988,6 +7228,10 @@ Provides a CloudWatch Logs destination resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"log",
+
+				"destination",
 			},
 			Arguments: []resource.Argument{
 
@@ -7033,6 +7277,12 @@ Provides a CloudWatch Logs destination policy resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"log",
+
+				"destination",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -7062,6 +7312,10 @@ Provides a CloudWatch Log Group resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"log",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -7117,6 +7371,12 @@ Provides a CloudWatch Log Metric Filter resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"log",
+
+				"metric",
+
+				"filter",
 			},
 			Arguments: []resource.Argument{
 
@@ -7187,6 +7447,12 @@ Provides a resource to manage a CloudWatch log resource policy.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"log",
+
+				"resource",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -7227,6 +7493,10 @@ Provides a CloudWatch Log Stream resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"log",
+
+				"stream",
 			},
 			Arguments: []resource.Argument{
 
@@ -7267,6 +7537,12 @@ Provides a CloudWatch Logs subscription filter resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"log",
+
+				"subscription",
+
+				"filter",
 			},
 			Arguments: []resource.Argument{
 
@@ -7316,6 +7592,10 @@ Provides a CloudWatch Metric Alarm resource.
 			Keywords: []string{
 
 				"cloudwatch",
+
+				"metric",
+
+				"alarm",
 			},
 			Arguments: []resource.Argument{
 
@@ -7501,6 +7781,8 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 			Keywords: []string{
 
 				"codebuild",
+
+				"project",
 			},
 			Arguments: []resource.Argument{
 
@@ -7861,6 +8143,8 @@ Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild serv
 			Keywords: []string{
 
 				"codebuild",
+
+				"webhook",
 			},
 			Arguments: []resource.Argument{
 
@@ -7935,6 +8219,8 @@ in all regions - available regions are listed
 			Keywords: []string{
 
 				"codecommit",
+
+				"repository",
 			},
 			Arguments: []resource.Argument{
 
@@ -8014,6 +8300,8 @@ in all regions - available regions are listed
 			Keywords: []string{
 
 				"codecommit",
+
+				"trigger",
 			},
 			Arguments: []resource.Argument{
 
@@ -8063,6 +8351,8 @@ Provides a CodeDeploy application to be used as a basis for deployments
 			Keywords: []string{
 
 				"codedeploy",
+
+				"app",
 			},
 			Arguments: []resource.Argument{
 
@@ -8113,6 +8403,10 @@ Provides a CodeDeploy deployment config for an application
 			Keywords: []string{
 
 				"codedeploy",
+
+				"deployment",
+
+				"config",
 			},
 			Arguments: []resource.Argument{
 
@@ -8220,6 +8514,10 @@ Provides a CodeDeploy Deployment Group for a CodeDeploy Application
 			Keywords: []string{
 
 				"codedeploy",
+
+				"deployment",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -8637,6 +8935,8 @@ Provides a CodePipeline Webhook.
 			Keywords: []string{
 
 				"codepipeline",
+
+				"webhook",
 			},
 			Arguments: []resource.Argument{
 
@@ -8722,6 +9022,10 @@ Provides an AWS Cognito Identity Pool.
 			Keywords: []string{
 
 				"cognito",
+
+				"identity",
+
+				"pool",
 			},
 			Arguments: []resource.Argument{
 
@@ -8762,6 +9066,14 @@ Provides an AWS Cognito Identity Pool Roles Attachment.
 			Keywords: []string{
 
 				"cognito",
+
+				"identity",
+
+				"pool",
+
+				"roles",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -8792,6 +9104,10 @@ Provides a Cognito User Identity Provider resource.
 			Keywords: []string{
 
 				"cognito",
+
+				"identity",
+
+				"provider",
 			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
@@ -8810,6 +9126,10 @@ Provides a Cognito Resource Server.
 			Keywords: []string{
 
 				"cognito",
+
+				"resource",
+
+				"server",
 			},
 			Arguments: []resource.Argument{
 
@@ -8865,6 +9185,10 @@ Provides a Cognito User Group resource.
 			Keywords: []string{
 
 				"cognito",
+
+				"user",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -8909,6 +9233,10 @@ Provides a Cognito User Pool resource.
 			Keywords: []string{
 
 				"cognito",
+
+				"user",
+
+				"pool",
 			},
 			Arguments: []resource.Argument{
 
@@ -9034,6 +9362,12 @@ Provides a Cognito User Pool Client resource.
 			Keywords: []string{
 
 				"cognito",
+
+				"user",
+
+				"pool",
+
+				"client",
 			},
 			Arguments: []resource.Argument{
 
@@ -9144,6 +9478,12 @@ Provides a Cognito User Pool Domain resource.
 			Keywords: []string{
 
 				"cognito",
+
+				"user",
+
+				"pool",
+
+				"domain",
 			},
 			Arguments: []resource.Argument{
 
@@ -9219,6 +9559,10 @@ Manages an AWS Config Aggregate Authorization
 			Keywords: []string{
 
 				"config",
+
+				"aggregate",
+
+				"authorization",
 			},
 			Arguments: []resource.Argument{
 
@@ -9261,6 +9605,8 @@ Provides an AWS Config Rule.
 			Keywords: []string{
 
 				"config",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -9401,6 +9747,10 @@ Manages an AWS Config Configuration Aggregator
 			Keywords: []string{
 
 				"config",
+
+				"configuration",
+
+				"aggregator",
 			},
 			Arguments: []resource.Argument{
 
@@ -9478,6 +9828,10 @@ Provides an AWS Config Configuration Recorder. Please note that this resource **
 			Keywords: []string{
 
 				"config",
+
+				"configuration",
+
+				"recorder",
 			},
 			Arguments: []resource.Argument{
 
@@ -9540,6 +9894,12 @@ Manages status (recording / stopped) of an AWS Config Configuration Recorder.
 			Keywords: []string{
 
 				"config",
+
+				"configuration",
+
+				"recorder",
+
+				"status",
 			},
 			Arguments: []resource.Argument{
 
@@ -9571,6 +9931,10 @@ Provides an AWS Config Delivery Channel.
 			Keywords: []string{
 
 				"config",
+
+				"delivery",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -9641,6 +10005,10 @@ Manages Cost and Usage Report Definitions.
 				"usage",
 
 				"report",
+
+				"cur",
+
+				"definition",
 			},
 			Arguments: []resource.Argument{
 
@@ -9705,6 +10073,10 @@ Provides a customer gateway inside a VPC. These objects can be connected to VPN 
 			Keywords: []string{
 
 				"vpc",
+
+				"customer",
+
+				"gateway",
 			},
 			Arguments: []resource.Argument{
 
@@ -9797,6 +10169,8 @@ Manages an AWS DataSync Agent deployed on premises.
 			Keywords: []string{
 
 				"datasync",
+
+				"agent",
 			},
 			Arguments: []resource.Argument{
 
@@ -9869,6 +10243,10 @@ Manages an AWS DataSync EFS Location.
 			Keywords: []string{
 
 				"datasync",
+
+				"location",
+
+				"efs",
 			},
 			Arguments: []resource.Argument{
 
@@ -9941,6 +10319,10 @@ Manages an NFS Location within AWS DataSync.
 			Keywords: []string{
 
 				"datasync",
+
+				"location",
+
+				"nfs",
 			},
 			Arguments: []resource.Argument{
 
@@ -10006,6 +10388,10 @@ Manages an S3 Location within AWS DataSync.
 			Keywords: []string{
 
 				"datasync",
+
+				"location",
+
+				"s3",
 			},
 			Arguments: []resource.Argument{
 
@@ -10071,6 +10457,8 @@ Manages an AWS DataSync Task, which represents a configuration for synchronizati
 			Keywords: []string{
 
 				"datasync",
+
+				"task",
 			},
 			Arguments: []resource.Argument{
 
@@ -10200,6 +10588,8 @@ Provides a DAX Cluster resource.
 				"accelerator",
 
 				"dax",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -10299,6 +10689,10 @@ Provides a DAX Parameter Group resource.
 				"accelerator",
 
 				"dax",
+
+				"parameter",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -10348,6 +10742,10 @@ Provides a DAX Subnet Group resource.
 				"accelerator",
 
 				"dax",
+
+				"subnet",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -10383,6 +10781,12 @@ Manages a RDS database cluster snapshot for Aurora clusters. For managing RDS da
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"cluster",
+
+				"snapshot",
 			},
 			Arguments: []resource.Argument{
 
@@ -10543,6 +10947,12 @@ Provides a DB event subscription resource.
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"event",
+
+				"subscription",
 			},
 			Arguments: []resource.Argument{
 
@@ -10636,6 +11046,10 @@ state](/docs/state/sensitive-data.html).
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -11151,6 +11565,14 @@ Manages a RDS DB Instance association with an IAM Role. Example use cases:
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"instance",
+
+				"role",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -11200,6 +11622,12 @@ Provides an RDS DB option group resource. Documentation of the available options
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"option",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -11320,6 +11748,12 @@ Provides an RDS DB parameter group resource .Documentation of the available para
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"parameter",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -11408,6 +11842,12 @@ attribute instead.
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"security",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -11488,6 +11928,10 @@ Manages a RDS database instance snapshot. For managing RDS database cluster snap
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"snapshot",
 			},
 			Arguments: []resource.Argument{
 
@@ -11673,6 +12117,12 @@ Provides an RDS DB subnet group resource.
 			Keywords: []string{
 
 				"rds",
+
+				"db",
+
+				"subnet",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -11761,6 +12211,12 @@ For more information about Network ACLs, see the AWS Documentation on
 			Keywords: []string{
 
 				"vpc",
+
+				"default",
+
+				"network",
+
+				"acl",
 			},
 			Arguments: []resource.Argument{
 
@@ -11931,6 +12387,12 @@ a conflict of rule settings and will overwrite routes.
 			Keywords: []string{
 
 				"vpc",
+
+				"default",
+
+				"route",
+
+				"table",
 			},
 			Arguments: []resource.Argument{
 
@@ -12060,6 +12522,12 @@ For more information about Default Security Groups, see the AWS Documentation on
 			Keywords: []string{
 
 				"vpc",
+
+				"default",
+
+				"security",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -12175,6 +12643,10 @@ into management.
 			Keywords: []string{
 
 				"vpc",
+
+				"default",
+
+				"subnet",
 			},
 			Arguments: []resource.Argument{
 
@@ -12274,6 +12746,8 @@ into management.
 			Keywords: []string{
 
 				"vpc",
+
+				"default",
 			},
 			Arguments: []resource.Argument{
 
@@ -12473,6 +12947,12 @@ into management.
 			Keywords: []string{
 
 				"vpc",
+
+				"default",
+
+				"dhcp",
+
+				"options",
 			},
 			Arguments: []resource.Argument{
 
@@ -12535,6 +13015,10 @@ For more information about Device Farm Projects, see the AWS Documentation on
 				"device",
 
 				"farm",
+
+				"devicefarm",
+
+				"project",
 			},
 			Arguments: []resource.Argument{
 
@@ -12572,6 +13056,10 @@ Provides a conditional forwarder for managed Microsoft AD in AWS Directory Servi
 				"directory",
 
 				"service",
+
+				"conditional",
+
+				"forwarder",
 			},
 			Arguments: []resource.Argument{
 
@@ -12762,6 +13250,8 @@ Provides a [Data Lifecycle Manager (DLM) lifecycle policy](https://docs.aws.amaz
 				"manager",
 
 				"dlm",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -12865,6 +13355,8 @@ Provides a DMS (Data Migration Service) certificate resource. DMS certificates c
 				"service",
 
 				"dms",
+
+				"certificate",
 			},
 			Arguments: []resource.Argument{
 
@@ -12919,6 +13411,8 @@ Provides a DMS (Data Migration Service) endpoint resource. DMS endpoints can be 
 				"service",
 
 				"dms",
+
+				"endpoint",
 			},
 			Arguments: []resource.Argument{
 
@@ -13035,6 +13529,10 @@ Provides a DMS (Data Migration Service) replication instance resource. DMS repli
 				"service",
 
 				"dms",
+
+				"replication",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -13161,6 +13659,12 @@ Provides a DMS (Data Migration Service) replication subnet group resource. DMS r
 				"service",
 
 				"dms",
+
+				"replication",
+
+				"subnet",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -13217,6 +13721,10 @@ Provides a DMS (Data Migration Service) replication task resource. DMS replicati
 				"service",
 
 				"dms",
+
+				"replication",
+
+				"task",
 			},
 			Arguments: []resource.Argument{
 
@@ -13303,6 +13811,10 @@ phase because a modification has not yet taken place. You can use the
 			Keywords: []string{
 
 				"documentdb",
+
+				"docdb",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -13520,6 +14032,12 @@ Cluster, or you may specify different Cluster Instance resources with various
 			Keywords: []string{
 
 				"documentdb",
+
+				"docdb",
+
+				"cluster",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -13695,6 +14213,14 @@ Manages a DocumentDB Cluster Parameter Group
 			Keywords: []string{
 
 				"documentdb",
+
+				"docdb",
+
+				"cluster",
+
+				"parameter",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -13780,6 +14306,12 @@ Manages a DocDB database cluster snapshot for DocDB clusters.
 			Keywords: []string{
 
 				"documentdb",
+
+				"docdb",
+
+				"cluster",
+
+				"snapshot",
 			},
 			Arguments: []resource.Argument{
 
@@ -13920,6 +14452,12 @@ Provides an DocumentDB subnet group resource.
 			Keywords: []string{
 
 				"documentdb",
+
+				"docdb",
+
+				"subnet",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -13987,6 +14525,12 @@ Provides a Direct Connect BGP peer resource.
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"bgp",
+
+				"peer",
 			},
 			Arguments: []resource.Argument{
 
@@ -14079,6 +14623,10 @@ Provides a Connection of Direct Connect.
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"connection",
 			},
 			Arguments: []resource.Argument{
 
@@ -14171,6 +14719,12 @@ Associates a Direct Connect Connection with a LAG.
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"connection",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -14202,6 +14756,10 @@ Provides a Direct Connect Gateway.
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"gateway",
 			},
 			Arguments: []resource.Argument{
 
@@ -14258,6 +14816,12 @@ by creating an ` + "`" + `aws_dx_gateway_association` + "`" + ` resource with th
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"gateway",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -14350,6 +14914,14 @@ Manages a Direct Connect Gateway Association Proposal, typically for enabling cr
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"gateway",
+
+				"association",
+
+				"proposal",
 			},
 			Arguments: []resource.Argument{
 
@@ -14428,6 +15000,16 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"hosted",
+
+				"private",
+
+				"virtual",
+
+				"interface",
 			},
 			Arguments: []resource.Argument{
 
@@ -14541,6 +15123,18 @@ This resource accepts ownership of a private virtual interface created by anothe
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"hosted",
+
+				"private",
+
+				"virtual",
+
+				"interface",
+
+				"accepter",
 			},
 			Arguments: []resource.Argument{
 
@@ -14604,6 +15198,16 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"hosted",
+
+				"public",
+
+				"virtual",
+
+				"interface",
 			},
 			Arguments: []resource.Argument{
 
@@ -14707,6 +15311,18 @@ This resource accepts ownership of a public virtual interface created by another
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"hosted",
+
+				"public",
+
+				"virtual",
+
+				"interface",
+
+				"accepter",
 			},
 			Arguments: []resource.Argument{
 
@@ -14761,6 +15377,10 @@ Provides a Direct Connect LAG. Connections can be added to the LAG via the [` + 
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"lag",
 			},
 			Arguments: []resource.Argument{
 
@@ -14838,6 +15458,14 @@ Provides a Direct Connect private virtual interface resource.
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"private",
+
+				"virtual",
+
+				"interface",
 			},
 			Arguments: []resource.Argument{
 
@@ -14960,6 +15588,14 @@ Provides a Direct Connect public virtual interface resource.
 				"direct",
 
 				"connect",
+
+				"dx",
+
+				"public",
+
+				"virtual",
+
+				"interface",
 			},
 			Arguments: []resource.Argument{
 
@@ -15062,6 +15698,10 @@ Provides a resource to manage a DynamoDB Global Table. These are layered on top 
 			Keywords: []string{
 
 				"dynamodb",
+
+				"global",
+
+				"table",
 			},
 			Arguments: []resource.Argument{
 
@@ -15119,6 +15759,8 @@ Provides a DynamoDB table resource
 			Keywords: []string{
 
 				"dynamodb",
+
+				"table",
 			},
 			Arguments: []resource.Argument{
 
@@ -15357,6 +15999,10 @@ Provides a DynamoDB table item resource
 			Keywords: []string{
 
 				"dynamodb",
+
+				"table",
+
+				"item",
 			},
 			Arguments: []resource.Argument{
 
@@ -15396,6 +16042,10 @@ Creates a Snapshot of an EBS Volume.
 			Keywords: []string{
 
 				"ec2",
+
+				"ebs",
+
+				"snapshot",
 			},
 			Arguments: []resource.Argument{
 
@@ -15511,6 +16161,12 @@ Creates a Snapshot of a snapshot.
 			Keywords: []string{
 
 				"ec2",
+
+				"ebs",
+
+				"snapshot",
+
+				"copy",
 			},
 			Arguments: []resource.Argument{
 
@@ -15631,6 +16287,10 @@ Manages a single EBS volume.
 			Keywords: []string{
 
 				"ec2",
+
+				"ebs",
+
+				"volume",
 			},
 			Arguments: []resource.Argument{
 
@@ -15706,6 +16366,10 @@ Provides an EC2 Capacity Reservation. This allows you to reserve capacity for yo
 			Keywords: []string{
 
 				"ec2",
+
+				"capacity",
+
+				"reservation",
 			},
 			Arguments: []resource.Argument{
 
@@ -15792,6 +16456,12 @@ Provides an AWS Client VPN endpoint for OpenVPN clients. For more information on
 			Keywords: []string{
 
 				"ec2",
+
+				"client",
+
+				"vpn",
+
+				"endpoint",
 			},
 			Arguments: []resource.Argument{
 
@@ -15913,6 +16583,14 @@ Provides network associations for AWS Client VPN endpoints. For more information
 			Keywords: []string{
 
 				"ec2",
+
+				"client",
+
+				"vpn",
+
+				"network",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -15983,6 +16661,8 @@ Provides a resource to manage EC2 Fleets.
 			Keywords: []string{
 
 				"ec2",
+
+				"fleet",
 			},
 			Arguments: []resource.Argument{
 
@@ -16188,6 +16868,10 @@ Manages an EC2 Transit Gateway.
 			Keywords: []string{
 
 				"ec2",
+
+				"transit",
+
+				"gateway",
 			},
 			Arguments: []resource.Argument{
 
@@ -16298,6 +16982,12 @@ Manages an EC2 Transit Gateway Route.
 			Keywords: []string{
 
 				"ec2",
+
+				"transit",
+
+				"gateway",
+
+				"route",
 			},
 			Arguments: []resource.Argument{
 
@@ -16343,6 +17033,14 @@ Manages an EC2 Transit Gateway Route Table.
 			Keywords: []string{
 
 				"ec2",
+
+				"transit",
+
+				"gateway",
+
+				"route",
+
+				"table",
 			},
 			Arguments: []resource.Argument{
 
@@ -16403,6 +17101,16 @@ Manages an EC2 Transit Gateway Route Table association.
 			Keywords: []string{
 
 				"ec2",
+
+				"transit",
+
+				"gateway",
+
+				"route",
+
+				"table",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -16463,6 +17171,16 @@ Manages an EC2 Transit Gateway Route Table propagation.
 			Keywords: []string{
 
 				"ec2",
+
+				"transit",
+
+				"gateway",
+
+				"route",
+
+				"table",
+
+				"propagation",
 			},
 			Arguments: []resource.Argument{
 
@@ -16523,6 +17241,14 @@ Manages an EC2 Transit Gateway VPC Attachment. For examples of custom route tabl
 			Keywords: []string{
 
 				"ec2",
+
+				"transit",
+
+				"gateway",
+
+				"vpc",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -16609,6 +17335,16 @@ connection into management.
 			Keywords: []string{
 
 				"ec2",
+
+				"transit",
+
+				"gateway",
+
+				"vpc",
+
+				"attachment",
+
+				"accepter",
 			},
 			Arguments: []resource.Argument{
 
@@ -16723,6 +17459,10 @@ Manages an ECR repository lifecycle policy.
 			Keywords: []string{
 
 				"ecr",
+
+				"lifecycle",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -16777,6 +17517,8 @@ in all regions - available regions are listed
 			Keywords: []string{
 
 				"ecr",
+
+				"repository",
 			},
 			Arguments: []resource.Argument{
 
@@ -16853,6 +17595,10 @@ in all regions - available regions are listed
 			Keywords: []string{
 
 				"ecr",
+
+				"repository",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -16903,6 +17649,8 @@ Provides an ECS cluster.
 			Keywords: []string{
 
 				"ecs",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -16957,6 +17705,8 @@ See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/Am
 			Keywords: []string{
 
 				"ecs",
+
+				"service",
 			},
 			Arguments: []resource.Argument{
 
@@ -17207,6 +17957,10 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 			Keywords: []string{
 
 				"ecs",
+
+				"task",
+
+				"definition",
 			},
 			Arguments: []resource.Argument{
 
@@ -17372,6 +18126,10 @@ Provides an Elastic File System (EFS) resource.
 			Keywords: []string{
 
 				"efs",
+
+				"file",
+
+				"system",
 			},
 			Arguments: []resource.Argument{
 
@@ -17457,6 +18215,10 @@ Provides an Elastic File System (EFS) mount target.
 			Keywords: []string{
 
 				"efs",
+
+				"mount",
+
+				"target",
 			},
 			Arguments: []resource.Argument{
 
@@ -17540,6 +18302,14 @@ outside of your VPC from initiating an IPv6 connection with your instance.
 			Keywords: []string{
 
 				"vpc",
+
+				"egress",
+
+				"only",
+
+				"internet",
+
+				"gateway",
 			},
 			Arguments: []resource.Argument{
 
@@ -17579,6 +18349,8 @@ Provides an Elastic IP resource.
 			Keywords: []string{
 
 				"ec2",
+
+				"eip",
 			},
 			Arguments: []resource.Argument{
 
@@ -17725,6 +18497,10 @@ pre-existing or distributed to customers or users and therefore cannot be change
 			Keywords: []string{
 
 				"ec2",
+
+				"eip",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -17835,6 +18611,8 @@ Manages an EKS Cluster.
 			Keywords: []string{
 
 				"eks",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -18007,6 +18785,8 @@ This resource creates an application that has one configuration template named
 				"elastic",
 
 				"beanstalk",
+
+				"application",
 			},
 			Arguments: []resource.Argument{
 
@@ -18089,6 +18869,10 @@ Elastic Beanstalk Application. For example &lt;revision&gt;-&lt;environment&gt;.
 				"elastic",
 
 				"beanstalk",
+
+				"application",
+
+				"version",
 			},
 			Arguments: []resource.Argument{
 
@@ -18158,6 +18942,10 @@ application with the same configuration settings.
 				"elastic",
 
 				"beanstalk",
+
+				"configuration",
+
+				"template",
 			},
 			Arguments: []resource.Argument{
 
@@ -18214,6 +19002,8 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 				"elastic",
 
 				"beanstalk",
+
+				"environment",
 			},
 			Arguments: []resource.Argument{
 
@@ -18396,6 +19186,10 @@ Provides an Elastic Transcoder pipeline resource.
 				"elastic",
 
 				"transcoder",
+
+				"elastictranscoder",
+
+				"pipeline",
 			},
 			Arguments: []resource.Argument{
 
@@ -18537,6 +19331,10 @@ Provides an Elastic Transcoder preset resource.
 				"elastic",
 
 				"transcoder",
+
+				"elastictranscoder",
+
+				"preset",
 			},
 			Arguments: []resource.Argument{
 
@@ -18850,6 +19648,8 @@ See the AWS Docs on [Modifying an ElastiCache Cache Cluster][2] for more informa
 			Keywords: []string{
 
 				"elasticache",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -18947,6 +19747,10 @@ Provides an ElastiCache parameter group resource.
 			Keywords: []string{
 
 				"elasticache",
+
+				"parameter",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -19017,6 +19821,10 @@ servers reboots.
 			Keywords: []string{
 
 				"elasticache",
+
+				"replication",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -19222,6 +20030,10 @@ ElastiCache cluster **outside** of a VPC. If you are using a VPC, see the
 			Keywords: []string{
 
 				"elasticache",
+
+				"security",
+
+				"group",
 			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
@@ -19244,6 +20056,10 @@ ElastiCache cluster **inside** of a VPC. If you are on EC2 Classic, see the
 			Keywords: []string{
 
 				"elasticache",
+
+				"subnet",
+
+				"group",
 			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
@@ -19262,6 +20078,8 @@ Manages an AWS Elasticsearch Domain.
 			Keywords: []string{
 
 				"elasticsearch",
+
+				"domain",
 			},
 			Arguments: []resource.Argument{
 
@@ -19527,6 +20345,10 @@ Allows setting policy to an Elasticsearch domain while referencing domain attrib
 			Keywords: []string{
 
 				"elasticsearch",
+
+				"domain",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -19833,6 +20655,8 @@ conflict and will overwrite attachments.
 				"elb",
 
 				"classic",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -19874,6 +20698,8 @@ To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/Management
 				"reduce",
 
 				"emr",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -20400,6 +21226,10 @@ Terraform will resize any Instance Group to zero when destroying the resource.
 				"reduce",
 
 				"emr",
+
+				"instance",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -20466,6 +21296,10 @@ Provides a resource to manage AWS EMR Security Configurations
 				"reduce",
 
 				"emr",
+
+				"security",
+
+				"configuration",
 			},
 			Arguments: []resource.Argument{
 
@@ -20542,6 +21376,10 @@ interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucke
 			Keywords: []string{
 
 				"vpc",
+
+				"flow",
+
+				"log",
 			},
 			Arguments: []resource.Argument{
 
@@ -20612,6 +21450,8 @@ Provides a Gamelift Alias resource.
 			Keywords: []string{
 
 				"gamelift",
+
+				"alias",
 			},
 			Arguments: []resource.Argument{
 
@@ -20682,6 +21522,8 @@ Provides an Gamelift Build resource.
 			Keywords: []string{
 
 				"gamelift",
+
+				"build",
 			},
 			Arguments: []resource.Argument{
 
@@ -20747,6 +21589,8 @@ Provides a Gamelift Fleet resource.
 			Keywords: []string{
 
 				"gamelift",
+
+				"fleet",
 			},
 			Arguments: []resource.Argument{
 
@@ -20902,6 +21746,12 @@ Provides an Gamelift Game Session Queue resource.
 			Keywords: []string{
 
 				"gamelift",
+
+				"game",
+
+				"session",
+
+				"queue",
 			},
 			Arguments: []resource.Argument{
 
@@ -20964,6 +21814,8 @@ Provides a Glacier Vault Resource. You can refer to the [Glacier Developer Guide
 			Keywords: []string{
 
 				"glacier",
+
+				"vault",
 			},
 			Arguments: []resource.Argument{
 
@@ -21038,6 +21890,10 @@ Manages a Glacier Vault Lock. You can refer to the [Glacier Developer Guide](htt
 			Keywords: []string{
 
 				"glacier",
+
+				"vault",
+
+				"lock",
 			},
 			Arguments: []resource.Argument{
 
@@ -21090,6 +21946,8 @@ Provides a Global Accelerator accelerator.
 				"global",
 
 				"accelerator",
+
+				"globalaccelerator",
 			},
 			Arguments: []resource.Argument{
 
@@ -21187,6 +22045,10 @@ Provides a Global Accelerator listener.
 				"global",
 
 				"accelerator",
+
+				"globalaccelerator",
+
+				"listener",
 			},
 			Arguments: []resource.Argument{
 
@@ -21247,6 +22109,10 @@ Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer 
 			Keywords: []string{
 
 				"glue",
+
+				"catalog",
+
+				"database",
 			},
 			Arguments: []resource.Argument{
 
@@ -21291,6 +22157,10 @@ Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Gui
 			Keywords: []string{
 
 				"glue",
+
+				"catalog",
+
+				"table",
 			},
 			Arguments: []resource.Argument{
 
@@ -21487,6 +22357,8 @@ Provides a Glue Classifier resource.
 			Keywords: []string{
 
 				"glue",
+
+				"classifier",
 			},
 			Arguments: []resource.Argument{
 
@@ -21547,6 +22419,8 @@ Provides a Glue Connection resource.
 			Keywords: []string{
 
 				"glue",
+
+				"connection",
 			},
 			Arguments: []resource.Argument{
 
@@ -21597,6 +22471,8 @@ Manages a Glue Crawler. More information can be found in the [AWS Glue Developer
 			Keywords: []string{
 
 				"glue",
+
+				"crawler",
 			},
 			Arguments: []resource.Argument{
 
@@ -21677,6 +22553,8 @@ Provides a Glue Job resource.
 			Keywords: []string{
 
 				"glue",
+
+				"job",
 			},
 			Arguments: []resource.Argument{
 
@@ -21727,6 +22605,10 @@ Manages a Glue Security Configuration.
 			Keywords: []string{
 
 				"glue",
+
+				"security",
+
+				"configuration",
 			},
 			Arguments: []resource.Argument{
 
@@ -21802,6 +22684,8 @@ Manages a Glue Trigger resource.
 			Keywords: []string{
 
 				"glue",
+
+				"trigger",
 			},
 			Arguments: []resource.Argument{
 
@@ -21874,6 +22758,8 @@ Provides a resource to manage a GuardDuty detector.
 			Keywords: []string{
 
 				"guardduty",
+
+				"detector",
 			},
 			Arguments: []resource.Argument{
 
@@ -21924,6 +22810,10 @@ Provides a resource to accept a pending GuardDuty invite on creation, ensure the
 			Keywords: []string{
 
 				"guardduty",
+
+				"invite",
+
+				"accepter",
 			},
 			Arguments: []resource.Argument{
 
@@ -21966,6 +22856,8 @@ Provides a resource to manage a GuardDuty IPSet.
 			Keywords: []string{
 
 				"guardduty",
+
+				"ipset",
 			},
 			Arguments: []resource.Argument{
 
@@ -22021,6 +22913,8 @@ Provides a resource to manage a GuardDuty member. To accept invitations in membe
 			Keywords: []string{
 
 				"guardduty",
+
+				"member",
 			},
 			Arguments: []resource.Argument{
 
@@ -22093,6 +22987,8 @@ Provides a resource to manage a GuardDuty ThreatIntelSet.
 			Keywords: []string{
 
 				"guardduty",
+
+				"threatintelset",
 			},
 			Arguments: []resource.Argument{
 
@@ -22148,6 +23044,10 @@ Provides an IAM access key. This is a set of credentials that allow API requests
 			Keywords: []string{
 
 				"iam",
+
+				"access",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -22245,6 +23145,10 @@ Manages the account alias for the AWS Account.
 			Keywords: []string{
 
 				"iam",
+
+				"account",
+
+				"alias",
 			},
 			Arguments: []resource.Argument{
 
@@ -22273,6 +23177,12 @@ in the official AWS docs.
 			Keywords: []string{
 
 				"iam",
+
+				"account",
+
+				"password",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -22348,6 +23258,8 @@ Provides an IAM group.
 			Keywords: []string{
 
 				"iam",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -22435,6 +23347,10 @@ more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
 			Keywords: []string{
 
 				"iam",
+
+				"group",
+
+				"membership",
 			},
 			Arguments: []resource.Argument{
 
@@ -22485,6 +23401,10 @@ Provides an IAM policy attached to a group.
 			Keywords: []string{
 
 				"iam",
+
+				"group",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -22567,6 +23487,12 @@ Attaches a Managed IAM Policy to an IAM group
 			Keywords: []string{
 
 				"iam",
+
+				"group",
+
+				"policy",
+
+				"attachment",
 			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
@@ -22587,6 +23513,10 @@ Provides an IAM instance profile.
 			Keywords: []string{
 
 				"iam",
+
+				"instance",
+
+				"profile",
 			},
 			Arguments: []resource.Argument{
 
@@ -22712,6 +23642,12 @@ Provides an IAM OpenID Connect provider.
 			Keywords: []string{
 
 				"iam",
+
+				"openid",
+
+				"connect",
+
+				"provider",
 			},
 			Arguments: []resource.Argument{
 
@@ -22757,6 +23693,8 @@ Provides an IAM policy.
 			Keywords: []string{
 
 				"iam",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -22866,6 +23804,10 @@ Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 			Keywords: []string{
 
 				"iam",
+
+				"policy",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -22906,6 +23848,8 @@ Provides an IAM role.
 			Keywords: []string{
 
 				"iam",
+
+				"role",
 			},
 			Arguments: []resource.Argument{
 
@@ -23031,6 +23975,10 @@ Provides an IAM role policy.
 			Keywords: []string{
 
 				"iam",
+
+				"role",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -23113,6 +24061,12 @@ Attaches a Managed IAM Policy to an IAM role
 			Keywords: []string{
 
 				"iam",
+
+				"role",
+
+				"policy",
+
+				"attachment",
 			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
@@ -23131,6 +24085,10 @@ Provides an IAM SAML provider.
 			Keywords: []string{
 
 				"iam",
+
+				"saml",
+
+				"provider",
 			},
 			Arguments: []resource.Argument{
 
@@ -23193,6 +24151,10 @@ Certificates][2] in AWS Documentation.
 			Keywords: []string{
 
 				"iam",
+
+				"server",
+
+				"certificate",
 			},
 			Arguments: []resource.Argument{
 
@@ -23258,6 +24220,12 @@ Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/Use
 			Keywords: []string{
 
 				"iam",
+
+				"service",
+
+				"linked",
+
+				"role",
 			},
 			Arguments: []resource.Argument{
 
@@ -23353,6 +24321,8 @@ Provides an IAM user.
 			Keywords: []string{
 
 				"iam",
+
+				"user",
 			},
 			Arguments: []resource.Argument{
 
@@ -23433,6 +24403,12 @@ To exclusively manage the users in a group, see the
 			Keywords: []string{
 
 				"iam",
+
+				"user",
+
+				"group",
+
+				"membership",
 			},
 			Arguments: []resource.Argument{
 
@@ -23485,6 +24461,12 @@ Manages an IAM User Login Profile with limited support for password creation dur
 			Keywords: []string{
 
 				"iam",
+
+				"user",
+
+				"login",
+
+				"profile",
 			},
 			Arguments: []resource.Argument{
 
@@ -23545,6 +24527,10 @@ Provides an IAM policy attached to a user.
 			Keywords: []string{
 
 				"iam",
+
+				"user",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -23607,6 +24593,12 @@ Attaches a Managed IAM Policy to an IAM user
 			Keywords: []string{
 
 				"iam",
+
+				"user",
+
+				"policy",
+
+				"attachment",
 			},
 			Arguments:  []resource.Argument{},
 			Attributes: []resource.Argument{},
@@ -23625,6 +24617,12 @@ Uploads an SSH public key and associates it with the specified IAM user.
 			Keywords: []string{
 
 				"iam",
+
+				"user",
+
+				"ssh",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -23685,6 +24683,10 @@ Provides a Inspector assessment target
 			Keywords: []string{
 
 				"inspector",
+
+				"assessment",
+
+				"target",
 			},
 			Arguments: []resource.Argument{
 
@@ -23720,6 +24722,10 @@ Provides a Inspector assessment template
 			Keywords: []string{
 
 				"inspector",
+
+				"assessment",
+
+				"template",
 			},
 			Arguments: []resource.Argument{
 
@@ -23770,6 +24776,10 @@ Provides a Inspector resource group
 			Keywords: []string{
 
 				"inspector",
+
+				"resource",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -23806,6 +24816,8 @@ and deleted. Instances also support [provisioning](/docs/provisioners/index.html
 			Keywords: []string{
 
 				"ec2",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -24246,6 +25258,10 @@ Provides a resource to create a VPC Internet Gateway.
 			Keywords: []string{
 
 				"vpc",
+
+				"internet",
+
+				"gateway",
 			},
 			Arguments: []resource.Argument{
 
@@ -24296,6 +25312,8 @@ Creates and manages an AWS IoT certificate.
 			Keywords: []string{
 
 				"iot",
+
+				"certificate",
 			},
 			Arguments: []resource.Argument{
 
@@ -24336,6 +25354,8 @@ Provides an IoT policy.
 			Keywords: []string{
 
 				"iot",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -24406,6 +25426,10 @@ Provides an IoT policy attachment.
 			Keywords: []string{
 
 				"iot",
+
+				"policy",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -24435,6 +25459,10 @@ Provides an IoT role alias.
 			Keywords: []string{
 
 				"iot",
+
+				"role",
+
+				"alias",
 			},
 			Arguments: []resource.Argument{
 
@@ -24480,6 +25508,8 @@ Creates and manages an AWS IoT Thing.
 			Keywords: []string{
 
 				"iot",
+
+				"thing",
 			},
 			Arguments: []resource.Argument{
 
@@ -24545,6 +25575,12 @@ Attaches Principal to AWS IoT Thing.
 			Keywords: []string{
 
 				"iot",
+
+				"thing",
+
+				"principal",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -24574,6 +25610,10 @@ Creates and manages an AWS IoT Thing Type.
 			Keywords: []string{
 
 				"iot",
+
+				"thing",
+
+				"type",
 			},
 			Arguments: []resource.Argument{
 
@@ -24622,6 +25662,10 @@ Creates and manages an AWS IoT Thing Type.
 			Keywords: []string{
 
 				"iot",
+
+				"topic",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -24905,6 +25949,10 @@ When importing an existing key pair the public key material may be in any format
 			Keywords: []string{
 
 				"ec2",
+
+				"key",
+
+				"pair",
 			},
 			Arguments: []resource.Argument{
 
@@ -24963,6 +26011,10 @@ For more details, see the [Amazon Kinesis Analytics Documentation][1].
 			Keywords: []string{
 
 				"kinesis",
+
+				"analytics",
+
+				"application",
 			},
 			Arguments: []resource.Argument{
 
@@ -25292,6 +26344,10 @@ For more details, see the [Amazon Kinesis Firehose Documentation][1].
 				"kinesis",
 
 				"firehose",
+
+				"delivery",
+
+				"stream",
 			},
 			Arguments: []resource.Argument{
 
@@ -25800,6 +26856,8 @@ For more details, see the [Amazon Kinesis Documentation][1].
 			Keywords: []string{
 
 				"kinesis",
+
+				"stream",
 			},
 			Arguments: []resource.Argument{
 
@@ -25897,6 +26955,8 @@ the [account limits](http://docs.aws.amazon.com/kms/latest/developerguide/limits
 			Keywords: []string{
 
 				"kms",
+
+				"alias",
 			},
 			Arguments: []resource.Argument{
 
@@ -25958,6 +27018,8 @@ the [` + "`" + `aws_kms_ciphertext` + "`" + ` data source](/docs/providers/aws/d
 			Keywords: []string{
 
 				"kms",
+
+				"ciphertext",
 			},
 			Arguments: []resource.Argument{
 
@@ -26005,6 +27067,10 @@ Manages a KMS Customer Master Key that uses external key material. To instead ma
 			Keywords: []string{
 
 				"kms",
+
+				"external",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -26110,6 +27176,8 @@ Provides a resource-based access control mechanism for a KMS customer master key
 			Keywords: []string{
 
 				"kms",
+
+				"grant",
 			},
 			Arguments: []resource.Argument{
 
@@ -26195,6 +27263,8 @@ Provides a KMS customer master key.
 			Keywords: []string{
 
 				"kms",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -26273,6 +27343,8 @@ For information about function aliases, see [CreateAlias][2] and [AliasRoutingCo
 			Keywords: []string{
 
 				"lambda",
+
+				"alias",
 			},
 			Arguments: []resource.Argument{
 
@@ -26346,6 +27418,12 @@ For information about event source mappings, see [CreateEventSourceMapping][2] i
 			Keywords: []string{
 
 				"lambda",
+
+				"event",
+
+				"source",
+
+				"mapping",
 			},
 			Arguments: []resource.Argument{
 
@@ -26458,6 +27536,8 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 			Keywords: []string{
 
 				"lambda",
+
+				"function",
 			},
 			Arguments: []resource.Argument{
 
@@ -26695,6 +27775,10 @@ For information about Lambda Layers and how to use them, see [AWS Lambda Layers]
 			Keywords: []string{
 
 				"lambda",
+
+				"layer",
+
+				"version",
 			},
 			Arguments: []resource.Argument{
 
@@ -26801,6 +27885,8 @@ Creates a Lambda permission to allow external sources invoking the Lambda functi
 			Keywords: []string{
 
 				"lambda",
+
+				"permission",
 			},
 			Arguments: []resource.Argument{
 
@@ -26865,6 +27951,10 @@ Provides a resource to create a new launch configuration, used for autoscaling g
 			Keywords: []string{
 
 				"ec2",
+
+				"launch",
+
+				"configuration",
 			},
 			Arguments: []resource.Argument{
 
@@ -27065,6 +28155,10 @@ Provides an EC2 launch template resource. Can be used to create instances or aut
 			Keywords: []string{
 
 				"ec2",
+
+				"launch",
+
+				"template",
 			},
 			Arguments: []resource.Argument{
 
@@ -27510,6 +28604,8 @@ Provides a Load Balancer resource.
 				"v2",
 
 				"albnlb",
+
+				"lb",
 			},
 			Arguments: []resource.Argument{
 
@@ -27683,6 +28779,14 @@ Provides a load balancer cookie stickiness policy, which allows an ELB to contro
 				"elb",
 
 				"classic",
+
+				"lb",
+
+				"cookie",
+
+				"stickiness",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -27783,6 +28887,10 @@ Provides a Load Balancer Listener resource.
 				"v2",
 
 				"albnlb",
+
+				"lb",
+
+				"listener",
 			},
 			Arguments: []resource.Argument{
 
@@ -28035,6 +29143,12 @@ This resource is for additional certificates and does not replace the default ce
 				"v2",
 
 				"albnlb",
+
+				"lb",
+
+				"listener",
+
+				"certificate",
 			},
 			Arguments: []resource.Argument{
 
@@ -28074,6 +29188,12 @@ Provides a Load Balancer Listener Rule resource.
 				"v2",
 
 				"albnlb",
+
+				"lb",
+
+				"listener",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -28332,6 +29452,14 @@ Provides a load balancer SSL negotiation policy, which allows an ELB to control 
 				"elb",
 
 				"classic",
+
+				"lb",
+
+				"ssl",
+
+				"negotiation",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -28442,6 +29570,12 @@ Provides a Target Group resource for use with Load Balancer resources.
 				"v2",
 
 				"albnlb",
+
+				"lb",
+
+				"target",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -28632,6 +29766,14 @@ Provides the ability to register instances and containers with an Application Lo
 				"v2",
 
 				"albnlb",
+
+				"lb",
+
+				"target",
+
+				"group",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -28681,6 +29823,10 @@ Provides a License Manager association.
 				"license",
 
 				"manager",
+
+				"licensemanager",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -28725,6 +29871,10 @@ Provides a License Manager license configuration resource.
 				"license",
 
 				"manager",
+
+				"licensemanager",
+
+				"configuration",
 			},
 			Arguments: []resource.Argument{
 
@@ -28831,6 +29981,8 @@ this parameter to manage the DNS records for that domain.
 			Keywords: []string{
 
 				"lightsail",
+
+				"domain",
 			},
 			Arguments: []resource.Argument{
 
@@ -28880,6 +30032,8 @@ for more information.
 			Keywords: []string{
 
 				"lightsail",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -28954,6 +30108,10 @@ Lightsail.
 			Keywords: []string{
 
 				"lightsail",
+
+				"key",
+
+				"pair",
 			},
 			Arguments: []resource.Argument{
 
@@ -29046,6 +30204,10 @@ Allocates a static IP address.
 			Keywords: []string{
 
 				"lightsail",
+
+				"static",
+
+				"ip",
 			},
 			Arguments: []resource.Argument{
 
@@ -29103,6 +30265,12 @@ Provides a static IP address attachment - relationship between a Lightsail stati
 			Keywords: []string{
 
 				"lightsail",
+
+				"static",
+
+				"ip",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -29172,6 +30340,14 @@ Attaches a load balancer policy to an ELB backend server.
 				"elb",
 
 				"classic",
+
+				"balancer",
+
+				"backend",
+
+				"server",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -29246,6 +30422,12 @@ Attaches a load balancer policy to an ELB Listener.
 				"elb",
 
 				"classic",
+
+				"balancer",
+
+				"listener",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -29319,6 +30501,10 @@ Provides a load balancer policy, which can be attached to an ELB listener or bac
 				"elb",
 
 				"classic",
+
+				"balancer",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -29401,6 +30587,12 @@ Associates an AWS account with Amazon Macie as a member account.
 			Keywords: []string{
 
 				"macie",
+
+				"member",
+
+				"account",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -29438,6 +30630,12 @@ Associates an S3 resource with Amazon Macie for monitoring and data classificati
 			Keywords: []string{
 
 				"macie",
+
+				"s3",
+
+				"bucket",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -29498,6 +30696,14 @@ Provides a resource for managing the main routing table of a VPC.
 			Keywords: []string{
 
 				"vpc",
+
+				"main",
+
+				"route",
+
+				"table",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -29548,6 +30754,12 @@ Provides an AWS Elemental MediaPackage Channel.
 			Keywords: []string{
 
 				"mediapackage",
+
+				"media",
+
+				"package",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -29653,6 +30865,12 @@ Provides a MediaStore Container.
 			Keywords: []string{
 
 				"mediastore",
+
+				"media",
+
+				"store",
+
+				"container",
 			},
 			Arguments: []resource.Argument{
 
@@ -29698,6 +30916,14 @@ Provides a MediaStore Container Policy.
 			Keywords: []string{
 
 				"mediastore",
+
+				"media",
+
+				"store",
+
+				"container",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -29742,6 +30968,8 @@ brief downtime as the broker reboots.
 			Keywords: []string{
 
 				"mq",
+
+				"broker",
 			},
 			Arguments: []resource.Argument{
 
@@ -29954,6 +31182,8 @@ For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aw
 			Keywords: []string{
 
 				"mq",
+
+				"configuration",
 			},
 			Arguments: []resource.Argument{
 
@@ -30044,6 +31274,8 @@ Manages AWS Managed Streaming for Kafka cluster
 				"kafka",
 
 				"msk",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -30181,6 +31413,8 @@ Manages an Amazon Managed Streaming for Kafka configuration. More information ca
 				"kafka",
 
 				"msk",
+
+				"configuration",
 			},
 			Arguments: []resource.Argument{
 
@@ -30241,6 +31475,10 @@ Provides a resource to create a VPC NAT Gateway.
 			Keywords: []string{
 
 				"vpc",
+
+				"nat",
+
+				"gateway",
 			},
 			Arguments: []resource.Argument{
 
@@ -30344,6 +31582,8 @@ phase because a modification has not yet taken place. You can use the
 			Keywords: []string{
 
 				"neptune",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -30548,6 +31788,10 @@ meta-parameter to make multiple instances and join them all to the same Neptune 
 			Keywords: []string{
 
 				"neptune",
+
+				"cluster",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -30723,6 +31967,12 @@ Manages a Neptune Cluster Parameter Group
 			Keywords: []string{
 
 				"neptune",
+
+				"cluster",
+
+				"parameter",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -30808,6 +32058,10 @@ Manages a Neptune database cluster snapshot.
 			Keywords: []string{
 
 				"neptune",
+
+				"cluster",
+
+				"snapshot",
 			},
 			Arguments: []resource.Argument{
 
@@ -30966,6 +32220,10 @@ Manages a Neptune database cluster snapshot.
 			Keywords: []string{
 
 				"neptune",
+
+				"event",
+
+				"subscription",
 			},
 			Arguments: []resource.Argument{
 
@@ -31040,6 +32298,10 @@ Manages a Neptune Parameter Group
 			Keywords: []string{
 
 				"neptune",
+
+				"parameter",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -31115,6 +32377,10 @@ Provides an Neptune subnet group resource.
 			Keywords: []string{
 
 				"neptune",
+
+				"subnet",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -31187,6 +32453,10 @@ a conflict of rule settings and will overwrite rules.
 			Keywords: []string{
 
 				"vpc",
+
+				"network",
+
+				"acl",
 			},
 			Arguments: []resource.Argument{
 
@@ -31303,6 +32573,12 @@ a conflict of rule settings and will overwrite rules.
 			Keywords: []string{
 
 				"vpc",
+
+				"network",
+
+				"acl",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -31388,6 +32664,10 @@ Provides an Elastic network interface (ENI) resource.
 			Keywords: []string{
 
 				"vpc",
+
+				"network",
+
+				"interface",
 			},
 			Arguments: []resource.Argument{
 
@@ -31538,6 +32818,12 @@ Attach an Elastic network interface (ENI) resource with EC2 instance.
 			Keywords: []string{
 
 				"vpc",
+
+				"network",
+
+				"interface",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -31625,6 +32911,14 @@ one or the other.
 			Keywords: []string{
 
 				"vpc",
+
+				"network",
+
+				"interface",
+
+				"sg",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -31654,6 +32948,8 @@ Provides an OpsWorks application resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"application",
 			},
 			Arguments: []resource.Argument{
 
@@ -31829,6 +33125,10 @@ Provides an OpsWorks custom layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"custom",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -31969,6 +33269,10 @@ Provides an OpsWorks Ganglia layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"ganglia",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -32119,6 +33423,10 @@ Provides an OpsWorks haproxy layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"haproxy",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -32284,6 +33592,8 @@ Provides an OpsWorks instance resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -32589,6 +33899,12 @@ Provides an OpsWorks Java application layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"java",
+
+				"app",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -32749,6 +34065,10 @@ Provides an OpsWorks memcached layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"memcached",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -32892,6 +34212,10 @@ Provides an OpsWorks MySQL layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"mysql",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -33037,6 +34361,12 @@ Provides an OpsWorks NodeJS application layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"nodejs",
+
+				"app",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -33177,6 +34507,8 @@ Provides an OpsWorks permission resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"permission",
 			},
 			Arguments: []resource.Argument{
 
@@ -33232,6 +34564,12 @@ Provides an OpsWorks PHP application layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"php",
+
+				"app",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -33367,6 +34705,12 @@ Provides an OpsWorks Ruby on Rails application layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"rails",
+
+				"app",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -33535,6 +34879,12 @@ Provides an OpsWorks RDS DB Instance resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"rds",
+
+				"db",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -33585,6 +34935,8 @@ Provides an OpsWorks stack resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"stack",
 			},
 			Arguments: []resource.Argument{
 
@@ -33760,6 +35112,12 @@ Provides an OpsWorks static web server layer resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"static",
+
+				"web",
+
+				"layer",
 			},
 			Arguments: []resource.Argument{
 
@@ -33890,6 +35248,10 @@ Provides an OpsWorks User Profile resource.
 			Keywords: []string{
 
 				"opsworks",
+
+				"user",
+
+				"profile",
 			},
 			Arguments: []resource.Argument{
 
@@ -33944,6 +35306,8 @@ Provides a resource to create a member account in the current organization.
 			Keywords: []string{
 
 				"organizations",
+
+				"account",
 			},
 			Arguments: []resource.Argument{
 
@@ -34009,6 +35373,8 @@ Provides a resource to create an organization.
 			Keywords: []string{
 
 				"organizations",
+
+				"organization",
 			},
 			Arguments: []resource.Argument{
 
@@ -34214,6 +35580,10 @@ Provides a resource to create an organizational unit.
 			Keywords: []string{
 
 				"organizations",
+
+				"organizational",
+
+				"unit",
 			},
 			Arguments: []resource.Argument{
 
@@ -34314,6 +35684,8 @@ Provides a resource to manage an [AWS Organizations policy](https://docs.aws.ama
 			Keywords: []string{
 
 				"organizations",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -34374,6 +35746,10 @@ Provides a resource to attach an AWS Organizations policy to an organization acc
 			Keywords: []string{
 
 				"organizations",
+
+				"policy",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -34407,6 +35783,10 @@ Provides a Pinpoint ADM (Amazon Device Messaging) Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"adm",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -34449,6 +35829,10 @@ Provides a Pinpoint APNs Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"apns",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -34516,6 +35900,12 @@ Provides a Pinpoint APNs Sandbox Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"apns",
+
+				"sandbox",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -34583,6 +35973,12 @@ Provides a Pinpoint APNs VoIP Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"apns",
+
+				"voip",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -34650,6 +36046,14 @@ Provides a Pinpoint APNs VoIP Sandbox Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"apns",
+
+				"voip",
+
+				"sandbox",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -34714,6 +36118,8 @@ Provides a Pinpoint App resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"app",
 			},
 			Arguments: []resource.Argument{
 
@@ -34818,6 +36224,10 @@ Provides a Pinpoint Baidu Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"baidu",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -34857,6 +36267,10 @@ Provides a Pinpoint SMS Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"email",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -34912,6 +36326,10 @@ Provides a Pinpoint Event Stream resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"event",
+
+				"stream",
 			},
 			Arguments: []resource.Argument{
 
@@ -34949,6 +36367,10 @@ Provides a Pinpoint GCM Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"gcm",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -34983,6 +36405,10 @@ Provides a Pinpoint SMS Channel resource.
 			Keywords: []string{
 
 				"pinpoint",
+
+				"sms",
+
+				"channel",
 			},
 			Arguments: []resource.Argument{
 
@@ -35044,6 +36470,10 @@ in [AWS Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-grou
 			Keywords: []string{
 
 				"ec2",
+
+				"placement",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -35092,6 +36522,12 @@ Provides a proxy protocol policy, which allows an ELB to carry a client connecti
 				"elb",
 
 				"classic",
+
+				"proxy",
+
+				"protocol",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -35144,6 +36580,10 @@ Provides a Resource Access Manager (RAM) principal association.
 			Keywords: []string{
 
 				"ram",
+
+				"principal",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -35186,6 +36626,10 @@ Manages a Resource Access Manager (RAM) Resource Association.
 			Keywords: []string{
 
 				"ram",
+
+				"resource",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -35226,6 +36670,10 @@ Manages a Resource Access Manager (RAM) Resource Share. To association principal
 			Keywords: []string{
 
 				"ram",
+
+				"resource",
+
+				"share",
 			},
 			Arguments: []resource.Argument{
 
@@ -35299,6 +36747,8 @@ for more information.
 			Keywords: []string{
 
 				"rds",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -35736,6 +37186,10 @@ You can refer to the [User Guide][1].
 			Keywords: []string{
 
 				"rds",
+
+				"cluster",
+
+				"endpoint",
 			},
 			Arguments: []resource.Argument{
 
@@ -35824,6 +37278,10 @@ For more information on Amazon Aurora, see [Aurora on Amazon RDS][2] in the Amaz
 			Keywords: []string{
 
 				"rds",
+
+				"cluster",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -36117,6 +37575,12 @@ Provides an RDS DB cluster parameter group resource. Documentation of the availa
 			Keywords: []string{
 
 				"rds",
+
+				"cluster",
+
+				"parameter",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -36206,6 +37670,10 @@ More information about Aurora global databases can be found in the [Aurora User 
 			Keywords: []string{
 
 				"rds",
+
+				"global",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -36284,6 +37752,8 @@ Provides a Redshift Cluster Resource.
 			Keywords: []string{
 
 				"redshift",
+
+				"cluster",
 			},
 			Arguments: []resource.Argument{
 
@@ -36679,6 +38149,10 @@ Provides a Redshift event subscription resource.
 			Keywords: []string{
 
 				"redshift",
+
+				"event",
+
+				"subscription",
 			},
 			Arguments: []resource.Argument{
 
@@ -36748,6 +38222,10 @@ Provides a Redshift Cluster parameter group resource.
 			Keywords: []string{
 
 				"redshift",
+
+				"parameter",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -36808,6 +38286,10 @@ Creates a new Amazon Redshift security group. You use security groups to control
 			Keywords: []string{
 
 				"redshift",
+
+				"security",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -36870,6 +38352,12 @@ Note that the grant must exist in the destination region, and not in the region 
 			Keywords: []string{
 
 				"redshift",
+
+				"snapshot",
+
+				"copy",
+
+				"grant",
 			},
 			Arguments: []resource.Argument{
 
@@ -36904,6 +38392,10 @@ Creates a new Amazon Redshift subnet group. You must provide a list of one or mo
 			Keywords: []string{
 
 				"redshift",
+
+				"subnet",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -36956,6 +38448,10 @@ Provides a Resource Group.
 				"resource",
 
 				"groups",
+
+				"resourcegroups",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -37017,6 +38513,8 @@ a conflict of rule settings and will overwrite rules.
 			Keywords: []string{
 
 				"vpc",
+
+				"route",
 			},
 			Arguments: []resource.Argument{
 
@@ -37097,6 +38595,10 @@ Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/A
 			Keywords: []string{
 
 				"route53",
+
+				"delegation",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -37142,6 +38644,10 @@ Provides a Route53 health check.
 			Keywords: []string{
 
 				"route53",
+
+				"health",
+
+				"check",
 			},
 			Arguments: []resource.Argument{
 
@@ -37262,6 +38768,10 @@ See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/la
 			Keywords: []string{
 
 				"route53",
+
+				"query",
+
+				"log",
 			},
 			Arguments: []resource.Argument{
 
@@ -37302,6 +38812,8 @@ Provides a Route53 record resource.
 			Keywords: []string{
 
 				"route53",
+
+				"record",
 			},
 			Arguments: []resource.Argument{
 
@@ -37459,6 +38971,8 @@ Provides a Route 53 Resolver endpoint resource.
 				"route53",
 
 				"resolver",
+
+				"endpoint",
 			},
 			Arguments: []resource.Argument{
 
@@ -37546,6 +39060,8 @@ Provides a Route53 Resolver rule.
 				"route53",
 
 				"resolver",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -37643,6 +39159,10 @@ Provides a Route53 Resolver rule association.
 				"route53",
 
 				"resolver",
+
+				"rule",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -37688,6 +39208,8 @@ Manages a Route53 Hosted Zone.
 			Keywords: []string{
 
 				"route53",
+
+				"zone",
 			},
 			Arguments: []resource.Argument{
 
@@ -37772,6 +39294,10 @@ Manages a Route53 Hosted Zone VPC association. VPC associations can only be made
 			Keywords: []string{
 
 				"route53",
+
+				"zone",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -37866,6 +39392,10 @@ the separate resource.
 			Keywords: []string{
 
 				"vpc",
+
+				"route",
+
+				"table",
 			},
 			Arguments: []resource.Argument{
 
@@ -37971,6 +39501,12 @@ Provides a resource to create an association between a subnet and routing table.
 			Keywords: []string{
 
 				"vpc",
+
+				"route",
+
+				"table",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -38015,6 +39551,14 @@ Manages S3 account-level Public Access Block configuration. For more information
 			Keywords: []string{
 
 				"s3",
+
+				"account",
+
+				"public",
+
+				"access",
+
+				"block",
 			},
 			Arguments: []resource.Argument{
 
@@ -38070,6 +39614,8 @@ Provides a S3 bucket resource.
 			Keywords: []string{
 
 				"s3",
+
+				"bucket",
 			},
 			Arguments: []resource.Argument{
 
@@ -38480,6 +40026,10 @@ Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/Amazo
 			Keywords: []string{
 
 				"s3",
+
+				"bucket",
+
+				"inventory",
 			},
 			Arguments: []resource.Argument{
 
@@ -38594,6 +40144,10 @@ Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3
 			Keywords: []string{
 
 				"s3",
+
+				"bucket",
+
+				"metric",
 			},
 			Arguments: []resource.Argument{
 
@@ -38640,6 +40194,10 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 			Keywords: []string{
 
 				"s3",
+
+				"bucket",
+
+				"notification",
 			},
 			Arguments: []resource.Argument{
 
@@ -38754,6 +40312,10 @@ Provides a S3 bucket object resource.
 			Keywords: []string{
 
 				"s3",
+
+				"bucket",
+
+				"object",
 			},
 			Arguments: []resource.Argument{
 
@@ -38889,6 +40451,10 @@ Attaches a policy to an S3 bucket resource.
 			Keywords: []string{
 
 				"s3",
+
+				"bucket",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -38918,6 +40484,14 @@ Manages S3 bucket-level Public Access Block configuration. For more information 
 			Keywords: []string{
 
 				"s3",
+
+				"bucket",
+
+				"public",
+
+				"access",
+
+				"block",
 			},
 			Arguments: []resource.Argument{
 
@@ -38973,6 +40547,8 @@ Provides a SageMaker Endpoint resource.
 			Keywords: []string{
 
 				"sagemaker",
+
+				"endpoint",
 			},
 			Arguments: []resource.Argument{
 
@@ -39028,6 +40604,10 @@ Provides a SageMaker endpoint configuration resource.
 			Keywords: []string{
 
 				"sagemaker",
+
+				"endpoint",
+
+				"configuration",
 			},
 			Arguments: []resource.Argument{
 
@@ -39103,6 +40683,8 @@ Provides a SageMaker model resource.
 			Keywords: []string{
 
 				"sagemaker",
+
+				"model",
 			},
 			Arguments: []resource.Argument{
 
@@ -39183,6 +40765,10 @@ Provides a Sagemaker Notebook Instance resource.
 			Keywords: []string{
 
 				"sagemaker",
+
+				"notebook",
+
+				"instance",
 			},
 			Arguments: []resource.Argument{
 
@@ -39258,6 +40844,14 @@ Provides a lifecycle configuration for SageMaker Notebook Instances.
 			Keywords: []string{
 
 				"sagemaker",
+
+				"notebook",
+
+				"instance",
+
+				"lifecycle",
+
+				"configuration",
 			},
 			Arguments: []resource.Argument{
 
@@ -39305,6 +40899,10 @@ Provides a resource to manage AWS Secrets Manager secret metadata. To manage a s
 				"secrets",
 
 				"manager",
+
+				"secretsmanager",
+
+				"secret",
 			},
 			Arguments: []resource.Argument{
 
@@ -39409,6 +41007,12 @@ Provides a resource to manage AWS Secrets Manager secret version including its s
 				"secrets",
 
 				"manager",
+
+				"secretsmanager",
+
+				"secret",
+
+				"version",
 			},
 			Arguments: []resource.Argument{
 
@@ -39488,6 +41092,10 @@ a conflict of rule settings and will overwrite rules.
 			Keywords: []string{
 
 				"vpc",
+
+				"security",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -39730,6 +41338,12 @@ a conflict of rule settings and will overwrite rules.
 			Keywords: []string{
 
 				"vpc",
+
+				"security",
+
+				"group",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -39851,6 +41465,10 @@ Enables Security Hub for this AWS account.
 				"security",
 
 				"hub",
+
+				"securityhub",
+
+				"account",
 			},
 			Arguments: []resource.Argument{
 
@@ -39885,6 +41503,12 @@ Subscribes to a Security Hub product.
 				"security",
 
 				"hub",
+
+				"securityhub",
+
+				"product",
+
+				"subscription",
 			},
 			Arguments: []resource.Argument{
 
@@ -39924,6 +41548,12 @@ Subscribes to a Security Hub standard.
 				"security",
 
 				"hub",
+
+				"securityhub",
+
+				"standards",
+
+				"subscription",
 			},
 			Arguments: []resource.Argument{
 
@@ -39960,6 +41590,10 @@ Subscribes to a Security Hub standard.
 				"service",
 
 				"discovery",
+
+				"http",
+
+				"namespace",
 			},
 			Arguments: []resource.Argument{
 
@@ -40012,6 +41646,12 @@ Provides a Service Discovery Private DNS Namespace resource.
 				"service",
 
 				"discovery",
+
+				"private",
+
+				"dns",
+
+				"namespace",
 			},
 			Arguments: []resource.Argument{
 
@@ -40079,6 +41719,12 @@ Provides a Service Discovery Public DNS Namespace resource.
 				"service",
 
 				"discovery",
+
+				"public",
+
+				"dns",
+
+				"namespace",
 			},
 			Arguments: []resource.Argument{
 
@@ -40253,6 +41899,10 @@ Provides a resource to create a Service Catalog Portfolio.
 				"service",
 
 				"catalog",
+
+				"servicecatalog",
+
+				"portfolio",
 			},
 			Arguments: []resource.Argument{
 
@@ -40303,6 +41953,14 @@ Provides a resource to designate the active SES receipt rule set
 			Keywords: []string{
 
 				"ses",
+
+				"active",
+
+				"receipt",
+
+				"rule",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -40327,6 +41985,10 @@ Provides an SES configuration set resource
 			Keywords: []string{
 
 				"ses",
+
+				"configuration",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -40353,6 +42015,10 @@ Domain ownership needs to be confirmed first using [ses_domain_identity Resource
 			Keywords: []string{
 
 				"ses",
+
+				"domain",
+
+				"dkim",
 			},
 			Arguments: []resource.Argument{
 
@@ -40388,6 +42054,10 @@ Provides an SES domain identity resource
 			Keywords: []string{
 
 				"ses",
+
+				"domain",
+
+				"identity",
 			},
 			Arguments: []resource.Argument{
 
@@ -40439,6 +42109,12 @@ deploy the required DNS verification records, and wait for verification to compl
 			Keywords: []string{
 
 				"ses",
+
+				"domain",
+
+				"identity",
+
+				"verification",
 			},
 			Arguments: []resource.Argument{
 
@@ -40486,6 +42162,12 @@ Provides an SES domain MAIL FROM resource.
 			Keywords: []string{
 
 				"ses",
+
+				"domain",
+
+				"mail",
+
+				"from",
 			},
 			Arguments: []resource.Argument{
 
@@ -40527,6 +42209,10 @@ Provides an SES domain MAIL FROM resource.
 			Keywords: []string{
 
 				"ses",
+
+				"email",
+
+				"identity",
 			},
 			Arguments: []resource.Argument{
 
@@ -40562,6 +42248,10 @@ Provides an SES event destination
 			Keywords: []string{
 
 				"ses",
+
+				"event",
+
+				"destination",
 			},
 			Arguments: []resource.Argument{
 
@@ -40646,6 +42336,12 @@ Resource for managing SES Identity Notification Topics
 			Keywords: []string{
 
 				"ses",
+
+				"identity",
+
+				"notification",
+
+				"topic",
 			},
 			Arguments: []resource.Argument{
 
@@ -40680,6 +42376,10 @@ Provides an SES receipt filter resource
 			Keywords: []string{
 
 				"ses",
+
+				"receipt",
+
+				"filter",
 			},
 			Arguments: []resource.Argument{
 
@@ -40714,6 +42414,10 @@ Provides an SES receipt rule resource
 			Keywords: []string{
 
 				"ses",
+
+				"receipt",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -40933,6 +42637,12 @@ Provides an SES receipt rule set resource
 			Keywords: []string{
 
 				"ses",
+
+				"receipt",
+
+				"rule",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -40957,6 +42667,8 @@ Provides a resource to create a SES template.
 			Keywords: []string{
 
 				"ses",
+
+				"template",
 			},
 			Arguments: []resource.Argument{
 
@@ -41011,6 +42723,8 @@ Provides a Step Function Activity resource
 				"function",
 
 				"sfn",
+
+				"activity",
 			},
 			Arguments: []resource.Argument{
 
@@ -41075,6 +42789,10 @@ Provides a Step Function State Machine resource
 				"function",
 
 				"sfn",
+
+				"state",
+
+				"machine",
 			},
 			Arguments: []resource.Argument{
 
@@ -41146,6 +42864,8 @@ The resource can be an Amazon CloudFront distribution, Elastic Load Balancing lo
 			Keywords: []string{
 
 				"shield",
+
+				"protection",
 			},
 			Arguments: []resource.Argument{
 
@@ -41186,6 +42906,8 @@ Provides a SimpleDB domain resource
 			Keywords: []string{
 
 				"simpledb",
+
+				"domain",
 			},
 			Arguments: []resource.Argument{
 
@@ -41221,6 +42943,14 @@ Adds permission to create volumes off of a given EBS Snapshot.
 			Keywords: []string{
 
 				"ec2",
+
+				"snapshot",
+
+				"create",
+
+				"volume",
+
+				"permission",
 			},
 			Arguments: []resource.Argument{
 
@@ -41261,6 +42991,10 @@ Provides an SNS platform application resource
 			Keywords: []string{
 
 				"sns",
+
+				"platform",
+
+				"application",
 			},
 			Arguments: []resource.Argument{
 
@@ -41356,6 +43090,10 @@ Provides a way to set SNS SMS preferences.
 			Keywords: []string{
 
 				"sns",
+
+				"sms",
+
+				"preferences",
 			},
 			Arguments: []resource.Argument{
 
@@ -41405,6 +43143,8 @@ Provides an SNS topic resource
 			Keywords: []string{
 
 				"sns",
+
+				"topic",
 			},
 			Arguments: []resource.Argument{
 
@@ -41542,6 +43282,10 @@ Provides an SNS topic policy resource
 			Keywords: []string{
 
 				"sns",
+
+				"topic",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -41582,6 +43326,10 @@ probably be SQS queues.
 			Keywords: []string{
 
 				"sns",
+
+				"topic",
+
+				"subscription",
 			},
 			Arguments: []resource.Argument{
 
@@ -41695,6 +43443,12 @@ This data feed is sent to an Amazon S3 bucket that you specify when you subscrib
 			Keywords: []string{
 
 				"ec2",
+
+				"spot",
+
+				"datafeed",
+
+				"subscription",
 			},
 			Arguments: []resource.Argument{
 
@@ -41725,6 +43479,12 @@ instances to be requested on the Spot market.
 			Keywords: []string{
 
 				"ec2",
+
+				"spot",
+
+				"fleet",
+
+				"request",
 			},
 			Arguments: []resource.Argument{
 
@@ -41872,6 +43632,12 @@ for more information.
 			Keywords: []string{
 
 				"ec2",
+
+				"spot",
+
+				"instance",
+
+				"request",
 			},
 			Arguments: []resource.Argument{
 
@@ -42015,6 +43781,8 @@ for more information.
 			Keywords: []string{
 
 				"sqs",
+
+				"queue",
 			},
 			Arguments: []resource.Argument{
 
@@ -42126,6 +43894,10 @@ while referencing ARN of the queue within the policy.
 			Keywords: []string{
 
 				"sqs",
+
+				"queue",
+
+				"policy",
 			},
 			Arguments: []resource.Argument{
 
@@ -42155,6 +43927,8 @@ Registers an on-premises server or virtual machine with Amazon EC2 so that it ca
 			Keywords: []string{
 
 				"ssm",
+
+				"activation",
 			},
 			Arguments: []resource.Argument{
 
@@ -42285,6 +44059,8 @@ Associates an SSM Document to an instance or EC2 tag.
 			Keywords: []string{
 
 				"ssm",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -42414,6 +44190,8 @@ schema version you must recreate the resource.
 			Keywords: []string{
 
 				"ssm",
+
+				"document",
 			},
 			Arguments: []resource.Argument{
 
@@ -42594,6 +44372,10 @@ Provides an SSM Maintenance Window resource
 			Keywords: []string{
 
 				"ssm",
+
+				"maintenance",
+
+				"window",
 			},
 			Arguments: []resource.Argument{
 
@@ -42674,6 +44456,12 @@ Provides an SSM Maintenance Window Target resource
 			Keywords: []string{
 
 				"ssm",
+
+				"maintenance",
+
+				"window",
+
+				"target",
 			},
 			Arguments: []resource.Argument{
 
@@ -42734,6 +44522,12 @@ Provides an SSM Maintenance Window Task resource
 			Keywords: []string{
 
 				"ssm",
+
+				"maintenance",
+
+				"window",
+
+				"task",
 			},
 			Arguments: []resource.Argument{
 
@@ -42849,6 +44643,8 @@ Provides an SSM Parameter resource.
 			Keywords: []string{
 
 				"ssm",
+
+				"parameter",
 			},
 			Arguments: []resource.Argument{
 
@@ -42968,6 +44764,10 @@ of them is specified.
 			Keywords: []string{
 
 				"ssm",
+
+				"patch",
+
+				"baseline",
 			},
 			Arguments: []resource.Argument{
 
@@ -43063,6 +44863,10 @@ Provides an SSM Patch Group resource
 			Keywords: []string{
 
 				"ssm",
+
+				"patch",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -43103,6 +44907,12 @@ Provides a SSM resource data sync.
 			Keywords: []string{
 
 				"ssm",
+
+				"resource",
+
+				"data",
+
+				"sync",
 			},
 			Arguments: []resource.Argument{
 
@@ -43161,6 +44971,10 @@ Manages an AWS Storage Gateway cache.
 				"storage",
 
 				"gateway",
+
+				"storagegateway",
+
+				"cache",
 			},
 			Arguments: []resource.Argument{
 
@@ -43207,6 +45021,14 @@ Manages an AWS Storage Gateway cached iSCSI volume.
 				"storage",
 
 				"gateway",
+
+				"storagegateway",
+
+				"cached",
+
+				"iscsi",
+
+				"volume",
 			},
 			Arguments: []resource.Argument{
 
@@ -43341,6 +45163,8 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 				"storage",
 
 				"gateway",
+
+				"storagegateway",
 			},
 			Arguments: []resource.Argument{
 
@@ -43463,6 +45287,14 @@ Manages an AWS Storage Gateway NFS File Share.
 				"storage",
 
 				"gateway",
+
+				"storagegateway",
+
+				"nfs",
+
+				"file",
+
+				"share",
 			},
 			Arguments: []resource.Argument{
 
@@ -43640,6 +45472,14 @@ Manages an AWS Storage Gateway SMB File Share.
 				"storage",
 
 				"gateway",
+
+				"storagegateway",
+
+				"smb",
+
+				"file",
+
+				"share",
 			},
 			Arguments: []resource.Argument{
 
@@ -43824,6 +45664,12 @@ Manages an AWS Storage Gateway upload buffer.
 				"storage",
 
 				"gateway",
+
+				"storagegateway",
+
+				"upload",
+
+				"buffer",
 			},
 			Arguments: []resource.Argument{
 
@@ -43868,6 +45714,10 @@ Manages an AWS Storage Gateway working storage.
 				"storage",
 
 				"gateway",
+
+				"storagegateway",
+
+				"working",
 			},
 			Arguments: []resource.Argument{
 
@@ -43908,6 +45758,8 @@ Provides an VPC subnet resource.
 			Keywords: []string{
 
 				"vpc",
+
+				"subnet",
 			},
 			Arguments: []resource.Argument{
 
@@ -44008,6 +45860,8 @@ Provides an SWF Domain resource.
 			Keywords: []string{
 
 				"swf",
+
+				"domain",
 			},
 			Arguments: []resource.Argument{
 
@@ -44111,6 +45965,8 @@ resource "aws_transfer_server" "foo" {
 			Keywords: []string{
 
 				"transfer",
+
+				"server",
 			},
 			Arguments: []resource.Argument{
 
@@ -44263,6 +46119,10 @@ resource "aws_transfer_ssh_key" "foo" {
 			Keywords: []string{
 
 				"transfer",
+
+				"ssh",
+
+				"key",
 			},
 			Arguments: []resource.Argument{
 
@@ -44354,6 +46214,8 @@ resource "aws_transfer_user" "foo" {
 			Keywords: []string{
 
 				"transfer",
+
+				"user",
 			},
 			Arguments: []resource.Argument{
 
@@ -44417,6 +46279,10 @@ detach volumes from AWS Instances.
 			Keywords: []string{
 
 				"ec2",
+
+				"volume",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -44692,6 +46558,10 @@ Provides a VPC DHCP Options resource.
 			Keywords: []string{
 
 				"vpc",
+
+				"dhcp",
+
+				"options",
 			},
 			Arguments: []resource.Argument{
 
@@ -44762,6 +46632,12 @@ Provides a VPC DHCP Options Association resource.
 			Keywords: []string{
 
 				"vpc",
+
+				"dhcp",
+
+				"options",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -44809,6 +46685,8 @@ Doing so will cause a conflict of associations and will overwrite the associatio
 			Keywords: []string{
 
 				"vpc",
+
+				"endpoint",
 			},
 			Arguments: []resource.Argument{
 
@@ -44955,6 +46833,12 @@ Connection notifications notify subscribers of VPC Endpoint events.
 			Keywords: []string{
 
 				"vpc",
+
+				"endpoint",
+
+				"connection",
+
+				"notification",
 			},
 			Arguments: []resource.Argument{
 
@@ -45025,6 +46909,14 @@ Manages a VPC Endpoint Route Table Association
 			Keywords: []string{
 
 				"vpc",
+
+				"endpoint",
+
+				"route",
+
+				"table",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -45072,6 +46964,10 @@ and will overwrite the association.
 			Keywords: []string{
 
 				"vpc",
+
+				"endpoint",
+
+				"service",
 			},
 			Arguments: []resource.Argument{
 
@@ -45183,6 +47079,14 @@ and will overwrite the association.
 			Keywords: []string{
 
 				"vpc",
+
+				"endpoint",
+
+				"service",
+
+				"allowed",
+
+				"principal",
 			},
 			Arguments: []resource.Argument{
 
@@ -45229,6 +47133,12 @@ Association resource. Doing so will cause a conflict of associations and will ov
 			Keywords: []string{
 
 				"vpc",
+
+				"endpoint",
+
+				"subnet",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -45272,6 +47182,14 @@ The ` + "`" + `aws_vpc_ipv4_cidr_block_association` + "`" + ` resource allows fu
 			Keywords: []string{
 
 				"vpc",
+
+				"ipv4",
+
+				"cidr",
+
+				"block",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -45324,6 +47242,10 @@ connection and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + `
 			Keywords: []string{
 
 				"vpc",
+
+				"peering",
+
+				"connection",
 			},
 			Arguments: []resource.Argument{
 
@@ -45416,6 +47338,12 @@ connection into management.
 			Keywords: []string{
 
 				"vpc",
+
+				"peering",
+
+				"connection",
+
+				"accepter",
 			},
 			Arguments: []resource.Argument{
 
@@ -45696,6 +47624,12 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 			Keywords: []string{
 
 				"vpc",
+
+				"peering",
+
+				"connection",
+
+				"options",
 			},
 			Arguments: []resource.Argument{
 
@@ -45752,6 +47686,10 @@ Manages an EC2 VPN connection. These objects can be connected to customer gatewa
 			Keywords: []string{
 
 				"vpc",
+
+				"vpn",
+
+				"connection",
 			},
 			Arguments: []resource.Argument{
 
@@ -46022,6 +47960,12 @@ Provides a static route between a VPN connection and a customer gateway.
 			Keywords: []string{
 
 				"vpc",
+
+				"vpn",
+
+				"connection",
+
+				"route",
 			},
 			Arguments: []resource.Argument{
 
@@ -46072,6 +48016,10 @@ Provides a resource to create a VPC VPN Gateway.
 			Keywords: []string{
 
 				"vpc",
+
+				"vpn",
+
+				"gateway",
 			},
 			Arguments: []resource.Argument{
 
@@ -46127,6 +48075,12 @@ to an existing VPC by setting the [` + "`" + `vpc_id` + "`" + `](vpn_gateway.htm
 			Keywords: []string{
 
 				"vpc",
+
+				"vpn",
+
+				"gateway",
+
+				"attachment",
 			},
 			Arguments: []resource.Argument{
 
@@ -46181,6 +48135,14 @@ propagation not explicitly listed in its value will be removed.
 			Keywords: []string{
 
 				"vpc",
+
+				"vpn",
+
+				"gateway",
+
+				"route",
+
+				"propagation",
 			},
 			Arguments: []resource.Argument{
 
@@ -46210,6 +48172,12 @@ Provides a WAF Byte Match Set Resource
 			Keywords: []string{
 
 				"waf",
+
+				"byte",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -46280,6 +48248,12 @@ Provides a WAF Geo Match Set Resource
 			Keywords: []string{
 
 				"waf",
+
+				"geo",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -46330,6 +48304,8 @@ Provides a WAF IPSet Resource
 			Keywords: []string{
 
 				"waf",
+
+				"ipset",
 			},
 			Arguments: []resource.Argument{
 
@@ -46390,6 +48366,12 @@ Provides a WAF Rate Based Rule Resource
 			Keywords: []string{
 
 				"waf",
+
+				"rate",
+
+				"based",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -46460,6 +48442,12 @@ Provides a WAF Regex Match Set Resource
 			Keywords: []string{
 
 				"waf",
+
+				"regex",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -46525,6 +48513,12 @@ Provides a WAF Regex Pattern Set Resource
 			Keywords: []string{
 
 				"waf",
+
+				"regex",
+
+				"pattern",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -46565,6 +48559,8 @@ Provides a WAF Rule Resource
 			Keywords: []string{
 
 				"waf",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -46625,6 +48621,10 @@ Provides a WAF Rule Group Resource
 			Keywords: []string{
 
 				"waf",
+
+				"rule",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -46695,6 +48695,12 @@ Provides a WAF Size Constraint Set Resource
 			Keywords: []string{
 
 				"waf",
+
+				"size",
+
+				"constraint",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -46765,6 +48771,14 @@ Provides a WAF SQL Injection Match Set Resource
 			Keywords: []string{
 
 				"waf",
+
+				"sql",
+
+				"injection",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -46825,6 +48839,10 @@ Provides a WAF Web ACL Resource
 			Keywords: []string{
 
 				"waf",
+
+				"web",
+
+				"acl",
 			},
 			Arguments: []resource.Argument{
 
@@ -46945,6 +48963,12 @@ Provides a WAF XSS Match Set Resource
 			Keywords: []string{
 
 				"waf",
+
+				"xss",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -47007,6 +49031,14 @@ Provides a WAF Regional Byte Match Set Resource for use with Application Load Ba
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"byte",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -47079,6 +49111,14 @@ Provides a WAF Regional Geo Match Set Resource
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"geo",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -47131,6 +49171,10 @@ Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"ipset",
 			},
 			Arguments: []resource.Argument{
 
@@ -47193,6 +49237,14 @@ Provides a WAF Rate Based Rule Resource
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"rate",
+
+				"based",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -47265,6 +49317,14 @@ Provides a WAF Regional Regex Match Set Resource
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"regex",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -47332,6 +49392,14 @@ Provides a WAF Regional Regex Pattern Set Resource
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"regex",
+
+				"pattern",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -47374,6 +49442,10 @@ Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 
@@ -47436,6 +49508,12 @@ Provides a WAF Regional Rule Group Resource
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"rule",
+
+				"group",
 			},
 			Arguments: []resource.Argument{
 
@@ -47508,6 +49586,14 @@ Provides a WAF Regional Size Constraint Set Resource for use with Application Lo
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"size",
+
+				"constraint",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -47580,6 +49666,16 @@ Provides a WAF Regional SQL Injection Match Set Resource for use with Applicatio
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"sql",
+
+				"injection",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -47642,6 +49738,12 @@ Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"web",
+
+				"acl",
 			},
 			Arguments: []resource.Argument{
 
@@ -47771,6 +49873,14 @@ Manages an association with WAF Regional Web ACL.
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"web",
+
+				"acl",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -47813,6 +49923,14 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 				"waf",
 
 				"regional",
+
+				"wafregional",
+
+				"xss",
+
+				"match",
+
+				"set",
 			},
 			Arguments: []resource.Argument{
 
@@ -47871,6 +49989,8 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 			Keywords: []string{
 
 				"worklink",
+
+				"fleet",
 			},
 			Arguments: []resource.Argument{
 
@@ -47999,6 +50119,14 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 			Keywords: []string{
 
 				"worklink",
+
+				"website",
+
+				"certificate",
+
+				"authority",
+
+				"association",
 			},
 			Arguments: []resource.Argument{
 
@@ -48044,6 +50172,10 @@ Creates and manages an AWS XRay Sampling Rule.
 			Keywords: []string{
 
 				"xray",
+
+				"sampling",
+
+				"rule",
 			},
 			Arguments: []resource.Argument{
 

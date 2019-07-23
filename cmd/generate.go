@@ -119,7 +119,7 @@ func main() {
 					continue
 				}
 				r.Category = c
-				r.Keywords = categoryToKeywords(c)
+				r.Keywords = categoryAndTypeToKeywords("aws", c, rt)
 			}
 			resources = append(resources, r)
 		}
@@ -147,16 +147,23 @@ func main() {
 
 var categoryReplacer = strings.NewReplacer("(", "", ")", "", "/", "")
 
-func categoryToKeywords(c string) []string {
-	ws := strings.Split(strings.ToLower(c), " ")
+func categoryAndTypeToKeywords(provider, c, rt string) []string {
+	cws := strings.Split(strings.ToLower(c), " ")
+	tws := strings.Split(rt, "_")
 
-	res := make([]string, 0, len(ws))
-	for _, w := range ws {
-		if w == "resources" {
+	res := make([]string, 0, len(cws))
+	ws := make(map[string]struct{})
+	for _, w := range append(cws, tws...) {
+		// The word it's already there
+		if _, ok := ws[w]; ok {
+			continue
+		}
+		if w == "resources" || w == provider {
 			continue
 		}
 		w = categoryReplacer.Replace(w)
 		res = append(res, w)
+		ws[w] = struct{}{}
 	}
 
 	return res
