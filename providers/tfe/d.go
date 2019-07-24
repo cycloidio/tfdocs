@@ -1,11 +1,13 @@
-package aws
+package tfe
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ Use this data source to get information about a SSH key.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the SSH key.`,
@@ -32,7 +34,7 @@ Use this data source to get information about a SSH key.
 					Description: `The ID of the SSH key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the SSH key.`,
@@ -50,7 +52,7 @@ Use this data source to get information about a team.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the team.`,
@@ -64,7 +66,7 @@ Use this data source to get information about a team.
 					Description: `The ID of the team.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the team.`,
@@ -82,7 +84,7 @@ Use this data source to get information about team permissions for a workspace.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `(Required) ID of the team.`,
@@ -96,7 +98,7 @@ Use this data source to get information about team permissions for a workspace.
 					Description: `The type of access granted.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access",
 					Description: `The type of access granted.`,
@@ -114,7 +116,7 @@ Use this data source to get information about a workspace.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the workspace.`,
@@ -176,7 +178,7 @@ Use this data source to get information about a workspace.
 					Description: `OAuth token ID of the configured VCS connection.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The workspace's human-readable ID, which looks like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
@@ -242,7 +244,7 @@ Use this data source to get a map of (external) workspace IDs.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `(Required) A list of workspace names to search for. Names that don't match a real workspace will be omitted from the results, but are not an error. To select _all_ workspaces for an organization, provide a list with a single asterisk, like ` + "`" + `["`,
@@ -260,7 +262,7 @@ Use this data source to get a map of (external) workspace IDs.
 					Description: `A map of workspace names and their opaque external IDs, which look like ` + "`" + `ws-<RANDOM STRING>` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A map of workspace names and their human-readable IDs, which look like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
@@ -273,7 +275,7 @@ Use this data source to get a map of (external) workspace IDs.
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"tfe_ssh_key":       0,
 		"tfe_team":          1,
@@ -283,10 +285,10 @@ Use this data source to get a map of (external) workspace IDs.
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

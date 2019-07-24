@@ -1,11 +1,13 @@
-package aws
+package bitbucket
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"default",
 				"reviewers",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owner",
 					Description: `(Required) The owner of this repository. Can be you or any team you have write access to.`,
@@ -31,7 +33,7 @@ var (
 					Description: `(Required) A list of reviewers to use.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -42,7 +44,7 @@ var (
 			Keywords: []string{
 				"hook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owner",
 					Description: `(Required) The owner of this repository. Can be you or any team you have write access to.`,
@@ -64,7 +66,7 @@ var (
 					Description: `(Required) The event you want to react on.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -75,7 +77,7 @@ var (
 			Keywords: []string{
 				"repository",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owner",
 					Description: `(Required) The owner of this repository. Can be you or any team you have write access to.`,
@@ -125,7 +127,7 @@ var (
 					Description: `(Optional) What the description of the repo is. ## Computed Arguments The following arguments are computed. You can access both ` + "`" + `clone_ssh` + "`" + ` and ` + "`" + `clone_https` + "`" + ` for getting a clone URL. ## Import Repositories can be imported using their ` + "`" + `owner/name` + "`" + ` ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import bitbucket_repository.my-repo my-account/my-repo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -137,10 +139,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package runscope
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(String, Required) The name of this bucket.`,
@@ -38,7 +40,7 @@ var (
 					Description: `Unique identifier for the team this bucket belongs to. ## Import Buckets can be imported using the bucket ` + "`" + `key` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import runscope_bucket.example t2f4bkvnggcx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of this bucket.`,
@@ -62,7 +64,7 @@ var (
 			Keywords: []string{
 				"environment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_id",
 					Description: `(Required) The id of the bucket to associate this environment with.`,
@@ -132,7 +134,7 @@ var (
 					Description: `The ID of the environment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the environment.`,
@@ -148,7 +150,7 @@ var (
 			Keywords: []string{
 				"schedule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_id",
 					Description: `(Required) The id of the bucket to associate this schedule with.`,
@@ -174,7 +176,7 @@ var (
 					Description: `The ID of the schedule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the schedule.`,
@@ -190,7 +192,7 @@ var (
 			Keywords: []string{
 				"step",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_id",
 					Description: `(Required) The id of the bucket to associate this step with.`,
@@ -276,7 +278,7 @@ var (
 					Description: `The ID of the step.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the step.`,
@@ -292,7 +294,7 @@ var (
 			Keywords: []string{
 				"test",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(String, Required) The name of this test.`,
@@ -314,7 +316,7 @@ var (
 					Description: `Human-readable description of the new test.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier for the test.`,
@@ -341,10 +343,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

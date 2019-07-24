@@ -1,11 +1,13 @@
-package aws
+package consul
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,8 +16,8 @@ var (
 			ShortDescription: `Provides the configuration information of the local Consul agent.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the agent is running in`,
@@ -49,8 +51,8 @@ var (
 			ShortDescription: `Provides the configuration information of the local Consul agent.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dns",
 					Description: `A map of DNS configuration attributes. See below for details on the contents of the ` + "`" + `dns` + "`" + ` attribute.`,
@@ -68,7 +70,7 @@ var (
 			ShortDescription: `Provides health information of the autopilot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup. ## Attributes Reference The following attributes are exported:`,
@@ -134,7 +136,7 @@ var (
 					Description: `The time this server has been in its current ` + "`" + `` + "`" + `Healthy` + "`" + `` + "`" + ` state`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "healthy",
 					Description: `Whether all the servers in the cluster are currently healthy`,
@@ -204,7 +206,7 @@ var (
 			ShortDescription: `Reads values from a "namespace" of Consul keys that share a common name prefix.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
@@ -250,7 +252,7 @@ var (
 					Description: `A map of the subkeys and values is set if no ` + "`" + `subkey` + "`" + ` block is provided.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being read from.`,
@@ -276,7 +278,7 @@ var (
 			ShortDescription: `Reads values from the Consul key/value store.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
@@ -310,7 +312,7 @@ var (
 					Description: `For each name given, the corresponding attribute has the value of the key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being read from.`,
@@ -328,7 +330,7 @@ var (
 			ShortDescription: `Provides a list of nodes in a given Consul datacenter.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The Consul datacenter to query. Defaults to the same value found in ` + "`" + `query_options` + "`" + ` parameter specified below, or if that is empty, the ` + "`" + `datacenter` + "`" + ` value found in the Consul agent that this provider is configured to talk to then the datacenter in the provider setup.`,
@@ -378,7 +380,7 @@ var (
 					Description: `The Node ID of the Consul agent.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being read from to.`,
@@ -408,7 +410,7 @@ var (
 			ShortDescription: `Provides details about a specific Consul service`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The Consul datacenter to query. Defaults to the same value found in ` + "`" + `query_options` + "`" + ` parameter specified below, or if that is empty, the ` + "`" + `datacenter` + "`" + ` value found in the Consul agent that this provider is configured to talk to.`,
@@ -466,7 +468,7 @@ var (
 					Description: `The Node ID of the Consul agent advertising the service.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being read from to.`,
@@ -496,7 +498,7 @@ var (
 			ShortDescription: `Filter service instances based on health status`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The Consul datacenter to query.`,
@@ -630,7 +632,7 @@ var (
 					Description: `The list of tags associated with this health-check.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being read from to.`,
@@ -748,7 +750,7 @@ var (
 			ShortDescription: `Provides a list of services in a given Consul datacenter.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The Consul datacenter to query. Defaults to the same value found in ` + "`" + `query_options` + "`" + ` parameter specified below, or if that is empty, the ` + "`" + `datacenter` + "`" + ` value found in the Consul agent that this provider is configured to talk to.`,
@@ -794,7 +796,7 @@ var (
 					Description: `A map of the tags found for each service. If more than one service shares the same tag, unique service names will be joined by whitespace (this is the inverse of ` + "`" + `services` + "`" + ` and can be used to lookup the services that match a single tag).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being read from to.`,
@@ -815,7 +817,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"consul_agent_config":     0,
 		"consul_agent_self":       1,
@@ -829,10 +831,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

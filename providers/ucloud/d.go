@@ -1,11 +1,13 @@
-package aws
+package ucloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Provides a list of database instance resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) Availability zone where database instances are located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
@@ -128,7 +130,7 @@ var (
 					Description: `The modification time of database instance , formatted by RFC3339 time string.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_instances",
 					Description: `It is a nested type which documented below.`,
@@ -234,7 +236,7 @@ var (
 			ShortDescription: `Provides a list of Disk resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) Availability zone where Disk are located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
@@ -304,7 +306,7 @@ var (
 					Description: `The status of disk. Possible values are: ` + "`" + `Available` + "`" + `, ` + "`" + `InUse` + "`" + `, ` + "`" + `Detaching` + "`" + `, ` + "`" + `Initializating` + "`" + `, ` + "`" + `Failed` + "`" + `, ` + "`" + `Cloning` + "`" + `, ` + "`" + `Restoring` + "`" + `, ` + "`" + `RestoreFailed` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disks",
 					Description: `It is a nested type which documented below.`,
@@ -362,7 +364,7 @@ var (
 			ShortDescription: `Provides a list of EIP resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Elastic IP IDs, all the EIPs belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
@@ -432,7 +434,7 @@ var (
 					Description: `Elastic IP address.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "eips",
 					Description: `It is a nested type which documented below.`,
@@ -498,7 +500,7 @@ var (
 			ShortDescription: `Provides a list of available image resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) Availability zone where images are located. such as: ` + "`" + `cn-bj2-02` + "`" + `. You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist).`,
@@ -576,7 +578,7 @@ var (
 					Description: `The status of image. Possible values are ` + "`" + `Available` + "`" + `, ` + "`" + `Making` + "`" + ` and ` + "`" + `Unavailable` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "images",
 					Description: `It is a nested type which documented below.`,
@@ -638,7 +640,7 @@ var (
 			ShortDescription: `Provides a list of UHost instance resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) Availability zone where instances are located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
@@ -764,7 +766,7 @@ var (
 					Description: `Elastic IP address.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instances",
 					Description: `It is a nested type. instances documented below.`,
@@ -878,7 +880,7 @@ var (
 			ShortDescription: `Provides a list of Load Balancer Attachment resources under the Load Balancer listener.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The ID of a load balancer.`,
@@ -924,7 +926,7 @@ var (
 					Description: `The status of backend servers. Possible values are: ` + "`" + `normalRunning` + "`" + `, ` + "`" + `exceptionRunning` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "lb_attachments",
 					Description: `It is a nested type which documented below.`,
@@ -962,7 +964,7 @@ var (
 			ShortDescription: `Provides a list of Load Balancer Listener resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The ID of a load balancer.`,
@@ -1040,7 +1042,7 @@ var (
 					Description: `LB Listener status. Possible values are: ` + "`" + `allNormal` + "`" + ` for all resource functioning well, ` + "`" + `partNormal` + "`" + ` for partial resource functioning well and ` + "`" + `allException` + "`" + ` for all resource functioning exceptional.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "lb_listeners",
 					Description: `It is a nested type which documented below.`,
@@ -1110,7 +1112,7 @@ var (
 			ShortDescription: `Provides a list of Load Balancer Rule resources belong to the Load Balancer listener.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The ID of a load balancer.`,
@@ -1148,7 +1150,7 @@ var (
 					Description: `(Optional) The domain of content forward matching fields. ` + "`" + `path` + "`" + ` and ` + "`" + `domain` + "`" + ` cannot coexist.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "lb_rules",
 					Description: `It is a nested type which documented below.`,
@@ -1178,7 +1180,7 @@ var (
 			ShortDescription: `Provides a list of Load Balancer SSL certificate resources.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of LB SSL certificate resource IDs, all the LB SSL certificate resources in the current region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
@@ -1212,7 +1214,7 @@ var (
 					Description: `The time of creation for lb ssl, formatted in RFC3339 time string.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "lb_ssls",
 					Description: `It is a nested type which documented below.`,
@@ -1242,7 +1244,7 @@ var (
 			ShortDescription: `Provides a list of Load Balancer resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Load Balancer IDs, all the LBs belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
@@ -1316,7 +1318,7 @@ var (
 					Description: `Load Balancer address.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "lbs",
 					Description: `It is a nested type which documented below.`,
@@ -1378,7 +1380,7 @@ var (
 			ShortDescription: `Provides a list of projects owned by the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "is_finance",
 					Description: `(Optional) To identify if the current account is granted with financial permission.`,
@@ -1428,7 +1430,7 @@ var (
 					Description: `The time of creation for instance, formatted in RFC3339 time string.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "projects",
 					Description: `It is a nested type which documented below.`,
@@ -1474,7 +1476,7 @@ var (
 			ShortDescription: `Provides a list of Security Group resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Security Group IDs, all the Security Group resources belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
@@ -1548,7 +1550,7 @@ var (
 					Description: `The protocol. Can be ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, ` + "`" + `gre` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_groups",
 					Description: `It is a nested type which documented below.`,
@@ -1614,7 +1616,7 @@ var (
 			ShortDescription: `Provides a list of Subnet resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Subnet IDs, all the Subnet resources belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
@@ -1664,7 +1666,7 @@ var (
 					Description: `A tag assigned to Subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnets",
 					Description: `It is a nested type which documented below.`,
@@ -1706,7 +1708,7 @@ var (
 			ShortDescription: `Provides a list of VPC resources in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of VPC IDs, all the VPC resources belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
@@ -1752,7 +1754,7 @@ var (
 					Description: `The time whenever there is a change made to VPC, formatted in RFC3339 time string.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpcs",
 					Description: `It is a nested type which documented below.`,
@@ -1794,7 +1796,7 @@ var (
 			ShortDescription: `Provides a list of available zones in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -1812,7 +1814,7 @@ var (
 					Description: `The ID of availability zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zones",
 					Description: `It is a nested type which documented below.`,
@@ -1829,7 +1831,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"ucloud_db_instances":    0,
 		"ucloud_disks":           1,
@@ -1849,10 +1851,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package skytap
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,13 +16,13 @@ var (
 			ShortDescription: `Get information on a project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of project. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29,7 +31,7 @@ var (
 			ShortDescription: `Get information on a template.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A regular expression on the name of a template.`,
@@ -39,21 +41,21 @@ var (
 					Description: `(Optional) Use the most recently created template from the returned list. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"skytap_project":  0,
 		"skytap_template": 1,
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

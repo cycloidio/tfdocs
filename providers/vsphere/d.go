@@ -1,11 +1,13 @@
-package aws
+package vsphere
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Provides a vSphere cluster data source. This can be used to get the general attributes of a vSphere cluster.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or absolute path to the cluster.`,
@@ -24,7 +26,7 @@ var (
 					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datacenter the cluster is located in. This can be omitted if the search path used in ` + "`" + `name` + "`" + ` is an absolute path. For default datacenters, use the id attribute from an empty ` + "`" + `vsphere_datacenter` + "`" + ` data source. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -33,13 +35,13 @@ var (
 			ShortDescription: `Provides a vSphere custom attribute data source. This can be used to reference custom attributes not managed in Terraform.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the custom attribute. ## Attribute Reference In addition to the ` + "`" + `id` + "`" + ` being exported, all of the fields that are available in the [` + "`" + `vsphere_custom_attribute` + "`" + ` resource][resource-custom-attribute] are also populated. See that page for further details.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -48,13 +50,13 @@ var (
 			ShortDescription: `A data source that can be used to get the ID of a datacenter.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the datacenter. This can be a name or path. Can be omitted if there is only one datacenter in your inventory. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -63,7 +65,7 @@ var (
 			ShortDescription: `Provides a vSphere datastore data source. This can be used to get the general attributes of a vSphere datastore.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the datastore. This can be a name or path.`,
@@ -73,7 +75,7 @@ var (
 					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datacenter the datastore is located in. This can be omitted if the search path used in ` + "`" + `name` + "`" + ` is an absolute path. For default datacenters, use the id attribute from an empty ` + "`" + `vsphere_datacenter` + "`" + ` data source. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference Currently, the only exported attribute from this data source is ` + "`" + `id` + "`" + `, which represents the ID of the datastore that was looked up.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -82,7 +84,7 @@ var (
 			ShortDescription: `Provides a vSphere datastore cluster data source. This can be used to get the general attributes of a vSphere datastore cluster.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or absolute path to the datastore cluster.`,
@@ -92,7 +94,7 @@ var (
 					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datacenter the datastore cluster is located in. This can be omitted if the search path used in ` + "`" + `name` + "`" + ` is an absolute path. For default datacenters, use the id attribute from an empty ` + "`" + `vsphere_datacenter` + "`" + ` data source. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference Currently, the only exported attribute from this data source is ` + "`" + `id` + "`" + `, which represents the ID of the datastore cluster that was looked up.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -101,7 +103,7 @@ var (
 			ShortDescription: `Provides a vSphere distributed virtual switch data source. This can be used to get select attributes of a DVS.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the distributed virtual switch. This can be a name or path.`,
@@ -111,7 +113,7 @@ var (
 					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datacenter the DVS is located in. This can be omitted if the search path used in ` + "`" + `name` + "`" + ` is an absolute path. For default datacenters, use the id attribute from an empty ` + "`" + `vsphere_datacenter` + "`" + ` data source. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -120,7 +122,7 @@ var (
 			ShortDescription: `A data source that can be used to get the ID of a host.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of a datacenter.`,
@@ -138,7 +140,7 @@ var (
 					Description: `The [managed object ID][docs-about-morefs] of the host's root resource pool. -> Note that the resource pool referenced by [` + "`" + `resource_pool_id` + "`" + `](#resource_pool_id) is dependent on the target host's state - if it's a standalone host, the resource pool will belong to the host only, however if it is a member of a cluster, the resource pool will be the root for the entire cluster. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The [managed objectID][docs-about-morefs] of this host.`,
@@ -156,7 +158,7 @@ var (
 			ShortDescription: `Provides a vSphere network data source. This can be used to get the general attributes of a vSphere network.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the network. This can be a name or path.`,
@@ -166,7 +168,7 @@ var (
 					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datacenter the network is located in. This can be omitted if the search path used in ` + "`" + `name` + "`" + ` is an absolute path. For default datacenters, use the id attribute from an empty ` + "`" + `vsphere_datacenter` + "`" + ` data source. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -175,7 +177,7 @@ var (
 			ShortDescription: `Provides a vSphere resource pool data source. This can be used to get the general attributes of a vSphere resource pool.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the resource pool. This can be a name or path. This is required when using vCenter.`,
@@ -185,7 +187,7 @@ var (
 					Description: `(Optional) The [managed object reference ID][docs-about-morefs] of the datacenter the resource pool is located in. This can be omitted if the search path used in ` + "`" + `name` + "`" + ` is an absolute path. For default datacenters, use the id attribute from an empty ` + "`" + `vsphere_datacenter` + "`" + ` data source. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -194,7 +196,7 @@ var (
 			ShortDescription: `Provides a vSphere tag data source. This can be used to reference tags not managed in Terraform.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the tag.`,
@@ -204,7 +206,7 @@ var (
 					Description: `(Required) The ID of the tag category the tag is located in. ## Attribute Reference In addition to the ` + "`" + `id` + "`" + ` being exported, all of the fields that are available in the [` + "`" + `vsphere_tag` + "`" + ` resource][resource-tag] are also populated. See that page for further details.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -213,13 +215,13 @@ var (
 			ShortDescription: `Provides a vSphere tag category data source. This can be used to reference tag categories not managed in Terraform.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the tag category. ## Attribute Reference In addition to the ` + "`" + `id` + "`" + ` being exported, all of the fields that are available in the [` + "`" + `vsphere_tag_category` + "`" + ` resource][resource-tag-category] are also populated. See that page for further details.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -228,7 +230,7 @@ var (
 			ShortDescription: `Provides a vSphere virtual machine data source. This can be used to get data from a virtual machine or template.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual machine. This can be a name or path.`,
@@ -286,7 +288,7 @@ var (
 					Description: `The firmware type for this virtual machine. Can be ` + "`" + `bios` + "`" + ` or ` + "`" + `efi` + "`" + `. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The UUID of the virtual machine or template.`,
@@ -340,7 +342,7 @@ var (
 			ShortDescription: `A data source that can be used to discover storage devices that can be used for VMFS datastores.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "host_system_id",
 					Description: `(Required) The [managed object ID][docs-about-morefs] of the host to look for disks on. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -358,7 +360,7 @@ var (
 					Description: `A lexicographically sorted list of devices discovered by the operation, matching the supplied ` + "`" + `filter` + "`" + `, if provided.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disks",
 					Description: `A lexicographically sorted list of devices discovered by the operation, matching the supplied ` + "`" + `filter` + "`" + `, if provided.`,
@@ -367,7 +369,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"vsphere_compute_cluster":            0,
 		"vsphere_custom_attribute":           1,
@@ -385,10 +387,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package dnsimple
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) The domain to add the record to`,
@@ -74,7 +76,7 @@ var (
 					Description: `The FQDN of the record ## Import DNSimple resources can be imported using their domain name and numeric ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dnsimple_record.resource_name example.com_1234 ` + "`" + `` + "`" + `` + "`" + ` The numeric ID can be found in the URL when editing a record on the dnsimple web dashboard.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record ID`,
@@ -117,10 +119,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

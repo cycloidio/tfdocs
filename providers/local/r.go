@@ -1,11 +1,13 @@
-package aws
+package local
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"file",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "content",
 					Description: `(Optional) The content of file to create. Conflicts with ` + "`" + `sensitive_content` + "`" + ` and ` + "`" + `content_base64` + "`" + `.`,
@@ -34,7 +36,7 @@ var (
 					Description: `(Required) The path of the file to create. Any required parent directories will be created automatically, and any existing file with the given name will be overwritten.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -44,10 +46,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

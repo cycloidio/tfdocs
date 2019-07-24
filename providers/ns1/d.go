@@ -1,11 +1,13 @@
-package aws
+package ns1
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ Provides details about a NS1 Zone.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain name of the zone. ## Attributes Reference`,
@@ -56,7 +58,7 @@ Provides details about a NS1 Zone.
 					Description: `Authoritative Name Servers.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "link",
 					Description: `The linked target zone.`,
@@ -93,16 +95,16 @@ Provides details about a NS1 Zone.
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"ns1_zone": 0,
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package github
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"branch",
 				"protection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository",
 					Description: `(Required) The GitHub repository name.`,
@@ -47,7 +49,7 @@ var (
 					Description: `(Optional) Enforce restrictions for the users and teams that may push to the branch. See [Restrictions](#restrictions) below for details. ### Required Status Checks ` + "`" + `required_status_checks` + "`" + ` supports the following arguments:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -59,7 +61,7 @@ var (
 				"issue",
 				"label",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository",
 					Description: `(Required) The GitHub repository`,
@@ -81,7 +83,7 @@ var (
 					Description: `(Computed) The URL to the issue label ## Import GitHub Issue Labels can be imported using an id made up of ` + "`" + `repository:name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_issue_label.panic_label terraform:panic ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -92,7 +94,7 @@ var (
 			Keywords: []string{
 				"membership",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Required) The user to add to the organization.`,
@@ -102,7 +104,7 @@ var (
 					Description: `(Optional) The role of the user within the organization. Must be one of ` + "`" + `member` + "`" + ` or ` + "`" + `admin` + "`" + `. Defaults to ` + "`" + `member` + "`" + `. ## Import GitHub Membership can be imported using an id made up of ` + "`" + `organization:username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_membership.member hashicorp:someuser ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -114,13 +116,13 @@ var (
 				"organization",
 				"block",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Required) The name of the user to block.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -132,7 +134,7 @@ var (
 				"organization",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the project.`,
@@ -146,7 +148,7 @@ var (
 					Description: `URL of the project`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `URL of the project`,
@@ -163,7 +165,7 @@ var (
 				"organization",
 				"webhook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "events",
 					Description: `(Required) A list of events which should trigger the webhook. See a list of [available events](https://developer.github.com/v3/activity/events/types/)`,
@@ -181,7 +183,7 @@ var (
 					Description: `URL of the webhook`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `URL of the webhook`,
@@ -198,7 +200,7 @@ var (
 				"project",
 				"column",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of an existing project that the column will be created in.`,
@@ -208,7 +210,7 @@ var (
 					Description: `(Required) The name of the column.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -219,7 +221,7 @@ var (
 			Keywords: []string{
 				"repository",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the repository.`,
@@ -313,7 +315,7 @@ var (
 					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation. ## Import Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository.terraform terraform ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "full_name",
 					Description: `A string of the form "orgname/reponame".`,
@@ -350,7 +352,7 @@ var (
 				"repository",
 				"collaborator",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository",
 					Description: `(Required) The GitHub repository`,
@@ -368,7 +370,7 @@ var (
 					Description: `ID of the invitation to be used in [` + "`" + `github_user_invitation_accepter` + "`" + `](./user_invitation_accepter.html) ## Import GitHub Repository Collaborators can be imported using an id made up of ` + "`" + `repository:username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_collaborator.collaborator terraform:someuser ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "invitation_id",
 					Description: `ID of the invitation to be used in [` + "`" + `github_user_invitation_accepter` + "`" + `](./user_invitation_accepter.html) ## Import GitHub Repository Collaborators can be imported using an id made up of ` + "`" + `repository:username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_collaborator.collaborator terraform:someuser ` + "`" + `` + "`" + `` + "`" + ``,
@@ -386,7 +388,7 @@ var (
 				"deploy",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `(Required) A ssh key.`,
@@ -404,7 +406,7 @@ var (
 					Description: `(Required) A title. Changing any of the fields forces re-creating the resource. ## Import Repository deploy keys can be imported using a colon-separated pair of repository name and GitHub's key id. The latter can be obtained by GitHub's SDKs and API. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_deploy_key.foo test-repo:23824728 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -416,7 +418,7 @@ var (
 				"repository",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the project.`,
@@ -434,7 +436,7 @@ var (
 					Description: `URL of the project`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `URL of the project`,
@@ -451,7 +453,7 @@ var (
 				"repository",
 				"webhook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository",
 					Description: `(Required) The repository of the webhook.`,
@@ -473,7 +475,7 @@ var (
 					Description: `URL of the webhook ## Import Repository Webhooks can be imported using the ` + "`" + `name` + "`" + ` of the repository, combined with the ` + "`" + `id` + "`" + ` of the webhook, separated by a ` + "`" + `/` + "`" + ` character. The ` + "`" + `id` + "`" + ` of the webhook can be found in the URL of the webhook. For example: ` + "`" + `"https://github.com/foo-org/foo-repo/settings/hooks/14711452"` + "`" + `. Importing uses the name of the repository, as well as the ID of the webhook, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_webhook.terraform terraform/11235813 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `URL of the webhook ## Import Repository Webhooks can be imported using the ` + "`" + `name` + "`" + ` of the repository, combined with the ` + "`" + `id` + "`" + ` of the webhook, separated by a ` + "`" + `/` + "`" + ` character. The ` + "`" + `id` + "`" + ` of the webhook can be found in the URL of the webhook. For example: ` + "`" + `"https://github.com/foo-org/foo-repo/settings/hooks/14711452"` + "`" + `. Importing uses the name of the repository, as well as the ID of the webhook, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_repository_webhook.terraform terraform/11235813 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -489,7 +491,7 @@ var (
 			Keywords: []string{
 				"team",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the team.`,
@@ -519,7 +521,7 @@ var (
 					Description: `The slug of the created team, which may or may not differ from ` + "`" + `name` + "`" + `, depending on whether ` + "`" + `name` + "`" + ` contains "URL-unsafe" characters. Useful when referencing the team in [` + "`" + `github_branch_protection` + "`" + `](/docs/providers/github/r/branch_protection.html). ## Import GitHub Teams can be imported using the github team Id e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_team.core 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the created team.`,
@@ -540,7 +542,7 @@ var (
 				"team",
 				"membership",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `(Required) The GitHub team id`,
@@ -554,7 +556,7 @@ var (
 					Description: `(Optional) The role of the user within the team. Must be one of ` + "`" + `member` + "`" + ` or ` + "`" + `maintainer` + "`" + `. Defaults to ` + "`" + `member` + "`" + `. ## Import GitHub Team Membership can be imported using an id made up of ` + "`" + `teamid:username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_team_membership.member 1234567:someuser ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -566,7 +568,7 @@ var (
 				"team",
 				"repository",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `(Required) The GitHub team id`,
@@ -580,7 +582,7 @@ var (
 					Description: `(Optional) The permissions of team members regarding the repository. Must be one of ` + "`" + `pull` + "`" + `, ` + "`" + `push` + "`" + `, or ` + "`" + `admin` + "`" + `. Defaults to ` + "`" + `pull` + "`" + `. ## Import GitHub Team Repository can be imported using an id made up of ` + "`" + `teamid:repository` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_team_repository.terraform_repo 1234567:terraform ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -593,7 +595,7 @@ var (
 				"gpg",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "armored_public_key",
 					Description: `(Required) Your public GPG key, generated in ASCII-armored format. See [Generating a new GPG key](https://help.github.com/articles/generating-a-new-gpg-key/) for help on creating a GPG key. ## Attributes Reference The following attributes are exported:`,
@@ -607,7 +609,7 @@ var (
 					Description: `The key ID of the GPG key, e.g. ` + "`" + `3262EFF25BA0D270` + "`" + ` ## Import GPG keys are not importable due to the fact that [API](https://developer.github.com/v3/users/gpg_keys/#gpg-keys) does not return previously uploaded GPG key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The GitHub ID of the GPG key, e.g. ` + "`" + `401586` + "`" + ``,
@@ -629,13 +631,13 @@ var (
 				"invitation",
 				"accepter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "invitation_id",
 					Description: `(Required) ID of the invitation to accept`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -648,7 +650,7 @@ var (
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "title",
 					Description: `(Required) A descriptive name for the new key. e.g. ` + "`" + `Personal MacBook Air` + "`" + ``,
@@ -666,7 +668,7 @@ var (
 					Description: `The URL of the SSH key ## Import SSH keys can be imported using the their ID e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_user_ssh_key.example 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the SSH key`,
@@ -702,10 +704,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

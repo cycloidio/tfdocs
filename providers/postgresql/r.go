@@ -1,11 +1,13 @@
-package aws
+package postgresql
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the database. Must be unique on the PostgreSQL server instance where it is configured.`,
@@ -58,7 +60,7 @@ var (
 					Description: `(Optional) Character classification (` + "`" + `LC_CTYPE` + "`" + `) to use in the database. This affects the categorization of characters, e.g. lower, upper and digit. If unset or set to an empty string the default character classification is set to ` + "`" + `C` + "`" + `. If set to ` + "`" + `DEFAULT` + "`" + ` Terraform will use the character classification of the specified ` + "`" + `template` + "`" + ` database. Changing this value will force the creation of a new resource as this value can only be changed when a database is created. ## Import Example ` + "`" + `postgresql_database` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "postgresql" { alias = "admindb" } resource "postgresql_database" "db1" { provider = "postgresql.admindb" name = "testdb1" } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `postgresql_database` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import postgresql_database.db1 testdb1 ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `testdb1` + "`" + ` is the name of the database to import and ` + "`" + `postgresql_database.db1` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -70,7 +72,7 @@ var (
 				"default",
 				"privileges",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) The name of the role to which grant default privileges on.`,
@@ -96,7 +98,7 @@ var (
 					Description: `(Required) The list of privileges to apply as default privileges.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -107,7 +109,7 @@ var (
 			Keywords: []string{
 				"extension",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the extension.`,
@@ -125,7 +127,7 @@ var (
 					Description: `(Optional) Which database to create the extension on. Defaults to provider database.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -136,7 +138,7 @@ var (
 			Keywords: []string{
 				"grant",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) The name of the role to grant privileges on.`,
@@ -158,7 +160,7 @@ var (
 					Description: `(Required) The list of privileges to grant.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -169,7 +171,7 @@ var (
 			Keywords: []string{
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the role. Must be unique on the PostgreSQL server instance where it is configured.`,
@@ -231,7 +233,7 @@ var (
 					Description: `(Optional) When a PostgreSQL ROLE exists in multiple databases and the ROLE is dropped, a [` + "`" + `REASSIGN OWNED` + "`" + `](https://www.postgresql.org/docs/current/static/sql-reassign-owned.html) in must be executed on each of the respective databases before the ` + "`" + `DROP ROLE` + "`" + ` can be executed to dropped the ROLE from the catalog. This is the first and second steps taken when removing a ROLE from a database (the second step being an implicit [` + "`" + `DROP OWNED` + "`" + `](https://www.postgresql.org/docs/current/static/sql-drop-owned.html)). ## Import Example ` + "`" + `postgresql_role` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "postgresql" { alias = "admindb" } resource "postgresql_role" "replication_role" { provider = "postgresql.admindb" name = "replication_name" } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `postgresql_role` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import postgresql_role.replication_role replication_name ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `replication_name` + "`" + ` is the name of the role to import and ` + "`" + `postgresql_role.replication_role` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -242,7 +244,7 @@ var (
 			Keywords: []string{
 				"schema",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the schema. Must be unique in the PostgreSQL database instance where it is configured.`,
@@ -280,7 +282,7 @@ var (
 					Description: `(Optional) Should the specified ROLE have USAGE privileges to the specified SCHEMA and the ability to GRANT the USAGE privilege to other ROLEs. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -295,10 +297,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

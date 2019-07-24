@@ -1,11 +1,13 @@
-package aws
+package triton
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `The ` + "`" + `triton_account` + "`" + ` data source queries Triton for Account information.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) The unique identifier representing the Account in Triton.`,
@@ -32,7 +34,7 @@ var (
 					Description: `(boolean) Whether the Container Name Service (CNS) is enabled for the Account. [1]: /docs/providers/triton/index.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) The unique identifier representing the Account in Triton.`,
@@ -58,7 +60,7 @@ var (
 			ShortDescription: `The ` + "`" + `triton_datacenter` + "`" + ` data source queries Triton for Data Center information.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string) The name of the Data Center.`,
@@ -68,7 +70,7 @@ var (
 					Description: `(string) The endpoint URL of the Data Center. [1]: /docs/providers/triton/index.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string) The name of the Data Center.`,
@@ -86,7 +88,7 @@ var (
 			ShortDescription: `The ` + "`" + `triton_fabric_network` + "`" + ` data source queries Triton for Fabric Network information (e.g., subnet CIDR, gateway, static routes, etc.) based on the name of the Fabric Network and ID of the VLAN on which the network has been created.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string)`,
@@ -144,7 +146,7 @@ var (
 					Description: `(integer) The unique identifier (VLAN ID) of the Fabric VLAN. [1]: /docs/providers/triton/d/triton_fabric_vlan.html [2]: https://docs.joyent.com/public-cloud/network/sdn#vlans [3]: https://tools.ietf.org/html/rfc1918 [4]: https://docs.joyent.com/public-cloud/network/sdn [5]: https://tools.ietf.org/html/rfc4632`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string) The name of the Fabric Network.`,
@@ -202,7 +204,7 @@ var (
 			ShortDescription: `The ` + "`" + `triton_fabric_vlan` + "`" + ` data source queries Triton for Fabric VLAN information (e.g., VLAN ID, etc.) based either on the name, VLAN ID or description of the Fabric VLAN.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string) Optional. The name of the Fabric VLAN.`,
@@ -228,7 +230,7 @@ var (
 					Description: `(string) The description of the Fabric VLAN, if any. [1]: https://docs.joyent.com/public-cloud/network/sdn#vlans [2]: https://en.wikipedia.org/wiki/Glob_(programming)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string) The name of the Fabric VLAN, if any.`,
@@ -250,7 +252,7 @@ var (
 			ShortDescription: `The ` + "`" + `triton_image` + "`" + ` data source queries the Triton Image API for image IDs.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string) The name of the image`,
@@ -288,7 +290,7 @@ var (
 					Description: `(string) - The identifier representing the image in Triton.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) - The identifier representing the image in Triton.`,
@@ -302,7 +304,7 @@ var (
 			ShortDescription: `The ` + "`" + `triton_network` + "`" + ` data source queries Triton for Network information (e.g., Network ID, etc.) based on the name of the Network.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string)`,
@@ -320,7 +322,7 @@ var (
 					Description: `(boolean) Whether this Network is created on a [Fabric][2]. [1]: https://tools.ietf.org/html/rfc1918 [2]: https://docs.joyent.com/public-cloud/network/sdn`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) The unique identifier of the Network.`,
@@ -337,7 +339,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"triton_account":        0,
 		"triton_datacenter":     1,
@@ -348,10 +350,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

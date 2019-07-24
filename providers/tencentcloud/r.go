@@ -1,11 +1,13 @@
-package aws
+package tencentcloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -19,7 +21,7 @@ var (
 				"server",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "loadbalancer_id",
 					Description: `(Required, Forces new resource) loadbalancer ID.`,
@@ -65,7 +67,7 @@ var (
 					Description: `http or tcp`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "loadbalancer_id",
 					Description: `loadbalancer ID.`,
@@ -94,7 +96,7 @@ var (
 				"as",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_ids",
 					Description: `(Required) ID list of CVM instances to be attached to the scaling group.`,
@@ -104,7 +106,7 @@ var (
 					Description: `(Required, ForceNew) ID of a scaling group.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -117,7 +119,7 @@ var (
 				"lifecycle",
 				"hook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "lifecycle_hook_name",
 					Description: `(Required) The name of the lifecycle hook.`,
@@ -155,7 +157,7 @@ var (
 					Description: `(Optional) For CMQ_TOPIC type, a name of topic must be set.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -167,7 +169,7 @@ var (
 				"as",
 				"notification",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "notification_types",
 					Description: `(Required) A list of Notification Types that trigger notifications. Acceptable values are SCALE_OUT_FAILED, SCALE_IN_SUCCESSFUL, SCALE_IN_FAILED, REPLACE_UNHEALTHY_INSTANCE_SUCCESSFUL and REPLACE_UNHEALTHY_INSTANCE_FAILED.`,
@@ -181,7 +183,7 @@ var (
 					Description: `(Required, ForceNew) ID of a scaling group.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -194,7 +196,7 @@ var (
 				"scaling",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "configuration_name",
 					Description: `(Required) Name of a launch configuration.`,
@@ -288,7 +290,7 @@ var (
 					Description: `Current statues of a launch configuration. ## Import AutoScaling Configuration can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_as_scaling_config.scaling_config asc-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time when the launch configuration was created.`,
@@ -310,7 +312,7 @@ var (
 				"scaling",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "configuration_id",
 					Description: `(Required) An available ID for a launch configuration.`,
@@ -400,7 +402,7 @@ var (
 					Description: `Current status of a scaling group. ## Import AutoScaling Groups can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_as_scaling_group.scaling_group asg-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_count",
 					Description: `The time when the AS group was created.`,
@@ -422,7 +424,7 @@ var (
 				"scaling",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "adjustment_type",
 					Description: `(Required) Specifies whether the adjustment is an absolute number or a percentage of the current capacity. Available values include CHANGE_IN_CAPACITY, EXACT_CAPACITY and PERCENT_CHANGE_IN_CAPACITY.`,
@@ -472,7 +474,7 @@ var (
 					Description: `(Optional) Statistic types, include AVERAGE, MAXIMUM and MINIMUM. Default is AVERAGE.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -484,7 +486,7 @@ var (
 				"as",
 				"schedule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "desired_capacity",
 					Description: `(Required) The desired number of CVM instances that should be running in the group.`,
@@ -518,7 +520,7 @@ var (
 					Description: `(Optional) The time when recurring future actions will start. Start time is specified by the user following the Unix cron syntax format. And this argument should be set with end_time together.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -530,7 +532,7 @@ var (
 				"cbs",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "snapshot_name",
 					Description: `(Required) Name of the snapshot.`,
@@ -560,7 +562,7 @@ var (
 					Description: `Volume of storage which this snapshot created from. ## Import CBS snapshot can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cbs_snapshot.snapshot snap-3sa3f39b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of snapshot.`,
@@ -594,7 +596,7 @@ var (
 				"snapshot",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repeat_hours",
 					Description: `(Required) Trigger times of periodic snapshot, the available values are 0 to 23. The 0 means 00:00, and so on.`,
@@ -612,7 +614,7 @@ var (
 					Description: `(Optional) Retention days of the snapshot, and the default value is 7. ## Import CBS snapshot policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cbs_snapshot_policy.snapshot_policy asp-jliex1tn ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -624,7 +626,7 @@ var (
 				"cbs",
 				"storage",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required, ForceNew) The available zone that the CBS instance locates at.`,
@@ -670,7 +672,7 @@ var (
 					Description: `Status of CBS, and available values include UNATTACHED, ATTACHING, ATTACHED, DETACHING, EXPANDING, ROLLBACKING, TORECYCLE and DUMPING. ## Import CBS storage can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cbs_storage.storage disk-41s6jwy4 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "attached",
 					Description: `Indicates whether the CBS is mounted the CVM.`,
@@ -692,7 +694,7 @@ var (
 				"storage",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) ID of the CVM instance.`,
@@ -702,7 +704,7 @@ var (
 					Description: `(Required, ForceNew) ID of the mounted CBS.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -713,7 +715,7 @@ var (
 			Keywords: []string{
 				"ccn",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the CCN to be queried, and maximum length does not exceed 60 bytes.`,
@@ -739,7 +741,7 @@ var (
 					Description: `States of instance. The available value include 'ISOLATED'(arrears) and 'AVAILABLE'. ## Import Ccn instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_ccn.test ccn-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of resource.`,
@@ -764,7 +766,7 @@ var (
 				"ccn",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ccn_id",
 					Description: `(Required, ForceNew) ID of the CCN`,
@@ -794,7 +796,7 @@ var (
 					Description: `States of instance is attached, and available values include PENDING, ACTIVE, EXPIRED, REJECTED, DELETED, FAILED(asynchronous forced disassociation after 2 hours), ATTACHING, DETACHING and DETACHFAILED(asynchronous forced disassociation after 2 hours).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "attached_time",
 					Description: `Time of attaching.`,
@@ -820,7 +822,7 @@ var (
 				"bandwidth",
 				"limit",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ccn_id",
 					Description: `(Required, ForceNew) ID of the CCN`,
@@ -834,7 +836,7 @@ var (
 					Description: `(Optional) Limitation of bandwidth.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -846,7 +848,7 @@ var (
 				"container",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_name",
 					Description: `(Required) The name of the cluster.`,
@@ -984,7 +986,7 @@ var (
 					Description: `The total memory of the cluster`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "kubernetes_version",
 					Description: `The kubernetes version of the cluster`,
@@ -1018,7 +1020,7 @@ var (
 				"cluster",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) The id of the cluster.`,
@@ -1136,7 +1138,7 @@ var (
 					Description: `Describe the lan ip of the node.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "abnormal_reason",
 					Description: `Describe the reason when node is in abnormal state(if it was).`,
@@ -1169,7 +1171,7 @@ var (
 				"cos",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required, ForceNew) The name of a bucket to be created.`,
@@ -1251,7 +1253,7 @@ var (
 					Description: `(Optional) Specifies time in seconds that browser can cache the response for a preflight request. ## Import COS bucket can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cos_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1264,7 +1266,7 @@ var (
 				"bucket",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required, ForceNew) The name of a bucket to use.`,
@@ -1310,7 +1312,7 @@ var (
 					Description: `(Optional) Object storage type, Available values include STANDARD, STANDARD_IA and ARCHIVE.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1323,7 +1325,7 @@ var (
 				"dc",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the DCG.`,
@@ -1353,7 +1355,7 @@ var (
 					Description: `Indicates whether the BGP is enabled. ## Import Direct connect gateway instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_dc_gateway.instance dcg-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cnn_route_type",
 					Description: `Type of CCN route, the available value include 'BGP' and 'STATIC'. The property is available when the DCG type is CCN gateway and BGP enabled.`,
@@ -1381,7 +1383,7 @@ var (
 				"ccn",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Required, ForceNew) A network address segment of IDC.`,
@@ -1395,7 +1397,7 @@ var (
 					Description: `As_Path list of the BGP.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "as_path",
 					Description: `As_Path list of the BGP.`,
@@ -1412,7 +1414,7 @@ var (
 				"dc",
 				"dcx",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dc_id",
 					Description: `(Required, ForceNew) ID of the DC to be queried, application deployment offline.`,
@@ -1474,7 +1476,7 @@ var (
 					Description: `State of the dedicated tunnels, and available values include PENDING, ALLOCATING, ALLOCATED, ALTERING, DELETING, DELETED, COMFIRMING and REJECTED.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of resource.`,
@@ -1495,7 +1497,7 @@ var (
 				"vpc",
 				"dnat",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nat_id",
 					Description: `(Required, Forces new resource) The ID for the NAT Gateway.`,
@@ -1521,7 +1523,7 @@ var (
 					Description: `(Required, Forces new resource) The internal ip, must a private ip (VPC IP).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1533,7 +1535,7 @@ var (
 				"cvm",
 				"eip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The eip's name. ## Attributes Reference The following attributes are exported:`,
@@ -1551,7 +1553,7 @@ var (
 					Description: `The EIP current status. ## Import EIPs can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_eip.foo eip-nyvf60va ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EIP id, something like ` + "`" + `eip-xxxxxxx` + "`" + `, use this for EIP assocication.`,
@@ -1577,7 +1579,7 @@ var (
 				"eip",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "eip_id",
 					Description: `(Required) The eip's id.`,
@@ -1615,7 +1617,7 @@ var (
 					Description: `(Optional) The IP belongs to the ` + "`" + `network_interface_id` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The association id.`,
@@ -1648,7 +1650,7 @@ var (
 				"cvm",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_id",
 					Description: `(Required) The Image to use for the instance. CVM instance's image can be replaced via changing 'image_id'.`,
@@ -1794,7 +1796,7 @@ var (
 					Description: `The key pair id of the instance. ## Import CVM instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_instance.foo ins-2qol3a80 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The instance ID, something looks like ` + "`" + `ins-xxxxxx` + "`" + `.`,
@@ -1848,7 +1850,7 @@ var (
 				"key",
 				"pair",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `(Force new resource) The key pair's name. It is the only in one TencentCloud account.`,
@@ -1862,7 +1864,7 @@ var (
 					Description: `The id of the key pair, something like ` + "`" + `skey-xxxxxxx` + "`" + `, use this for instance creation and resetting. ## Import Key pairs can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_key_pair.foo skey-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the key pair, something like ` + "`" + `skey-xxxxxxx` + "`" + `, use this for instance creation and resetting. ## Import Key pairs can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_key_pair.foo skey-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1878,7 +1880,7 @@ var (
 			Keywords: []string{
 				"lb",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The network type of the LB, valid choices: "OPEN", "INTERNAL".`,
@@ -1904,7 +1906,7 @@ var (
 					Description: `The status of the LB.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the LB.`,
@@ -1921,7 +1923,7 @@ var (
 				"mysql",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "mysql_id",
 					Description: `(Required, ForceNew) Instance ID to which the account belongs.`,
@@ -1939,7 +1941,7 @@ var (
 					Description: `(Optional) Database description.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1952,7 +1954,7 @@ var (
 				"account",
 				"privilege",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_name",
 					Description: `(Required, ForceNew) Account name.`,
@@ -1970,7 +1972,7 @@ var (
 					Description: `(Optional) Database permissions. Available values for Privileges: "SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "DROP", "REFERENCES", "INDEX", "ALTER", "CREATE TEMPORARY TABLES", "LOCK TABLES","EXECUTE", "CREATE VIEW", "SHOW VIEW", "CREATE ROUTINE", "ALTER ROUTINE", "EVENT", and "TRIGGER".`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1983,7 +1985,7 @@ var (
 				"backup",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "mysql_id",
 					Description: `(Required, ForceNew) Instance ID to which policies will be applied.`,
@@ -2005,7 +2007,7 @@ var (
 					Description: `Retention period for binlog in days.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "binlog_period",
 					Description: `Retention period for binlog in days.`,
@@ -2022,7 +2024,7 @@ var (
 				"mysql",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Required) The name of a mysql instance.`,
@@ -2124,7 +2126,7 @@ var (
 					Description: `Indicates which kind of operations is being executed.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gtid",
 					Description: `Indicates whether GTID is enable. 0 - Not enabled; 1 - Enabled.`,
@@ -2166,7 +2168,7 @@ var (
 				"readonly",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Required) The name of a mysql instance.`,
@@ -2220,7 +2222,7 @@ var (
 					Description: `Indicates which kind of operations is being executed.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "intranet_ip",
 					Description: `instance intranet IP.`,
@@ -2250,7 +2252,7 @@ var (
 				"nat",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name for the NAT Gateway.`,
@@ -2292,7 +2294,7 @@ var (
 					Description: `Elastic IP arrays bound to the gateway`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the NAT Gateway.`,
@@ -2326,7 +2328,7 @@ var (
 				"backup",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backup_period",
 					Description: `(Required) Specifys which day the backup action should take place. Supported values include: Monday，Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.`,
@@ -2340,7 +2342,7 @@ var (
 					Description: `(Required, ForceNew) ID of a Redis instance to which the policy will be applied. ## Import Redis backup config can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_redis_backup_config.redisconfig redis-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2352,7 +2354,7 @@ var (
 				"redis",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required, ForceNew) The available zone ID of an instance to be created., refer to tencentcloud_redis_zone_config.list`,
@@ -2406,7 +2408,7 @@ var (
 					Description: `Current status of an instance，maybe: init, processing, online, isolate and todelete. ## Import Redis instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_redis_instance.redislab redis-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time when the instance was created.`,
@@ -2432,7 +2434,7 @@ var (
 				"route",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required, Forces new resource) The VPC ID.`,
@@ -2470,7 +2472,7 @@ var (
 					Description: `The route entry's next hub.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_table_id",
 					Description: `The ID of the route table.`,
@@ -2500,7 +2502,7 @@ var (
 				"route",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of routing table.`,
@@ -2526,7 +2528,7 @@ var (
 					Description: `ID list of the subnets associated with this route table. ## Import Vpc routetable instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_route_table.test route_table_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of the routing table.`,
@@ -2557,7 +2559,7 @@ var (
 				"table",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "destination_cidr_block",
 					Description: `(Required, ForceNew) Destination address block.`,
@@ -2579,7 +2581,7 @@ var (
 					Description: `(Optional, ForceNew) Description of the routing table entry.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2592,7 +2594,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the security group. Name should be unique in each project, and no more than 60 characters.`,
@@ -2618,7 +2620,7 @@ var (
 					Description: `The description of the security group. ## Import Security group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_security_group.foo sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the security group.`,
@@ -2645,7 +2647,7 @@ var (
 				"group",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `(Required, Forces new resource) The security group to apply this rule to.`,
@@ -2695,7 +2697,7 @@ var (
 					Description: `The policy of rule, "accept" or "drop".`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the security group rule.`,
@@ -2728,7 +2730,7 @@ var (
 				"vpc",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required, ForceNew) The availability zone within which the subnet should be created.`,
@@ -2766,7 +2768,7 @@ var (
 					Description: `Indicates whether it is the default VPC for this region. ## Import Vpc subnet instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_subnet.test subnet_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "available_ip_count",
 					Description: `The number of available IPs.`,
@@ -2790,7 +2792,7 @@ var (
 			Keywords: []string{
 				"vpc",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Required, ForceNew) A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).`,
@@ -2816,7 +2818,7 @@ var (
 					Description: `Indicates whether it is the default VPC for this region. ## Import Vpc instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_vpc.test vpc-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of VPC.`,
@@ -2877,10 +2879,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

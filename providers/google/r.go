@@ -1,11 +1,13 @@
-package aws
+package google
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -23,7 +25,7 @@ var (
 				"control",
 				"level",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "title",
 					Description: `(Required) Human readable title. Must be unique within the Policy.`,
@@ -97,7 +99,7 @@ var (
 					Description: `(Optional) The operating system type of the device. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import AccessLevel can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_access_level.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -115,7 +117,7 @@ var (
 				"control",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "parent",
 					Description: `(Required) The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}`,
@@ -137,7 +139,7 @@ var (
 					Description: `Time the AccessPolicy was updated in UTC. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import AccessPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_access_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `Resource name of the AccessPolicy. Format: {policy_id}`,
@@ -168,7 +170,7 @@ var (
 				"control",
 				"perimeter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "title",
 					Description: `(Required) Human readable title. Must be unique within the Policy.`,
@@ -214,7 +216,7 @@ var (
 					Description: `Time the AccessPolicy was updated in UTC. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import ServicePerimeter can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_service_perimeter.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Time the AccessPolicy was created in UTC.`,
@@ -236,7 +238,7 @@ var (
 				"engine",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location_id",
 					Description: `(Required) The [location](https://cloud.google.com/appengine/docs/locations) to serve the app from.`,
@@ -282,7 +284,7 @@ var (
 					Description: `The GCR domain used for storing managed Docker images for this app. ## Import Applications can be imported using the ID of the project the application belongs to, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_application.app your-project-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `Unique name of the app, usually ` + "`" + `apps/{PROJECT_ID}` + "`" + ``,
@@ -321,7 +323,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_range",
 					Description: `(Required) IP address or range, defined using CIDR notation, of requests that this rule applies to.`,
@@ -343,7 +345,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FirewallRule can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_firewall_rule.default {{project}}/{{priority}} $ terraform import google_app_engine_firewall_rule.default {{priority}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -355,7 +357,7 @@ var (
 				"bigquery",
 				"dataset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dataset_id",
 					Description: `(Required) A unique ID for the resource. Changing this forces a new resource to be created.`,
@@ -449,7 +451,7 @@ var (
 					Description: `The date when this dataset or any of its tables was last modified, in milliseconds since the epoch. ## Import BigQuery datasets can be imported using the ` + "`" + `project` + "`" + ` and ` + "`" + `dataset_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigquery_dataset.default gcp-project:foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource.`,
@@ -478,7 +480,7 @@ var (
 				"bigquery",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dataset_id",
 					Description: `(Required) The dataset ID to create the table in. Changing this forces a new resource to be created.`,
@@ -592,7 +594,7 @@ var (
 					Description: `Describes the table type. ## Import BigQuery tables can be imported using the ` + "`" + `project` + "`" + `, ` + "`" + `dataset_id` + "`" + `, and ` + "`" + `table_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigquery_table.default gcp-project:foo.bar ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_time",
 					Description: `The time when this table was created, in milliseconds since the epoch.`,
@@ -641,7 +643,7 @@ var (
 				"bigtable",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name (also called Instance Id in the Cloud Console) of the Cloud Bigtable instance.`,
@@ -679,7 +681,7 @@ var (
 					Description: `(Optional) The storage type to use. One of ` + "`" + `"SSD"` + "`" + ` or ` + "`" + `"HDD"` + "`" + `. Defaults to ` + "`" + `"SSD"` + "`" + `. ## Attributes Reference Only the arguments listed above are exposed as attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -693,7 +695,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
 					Description: `(Required) The name or relative resource id of the instance to manage IAM policies for. For ` + "`" + `google_bigtable_instance_iam_member` + "`" + ` or ` + "`" + `google_bigtable_instance_iam_binding` + "`" + `:`,
@@ -719,7 +721,7 @@ var (
 					Description: `(Computed) The etag of the instances's IAM policy. ## Import Instance IAM resources can be imported using the project, instance name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_instance_iam_policy.editor "projects/{project}/instances/{instance}" $ terraform import google_bigtable_instance_iam_binding.editor "projects/{project}/instances/{instance} roles/editor" $ terraform import google_bigtable_instance_iam_member.editor "projects/{project}/instances/{instance} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the instances's IAM policy. ## Import Instance IAM resources can be imported using the project, instance name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_instance_iam_policy.editor "projects/{project}/instances/{instance}" $ terraform import google_bigtable_instance_iam_binding.editor "projects/{project}/instances/{instance} roles/editor" $ terraform import google_bigtable_instance_iam_member.editor "projects/{project}/instances/{instance} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -736,7 +738,7 @@ var (
 				"bigtable",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the table.`,
@@ -762,7 +764,7 @@ var (
 					Description: `(Optional) The name of the column family. ## Attributes Reference Only the arguments listed above are exposed as attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -775,7 +777,7 @@ var (
 				"authorization",
 				"attestor",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource name.`,
@@ -817,7 +819,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Attestor can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_binary_authorization_attestor.default projects/{{project}}/attestors/{{name}} $ terraform import -provider=google-beta google_binary_authorization_attestor.default {{project}}/{{name}} $ terraform import -provider=google-beta google_binary_authorization_attestor.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -830,7 +832,7 @@ var (
 				"authorization",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_admission_rule",
 					Description: `(Required) Default admission rule for a cluster without a per-cluster admission rule. Structure is documented below. The ` + "`" + `default_admission_rule` + "`" + ` block supports:`,
@@ -884,7 +886,7 @@ var (
 					Description: `(Optional) The action when a pod creation is denied by the admission rule. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Policy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_binary_authorization_policy.default projects/{{project}} $ terraform import -provider=google-beta google_binary_authorization_policy.default {{project}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -898,7 +900,7 @@ var (
 				"cloudbuild",
 				"trigger",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Human-readable description of the trigger.`,
@@ -1032,7 +1034,7 @@ var (
 					Description: `Time when the trigger was created. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Trigger can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloudbuild_trigger.default projects/{{project}}/triggers/{{trigger_id}} $ terraform import google_cloudbuild_trigger.default {{project}}/{{trigger_id}} $ terraform import google_cloudbuild_trigger.default {{trigger_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "trigger_id",
 					Description: `The unique identifier for the trigger.`,
@@ -1054,7 +1056,7 @@ var (
 				"scheduler",
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the job.`,
@@ -1176,7 +1178,7 @@ var (
 					Description: `(Optional) This map contains the header field names and values. Repeated headers are not supported, but a header value can contain commas. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Job can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloud_scheduler_job.default projects/{{project}}/locations/{{region}}/jobs/{{name}} $ terraform import google_cloud_scheduler_job.default {{project}}/{{region}}/{{name}} $ terraform import google_cloud_scheduler_job.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1190,7 +1192,7 @@ var (
 				"cloudfunctions",
 				"function",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A user-defined name of the function. Function names must be unique globally.`,
@@ -1288,7 +1290,7 @@ var (
 					Description: `Region of function. Currently can be only "us-central1". If it is not provided, the provider region is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 5 minutes. ## Import Functions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloudfunctions_function.default function-test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "https_trigger_url",
 					Description: `URL which triggers function execution. Returned only if ` + "`" + `trigger_http` + "`" + ` is used.`,
@@ -1320,7 +1322,7 @@ var (
 				"cloudiot",
 				"registry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the resource, required by device registry. Changing this forces a new resource to be created. - - -`,
@@ -1382,7 +1384,7 @@ var (
 					Description: `(Required) The certificate data. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import A device registry can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloudiot_registry.default-registry projects/{project}/locations/{region}/registries/{name} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1395,7 +1397,7 @@ var (
 				"composer",
 				"environment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the environment - - -`,
@@ -1485,7 +1487,7 @@ var (
 					Description: `The URI of the Apache Airflow Web UI hosted within this environment. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 60 minutes. - ` + "`" + `update` + "`" + ` - Default is 60 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import Environment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_composer_environment.default projects/{{project}}/locations/{{region}}/environments/{{name}} $ terraform import google_composer_environment.default {{project}}/{{region}}/{{name}} $ terraform import google_composer_environment.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "config.0.gke_cluster",
 					Description: `The Kubernetes Engine cluster used to run this environment.`,
@@ -1511,7 +1513,7 @@ var (
 				"engine",
 				"address",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -1569,7 +1571,7 @@ var (
 					Description: `The IP of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Address can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_address.default projects/{{project}}/regions/{{region}}/addresses/{{name}} $ terraform import google_compute_address.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_address.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -1604,7 +1606,7 @@ var (
 				"attached",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
 					Description: `(Required) ` + "`" + `name` + "`" + ` or ` + "`" + `self_link` + "`" + ` of the compute instance that the disk will be attached to. If the ` + "`" + `self_link` + "`" + ` is provided then ` + "`" + `zone` + "`" + ` and ` + "`" + `project` + "`" + ` are extracted from the self link. If only the name is used then ` + "`" + `zone` + "`" + ` and ` + "`" + `project` + "`" + ` must be defined as properties on the resource or provider.`,
@@ -1630,7 +1632,7 @@ var (
 					Description: `(Optional) The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Possible values: "READ_ONLY" "READ_WRITE" ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 5 minutes. ## Import Attached Disk can be imported the following ways: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_disk.default projects/{{project}}/zones/{{zone}}/disks/{{instance.name}}:{{disk.name}} $ terraform import google_compute_disk.default {{project}}/{{zone}}/{{instance.name}}:{{disk.name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1643,7 +1645,7 @@ var (
 				"engine",
 				"autoscaler",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. The name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -1729,7 +1731,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Autoscaler can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_autoscaler.default projects/{{project}}/zones/{{zone}}/autoscalers/{{name}} $ terraform import google_compute_autoscaler.default {{project}}/{{zone}}/{{name}} $ terraform import google_compute_autoscaler.default {{zone}}/{{name}} $ terraform import google_compute_autoscaler.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -1752,7 +1754,7 @@ var (
 				"backend",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_name",
 					Description: `(Required) Cloud Storage bucket name.`,
@@ -1790,7 +1792,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import BackendBucket can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_backend_bucket.default projects/{{project}}/global/backendBuckets/{{name}} $ terraform import google_compute_backend_bucket.default {{project}}/{{name}} $ terraform import google_compute_backend_bucket.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -1816,7 +1818,7 @@ var (
 				"url",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the signed URL key.`,
@@ -1834,7 +1836,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import BackendBucketSignedUrlKey can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_backend_bucket_signed_url_key.default projects/{{project}}/global/backendBuckets/{{backend_bucket}}/{{name}} $ terraform import google_compute_backend_bucket_signed_url_key.default {{project}}/{{backend_bucket}}/{{name}} $ terraform import google_compute_backend_bucket_signed_url_key.default {{backend_bucket}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1848,7 +1850,7 @@ var (
 				"backend",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "health_checks",
 					Description: `(Required) The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required. For internal load balancing, a URL to a HealthCheck resource must be specified instead.`,
@@ -2014,7 +2016,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import BackendService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_backend_service.default projects/{{project}}/global/backendServices/{{name}} $ terraform import google_compute_backend_service.default {{project}}/{{name}} $ terraform import google_compute_backend_service.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -2044,7 +2046,7 @@ var (
 				"url",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the signed URL key.`,
@@ -2062,7 +2064,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import BackendServiceSignedUrlKey can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_backend_service_signed_url_key.default projects/{{project}}/global/backendServices/{{backend_service}}/{{name}} $ terraform import google_compute_backend_service_signed_url_key.default {{project}}/{{backend_service}}/{{name}} $ terraform import google_compute_backend_service_signed_url_key.default {{backend_service}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2075,7 +2077,7 @@ var (
 				"engine",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2197,7 +2199,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Disk can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_disk.default projects/{{project}}/zones/{{zone}}/disks/{{name}} $ terraform import google_compute_disk.default {{project}}/{{zone}}/{{name}} $ terraform import google_compute_disk.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
@@ -2245,7 +2247,7 @@ var (
 				"vpn",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2275,7 +2277,7 @@ var (
 					Description: `(Optional) IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider’s VPN gateway, it cannot be an IP address from Google Compute Engine. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ExternalVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default projects/{{project}}/global/externalVpnGateways/{{name}} $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default {{project}}/{{name}} $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2288,7 +2290,7 @@ var (
 				"engine",
 				"firewall",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2378,7 +2380,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Firewall can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_firewall.default projects/{{project}}/global/firewalls/{{name}} $ terraform import google_compute_firewall.default {{project}}/{{name}} $ terraform import google_compute_firewall.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -2401,7 +2403,7 @@ var (
 				"forwarding",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2491,7 +2493,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ForwardingRule can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_forwarding_rule.default projects/{{project}}/regions/{{region}}/forwardingRules/{{name}} $ terraform import google_compute_forwarding_rule.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_forwarding_rule.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -2522,7 +2524,7 @@ var (
 				"global",
 				"address",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2576,7 +2578,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GlobalAddress can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_global_address.default projects/{{project}}/global/addresses/{{name}} $ terraform import google_compute_global_address.default {{project}}/{{name}} $ terraform import google_compute_global_address.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -2604,7 +2606,7 @@ var (
 				"forwarding",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2658,7 +2660,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GlobalForwardingRule can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_global_forwarding_rule.default projects/{{project}}/global/forwardingRules/{{name}} $ terraform import google_compute_global_forwarding_rule.default {{project}}/{{name}} $ terraform import google_compute_global_forwarding_rule.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
@@ -2682,7 +2684,7 @@ var (
 				"vpn",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2720,7 +2722,7 @@ var (
 					Description: `(Optional) The external IP address for this VPN gateway interface. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HaVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_ha_vpn_gateway.default projects/{{project}}/regions/{{region}}/vpnGateways/{{name}} $ terraform import -provider=google-beta google_compute_ha_vpn_gateway.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_compute_ha_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpn_interfaces",
 					Description: `A list of interfaces on this VPN gateway. Structure is documented below.`,
@@ -2751,7 +2753,7 @@ var (
 				"health",
 				"check",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2881,7 +2883,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_health_check.default projects/{{project}}/global/healthChecks/{{name}} $ terraform import google_compute_health_check.default {{project}}/{{name}} $ terraform import google_compute_health_check.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -2909,7 +2911,7 @@ var (
 				"health",
 				"check",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -2959,7 +2961,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HttpHealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_http_health_check.default projects/{{project}}/global/httpHealthChecks/{{name}} $ terraform import google_compute_http_health_check.default {{project}}/{{name}} $ terraform import google_compute_http_health_check.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -2983,7 +2985,7 @@ var (
 				"health",
 				"check",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -3033,7 +3035,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HttpsHealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_https_health_check.default projects/{{project}}/global/httpsHealthChecks/{{name}} $ terraform import google_compute_https_health_check.default {{project}}/{{name}} $ terraform import google_compute_https_health_check.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -3055,7 +3057,7 @@ var (
 				"engine",
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -3121,7 +3123,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Image can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_image.default projects/{{project}}/global/images/{{name}} $ terraform import google_compute_image.default {{project}}/{{name}} $ terraform import google_compute_image.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "archive_size_bytes",
 					Description: `Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).`,
@@ -3151,7 +3153,7 @@ var (
 				"engine",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_disk",
 					Description: `(Required) The boot disk for the instance. Structure is documented below.`,
@@ -3405,7 +3407,7 @@ var (
 					Description: `The [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4) encoded SHA-256 hash of the [customer-supplied encryption key] (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption) that protects this resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes. ## Import ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `The server-assigned unique identifier of this instance.`,
@@ -3465,7 +3467,7 @@ var (
 				"from",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the resource, required by GCE. Changing this forces a new resource to be created.`,
@@ -3479,7 +3481,7 @@ var (
 					Description: `(Optional) The zone that the machine should be created in. If not set, the provider zone is used. In addition to these, all arguments from ` + "`" + `google_compute_instance` + "`" + ` are supported as a way to override the properties in the template. All exported attributes from ` + "`" + `google_compute_instance` + "`" + ` are likewise exported here. To support removal of Optional/Computed fields in Terraform 0.12 the following fields are marked [Attributes as Blocks](/docs/configuration/attr-as-blocks.html):`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3493,7 +3495,7 @@ var (
 				"instance",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the instance group. Must be 1-63 characters long and comply with [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters include lowercase letters, numbers, and hyphens.`,
@@ -3539,7 +3541,7 @@ var (
 					Description: `The number of instances in the group. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is ` + "`" + `6 minutes` + "`" + ` - ` + "`" + `update` + "`" + ` - Default is ` + "`" + `6 minutes` + "`" + ` - ` + "`" + `delete` + "`" + ` - Default is ` + "`" + `6 minutes` + "`" + ` ## Import Instance group can be imported using the ` + "`" + `zone` + "`" + ` and ` + "`" + `name` + "`" + ` with an optional ` + "`" + `project` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_instance_group.webservers us-central1-a/terraform-webservers $ terraform import google_compute_instance_group.webservers big-project/us-central1-a/terraform-webservers ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource.`,
@@ -3563,7 +3565,7 @@ var (
 				"group",
 				"manager",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "base_instance_name",
 					Description: `(Required) The base instance name to use for instances in this group. The value must be a valid [RFC1035](https://www.ietf.org/rfc/rfc1035.txt) name. Supported characters are lowercase letters, numbers, and hyphens (-). Instances are named by appending a hyphen and a random four-character string to the base instance name.`,
@@ -3697,7 +3699,7 @@ var (
 					Description: `The URL of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{zone}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{project}}/{{name}} $ terraform import google_compute_instance_group_manager.appserver {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `The fingerprint of the instance group manager.`,
@@ -3725,7 +3727,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Required) The name of the instance.`,
@@ -3755,7 +3757,7 @@ var (
 					Description: `(Computed) The etag of the instance's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the instance's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
@@ -3774,7 +3776,7 @@ var (
 				"instance",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk",
 					Description: `(Required) Disks to attach to instances created from this template. This can be specified multiple times for multiple disks. Structure is documented below.`,
@@ -3980,7 +3982,7 @@ var (
 					Description: `The unique fingerprint of the tags. [1]: /docs/providers/google/r/compute_instance_group_manager.html [2]: /docs/configuration/resources.html#lifecycle ## Import Instance templates can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_instance_template.default appserver-template ` + "`" + `` + "`" + `` + "`" + ` [custom-vm-types]: https://cloud.google.com/dataproc/docs/concepts/compute/custom-machine-types [network-tier]: https://cloud.google.com/network-tiers/docs/overview`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata_fingerprint",
 					Description: `The unique fingerprint of the metadata.`,
@@ -4007,7 +4009,7 @@ var (
 				"interconnect",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "router",
 					Description: `(Required) URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network & region within which the Cloud Router is configured.`,
@@ -4089,7 +4091,7 @@ var (
 					Description: `802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import InterconnectAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_interconnect_attachment.default projects/{{project}}/regions/{{region}}/interconnectAttachments/{{name}} $ terraform import google_compute_interconnect_attachment.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_router_ip_address",
 					Description: `IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.`,
@@ -4145,7 +4147,7 @@ var (
 				"ssl",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) An optional description of this resource.`,
@@ -4191,7 +4193,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 30 minutes. ## Import ManagedSslCertificate can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_managed_ssl_certificate.default projects/{{project}}/global/sslCertificates/{{name}} $ terraform import -provider=google-beta google_compute_managed_ssl_certificate.default {{project}}/{{name}} $ terraform import -provider=google-beta google_compute_managed_ssl_certificate.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4225,7 +4227,7 @@ var (
 				"engine",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -4259,7 +4261,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Network can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network.default projects/{{project}}/global/networks/{{name}} $ terraform import google_compute_network.default {{project}}/{{name}} $ terraform import google_compute_network.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gateway_ipv4",
 					Description: `The gateway address for default routing out of the network. This value is selected by GCP.`,
@@ -4282,7 +4284,7 @@ var (
 				"network",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
 					Description: `(Required) The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group.`,
@@ -4308,7 +4310,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import NetworkEndpoint can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network_endpoint.default projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{network_endpoint_group}}/{{name}} $ terraform import google_compute_network_endpoint.default {{project}}/{{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{project}}/{{zone}}/{{network_endpoint_group}}/{{name}} $ terraform import google_compute_network_endpoint.default {{network_endpoint_group}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4323,7 +4325,7 @@ var (
 				"endpoint",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -4365,7 +4367,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import NetworkEndpointGroup can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network_endpoint_group.default projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{name}} $ terraform import google_compute_network_endpoint_group.default {{project}}/{{zone}}/{{name}} $ terraform import google_compute_network_endpoint_group.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `Number of network endpoints in the network endpoint group.`,
@@ -4388,7 +4390,7 @@ var (
 				"network",
 				"peering",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the peering.`,
@@ -4414,7 +4416,7 @@ var (
 					Description: `Details about the current state of the peering.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "state",
 					Description: `State for the peering.`,
@@ -4437,7 +4439,7 @@ var (
 				"node",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "node_template",
 					Description: `(Required) The URL of the node template to which this node group belongs.`,
@@ -4471,7 +4473,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import NodeGroup can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_node_group.default projects/{{project}}/zones/{{zone}}/nodeGroups/{{name}} $ terraform import google_compute_node_group.default {{project}}/{{zone}}/{{name}} $ terraform import google_compute_node_group.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4494,7 +4496,7 @@ var (
 				"node",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) An optional textual description of the resource.`,
@@ -4552,7 +4554,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import NodeTemplate can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_node_template.default projects/{{project}}/regions/{{region}}/nodeTemplates/{{name}} $ terraform import google_compute_node_template.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_node_template.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4577,7 +4579,7 @@ var (
 				"network",
 				"tier",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_tier",
 					Description: `(Required) The default network tier to be configured for the project. This field can take the following values: ` + "`" + `PREMIUM` + "`" + ` or ` + "`" + `STANDARD` + "`" + `. - - -`,
@@ -4587,7 +4589,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import This resource can be imported using the project ID: ` + "`" + `terraform import google_compute_project_default_network_tier.default project-id` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4601,7 +4603,7 @@ var (
 				"project",
 				"metadata",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) A series of key value pairs. - - -`,
@@ -4611,7 +4613,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import This resource can be imported using the project ID: ` + "`" + `terraform import google_compute_project_metadata.foo my-project-id` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4626,7 +4628,7 @@ var (
 				"metadata",
 				"item",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `(Required) The metadata key to set.`,
@@ -4640,7 +4642,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import Project metadata items can be imported using the ` + "`" + `key` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_project_metadata_item.default my_metadata ` + "`" + `` + "`" + `` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 5 minutes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4654,7 +4656,7 @@ var (
 				"region",
 				"autoscaler",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. The name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -4740,7 +4742,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionAutoscaler can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_autoscaler.default projects/{{project}}/regions/{{region}}/autoscalers/{{name}} $ terraform import google_compute_region_autoscaler.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_region_autoscaler.default {{region}}/{{name}} $ terraform import google_compute_region_autoscaler.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4764,7 +4766,7 @@ var (
 				"backend",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -4846,7 +4848,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionBackendService can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_backend_service.default projects/{{project}}/regions/{{region}}/backendServices/{{name}} $ terraform import google_compute_region_backend_service.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_region_backend_service.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.`,
@@ -4869,7 +4871,7 @@ var (
 				"region",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -4971,7 +4973,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionDisk can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_disk.default projects/{{project}}/regions/{{region}}/disks/{{name}} $ terraform import google_compute_region_disk.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_region_disk.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
@@ -5016,7 +5018,7 @@ var (
 				"group",
 				"manager",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "base_instance_name",
 					Description: `(Required) The base instance name to use for instances in this group. The value must be a valid [RFC1035](https://www.ietf.org/rfc/rfc1035.txt) name. Supported characters are lowercase letters, numbers, and hyphens (-). Instances are named by appending a hyphen and a random four-character string to the base instance name.`,
@@ -5150,7 +5152,7 @@ var (
 					Description: `The URL of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Instance group managers can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_instance_group_manager.appserver appserver-igm ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `The fingerprint of the instance group manager.`,
@@ -5177,7 +5179,7 @@ var (
 				"resource",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -5267,7 +5269,7 @@ var (
 					Description: `(Optional) Whether to perform a 'guest aware' snapshot. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ResourcePolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_resource_policy.default projects/{{project}}/regions/{{region}}/resourcePolicies/{{name}} $ terraform import -provider=google-beta google_compute_resource_policy.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_compute_resource_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5280,7 +5282,7 @@ var (
 				"engine",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dest_range",
 					Description: `(Required) The destination range of outgoing packets that this route applies to. Only IPv4 is supported.`,
@@ -5338,7 +5340,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Route can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_route.default projects/{{project}}/global/routes/{{name}} $ terraform import google_compute_route.default {{project}}/{{name}} $ terraform import google_compute_route.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "next_hop_network",
 					Description: `URL to a Network that should handle matching packets.`,
@@ -5360,7 +5362,7 @@ var (
 				"engine",
 				"router",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -5418,7 +5420,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Router can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router.default projects/{{project}}/regions/{{region}}/routers/{{name}} $ terraform import google_compute_router.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_router.default {{region}}/{{name}} $ terraform import google_compute_router.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -5441,7 +5443,7 @@ var (
 				"router",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the interface, required by GCE. Changing this forces a new interface to be created.`,
@@ -5471,7 +5473,7 @@ var (
 					Description: `(Optional) The region this interface's router sits in. If not specified, the project region will be used. Changing this forces a new interface to be created. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import Router interfaces can be imported using the ` + "`" + `region` + "`" + `, ` + "`" + `router` + "`" + `, and ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router_interface.foobar us-central1/router-1/interface-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5485,7 +5487,7 @@ var (
 				"router",
 				"nat",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for Cloud NAT, required by GCE. Changing this forces a new NAT to be created.`,
@@ -5559,7 +5561,7 @@ var (
 					Description: `(Required) Whether to export logs. ## Import Router NATs can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router_nat.default {{project}}/{{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{router}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5573,7 +5575,7 @@ var (
 				"router",
 				"peer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for BGP peer, required by GCE. Changing this forces a new peer to be created.`,
@@ -5611,7 +5613,7 @@ var (
 					Description: `IP address of the interface inside Google Cloud Platform. ## Import Router BGP peers can be imported using the ` + "`" + `region` + "`" + `, ` + "`" + `router` + "`" + `, and ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router_peer.foobar us-central1/router-1/peer-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `IP address of the interface inside Google Cloud Platform. ## Import Router BGP peers can be imported using the ` + "`" + `region` + "`" + `, ` + "`" + `router` + "`" + `, and ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router_peer.foobar us-central1/router-1/peer-1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5630,7 +5632,7 @@ var (
 				"security",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the security policy. - - -`,
@@ -5688,7 +5690,7 @@ var (
 					Description: `The URI of the created resource. ## Import Security policies can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_security_policy.policy my-policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `Fingerprint of this resource.`,
@@ -5713,13 +5715,13 @@ var (
 				"host",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The ID of the project that will serve as a Shared VPC host project ## Import Google Compute Engine Shared VPC host project feature can be imported using the ` + "`" + `project` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_shared_vpc_host_project.host host-project-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5735,7 +5737,7 @@ var (
 				"service",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "host_project",
 					Description: `(Required) The ID of a host project to associate.`,
@@ -5745,7 +5747,7 @@ var (
 					Description: `(Required) The ID of the project that will serve as a Shared VPC service project. ## Import Google Compute Engine Shared VPC service project feature can be imported using the ` + "`" + `host_project` + "`" + ` and ` + "`" + `service_project` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_shared_vpc_service_project.service1 host-project-id/service-project-id-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5758,7 +5760,7 @@ var (
 				"engine",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -5832,7 +5834,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 5 minutes. ## Import Snapshot can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_snapshot.default projects/{{project}}/global/snapshots/{{name}} $ terraform import google_compute_snapshot.default {{project}}/{{name}} $ terraform import google_compute_snapshot.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -5875,7 +5877,7 @@ var (
 				"ssl",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate",
 					Description: `(Required) The certificate in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.`,
@@ -5913,7 +5915,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import SslCertificate can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_ssl_certificate.default projects/{{project}}/global/sslCertificates/{{name}} $ terraform import google_compute_ssl_certificate.default {{project}}/{{name}} $ terraform import google_compute_ssl_certificate.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -5940,7 +5942,7 @@ var (
 				"ssl",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -5982,7 +5984,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import SslPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_ssl_policy.default projects/{{project}}/global/sslPolicies/{{name}} $ terraform import google_compute_ssl_policy.default {{project}}/{{name}} $ terraform import google_compute_ssl_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6012,7 +6014,7 @@ var (
 				"engine",
 				"subnetwork",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_cidr_range",
 					Description: `(Required) The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported.`,
@@ -6090,7 +6092,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import Subnetwork can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_subnetwork.default projects/{{project}}/regions/{{region}}/subnetworks/{{name}} $ terraform import google_compute_subnetwork.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_subnetwork.default {{region}}/{{name}} $ terraform import google_compute_subnetwork.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6122,7 +6124,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnetwork",
 					Description: `(Required) The name of the subnetwork.`,
@@ -6152,7 +6154,7 @@ var (
 					Description: `(Computed) The etag of the subnetwork's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the subnetwork's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
@@ -6172,7 +6174,7 @@ var (
 				"http",
 				"proxy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -6202,7 +6204,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TargetHttpProxy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_target_http_proxy.default projects/{{project}}/global/targetHttpProxies/{{name}} $ terraform import google_compute_target_http_proxy.default {{project}}/{{name}} $ terraform import google_compute_target_http_proxy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6230,7 +6232,7 @@ var (
 				"https",
 				"proxy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -6272,7 +6274,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TargetHttpsProxy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_target_https_proxy.default projects/{{project}}/global/targetHttpsProxies/{{name}} $ terraform import google_compute_target_https_proxy.default {{project}}/{{name}} $ terraform import google_compute_target_https_proxy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6299,7 +6301,7 @@ var (
 				"target",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -6333,7 +6335,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TargetInstance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_target_instance.default projects/{{project}}/zones/{{zone}}/targetInstances/{{name}} $ terraform import google_compute_target_instance.default {{project}}/{{zone}}/{{name}} $ terraform import google_compute_target_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6356,7 +6358,7 @@ var (
 				"target",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the resource, required by GCE. Changing this forces a new resource to be created. - - -`,
@@ -6398,7 +6400,7 @@ var (
 					Description: `The URI of the created resource. ## Import Target pools can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_target_pool.default instance-pool ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource. ## Import Target pools can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_target_pool.default instance-pool ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6418,7 +6420,7 @@ var (
 				"ssl",
 				"proxy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -6460,7 +6462,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TargetSslProxy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_target_ssl_proxy.default projects/{{project}}/global/targetSslProxies/{{name}} $ terraform import google_compute_target_ssl_proxy.default {{project}}/{{name}} $ terraform import google_compute_target_ssl_proxy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6488,7 +6490,7 @@ var (
 				"tcp",
 				"proxy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -6522,7 +6524,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TargetTcpProxy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_target_tcp_proxy.default projects/{{project}}/global/targetTcpProxies/{{name}} $ terraform import google_compute_target_tcp_proxy.default {{project}}/{{name}} $ terraform import google_compute_target_tcp_proxy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6549,7 +6551,7 @@ var (
 				"url",
 				"map",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_service",
 					Description: `(Required) The backend service or backend bucket to use when none of the given rules match.`,
@@ -6647,7 +6649,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import UrlMap can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_url_map.default projects/{{project}}/global/urlMaps/{{name}} $ terraform import google_compute_url_map.default {{project}}/{{name}} $ terraform import google_compute_url_map.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6678,7 +6680,7 @@ var (
 				"vpn",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -6708,7 +6710,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import VpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_vpn_gateway.default projects/{{project}}/regions/{{region}}/targetVpnGateways/{{name}} $ terraform import google_compute_vpn_gateway.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6731,7 +6733,7 @@ var (
 				"vpn",
 				"tunnel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -6821,7 +6823,7 @@ var (
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import VpnTunnel can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_vpn_tunnel.default projects/{{project}}/regions/{{region}}/vpnTunnels/{{name}} $ terraform import google_compute_vpn_tunnel.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_vpn_tunnel.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6855,7 +6857,7 @@ var (
 				"analysis",
 				"note",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the note.`,
@@ -6877,7 +6879,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Note can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_container_analysis_note.default projects/{{project}}/notes/{{name}} $ terraform import -provider=google-beta google_container_analysis_note.default {{project}}/{{name}} $ terraform import -provider=google-beta google_container_analysis_note.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6891,7 +6893,7 @@ var (
 				"engine",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the cluster, unique within the project and location. - - -`,
@@ -7285,7 +7287,7 @@ var (
 					Description: `The IP address range of the Kubernetes services in this cluster, in [CIDR](http:en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. ` + "`" + `1.2.3.4/29` + "`" + `). Service addresses are typically put in the last ` + "`" + `/16` + "`" + ` from the container CIDR. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minutes. - ` + "`" + `update` + "`" + ` - Default is 60 minutes. - ` + "`" + `delete` + "`" + ` - Default is 30 minutes. ## Import GKE clusters can be imported using the ` + "`" + `project` + "`" + ` , ` + "`" + `zone` + "`" + ` or ` + "`" + `region` + "`" + `, and ` + "`" + `name` + "`" + `. If the project is omitted, the default provider value will be used. Examples: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_container_cluster.mycluster my-gcp-project/us-east1-a/my-cluster $ terraform import google_container_cluster.mycluster us-east1-a/my-cluster ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint",
 					Description: `The IP address of this cluster's Kubernetes master.`,
@@ -7337,7 +7339,7 @@ var (
 				"node",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster",
 					Description: `(Required) The cluster to create the node pool for. Cluster must be present in ` + "`" + `zone` + "`" + ` provided for zonal clusters. - - -`,
@@ -7407,7 +7409,7 @@ var (
 					Description: `(Optional) Whether the nodes will be automatically upgraded. <a id="timeouts"></a> ## Timeouts ` + "`" + `google_container_node_pool` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for adding node pools - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for updates to node pools - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for removing node pools. ## Import Node pools can be imported using the ` + "`" + `project` + "`" + `, ` + "`" + `zone` + "`" + `, ` + "`" + `cluster` + "`" + ` and ` + "`" + `name` + "`" + `. If the project is omitted, the default provider value will be used. Examples: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_container_node_pool.mainpool my-gcp-project/us-east1-a/my-cluster/main-pool $ terraform import google_container_node_pool.mainpool us-east1-a/my-cluster/main-pool ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7419,7 +7421,7 @@ var (
 				"dataflow",
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the resource, required by Dataflow.`,
@@ -7473,7 +7475,7 @@ var (
 					Description: `The current state of the resource, selected from the [JobState enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobState)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "state",
 					Description: `The current state of the resource, selected from the [JobState enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobState)`,
@@ -7490,7 +7492,7 @@ var (
 				"dataproc",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the cluster, unique within the project and zone. - - -`,
@@ -7652,7 +7654,7 @@ var (
 					Description: `A list of the properties used to set the daemon config files. This will include any values supplied by the user via ` + "`" + `cluster_config.software_config.override_properties` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_config.0.master_config.0.instance_names",
 					Description: `List of master instance names which have been assigned to the cluster.`,
@@ -7687,7 +7689,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster",
 					Description: `(Required) The name or relative resource id of the cluster to manage IAM policies for. For ` + "`" + `google_dataproc_cluster_iam_member` + "`" + ` or ` + "`" + `google_dataproc_cluster_iam_binding` + "`" + `:`,
@@ -7717,7 +7719,7 @@ var (
 					Description: `(Computed) The etag of the clusters's IAM policy. ## Import Cluster IAM resources can be imported using the project, region, cluster name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_cluster_iam_policy.editor "projects/{project}/regions/{region}/clusters/{cluster}" $ terraform import google_dataproc_cluster_iam_binding.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor" $ terraform import google_dataproc_cluster_iam_member.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the clusters's IAM policy. ## Import Cluster IAM resources can be imported using the project, region, cluster name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_cluster_iam_policy.editor "projects/{project}/regions/{region}/clusters/{cluster}" $ terraform import google_dataproc_cluster_iam_binding.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor" $ terraform import google_dataproc_cluster_iam_member.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7736,7 +7738,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "job",
 					Description: `(Required) The name or relative resource id of the job to manage IAM policies for. For ` + "`" + `google_dataproc_job_iam_member` + "`" + ` or ` + "`" + `google_dataproc_job_iam_binding` + "`" + `:`,
@@ -7766,7 +7768,7 @@ var (
 					Description: `(Computed) The etag of the jobs's IAM policy. ## Import Job IAM resources can be imported using the project, region, job id, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_job_iam_policy.editor "projects/{project}/regions/{region}/jobs/{job_id}" $ terraform import google_dataproc_job_iam_binding.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor" $ terraform import google_dataproc_job_iam_member.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the jobs's IAM policy. ## Import Job IAM resources can be imported using the project, region, job id, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_job_iam_policy.editor "projects/{project}/regions/{region}/jobs/{job_id}" $ terraform import google_dataproc_job_iam_binding.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor" $ terraform import google_dataproc_job_iam_member.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7784,7 +7786,7 @@ var (
 				"managed",
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dns_name",
 					Description: `(Required) The DNS name of this managed zone, for instance "example.com.".`,
@@ -7886,7 +7888,7 @@ var (
 					Description: `Delegate your managed_zone to these virtual name servers; defined by the server ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ManagedZone can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_managed_zone.default projects/{{project}}/managedZones/{{name}} $ terraform import google_dns_managed_zone.default {{project}}/{{name}} $ terraform import google_dns_managed_zone.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_servers",
 					Description: `Delegate your managed_zone to these virtual name servers; defined by the server ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ManagedZone can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_managed_zone.default projects/{{project}}/managedZones/{{name}} $ terraform import google_dns_managed_zone.default {{project}}/{{name}} $ terraform import google_dns_managed_zone.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -7903,7 +7905,7 @@ var (
 				"dns",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) User assigned name for this policy. - - -`,
@@ -7945,7 +7947,7 @@ var (
 					Description: `(Optional) The fully qualified URL of the VPC network to bind to. This should be formatted like ` + "`" + `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Policy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_dns_policy.default projects/{{project}}/policies/{{name}} $ terraform import -provider=google-beta google_dns_policy.default {{project}}/{{name}} $ terraform import -provider=google-beta google_dns_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7958,7 +7960,7 @@ var (
 				"record",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "managed_zone",
 					Description: `(Required) The name of the zone in which this record set will reside.`,
@@ -7984,7 +7986,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import DNS record sets can be imported using either of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_record_set.frontend {{project}}/{{zone}}/{{name}}/{{type}} $ terraform import google_dns_record_set.frontend {{zone}}/{{name}}/{{type}} ` + "`" + `` + "`" + `` + "`" + ` Note: The record name must include the trailing dot at the end.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7996,8 +7998,8 @@ var (
 				"endpoints",
 				"service",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8009,7 +8011,7 @@ var (
 				"filestore",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource name of the instance.`,
@@ -8075,7 +8077,7 @@ var (
 					Description: `Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_filestore_instance.default projects/{{project}}/locations/{{zone}}/instances/{{name}} $ terraform import google_filestore_instance.default {{project}}/{{zone}}/{{name}} $ terraform import google_filestore_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8096,7 +8098,7 @@ var (
 				"firestore",
 				"index",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "collection",
 					Description: `(Required) The collection being indexed.`,
@@ -8134,7 +8136,7 @@ var (
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/databases/{{database}}/collectionGroups/{{collection}}/indexes/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Index can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_firestore_index.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/databases/{{database}}/collectionGroups/{{collection}}/indexes/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Index can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_firestore_index.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -8155,7 +8157,7 @@ var (
 				"iam",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billing_account_id",
 					Description: `(Required) The billing account id.`,
@@ -8173,7 +8175,7 @@ var (
 					Description: `(Computed) The etag of the billing account's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `billing_account_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_binding.binding "your-billing-account-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the billing account's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `billing_account_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_binding.binding "your-billing-account-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8194,7 +8196,7 @@ var (
 				"iam",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billing_account_id",
 					Description: `(Required) The billing account id.`,
@@ -8212,7 +8214,7 @@ var (
 					Description: `(Computed) The etag of the billing account's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `billing_account_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_member.binding "your-billing-account-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the billing account's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `billing_account_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_member.binding "your-billing-account-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8233,7 +8235,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billing_account_id",
 					Description: `(Required) The billing account id.`,
@@ -8243,7 +8245,7 @@ var (
 					Description: `(Required) The ` + "`" + `google_iam_policy` + "`" + ` data source that represents the IAM policy that will be applied to the billing account. This policy overrides any existing policy applied to the billing account. ## Import ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_policy.policy billing-account-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8256,7 +8258,7 @@ var (
 				"platform",
 				"folder",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) The folder’s display name. A folder’s display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters.`,
@@ -8278,7 +8280,7 @@ var (
 					Description: `Timestamp when the Folder was created. Assigned by the server. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z". ## Import Folders can be imported using the folder autogenerated ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` # Both syntaxes are valid $ terraform import google_folder.department1 1234567 $ terraform import google_folder.department1 folders/1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The resource name of the Folder. Its format is folders/{folder_id}.`,
@@ -8306,7 +8308,7 @@ var (
 				"iam",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder",
 					Description: `(Required) The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.`,
@@ -8320,7 +8322,7 @@ var (
 					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `folder` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_binding.viewer "folder-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `folder` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_binding.viewer "folder-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8340,7 +8342,7 @@ var (
 				"iam",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder",
 					Description: `(Required) The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.`,
@@ -8358,7 +8360,7 @@ var (
 					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `folder` + "`" + `, role, and member identity e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_member.my_project "folder-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `folder` + "`" + `, role, and member identity e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_member.my_project "folder-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8378,7 +8380,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder",
 					Description: `(Required) The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.`,
@@ -8392,7 +8394,7 @@ var (
 					Description: `(Computed) The etag of the folder's IAM policy. ` + "`" + `etag` + "`" + ` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. ## Import A policy can be imported using the ` + "`" + `folder` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_policy.my-folder-policy {{folder_id}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the folder's IAM policy. ` + "`" + `etag` + "`" + ` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. ## Import A policy can be imported using the ` + "`" + `folder` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_policy.my-folder-policy {{folder_id}} ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8412,7 +8414,7 @@ var (
 				"organization",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder",
 					Description: `(Required) The resource name of the folder to set the policy for. Its format is folders/{folder_id}.`,
@@ -8470,7 +8472,7 @@ var (
 					Description: `(Computed) The timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds, representing when the variable was last updated. Example: "2016-10-09T12:33:37.578138407Z". ## Import Folder organization policies can be imported using any of the follow formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_organization_policy.policy folders/folder-1234:constraints/serviceuser.services $ terraform import google_folder_organization_policy.policy folder-1234:serviceuser.services ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the organization policy. ` + "`" + `etag` + "`" + ` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.`,
@@ -8494,7 +8496,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
 					Description: `(Required) The name of the instance.`,
@@ -8524,7 +8526,7 @@ var (
 					Description: `(Computed) The etag of the instance's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the instance's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
@@ -8546,7 +8548,7 @@ var (
 				"iam",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "members",
 					Description: `(Required) A list of users that the role should apply to. For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding`,
@@ -8564,7 +8566,7 @@ var (
 					Description: `(Computed) The etag of the crypto key's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `crypto_key_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_crypto_key_iam_binding.crypto_key "my-gcp-project/us-central1/my-key-ring/my-crypto-key roles/editor" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the crypto key's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `crypto_key_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_crypto_key_iam_binding.crypto_key "my-gcp-project/us-central1/my-key-ring/my-crypto-key roles/editor" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8586,7 +8588,7 @@ var (
 				"iam",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "member",
 					Description: `(Required) The user that the role should apply to. For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding`,
@@ -8604,7 +8606,7 @@ var (
 					Description: `(Computed) The etag of the project's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `crypto_key_id` + "`" + `, role, and member identity e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_crypto_key_iam_member.member "your-project-id/location-name/key-ring-name/key-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the project's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `crypto_key_id` + "`" + `, role, and member identity e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_crypto_key_iam_member.member "your-project-id/location-name/key-ring-name/key-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8626,7 +8628,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_ring_id",
 					Description: `(Required) The key ring ID, in the form ` + "`" + `{project_id}/{location_name}/{key_ring_name}` + "`" + ` or ` + "`" + `{location_name}/{key_ring_name}` + "`" + `. In the second form, the provider's project setting will be used as a fallback.`,
@@ -8648,7 +8650,7 @@ var (
 					Description: `(Computed) The etag of the key ring's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `key_ring_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_key_ring_iam_member.key_ring_iam "your-project-id/location-name/key-ring-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `key_ring_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_key_ring_iam_binding.key_ring_iam "your-project-id/location-name/key-ring-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `key_ring_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_key_ring_iam_policy.key_ring_iam your-project-id/location-name/key-ring-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the key ring's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `key_ring_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_key_ring_iam_member.key_ring_iam "your-project-id/location-name/key-ring-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `key_ring_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_key_ring_iam_binding.key_ring_iam "your-project-id/location-name/key-ring-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `key_ring_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_kms_key_ring_iam_policy.key_ring_iam your-project-id/location-name/key-ring-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8668,7 +8670,7 @@ var (
 				"iam",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org_id",
 					Description: `(Required) The numeric ID of the organization in which you want to create a custom role.`,
@@ -8686,7 +8688,7 @@ var (
 					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `org_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_binding.my_org "your-org-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `org_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_binding.my_org "your-org-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8707,7 +8709,7 @@ var (
 				"custom",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_id",
 					Description: `(Required) The role id to use for this role.`,
@@ -8733,7 +8735,7 @@ var (
 					Description: `(Optional) The current deleted state of the role. ## Import Customized IAM organization role can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_custom_role.my-custom-role organizations/123456789/roles/myCustomRole ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "deleted",
 					Description: `(Optional) The current deleted state of the role. ## Import Customized IAM organization role can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_custom_role.my-custom-role organizations/123456789/roles/myCustomRole ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8753,7 +8755,7 @@ var (
 				"iam",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org_id",
 					Description: `(Required) The numeric ID of the organization in which you want to create a custom role.`,
@@ -8771,7 +8773,7 @@ var (
 					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `org_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_member.my_org "your-org-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `org_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_member.my_org "your-org-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8791,7 +8793,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org_id",
 					Description: `(Required) The numeric ID of the organization in which you want to create a custom role.`,
@@ -8801,7 +8803,7 @@ var (
 					Description: `(Required) The ` + "`" + `google_iam_policy` + "`" + ` data source that represents the IAM policy that will be applied to the organization. This policy overrides any existing policy applied to the organization. ## Import ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_policy.my_org your-org-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8815,7 +8817,7 @@ var (
 				"organization",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org_id",
 					Description: `(Required) The numeric ID of the organization to set the policy for.`,
@@ -8873,7 +8875,7 @@ var (
 					Description: `(Computed) The timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds, representing when the variable was last updated. Example: "2016-10-09T12:33:37.578138407Z". ## Import Organization Policies can be imported using the ` + "`" + `org_id` + "`" + ` and the ` + "`" + `contraint` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_policy.services_policy 123456789:constraints/serviceuser.services`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the organization policy. ` + "`" + `etag` + "`" + ` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.`,
@@ -8895,7 +8897,7 @@ var (
 				"platform",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The display name of the project.`,
@@ -8933,7 +8935,7 @@ var (
 					Description: `The numeric identifier of the project. ## Import Projects can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project.my_project your-project-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "number",
 					Description: `The numeric identifier of the project. ## Import Projects can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project.my_project your-project-id ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8953,7 +8955,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "member/members",
 					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
@@ -8975,7 +8977,7 @@ var (
 					Description: `(Computed) The etag of the project's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `project_id` + "`" + `, role, and member e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_member.my_project "your-project-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `project_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_binding.my_project "your-project-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `project_id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_policy.my_project your-project-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the project's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `project_id` + "`" + `, role, and member e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_member.my_project "your-project-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `project_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_binding.my_project "your-project-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `project_id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_policy.my_project your-project-id ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8996,7 +8998,7 @@ var (
 				"custom",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_id",
 					Description: `(Required) The role id to use for this role.`,
@@ -9022,7 +9024,7 @@ var (
 					Description: `(Optional) The current deleted state of the role. ## Import Customized IAM project role can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_custom_role.my-custom-role projects/my-project/roles/myCustomRole ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "deleted",
 					Description: `(Optional) The current deleted state of the role. ## Import Customized IAM project role can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_custom_role.my-custom-role projects/my-project/roles/myCustomRole ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9042,7 +9044,7 @@ var (
 				"organization",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The project id of the project to set the policy for.`,
@@ -9100,7 +9102,7 @@ var (
 					Description: `(Computed) The timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds, representing when the variable was last updated. Example: "2016-10-09T12:33:37.578138407Z". ## Import Project organization policies can be imported using any of the follow formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_organization_policy.policy projects/test-project:constraints/serviceuser.services $ terraform import google_project_organization_policy.policy test-project:constraints/serviceuser.services $ terraform import google_project_organization_policy.policy test-project:serviceuser.services ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the organization policy. ` + "`" + `etag` + "`" + ` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.`,
@@ -9123,7 +9125,7 @@ var (
 				"project",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service",
 					Description: `(Required) The service to enable.`,
@@ -9141,7 +9143,7 @@ var (
 					Description: `(Optional) If true, disable the service when the terraform resource is destroyed. Defaults to true. May be useful in the event that a project is long-lived but the infrastructure running in that project changes frequently. ## Import Project services can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `service` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_service.my_project your-project-id/iam.googleapis.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9155,7 +9157,7 @@ var (
 				"project",
 				"services",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The project ID. Changing this forces Terraform to attempt to disable all previously managed API services in the previous project.`,
@@ -9169,7 +9171,7 @@ var (
 					Description: `(Optional) Whether or not to disable APIs on project when destroyed. Defaults to true.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9183,7 +9185,7 @@ var (
 				"service",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `(Required) The account id that is used to generate the service account email address and a stable unique id. It is unique within a project, must be 6-30 characters long, and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
@@ -9209,7 +9211,7 @@ var (
 					Description: `The unique id of the service account. ## Import Service accounts can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_service_account.my_sa projects/my-project/serviceAccounts/my-sa@my-project.iam.gserviceaccount.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `The e-mail address of the service account. This value should be referenced from any ` + "`" + `google_iam_policy` + "`" + ` data sources that would grant the service account privileges.`,
@@ -9238,7 +9240,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_account_id",
 					Description: `(Required) The fully-qualified name of the service account to apply policy to.`,
@@ -9260,7 +9262,7 @@ var (
 					Description: `(Computed) The etag of the service account IAM policy. ## Import Service account IAM resources can be imported using the project, service account email, role and member identity. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_service_account_iam_policy.admin-account-iam projects/{your-project-id}/serviceAccounts/{your-service-account-email} $ terraform import google_service_account_iam_binding.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor" $ terraform import google_service_account_iam_member.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the service account IAM policy. ## Import Service account IAM resources can be imported using the project, service account email, role and member identity. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_service_account_iam_policy.admin-account-iam projects/{your-project-id}/serviceAccounts/{your-service-account-email} $ terraform import google_service_account_iam_binding.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor" $ terraform import google_service_account_iam_member.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9280,7 +9282,7 @@ var (
 				"account",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_account_id",
 					Description: `(Required) The Service account id of the Key Pair. This can be a string in the format ` + "`" + `{ACCOUNT}` + "`" + ` or ` + "`" + `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}` + "`" + `, where ` + "`" + `{ACCOUNT}` + "`" + ` is the email address or unique id of the service account. If the ` + "`" + `{ACCOUNT}` + "`" + ` syntax is used, the project will be inferred from the account.`,
@@ -9314,7 +9316,7 @@ var (
 					Description: `The key can be used before this timestamp. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name used for this key pair`,
@@ -9351,7 +9353,7 @@ var (
 				"healthcare",
 				"dataset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource name for the Dataset.`,
@@ -9373,7 +9375,7 @@ var (
 					Description: `The fully qualifed name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Dataset can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_dataset.default projects/{{project}}/locations/{{location}}/datasets/{{name}} $ terraform import -provider=google-beta google_healthcare_dataset.default {{project}}/{{location}}/{{name}} $ terraform import -provider=google-beta google_healthcare_dataset.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualifed name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Dataset can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_dataset.default projects/{{project}}/locations/{{location}}/datasets/{{name}} $ terraform import -provider=google-beta google_healthcare_dataset.default {{project}}/{{location}}/{{name}} $ terraform import -provider=google-beta google_healthcare_dataset.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -9392,7 +9394,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dataset_id",
 					Description: `(Required) The dataset ID, in the form ` + "`" + `{project_id}/{location_name}/{dataset_name}` + "`" + ` or ` + "`" + `{location_name}/{dataset_name}` + "`" + `. In the second form, the provider's project setting will be used as a fallback.`,
@@ -9414,7 +9416,7 @@ var (
 					Description: `(Computed) The etag of the dataset's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_member.dataset_iam "your-project-id/location-name/dataset-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `dataset_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_binding.dataset_iam "your-project-id/location-name/dataset-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_policy.dataset_iam your-project-id/location-name/dataset-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the dataset's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_member.dataset_iam "your-project-id/location-name/dataset-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `dataset_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_binding.dataset_iam "your-project-id/location-name/dataset-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_policy.dataset_iam your-project-id/location-name/dataset-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9432,7 +9434,7 @@ var (
 				"dicom",
 				"store",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource name for the DicomStore.`,
@@ -9458,7 +9460,7 @@ var (
 					Description: `The fully qualifed name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DicomStore can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_dicom_store.default {{dataset}}/dicomStores/{{name}} $ terraform import -provider=google-beta google_healthcare_dicom_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualifed name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DicomStore can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_dicom_store.default {{dataset}}/dicomStores/{{name}} $ terraform import -provider=google-beta google_healthcare_dicom_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -9478,7 +9480,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dicom_store_id",
 					Description: `(Required) The DICOM store ID, in the form ` + "`" + `{project_id}/{location_name}/{dataset_name}/{dicom_store_name}` + "`" + ` or ` + "`" + `{location_name}/{dataset_name}/{dicom_store_name}` + "`" + `. In the second form, the provider's project setting will be used as a fallback.`,
@@ -9500,7 +9502,7 @@ var (
 					Description: `(Computed) The etag of the DICOM store's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `dicom_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dicom_store_iam_member.dicom_store_iam "your-project-id/location-name/dataset-name/dicom-store-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `dicom_store_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dicom_store_iam_binding.dicom_store_iam "your-project-id/location-name/dataset-name/dicom-store-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `dicom_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dicom_store_iam_policy.dicom_store_iam your-project-id/location-name/dataset-name/dicom-store-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the DICOM store's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `dicom_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dicom_store_iam_member.dicom_store_iam "your-project-id/location-name/dataset-name/dicom-store-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `dicom_store_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dicom_store_iam_binding.dicom_store_iam "your-project-id/location-name/dataset-name/dicom-store-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `dicom_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dicom_store_iam_policy.dicom_store_iam your-project-id/location-name/dataset-name/dicom-store-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9518,7 +9520,7 @@ var (
 				"fhir",
 				"store",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource name for the FhirStore.`,
@@ -9560,7 +9562,7 @@ var (
 					Description: `The fully qualifed name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FhirStore can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_fhir_store.default {{dataset}}/fhirStores/{{name}} $ terraform import -provider=google-beta google_healthcare_fhir_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualifed name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FhirStore can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_fhir_store.default {{dataset}}/fhirStores/{{name}} $ terraform import -provider=google-beta google_healthcare_fhir_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -9580,7 +9582,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fhir_store_id",
 					Description: `(Required) The FHIR store ID, in the form ` + "`" + `{project_id}/{location_name}/{dataset_name}/{fhir_store_name}` + "`" + ` or ` + "`" + `{location_name}/{dataset_name}/{fhir_store_name}` + "`" + `. In the second form, the provider's project setting will be used as a fallback.`,
@@ -9602,7 +9604,7 @@ var (
 					Description: `(Computed) The etag of the FHIR store's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `fhir_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_fhir_store_iam_member.fhir_store_iam "your-project-id/location-name/dataset-name/fhir-store-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `fhir_store_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_fhir_store_iam_binding.fhir_store_iam "your-project-id/location-name/dataset-name/fhir-store-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `fhir_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_fhir_store_iam_policy.fhir_store_iam your-project-id/location-name/dataset-name/fhir-store-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the FHIR store's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `fhir_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_fhir_store_iam_member.fhir_store_iam "your-project-id/location-name/dataset-name/fhir-store-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `fhir_store_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_fhir_store_iam_binding.fhir_store_iam "your-project-id/location-name/dataset-name/fhir-store-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `fhir_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_fhir_store_iam_policy.fhir_store_iam your-project-id/location-name/dataset-name/fhir-store-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9621,7 +9623,7 @@ var (
 				"v2",
 				"store",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource name for the Hl7V2Store.`,
@@ -9659,7 +9661,7 @@ var (
 					Description: `The fully qualifed name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Hl7V2Store can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_hl7_v2_store.default {{dataset}}/hl7V2Stores/{{name}} $ terraform import -provider=google-beta google_healthcare_hl7_v2_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualifed name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Hl7V2Store can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_hl7_v2_store.default {{dataset}}/hl7V2Stores/{{name}} $ terraform import -provider=google-beta google_healthcare_hl7_v2_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -9680,7 +9682,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hl7_v2_store_id",
 					Description: `(Required) The HL7v2 store ID, in the form ` + "`" + `{project_id}/{location_name}/{dataset_name}/{hl7_v2_store_name}` + "`" + ` or ` + "`" + `{location_name}/{dataset_name}/{hl7_v2_store_name}` + "`" + `. In the second form, the provider's project setting will be used as a fallback.`,
@@ -9702,7 +9704,7 @@ var (
 					Description: `(Computed) The etag of the HL7v2 store's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `hl7_v2_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_hl7_v2_store_iam_member.hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `hl7_v2_store_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_hl7_v2_store_iam_binding.hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `hl7_v2_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_hl7_v2_store_iam_policy.hl7_v2_store_iam your-project-id/location-name/dataset-name/hl7-v2-store-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the HL7v2 store's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `hl7_v2_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_hl7_v2_store_iam_member.hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `hl7_v2_store_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_hl7_v2_store_iam_binding.hl7_v2_store_iam "your-project-id/location-name/dataset-name/hl7-v2-store-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `hl7_v2_store_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_hl7_v2_store_iam_policy.hl7_v2_store_iam your-project-id/location-name/dataset-name/hl7-v2-store-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9722,7 +9724,7 @@ var (
 				"kms",
 				"crypto",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource name for the CryptoKey.`,
@@ -9756,7 +9758,7 @@ var (
 					Description: `(Optional) The protection level to use when creating a version based on this template. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9771,7 +9773,7 @@ var (
 				"kms",
 				"ring",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource name for the KeyRing.`,
@@ -9785,7 +9787,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9800,7 +9802,7 @@ var (
 				"account",
 				"exclusion",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billing_account",
 					Description: `(Required) The billing account to create the exclusion for.`,
@@ -9822,7 +9824,7 @@ var (
 					Description: `(Required) The filter to apply when excluding logs. Only log entries that match the filter are excluded. See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to write a filter. ## Import Billing account logging exclusions can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_billing_account_exclusion.my_exclusion billingAccounts/my-billing_account/exclusions/my-exclusion ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9837,7 +9839,7 @@ var (
 				"account",
 				"sink",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the logging sink.`,
@@ -9859,7 +9861,7 @@ var (
 					Description: `The identity associated with this sink. This identity must be granted write access to the configured ` + "`" + `destination` + "`" + `. ## Import Billing account logging sinks can be imported using this format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_billing_account_sink.my_sink billingAccounts/{{billing_account_id}}/sinks/{{sink_id}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "writer_identity",
 					Description: `The identity associated with this sink. This identity must be granted write access to the configured ` + "`" + `destination` + "`" + `. ## Import Billing account logging sinks can be imported using this format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_billing_account_sink.my_sink billingAccounts/{{billing_account_id}}/sinks/{{sink_id}} ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9878,7 +9880,7 @@ var (
 				"folder",
 				"exclusion",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder",
 					Description: `(Required) The folder to be exported to the sink. Note that either [FOLDER_ID] or "folders/[FOLDER_ID]" is accepted.`,
@@ -9900,7 +9902,7 @@ var (
 					Description: `(Required) The filter to apply when excluding logs. Only log entries that match the filter are excluded. See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to write a filter. ## Import Folder-level logging exclusions can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_folder_exclusion.my_exclusion folders/my-folder/exclusions/my-exclusion ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9914,7 +9916,7 @@ var (
 				"folder",
 				"sink",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the logging sink.`,
@@ -9940,7 +9942,7 @@ var (
 					Description: `The identity associated with this sink. This identity must be granted write access to the configured ` + "`" + `destination` + "`" + `. ## Import Folder-level logging sinks can be imported using this format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_folder_sink.my_sink folders/{{folder_id}}/sinks/{{sink_id}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "writer_identity",
 					Description: `The identity associated with this sink. This identity must be granted write access to the configured ` + "`" + `destination` + "`" + `. ## Import Folder-level logging sinks can be imported using this format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_folder_sink.my_sink folders/{{folder_id}}/sinks/{{sink_id}} ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9958,7 +9960,7 @@ var (
 				"logging",
 				"metric",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The client-assigned metric identifier. Examples - "error_count", "nginx/requests". Metric identifiers are limited to 100 characters and can include only the following characters A-Z, a-z, 0-9, and the special characters _-.,+!`,
@@ -10056,7 +10058,7 @@ var (
 					Description: `(Optional) The values must be monotonically increasing. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Metric can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_metric.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10070,7 +10072,7 @@ var (
 				"organization",
 				"exclusion",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the logging exclusion.`,
@@ -10092,7 +10094,7 @@ var (
 					Description: `(Required) The filter to apply when excluding logs. Only log entries that match the filter are excluded. See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to write a filter. ## Import Organization-level logging exclusions can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_organization_exclusion.my_exclusion organizations/my-organization/exclusions/my-exclusion ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10106,7 +10108,7 @@ var (
 				"organization",
 				"sink",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the logging sink.`,
@@ -10132,7 +10134,7 @@ var (
 					Description: `The identity associated with this sink. This identity must be granted write access to the configured ` + "`" + `destination` + "`" + `. ## Import Organization-level logging sinks can be imported using this format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_organization_sink.my_sink organizations/{{organization_id}}/sinks/{{sink_id}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "writer_identity",
 					Description: `The identity associated with this sink. This identity must be granted write access to the configured ` + "`" + `destination` + "`" + `. ## Import Organization-level logging sinks can be imported using this format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_organization_sink.my_sink organizations/{{organization_id}}/sinks/{{sink_id}} ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10151,7 +10153,7 @@ var (
 				"project",
 				"exclusion",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Required) The filter to apply when excluding logs. Only log entries that match the filter are excluded. See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced-filters) for information on how to write a filter.`,
@@ -10173,7 +10175,7 @@ var (
 					Description: `(Optional) The project to create the exclusion in. If omitted, the project associated with the provider is used. ## Import Project-level logging exclusions can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_project_exclusion.my_exclusion projects/my-project/exclusions/my-exclusion ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10187,7 +10189,7 @@ var (
 				"project",
 				"sink",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the logging sink.`,
@@ -10213,7 +10215,7 @@ var (
 					Description: `The identity associated with this sink. This identity must be granted write access to the configured ` + "`" + `destination` + "`" + `. ## Import Project-level logging sinks can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_project_sink.my_sink projects/my-project/sinks/my-sink ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "writer_identity",
 					Description: `The identity associated with this sink. This identity must be granted write access to the configured ` + "`" + `destination` + "`" + `. ## Import Project-level logging sinks can be imported using their URI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_project_sink.my_sink projects/my-project/sinks/my-sink ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10232,7 +10234,7 @@ var (
 				"alert",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.`,
@@ -10418,7 +10420,7 @@ var (
 					Description: `The email address of the user making the change. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import AlertPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_alert_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The unique resource name for this policy. Its syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]`,
@@ -10448,7 +10450,7 @@ var (
 				"monitoring",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) A user-assigned name for this group, used only for display purposes.`,
@@ -10474,7 +10476,7 @@ var (
 					Description: `A unique identifier for this group. The format is "projects/{project_id_or_number}/groups/{group_id}". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Group can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_group.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `A unique identifier for this group. The format is "projects/{project_id_or_number}/groups/{group_id}". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Group can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_group.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -10493,7 +10495,7 @@ var (
 				"notification",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of the notification channel. This field matches the value of the NotificationChannelDescriptor.type field. See https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.notificationChannelDescriptors/list to get the list of valid values such as "email", "slack", etc...`,
@@ -10531,7 +10533,7 @@ var (
 					Description: `Indicates whether this channel has been verified or not. On a ListNotificationChannels or GetNotificationChannel operation, this field is expected to be populated.If the value is UNVERIFIED, then it indicates that the channel is non-functioning (it both requires verification and lacks verification); otherwise, it is assumed that the channel works.If the channel is neither VERIFIED nor UNVERIFIED, it implies that the channel is of a type that does not require verification or that this specific channel has been exempted from verification because it was created prior to verification being required for channels of this type.This field cannot be modified using a standard UpdateNotificationChannel operation. To change the value of this field, you must call VerifyNotificationChannel. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import NotificationChannel can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_notification_channel.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The full REST resource name for this channel. The syntax is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.`,
@@ -10555,7 +10557,7 @@ var (
 				"check",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) A human-friendly name for the uptime check configuration. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.`,
@@ -10661,7 +10663,7 @@ var (
 					Description: `The id of the uptime check ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import UptimeCheckConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_uptime_check_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `A unique resource name for this UptimeCheckConfig. The format is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].`,
@@ -10682,7 +10684,7 @@ var (
 				"pubsub",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the subscription.`,
@@ -10732,7 +10734,7 @@ var (
 					Description: `(Optional) Specifies the "time-to-live" duration for an associated resource. The resource expires if it is not active for a period of ttl. The definition of "activity" depends on the type of the associated resource. The minimum and maximum allowed values for ttl depend on the type of the associated resource, as well. If ttl is not set, the associated resource never expires. A duration in seconds with up to nine fractional digits, terminated by 's'. Example - "3.5s". ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10746,7 +10748,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subscription",
 					Description: `(Required) The subscription name or id to bind to attach IAM policy to.`,
@@ -10772,7 +10774,7 @@ var (
 					Description: `(Computed) The etag of the subscription's IAM policy. ## Import Pubsub subscription IAM resources can be imported using the project, subscription name, role and member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_subscription_iam_policy.editor projects/{your-project-id}/subscriptions/{your-subscription-name} $ terraform import google_pubsub_subscription_iam_binding.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor" $ terraform import google_pubsub_subscription_iam_member.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the subscription's IAM policy. ## Import Pubsub subscription IAM resources can be imported using the project, subscription name, role and member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_subscription_iam_policy.editor projects/{your-project-id}/subscriptions/{your-subscription-name} $ terraform import google_pubsub_subscription_iam_binding.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor" $ terraform import google_pubsub_subscription_iam_member.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10789,7 +10791,7 @@ var (
 				"pubsub",
 				"topic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the topic. - - -`,
@@ -10807,7 +10809,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Topic can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_topic.default projects/{{project}}/topics/{{name}} $ terraform import google_pubsub_topic.default {{project}}/{{name}} $ terraform import google_pubsub_topic.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10821,7 +10823,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic",
 					Description: `(Required) The topic name or id to bind to attach IAM policy to.`,
@@ -10847,7 +10849,7 @@ var (
 					Description: `(Computed) The etag of the topic's IAM policy. ## Import Pubsub topic IAM resources can be imported using the project, topic name, role and member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_topic_iam_policy.editor projects/{{project}}/topics/{{topic}} $ terraform import google_pubsub_topic_iam_binding.editor "projects/{{project}}/topics/{{topic}} roles/editor" $ terraform import google_pubsub_topic_iam_member.editor "projects/{{project}}/topics/{{topic}} roles/editor jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the topic's IAM policy. ## Import Pubsub topic IAM resources can be imported using the project, topic name, role and member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_topic_iam_policy.editor projects/{{project}}/topics/{{topic}} $ terraform import google_pubsub_topic_iam_binding.editor "projects/{{project}}/topics/{{topic}} roles/editor" $ terraform import google_pubsub_topic_iam_member.editor "projects/{{project}}/topics/{{topic}} roles/editor jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -10866,7 +10868,7 @@ var (
 				"memorystore",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The ID of the instance or a fully qualified identifier for the instance.`,
@@ -10936,7 +10938,7 @@ var (
 					Description: `The port number of the exposed Redis endpoint. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `update` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_redis_instance.default projects/{{project}}/locations/{{region}}/instances/{{name}} $ terraform import google_redis_instance.default {{project}}/{{region}}/{{name}} $ terraform import google_redis_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time the instance was created in RFC3339 UTC "Zulu" format, accurate to nanoseconds.`,
@@ -10968,7 +10970,7 @@ var (
 				"manager",
 				"lien",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "reason",
 					Description: `(Required) Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200 characters.`,
@@ -10994,7 +10996,7 @@ var (
 					Description: `Time of creation ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Lien can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_resource_manager_lien.default {{parent}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `A system-generated unique identifier for this Lien.`,
@@ -11015,7 +11017,7 @@ var (
 				"runtimeconfig",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the runtime config. - - -`,
@@ -11029,7 +11031,7 @@ var (
 					Description: `(Optional) The description to associate with the runtime config. ## Import Runtime Configs can be imported using the ` + "`" + `name` + "`" + ` or full config name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_runtimeconfig_config.myconfig myconfig ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_runtimeconfig_config.myconfig projects/my-gcp-project/configs/myconfig ` + "`" + `` + "`" + `` + "`" + ` When importing using only the name, the provider project must be set.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -11041,7 +11043,7 @@ var (
 				"runtimeconfig",
 				"variable",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the variable to manage. Note that variable names can be hierarchical using slashes (e.g. "prod-variables/hostname").`,
@@ -11059,7 +11061,7 @@ var (
 					Description: `(Computed) The timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds, representing when the variable was last updated. Example: "2016-10-09T12:33:37.578138407Z". ## Import Runtime Config Variables can be imported using the ` + "`" + `name` + "`" + ` or full variable name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_runtimeconfig_variable.myvariable myconfig/myvariable ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_runtimeconfig_variable.myvariable projects/my-gcp-project/configs/myconfig/variables/myvariable ` + "`" + `` + "`" + `` + "`" + ` When importing using only the name, the provider project must be set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "update_time",
 					Description: `(Computed) The timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds, representing when the variable was last updated. Example: "2016-10-09T12:33:37.578138407Z". ## Import Runtime Config Variables can be imported using the ` + "`" + `name` + "`" + ` or full variable name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_runtimeconfig_variable.myvariable myconfig/myvariable ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_runtimeconfig_variable.myvariable projects/my-gcp-project/configs/myconfig/variables/myvariable ` + "`" + `` + "`" + `` + "`" + ` When importing using only the name, the provider project must be set.`,
@@ -11079,7 +11081,7 @@ var (
 				"scan",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) The user provider display name of the ScanConfig.`,
@@ -11161,7 +11163,7 @@ var (
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/scanConfigs/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ScanConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_security_scanner_scan_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/scanConfigs/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ScanConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_security_scanner_scan_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -11179,7 +11181,7 @@ var (
 				"networking",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network",
 					Description: `(Required) Name of VPC network connected with service producers using VPC peering.`,
@@ -11193,7 +11195,7 @@ var (
 					Description: `(Required) Named IP address range(s) of PEERING type reserved for this service provider. Note that invoking this method with a different range when connection is already established will not reallocate already provisioned service producer subnetworks.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -11207,7 +11209,7 @@ var (
 				"sourcerepo",
 				"repository",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Resource name of the repository, of the form ` + "`" + `{{repo}}` + "`" + `. The repo name may contain slashes. eg, ` + "`" + `name/with/slash` + "`" + ` - - -`,
@@ -11225,7 +11227,7 @@ var (
 					Description: `The disk usage of the repo, in bytes. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Repository can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sourcerepo_repository.default projects/{{project}}/repos/{{name}} $ terraform import google_sourcerepo_repository.default {{project}}/{{name}} $ terraform import google_sourcerepo_repository.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `URL to clone the repository from Google Cloud Source Repositories.`,
@@ -11246,7 +11248,7 @@ var (
 				"spanner",
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique identifier for the database, which cannot be changed after the instance is created. Values are of the form [a-z][-a-z0-9]`,
@@ -11268,7 +11270,7 @@ var (
 					Description: `An explanation of the status of the database. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Database can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_spanner_database.default projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_spanner_database.default instances/{{instance}}/databases/{{name}} $ terraform import google_spanner_database.default {{project}}/{{instance}}/{{name}} $ terraform import google_spanner_database.default {{instance}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "state",
 					Description: `An explanation of the status of the database. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Database can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_spanner_database.default projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_spanner_database.default instances/{{instance}}/databases/{{name}} $ terraform import google_spanner_database.default {{project}}/{{instance}}/{{name}} $ terraform import google_spanner_database.default {{instance}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -11287,7 +11289,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "database",
 					Description: `(Required) The name of the Spanner database.`,
@@ -11317,7 +11319,7 @@ var (
 					Description: `(Computed) The etag of the database's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the database's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
@@ -11334,7 +11336,7 @@ var (
 				"spanner",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique identifier for the instance, which cannot be changed after the instance is created. The name must be between 6 and 30 characters in length. If not provided, a random string starting with ` + "`" + `tf-` + "`" + ` will be selected.`,
@@ -11364,7 +11366,7 @@ var (
 					Description: `Instance status: ` + "`" + `CREATING` + "`" + ` or ` + "`" + `READY` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_spanner_instance.default projects/{{project}}/instances/{{name}} $ terraform import google_spanner_instance.default {{project}}/{{name}} $ terraform import google_spanner_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "state",
 					Description: `Instance status: ` + "`" + `CREATING` + "`" + ` or ` + "`" + `READY` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_spanner_instance.default projects/{{project}}/instances/{{name}} $ terraform import google_spanner_instance.default {{project}}/{{name}} $ terraform import google_spanner_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -11383,7 +11385,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
 					Description: `(Required) The name of the instance.`,
@@ -11409,7 +11411,7 @@ var (
 					Description: `(Computed) The etag of the instance's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the instance's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
@@ -11426,7 +11428,7 @@ var (
 				"sql",
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the database.`,
@@ -11452,7 +11454,7 @@ var (
 					Description: `The URI of the created resource. ## Import SQL databases can be imported using one of any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database.database projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_sql_database.database {{project}}/{{instance}}/{{name}} $ terraform import google_sql_database.database instances/{{name}}/databases/{{name}} $ terraform import google_sql_database.database {{instance}}/{{name}} $ terraform import google_sql_database.database {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource. ## Import SQL databases can be imported using one of any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database.database projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_sql_database.database {{project}}/{{instance}}/{{name}} $ terraform import google_sql_database.database instances/{{name}}/databases/{{name}} $ terraform import google_sql_database.database {{instance}}/{{name}} $ terraform import google_sql_database.database {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11470,7 +11472,7 @@ var (
 				"database",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) The region the instance will sit in. Note, first-generation Cloud SQL instance regions do not line up with the Google Compute Engine (GCE) regions, and Cloud SQL is not available in all regions - choose from one of the options listed [here](https://cloud.google.com/sql/docs/mysql/instance-locations). A valid region must be provided to use this resource. If a region is not provided in the resource definition, the provider region will be used instead, but this will be an apply-time error for all first-generation instances`,
@@ -11712,7 +11714,7 @@ var (
 					Description: `SHA Fingerprint of the CA Cert. ## Timeouts ` + "`" + `google_sql_database_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes. ## Import Database instances can be imported using one of any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database_instance.master projects/{{project}}/instances/{{name}} $ terraform import google_sql_database_instance.master {{project}}/{{name}} $ terraform import google_sql_database_instance.master {{name}} ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource.`,
@@ -11786,7 +11788,7 @@ var (
 				"ssl",
 				"cert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
 					Description: `(Required) The name of the Cloud SQL instance. Changing this forces a new resource to be created.`,
@@ -11828,7 +11830,7 @@ var (
 					Description: `The time when the certificate expires in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. ## Import Since the contents of the certificate cannot be accessed after its creation, this resource cannot be imported.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sha1_fingerprint",
 					Description: `The SHA1 Fingerprint of the certificate.`,
@@ -11869,7 +11871,7 @@ var (
 				"sql",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
 					Description: `(Required) The name of the Cloud SQL instance. Changing this forces a new resource to be created.`,
@@ -11891,7 +11893,7 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import SQL users for MySQL databases can be imported using the ` + "`" + `project` + "`" + `, ` + "`" + `instance` + "`" + `, ` + "`" + `host` + "`" + ` and ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_user.users my-project/master-instance/my-domain.com/me ` + "`" + `` + "`" + `` + "`" + ` SQL users for PostgreSQL databases can be imported using the ` + "`" + `project` + "`" + `, ` + "`" + `instance` + "`" + ` and ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_user.users my-project/master-instance/me ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -11903,7 +11905,7 @@ var (
 				"storage",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the bucket. - - -`,
@@ -12045,7 +12047,7 @@ var (
 					Description: `The base URL of the bucket, in the format ` + "`" + `gs://<bucket-name>` + "`" + `. ## Import Storage buckets can be imported using the ` + "`" + `name` + "`" + ` or ` + "`" + `project/name` + "`" + `. If the project is not passed to the import command it will be inferred from the provider block or environment variables. If it cannot be inferred it will be queried from the Compute API (this will fail if the API is not enabled). e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_bucket.image-store image-store-bucket $ terraform import google_storage_bucket.image-store tf-test-project/image-store-bucket ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource.`,
@@ -12067,7 +12069,7 @@ var (
 				"bucket",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket it applies to. - - -`,
@@ -12085,7 +12087,7 @@ var (
 					Description: `(Optional) Configure this ACL to be the default ACL. ## Attributes Reference Only the arguments listed above are exposed as attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -12099,7 +12101,7 @@ var (
 				"iam",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket it applies to.`,
@@ -12117,7 +12119,7 @@ var (
 					Description: `(Computed) The etag of the storage bucket's IAM policy. ## Import For ` + "`" + `google_storage_bucket_iam_policy` + "`" + `: IAM member imports use space-delimited identifiers - generally the resource in question, the role, and the member identity (i.e. ` + "`" + `serviceAccount: my-sa@my-project.iam.gserviceaccount.com` + "`" + ` or ` + "`" + `user:foo@example.com` + "`" + `). Policies, bindings, and members can be respectively imported as follows: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_bucket_iam_policy.policy "my-bucket user:foo@example.com" $ terraform import google_storage_bucket_iam_binding.binding "my-bucket roles/my-role " $ terraform import google_storage_bucket_iam_member.member "my-bucket roles/my-role user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
 					Description: `(Computed) The etag of the storage bucket's IAM policy. ## Import For ` + "`" + `google_storage_bucket_iam_policy` + "`" + `: IAM member imports use space-delimited identifiers - generally the resource in question, the role, and the member identity (i.e. ` + "`" + `serviceAccount: my-sa@my-project.iam.gserviceaccount.com` + "`" + ` or ` + "`" + `user:foo@example.com` + "`" + `). Policies, bindings, and members can be respectively imported as follows: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_bucket_iam_policy.policy "my-bucket user:foo@example.com" $ terraform import google_storage_bucket_iam_binding.binding "my-bucket roles/my-role " $ terraform import google_storage_bucket_iam_member.member "my-bucket roles/my-role user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -12135,7 +12137,7 @@ var (
 				"bucket",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the containing bucket.`,
@@ -12193,7 +12195,7 @@ var (
 					Description: `(Computed) The name of the object. Use this field in interpolations with ` + "`" + `google_storage_object_acl` + "`" + ` to recreate ` + "`" + `google_storage_object_acl` + "`" + ` resources when your ` + "`" + `google_storage_bucket_object` + "`" + ` is recreated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "crc32c",
 					Description: `(Computed) Base 64 CRC32 hash of the uploaded data.`,
@@ -12225,7 +12227,7 @@ var (
 				"access",
 				"control",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket.`,
@@ -12271,7 +12273,7 @@ var (
 					Description: `(Optional) The team. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DefaultObjectAccessControl can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_default_object_access_control.default {{bucket}}/{{entity}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `The domain associated with the entity.`,
@@ -12314,7 +12316,7 @@ var (
 				"object",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket it applies to. ---`,
@@ -12324,7 +12326,7 @@ var (
 					Description: `(Optional) List of role/entity pairs in the form ` + "`" + `ROLE:entity` + "`" + `. See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details. Omitting the field is the same as providing an empty list. ## Attributes Reference Only the arguments listed above are exposed as attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -12336,7 +12338,7 @@ var (
 				"storage",
 				"notification",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket.`,
@@ -12366,7 +12368,7 @@ var (
 					Description: `The URI of the created resource. ## Import Storage notifications can be imported using the notification ` + "`" + `id` + "`" + ` in the format ` + "`" + `<bucket_name>/notificationConfigs/<id>` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_notification.notification default_bucket/notificationConfigs/102 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource. ## Import Storage notifications can be imported using the notification ` + "`" + `id` + "`" + ` in the format ` + "`" + `<bucket_name>/notificationConfigs/<id>` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_notification.notification default_bucket/notificationConfigs/102 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -12385,7 +12387,7 @@ var (
 				"access",
 				"control",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket.`,
@@ -12431,7 +12433,7 @@ var (
 					Description: `(Optional) The team. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ObjectAccessControl can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_object_access_control.default {{bucket}}/{{object}}/{{entity}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `The domain associated with the entity.`,
@@ -12473,7 +12475,7 @@ var (
 				"object",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket the object is stored in.`,
@@ -12491,7 +12493,7 @@ var (
 					Description: `(Optional) List of role/entity pairs in the form ` + "`" + `ROLE:entity` + "`" + `. See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details. Must be set if ` + "`" + `predefined_acl` + "`" + ` is not. -> The object's creator will always have ` + "`" + `OWNER` + "`" + ` permissions for their object, and any attempt to modify that permission would return an error. Instead, Terraform automatically adds that role/entity pair to your ` + "`" + `terraform plan` + "`" + ` results when it is omitted in your config; ` + "`" + `terraform plan` + "`" + ` will show the correct final state at every point except for at ` + "`" + `Create` + "`" + ` time, where the object role/entity pair is omitted if not explicitly set. ## Attributes Reference Only the arguments listed above are exposed as attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -12504,7 +12506,7 @@ var (
 				"transfer",
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Required) Unique description to identify the Transfer Job.`,
@@ -12662,7 +12664,7 @@ var (
 					Description: `When the Transfer Job was deleted. ## Import Storage buckets can be imported using the Transfer Job's ` + "`" + `project` + "`" + ` and ` + "`" + `name` + "`" + ` without the ` + "`" + `transferJob/` + "`" + ` prefix, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_transfer_job.nightly-backup-transfer-job my-project-1asd32/8422144862922355674 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the Transfer Job.`,
@@ -12692,7 +12694,7 @@ var (
 				"tpu",
 				"node",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The immutable name of the TPU.`,
@@ -12754,7 +12756,7 @@ var (
 					Description: `The port of this network endpoint. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 15 minutes. - ` + "`" + `update` + "`" + ` - Default is 15 minutes. - ` + "`" + `delete` + "`" + ` - Default is 15 minutes. ## Import Node can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_tpu_node.default projects/{{project}}/locations/{{zone}}/nodes/{{name}} $ terraform import google_tpu_node.default {{project}}/{{zone}}/{{name}} $ terraform import google_tpu_node.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_account",
 					Description: `The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.`,
@@ -12787,8 +12789,8 @@ var (
 				"export",
 				"bucket",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -12969,10 +12971,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

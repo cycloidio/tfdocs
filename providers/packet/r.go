@@ -1,11 +1,13 @@
-package aws
+package packet
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"bgp",
 				"session",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_id",
 					Description: `(Required) ID of device`,
@@ -31,7 +33,7 @@ var (
 					Description: `(Optional) Boolean flag to set the default route policy. False by default. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -42,7 +44,7 @@ var (
 			Keywords: []string{
 				"connect",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name for the Connect resource`,
@@ -76,7 +78,7 @@ var (
 					Description: `Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED`,
@@ -92,7 +94,7 @@ var (
 			Keywords: []string{
 				"device",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) The device name`,
@@ -246,7 +248,7 @@ var (
 					Description: `The timestamp for the last time the device was updated`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_private_ipv4",
 					Description: `The ipv4 private IP assigned to the device`,
@@ -375,7 +377,7 @@ var (
 				"ip",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_id",
 					Description: `(Required) ID of device to which to assign the subnet`,
@@ -421,7 +423,7 @@ var (
 					Description: `boolean flag whether subnet is reachable from the Internet`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the assignment`,
@@ -469,7 +471,7 @@ var (
 			Keywords: []string{
 				"organization",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Organization.`,
@@ -515,7 +517,7 @@ var (
 					Description: `Logo URL.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the organization.`,
@@ -553,7 +555,7 @@ var (
 				"vlan",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_id",
 					Description: `(Required) ID of device to be assigned to the VLAN`,
@@ -587,7 +589,7 @@ var (
 					Description: `UUID of device port`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -598,7 +600,7 @@ var (
 			Keywords: []string{
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the project`,
@@ -664,7 +666,7 @@ var (
 					Description: `The maximum number of route filters allowed per server`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the project`,
@@ -710,7 +712,7 @@ var (
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SSH key for identification`,
@@ -752,7 +754,7 @@ var (
 					Description: `The timestamp for the last time the SSH key was updated`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the key`,
@@ -794,7 +796,7 @@ var (
 				"ip",
 				"block",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The packet project ID where to allocate the address block`,
@@ -856,7 +858,7 @@ var (
 					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first /32 address from a reserved block might look like ` + "`" + `"${cidrhost(packet_reserved_ip_block.test.cidr_notation,0)}/32"` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "facility",
 					Description: `The facility where the block was allocated, empty for global blocks`,
@@ -914,7 +916,7 @@ var (
 				"market",
 				"request",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "devices_max",
 					Description: `(Required) Maximum number devices to be created`,
@@ -956,7 +958,7 @@ var (
 					Description: `The ID of the Spot Market Request`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Spot Market Request`,
@@ -973,7 +975,7 @@ var (
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SSH key for identification`,
@@ -1007,7 +1009,7 @@ var (
 					Description: `The timestamp for the last time the SSH key was updated`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the key`,
@@ -1043,7 +1045,7 @@ var (
 			Keywords: []string{
 				"vlan",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) ID of parent project`,
@@ -1061,7 +1063,7 @@ var (
 					Description: `VXLAN segment ID`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vxlan",
 					Description: `VXLAN segment ID`,
@@ -1077,7 +1079,7 @@ var (
 			Keywords: []string{
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plan",
 					Description: `(Required) The service plan slug of the volume`,
@@ -1163,7 +1165,7 @@ var (
 					Description: `The timestamp for the last time the volume was updated`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the volume`,
@@ -1228,7 +1230,7 @@ var (
 				"volume",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_id",
 					Description: `(Required) The ID of the volume to attach`,
@@ -1242,7 +1244,7 @@ var (
 					Description: `The unique ID of the volume attachment`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the volume attachment`,
@@ -1270,10 +1272,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

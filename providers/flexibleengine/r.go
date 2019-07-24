@@ -1,11 +1,13 @@
-package aws
+package flexibleengine
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"antiddos",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enable_l7",
 					Description: `(Required) Specifies whether to enable L7 defense.`,
@@ -43,7 +45,7 @@ var (
 					Description: `(Required) The ID corresponding to the Elastic IP Address (EIP) of a user. ## Attributes Reference All above argument parameters can be exported as attribute parameters. ## Import Antiddos can be imported using the floating_ip_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_antiddos_v1.myantiddos c1881895-cdcb-4d23-96cb-032e6a3ee667 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -58,7 +60,7 @@ var (
 				"configuration",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the AS configuration. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new AS configuration.`,
@@ -152,7 +154,7 @@ var (
 					Description: `(Required) The bandwidth charging mode. The system only supports ` + "`" + `traffic` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -167,7 +169,7 @@ var (
 				"group",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the AS group. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new AS group.`,
@@ -321,7 +323,7 @@ var (
 					Description: `The instances IDs of the AS group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -393,7 +395,7 @@ var (
 				"policy",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the AS policy. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new AS policy.`,
@@ -503,7 +505,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -567,7 +569,7 @@ var (
 				"volume",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the volume. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new volume.`,
@@ -673,7 +675,7 @@ var (
 					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_blockstorage_volume_v2.volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -731,7 +733,7 @@ var (
 				"cluster",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Cluster name. Changing this parameter will create a new cluster resource.`,
@@ -857,7 +859,7 @@ var (
 					Description: `Cluster status information. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Id of the cluster resource.`,
@@ -879,7 +881,7 @@ var (
 				"nodes",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) ID of the cluster. Changing this parameter will create a new resource.`,
@@ -989,7 +991,7 @@ var (
 					Description: `Node status information.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Node status information.`,
@@ -1006,7 +1008,7 @@ var (
 				"ces",
 				"ces-alarmrule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_name",
 					Description: `(Required) Specifies the name of an alarm rule. The value can be a string of 1 to 128 characters that can consist of numbers, lowercase letters, uppercase letters, underscores (_), or hyphens (-).`,
@@ -1160,7 +1162,7 @@ var (
 					Description: `Specifies the alarm status. The value can be: ok: The alarm status is normal, alarm: An alarm is generated, insufficient_data: The required data is insufficient.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_name",
 					Description: `See Argument Reference above.`,
@@ -1222,7 +1224,7 @@ var (
 				"server",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the bms server instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new bms server.`,
@@ -1324,7 +1326,7 @@ var (
 					Description: `The nova-compute status:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1338,7 +1340,7 @@ var (
 				"associate",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Compute client. Keypairs are associated with accounts, but a Compute client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new floatingip_associate.`,
@@ -1372,7 +1374,7 @@ var (
 					Description: `See Argument Reference above. ## Import This resource can be imported by specifying all three arguments, separated by a forward slash: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_compute_floatingip_associate_v2.fip_1 <floating_ip>/<instance_id>/<fixed_ip> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1402,7 +1404,7 @@ var (
 				"floatingip",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Compute client. A Compute client is needed to create a floating IP that can be used with a compute instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new floating IP (which may or may not have a different address).`,
@@ -1432,7 +1434,7 @@ var (
 					Description: `UUID of the compute instance associated with the floating IP. ## Import Floating IPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_compute_floatingip_v2.floatip_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1466,7 +1468,7 @@ var (
 				"instance",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the server instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new server.`,
@@ -1696,7 +1698,7 @@ var (
 					Description: `See Argument Reference above. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1775,7 +1777,7 @@ var (
 				"attach",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the interface attachment. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new attachment.`,
@@ -1813,7 +1815,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1843,7 +1845,7 @@ var (
 				"keypair",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Compute client. Keypairs are associated with accounts, but a Compute client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new keypair.`,
@@ -1873,7 +1875,7 @@ var (
 					Description: `See Argument Reference above. ## Import Keypairs can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_compute_keypair_v2.my-keypair test-keypair ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1899,7 +1901,7 @@ var (
 				"servergroup",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Compute client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new server group.`,
@@ -1941,7 +1943,7 @@ var (
 					Description: `The instances that are part of this server group. ## Import Server Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_compute_servergroup_v2.test-sg 1bc30ee9-9d5b-4c30-bdd5-7f1e663f5edf ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1972,7 +1974,7 @@ var (
 				"attach",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Compute client. A Compute client is needed to create a volume attachment. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new volume attachment.`,
@@ -2006,7 +2008,7 @@ var (
 					Description: `See Argument Reference above. _NOTE_: The correctness of this information is dependent upon the hypervisor in use. In some cases, this should not be used as an authoritative piece of information. ## Import Volume Attachments can be imported using the Instance ID and Volume ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2037,7 +2039,7 @@ var (
 				"policy",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of backup policy. The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-).`,
@@ -2123,7 +2125,7 @@ var (
 					Description: `Specifies Scheduler type. ## Import Backup Policy can be imported using ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_csbs_backup_policy_v1.backup_policy_v1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of Backup Policy.`,
@@ -2161,7 +2163,7 @@ var (
 				"backup",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backup_name",
 					Description: `(Optional) Name for the backup. The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-). Changing backup_name creates a new backup.`,
@@ -2271,7 +2273,7 @@ var (
 					Description: `Specifies image type. ## Import Backup can be imported using ` + "`" + `backup_record_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_csbs_backup_v1.backup_v1.backup_v1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `It specifies the status of backup.`,
@@ -2377,7 +2379,7 @@ var (
 				"tracker",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_name",
 					Description: `(Required) The OBS bucket name for a tracker.`,
@@ -2395,7 +2397,7 @@ var (
 					Description: `The tracker name. Currently, only tracker`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tracker_name",
 					Description: `The tracker name. Currently, only tracker`,
@@ -2413,7 +2415,7 @@ var (
 				"instance",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Indicates the name of an instance. An instance name starts with a letter, consists of 4 to 64 characters, and supports only letters, digits, and hyphens (-).`,
@@ -2611,7 +2613,7 @@ var (
 					Description: `Cache node's IP address in tenant's VPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -2745,7 +2747,7 @@ var (
 				"recordset",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 DNS client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new DNS record set.`,
@@ -2811,7 +2813,7 @@ var (
 					Description: `See Argument Reference above. ## Import This resource can be imported by specifying the zone ID and recordset ID, separated by a forward slash. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_dns_recordset_v2.recordset_1 <zone_id>/<recordset_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2857,7 +2859,7 @@ var (
 				"zone",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Compute client. Keypairs are associated with accounts, but a Compute client is needed to create one. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new DNS zone. Changing this creates a new DNS zone.`,
@@ -2931,7 +2933,7 @@ var (
 					Description: `See Argument Reference above. ## Import This resource can be imported by specifying the zone ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_dns_zone_v2.zone_1 <zone_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2977,7 +2979,7 @@ var (
 				"replication",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the EVS replication pair. The name can contain a maximum of 255 bytes.`,
@@ -3055,7 +3057,7 @@ var (
 					Description: `The fault level of the EVS replication pair.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3125,7 +3127,7 @@ var (
 				"replicationconsistencygroup",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the replication consistency group. The name can contain a maximum of 255 bytes.`,
@@ -3191,7 +3193,7 @@ var (
 					Description: `The fault level of the replication consistency group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3251,7 +3253,7 @@ var (
 				"cluster",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) AZ in a cluster`,
@@ -3397,7 +3399,7 @@ var (
 					Description: `JDBC URL. The following is the default format: jdbc:postgresql://< public_connect_info>/<YOUR_DATABASE_NAME>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3505,7 +3507,7 @@ var (
 				"elb",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_id",
 					Description: `(Required) Specifies the listener ID.`,
@@ -3563,7 +3565,7 @@ var (
 					Description: `Specifies the listener to which the backend member belongs.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_id",
 					Description: `See Argument Reference above.`,
@@ -3623,7 +3625,7 @@ var (
 				"elb",
 				"health",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the elb health. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new elb health.`,
@@ -3701,7 +3703,7 @@ var (
 					Description: `Specifies the health check task ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -3757,7 +3759,7 @@ var (
 				"elb",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the elb listener. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new elb listener.`,
@@ -3919,7 +3921,7 @@ var (
 					Description: `Specifies the status of the load balancer. Value range: false: The load balancer is disabled. true: The load balancer runs properly.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -4019,7 +4021,7 @@ var (
 				"elb",
 				"loadbalancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the loadbalancer. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new loadbalancer.`,
@@ -4121,7 +4123,7 @@ var (
 					Description: `Specifies the load balancer ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -4188,7 +4190,7 @@ var (
 				"group",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the v2 networking client. A networking client is needed to create a firewall group. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new firewall group.`,
@@ -4254,7 +4256,7 @@ var (
 					Description: `See Argument Reference above. ## Import Firewall Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_fw_firewall_group_v2.firewall_group_1 c9e39fb2-ce20-46c8-a964-25f3898c7a97 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -4297,7 +4299,7 @@ var (
 				"policy",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the v2 networking client. A networking client is needed to create a firewall policy. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new firewall policy.`,
@@ -4347,7 +4349,7 @@ var (
 					Description: `See Argument Reference above. ## Import Firewall Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_fw_policy_v2.policy_1 07f422e6-c596-474b-8b94-fe2c12506ce0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -4382,7 +4384,7 @@ var (
 				"rule",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the v2 networking client. A Compute client is needed to create a firewall rule. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new firewall rule.`,
@@ -4484,7 +4486,7 @@ var (
 					Description: `See Argument Reference above. ## Import Firewall Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_fw_rule_v2.rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -4546,7 +4548,7 @@ var (
 				"image",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "container_format",
 					Description: `(Required) The container format. Must be one of "ami", "ari", "aki", "bare", "ovf".`,
@@ -4672,7 +4674,7 @@ var (
 					Description: `See Argument Reference above. ## Import Images can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_images_image_v2.rancheros 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "checksum",
 					Description: `The checksum of the data associated with the image.`,
@@ -4762,7 +4764,7 @@ var (
 				"key",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
 					Description: `(Required) The alias in which to create the key. It is required when we create a new key. Changing this updates the alias of key.`,
@@ -4828,7 +4830,7 @@ var (
 					Description: `See Argument Reference above. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
 					Description: `See Argument Reference above.`,
@@ -4889,7 +4891,7 @@ var (
 				"certificate",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an LB certificate. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new LB certificate.`,
@@ -4947,7 +4949,7 @@ var (
 					Description: `Indicates the creation time.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -4996,7 +4998,7 @@ var (
 				"l7policy",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an . If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new L7 Policy.`,
@@ -5082,7 +5084,7 @@ var (
 					Description: `See Argument Reference above. ## Import Load Balancer L7 Policy can be imported using the L7 Policy ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_lb_l7policy_v2.l7policy_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the L7 {olicy.`,
@@ -5143,7 +5145,7 @@ var (
 				"l7rule",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an . If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new L7 Rule.`,
@@ -5225,7 +5227,7 @@ var (
 					Description: `The ID of the Listener owning this resource. ## Import Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_lb_l7rule_v2.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the L7 Rule.`,
@@ -5286,7 +5288,7 @@ var (
 				"listener",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an . If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new Listener.`,
@@ -5376,7 +5378,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the Listener.`,
@@ -5437,7 +5439,7 @@ var (
 				"loadbalancer",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an LB member. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new LB member.`,
@@ -5523,7 +5525,7 @@ var (
 					Description: `The Port ID of the Load Balancer IP.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -5584,7 +5586,7 @@ var (
 				"member",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an . If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new member.`,
@@ -5658,7 +5660,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the member.`,
@@ -5711,7 +5713,7 @@ var (
 				"monitor",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an . If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new monitor.`,
@@ -5805,7 +5807,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the monitor.`,
@@ -5866,7 +5868,7 @@ var (
 				"pool",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an . If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new pool.`,
@@ -5944,7 +5946,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the pool.`,
@@ -5990,7 +5992,7 @@ var (
 				"instance",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the MLS instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new instance.`,
@@ -6124,7 +6126,7 @@ var (
 					Description: `Indicates the update time in the following format: yyyy-mm-dd Thh:mm:ssZ.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -6206,7 +6208,7 @@ var (
 				"cluster",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billing_type",
 					Description: `(Required) The value is 12, indicating on-demand payment.`,
@@ -6560,7 +6562,7 @@ var (
 					Description: `Component description`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billing_type",
 					Description: `See Argument Reference above.`,
@@ -6778,7 +6780,7 @@ var (
 				"job",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "job_type",
 					Description: `(Required) Job type 1: MapReduce 2: Spark 3: Hive Script 4: HiveQL (not supported currently) 5: DistCp, importing and exporting data. 6: Spark Script 7: Spark SQL, submitting Spark SQL statements. (not supported in this APIcurrently) NOTE: Spark and Hive jobs can be added to only clusters including Spark and Hive components.`,
@@ -6868,7 +6870,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "job_type",
 					Description: `See Argument Reference above.`,
@@ -6927,7 +6929,7 @@ var (
 				"rule",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "floating_ip_id",
 					Description: `(Required) Specifies the ID of the floating IP address. Changing this creates a new resource.`,
@@ -6965,7 +6967,7 @@ var (
 					Description: `Dnat rule status. ## Import Dnat can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `Dnat rule creation time.`,
@@ -6987,7 +6989,7 @@ var (
 				"gateway",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 nat client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new nat gateway.`,
@@ -7045,7 +7047,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7088,7 +7090,7 @@ var (
 				"rule",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 nat client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new snat rule.`,
@@ -7122,7 +7124,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7153,7 +7155,7 @@ var (
 				"associate",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a floating IP that can be used with another networking resource, such as a load balancer. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new floating IP (which may or may not have a different address).`,
@@ -7179,7 +7181,7 @@ var (
 					Description: `See Argument Reference above. ## Import Floating IP associations can be imported using the ` + "`" + `id` + "`" + ` of the floating IP, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_networking_floatingip_associate_v2.fip 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7205,7 +7207,7 @@ var (
 				"floatingip",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a floating IP that can be used with another networking resource, such as a load balancer. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new floating IP (which may or may not have a different address).`,
@@ -7255,7 +7257,7 @@ var (
 					Description: `The fixed IP which the floating IP maps to. ## Import Floating IPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_networking_floatingip_v2.floatip_1 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7293,7 +7295,7 @@ var (
 				"network",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a Neutron network. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new network.`,
@@ -7355,7 +7357,7 @@ var (
 					Description: `See Argument Reference above. ## Import Networks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_networking_network_v2.network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7389,7 +7391,7 @@ var (
 				"port",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to create a port. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new port.`,
@@ -7491,7 +7493,7 @@ var (
 					Description: `The collection of Fixed IP addresses on the port in the order returned by the Network v2 API. ## Import Ports can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_networking_port_v2.port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1 ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### Ports and Instances There are some notes to consider when connecting Instances to networks using Ports. Please see the ` + "`" + `flexibleengine_compute_instance_v2` + "`" + ` documentation for further documentation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7542,7 +7544,7 @@ var (
 				"interface",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to create a router. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new router interface.`,
@@ -7576,7 +7578,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7607,7 +7609,7 @@ var (
 				"route",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to configure a routing entry on a router. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new routing entry.`,
@@ -7641,7 +7643,7 @@ var (
 					Description: `See Argument Reference above. ## Notes The ` + "`" + `next_hop` + "`" + ` IP address must be directly reachable from the router at the ` + "`" + `` + "`" + `flexibleengine_networking_router_route_v2` + "`" + `` + "`" + ` resource creation time. You can ensure that by explicitly specifying a dependency on the ` + "`" + `` + "`" + `flexibleengine_networking_router_interface_v2` + "`" + `` + "`" + ` resource that connects the next hop to the router, as in the example above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7671,7 +7673,7 @@ var (
 				"router",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to create a router. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new router.`,
@@ -7737,7 +7739,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the router.`,
@@ -7784,7 +7786,7 @@ var (
 				"rule",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to create a port. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new security group rule.`,
@@ -7866,7 +7868,7 @@ var (
 					Description: `See Argument Reference above. ## Import Security Group Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_networking_secgroup_rule_v2.secgroup_rule_1 aeb68ee3-6e9d-4256-955c-9584a6212745 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7920,7 +7922,7 @@ var (
 				"secgroup",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to create a port. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new security group.`,
@@ -7958,7 +7960,7 @@ var (
 					Description: `See Argument Reference above. ## Default Security Group Rules In most cases, FlexibleEngine will create some egress security group rules for each new security group. These security group rules will not be managed by Terraform, so if you prefer to have`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -7988,7 +7990,7 @@ var (
 				"subnet",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a Neutron subnet. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new subnet.`,
@@ -8102,7 +8104,7 @@ var (
 					Description: `See Argument Reference above. ## Import Subnets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_networking_subnet_v2.subnet_1 da4faf16-5546-41e4-8330-4d0002b74048 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -8161,7 +8163,7 @@ var (
 				"associate",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vip_id",
 					Description: `(Required) The ID of vip to attach the port to. Changing this creates a new vip associate.`,
@@ -8187,7 +8189,7 @@ var (
 					Description: `The IP address in the subnet for this vip.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vip_id",
 					Description: `See Argument Reference above.`,
@@ -8217,7 +8219,7 @@ var (
 				"vip",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `(Required) The ID of the network to attach the vip to. Changing this creates a new vip.`,
@@ -8267,7 +8269,7 @@ var (
 					Description: `The device owner of the vip.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `See Argument Reference above.`,
@@ -8313,7 +8315,7 @@ var (
 				"instance",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type is unique in the same tenant. The changes of the instance name will be suppressed in HA scenario.`,
@@ -8487,7 +8489,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -8582,8 +8584,8 @@ var (
 				"config",
 				"v1",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8597,7 +8599,7 @@ var (
 				"stack",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the stack. The value must meet the regular expression rule (` + "`" + `^[a-zA-Z][a-zA-Z0-9_.-]{0,254}$` + "`" + `). Changing this creates a new stack.`,
@@ -8647,7 +8649,7 @@ var (
 					Description: `Specifies the stack status. ## Import RTS Stacks can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rts_stack_v1.mystack rts-stack ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `flexibleengine_rts_stack_v1` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Creating Stacks - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Stack modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for destroying stacks.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "outputs",
 					Description: `A map of outputs from the stack.`,
@@ -8677,7 +8679,7 @@ var (
 				"resource",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Optional, Forces new resource) The name of the bucket. If omitted, Terraform will assign a random, unique name.`,
@@ -8803,7 +8805,7 @@ var (
 					Description: `The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records. ## Import S3 bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_s3_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the bucket.`,
@@ -8846,7 +8848,7 @@ var (
 				"bucket",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to put the file in.`,
@@ -8912,7 +8914,7 @@ var (
 					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above`,
@@ -8939,7 +8941,7 @@ var (
 				"bucket",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to which to apply the policy.`,
@@ -8949,7 +8951,7 @@ var (
 					Description: `(Required) The text of the policy.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8963,7 +8965,7 @@ var (
 				"system",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) The size (GB) of the shared file system.`,
@@ -9037,7 +9039,7 @@ var (
 					Description: `The status of the share access rule. ## Import SFS can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_sfs_file_system_v2 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The UUID of the shared file system.`,
@@ -9083,7 +9085,7 @@ var (
 				"subscription",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_urn",
 					Description: `(Required) Resource identifier of a topic, which is unique.`,
@@ -9141,7 +9143,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_urn",
 					Description: `See Argument Reference above.`,
@@ -9183,7 +9185,7 @@ var (
 				"topic",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the topic to be created.`,
@@ -9217,7 +9219,7 @@ var (
 					Description: `Time when the topic was updated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -9254,8 +9256,8 @@ var (
 				"vbs",
 				"flexibleengine-vbs-backup-policy-v2",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9267,8 +9269,8 @@ var (
 				"vbs",
 				"flexibleengine-vbs-backup-v2",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9281,7 +9283,7 @@ var (
 				"vpc",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to create the eip. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new eip.`,
@@ -9355,7 +9357,7 @@ var (
 					Description: `See Argument Reference above. ## Import EIPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_vpc_eip_v1.eip_1 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -9404,7 +9406,7 @@ var (
 				"accepter",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The VPC peering connection name.`,
@@ -9430,7 +9432,7 @@ var (
 					Description: `The Tenant Id of the accepter tenant.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The VPC peering connection name.`,
@@ -9470,7 +9472,7 @@ var (
 				"connection",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The VPC peering connection ID.`,
@@ -9480,7 +9482,7 @@ var (
 					Description: `The VPC peering connection status. The value can be PENDING_ACCEPTANCE, REJECTED, EXPIRED, DELETED, or ACTIVE. ## Notes If you create a VPC peering connection with another VPC of your own, the connection is created without the need for you to accept the connection. ## Import VPC Peering resources can be imported using the ` + "`" + `vpc peering id` + "`" + `, e.g. > $ terraform import flexibleengine_vpc_peering_connection_v2.test_connection 22b76469-08e3-4937-8c1d-7aad34892be1`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The VPC peering connection ID.`,
@@ -9503,13 +9505,13 @@ var (
 				"route",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The route ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The route ID.`,
@@ -9528,8 +9530,8 @@ var (
 				"subnet",
 				"v1",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9542,7 +9544,7 @@ var (
 				"vpc",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr",
 					Description: `(Required) The range of available subnets in the VPC. The value ranges from 10.0.0.0/8 to 10.255.255.0/24, 172.16.0.0/12 to 172.31.255.0/24, or 192.168.0.0/16 to 192.168.255.0/24.`,
@@ -9580,7 +9582,7 @@ var (
 					Description: `See Argument Reference above. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the VPC.`,
@@ -9691,10 +9693,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

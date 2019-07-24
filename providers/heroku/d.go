@@ -1,11 +1,13 @@
-package aws
+package heroku
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ Use this data source to get information about a Heroku Addon.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The add-on name ## Attributes Reference The following attributes are exported:`,
@@ -44,7 +46,7 @@ Use this data source to get information about a Heroku Addon.
 					Description: `The Configuration variables of the add-on`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the add-on`,
@@ -78,7 +80,7 @@ Use this data source to get information about a Heroku App.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the application. In Heroku, this is also the unique ID, so it must be unique and have a minimum of 3 characters. ## Attributes Reference The following attributes are exported:`,
@@ -128,7 +130,7 @@ Use this data source to get information about a Heroku App.
 					Description: `(Optional) The Heroku Team that owns this app. The fields for this block are documented below. The ` + "`" + `organization` + "`" + ` block supports:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the application. In Heroku, this is also the unique .`,
@@ -186,7 +188,7 @@ Use this data source to get information about a [Heroku Private Space](https://w
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Heroku Private Space. ## Attributes Reference The following attributes are exported:`,
@@ -228,7 +230,7 @@ Use this data source to get information about a [Heroku Private Space](https://w
 					Description: `The space's stable outbound [NAT IPs](https://devcenter.heroku.com/articles/platform-api-reference#space-network-address-translation). The ` + "`" + `organization` + "`" + ` block supports:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the Heroku Private Space. In Heroku, this is also the unique .`,
@@ -278,7 +280,7 @@ Use this data source to get peering information about a [Heroku Private Space](h
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Heroku Private Space. ## Attributes Reference The following attributes are exported:`,
@@ -308,7 +310,7 @@ Use this data source to get peering information about a [Heroku Private Space](h
 					Description: `A list of unavailable CIDR blocks.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "aws_account_id",
 					Description: `The AWS account ID that the Heroku Private Space runs in.`,
@@ -346,7 +348,7 @@ Use this data source to get information about a Heroku Team or Heroku Enterprise
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The team name ## Attributes Reference The following attributes are exported:`,
@@ -376,7 +378,7 @@ Use this data source to get information about a Heroku Team or Heroku Enterprise
 					Description: `type of team Will likely be either "enterprise" or "team"`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the team`,
@@ -405,7 +407,7 @@ Use this data source to get information about a Heroku Team or Heroku Enterprise
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"heroku_addon":              0,
 		"heroku_app":                1,
@@ -415,10 +417,10 @@ Use this data source to get information about a Heroku Team or Heroku Enterprise
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

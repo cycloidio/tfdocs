@@ -1,11 +1,13 @@
-package aws
+package netlify
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"build",
 				"hook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "site_id",
 					Description: `(Required) Your netlify site's unique id`,
@@ -35,7 +37,7 @@ var (
 					Description: `URL of the project`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `URL of the project`,
@@ -52,8 +54,8 @@ var (
 				"deploy",
 				"key",
 			},
-			Arguments: []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "public_key",
 					Description: `Public Key`,
@@ -69,7 +71,7 @@ var (
 			Keywords: []string{
 				"hook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "site_id",
 					Description: `(Required) - id of the site on netlify`,
@@ -87,7 +89,7 @@ var (
 					Description: `(Required) object/hash of data to be sent along with the webhook. this varies depending on the ` + "`" + `type` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -98,7 +100,7 @@ var (
 			Keywords: []string{
 				"site",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) - Name of your site on Netlify (e.g.`,
@@ -140,7 +142,7 @@ var (
 					Description: `(Required) - branch to be deployed`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -153,10 +155,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

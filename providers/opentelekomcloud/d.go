@@ -1,11 +1,13 @@
-package aws
+package opentelekomcloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "floating_ip_id",
 					Description: `(Optional) The Elastic IP ID.`,
@@ -88,7 +90,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 					Description: `The HTTP request rate at the triggering point.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_type",
 					Description: `The EIP type.`,
@@ -154,7 +156,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 			ShortDescription: `Get information on Cloud Container Engine Cluster (CCE).`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional)The Name of the cluster resource.`,
@@ -224,7 +226,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billingMode",
 					Description: `Charging mode of the cluster.`,
@@ -286,7 +288,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 			ShortDescription: `To get the specified node in a cluster.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Cluster_id",
 					Description: `(Required) The id of container cluster.`,
@@ -372,7 +374,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 					Description: `Disk type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "flavor_id",
 					Description: `The flavor id to be used.`,
@@ -454,7 +456,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) - The name of the BMS flavor.`,
@@ -480,7 +482,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 					Description: `This is a reserved attribute.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ram",
 					Description: `It is the memory size (in MB) of the flavor.`,
@@ -515,7 +517,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) - It is the key pair name. ## Attributes Reference All of the argument attributes are also exported as result attributes.`,
@@ -529,7 +531,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 					Description: `It is the fingerprint information about the key pair.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "public_key",
 					Description: `It gives the information about the public key in the key pair.`,
@@ -552,7 +554,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_id",
 					Description: `(Required) - This is the unique BMS id.`,
@@ -578,7 +580,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 					Description: `The ID of the network to which the NIC port belongs.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "mac_address",
 					Description: `It is NIC's mac address.`,
@@ -604,7 +606,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) - The unique ID of the BMS.`,
@@ -670,7 +672,7 @@ The OpenTelekomCloud Antiddos data source allows to query the status of EIP, reg
 					Description: `Instance name is specified.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "host_id",
 					Description: `It is the host ID of the BMS.`,
@@ -744,7 +746,7 @@ The OpenTelekomCloud CSBS Backup Policy data source allows access of backup Poli
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) Specifies the ID of backup policy.`,
@@ -838,7 +840,7 @@ The OpenTelekomCloud CSBS Backup Policy data source allows access of backup Poli
 					Description: `Tag value. It can be an empty string.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Specifies the backup policy description.`,
@@ -932,7 +934,7 @@ The OpenTelekomCloud CSBS Backup data source allows access of backup resources.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) Specifies the ID of backup.`,
@@ -1082,7 +1084,7 @@ The OpenTelekomCloud CSBS Backup data source allows access of backup resources.
 					Description: `Specifies tag value.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Provides the backup description.`,
@@ -1208,7 +1210,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tracker_name",
 					Description: `(Optional) The tracker name.`,
@@ -1238,7 +1240,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The users using the login function.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_id",
 					Description: `The theme of the SMN service.`,
@@ -1260,7 +1262,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an Opentelekomcloud dcs az.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Indicates the name of an AZ.`,
@@ -1286,7 +1288,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1308,7 +1310,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an Opentelekomcloud dcs maintainwindow.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "seq",
 					Description: `(Required) Indicates the sequential number of a maintenance time window.`,
@@ -1338,7 +1340,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "begin",
 					Description: `See Argument Reference above.`,
@@ -1360,7 +1362,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an Opentelekomcloud dcs product.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine",
 					Description: `(Required) Indicates the name of a message engine.`,
@@ -1438,7 +1440,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine",
 					Description: `See Argument Reference above.`,
@@ -1488,7 +1490,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) - The Dedicated Host ID.`,
@@ -1550,7 +1552,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The number of hosts physical cores.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "host_type",
 					Description: `The Dedicated Host type.`,
@@ -1620,7 +1622,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dedicated_host_id",
 					Description: `(Optional) -The Dedicated Host ID.`,
@@ -1654,7 +1656,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The network addresses of the server.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `The ID of the user to which the server belongs.`,
@@ -1692,7 +1694,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpentelekomCloud Group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the group.`,
@@ -1710,7 +1712,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1728,7 +1730,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpentelekomCloud Project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_id",
 					Description: `(Optional) The domain this project belongs to.`,
@@ -1774,7 +1776,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the project.`,
@@ -1808,7 +1810,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpentelekomCloud Role.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the role.`,
@@ -1826,7 +1828,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1844,7 +1846,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpentelekomCloud User.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A description of the user.`,
@@ -1898,7 +1900,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_project_id",
 					Description: `See Argument Reference above.`,
@@ -1932,7 +1934,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpenTelekomCloud Image.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent image.`,
@@ -2014,7 +2016,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The date the image was last updated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "checksum",
 					Description: `The checksum of the data associated with the image.`,
@@ -2064,7 +2066,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpenTelekomCloud KMS data encryption key.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Required) The globally unique identifier for the key. Changing this gets the new data encryption key.`,
@@ -2086,7 +2088,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The ciphertext of a DEK is expressed in hexadecimal format, and two characters indicate one byte.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plain_text",
 					Description: `The plaintext of a DEK is expressed in hexadecimal format, and two characters indicate one byte.`,
@@ -2104,7 +2106,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpenTelekomCloud KMS Key.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
 					Description: `(Optional) The alias in which to create the key. It is required when we create a new key. Changing this gets the new key.`,
@@ -2182,7 +2184,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
 					Description: `See Argument Reference above.`,
@@ -2236,7 +2238,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpenTelekomCloud Network.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `(Optional) The ID of the network.`,
@@ -2266,7 +2268,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `(Optional) Specifies whether the network resource can be accessed by any tenant or not.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_state_up",
 					Description: `(Optional) The administrative state of the network.`,
@@ -2288,7 +2290,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information of an OpenTelekomCloud Port.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve port ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2382,7 +2384,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The set of security group IDs applied on the port.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2436,7 +2438,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an OpenTelekomCloud Security Group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "secgroup_id",
 					Description: `(Optional) The ID of the security group.`,
@@ -2454,7 +2456,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -2468,7 +2470,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get the flavor information on an OpenTelekomCloud rds service.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datastore_name",
 					Description: `(Required) The datastore name of the rds.`,
@@ -2502,7 +2504,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The name of the rds flavor.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datastore_name",
 					Description: `See Argument Reference above.`,
@@ -2532,7 +2534,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get the flavor information on an OpenTelekomCloud rds service.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_type",
 					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer.`,
@@ -2566,7 +2568,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See 'instance_mode' above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "flavors",
 					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
@@ -2600,7 +2602,7 @@ The RTS Software Config data source provides details about a specific RTS Softwa
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The id of the software configuration.`,
@@ -2630,7 +2632,7 @@ The RTS Software Config data source provides details about a specific RTS Softwa
 					Description: `The software configuration options.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group",
 					Description: `The namespace that groups this software configuration by when it is delivered to a server.`,
@@ -2664,7 +2666,7 @@ The RTS Software Deployment data source provides details about a specific RTS So
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The id of the software deployment.`,
@@ -2698,7 +2700,7 @@ The RTS Software Deployment data source provides details about a specific RTS So
 					Description: `The cause of the current deployment resource status.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "input_values",
 					Description: `The input data stored in the form of a key-value pair.`,
@@ -2724,7 +2726,7 @@ The OpenTelekomCloud RTS Stack Resource data source allows access to stack resou
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_name",
 					Description: `(Required) The unique stack name.`,
@@ -2758,7 +2760,7 @@ The OpenTelekomCloud RTS Stack Resource data source allows access to stack resou
 					Description: `Specifies the resource dependency.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "logical_resource_id",
 					Description: `The logical resource ID.`,
@@ -2788,7 +2790,7 @@ The OpenTelekomCloud RTS Stack data source allows access to stack outputs and ot
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the stack. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -2830,7 +2832,7 @@ The OpenTelekomCloud RTS Stack data source allows access to stack outputs and ot
 					Description: `Specifies the timeout duration.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique identifier of the stack.`,
@@ -2876,7 +2878,7 @@ The OpenTelekomCloud RTS Stack data source allows access to stack outputs and ot
 			ShortDescription: `Provides metadata and optionally content of an S3 object`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to read the object from`,
@@ -2958,7 +2960,7 @@ The OpenTelekomCloud RTS Stack data source allows access to stack outputs and ot
 					Description: `If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "body",
 					Description: `Object data (see`,
@@ -3040,7 +3042,7 @@ Provides information about an Shared File System (SFS).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the shared file system.`,
@@ -3126,7 +3128,7 @@ Provides information about an Shared File System (SFS).
 					Description: `Identifies which mount locations are most efficient and are used preferentially when multiple mount locations exist.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `The availability zone name.`,
@@ -3213,7 +3215,7 @@ The VBS Backup Policy data source provides details about a specific VBS backup p
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `(Required) Specifies the tag key. Tag keys must be unique.`,
@@ -3263,7 +3265,7 @@ The VBS Backup Policy data source provides details about a specific VBS backup p
 					Description: `Specifies the tag value.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `See Argument Reference above.`,
@@ -3317,7 +3319,7 @@ The VBS Backup data source provides details about a specific VBS Backup.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The id of the vbs backup.`,
@@ -3367,7 +3369,7 @@ The VBS Backup data source provides details about a specific VBS Backup.
 					Description: `The backup share IDs.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the vbs backup.`,
@@ -3410,8 +3412,8 @@ The VPC Peering Connection data source provides details about a specific VPC pee
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3426,13 +3428,13 @@ This resource can be useful for getting back a list of route ids for a vpc.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the route ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the route ids found. This data source will fail if none are found.`,
@@ -3450,13 +3452,13 @@ This resource can be useful for getting back a list of route ids for a vpc.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nexthop",
 					Description: `The next hop of the route. If the route type is peering, it will provide VPC peering connection ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nexthop",
 					Description: `The next hop of the route. If the route type is peering, it will provide VPC peering connection ID.`,
@@ -3476,13 +3478,13 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
@@ -3504,7 +3506,7 @@ VPC that the subnet belongs to.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) - Specifies a resource ID in UUID format.`,
@@ -3522,7 +3524,7 @@ VPC that the subnet belongs to.
 					Description: `Specifies the subnet (Native OpenStack API) ID.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3531,7 +3533,7 @@ VPC that the subnet belongs to.
 			ShortDescription: `Get information on an OpenTelekomCloud VPC.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The id of the specific VPC to retrieve.`,
@@ -3573,7 +3575,7 @@ VPC that the subnet belongs to.
 					Description: `Specifies whether the cross-tenant sharing is supported.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the VPC.`,
@@ -3602,7 +3604,7 @@ VPC that the subnet belongs to.
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"opentelekomcloud_antiddos_v1":                0,
 		"opentelekomcloud_cce_cluster_v3":             1,
@@ -3648,10 +3650,10 @@ VPC that the subnet belongs to.
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

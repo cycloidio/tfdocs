@@ -1,11 +1,13 @@
-package aws
+package yandex
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get information about a Yandex Compute disk.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk_id",
 					Description: `(Optional) The ID of a specific disk.`,
@@ -72,7 +74,7 @@ var (
 					Description: `Disk creation timestamp.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Optional description of this disk.`,
@@ -130,7 +132,7 @@ var (
 			ShortDescription: `Get information about a Yandex Compute image.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_id",
 					Description: `(Optional) The ID of a specific image.`,
@@ -184,7 +186,7 @@ var (
 					Description: `Image creation timestamp.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `An optional description of this image.`,
@@ -230,7 +232,7 @@ var (
 			ShortDescription: `Get information about a Yandex Compute Instance.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Optional) The ID of a specific instance.`,
@@ -408,7 +410,7 @@ var (
 					Description: `(Optional) Specifies if the instance is preemptible. Defaults to false.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the instance.`,
@@ -586,7 +588,7 @@ var (
 			ShortDescription: `Get information about a Yandex Compute Instance Group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_group_id",
 					Description: `(Required) The ID of a specific instance group. ## Attributes Reference`,
@@ -920,7 +922,7 @@ var (
 					Description: `The port to use for TCP health checks.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the instance group.`,
@@ -1258,7 +1260,7 @@ var (
 			ShortDescription: `Get information about a Yandex Compute Snapshot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `(Optional) The ID of a specific snapshot.`,
@@ -1304,7 +1306,7 @@ var (
 					Description: `Snapshot creation timestamp.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `An optional description of this snapshot.`,
@@ -1350,13 +1352,13 @@ var (
 			ShortDescription: `Generates an IAM policy that can be referenced by other resources and applied to them.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_data",
 					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM. [IAM]: https://cloud.yandex.com/docs/iam/ [IAM Roles]: https://cloud.yandex.com/docs/iam/concepts/access-control/roles`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_data",
 					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM. [IAM]: https://cloud.yandex.com/docs/iam/ [IAM Roles]: https://cloud.yandex.com/docs/iam/concepts/access-control/roles`,
@@ -1370,13 +1372,13 @@ var (
 			ShortDescription: `Generates an IAM role that can be referenced by other resources, applying the role to them.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_data",
 					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM. [IAM]: https://cloud.yandex.com/docs/iam/ [IAM Roles]: https://cloud.yandex.com/docs/iam/concepts/access-control/roles`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_data",
 					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM. [IAM]: https://cloud.yandex.com/docs/iam/ [IAM Roles]: https://cloud.yandex.com/docs/iam/concepts/access-control/roles`,
@@ -1390,8 +1392,8 @@ var (
 			ShortDescription: `Get information about a Yandex IAM service account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1400,7 +1402,7 @@ var (
 			ShortDescription: `Get information about a Yandex IAM user account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `ID of IAM user account.`,
@@ -1414,7 +1416,7 @@ var (
 					Description: `Email address of user account. [IAM Users]: https://cloud.yandex.com/docs/iam/concepts/users/users#passport`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `ID of IAM user account.`,
@@ -1436,7 +1438,7 @@ var (
 			ShortDescription: `Retrieve Yandex RM Cloud details.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_id",
 					Description: `(Optional) ID of the cloud.`,
@@ -1458,7 +1460,7 @@ var (
 					Description: `Cloud creation timestamp.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the cloud.`,
@@ -1480,7 +1482,7 @@ var (
 			ShortDescription: `Get information about a Yandex RM Folder.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the folder.`,
@@ -1502,7 +1504,7 @@ var (
 					Description: `Folder creation timestamp. [Folder]: https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy#folder`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the folder.`,
@@ -1532,7 +1534,7 @@ var (
 			ShortDescription: `Get information about a Yandex VPC network.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the network.`,
@@ -1550,7 +1552,7 @@ var (
 					Description: `Creation timestamp of this network. [VPC Networks]: https://cloud.yandex.com/docs/vpc/concepts/network`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the network.`,
@@ -1576,7 +1578,7 @@ var (
 			ShortDescription: `Get information about a Yandex VPC route table.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) - Name of the route table. ~>`,
@@ -1614,7 +1616,7 @@ var (
 					Description: `Address of the next hop. [VPC Route Table]: https://cloud.yandex.com/docs/vpc/concepts/`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the route table.`,
@@ -1656,7 +1658,7 @@ var (
 			ShortDescription: `Get information about a Yandex VPC subnet.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) - Name of the subnet. ~>`,
@@ -1698,7 +1700,7 @@ var (
 					Description: `Creation timestamp of this subnet. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the subnet.`,
@@ -1739,7 +1741,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"yandex_compute_disk":           0,
 		"yandex_compute_image":          1,
@@ -1758,10 +1760,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

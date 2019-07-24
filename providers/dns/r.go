@@ -1,11 +1,13 @@
-package aws
+package dns
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ var (
 				"record",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.`,
@@ -52,7 +54,7 @@ var (
 					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dns_a_record_set.www www.example.com. ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `See Argument Reference above.`,
@@ -82,7 +84,7 @@ var (
 				"record",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.`,
@@ -116,7 +118,7 @@ var (
 					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dns_aaaa_record_set.www www.example.com. ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `See Argument Reference above.`,
@@ -145,7 +147,7 @@ var (
 				"cname",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) DNS zone the record belongs to. It must be an FQDN, that is, include the trailing dot.`,
@@ -179,7 +181,7 @@ var (
 					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dns_cname_record.foo foo.example.com. ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `See Argument Reference above.`,
@@ -209,7 +211,7 @@ var (
 				"record",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.`,
@@ -251,7 +253,7 @@ var (
 					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import dns_mx_record_set.mx example.com. ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `See Argument Reference above.`,
@@ -281,7 +283,7 @@ var (
 				"record",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.`,
@@ -315,7 +317,7 @@ var (
 					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dns_ns_record_set.www www.example.com. ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `See Argument Reference above.`,
@@ -344,7 +346,7 @@ var (
 				"ptr",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) DNS zone the record belongs to. It must be an FQDN, that is, include the trailing dot.`,
@@ -378,7 +380,7 @@ var (
 					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dns_ptr_record.dns-sd r._dns-sd.example.com. ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `See Argument Reference above.`,
@@ -408,7 +410,7 @@ var (
 				"record",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.`,
@@ -442,7 +444,7 @@ var (
 					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dns_txt_record_set.google example.com. ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `See Argument Reference above.`,
@@ -475,10 +477,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

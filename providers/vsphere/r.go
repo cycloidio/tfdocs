@@ -1,11 +1,13 @@
-package aws
+package vsphere
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -20,7 +22,7 @@ var (
 				"management",
 				"compute",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the cluster.`,
@@ -226,7 +228,7 @@ var (
 					Description: `(Optional) The list of IDs for health update providers configured for this cluster. <sup>[\`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -242,7 +244,7 @@ var (
 				"compute",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the host group. This must be unique in the cluster. Forces a new resource if changed.`,
@@ -256,7 +258,7 @@ var (
 					Description: `(Optional) The [managed object IDs][docs-about-morefs] of the hosts to put in the cluster. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -274,7 +276,7 @@ var (
 				"affinity",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the cluster to put the group in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -296,7 +298,7 @@ var (
 					Description: `(Optional) When this value is ` + "`" + `true` + "`" + `, prevents any virtual machine operations that may violate this rule. Default: ` + "`" + `false` + "`" + `. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -315,7 +317,7 @@ var (
 				"affinity",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the cluster to put the group in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -337,7 +339,7 @@ var (
 					Description: `(Optional) When this value is ` + "`" + `true` + "`" + `, prevents any virtual machine operations that may violate this rule. Default: ` + "`" + `false` + "`" + `. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -355,7 +357,7 @@ var (
 				"dependency",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the cluster to put the group in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -381,7 +383,7 @@ var (
 					Description: `(Optional) When this value is ` + "`" + `true` + "`" + `, prevents any virtual machine operations that may violate this rule. Default: ` + "`" + `false` + "`" + `. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -398,7 +400,7 @@ var (
 				"vm",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the VM group. This must be unique in the cluster. Forces a new resource if changed.`,
@@ -412,7 +414,7 @@ var (
 					Description: `(Required) The UUIDs of the virtual machines in this group. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -429,7 +431,7 @@ var (
 				"vm",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the cluster to put the group in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -459,7 +461,7 @@ var (
 					Description: `(Optional) When this value is ` + "`" + `true` + "`" + `, prevents any virtual machine operations that may violate this rule. Default: ` + "`" + `false` + "`" + `. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -472,7 +474,7 @@ var (
 				"custom",
 				"attribute",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the custom attribute.`,
@@ -482,7 +484,7 @@ var (
 					Description: `(Optional) The object type that this attribute may be applied to. If not set, the custom attribute may be applied to any object type. For a full list, click [here](#managed-object-types). Forces a new resource if changed. ## Managed Object Types The following table will help you determine what value you need to enter for the managed object type you want the attribute to apply to. Note that if you want a attribute to apply to all objects, leave the type unspecified. <table> <tr><th>Type</th><th>Value</th></tr> <tr><td>Folders</td><td>` + "`" + `Folder` + "`" + `</td></tr> <tr><td>Clusters</td><td>` + "`" + `ClusterComputeResource` + "`" + `</td></tr> <tr><td>Datacenters</td><td>` + "`" + `Datacenter` + "`" + `</td></tr> <tr><td>Datastores</td><td>` + "`" + `Datastore` + "`" + `</td></tr> <tr><td>Datastore Clusters</td><td>` + "`" + `StoragePod` + "`" + `</td></tr> <tr><td>DVS Portgroups</td><td>` + "`" + `DistributedVirtualPortgroup` + "`" + `</td></tr> <tr><td>Distributed vSwitches</td><td>` + "`" + `DistributedVirtualSwitch` + "`" + `<br>` + "`" + `VmwareDistributedVirtualSwitch` + "`" + `</td></tr> <tr><td>Hosts</td><td>` + "`" + `HostSystem` + "`" + `</td></tr> <tr><td>Content Libraries</td><td>` + "`" + `com.vmware.content.Library` + "`" + `</td></tr> <tr><td>Content Library Items</td><td>` + "`" + `com.vmware.content.library.Item` + "`" + `</td></tr> <tr><td>Networks</td><td>` + "`" + `HostNetwork` + "`" + `<br>` + "`" + `Network` + "`" + `<br>` + "`" + `OpaqueNetwork` + "`" + `</td></tr> <tr><td>Resource Pools</td><td>` + "`" + `ResourcePool` + "`" + `</td></tr> <tr><td>vApps</td><td>` + "`" + `VirtualApp` + "`" + `</td></tr> <tr><td>Virtual Machines</td><td>` + "`" + `VirtualMachine` + "`" + `</td></tr> </table> ## Attribute Reference This resource only exports the ` + "`" + `id` + "`" + ` attribute for the vSphere custom attribute. ## Importing An existing custom attribute can be [imported][docs-import] into this resource via its name, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_custom_attribute.attribute terraform-test-attribute ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -494,7 +496,7 @@ var (
 				"inventory",
 				"datacenter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the datacenter. This name needs to be unique within the folder. Forces a new resource if changed.`,
@@ -520,7 +522,7 @@ var (
 					Description: `[Managed object ID][docs-about-morefs] of this datacenter. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Importing An existing datacenter can be [imported][docs-import] into this resource via supplying the full path to the datacenter. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_datacenter.dc /dc1 ` + "`" + `` + "`" + `` + "`" + ` The above would import the datacenter named ` + "`" + `dc1` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of this datacenter. This will be changed to the [managed object ID][docs-about-morefs] in v2.0.`,
@@ -542,7 +544,7 @@ var (
 				"datastore",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the datastore cluster.`,
@@ -644,7 +646,7 @@ var (
 					Description: `(Optional) A key/value map of advanced Storage DRS settings that are not exposed via Terraform or the vSphere client. ## Attribute Reference The only computed attribute that is exported by this resource is the resource ` + "`" + `id` + "`" + `, which is the the [managed object reference ID][docs-about-morefs] of the datastore cluster. ## Importing An existing datastore cluster can be [imported][docs-import] into this resource via the path to the cluster, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_datastore_cluster.datastore_cluster /dc1/datastore/ds-cluster ` + "`" + `` + "`" + `` + "`" + ` The above would import the datastore cluster named ` + "`" + `ds-cluster` + "`" + ` that is located in the ` + "`" + `dc1` + "`" + ` datacenter.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -661,7 +663,7 @@ var (
 				"affinity",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datastore_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the datastore cluster to put the group in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -683,7 +685,7 @@ var (
 					Description: `(Optional) When this value is ` + "`" + `true` + "`" + `, prevents any virtual machine operations that may violate this rule. Default: ` + "`" + `false` + "`" + `. ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is a combination of the [managed object reference ID][docs-about-morefs] of the cluster, and the rule's key within the cluster configuration. ## Importing An existing rule can be [imported][docs-import] into this resource by supplying both the path to the cluster, and the name the rule. If the name or cluster is not found, or if the rule is of a different type, an error will be returned. An example is below: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_datastore_cluster_vm_anti_affinity_rule.cluster_vm_anti_affinity_rule \ '{"compute_cluster_path": "/dc1/datastore/cluster1", \ "name": "terraform-test-datastore-cluster-vm-anti-affinity-rule"}' ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -697,7 +699,7 @@ var (
 				"port",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the port group.`,
@@ -771,7 +773,7 @@ var (
 					Description: `(Optional) Allow the [VLAN settings][vlan-settings] on this port group to be overridden on an individual port. [port-shutdown-policy]: /docs/providers/vsphere/r/distributed_virtual_switch.html#block_all_ports [netflow-policy]: /docs/providers/vsphere/r/distributed_virtual_switch.html#netflow_enabled [sec-policy-settings]: /docs/providers/vsphere/r/distributed_virtual_switch.html#security-options [traffic-shaping-settings]: /docs/providers/vsphere/r/distributed_virtual_switch.html#traffic-shaping-options [uplink-teaming-settings]: /docs/providers/vsphere/r/distributed_virtual_switch.html#ha-policy-options [vlan-settings]: /docs/providers/vsphere/r/distributed_virtual_switch.html#vlan-options ## Attribute Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -785,7 +787,7 @@ var (
 				"virtual",
 				"switch",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the distributed virtual switch.`,
@@ -1019,7 +1021,7 @@ var (
 					Description: `(Optional) Allow VMDirectPath Gen2 for the ports for which this policy applies to. ## Attribute Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1035,7 +1037,7 @@ var (
 				"dpm",
 				"override",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the cluster to put the override in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -1053,7 +1055,7 @@ var (
 					Description: `(Optional) The automation level for host power operations on this host. Can be one of ` + "`" + `manual` + "`" + ` or ` + "`" + `automated` + "`" + `. Default: ` + "`" + `manual` + "`" + `. ->`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1070,7 +1072,7 @@ var (
 				"vm",
 				"override",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the cluster to put the override in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -1088,7 +1090,7 @@ var (
 					Description: `(Optional) Overrides the automation level for this virtual machine in the cluster. Can be one of ` + "`" + `manual` + "`" + `, ` + "`" + `partiallyAutomated` + "`" + `, or ` + "`" + `fullyAutomated` + "`" + `. Default: ` + "`" + `manual` + "`" + `. ->`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1100,7 +1102,7 @@ var (
 				"storage",
 				"file",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_file",
 					Description: `(Required) The path to the file being uploaded from the Terraform host to vSphere or copied within vSphere. Forces a new resource if changed.`,
@@ -1130,7 +1132,7 @@ var (
 					Description: `(Optional) Create directories in ` + "`" + `destination_file` + "`" + ` path parameter if any missing for copy operation. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1142,7 +1144,7 @@ var (
 				"inventory",
 				"folder",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The path of the folder to be created. This is relative to the root of the type of folder you are creating, and the supplied datacenter. For example, given a default datacenter of ` + "`" + `default-dc` + "`" + `, a folder of type ` + "`" + `vm` + "`" + ` (denoting a virtual machine folder), and a supplied folder of ` + "`" + `terraform-test-folder` + "`" + `, the resulting path would be ` + "`" + `/default-dc/vm/terraform-test-folder` + "`" + `. ~>`,
@@ -1164,7 +1166,7 @@ var (
 					Description: `(Optional) Map of custom attribute ids to attribute value strings to set for folder. See [here][docs-setting-custom-attributes] for a reference on how to set values for custom attributes. [docs-setting-custom-attributes]: /docs/providers/vsphere/r/custom_attribute.html#using-custom-attributes-in-a-supported-resource ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1181,7 +1183,7 @@ var (
 				"vm",
 				"override",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the cluster to put the override in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -1243,7 +1245,7 @@ var (
 					Description: `(Optional) The length of the reset window in which [` + "`" + `ha_vm_maximum_resets` + "`" + `](#ha_vm_maximum_resets) can operate. When this window expires, no more resets are attempted regardless of the setting configured in ` + "`" + `ha_vm_maximum_resets` + "`" + `. ` + "`" + `-1` + "`" + ` means no window, meaning an unlimited reset time is allotted. The value is specified in seconds. Default: ` + "`" + `-1` + "`" + ` (no window). ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is a combination of the [managed object reference ID][docs-about-morefs] of the cluster, and the UUID of the virtual machine. This is used to look up the override on subsequent plan and apply operations after the override has been created. ## Importing An existing override can be [imported][docs-import] into this resource by supplying both the path to the cluster, and the path to the virtual machine, to ` + "`" + `terraform import` + "`" + `. If no override exists, an error will be given. An example is below: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_ha_vm_override.ha_vm_override \ '{"compute_cluster_path": "/dc1/host/cluster1", \ "virtual_machine_path": "/dc1/vm/srv1"}' ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1257,7 +1259,7 @@ var (
 				"port",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the port group. Forces a new resource if changed.`,
@@ -1291,7 +1293,7 @@ var (
 					Description: `A list of ports that currently exist and are used on this port group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `An ID unique to Terraform for this port group. The convention is a prefix, the host system ID, and the port group name. An example would be ` + "`" + `tf-HostPortGroup:host-10:PGTerraformTest` + "`" + `.`,
@@ -1322,7 +1324,7 @@ var (
 				"virtual",
 				"switch",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual switch. Forces a new resource if changed.`,
@@ -1408,7 +1410,7 @@ var (
 					Description: `(Optional) The maximum burst size allowed in bytes if shaping is enabled. Default: ` + "`" + `0` + "`" + ` ## Attribute Reference The only exported attribute, other than the attributes above, is the ` + "`" + `id` + "`" + ` of the resource. This is set to an ID value unique to Terraform - the convention is a prefix, the host system ID, and the virtual switch name. An example would be ` + "`" + `tf-HostVirtualSwitch:host-10:vSwitchTerraformTest` + "`" + `. ## Importing An existing vSwitch can be [imported][docs-import] into this resource by its ID. The convention of the id is a prefix, the host system [managed objectID][docs-about-morefs], and the virtual switch name. An example would be ` + "`" + `tf-HostVirtualSwitch:host-10:vSwitchTerraformTest` + "`" + `. Import can the be done via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host_virtual_switch.switch tf-HostVirtualSwitch:host-10:vSwitchTerraformTest ` + "`" + `` + "`" + `` + "`" + ` The above would import the vSwtich named ` + "`" + `vSwitchTerraformTest` + "`" + ` that is located in the ` + "`" + `host-10` + "`" + ` vSphere host.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1420,7 +1422,7 @@ var (
 				"administration",
 				"license",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "license_key",
 					Description: `(Required) The license key to add.`,
@@ -1446,7 +1448,7 @@ var (
 					Description: `The display name for the license.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "edition_key",
 					Description: `The product edition of the license key.`,
@@ -1476,7 +1478,7 @@ var (
 				"nas",
 				"datastore",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the datastore. Forces a new resource if changed.`,
@@ -1558,7 +1560,7 @@ var (
 					Description: `Indicates that this NAS volume is a protocol endpoint. This field is only populated if the host supports virtual datastores. ## Importing An existing NAS datastore can be [imported][docs-import] into this resource via its managed object ID, via the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_nas_datastore.datastore datastore-123 ` + "`" + `` + "`" + `` + "`" + ` You need a tool like [` + "`" + `govc` + "`" + `][ext-govc] that can display managed object IDs. [ext-govc]: https://github.com/vmware/govmomi/tree/master/govc In the case of govc, you can locate a managed object ID from an inventory path by doing the following: ` + "`" + `` + "`" + `` + "`" + ` $ govc ls -i /dc/datastore/terraform-test Datastore:datastore-123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The [managed object reference ID][docs-about-morefs] of the datastore.`,
@@ -1611,7 +1613,7 @@ var (
 				"resource",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the resource pool.`,
@@ -1665,7 +1667,7 @@ var (
 					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is the [managed object ID][docs-about-morefs] of the resource pool. ## Importing An existing resource pool can be [imported][docs-import] into this resource via the path to the resource pool, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_resource_pool.resource_pool /dc1/host/compute-cluster1/Resources/resource-pool1 ` + "`" + `` + "`" + `` + "`" + ` The above would import the resource pool named ` + "`" + `resource-pool1` + "`" + ` that is located in the compute cluster ` + "`" + `compute-cluster1` + "`" + ` in the ` + "`" + `dc1` + "`" + ` datacenter.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1679,7 +1681,7 @@ var (
 				"vm",
 				"override",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datastore_cluster_id",
 					Description: `(Required) The [managed object reference ID][docs-about-morefs] of the datastore cluster to put the override in. Forces a new resource if changed. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
@@ -1701,7 +1703,7 @@ var (
 					Description: `(Optional) Overrides the intra-VM affinity setting for this virtual machine. When ` + "`" + `true` + "`" + `, all disks for this virtual machine will be kept on the same datastore. When ` + "`" + `false` + "`" + `, Storage DRS may locate individual disks on different datastores if it helps satisfy cluster requirements. When not specified, the datastore cluster's settings are used. ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is a combination of the [managed object reference ID][docs-about-morefs] of the datastore cluster, and the UUID of the virtual machine. This is used to look up the override on subsequent plan and apply operations after the override has been created. ## Importing An existing override can be [imported][docs-import] into this resource by supplying both the path to the datastore cluster and the path to the virtual machine to ` + "`" + `terraform import` + "`" + `. If no override exists, an error will be given. An example is below: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_storage_drs_vm_override.drs_vm_override \ '{"datastore_cluster_path": "/dc1/datastore/ds-cluster", \ "virtual_machine_path": "/dc1/vm/srv1"}' ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1713,7 +1715,7 @@ var (
 				"inventory",
 				"tag",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The display name of the tag. The name must be unique within its category.`,
@@ -1727,7 +1729,7 @@ var (
 					Description: `(Optional) A description for the tag. ## Attribute Reference The only attribute that is exported for this resource is the ` + "`" + `id` + "`" + `, which is the uniform resource name (URN) of this tag. ## Importing An existing tag can be [imported][docs-import] into this resource by supplying both the tag's category name and the name of the tag as a JSON string to ` + "`" + `terraform import` + "`" + `, as per the example below: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_tag.tag \ '{"category_name": "terraform-test-category", "tag_name": "terraform-test-tag"}' ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1740,7 +1742,7 @@ var (
 				"tag",
 				"category",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the category.`,
@@ -1758,7 +1760,7 @@ var (
 					Description: `(Optional) A description for the category. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1772,7 +1774,7 @@ var (
 				"vapp",
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the vApp container.`,
@@ -1830,7 +1832,7 @@ var (
 					Description: `(Optional) The IDs of any tags to attach to this resource. See [here][docs-applying-tags] for a reference on how to apply tags. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider [docs-applying-tags]: /docs/providers/vsphere/r/tag.html#using-tags-in-a-supported-resource ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is the [managed object ID][docs-about-morefs] of the resource pool. ## Importing An existing vApp container can be [imported][docs-import] into this resource via the path to the vApp container, using the following command: [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vapp_container.vapp_container /default-dc/host/cluster1/Resources/resource_pool1/vapp_container1 ` + "`" + `` + "`" + `` + "`" + ` The above would import the vApp container named ` + "`" + `vapp-container1` + "`" + ` that is located in the resource pool ` + "`" + `resource-pool1` + "`" + ` that is part of the host cluster ` + "`" + `cluster1` + "`" + ` in the ` + "`" + `dc1` + "`" + ` datacenter.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1844,7 +1846,7 @@ var (
 				"vapp",
 				"entity",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "target_id",
 					Description: `(Required) [Managed object ID|docs-about-morefs] of the entity to power on or power off. This can be a virtual machine or a vApp.`,
@@ -1878,7 +1880,7 @@ var (
 					Description: `(Optional) Determines if the VM should be marked as being started when VMware Tools are ready instead of waiting for ` + "`" + `start_delay` + "`" + `. This property has no effect for vApps. Default: false [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Attribute Reference The only attribute this resource exports is the ` + "`" + `id` + "`" + ` of the resource, which is the vApp entity's [managed object ID][docs-about-morefs] separated from the virtual machines [managed object ID][docs-about-morefs] by a colon. ## Importing An existing vApp entity can be [imported][docs-import] into this resource via the ID of the vApp Entity. [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vapp_entity.vapp_entity vm-123:res-456 ` + "`" + `` + "`" + `` + "`" + ` The above would import the vApp entity that governs the behavior of the virtual machine with a [managed object ID][docs-about-morefs] of vm-123 in the vApp container with the [managed object ID][docs-about-morefs] res-456.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1891,7 +1893,7 @@ var (
 				"machine",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vmdk_path",
 					Description: `(Required) The path, including filename, of the virtual disk to be created. This needs to end in ` + "`" + `.vmdk` + "`" + `.`,
@@ -1921,7 +1923,7 @@ var (
 					Description: `(Optional) Tells the resource to create any directories that are a part of the ` + "`" + `vmdk_path` + "`" + ` parameter if they are missing. Default: ` + "`" + `false` + "`" + `. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1933,7 +1935,7 @@ var (
 				"virtual",
 				"machine",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual machine.`,
@@ -2463,7 +2465,7 @@ var (
 					Description: `Computed value which is only valid for cloned virtual machines. A list of vApp transport methods supported by the source virtual machine or template. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider ## Importing An existing virtual machine can be [imported][docs-import] into this resource via supplying the full path to the virtual machine. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_virtual_machine.vm /dc1/vm/srv1 ` + "`" + `` + "`" + `` + "`" + ` The above would import the virtual machine named ` + "`" + `srv1` + "`" + ` that is located in the ` + "`" + `dc1` + "`" + ` datacenter. ### Additional requirements and notes for importing Many of the same requirements for [cloning](#additional-requirements-and-notes-for-cloning) apply to importing, although since importing writes directly to state, a lot of these rules cannot be enforced at import time, so every effort should be made to ensure the correctness of the configuration before the import. In addition to these rules, the following extra rules apply to importing:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The UUID of the virtual machine.`,
@@ -2517,7 +2519,7 @@ var (
 				"machine",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_machine_uuid",
 					Description: `(Required) The virtual machine UUID.`,
@@ -2547,7 +2549,7 @@ var (
 					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, the delta disks involved in this snapshot will be consolidated into the parent when this resource is destroyed. ## Attribute Reference The only attribute this resource exports is the resource ` + "`" + `id` + "`" + `, which is set to the [managed object reference ID][docs-about-morefs] of the snapshot. [docs-about-morefs]: /docs/providers/vsphere/index.html#use-of-managed-object-references-by-the-vsphere-provider`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2560,7 +2562,7 @@ var (
 				"vmfs",
 				"datastore",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the datastore. Forces a new resource if changed.`,
@@ -2618,7 +2620,7 @@ var (
 					Description: `The unique locator for the datastore. ## Importing An existing VMFS datastore can be [imported][docs-import] into this resource via its managed object ID, via the command below. You also need the host system ID. [docs-import]: https://www.terraform.io/docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vmfs_datastore.datastore datastore-123:host-10 ` + "`" + `` + "`" + `` + "`" + ` You need a tool like [` + "`" + `govc` + "`" + `][ext-govc] that can display managed object IDs. [ext-govc]: https://github.com/vmware/govmomi/tree/master/govc In the case of govc, you can locate a managed object ID from an inventory path by doing the following: ` + "`" + `` + "`" + `` + "`" + ` $ govc ls -i /dc/datastore/terraform-test Datastore:datastore-123 ` + "`" + `` + "`" + `` + "`" + ` To locate host IDs, it might be a good idea to supply the ` + "`" + `-l` + "`" + ` flag as well so that you can line up the names with the IDs: ` + "`" + `` + "`" + `` + "`" + ` $ govc ls -l -i /dc/host/cluster1 ResourcePool:resgroup-10 /dc/host/cluster1/Resources HostSystem:host-10 /dc/host/cluster1/esxi1 HostSystem:host-11 /dc/host/cluster1/esxi2 HostSystem:host-12 /dc/host/cluster1/esxi3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The [managed object reference ID][docs-about-morefs] of the datastore.`,
@@ -2692,10 +2694,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

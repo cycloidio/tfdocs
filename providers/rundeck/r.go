@@ -1,11 +1,13 @@
-package aws
+package rundeck
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"acl",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy. Must end with ` + "`" + `.aclpolicy` + "`" + `.`,
@@ -27,7 +29,7 @@ var (
 					Description: `(Required) The name of the job, used to describe the job in the Rundeck UI.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -38,7 +40,7 @@ var (
 			Keywords: []string{
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the job, used to describe the job in the Rundeck UI.`,
@@ -108,7 +110,7 @@ var (
 					Description: `A unique identifier for the job.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique identifier for the job.`,
@@ -125,7 +127,7 @@ var (
 				"private",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The path within the key store where the key will be stored.`,
@@ -135,7 +137,7 @@ var (
 					Description: `(Required) The private key material to store, serialized in any way that is accepted by OpenSSH. The key material is hashed before it is stored in the state file, so sharing the resulting state will not disclose the private key contents. ## Attributes Reference Rundeck does not allow stored private keys to be retrieved via the API, so this resource does not export any attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -146,7 +148,7 @@ var (
 			Keywords: []string{
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the project, used both in the UI and to uniquely identify the project. Must therefore be unique across a single Rundeck installation.`,
@@ -200,7 +202,7 @@ var (
 					Description: `The URL of the index page for this project in the Rundeck UI.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The unique name that identifies the project, as set in the arguments.`,
@@ -221,7 +223,7 @@ var (
 				"public",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "delete",
 					Description: `(Computed) True if the key should be deleted when the resource is deleted. Defaults to true if key_material is provided in the configuration.`,
@@ -243,7 +245,7 @@ var (
 					Description: `If ` + "`" + `key_material` + "`" + ` is omitted in the configuration, it becomes an attribute that exposes the key material already stored at the given ` + "`" + `path` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `The URL at which the key material can be retrieved from the key store by other clients.`,
@@ -266,10 +268,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

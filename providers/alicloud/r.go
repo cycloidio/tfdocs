@@ -1,11 +1,13 @@
-package aws
+package alicloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"actiontrail",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) The name of the trail to be created, which must be unique for an account.`,
@@ -50,7 +52,7 @@ var (
 					Description: `The action trail id. The value is same as its name. ## Import Action trail can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_actiontrail.foo abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The action trail id. The value is same as its name. ## Import Action trail can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_actiontrail.foo abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -67,7 +69,7 @@ var (
 				"api",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the api gateway api. Defaults to null.`,
@@ -269,7 +271,7 @@ var (
 					Description: `The ID of the api of api gateway. ## Import Api gateway api can be imported using the id.Format to ` + "`" + `<API Group Id>:<API Id>` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_api.example "ab2351f2ce904edaa8d92a0510832b91:e4f728fca5a94148b023b99a3e5d0b62" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the api resource of api gateway.`,
@@ -291,7 +293,7 @@ var (
 				"gateway",
 				"app",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the app. Defaults to null.`,
@@ -305,7 +307,7 @@ var (
 					Description: `The ID of the app of api gateway. ## Import Api gateway app can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_app.example "7379660" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the app of api gateway. ## Import Api gateway app can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_app.example "7379660" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -324,7 +326,7 @@ var (
 				"app",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_id",
 					Description: `(Required，ForceNew) The api_id that app apply to access.`,
@@ -346,7 +348,7 @@ var (
 					Description: `The ID of the app attachment of api gateway., formatted as ` + "`" + `<group_id>:<api_id>:<app_id>:<stage_name>` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the app attachment of api gateway., formatted as ` + "`" + `<group_id>:<api_id>:<app_id>:<stage_name>` + "`" + `.`,
@@ -364,7 +366,7 @@ var (
 				"gateway",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the api gateway group. Defaults to null.`,
@@ -378,7 +380,7 @@ var (
 					Description: `The ID of the api group of api gateway. ## Import Api gateway group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_group.example "ab2351f2ce904edaa8d92a0510832b91" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the api group of api gateway. ## Import Api gateway group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_group.example "ab2351f2ce904edaa8d92a0510832b91" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -397,7 +399,7 @@ var (
 				"vpc",
 				"access",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required，ForceNew) The name of the vpc authorization.`,
@@ -419,7 +421,7 @@ var (
 					Description: `The ID of the vpc authorization of api gateway. ## Import Api gateway app can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_vpc_access.example "APiGatewayVpc:vpc-aswcj19ajsz:i-ajdjfsdlf:8080" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the vpc authorization of api gateway. ## Import Api gateway app can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_vpc_access.example "APiGatewayVpc:vpc-aswcj19ajsz:i-ajdjfsdlf:8080" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -437,7 +439,7 @@ var (
 				"certificates",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForcesNew) Name of the Certificate. This name without suffix can have a string of 1 to 63 characters, must contain only alphanumeric characters or "-", and must not begin or end with "-", and "-" must not in the 3th and 4th character positions at the same time. Suffix ` + "`" + `.sh` + "`" + ` and ` + "`" + `.tel` + "`" + ` are not supported.`,
@@ -455,7 +457,7 @@ var (
 					Description: `The cert id.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The cert id.`,
@@ -472,7 +474,7 @@ var (
 				"cdn",
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) Name of the accelerated domain. This name without suffix can have a string of 1 to 63 characters, must contain only alphanumeric characters or "-", and must not begin or end with "-", and "-" must not in the 3th and 4th character positions at the same time. Suffix ` + "`" + `.sh` + "`" + ` and ` + "`" + `.tel` + "`" + ` are not supported.`,
@@ -654,7 +656,7 @@ var (
 					Description: `The cache configs of the accelerated domain.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `The accelerated domain name.`,
@@ -728,7 +730,7 @@ var (
 				"domain",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required, ForceNew) Name of the accelerated domain. This name without suffix can have a string of 1 to 63 characters, must contain only alphanumeric characters or "-", and must not begin or end with "-", and "-" must not in the 3th and 4th character positions at the same time. Suffix ` + "`" + `.sh` + "`" + ` and ` + "`" + `.tel` + "`" + ` are not supported.`,
@@ -754,7 +756,7 @@ var (
 					Description: `The ID of the domain config. The value is formate as ` + "`" + `<domain_name>:<function_name>` + "`" + `. ## Import CDN domain config can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import alicloud_cdn_domain_config.example cdn:config-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the domain config. The value is formate as ` + "`" + `<domain_name>:<function_name>` + "`" + `. ## Import CDN domain config can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import alicloud_cdn_domain_config.example cdn:config-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -772,7 +774,7 @@ var (
 				"domain",
 				"new",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) Name of the accelerated domain. This name without suffix can have a string of 1 to 63 characters, must contain only alphanumeric characters or "-", and must not begin or end with "-", and "-" must not in the 3th and 4th character positions at the same time. Suffix ` + "`" + `.sh` + "`" + ` and ` + "`" + `.tel` + "`" + ` are not supported.`,
@@ -842,7 +844,7 @@ var (
 					Description: `The cdn domain id. The value is same as the domain name. ## Import CDN domain can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import alicloud_cdn_domain_new.example cdn-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The cdn domain id. The value is same as the domain name. ## Import CDN domain can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import alicloud_cdn_domain_new.example cdn-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -860,7 +862,7 @@ var (
 				"bandwidth",
 				"limit",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The ID of the CEN.`,
@@ -882,7 +884,7 @@ var (
 					Description: `(Defaults to 10 mins) Used when terminating the cen bandwidth limit. ## Attributes Reference The following attributes are exported: - ` + "`" + `id` + "`" + ` - ID of the resource, formatted as ` + "`" + `<instance_id>:<region_id_1>:<region_id_2>` + "`" + `. ->`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -895,7 +897,7 @@ var (
 				"bandwidth",
 				"package",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bandwidth",
 					Description: `(Required) The bandwidth in Mbps of the bandwidth package. Cannot be less than 2Mbps.`,
@@ -933,7 +935,7 @@ var (
 					Description: `The status of the bandwidth, including "InUse" and "Idle". ## Import CEN bandwidth package can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_bandwidth_package.example cenbwp-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the bandwidth package.`,
@@ -960,7 +962,7 @@ var (
 				"package",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The ID of the CEN.`,
@@ -974,7 +976,7 @@ var (
 					Description: `ID of the resource, the same as bandwidth_package_id. ## Import CEN bandwidth package attachment resource can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $terraform import alicloud_cen_bandwidth_package_attachment.example bwp-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the resource, the same as bandwidth_package_id. ## Import CEN bandwidth package attachment resource can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $terraform import alicloud_cen_bandwidth_package_attachment.example bwp-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -991,7 +993,7 @@ var (
 				"cen",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the CEN instance. Defaults to null.`,
@@ -1021,7 +1023,7 @@ var (
 					Description: `The description of the CEN instance. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_instance.example cen-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the CEN instance.`,
@@ -1047,7 +1049,7 @@ var (
 				"instance",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The ID of the CEN.`,
@@ -1065,7 +1067,7 @@ var (
 					Description: `(Optional, Available in 1.42.0+) The uid of the child instance. Only used when attach a child instance of other account. ->`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1078,7 +1080,7 @@ var (
 				"instance",
 				"grant",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cen_id",
 					Description: `(Required) The ID of the CEN.`,
@@ -1092,7 +1094,7 @@ var (
 					Description: `(Required) The owner UID of the CEN which the child instance granted to. ## Attributes Reference The following attributes are exported: - ` + "`" + `id` + "`" + ` - ID of the resource, formatted as ` + "`" + `<cen_id>:<child_instance_id>:<cen_owner_id>` + "`" + `. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_instance_grant.example cen-abc123456:vpc-abc123456:uid123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1105,7 +1107,7 @@ var (
 				"route",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The ID of the CEN.`,
@@ -1123,7 +1125,7 @@ var (
 					Description: `ID of the resource, formatted as ` + "`" + `<instance_id>:<route_table_id>:<cidr_block>` + "`" + `. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_route_entry.example cen-abc123456:vtb-abc123:192.168.0.0/24 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the resource, formatted as ` + "`" + `<instance_id>:<route_table_id>:<cidr_block>` + "`" + `. ## Import CEN instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cen_route_entry.example cen-abc123456:vtb-abc123:192.168.0.0/24 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1142,7 +1144,7 @@ var (
 				"cms",
 				"alarm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The alarm rule name.`,
@@ -1272,7 +1274,7 @@ var (
 					Description: `The current alarm rule status.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the alarm rule.`,
@@ -1355,7 +1357,7 @@ var (
 				"bandwidth",
 				"package",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bandwidth",
 					Description: `(Required) The bandwidth of the common bandwidth package, in Mbps.`,
@@ -1381,7 +1383,7 @@ var (
 					Description: `The ID of the common bandwidth package instance id. ## Import The common bandwidth package can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_common_bandwidth_package.foo cbwp-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the common bandwidth package instance id. ## Import The common bandwidth package can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_common_bandwidth_package.foo cbwp-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1401,7 +1403,7 @@ var (
 				"package",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bandwidth_package_id",
 					Description: `(Required, ForceNew) The bandwidth_package_id of the common bandwidth package attachment, the field can't be changed.`,
@@ -1415,7 +1417,7 @@ var (
 					Description: `The ID of the common bandwidth package attachment id and formates as ` + "`" + `<bandwidth_package_id>:<instance_id>` + "`" + `. ## Import The common bandwidth package attachemnt can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_common_bandwidth_package_attachment.foo cbwp-abc123456:eip-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the common bandwidth package attachment id and formates as ` + "`" + `<bandwidth_package_id>:<instance_id>` + "`" + `. ## Import The common bandwidth package attachemnt can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_common_bandwidth_package_attachment.foo cbwp-abc123456:eip-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1432,8 +1434,8 @@ var (
 				"container",
 				"cluster",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1447,7 +1449,7 @@ var (
 				"cr",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) Name of Container Registry namespace.`,
@@ -1465,7 +1467,7 @@ var (
 					Description: `The id of Container Registry namespace. The value is same as its name. ## Import Container Registry namespace can be imported using the namespace, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cr_namespace.default my-namespace ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of Container Registry namespace. The value is same as its name. ## Import Container Registry namespace can be imported using the namespace, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cr_namespace.default my-namespace ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1484,7 +1486,7 @@ var (
 				"cr",
 				"repo",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "namespace",
 					Description: `(Required, ForceNew) Name of container registry namespace where repository is located.`,
@@ -1526,7 +1528,7 @@ var (
 					Description: `Domain of vpc endpoint. ## Import Container Registry repository can be imported using the ` + "`" + `namespace/repository` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cr_repo.default ` + "`" + `my-namespace/my-repo` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of Container Registry repository. The value is in format ` + "`" + `namespace/repository` + "`" + `.`,
@@ -1560,7 +1562,7 @@ var (
 				"cs",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_name",
 					Description: `(Required, ForceNew) The swarm cluster's name.`,
@@ -1646,7 +1648,7 @@ var (
 					Description: `The current version of service. ## Import Swarm application can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_application.app my-first-swarm:wordpress ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the container application. It's formate is ` + "`" + `<cluster_name>:<name>` + "`" + `.`,
@@ -1708,7 +1710,7 @@ var (
 				"cs",
 				"kubernetes",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The kubernetes cluster's name. It is the only in one Alicloud account.`,
@@ -1966,7 +1968,7 @@ var (
 					Description: `Service Access Domain. ## Import Kubernetes cluster can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_kubernetes.main ce4273f9156874b46bb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the container cluster.`,
@@ -2053,7 +2055,7 @@ var (
 				"managed",
 				"kubernetes",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The kubernetes cluster's name. It is the only in one Alicloud account.`,
@@ -2227,7 +2229,7 @@ var (
 					Description: `The private IP address of node. ## Import Managed Kubernetes cluster can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_managed_kubernetes.main ce4273f9156874b46bb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the container cluster.`,
@@ -2305,7 +2307,7 @@ var (
 				"cs",
 				"swarm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The container cluster's name. It is the only in one Alicloud account.`,
@@ -2431,7 +2433,7 @@ var (
 					Description: `The node current status. It is different with instance status. ## Import Swarm cluster can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cs_swarm.foo cf123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the container cluster.`,
@@ -2517,7 +2519,7 @@ var (
 				"service",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) The name of the datahub project. Its length is limited to 3-32 and only characters such as letters, digits and '_' are allowed. It is case-insensitive.`,
@@ -2539,7 +2541,7 @@ var (
 					Description: `Last modify time of the datahub project. It is the same as`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the datahub project. It is the same as its name.`,
@@ -2565,7 +2567,7 @@ var (
 				"service",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_name",
 					Description: `(Required, ForceNew) The name of the datahub project that the subscription belongs to. Its length is limited to 3-32 and only characters such as letters, digits and '_' are allowed. It is case-insensitive.`,
@@ -2595,7 +2597,7 @@ var (
 					Description: `Last modify time of the datahub subscription. It is the same as`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the datahub subscritpion as terraform resource. It was composed of project name, topic name and practical subscription ID generated from server side. Format to ` + "`" + `<project_name>:<topic_name>:<sub_id>` + "`" + `.`,
@@ -2625,7 +2627,7 @@ var (
 				"service",
 				"topic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) The name of the datahub topic. Its length is limited to 1-128 and only characters such as letters, digits and '_' are allowed. It is case-insensitive.`,
@@ -2667,7 +2669,7 @@ var (
 					Description: `Last modify time of the datahub topic. It is the same as`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the datahub topic. It was composed of project name and its name, and formats to ` + "`" + `<project_name>:<name>` + "`" + `.`,
@@ -2693,7 +2695,7 @@ var (
 				"db",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The Id of instance in which account belongs.`,
@@ -2735,7 +2737,7 @@ var (
 					Description: `Privilege type of account. ## Import RDS account can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_account.example "rm-12345:tf_account" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The current account resource ID. Composed of instance ID and account name with format ` + "`" + `<instance_id>:<name>` + "`" + `.`,
@@ -2770,7 +2772,7 @@ var (
 				"account",
 				"privilege",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The Id of instance in which account belongs.`,
@@ -2808,7 +2810,7 @@ var (
 					Description: `List of granted privilege database names. ## Import RDS account privilege can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_account_privilege.example "rm-12345:tf_account:ReadOnly" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The current account resource ID. Composed of instance ID, account name and privilege with format ` + "`" + `<instance_id>:<name>:<privilege>` + "`" + `.`,
@@ -2843,7 +2845,7 @@ var (
 				"backup",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The Id of instance that can run database.`,
@@ -2897,7 +2899,7 @@ var (
 					Description: `Instance log backup retention days. ## Import RDS backup policy can be imported using the id or instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_backup_policy.example "rm-12345678" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The current backup policy resource ID. It is same as 'instance_id'.`,
@@ -2939,7 +2941,7 @@ var (
 				"db",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The Id of instance that can run database.`,
@@ -2973,7 +2975,7 @@ var (
 					Description: `The ip address of connection string. ## Import RDS connection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_connection.example abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The current instance connection resource ID. Composed of instance ID and connection string with format ` + "`" + `<instance_id>:<connection_prefix>` + "`" + `.`,
@@ -3007,7 +3009,7 @@ var (
 				"db",
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The Id of instance that can run database.`,
@@ -3045,7 +3047,7 @@ var (
 					Description: `The database description. ## Import RDS database can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_database.example "rm-12345:tf_database" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The current database resource ID. Composed of instance ID and database name with format ` + "`" + `<instance_id>:<name>` + "`" + `.`,
@@ -3079,7 +3081,7 @@ var (
 				"db",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine",
 					Description: `(Required,ForceNew) Database type. Value options: MySQL, SQLServer, PostgreSQL, and PPAS.`,
@@ -3209,7 +3211,7 @@ var (
 					Description: `(Defaults to 20 mins) Used when terminating the db instance. ## Import RDS instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_instance.example rm-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The RDS instance ID.`,
@@ -3250,7 +3252,7 @@ var (
 				"splitting",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The Id of instance that can run database.`,
@@ -3284,7 +3286,7 @@ var (
 					Description: `Connection instance string. ## Import RDS read write splitting connection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_read_write_splitting_connection.example abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Id of DB instance.`,
@@ -3307,7 +3309,7 @@ var (
 				"readonly",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine_version",
 					Description: `(Required, ForceNew) Database version. Value options can refer to the latest docs [CreateDBInstance](https://www.alibabacloud.com/help/doc-detail/26228.htm) ` + "`" + `EngineVersion` + "`" + `.`,
@@ -3369,7 +3371,7 @@ var (
 					Description: `(Defaults to 20 mins) Used when terminating the db instance. ## Import RDS readonly instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_readonly_instance.example rm-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The RDS instance ID.`,
@@ -3413,7 +3415,7 @@ var (
 				"ddoscoo",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the instance. This name can have a string of 1 to 63 characters.`,
@@ -3447,7 +3449,7 @@ var (
 					Description: `The ID of the instance resource of Ddoscoo.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the instance resource of Ddoscoo.`,
@@ -3464,7 +3466,7 @@ var (
 				"ecs",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required, ForceNew) The Zone to create the disk in.`,
@@ -3534,7 +3536,7 @@ var (
 					Description: `(ForceNew) Whether the disk is encrypted. ## Import Cloud disk can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_disk.example d-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required,ForceNew) The Zone to create the disk in.`,
@@ -3584,7 +3586,7 @@ var (
 				"disk",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, Forces new resource) ID of the Instance to attach to.`,
@@ -3610,7 +3612,7 @@ var (
 					Description: `The device name exposed to the instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `ID of the Instance.`,
@@ -3634,7 +3636,7 @@ var (
 			Keywords: []string{
 				"dns",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) Name of the domain. This name without suffix can have a string of 1 to 63 characters, must contain only alphanumeric characters or "-", and must not begin or end with "-", and "-" must not in the 3th and 4th character positions at the same time. Suffix ` + "`" + `.sh` + "`" + ` and ` + "`" + `.tel` + "`" + ` are not supported.`,
@@ -3664,7 +3666,7 @@ var (
 					Description: `A list of the dns server name. ## Import DNS can be imported using the id or domain name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_dns.example "aliyun.com" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `This ID of this resource. The value is set to ` + "`" + `domain_name` + "`" + `.`,
@@ -3697,7 +3699,7 @@ var (
 				"dns",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the domain group. ## Attributes Reference The following attributes are exported:`,
@@ -3711,7 +3713,7 @@ var (
 					Description: `The group name.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The group id.`,
@@ -3732,7 +3734,7 @@ var (
 				"dns",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the domain. This name without suffix can have a string of 1 to 63 characters, must contain only alphanumeric characters or "-", and must not begin or end with "-", and "-" must not in the 3th and 4th character positions at the same time. Suffix ` + "`" + `.sh` + "`" + ` and ` + "`" + `.tel` + "`" + ` are not supported.`,
@@ -3802,7 +3804,7 @@ var (
 					Description: `The record locked state. ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. ## Import RDS record can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_dns_record.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record id.`,
@@ -3855,7 +3857,7 @@ var (
 				"drds",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Required) Description of the DRDS instance, This description can have a string of 2 to 256 characters.`,
@@ -3893,7 +3895,7 @@ var (
 					Description: `The DRDS instance ID. ## Import Distributed Relational Database Service (DRDS) can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_drds_instance.example drds-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DRDS instance ID. ## Import Distributed Relational Database Service (DRDS) can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_drds_instance.example drds-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -3910,7 +3912,7 @@ var (
 				"vpc",
 				"eip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the EIP instance. This name can have a string of 2 to 128 characters, must contain only alphanumeric characters or hyphens, such as "-",".","_", and must not begin or end with a hyphen, and must not begin with http:// or https://.`,
@@ -3960,7 +3962,7 @@ var (
 					Description: `The elastic ip address ## Import Elastic IP address can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_eip.example eip-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EIP ID.`,
@@ -3994,7 +3996,7 @@ var (
 				"eip",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocation_id",
 					Description: `(Required, ForcesNew) The allocation EIP ID.`,
@@ -4020,7 +4022,7 @@ var (
 					Description: `As above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocation_id",
 					Description: `As above.`,
@@ -4041,7 +4043,7 @@ var (
 				"elasticsearch",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) The description of instance. It a string of 0 to 30 characters.`,
@@ -4135,7 +4137,7 @@ var (
 					Description: `The Elasticsearch instance status. Includes ` + "`" + `active` + "`" + `, ` + "`" + `activating` + "`" + `, ` + "`" + `inactive` + "`" + `. Some operations are denied when status is not ` + "`" + `active` + "`" + `. ## Import Elasticsearch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_elasticsearch.example es-cn-abcde123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Elasticsearch instance.`,
@@ -4172,7 +4174,7 @@ var (
 				"ess",
 				"alarm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name for ess alarm.`,
@@ -4238,7 +4240,7 @@ var (
 					Description: `The state of specified alarm. ## Import Ess alarm can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_alarm.example asg-2ze500_045efffe-4d05 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id for ess alarm.`,
@@ -4259,7 +4261,7 @@ var (
 				"ess",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_id",
 					Description: `(Required) ID of the scaling group of a scaling configuration.`,
@@ -4285,7 +4287,7 @@ var (
 					Description: `Whether to delete "AutoCreated" ECS instances. ## Import ESS attachment can be imported using the id or scaling group id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_attachment.example asg-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Required, ForceNew) The ESS attachment resource ID.`,
@@ -4311,7 +4313,7 @@ var (
 				"scaling",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_id",
 					Description: `(Required, ForceNew) ID of the scaling group of a scaling configuration.`,
@@ -4433,7 +4435,7 @@ var (
 					Description: `The scaling configuration ID. ## Import ESS scaling configuration can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_scaling_configuration.example asg-abc123456 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The scaling configuration ID. ## Import ESS scaling configuration can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_scaling_configuration.example asg-abc123456 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -4451,7 +4453,7 @@ var (
 				"scaling",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "min_size",
 					Description: `(Required) Minimum number of ECS instances in the scaling group. Value range: [0, 1000].`,
@@ -4529,7 +4531,7 @@ var (
 					Description: `The vswitches id in which the ECS instance launched. ## Import ESS scaling group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_scaling_group.example asg-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The scaling group ID.`,
@@ -4579,7 +4581,7 @@ var (
 				"lifecycle",
 				"hook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_id",
 					Description: `(Required, ForceNew) The ID of the Auto Scaling group to which you want to assign the lifecycle hook.`,
@@ -4641,7 +4643,7 @@ var (
 					Description: `The arn of notification target. ## Import Ess lifecycle hook can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_lifecycle_hook.example ash-l12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of lifecycle hook.`,
@@ -4687,7 +4689,7 @@ var (
 				"scaling",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_id",
 					Description: `(Required) ID of the scaling group of a scaling rule.`,
@@ -4713,7 +4715,7 @@ var (
 					Description: `The scaling rule ID. ## Import ESS scaling rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_scalingrule.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The scaling rule ID. ## Import ESS scaling rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_scalingrule.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4730,8 +4732,8 @@ var (
 				"ess",
 				"schedule",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4744,7 +4746,7 @@ var (
 				"scheduled",
 				"task",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scheduled_action",
 					Description: `(Required) Operations performed when the scheduled task is triggered. Fill in the unique identifier of the scaling rule.`,
@@ -4786,7 +4788,7 @@ var (
 					Description: `The schedule task ID. ## Import ESS schedule task can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_scheduled_task.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The schedule task ID. ## Import ESS schedule task can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ess_scheduled_task.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4805,7 +4807,7 @@ var (
 				"service",
 				"fc",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service",
 					Description: `(Required, ForceNew) The Function Compute service name.`,
@@ -4863,7 +4865,7 @@ var (
 					Description: `The date this resource was last modified. ## Import Function Compute function can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_fc_service.foo my-fc-service:hello-world ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the function. The value is formate as ` + "`" + `<service>:<name>` + "`" + `.`,
@@ -4886,7 +4888,7 @@ var (
 				"service",
 				"fc",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(ForceNew) The Function Compute service name. It is the only in one Alicloud account and is conflict with "name_prefix".`,
@@ -4940,7 +4942,7 @@ var (
 					Description: `The date this resource was last modified. ## Import Function Compute Service can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_fc_service.foo my-fc-service ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the FC service. The value is same as name.`,
@@ -4964,7 +4966,7 @@ var (
 				"fc",
 				"trigger",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service",
 					Description: `(Required, ForceNew) The Function Compute service name.`,
@@ -5010,7 +5012,7 @@ var (
 					Description: `The date this resource was last modified. ## Import Function Compute trigger can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_fc_service.foo my-fc-service:hello-world:hello-trigger ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the function. The value is formate as ` + "`" + `<service>:<function>:<name>` + "`" + `.`,
@@ -5032,7 +5034,7 @@ var (
 				"forward",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "forward_table_id",
 					Description: `(Required, ForceNew) The value can get from ` + "`" + `alicloud_nat_gateway` + "`" + ` Attributes "forward_table_ids".`,
@@ -5070,7 +5072,7 @@ var (
 					Description: `The id of the forward entry on the server.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the forward entry. The value formats as ` + "`" + `<forward_table_id>:<forward_entry_id>` + "`" + ``,
@@ -5091,7 +5093,7 @@ var (
 				"gpdb",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The Id of instance that can run database.`,
@@ -5117,7 +5119,7 @@ var (
 					Description: `The ip address of connection string. ## Import AnalyticDB for PostgreSQL's connection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_gpdb_connection.example abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The current instance connection resource ID. Composed of instance ID and connection string with format ` + "`" + `<instance_id>:<connection_prefix>` + "`" + `.`,
@@ -5142,7 +5144,7 @@ var (
 				"gpdb",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine_version",
 					Description: `(Required, ForceNew) Database version. Value options can refer to the latest docs [CreateDBInstance](https://www.alibabacloud.com/help/doc-detail/86908.htm) ` + "`" + `EngineVersion` + "`" + `.`,
@@ -5180,7 +5182,7 @@ var (
 					Description: `The ID of the Instance. ## Import AnalyticDB for PostgreSQL can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_gpdb_instance.example gp-bp1291daeda44194 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Instance. ## Import AnalyticDB for PostgreSQL can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_gpdb_instance.example gp-bp1291daeda44194 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5197,7 +5199,7 @@ var (
 				"ecs",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_id",
 					Description: `(Required) The Image to use for the instance. ECS instance's image can be replaced via changing 'image_id'. When it is changed, the instance will reboot to make the change take effect.`,
@@ -5391,7 +5393,7 @@ var (
 					Description: `The instance public ip. ## Import Instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_instance.example i-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The instance ID.`,
@@ -5417,7 +5419,7 @@ var (
 				"key",
 				"pair",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `(ForceNew) The key pair's name. It is the only in one Alicloud account.`,
@@ -5439,7 +5441,7 @@ var (
 					Description: `The name of the key pair.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `The name of the key pair.`,
@@ -5458,7 +5460,7 @@ var (
 				"pair",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `(Required, ForceNew) The name of key pair used to bind.`,
@@ -5476,7 +5478,7 @@ var (
 					Description: `The name of the key pair.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `The name of the key pair.`,
@@ -5493,7 +5495,7 @@ var (
 				"kms",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional, ForceNew) The description of the key as viewed in Alicloud console. Default to "From Terraform".`,
@@ -5535,7 +5537,7 @@ var (
 					Description: `Whether the key is enabled. ## Import KMS key can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_kms_key.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the key.`,
@@ -5573,7 +5575,7 @@ var (
 				"backup",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The id of ApsaraDB for Redis or Memcache intance.`,
@@ -5603,7 +5605,7 @@ var (
 					Description: `Backup Cycle. Allowed values: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday ## Import KVStore backup policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_kvstore_backup_policy.example r-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the backup policy.`,
@@ -5632,7 +5634,7 @@ var (
 				"kvstore",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Optional) The name of DB instance. It a string of 2 to 256 characters.`,
@@ -5682,7 +5684,7 @@ var (
 					Description: `Instance connection domain (only Intranet access supported). ## Import KVStore instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_kvstore_instance.example r-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The KVStore instance ID.`,
@@ -5704,7 +5706,7 @@ var (
 				"launch",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, ForceNew) Instance launch template name. Can contain [2, 128] characters in length. It must start with an English letter (uppercase or lowercase) and can contain numbers, periods (.), colons (:), underscores (_), and hyphens (-). It cannot start with "http://" or "https://".`,
@@ -5866,7 +5868,7 @@ var (
 					Description: `The Launch Template ID. ## Import Launch Template can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_launch_template.lt lt-abc1234567890000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Launch Template ID. ## Import Launch Template can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_launch_template.lt lt-abc1234567890000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5885,7 +5887,7 @@ var (
 				"machine",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, ForceNew) The project name to the machine group belongs.`,
@@ -5927,7 +5929,7 @@ var (
 					Description: `The machine group topic. ## Import Log machine group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_log_machine_group.example tf-log:tf-machine-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the log machine group. It formats of ` + "`" + `<project>:<name>` + "`" + `.`,
@@ -5965,7 +5967,7 @@ var (
 				"service",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) The name of the log project. It is the only in one Alicloud account.`,
@@ -5987,7 +5989,7 @@ var (
 					Description: `Log project description. ## Import Log project can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_log_project.example tf-log ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the log project. It sames as its name.`,
@@ -6013,7 +6015,7 @@ var (
 				"service",
 				"store",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, ForceNew) The project name to the log store belongs.`,
@@ -6083,7 +6085,7 @@ var (
 					Description: `Determines whether to enable Web Tracking. ## Import Log store can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_log_store.example tf-log:tf-log-store ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the log project. It formats of ` + "`" + `<project>:<name>` + "`" + `.`,
@@ -6134,7 +6136,7 @@ var (
 				"store",
 				"index",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, ForceNew) The project name to the log store belongs.`,
@@ -6212,7 +6214,7 @@ var (
 					Description: `The field search index config. ## Import Log store index can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_log_store_index.example tf-log:tf-log-store ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the log store index. It formats of ` + "`" + `<project>:<logstore>` + "`" + `.`,
@@ -6247,7 +6249,7 @@ var (
 				"logtail",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, ForceNew) The project name to the log store belongs.`,
@@ -6265,7 +6267,7 @@ var (
 					Description: `The ID of the logtail to machine group. It formats of ` + "`" + `<project>:<logtail_config_name>:<machine_group_name>` + "`" + `. ## Import Logtial to machine group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_logtail_to_machine_group.example tf-log:tf-log-config:tf-log-machine-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the logtail to machine group. It formats of ` + "`" + `<project>:<logtail_config_name>:<machine_group_name>` + "`" + `. ## Import Logtial to machine group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_logtail_to_machine_group.example tf-log:tf-log-config:tf-log-machine-group ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6284,7 +6286,7 @@ var (
 				"logtail",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, ForceNew) The project name to the log store belongs.`,
@@ -6318,7 +6320,7 @@ var (
 					Description: `The ID of the log store index. It formats of ` + "`" + `<project>:<logstore>:<config_name>` + "`" + `. ## Import Logtial config can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_logtail_config.example tf-log:tf-log-store:tf-log-config ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the log store index. It formats of ` + "`" + `<project>:<logstore>:<config_name>` + "`" + `. ## Import Logtial config can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_logtail_config.example tf-log:tf-log-store:tf-log-config ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6336,7 +6338,7 @@ var (
 				"",
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForcesNew)Two queues on a single account in the same region cannot have the same name. A queue name must start with an English letter or a digit, and can contain English letters, digits, and hyphens, with the length not exceeding 256 characters .`,
@@ -6366,7 +6368,7 @@ var (
 					Description: `The ID of the queue is equal to name. ## Import MNS QUEUE can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mns_queue.queue queuename ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the queue is equal to name. ## Import MNS QUEUE can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mns_queue.queue queuename ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6384,7 +6386,7 @@ var (
 				"",
 				"topic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew)Two topics on a single account in the same region cannot have the same name. A topic name must start with an English letter or a digit, and can contain English letters, digits, and hyphens, with the length not exceeding 256 characters.`,
@@ -6402,7 +6404,7 @@ var (
 					Description: `The ID of the topic is equal to name. ## Import MNS Topic can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mns_topic.topic topicName ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the topic is equal to name. ## Import MNS Topic can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mns_topic.topic topicName ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6421,7 +6423,7 @@ var (
 				"topic",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) Two topics subscription on a single account in the same topic cannot have the same name. A topic subscription name must start with an English letter or a digit, and can contain English letters, digits, and hyphens, with the length not exceeding 256 characters.`,
@@ -6447,7 +6449,7 @@ var (
 					Description: `The ID of the topic subscription.Format to topic_name:name ## Import MNS Topic subscription can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mns_topic_subscription.subscription tf-example-mnstopic:tf-example-mnstopic-sub ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the topic subscription.Format to topic_name:name ## Import MNS Topic subscription can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mns_topic_subscription.subscription tf-example-mnstopic:tf-example-mnstopic-sub ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6464,7 +6466,7 @@ var (
 				"mongodb",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine_version",
 					Description: `(Required, ForceNew) Database version. Value options can refer to the latest docs [CreateDBInstance](https://www.alibabacloud.com/help/doc-detail/61763.htm) ` + "`" + `EngineVersion` + "`" + `.`,
@@ -6526,7 +6528,7 @@ var (
 					Description: `Instance log backup retention days. Available in 1.42.0+. ## Import MongoDB can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mongodb_instance.example dds-bp1291daeda44194 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MongoDB.`,
@@ -6548,7 +6550,7 @@ var (
 				"sharding",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine_version",
 					Description: `(Required, ForceNew) Database version. Value options can refer to the latest docs [CreateDBInstance](https://www.alibabacloud.com/help/zh/doc-detail/61884.htm) ` + "`" + `EngineVersion` + "`" + `.`,
@@ -6626,7 +6628,7 @@ var (
 					Description: `Instance log backup retention days. Available in 1.42.0+. ## Import MongoDB can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_mongodb_sharding_instance.example dds-bp1291daeda44195 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MongoDB.`,
@@ -6664,7 +6666,7 @@ var (
 				"access",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) A Name of one Access Group.`,
@@ -6682,7 +6684,7 @@ var (
 					Description: `The ID of the Access Group. ## Import Nas Access Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_nas_access_group.foo tf_testAccNasConfig ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Access Group. ## Import Nas Access Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_nas_access_group.foo tf_testAccNasConfig ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6700,7 +6702,7 @@ var (
 				"access",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_group_name",
 					Description: `(Required, ForceNew) Permission group name.`,
@@ -6726,7 +6728,7 @@ var (
 					Description: `This ID of this resource. The value is formate as ` + "`" + `<access_group_name>:<access rule id>` + "`" + `. ## Import Nas Access Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_nas_access_rule.foo tf-testAccNasConfigName:1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `This ID of this resource. The value is formate as ` + "`" + `<access_group_name>:<access rule id>` + "`" + `. ## Import Nas Access Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_nas_access_rule.foo tf-testAccNasConfigName:1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6744,7 +6746,7 @@ var (
 				"file",
 				"system",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "protocol_type",
 					Description: `(Required, ForceNew) The Protocol Type of a File System. Valid values: ` + "`" + `NFS` + "`" + ` and ` + "`" + `SMB` + "`" + `.`,
@@ -6762,7 +6764,7 @@ var (
 					Description: `The ID of the File System. ## Import Nas File System can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_nas_file_system.foo 1337849c59 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the File System. ## Import Nas File System can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_nas_file_system.foo 1337849c59 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6780,7 +6782,7 @@ var (
 				"mount",
 				"target",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file_system_id",
 					Description: `(Required, ForceNew) File system ID.`,
@@ -6798,7 +6800,7 @@ var (
 					Description: `(Optional) Whether the MountTarget is active. An inactive MountTarget is inusable. Valid values are Active(default) and Inactive. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6811,7 +6813,7 @@ var (
 				"nat",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required, ForceNew) The VPC ID.`,
@@ -6897,7 +6899,7 @@ var (
 					Description: `The nat gateway will auto create a snap and forward item, the ` + "`" + `forward_table_ids` + "`" + ` is the created one. ## Import Nat gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_nat_gateway.example ngw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the nat gateway.`,
@@ -6947,7 +6949,7 @@ var (
 				"network",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required, ForceNew) The vpc_id of the network acl, the field can't be changed.`,
@@ -6965,7 +6967,7 @@ var (
 					Description: `The ID of the network acl instance id. ## Import The network acl can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_network_acl.default nacl-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the network acl instance id. ## Import The network acl can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_network_acl.default nacl-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6984,7 +6986,7 @@ var (
 				"acl",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_acl_id",
 					Description: `(Required, ForceNew) The id of the network acl, the field can't be changed.`,
@@ -7006,7 +7008,7 @@ var (
 					Description: `The ID of the network acl attachment. It is formatted as ` + "`" + `<network_acl_id>:<a unique id>` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the network acl attachment. It is formatted as ` + "`" + `<network_acl_id>:<a unique id>` + "`" + `.`,
@@ -7025,7 +7027,7 @@ var (
 				"acl",
 				"entries",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_acl_id",
 					Description: `(Required, ForceNew) The id of the network acl, the field can't be changed.`,
@@ -7099,7 +7101,7 @@ var (
 					Description: `The ID of the network acl entries. It is formatted as ` + "`" + `<network_acl_id>:<a unique id>` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the network acl entries. It is formatted as ` + "`" + `<network_acl_id>:<a unique id>` + "`" + `.`,
@@ -7117,7 +7119,7 @@ var (
 				"network",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vswitch_id",
 					Description: `(Required, ForceNew) The VSwitch to create the ENI in.`,
@@ -7151,7 +7153,7 @@ var (
 					Description: `The ENI ID. ## Import ENI can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_network_interface.eni eni-abc1234567890000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ENI ID. ## Import ENI can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_network_interface.eni eni-abc1234567890000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7170,7 +7172,7 @@ var (
 				"interface",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required, ForceNew) The instance ID to attach.`,
@@ -7184,7 +7186,7 @@ var (
 					Description: `The ID of the resource, formatted as ` + "`" + `<network_interface_id>:<instance_id>` + "`" + `. ## Import Network Interfaces Attachment resource can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_network_interface.eni eni-abc123456789000:i-abc123456789000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the resource, formatted as ` + "`" + `<network_interface_id>:<instance_id>` + "`" + `. ## Import Network Interfaces Attachment resource can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_network_interface.eni eni-abc123456789000:i-abc123456789000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7202,7 +7204,7 @@ var (
 				"ons",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required)Two instances on a single account in the same region cannot have the same name. The length must be 3 to 64 characters. Chinese characters, English letters digits and hyphen are allowed.`,
@@ -7228,7 +7230,7 @@ var (
 					Description: `Platinum edition instance expiration time. ## Import ONS INSTANCE can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ons_instance.instance MQ_INST_1234567890_Baso1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ` + "`" + `key` + "`" + ` of the resource supplied above.`,
@@ -7257,7 +7259,7 @@ var (
 				"oss",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Optional, ForceNew) The name of the bucket. If omitted, Terraform will assign a random and unique name.`,
@@ -7419,7 +7421,7 @@ var (
 					Description: `The bucket owner. ## Import OSS bucket can be imported using the bucket name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_oss_bucket.bucket bucket-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the bucket.`,
@@ -7461,7 +7463,7 @@ var (
 				"bucket",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to put the file in.`,
@@ -7527,7 +7529,7 @@ var (
 					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above.`,
@@ -7558,7 +7560,7 @@ var (
 				"ots",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) The name of the instance.`,
@@ -7616,7 +7618,7 @@ var (
 					Description: `The instance tags. ## Import OTS instance can be imported using instance id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ots_instance.foo "my-ots-instance" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The resource ID. The value is same as the "name".`,
@@ -7656,7 +7658,7 @@ var (
 				"instance",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Required, ForceNew) The name of the OTS instance.`,
@@ -7690,7 +7692,7 @@ var (
 					Description: `The ID of attaching VPC to instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The resource ID. The value is same as "instance_name".`,
@@ -7724,7 +7726,7 @@ var (
 				"store",
 				"ots",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Required, ForceNew) The name of the OTS instance in which table will located.`,
@@ -7786,7 +7788,7 @@ var (
 					Description: `The max version offset of the table. ## Import OTS table can be imported using id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ots_table.table "my-ots:ots_table" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The resource ID. The value is ` + "`" + `<instance_name>:<table_name>` + "`" + `.`,
@@ -7828,7 +7830,7 @@ var (
 				"zone",
 				"pvtz",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the Private Zone.`,
@@ -7846,7 +7848,7 @@ var (
 					Description: `The count of the Private Zone Record. ## Import Private Zone can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_pvtz_zone.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Private Zone.`,
@@ -7869,7 +7871,7 @@ var (
 				"pvtz",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required, ForceNew) The name of the Private Zone Record.`,
@@ -7883,7 +7885,7 @@ var (
 					Description: `The ID of the Private Zone VPC Attachment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Private Zone VPC Attachment.`,
@@ -7902,7 +7904,7 @@ var (
 				"pvtz",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required, ForceNew) The name of the Private Zone Record.`,
@@ -7932,7 +7934,7 @@ var (
 					Description: `The ID of the Private Zone Record. ## Import Private Zone Record can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_pvtz_zone_record.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Private Zone Record. ## Import Private Zone Record can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_pvtz_zone_record.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7950,7 +7952,7 @@ var (
 				"access",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_name",
 					Description: `(Optional, ForceNew) Name of the RAM user. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as "-",".","_", and must not begin with a hyphen.`,
@@ -7984,7 +7986,7 @@ var (
 					Description: `The encrypted secret, base64 encoded. ~> NOTE: The encrypted secret may be decrypted using the command line, for example: ` + "`" + `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The access key ID.`,
@@ -8014,7 +8016,7 @@ var (
 				"account",
 				"alias",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_alias",
 					Description: `(Required, ForceNew) Alias of cloud account. This name can have a string of 3 to 32 characters, must contain only alphanumeric characters or hyphens, such as "-", and must not begin with a hyphen. ## Attributes Reference The following attributes are exported:`,
@@ -8024,7 +8026,7 @@ var (
 					Description: `The account alias.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The account alias.`,
@@ -8043,7 +8045,7 @@ var (
 				"password",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_minimum_password_length",
 					Description: `(Optional, Type: int) Minimal required length of password for a user. Valid value range: [8-32]. Default to 12.`,
@@ -8081,7 +8083,7 @@ var (
 					Description: `(Optional, Type: int) Maximum logon attempts with an incorrect password within an hour. Valid value range: [0-32]. Default to 5. ## Import RAM account password policy can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import alicloud_ram_account_password_policy.example ram-account-password-policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8093,8 +8095,8 @@ var (
 				"ram",
 				"alias",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8106,7 +8108,7 @@ var (
 				"ram",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) Name of the RAM group. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphen "-", and must not begin with a hyphen.`,
@@ -8132,7 +8134,7 @@ var (
 					Description: `The group comments. ## Import RAM group can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ram_group.example my-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The group ID.`,
@@ -8158,7 +8160,7 @@ var (
 				"group",
 				"membership",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_name",
 					Description: `(Required, ForceNew) Name of the RAM group. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphen "-", and must not begin with a hyphen.`,
@@ -8180,7 +8182,7 @@ var (
 					Description: `The list of names of users which in the group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The membership ID.`,
@@ -8207,7 +8209,7 @@ var (
 				"policy",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_name",
 					Description: `(Required, ForceNew) Name of the RAM group. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphen "-", and must not begin with a hyphen.`,
@@ -8225,7 +8227,7 @@ var (
 					Description: `The attachment ID. Composed of policy name, policy type and group name with format ` + "`" + `group:<policy_name>:<policy_type>:<group_name>` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The attachment ID. Composed of policy name, policy type and group name with format ` + "`" + `group:<policy_name>:<policy_type>:<group_name>` + "`" + `.`,
@@ -8243,7 +8245,7 @@ var (
 				"login",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_name",
 					Description: `(Required, ForceNew) Name of the RAM user. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as "-",".","_", and must not begin with a hyphen.`,
@@ -8277,7 +8279,7 @@ var (
 					Description: `The parameter which indicates whether the password needs to be reset when the user first logs in. ## Import RAM login profile can be imported using the id or user name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ram_login_profile.example my-login ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The login profile ID.`,
@@ -8306,7 +8308,7 @@ var (
 				"ram",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) Name of the RAM policy. This name can have a string of 1 to 128 characters, must contain only alphanumeric characters or hyphen "-", and must not begin with a hyphen.`,
@@ -8376,7 +8378,7 @@ var (
 					Description: `The policy attachment count. ## Import RAM policy can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ram_policy.example my-policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The policy ID.`,
@@ -8421,7 +8423,7 @@ var (
 				"ram",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) Name of the RAM role. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as "-", "_", and must not begin with a hyphen.`,
@@ -8483,7 +8485,7 @@ var (
 					Description: `List of services which can assume the RAM role. ## Import RAM role can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ram_role.example my-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The role ID.`,
@@ -8529,7 +8531,7 @@ var (
 				"role",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required, ForceNew) The name of role used to bind. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as "-", "_", and must not begin with a hyphen.`,
@@ -8543,7 +8545,7 @@ var (
 					Description: `The name of the role.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `The name of the role.`,
@@ -8562,7 +8564,7 @@ var (
 				"policy",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required, ForceNew) Name of the RAM Role. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as "-", "_", and must not begin with a hyphen.`,
@@ -8580,7 +8582,7 @@ var (
 					Description: `The attachment ID. Composed of policy name, policy type and role name with format ` + "`" + `role:<policy_name>:<policy_type>:<role_name>` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The attachment ID. Composed of policy name, policy type and role name with format ` + "`" + `role:<policy_name>:<policy_type>:<role_name>` + "`" + `.`,
@@ -8597,7 +8599,7 @@ var (
 				"ram",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the RAM user. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as "-",".","_", and must not begin with a hyphen.`,
@@ -8647,7 +8649,7 @@ var (
 					Description: `The user comments. ## Import RAM user can be imported using the id or name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ram_user.example user ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The original id is user name, but it is user id in 1.37.0+.`,
@@ -8686,7 +8688,7 @@ var (
 				"policy",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_name",
 					Description: `(Required, ForceNew) Name of the RAM user. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as "-",".","_", and must not begin with a hyphen.`,
@@ -8704,7 +8706,7 @@ var (
 					Description: `The attachment ID. Composed of policy name, policy type and user name with format ` + "`" + `user:<policy_name>:<policy_type>:<user_name>` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The attachment ID. Composed of policy name, policy type and user name with format ` + "`" + `user:<policy_name>:<policy_type>:<user_name>` + "`" + `.`,
@@ -8722,7 +8724,7 @@ var (
 				"route",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "router_id",
 					Description: `(Deprecated) This argument has beeb deprecated. Please use other arguments to launch a custom route entry.`,
@@ -8768,7 +8770,7 @@ var (
 					Description: `The route entry's next hop. ## Import Router entry can be imported using the id, e.g (formatted as<route_table_id:router_id:destination_cidrblock:nexthop_type:nexthop_id>). ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_route_entry.example vtb-123456:vrt-123456:0.0.0.0/0:NatGateway:ngw-123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The route entry id,it formats of ` + "`" + `<route_table_id:router_id:destination_cidrblock:nexthop_type:nexthop_id>` + "`" + `.`,
@@ -8806,7 +8808,7 @@ var (
 				"route",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required, ForceNew) The vpc_id of the route table, the field can't be changed.`,
@@ -8824,7 +8826,7 @@ var (
 					Description: `The ID of the route table instance id. ## Import The route table can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_route_table.foo vtb-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the route table instance id. ## Import The route table can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_route_table.foo vtb-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8843,7 +8845,7 @@ var (
 				"table",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vswitch_id",
 					Description: `(Required, ForceNew) The vswitch_id of the route table attachment, the field can't be changed.`,
@@ -8857,7 +8859,7 @@ var (
 					Description: `The ID of the route table attachment id and formates as ` + "`" + `<route_table_id>:<vswitch_id>` + "`" + `. ## Import The route table attachemnt can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_route_table_attachment.foo vtb-abc123456:vsw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the route table attachment id and formates as ` + "`" + `<route_table_id>:<vswitch_id>` + "`" + `. ## Import The route table attachemnt can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_route_table_attachment.foo vtb-abc123456:vsw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8875,7 +8877,7 @@ var (
 				"router",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "opposite_region",
 					Description: `(Required, ForceNew) The Region of peer side.`,
@@ -9005,7 +9007,7 @@ var (
 					Description: `Target IP of Packet of Line HealthCheck. ## Import The router interface can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_router_interface.interface ri-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Router interface ID.`,
@@ -9080,7 +9082,7 @@ var (
 				"interface",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "interface_id",
 					Description: `(Required, ForceNew) One side router interface ID.`,
@@ -9106,7 +9108,7 @@ var (
 					Description: `Router interface ID. The value is equal to "interface_id". ## Import The router interface connection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_router_interface_connection.foo ri-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Router interface ID. The value is equal to "interface_id". ## Import The router interface connection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_router_interface_connection.foo ri-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9124,7 +9126,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the security group. Defaults to null.`,
@@ -9170,7 +9172,7 @@ var (
 					Description: `The instance tags, use jsonencode(item) to display the value. ## Import Security Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_security_group.example sg-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the security group`,
@@ -9209,7 +9211,7 @@ var (
 				"group",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required, ForceNew) The type of rule being created. Valid options are ` + "`" + `ingress` + "`" + ` (inbound) or ` + "`" + `egress` + "`" + ` (outbound).`,
@@ -9271,7 +9273,7 @@ var (
 					Description: `The protocol of the security group rule`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the security group rule`,
@@ -9303,7 +9305,7 @@ var (
 			Keywords: []string{
 				"slb",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the SLB. This name must be unique within your AliCloud account, can have a maximum of 80 characters, must contain only alphanumeric characters or hyphens, such as "-","/",".","_", and must not begin or end with a hyphen. If not specified, Terraform will autogenerate a name beginning with ` + "`" + `tf-lb` + "`" + `.`,
@@ -9365,7 +9367,7 @@ var (
 					Description: `The IP address of the load balancer. ## Import Load balancer can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb.example lb-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the load balancer.`,
@@ -9386,7 +9388,7 @@ var (
 				"slb",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the access control list.`,
@@ -9412,7 +9414,7 @@ var (
 					Description: `The Id of the access control list. ## Import Server Load balancer access control list can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_acl.example acl-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Id of the access control list. ## Import Server Load balancer access control list can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_acl.example acl-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9429,7 +9431,7 @@ var (
 				"slb",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) ID of the load balancer.`,
@@ -9471,7 +9473,7 @@ var (
 					Description: `The backend servers of the load balancer. ## Import Load balancer attachment can be imported using the id or load balancer id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_attachment.example lb-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the resource.`,
@@ -9505,7 +9507,7 @@ var (
 				"ca",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the CA Certificate.`,
@@ -9519,7 +9521,7 @@ var (
 					Description: `The Id of CA Certificate . ## Import Server Load balancer CA Certificate can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_ca_certificate.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Id of CA Certificate . ## Import Server Load balancer CA Certificate can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_ca_certificate.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9536,7 +9538,7 @@ var (
 				"slb",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required, ForceNew) The Load Balancer ID which is used to launch a new listener.`,
@@ -9782,7 +9784,7 @@ var (
 					Description: `(Optional) Security certificate ID. ## Import Load balancer listener can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_listener.example "lb-abc123456:22" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the load balancer listener. It is consist of ` + "`" + `load_balancer_id` + "`" + ` and ` + "`" + `frontend_port` + "`" + `: ` + "`" + `<load_balancer_id>:<frontend_port>` + "`" + `.`,
@@ -9887,7 +9889,7 @@ var (
 				"slb",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required, ForceNew) The Load Balancer ID which is used to launch the new forwarding rule.`,
@@ -9977,7 +9979,7 @@ var (
 					Description: `The ID of the forwarding rule. ## Import Load balancer forwarding rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_rule.example rule-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the forwarding rule. ## Import Load balancer forwarding rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_rule.example rule-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9995,7 +9997,7 @@ var (
 				"server",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the Server Certificate.`,
@@ -10017,7 +10019,7 @@ var (
 					Description: `The Id of Server Certificate (SSL Certificate). ## Import Server Load balancer Server Certificate can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_server_certificate.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Id of Server Certificate (SSL Certificate). ## Import Server Load balancer Server Certificate can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_server_certificate.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10035,7 +10037,7 @@ var (
 				"server",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required, ForceNew) The Load Balancer ID which is used to launch a new virtual server group.`,
@@ -10081,7 +10083,7 @@ var (
 					Description: `A list of ECS instances that have be added. ## Import Load balancer backend server group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_slb_server_group.example abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual server group.`,
@@ -10110,7 +10112,7 @@ var (
 				"ecs",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk_id",
 					Description: `(Required, ForceNew) The source disk ID.`,
@@ -10140,7 +10142,7 @@ var (
 					Description: `The snapshot ID. ## Import Snapshot can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snapshot.snapshot s-abc1234567890000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The snapshot ID. ## Import Snapshot can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snapshot.snapshot s-abc1234567890000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10158,7 +10160,7 @@ var (
 				"snapshot",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The snapshot policy name.`,
@@ -10180,7 +10182,7 @@ var (
 					Description: `The snapshot policy ID. ## Import Snapshot can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snapshot.snapshot s-abc1234567890000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The snapshot policy ID. ## Import Snapshot can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snapshot.snapshot s-abc1234567890000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10198,7 +10200,7 @@ var (
 				"snat",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "snat_table_id",
 					Description: `(Required, ForceNew) The value can get from ` + "`" + `alicloud_nat_gateway` + "`" + ` Attributes "snat_table_ids".`,
@@ -10220,7 +10222,7 @@ var (
 					Description: `The id of the snat entry on the server. ## Import Snat Entry can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_snat_entry.foo stb-1aece3:snat-232ce2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the snat entry. The value formats as ` + "`" + `<snat_table_id>:<snat_entry_id>` + "`" + ``,
@@ -10244,7 +10246,7 @@ var (
 				"cert",
 				"client",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the client certificate.`,
@@ -10262,7 +10264,7 @@ var (
 					Description: `The status of the client certificate. ## Import SSL-VPN client certificates can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ssl_vpn_client_cert.example vsc-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the SSL-VPN client certificate.`,
@@ -10285,7 +10287,7 @@ var (
 				"ssl",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the SSL-VPN server.`,
@@ -10331,7 +10333,7 @@ var (
 					Description: `The maximum number of connections. ## Import SSL-VPN server can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_ssl_vpn_server.example vss-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the SSL-VPN server.`,
@@ -10359,7 +10361,7 @@ var (
 			Keywords: []string{
 				"vpc",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Required, ForceNew) The CIDR block for the VPC.`,
@@ -10401,7 +10403,7 @@ var (
 					Description: `The route table ID of the router created by default on VPC creation. ## Import VPC can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpc.example vpc-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC.`,
@@ -10439,7 +10441,7 @@ var (
 				"gateway",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the IPsec connection.`,
@@ -10541,7 +10543,7 @@ var (
 					Description: `The configurations of phase-two negotiation. ## Import VPN connection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpn_connection.example vco-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPN connection id.`,
@@ -10571,7 +10573,7 @@ var (
 				"gateway",
 				"customer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the VPN customer gateway. Defaults to null.`,
@@ -10589,7 +10591,7 @@ var (
 					Description: `The ID of the VPN customer gateway instance id. ## Import VPN customer gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpn_customer_gateway.example cgw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPN customer gateway instance id. ## Import VPN customer gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpn_customer_gateway.example cgw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10606,7 +10608,7 @@ var (
 				"vpn",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the VPN. Defaults to null.`,
@@ -10656,7 +10658,7 @@ var (
 					Description: `The business status of the VPN gateway. ## Import VPN gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpn_gateway.example vpn-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPN instance id.`,
@@ -10685,7 +10687,7 @@ var (
 				"vpc",
 				"vswitch",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required, ForceNew) The AZ for the switch.`,
@@ -10727,7 +10729,7 @@ var (
 					Description: `The description of the switch. ## Import Vswitch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vswitch.example vsw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the switch.`,
@@ -10895,10 +10897,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

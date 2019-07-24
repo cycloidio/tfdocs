@@ -1,11 +1,13 @@
-package aws
+package gitlab
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Looks up a gitlab group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `(Optional) The ID of the group.`,
@@ -68,7 +70,7 @@ var (
 					Description: `Web URL of the group. [doc]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID assigned to the group.`,
@@ -122,7 +124,7 @@ var (
 			ShortDescription: `View information about a project`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Required) The integer that uniquely identifies the project within the gitlab install. ## Attributes Reference The following attributes are exported:`,
@@ -188,7 +190,7 @@ var (
 					Description: `Whether the project is in read-only mode (archived).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `The path of the repository.`,
@@ -258,7 +260,7 @@ var (
 			ShortDescription: `Looks up a gitlab user`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `(Optional) The e-mail address of the user. (Requires administrator privileges)`,
@@ -376,7 +378,7 @@ var (
 					Description: `Current user's sign-in date.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique id assigned to the user by the gitlab server.`,
@@ -490,7 +492,7 @@ var (
 			ShortDescription: `Looks up gitlab users`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "search",
 					Description: `(Optional) Search users by username, name or email.`,
@@ -636,7 +638,7 @@ var (
 					Description: `Current user's sign-in date. [users_for_admins]: https://docs.gitlab.com/ce/api/users.html#for-admins`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "users",
 					Description: `The list of users.`,
@@ -749,7 +751,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"gitlab_group":   0,
 		"gitlab_project": 1,
@@ -758,10 +760,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package kubernetes
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,8 +19,8 @@ var (
 				"cluster",
 				"role",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -31,7 +33,7 @@ var (
 				"role",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard kubernetes metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -105,7 +107,7 @@ var (
 					Description: `(Optional) The API group to drive authorization decisions. This value only applies to kind ` + "`" + `User` + "`" + ` and ` + "`" + `Group` + "`" + `. It must be ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ## Import ClusterRoleBinding can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_cluster_role_binding.example terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -117,7 +119,7 @@ var (
 				"config",
 				"map",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "binary_data",
 					Description: `(Optional) BinaryData contains the binary data. Each key must consist of alphanumeric characters, '-', '_' or '.'. BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet. This field only accepts base64-encoded payloads that will be decoded/received before being sent/received to the apiserver.`,
@@ -167,7 +169,7 @@ var (
 					Description: `The unique in time and space value for this config map. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Import Config Map can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_config_map.example default/my-config ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -179,7 +181,7 @@ var (
 				"cron",
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard resource's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
@@ -297,7 +299,7 @@ var (
 					Description: `(Optional) A map of ` + "`" + `{key,value}` + "`" + ` pairs. A single ` + "`" + `{key,value}` + "`" + ` in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. ### ` + "`" + `template` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -308,7 +310,7 @@ var (
 			Keywords: []string{
 				"daemonset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard daemonset's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -1542,7 +1544,7 @@ var (
 					Description: `(Default ` + "`" + `10 minutes` + "`" + `) Used for destroying a controller ## Import DaemonSet can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_daemonset.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1553,7 +1555,7 @@ var (
 			Keywords: []string{
 				"deployment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard deployment's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -2811,7 +2813,7 @@ var (
 					Description: `(Default ` + "`" + `10 minutes` + "`" + `) Used for destroying a controller ## Import Deployment can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_deployment.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2822,7 +2824,7 @@ var (
 			Keywords: []string{
 				"endpoints",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard endpoints' metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -2916,7 +2918,7 @@ var (
 					Description: `(Optional) The IP protocol for this port. Supports ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `. Default is ` + "`" + `TCP` + "`" + `. ## Import An Endpoints resource can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_endpoints.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2929,7 +2931,7 @@ var (
 				"pod",
 				"autoscaler",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard horizontal pod autoscaler's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -3003,7 +3005,7 @@ var (
 					Description: `(Required) Name of the referent. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) ## Import Horizontal Pod Autoscaler can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_horizontal_pod_autoscaler.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3014,7 +3016,7 @@ var (
 			Keywords: []string{
 				"ingress",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard ingress's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata`,
@@ -3120,7 +3122,7 @@ var (
 					Description: `Hostname which is set for load-balancer ingress points that are DNS based (typically AWS load-balancers) ## Import Ingress can be imported using its namespace and name: ` + "`" + `` + "`" + `` + "`" + ` terraform import kubernetes_ingress.<TERRAFORM_RESOURCE_NAME> <KUBE_NAMESPACE>/<KUBE_INGRESS_NAME> ` + "`" + `` + "`" + `` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_ingress.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3131,7 +3133,7 @@ var (
 			Keywords: []string{
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard resource's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
@@ -3213,7 +3215,7 @@ var (
 					Description: `(Optional) A map of ` + "`" + `{key,value}` + "`" + ` pairs. A single ` + "`" + `{key,value}` + "`" + ` in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. ### ` + "`" + `template` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3225,7 +3227,7 @@ var (
 				"limit",
 				"range",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard limit range's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -3299,7 +3301,7 @@ var (
 					Description: `The unique in time and space value for this limit range. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Import Limit Range can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_limit_range.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3310,7 +3312,7 @@ var (
 			Keywords: []string{
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard namespace's [metadata](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata). ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
@@ -3348,7 +3350,7 @@ var (
 					Description: `The unique in time and space value for this namespace. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Import Namespaces can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_namespace.n terraform-example-namespace ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3360,7 +3362,7 @@ var (
 				"network",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard network policy's [metadata](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata). ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
@@ -3490,7 +3492,7 @@ var (
 					Description: `(Optional) An array of string values. If the operator is ` + "`" + `In` + "`" + ` or ` + "`" + `NotIn` + "`" + `, the values array must be non-empty. If the operator is ` + "`" + `Exists` + "`" + ` or ` + "`" + `DoesNotExist` + "`" + `, the values array must be empty. This array is replaced during a strategic merge patch. ## Import Network policies can be imported using their identifier consisting of ` + "`" + `<namespace-name>/<network-policy-name>` + "`" + `, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_network_policy.example default/terraform-example-network-policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3502,7 +3504,7 @@ var (
 				"persistent",
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard persistent volume's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -3936,7 +3938,7 @@ var (
 					Description: `(Required) Path that identifies vSphere volume vmdk ## Import Persistent Volume can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_persistent_volume.example terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3949,7 +3951,7 @@ var (
 				"volume",
 				"claim",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard persistent volume claim's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -4047,7 +4049,7 @@ var (
 					Description: `(Optional) A map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of ` + "`" + `match_expressions` + "`" + `, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed. ## Import Persistent Volume Claim can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_persistent_volume_claim.example default/example-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4058,7 +4060,7 @@ var (
 			Keywords: []string{
 				"pod",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard pod's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -5256,7 +5258,7 @@ var (
 					Description: `(Default ` + "`" + `5 minutes` + "`" + `) Used for Destroying Pods. ## Import Pod can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_pod.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5268,7 +5270,7 @@ var (
 				"replication",
 				"controller",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard replication controller's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -5358,7 +5360,7 @@ var (
 					Description: `(Optional) Namespace defines the space within which name of the replication controller must be unique. ## Nested Blocks ### ` + "`" + `spec.template.spec` + "`" + ` #### Arguments These arguments are the same as the for the ` + "`" + `spec` + "`" + ` block of a Pod. Please see the [Pod resource](pod.html#spec-1) for reference. ## Timeouts The following [Timeout](/docs/configuration/resources.html#operation-timeouts) configuration options are available: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating new controller - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for updating a controller - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying a controller ## Import Replication Controller can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_replication_controller.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5370,7 +5372,7 @@ var (
 				"resource",
 				"quota",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard resource quota's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -5420,7 +5422,7 @@ var (
 					Description: `(Optional) A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects. ## Import Resource Quota can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_resource_quota.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5431,7 +5433,7 @@ var (
 			Keywords: []string{
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard role's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata)`,
@@ -5493,7 +5495,7 @@ var (
 					Description: `(Required) List of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule. ## Import Role can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_role.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5505,7 +5507,7 @@ var (
 				"role",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard kubernetes metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata)`,
@@ -5583,7 +5585,7 @@ var (
 					Description: `(Optional) The API group to drive authorization decisions. This value only applies to kind ` + "`" + `User` + "`" + ` and ` + "`" + `Group` + "`" + `. It must be ` + "`" + `rbac.authorization.k8s.io` + "`" + ` ## Import RoleBinding can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_role_binding.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5594,7 +5596,7 @@ var (
 			Keywords: []string{
 				"secret",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data",
 					Description: `(Optional) A map of the secret data.`,
@@ -5644,7 +5646,7 @@ var (
 					Description: `The unique in time and space value for this secret. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Import Secret can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_secret.example default/my-secret ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5655,7 +5657,7 @@ var (
 			Keywords: []string{
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard service's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -5777,7 +5779,7 @@ var (
 					Description: `Hostname which is set for load-balancer ingress points that are DNS based (typically AWS load-balancers) ## Import Service can be imported using its namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service.example default/terraform-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5789,7 +5791,7 @@ var (
 				"service",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard service account's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -5855,7 +5857,7 @@ var (
 					Description: `Name of the default secret, containing service account token, created & managed by the service. ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_secret_name",
 					Description: `Name of the default secret, containing service account token, created & managed by the service. ## Import Service account can be imported using the namespace and name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_service_account.example default/terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5872,7 +5874,7 @@ var (
 				"stateful",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard Kubernetes object metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -5970,7 +5972,7 @@ var (
 					Description: `(Optional) Indicates the ordinal at which the StatefulSet should be partitioned. You can perform a phased roll out (e.g. a linear, geometric, or exponential roll out) using a partitioned rolling update in a similar manner to how you rolled out a canary. To perform a phased roll out, set the partition to the ordinal at which you want the controller to pause the update. By setting the partition to 0, you allow the StatefulSet controller to continue the update process. Default value is ` + "`" + `0` + "`" + `. ## Nested Blocks ### ` + "`" + `spec.volume_claim_template` + "`" + ` One or more ` + "`" + `volume_claim_template` + "`" + ` blocks can be specified. #### Arguments Each takes the same attibutes as a ` + "`" + `kubernetes_persistent_volume_claim` + "`" + ` resource. Please see its [documentation](persistent_volume_claim.html#argument-reference) for reference.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5982,7 +5984,7 @@ var (
 				"storage",
 				"class",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard storage class's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
@@ -6036,7 +6038,7 @@ var (
 					Description: `The unique in time and space value for this storage class. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Import kubernetes_storage_class can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_storage_class.example terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -6070,10 +6072,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

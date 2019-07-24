@@ -1,11 +1,13 @@
-package aws
+package tls
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -19,7 +21,7 @@ resources.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "private_key_pem",
 					Description: `(Required) The private key to use. Currently-supported key types are "RSA" or "ECDSA". ## Attributes Reference The following attributes are exported:`,
@@ -41,7 +43,7 @@ resources.
 					Description: `The md5 hash of the public key data in OpenSSH MD5 hash format, e.g. ` + "`" + `aa:bb:cc:...` + "`" + `. Only available if the selected private key format is compatible, as per the rules for ` + "`" + `public_key_openssh` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "private_key_pem",
 					Description: `The private key data in PEM format.`,
@@ -62,16 +64,16 @@ resources.
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"tls_public_key": 0,
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

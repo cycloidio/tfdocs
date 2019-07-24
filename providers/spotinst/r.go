@@ -1,11 +1,13 @@
-package aws
+package spotinst
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"elastigroup",
 				"aws",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The group name.`,
@@ -931,7 +933,7 @@ var (
 					Description: `The group ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The group ID.`,
@@ -949,7 +951,7 @@ var (
 				"aws",
 				"beanstalk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The group name.`,
@@ -1039,7 +1041,7 @@ var (
 					Description: `(Required) - Level to update`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1051,7 +1053,7 @@ var (
 				"elastigroup",
 				"azure",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The group name.`,
@@ -1397,7 +1399,7 @@ var (
 					Description: `(Optional) The deployment id you want to get Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_multai_runtime = { deployment_id = "" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1409,7 +1411,7 @@ var (
 				"elastigroup",
 				"gcp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The group name.`,
@@ -1747,7 +1749,7 @@ var (
 					Description: `(Optional) The maximum number of instances the group should have. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task = [{ task_type = "setCapacity" cron_expression = "" is_enabled = false target_capacity = 5 min_capacity = 0 max_capacity = 10 }] ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1759,7 +1761,7 @@ var (
 				"elastigroup",
 				"gke",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_zone_name",
 					Description: `(Required) The zone where the cluster is hosted.`,
@@ -1833,7 +1835,7 @@ var (
 					Description: `(Optional) The label value. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_gke = { location = "us-central1-a" cluster_id = "terraform-acc-test-cluster" autoscale_is_enabled = true autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom = { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down = { evaluation_periods = 300 } autoscale_labels = { key = "label_key" value = "label_value" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="diff-suppressed-parameters"></a> ## Diff-suppressed Parameters The following parameters are created remotely and imported. The diffs have been suppressed in order to maintain plan legibility. You may update the values of these imported parameters by defining them in your template with your desired new value (including null values).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1845,7 +1847,7 @@ var (
 				"mrscaler",
 				"aws",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The MrScaler name.`,
@@ -2231,7 +2233,7 @@ var (
 					Description: `The scaler ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The scaler ID.`,
@@ -2248,7 +2250,7 @@ var (
 				"multai",
 				"balancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The balancer name. May contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen.`,
@@ -2286,7 +2288,7 @@ var (
 					Description: `(Required) The tag's value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2298,13 +2300,13 @@ var (
 				"multai",
 				"deployment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The deployment name.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2316,7 +2318,7 @@ var (
 				"multai",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "balancer_id",
 					Description: `(Required) The ID of the balancer.`,
@@ -2370,7 +2372,7 @@ var (
 					Description: `(Required) The tag's value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2383,7 +2385,7 @@ var (
 				"routing",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "balancer_id",
 					Description: `(Required) The ID of the balancer.`,
@@ -2413,7 +2415,7 @@ var (
 					Description: `(Required) The tag's value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2425,7 +2427,7 @@ var (
 				"multai",
 				"target",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "balancer_id",
 					Description: `(Required) The ID of the balancer.`,
@@ -2463,7 +2465,7 @@ var (
 					Description: `(Required) The tag's value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2476,7 +2478,7 @@ var (
 				"target",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Target Set. Must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen.`,
@@ -2538,7 +2540,7 @@ var (
 					Description: `(Required) The tag's value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2550,7 +2552,7 @@ var (
 				"ocean",
 				"aws",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The cluster name.`,
@@ -2736,7 +2738,7 @@ var (
 					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy = { should_roll = false roll_config = { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2750,7 +2752,7 @@ var (
 				"launch",
 				"spec",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ocean_id",
 					Description: `(Required) The ocean cluster you wish to`,
@@ -2796,7 +2798,7 @@ var (
 					Description: `(Required) The effect of the taint. Valid values: ` + "`" + `"NoSchedule"` + "`" + `, ` + "`" + `"PreferNoSchedule"` + "`" + `, ` + "`" + `"NoExecute"` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2808,7 +2810,7 @@ var (
 				"ocean",
 				"gke",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The cluster name.`,
@@ -2978,7 +2980,7 @@ var (
 					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler = { autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom = { cpu_per_unit = 1024 gpu_per_unit = 1 memory_per_unit = 512 num_of_units = 2 } autoscale_down = { evaluation_periods = 300 } resource_limits = { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2989,7 +2991,7 @@ var (
 			Keywords: []string{
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_id",
 					Description: `(Required) Spotinst Resource ID (Elastigroup ID).`,
@@ -3015,7 +3017,7 @@ var (
 					Description: `The subscription ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The subscription ID.`,
@@ -3045,10 +3047,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

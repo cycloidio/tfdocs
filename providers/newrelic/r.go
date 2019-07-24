@@ -1,11 +1,13 @@
-package aws
+package newrelic
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"alert",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the channel.`,
@@ -35,7 +37,7 @@ var (
 					Description: `The ID of the channel. ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_channel.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the channel. ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_channel.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -52,7 +54,7 @@ var (
 				"alert",
 				"condition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The ID of the policy where this condition should be used.`,
@@ -126,7 +128,7 @@ var (
 					Description: `The ID of the alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -143,7 +145,7 @@ var (
 				"alert",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy.`,
@@ -165,7 +167,7 @@ var (
 					Description: `The time the policy was last updated. ## Import Alert policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_policy.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -191,7 +193,7 @@ var (
 				"policy",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The ID of the policy.`,
@@ -201,7 +203,7 @@ var (
 					Description: `(Required) The ID of the channel.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -212,7 +214,7 @@ var (
 			Keywords: []string{
 				"dashboard",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "title",
 					Description: `(Required) The title of the dashboard.`,
@@ -270,7 +272,7 @@ var (
 					Description: `The ID of the dashboard.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the dashboard.`,
@@ -288,7 +290,7 @@ var (
 				"alert",
 				"condition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The ID of the alert policy where this condition should be used.`,
@@ -354,7 +356,7 @@ var (
 					Description: `The ID of the Infrastructure alert condition.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Infrastructure alert condition.`,
@@ -372,7 +374,7 @@ var (
 				"alert",
 				"condition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The ID of the policy where this condition should be used.`,
@@ -434,7 +436,7 @@ var (
 					Description: `The ID of the NRQL alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_nrql_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the NRQL alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_nrql_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -452,7 +454,7 @@ var (
 				"alert",
 				"condition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The ID of the policy where this condition should be used.`,
@@ -478,7 +480,7 @@ var (
 					Description: `The ID of the Synthetics alert condition.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Synthetics alert condition.`,
@@ -495,7 +497,7 @@ var (
 				"synthetics",
 				"monitor",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The title of this monitor.`,
@@ -545,7 +547,7 @@ var (
 					Description: `The ID of the Synthetics monitor.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Synthetics monitor.`,
@@ -563,7 +565,7 @@ var (
 				"monitor",
 				"script",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "monitor_id",
 					Description: `(Required) The ID of the monitor to attach the script to.`,
@@ -577,7 +579,7 @@ var (
 					Description: `The ID of the Synthetics monitor that the script is attached to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Synthetics monitor that the script is attached to.`,
@@ -601,10 +603,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

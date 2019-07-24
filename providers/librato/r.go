@@ -1,11 +1,13 @@
-package aws
+package librato
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"alert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the alert.`,
@@ -98,7 +100,7 @@ var (
 					Description: `a URL for the runbook to be followed when this alert is firing. Used in the Librato UI if set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the alert.`,
@@ -162,7 +164,7 @@ var (
 			Keywords: []string{
 				"metric",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of metric to create (gauge, counter, or composite).`,
@@ -248,7 +250,7 @@ var (
 					Description: `Enable service-side aggregation for this metric. When enabled, measurements sent using the same tag set will be aggregated into single measurements on an interval defined by the period of the metric. If there is no period defined for the metric then all measurements will be aggregated on a 60-second interval. This option takes a value of true or false. If this option is not set for a metric it will default to false.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The identifier for the metric.`,
@@ -316,7 +318,7 @@ var (
 			Keywords: []string{
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of notificaion.`,
@@ -346,7 +348,7 @@ var (
 					Description: `a JSON hash of settings specific to the alert type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the alert.`,
@@ -374,7 +376,7 @@ var (
 			Keywords: []string{
 				"space",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the space. ## Attributes Reference The following attributes are exported:`,
@@ -388,7 +390,7 @@ var (
 					Description: `The name of the space.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the space.`,
@@ -409,7 +411,7 @@ var (
 				"space",
 				"chart",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space_id",
 					Description: `(Required) The ID of the space this chart should be in.`,
@@ -507,7 +509,7 @@ var (
 					Description: `The title of the chart when it is displayed.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the chart.`,
@@ -534,10 +536,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

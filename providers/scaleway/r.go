@@ -1,11 +1,13 @@
-package aws
+package scaleway
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the Scaleway objectstorage bucket ## Attributes Reference The following attributes are exported:`,
@@ -26,7 +28,7 @@ var (
 					Description: `Name of the resource ## Import Instances can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_bucket.releases releases ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the resource ## Import Instances can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_bucket.releases releases ` + "`" + `` + "`" + `` + "`" + ``,
@@ -42,7 +44,7 @@ var (
 			Keywords: []string{
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server",
 					Description: `(Optional) ID of server to associate IP with`,
@@ -68,7 +70,7 @@ var (
 					Description: `reverse DNS setting of the IP resource ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_ip.jump_host 5faef9cd-ea9b-4a63-9171-9e26bec03dbc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the new resource`,
@@ -97,7 +99,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of security group`,
@@ -127,7 +129,7 @@ var (
 					Description: `id of the new resource ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_security_group.test 5faef9cd-ea9b-4a63-9171-9e26bec03dbc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `id of the new resource ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_security_group.test 5faef9cd-ea9b-4a63-9171-9e26bec03dbc ` + "`" + `` + "`" + `` + "`" + ``,
@@ -145,7 +147,7 @@ var (
 				"group",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_group",
 					Description: `(Required) the security group which should be associated with this rule`,
@@ -175,7 +177,7 @@ var (
 					Description: `id of the new resource`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `id of the new resource`,
@@ -191,7 +193,7 @@ var (
 			Keywords: []string{
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of server`,
@@ -273,7 +275,7 @@ var (
 					Description: `public ip of the new resource ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_server.web 5faef9cd-ea9b-4a63-9171-9e26bec03dbc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `id of the new resource`,
@@ -298,7 +300,7 @@ var (
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `(Required) public key of the SSH key to be added ## Attributes Reference The following attributes are exported:`,
@@ -308,7 +310,7 @@ var (
 					Description: `fingerprint of the SSH key ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_ssh_key.awesome "d1:4c:45:59:a8:ee:e6:41:10:fb:3c:3e:54:98:5b:6f" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `fingerprint of the SSH key ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_ssh_key.awesome "d1:4c:45:59:a8:ee:e6:41:10:fb:3c:3e:54:98:5b:6f" ` + "`" + `` + "`" + `` + "`" + ``,
@@ -324,7 +326,7 @@ var (
 			Keywords: []string{
 				"token",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "expires",
 					Description: `(Optional) Define if the token should automatically expire or not`,
@@ -362,7 +364,7 @@ var (
 					Description: `Expiration date of token, if expiration is requested ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_token.karls_token 5faef9cd-ea9b-4a63-9171-9e26bec03dbc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Token ID - can be used to access scaleway API`,
@@ -395,7 +397,7 @@ var (
 				"user",
 				"data",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server",
 					Description: `(Required) ID of server to associate the user data with`,
@@ -409,7 +411,7 @@ var (
 					Description: `(Required) The value of the user data object ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_user_data.gcp userdata-<server-id>-<key> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -420,7 +422,7 @@ var (
 			Keywords: []string{
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of volume`,
@@ -442,7 +444,7 @@ var (
 					Description: `(Read Only) the ` + "`" + `scaleway_server` + "`" + ` instance which has this volume mounted right now ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_volume.test 5faef9cd-ea9b-4a63-9171-9e26bec03dbc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `id of the new resource`,
@@ -463,7 +465,7 @@ var (
 				"volume",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server",
 					Description: `(Required) id of the server`,
@@ -477,7 +479,7 @@ var (
 					Description: `id of the new resource`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `id of the new resource`,
@@ -501,10 +503,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

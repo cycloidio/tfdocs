@@ -1,11 +1,13 @@
-package aws
+package github
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,8 +16,8 @@ var (
 			ShortDescription: `Get the collaborators for a given repository.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "collaborator",
 					Description: `An Array of GitHub collaborators. Each ` + "`" + `collaborator` + "`" + ` block consists of the fields documented below. ___ The ` + "`" + `collaborator` + "`" + ` block consists of:`,
@@ -93,8 +95,8 @@ var (
 			ShortDescription: `Get information on a GitHub's IP addresses.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hooks",
 					Description: `An Array of IP addresses in CIDR format specifying the addresses that incoming service hooks will originate from.`,
@@ -120,7 +122,7 @@ var (
 			ShortDescription: `Search for GitHub repositories`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "query",
 					Description: `(Required) Search query. See [documentation for the search syntax](https://help.github.com/articles/understanding-the-search-syntax/).`,
@@ -138,7 +140,7 @@ var (
 					Description: `A list of found repository names (e.g. ` + "`" + `terraform` + "`" + `)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "full_names",
 					Description: `A list of full names of found repositories (e.g. ` + "`" + `hashicorp/terraform` + "`" + `)`,
@@ -156,7 +158,7 @@ var (
 			ShortDescription: `Get details about GitHub repository`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the repository.`,
@@ -238,7 +240,7 @@ var (
 					Description: `URL that can be provided to ` + "`" + `svn checkout` + "`" + ` to check out the repository via GitHub's Subversion protocol emulation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `A description of the repository.`,
@@ -320,7 +322,7 @@ var (
 			ShortDescription: `Get information on a GitHub team.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "slug",
 					Description: `(Required) The team slug. ## Attributes Reference`,
@@ -350,7 +352,7 @@ var (
 					Description: `List of team members`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ID of the team.`,
@@ -384,7 +386,7 @@ var (
 			ShortDescription: `Get information on a GitHub user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Required) The username. ## Attributes Reference`,
@@ -462,7 +464,7 @@ var (
 					Description: `the update date.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "login",
 					Description: `the user's login.`,
@@ -539,7 +541,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"github_collaborators": 0,
 		"github_ip_ranges":     1,
@@ -550,10 +552,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

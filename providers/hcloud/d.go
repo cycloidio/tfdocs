@@ -1,11 +1,13 @@
-package aws
+package hcloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,8 +20,8 @@ Use this resource to get detailed information about specific datacenter.
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -32,8 +34,8 @@ This resource may be useful to create highly available infrastructure, distribut
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -48,8 +50,8 @@ This resource can be useful when you need to determine a Floating IP ID based on
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -61,8 +63,8 @@ Provides details about a Hetzner Cloud Image.
 This resource is useful if you want to use a non-terraform managed image.
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -75,8 +77,8 @@ Use this resource to get detailed information about specific location.
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -89,8 +91,8 @@ This resource may be useful to create highly available infrastructure, distribut
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -103,8 +105,8 @@ This resource is useful if you want to use a non-terraform managed server.
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -116,8 +118,8 @@ Provides details about a Hetzner Cloud SSH Key.
 This resource is useful if you want to use a non-terraform managed SSH Key.
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -129,12 +131,12 @@ Provides details about a Hetzner Cloud volume.
 This resource is useful if you want to use a non-terraform managed volume.
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"hcloud_datacenter":  0,
 		"hcloud_datacenters": 1,
@@ -148,10 +150,10 @@ This resource is useful if you want to use a non-terraform managed volume.
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

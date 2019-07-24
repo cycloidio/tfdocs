@@ -1,11 +1,13 @@
-package aws
+package docker
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"swarm",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, string) The name of the Docker config.`,
@@ -27,7 +29,7 @@ var (
 					Description: `(Required, string) The base64 encoded data of the config. ## Attributes Reference The following attributes are exported in addition to the above configuration:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -38,7 +40,7 @@ var (
 			Keywords: []string{
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, string) The name of the Docker container.`,
@@ -424,7 +426,7 @@ var (
 					Description: `The network bridge of the container as read from its NetworkSettings.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "exit_code",
 					Description: `The exit code of the container if its execution is done (` + "`" + `must_run` + "`" + ` must be disabled).`,
@@ -464,7 +466,7 @@ var (
 			Keywords: []string{
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, string) The name of the Docker image, including any tags or SHA256 repo digests.`,
@@ -478,7 +480,7 @@ var (
 					Description: `(Optional, list of strings) List of values which cause an image pull when changed. This is used to store the image digest from the registry when using the ` + "`" + `docker_registry_image` + "`" + ` [data source](/docs/providers/docker/d/registry_image.html) to trigger an image update.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -489,7 +491,7 @@ var (
 			Keywords: []string{
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, string) The name of the Docker network.`,
@@ -551,7 +553,7 @@ var (
 					Description: `(Optional, map of string) ## Attributes Reference The following attributes are exported in addition to the above configuration:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -563,7 +565,7 @@ var (
 				"swarm",
 				"secret",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, string) The name of the Docker secret.`,
@@ -577,7 +579,7 @@ var (
 					Description: `(Optional, map of string/string key/value pairs) User-defined key/value metadata. ## Attributes Reference The following attributes are exported in addition to the above configuration:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -589,7 +591,7 @@ var (
 				"swarm",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auth",
 					Description: `(Optional, block) See [Auth](#auth) below for details.`,
@@ -967,7 +969,7 @@ var (
 					Description: `(Optional, string) The timeout of the service to reach the desired state ` + "`" + `(s|m)` + "`" + `. Default: ` + "`" + `3m` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the above configuration:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -978,7 +980,7 @@ var (
 			Keywords: []string{
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, string) The name of the Docker volume (generated if not provided).`,
@@ -996,7 +998,7 @@ var (
 					Description: `(Optional, map of strings) Options specific to the driver. ## Attributes Reference The following attributes are exported in addition to the above configuration:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1012,10 +1014,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

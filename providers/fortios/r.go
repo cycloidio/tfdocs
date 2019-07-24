@@ -1,11 +1,13 @@
-package aws
+package fortios
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ var (
 				"object",
 				"address",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Address name.`,
@@ -88,7 +90,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the address item.`,
@@ -138,7 +140,7 @@ var (
 				"object",
 				"addressgroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Address group name.`,
@@ -168,7 +170,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the firewall address group item.`,
@@ -198,7 +200,7 @@ var (
 				"object",
 				"ippool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) IP pool name.`,
@@ -252,7 +254,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the IP pool item.`,
@@ -294,7 +296,7 @@ var (
 				"object",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Number of minutes before an idle administrator session time out.`,
@@ -396,7 +398,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the firewall service item.`,
@@ -462,7 +464,7 @@ var (
 				"object",
 				"servicegroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Service group name.`,
@@ -492,7 +494,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the firewall service group item.`,
@@ -522,7 +524,7 @@ var (
 				"object",
 				"vip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Virtual IP name.`,
@@ -600,7 +602,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the firewall virtual IPs item.`,
@@ -654,7 +656,7 @@ var (
 				"object",
 				"vipgroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) VIP group name.`,
@@ -692,7 +694,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual IP groups item.`,
@@ -726,7 +728,7 @@ var (
 				"security",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Policy name.`,
@@ -980,7 +982,7 @@ var (
 					Description: `Name of an existing Protocol options profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the firewall policy item.`,
@@ -1122,7 +1124,7 @@ var (
 				"fortianalyzer",
 				"setting",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `(Required) Enable/disable logging to FortiAnalyzer.`,
@@ -1180,7 +1182,7 @@ var (
 					Description: `Enable/disable sending FortiAnalyzer log data with SSL encryption.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Enable/disable logging to FortiAnalyzer.`,
@@ -1222,7 +1224,7 @@ var (
 				"syslog",
 				"setting",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `(Required) Enable/disable remote syslog logging.`,
@@ -1280,7 +1282,7 @@ var (
 					Description: `Log format.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Enable/disable remote syslog logging.`,
@@ -1322,7 +1324,7 @@ var (
 				"interface",
 				"port",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) If the interface is physical, the argument is the name of the interface.`,
@@ -1492,7 +1494,7 @@ var (
 					Description: `VLAN ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Name of the interface.`,
@@ -1590,7 +1592,7 @@ var (
 				"route",
 				"static",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dst",
 					Description: `(Required) Destination IP and mask for this route.`,
@@ -1660,7 +1662,7 @@ var (
 					Description: `Optional comments.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the static route item.`,
@@ -1710,7 +1712,7 @@ var (
 				"admin",
 				"administrator",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) User name.`,
@@ -1764,7 +1766,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the administrator account item.`,
@@ -1806,7 +1808,7 @@ var (
 				"admin",
 				"profiles",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Profile name.`,
@@ -1932,7 +1934,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the access profile item.`,
@@ -2010,7 +2012,7 @@ var (
 				"apiuser",
 				"setting",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) User name.`,
@@ -2064,7 +2066,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API user.`,
@@ -2106,13 +2108,13 @@ var (
 				"license",
 				"forticare",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "registration_code",
 					Description: `(Required) Registration code.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2125,13 +2127,13 @@ var (
 				"license",
 				"vdom",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "license",
 					Description: `(Required) Registration code.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2144,13 +2146,13 @@ var (
 				"license",
 				"vm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file_content",
 					Description: `(Required) The license file, it needs to be base64 encoded, must not contain whitespace or other invalid base64 characters, and must be included in HTTP body.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2163,7 +2165,7 @@ var (
 				"setting",
 				"dns",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "primary",
 					Description: `Primary DNS server IP address.`,
@@ -2181,7 +2183,7 @@ var (
 					Description: `Secondary DNS server IP address.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "primary",
 					Description: `Primary DNS server IP address.`,
@@ -2203,7 +2205,7 @@ var (
 				"setting",
 				"global",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) FortiGate unit's hostname.`,
@@ -2245,7 +2247,7 @@ var (
 					Description: `Administrative access port for SSH.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admintimeout",
 					Description: `Number of minutes before an idle administrator session time out.`,
@@ -2279,7 +2281,7 @@ var (
 				"setting",
 				"ntp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) Use the FortiGuard NTP server or any other available NTP Server.`,
@@ -2305,7 +2307,7 @@ var (
 					Description: `Enable/disable setting the FortiGate system time by synchronizing with an NTP Server.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `Use the FortiGuard NTP server or any other available NTP Server.`,
@@ -2331,7 +2333,7 @@ var (
 				"vdom",
 				"setting",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) VDOM name.`,
@@ -2361,7 +2363,7 @@ var (
 					Description: `Temporary.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VDOM.`,
@@ -2391,7 +2393,7 @@ var (
 				"ipsec",
 				"phase1interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) IPsec remote gateway name.`,
@@ -2549,7 +2551,7 @@ var (
 					Description: `Enable/disable configuration method.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the phase1-interface item.`,
@@ -2643,7 +2645,7 @@ var (
 				"ipsec",
 				"phase2interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) IPsec tunnel name.`,
@@ -2761,7 +2763,7 @@ var (
 					Description: `Comment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the phase2-interface.`,
@@ -2855,10 +2857,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

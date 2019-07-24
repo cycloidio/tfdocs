@@ -1,11 +1,13 @@
-package aws
+package ovh
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ var (
 				"network",
 				"private",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
@@ -72,7 +74,7 @@ var (
 					Description: `the type of the network. Either 'private' or 'public'.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `See Argument Reference above.`,
@@ -123,7 +125,7 @@ var (
 				"private",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. Changing this forces a new resource to be created.`,
@@ -221,7 +223,7 @@ var (
 					Description: `First ip for this region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `See Argument Reference above.`,
@@ -298,7 +300,7 @@ var (
 				"cloud",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
@@ -336,7 +338,7 @@ var (
 					Description: `a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `See Argument Reference above.`,
@@ -377,7 +379,7 @@ var (
 				"ip",
 				"reverse",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip",
 					Description: `(Required) The IP block to which the IP belongs`,
@@ -399,7 +401,7 @@ var (
 					Description: `The value of the reverse`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ipreverse",
 					Description: `The IP to set the reverse of`,
@@ -424,7 +426,7 @@ var (
 				"http",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `(Required) The internal name of your IP load balancing`,
@@ -482,7 +484,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -528,7 +530,7 @@ var (
 				"route",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `(Required) The internal name of your IP load balancing`,
@@ -594,7 +596,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -643,7 +645,7 @@ var (
 				"tcp",
 				"farm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `(Required) The internal name of your IP load balancing`,
@@ -781,7 +783,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -867,7 +869,7 @@ var (
 				"farm",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `(Required) The internal name of your IP load balancing`,
@@ -961,7 +963,7 @@ var (
 					Description: `Value of the stickiness cookie used for this backend.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `See Argument Reference above.`,
@@ -1026,7 +1028,7 @@ var (
 				"tcp",
 				"frontend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `(Required) The internal name of your IP load balancing`,
@@ -1100,7 +1102,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Id of your frontend`,
@@ -1146,7 +1148,7 @@ var (
 				"zone",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain to add the record to`,
@@ -1192,7 +1194,7 @@ var (
 					Description: `The TTL of the record ## Import OVH record can be imported using the ` + "`" + `id` + "`" + ` and the ` + "`" + `zone` + "`" + `, eg: ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import ovh_domain_zone_record.test 1234OVH_ID.zone.tld ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record ID`,
@@ -1230,7 +1232,7 @@ var (
 				"zone",
 				"redirection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain to add the redirection to`,
@@ -1292,7 +1294,7 @@ var (
 					Description: `The title of the redirection`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The redirection ID`,
@@ -1339,7 +1341,7 @@ var (
 				"private",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
@@ -1393,7 +1395,7 @@ var (
 					Description: `the type of the network. Either 'private' or 'public'.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `See Argument Reference above.`,
@@ -1445,7 +1447,7 @@ var (
 				"network",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. Changing this forces a new resource to be created.`,
@@ -1543,7 +1545,7 @@ var (
 					Description: `First ip for this region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `See Argument Reference above.`,
@@ -1621,7 +1623,7 @@ var (
 				"publiccloud",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
@@ -1659,7 +1661,7 @@ var (
 					Description: `a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `See Argument Reference above.`,
@@ -1700,7 +1702,7 @@ var (
 				"vrack",
 				"cloudproject",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrack_id",
 					Description: `(Required) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_ID` + "`" + ` environment variable is used.`,
@@ -1718,7 +1720,7 @@ var (
 					Description: `See Argument Reference above. ## Notes The vrack attachment isn't a proper resource with an ID. As such, the resource id will be forged from the vrack and project ids and there's no correct way to import the resource in terraform. When the resource is created by terraform, it first checks if the attachment already exists within OVH infrastructure; if it exists it set the resource id without modifying anything. Otherwise, it will try to attach the vrack with the public cloud project.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrack_id",
 					Description: `See Argument Reference above.`,
@@ -1740,7 +1742,7 @@ var (
 				"publiccloud",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrack_id",
 					Description: `(Required) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_ID` + "`" + ` environment variable is used.`,
@@ -1758,7 +1760,7 @@ var (
 					Description: `See Argument Reference above. ## Notes The vrack attachment isn't a proper resource with an ID. As such, the resource id will be forged from the vrack and project ids and there's no correct way to import the resource in terraform. When the resource is created by terraform, it first checks if the attachment already exists within OVH infrastructure; if it exists it set the resource id without modifying anything. Otherwise, it will try to attach the vrack with the public cloud project.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrack_id",
 					Description: `See Argument Reference above.`,
@@ -1792,10 +1794,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

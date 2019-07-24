@@ -1,11 +1,13 @@
-package aws
+package azurestack
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ Use this data source to access the properties of an Azure Network Interface.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Network Interface.`,
@@ -84,7 +86,7 @@ Use this data source to access the properties of an Azure Network Interface.
 					Description: `The ID of the virtual machine that the specified network interface is attached to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "applied_dns_servers",
 					Description: `List of DNS servers applied to the specified network interface.`,
@@ -154,7 +156,7 @@ Use this data source to access the properties of a Network Security Group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the Name of the Network Security Group.`,
@@ -220,7 +222,7 @@ Use this data source to access the properties of a Network Security Group.
 					Description: `The direction specifies if rule will be evaluated on incoming or outgoing traffic.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Network Security Group.`,
@@ -290,7 +292,7 @@ Use this data source to access information about a Platform Image.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `(Required) Specifies the Location to pull information about this Platform Image from.`,
@@ -316,7 +318,7 @@ Use this data source to access information about a Platform Image.
 					Description: `The latest version of the Platform Image.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Platform Image.`,
@@ -338,7 +340,7 @@ Use this data source to access the properties of an existing Azure Public IP Add
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the public IP address.`,
@@ -368,7 +370,7 @@ Use this data source to access the properties of an existing Azure Public IP Add
 					Description: `A mapping of tags to assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name_label",
 					Description: `The label for the Domain Name.`,
@@ -402,7 +404,7 @@ Use this data source to access the properties of an Azure resource group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the resource group. ~>`,
@@ -416,7 +418,7 @@ Use this data source to access the properties of an Azure resource group.
 					Description: `A mapping of tags assigned to the resource group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `The location of the resource group.`,
@@ -438,7 +440,7 @@ Gets information about a Route Table
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Route Table.`,
@@ -484,7 +486,7 @@ Gets information about a Route Table
 					Description: `Contains the IP address packets should be forwarded to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Route Table ID.`,
@@ -534,7 +536,7 @@ Gets information about the specified Storage Account.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Storage Account`,
@@ -644,7 +646,7 @@ Gets information about the specified Storage Account.
 					Description: `The Custom Domain Name used for the Storage Account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Storage Account.`,
@@ -758,7 +760,7 @@ Use this data source to access the properties of an Azure Subnet located within 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Subnet.`,
@@ -792,7 +794,7 @@ Use this data source to access the properties of an Azure Subnet located within 
 					Description: `The collection of IP Configurations with IPs within this subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Subnet.`,
@@ -826,7 +828,7 @@ Use this data source to access the properties of an Azure Virtual Network.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Virtual Network.`,
@@ -852,7 +854,7 @@ Use this data source to access the properties of an Azure Virtual Network.
 					Description: `The list of name of the subnets that are attached to this virtual network.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual network.`,
@@ -882,7 +884,7 @@ Use this data source to access the properties of an Azure Virtual Network Gatewa
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Virtual Network Gateway.`,
@@ -988,7 +990,7 @@ Use this data source to access the properties of an Azure Virtual Network Gatewa
 					Description: `The SHA1 thumbprint of the certificate to be revoked.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Network Gateway.`,
@@ -1089,7 +1091,7 @@ Use this data source to access the properties of an Azure Virtual Network Gatewa
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"azurestack_network_interface":       0,
 		"azurestack_network_security_group":  1,
@@ -1104,10 +1106,10 @@ Use this data source to access the properties of an Azure Virtual Network Gatewa
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

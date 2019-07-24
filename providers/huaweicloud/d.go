@@ -1,11 +1,13 @@
-package aws
+package huaweicloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "floating_ip_id",
 					Description: `(Optional) The Elastic IP ID.`,
@@ -88,7 +90,7 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 					Description: `The HTTP request rate at the triggering point.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_type",
 					Description: `The EIP type.`,
@@ -154,7 +156,7 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 			ShortDescription: `Get information on Cloud Container Engine Cluster (CCE).`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional)The Name of the cluster resource.`,
@@ -220,7 +222,7 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 					Description: `Public network access address.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billingMode",
 					Description: `Charging mode of the cluster.`,
@@ -278,7 +280,7 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 			ShortDescription: `To get the specified node in a cluster.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "Cluster_id",
 					Description: `(Required) The id of container cluster.`,
@@ -368,7 +370,7 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 					Description: `Disk type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "flavor_id",
 					Description: `The flavor id to be used.`,
@@ -450,8 +452,8 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 			ShortDescription: `Get the flavor information on a HuaweiCloud cdm service.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "version",
 					Description: `The version of the flavor.`,
@@ -481,7 +483,7 @@ The HuaweiCloud CSBS Backup Policy data source allows access of backup Policy re
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) Specifies the ID of backup policy.`,
@@ -567,7 +569,7 @@ The HuaweiCloud CSBS Backup Policy data source allows access of backup Policy re
 					Description: `Specifies backup object name.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Specifies the backup policy description.`,
@@ -653,7 +655,7 @@ The HuaweiCloud CSBS Backup data source allows access of backup resources.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) Specifies the ID of backup.`,
@@ -795,7 +797,7 @@ The HuaweiCloud CSBS Backup data source allows access of backup resources.
 					Description: `Specifies image type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Provides the backup description.`,
@@ -913,7 +915,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tracker_name",
 					Description: `(Optional) The tracker name.`,
@@ -943,7 +945,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The users using the login function.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_id",
 					Description: `The theme of the SMN service.`,
@@ -965,7 +967,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an Huaweicloud dcs az.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Indicates the name of an AZ.`,
@@ -991,7 +993,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1013,7 +1015,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an Huaweicloud dcs maintainwindow.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "seq",
 					Description: `(Required) Indicates the sequential number of a maintenance time window.`,
@@ -1043,7 +1045,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "begin",
 					Description: `See Argument Reference above.`,
@@ -1065,7 +1067,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an Flexibleengine dcs product.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine",
 					Description: `(Required) Indicates the name of a message engine.`,
@@ -1143,7 +1145,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine",
 					Description: `See Argument Reference above.`,
@@ -1189,7 +1191,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get all the partitions of a stream`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stream_name",
 					Description: `(Required) Name of the DIS stream. ## Attributes Reference The following attributes are exported:`,
@@ -1215,7 +1217,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `Sequence number range of each partition..`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "partitions",
 					Description: `The information of stream partitions. Structure is documented below. The ` + "`" + `partitions` + "`" + ` block contains:`,
@@ -1245,7 +1247,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an HuaweiCloud Role.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the role.`,
@@ -1267,7 +1269,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1289,7 +1291,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an HuaweiCloud Image.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Glance client. A Glance client is needed to create an Image that can be used with a compute instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1383,7 +1385,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The date the image was last updated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "checksum",
 					Description: `The checksum of the data associated with the image.`,
@@ -1441,7 +1443,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an HuaweiCloud KMS data encryption key.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Required) The globally unique identifier for the key. Changing this gets the new data encryption key.`,
@@ -1463,7 +1465,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The ciphertext of a DEK is expressed in hexadecimal format, and two characters indicate one byte.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plain_text",
 					Description: `The plaintext of a DEK is expressed in hexadecimal format, and two characters indicate one byte.`,
@@ -1481,7 +1483,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an HuaweiCloud KMS Key.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
 					Description: `(Optional) The alias in which to create the key. It is required when we create a new key. Changing this gets the new key.`,
@@ -1551,7 +1553,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
 					Description: `See Argument Reference above.`,
@@ -1601,7 +1603,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an HuaweiCloud Network.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve networks ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1651,7 +1653,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `(Optional) The availability zone candidates for the network.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_state_up",
 					Description: `(Optional) The administrative state of the network.`,
@@ -1681,7 +1683,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an HuaweiCloud Security Group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve security groups ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1707,7 +1709,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1725,7 +1727,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get information on an HuaweiCloud Subnet.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve subnet ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1787,7 +1789,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocation_pools",
 					Description: `Allocation pools of the subnet.`,
@@ -1817,7 +1819,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			ShortDescription: `Get the flavor information on an HuaweiCloud rds service.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) The region in which to obtain the V1 rds client.`,
@@ -1859,7 +1861,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `The name of the rds flavor.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1897,7 +1899,7 @@ The RTS Software Config data source provides details about a specific RTS Softwa
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The id of the software configuration.`,
@@ -1927,7 +1929,7 @@ The RTS Software Config data source provides details about a specific RTS Softwa
 					Description: `The software configuration options.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group",
 					Description: `The namespace that groups this software configuration by when it is delivered to a server.`,
@@ -1961,7 +1963,7 @@ The HuaweiCloud RTS Stack Resource data source allows access to stack resource m
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_name",
 					Description: `(Required) The unique stack name.`,
@@ -1995,7 +1997,7 @@ The HuaweiCloud RTS Stack Resource data source allows access to stack resource m
 					Description: `Specifies the resource dependency.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "logical_resource_id",
 					Description: `The logical resource ID.`,
@@ -2021,7 +2023,7 @@ The HuaweiCloud RTS Stack Resource data source allows access to stack resource m
 			ShortDescription: `Get information on an HuaweiCloud RTS.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the stack. ## Attributes Reference The following attributes are exported:`,
@@ -2071,7 +2073,7 @@ The HuaweiCloud RTS Stack Resource data source allows access to stack resource m
 					Description: `List of notification topics for stack.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "capabilities",
 					Description: `List of stack capabilities for stack.`,
@@ -2125,7 +2127,7 @@ The HuaweiCloud RTS Stack Resource data source allows access to stack resource m
 			ShortDescription: `Provides metadata and optionally content of an S3 object`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to read the object from`,
@@ -2207,7 +2209,7 @@ The HuaweiCloud RTS Stack Resource data source allows access to stack resource m
 					Description: `If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "body",
 					Description: `Object data (see`,
@@ -2289,7 +2291,7 @@ Provides information about an Shared File System (SFS).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the shared file system.`,
@@ -2375,7 +2377,7 @@ Provides information about an Shared File System (SFS).
 					Description: `Identifies which mount locations are most efficient and are used preferentially when multiple mount locations exist.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `The availability zone name.`,
@@ -2462,7 +2464,7 @@ The VBS Backup Policy data source provides details about a specific VBS backup p
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `(Required) Specifies the tag key. Tag keys must be unique.`,
@@ -2508,7 +2510,7 @@ The VBS Backup Policy data source provides details about a specific VBS backup p
 					Description: `Specifies the tag value.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `See Argument Reference above.`,
@@ -2558,7 +2560,7 @@ The VBS Backup data source provides details about a specific VBS Backup.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The id of the vbs backup.`,
@@ -2600,7 +2602,7 @@ The VBS Backup data source provides details about a specific VBS Backup.
 					Description: `The metadata of the vbs backup.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the vbs backup.`,
@@ -2635,8 +2637,8 @@ The VPC Peering Connection data source provides details about a specific VPC pee
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2651,13 +2653,13 @@ This resource can be useful for getting back a list of route ids for a vpc.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the route ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the route ids found. This data source will fail if none are found.`,
@@ -2675,13 +2677,13 @@ This resource can be useful for getting back a list of route ids for a vpc.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nexthop",
 					Description: `The next hop of the route. If the route type is peering, it will provide VPC peering connection ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nexthop",
 					Description: `The next hop of the route. If the route type is peering, it will provide VPC peering connection ID.`,
@@ -2701,13 +2703,13 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
@@ -2729,7 +2731,7 @@ VPC that the subnet belongs to.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) - Specifies a resource ID in UUID format.`,
@@ -2747,7 +2749,7 @@ VPC that the subnet belongs to.
 					Description: `Specifies the subnet (Native OpenStack API) ID.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2756,7 +2758,7 @@ VPC that the subnet belongs to.
 			ShortDescription: `Get information on an huaweicloud VPC.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V1 VPC client. A VPC client is needed to retrieve VPCs. If omitted, the region argument of the provider is used.`,
@@ -2806,7 +2808,7 @@ VPC that the subnet belongs to.
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the VPC.`,
@@ -2839,7 +2841,7 @@ VPC that the subnet belongs to.
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"huaweicloud_antiddos_v1":               0,
 		"huaweicloud_cce_cluster_v3":            1,
@@ -2876,10 +2878,10 @@ VPC that the subnet belongs to.
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

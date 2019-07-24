@@ -1,11 +1,13 @@
-package aws
+package rancher
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the certificate.`,
@@ -86,7 +88,7 @@ var (
 					Description: `The certificate version. ## Import Certificates can be imported using the Certificate ID in the format ` + "`" + `<environment_id>/<certificate_id>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_certificate.mycert 1a5/1c605 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then ` + "`" + `environment_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_certificate.mycert 1c605 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Computed) The ID of the resource.`,
@@ -142,7 +144,7 @@ var (
 			Keywords: []string{
 				"environment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the environment.`,
@@ -180,7 +182,7 @@ var (
 					Description: `The ID of the environment (ie ` + "`" + `1a11` + "`" + `) that can be used in other Terraform resources such as Rancher Stack definitions. ## Import Environments can be imported using their Rancher API ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_environment.dev 1a15 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the environment (ie ` + "`" + `1a11` + "`" + `) that can be used in other Terraform resources such as Rancher Stack definitions. ## Import Environments can be imported using their Rancher API ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_environment.dev 1a15 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -196,7 +198,7 @@ var (
 			Keywords: []string{
 				"host",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Computed) The ID of the resource.`,
@@ -222,7 +224,7 @@ var (
 					Description: `(Optional) A dictionary of labels to apply to the host. Computed internal labels are excluded from that list.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -234,7 +236,7 @@ var (
 				"registration",
 				"token",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the registration token.`,
@@ -276,7 +278,7 @@ var (
 					Description: `The token to use to register new nodes to the environment. ## Import Registration tokens can be imported using the Environment and Registration token IDs in the form ` + "`" + `<environment_id>/<registration_token_id>` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registration_token.dev_token 1a5/1c11 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then then ` + "`" + `environment_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registration_token.dev_token 1c11 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Computed) The ID of the resource.`,
@@ -308,7 +310,7 @@ var (
 			Keywords: []string{
 				"registry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the registry.`,
@@ -330,7 +332,7 @@ var (
 					Description: `(Computed) The ID of the resource. ## Import Registries can be imported using the Environment and Registry IDs in the form ` + "`" + `<environment_id>/<registry_id>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registry.private_registry 1a5/1sp31 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then then ` + "`" + `environment_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registry.private_registry 1sp31 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Computed) The ID of the resource. ## Import Registries can be imported using the Environment and Registry IDs in the form ` + "`" + `<environment_id>/<registry_id>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registry.private_registry 1a5/1sp31 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then then ` + "`" + `environment_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registry.private_registry 1sp31 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -347,7 +349,7 @@ var (
 				"registry",
 				"credential",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the registry credential.`,
@@ -373,7 +375,7 @@ var (
 					Description: `(Computed) The ID of the resource. ## Import Registry credentials can be imported using the Registry and credentials IDs in the format ` + "`" + `<registry_id>/<credential_id>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registry_credential.private_registry 1sp31/1c605 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then then ` + "`" + `registry_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registry_credential.private_registry 1c605 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Computed) The ID of the resource. ## Import Registry credentials can be imported using the Registry and credentials IDs in the format ` + "`" + `<registry_id>/<credential_id>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registry_credential.private_registry 1sp31/1c605 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then then ` + "`" + `registry_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_registry_credential.private_registry 1c605 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -389,7 +391,7 @@ var (
 			Keywords: []string{
 				"secret",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the secret.`,
@@ -407,7 +409,7 @@ var (
 					Description: `(Required) The secret value. ## Import Secrets can be imported using the Secret ID in the format ` + "`" + `<environment_id>/<secret_id>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_secret.mysec 1a5/1se10 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then ` + "`" + `environment_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_secret.mysec 1se10 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -418,7 +420,7 @@ var (
 			Keywords: []string{
 				"stack",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the stack.`,
@@ -472,7 +474,7 @@ var (
 					Description: `The interpolated ` + "`" + `rancher_compose` + "`" + ` applied to the stack. ## Import Stacks can be imported using the Environment and Stack ID in the form ` + "`" + `<environment_id>/<stack_id>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_stack.foo 1a5/1e149 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then then ` + "`" + `environment_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_stack.foo 1e149 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Computed) The ID of the resource.`,
@@ -496,7 +498,7 @@ var (
 			Keywords: []string{
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the volume.`,
@@ -514,7 +516,7 @@ var (
 					Description: `(Required) The volume driver. ## Import Volumes can be imported using the Volume ID in the format ` + "`" + `<environment_id>/<volume_id>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_volume.mysec 1a5/1v123456 ` + "`" + `` + "`" + `` + "`" + ` If the credentials for the Rancher provider have access to the global API, then ` + "`" + `environment_id` + "`" + ` can be omitted e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher_volume.mysec 1se10 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -532,10 +534,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

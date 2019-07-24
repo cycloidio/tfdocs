@@ -1,11 +1,13 @@
-package aws
+package mysql
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the database. This must be unique within a given MySQL server and may or may not be case-sensitive depending on the operating system on which the MySQL server is running.`,
@@ -46,7 +48,7 @@ var (
 					Description: `The default_collation of the database. ## Import Databases can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mysql_database.example my-example-database ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the database.`,
@@ -74,7 +76,7 @@ var (
 			Keywords: []string{
 				"grant",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `(Optional) The name of the user. Conflicts with ` + "`" + `role` + "`" + `.`,
@@ -112,7 +114,7 @@ var (
 					Description: `(Optional) Whether to also give the user privileges to grant the same privileges to other users. ## Attributes Reference No further attributes are exported.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -123,13 +125,13 @@ var (
 			Keywords: []string{
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the role. ## Attributes Reference No further attributes are exported.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -140,7 +142,7 @@ var (
 			Keywords: []string{
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `(Required) The name of the user.`,
@@ -190,7 +192,7 @@ var (
 					Description: `The host where the user was created. ## Attributes Reference No further attributes are exported.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `The name of the user.`,
@@ -219,7 +221,7 @@ var (
 				"user",
 				"password",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `(Required) The IAM user to associate with this access key.`,
@@ -241,7 +243,7 @@ var (
 					Description: `The encrypted password, base64 encoded. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_fingerprint",
 					Description: `The fingerprint of the PGP key used to encrypt the password`,
@@ -264,10 +266,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

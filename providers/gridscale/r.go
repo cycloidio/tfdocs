@@ -1,11 +1,13 @@
-package aws
+package gridscale
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"ipv4",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
@@ -102,7 +104,7 @@ var (
 					Description: `The price for the current period since the last bill.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -113,7 +115,7 @@ var (
 			Keywords: []string{
 				"ipv6",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 66 characters.`,
@@ -199,7 +201,7 @@ var (
 					Description: `The price for the current period since the last bill.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -210,7 +212,7 @@ var (
 			Keywords: []string{
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
@@ -280,7 +282,7 @@ var (
 					Description: `If deleting this network is allowed.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -291,7 +293,7 @@ var (
 			Keywords: []string{
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
@@ -437,7 +439,7 @@ var (
 					Description: `The price for the current period since the last bill.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -448,7 +450,7 @@ var (
 			Keywords: []string{
 				"sshkey",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
@@ -486,7 +488,7 @@ var (
 					Description: `Defines the date and time of the last object change.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -497,7 +499,7 @@ var (
 			Keywords: []string{
 				"storage",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
@@ -603,7 +605,7 @@ var (
 					Description: `The price for the current period since the last bill.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -618,10 +620,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

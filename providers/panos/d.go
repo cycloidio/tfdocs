@@ -1,11 +1,13 @@
-package aws
+package panos
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,8 +16,8 @@ var (
 			ShortDescription: `Gets DHCP client information on the given data interface.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "interface",
 					Description: `(Required) The data interface to get DHCP information for. These attributes are exported once the data source refreshes:`,
@@ -93,8 +95,8 @@ var (
 			ShortDescription: `Gets system info from the firewall.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "info",
 					Description: `a map containing the contents of ` + "`" + `show system info` + "`" + `.`,
@@ -115,17 +117,17 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"panos_dhcp_interface_info": 0,
 		"panos_system_info":         1,
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

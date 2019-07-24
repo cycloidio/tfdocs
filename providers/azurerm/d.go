@@ -1,11 +1,13 @@
-package aws
+package azurerm
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ Use this data source to access information about an existing API Management Serv
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Management service.`,
@@ -176,7 +178,7 @@ Use this data source to access information about an existing API Management Serv
 					Description: `Specifies the number of units associated with this API Management service.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Service.`,
@@ -338,7 +340,7 @@ Use this data source to access information about an existing API Management API.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Management API.`,
@@ -420,7 +422,7 @@ Use this data source to access information about an existing API Management API.
 					Description: `The name of endpoint (port) to import from WSDL.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management API.`,
@@ -498,7 +500,7 @@ Use this data source to access information about an existing API Management Grou
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
 					Description: `(Required) The Name of the API Management Service in which this Group exists.`,
@@ -532,7 +534,7 @@ Use this data source to access information about an existing API Management Grou
 					Description: `The type of this API Management Group, such as ` + "`" + `custom` + "`" + ` or ` + "`" + `external` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Group.`,
@@ -566,7 +568,7 @@ Use this data source to access information about an existing API Management Prod
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
 					Description: `(Required) The Name of the API Management Service in which this Product exists.`,
@@ -612,7 +614,7 @@ Use this data source to access information about an existing API Management Prod
 					Description: `Any Terms and Conditions for this Product, which must be accepted by Developers before they can begin the Subscription process.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Product.`,
@@ -658,7 +660,7 @@ Use this data source to access information about an existing API Management User
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
 					Description: `(Required) The Name of the API Management Service in which this User exists.`,
@@ -696,7 +698,7 @@ Use this data source to access information about an existing API Management User
 					Description: `The current state of this User, for example ` + "`" + `active` + "`" + `, ` + "`" + `blocked` + "`" + ` or ` + "`" + `pending` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management User.`,
@@ -734,7 +736,7 @@ Use this data source to access information about an existing App Service.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the App Service.`,
@@ -920,7 +922,7 @@ Use this data source to access information about an existing App Service.
 					Description: `The name of the Virtual Network which this App Service is attached to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the App Service.`,
@@ -1110,7 +1112,7 @@ Use this data source to access information about an existing App Service Plan (f
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the App Service Plan.`,
@@ -1184,7 +1186,7 @@ Use this data source to access information about an existing App Service Plan (f
 					Description: `Can Apps assigned to this App Service Plan be scaled independently?`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the App Service Plan.`,
@@ -1262,7 +1264,7 @@ Use this data source to access information about an existing Application Insight
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Application Insights component.`,
@@ -1296,7 +1298,7 @@ Use this data source to access information about an existing Application Insight
 					Description: `Tags applied to the component.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Machine.`,
@@ -1334,7 +1336,7 @@ Use this data source to access information about an existing Application Securit
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the Application Security Group.`,
@@ -1356,7 +1358,7 @@ Use this data source to access information about an existing Application Securit
 					Description: `A mapping of tags assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Application Security Group.`,
@@ -1383,7 +1385,7 @@ Use this data source to access information about an existing Automation Bool Var
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Automation Variable.`,
@@ -1413,7 +1415,7 @@ Use this data source to access information about an existing Automation Bool Var
 					Description: `The value of the Automation Variable as a ` + "`" + `boolean` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Automation Variable.`,
@@ -1444,7 +1446,7 @@ Use this data source to access information about an existing Automation Datetime
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Automation Variable.`,
@@ -1474,7 +1476,7 @@ Use this data source to access information about an existing Automation Datetime
 					Description: `The value of the Automation Variable in the [RFC3339 Section 5.6 Internet Date/Time Format](https://tools.ietf.org/html/rfc3339#section-5.6).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Automation Variable.`,
@@ -1505,7 +1507,7 @@ Use this data source to access information about an existing Automation Int Vari
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Automation Variable.`,
@@ -1535,7 +1537,7 @@ Use this data source to access information about an existing Automation Int Vari
 					Description: `The value of the Automation Variable as a ` + "`" + `integer` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Automation Variable.`,
@@ -1566,7 +1568,7 @@ Use this data source to access information about an existing Automation String V
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Automation Variable.`,
@@ -1596,7 +1598,7 @@ Use this data source to access information about an existing Automation String V
 					Description: `The value of the Automation Variable as a ` + "`" + `string` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Automation Variable.`,
@@ -1626,7 +1628,7 @@ Use this data source to access information about an existing Availability Set.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the Availability Set.`,
@@ -1660,7 +1662,7 @@ Use this data source to access information about an existing Availability Set.
 					Description: `A mapping of tags assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Availability Set.`,
@@ -1702,7 +1704,7 @@ Use this data source to access information about an existing Application within 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "object_id",
 					Description: `(Optional) Specifies the Object ID of the Application within Azure Active Directory.`,
@@ -1740,7 +1742,7 @@ Use this data source to access information about an existing Application within 
 					Description: `A list of URLs that user tokens are sent to for sign in, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the Object ID of the Azure Active Directory Application.`,
@@ -1786,7 +1788,7 @@ Gets information about an existing Service Principal associated with an Applicat
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Optional) The ID of the Azure AD Application for which to create a Service Principal.`,
@@ -1804,7 +1806,7 @@ Gets information about an existing Service Principal associated with an Applicat
 					Description: `The Object ID for the Service Principal.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Object ID for the Service Principal.`,
@@ -1822,7 +1824,7 @@ Use this data source to access information about an existing Batch Account.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Batch account.`,
@@ -1868,7 +1870,7 @@ Use this data source to access information about an existing Batch Account.
 					Description: `A map of tags assigned to the Batch account. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Batch account ID.`,
@@ -1918,7 +1920,7 @@ Use this data source to access information about an existing certificate in a Ba
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Batch certificate.`,
@@ -1952,7 +1954,7 @@ Use this data source to access information about an existing certificate in a Ba
 					Description: `The algorithm of the certificate thumbprint.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Batch certificate ID.`,
@@ -1982,8 +1984,8 @@ Use this data source to access information about an existing certificate in a Ba
 			ShortDescription: `Get information about an existing Azure Batch pool.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Batch pool ID.`,
@@ -2151,7 +2153,7 @@ Use this data source to access information about a built-in Role Definition. To 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the built-in Role Definition. Possible values are: ` + "`" + `Contributor` + "`" + `, ` + "`" + `Owner` + "`" + `, ` + "`" + `Reader` + "`" + ` and ` + "`" + `VirtualMachineContributor` + "`" + `. ## Attributes Reference`,
@@ -2193,7 +2195,7 @@ Use this data source to access information about a built-in Role Definition. To 
 					Description: `a list of data actions which are denied by this role`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ID of the built-in Role Definition.`,
@@ -2243,7 +2245,7 @@ Use this data source to access information about an existing CDN Profile.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the CDN Profile.`,
@@ -2265,7 +2267,7 @@ Use this data source to access information about an existing CDN Profile.
 					Description: `A mapping of tags assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `The Azure Region where the resource exists.`,
@@ -2291,8 +2293,8 @@ Use this data source to access the configuration of the AzureRM provider.
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2305,7 +2307,7 @@ Use this data source to access information about an existing Container Registry.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Container Registry.`,
@@ -2351,7 +2353,7 @@ Use this data source to access information about an existing Container Registry.
 					Description: `A map of tags assigned to the Container Registry.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Container Registry ID.`,
@@ -2401,7 +2403,7 @@ Use this data source to access information about an existing CosmosDB (formally 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the CosmosDB Account.`,
@@ -2511,7 +2513,7 @@ Use this data source to access information about an existing CosmosDB (formally 
 					Description: `The Secondary read-only master key for the CosmosDB Account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the CosmosDB Account.`,
@@ -2625,7 +2627,7 @@ Use this data source to access information about an existing Data Lake Store.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Data Lake Store.`,
@@ -2663,7 +2665,7 @@ Use this data source to access information about an existing Data Lake Store.
 					Description: `A mapping of tags to assign to the Data Lake Store.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Lake Store.`,
@@ -2705,7 +2707,7 @@ Use this data source to access information about an existing Dev Test Lab.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Dev Test Lab.`,
@@ -2755,7 +2757,7 @@ Use this data source to access information about an existing Dev Test Lab.
 					Description: `The unique immutable identifier of the Dev Test Lab.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Dev Test Lab.`,
@@ -2809,7 +2811,7 @@ Use this data source to access information about an existing DNS Zone.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS Zone.`,
@@ -2851,7 +2853,7 @@ Use this data source to access information about an existing DNS Zone.
 					Description: `A mapping of tags to assign to the EventHub Namespace.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the DNS Zone.`,
@@ -2897,7 +2899,7 @@ Use this data source to access information about an existing EventHub Namespace.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the EventHub Namespace.`,
@@ -2951,7 +2953,7 @@ Use this data source to access information about an existing EventHub Namespace.
 					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the EventHub Namespace.`,
@@ -3009,7 +3011,7 @@ Use this data source to access information about an existing ExpressRoute circui
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ExpressRoute circuit.`,
@@ -3095,7 +3097,7 @@ Use this data source to access information about an existing ExpressRoute circui
 					Description: `The billing mode for bandwidth. Possible values are ` + "`" + `MeteredData` + "`" + ` or ` + "`" + `UnlimitedData` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the ExpressRoute circuit.`,
@@ -3185,7 +3187,7 @@ Use this data source to access information about an existing Azure Firewall.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Azure Firewall.`,
@@ -3211,7 +3213,7 @@ Use this data source to access information about an existing Azure Firewall.
 					Description: `The private IP address of the Azure Firewall.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the Azure Firewall.`,
@@ -3241,7 +3243,7 @@ Use this data source to access information about an existing HDInsight Cluster.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of this HDInsight Cluster.`,
@@ -3303,7 +3305,7 @@ Use this data source to access information about an existing HDInsight Cluster.
 					Description: `The password used for the Ambari Portal.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `The Azure Region in which this HDInsight Cluster exists.`,
@@ -3369,7 +3371,7 @@ Use this data source to access information about an existing Image.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the Image.`,
@@ -3455,7 +3457,7 @@ Use this data source to access information about an existing Image.
 					Description: `the size of this Data Disk in GB.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data_disk",
 					Description: `a collection of ` + "`" + `data_disk` + "`" + ` blocks as defined below.`,
@@ -3537,7 +3539,7 @@ Use this data source to access information about an existing Key Vault.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Key Vault.`,
@@ -3619,7 +3621,7 @@ Use this data source to access information about an existing Key Vault.
 					Description: `A list of storage permissions applicable to this Access Policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Vault ID.`,
@@ -3705,7 +3707,7 @@ Use this data source to access information about the permissions from the Manage
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Management Template. Possible values are: ` + "`" + `Key Management` + "`" + `, ` + "`" + `Secret Management` + "`" + `, ` + "`" + `Certificate Management` + "`" + `, ` + "`" + `Key & Secret Management` + "`" + `, ` + "`" + `Key & Certificate Management` + "`" + `, ` + "`" + `Secret & Certificate Management` + "`" + `, ` + "`" + `Key, Secret, & Certificate Management` + "`" + ` ## Attributes Reference`,
@@ -3727,7 +3729,7 @@ Use this data source to access information about the permissions from the Manage
 					Description: `the certificate permissions for the access policy`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ID of the Key Vault Access Policy`,
@@ -3760,7 +3762,7 @@ Use this data source to access information about an existing Key Vault Key.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Key Vault Key.`,
@@ -3802,7 +3804,7 @@ Use this data source to access information about an existing Key Vault Key.
 					Description: `The current version of the Key Vault Key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Key Vault Key.`,
@@ -3851,7 +3853,7 @@ Use this data source to access information about an existing Key Vault Secret.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Key Vault Secret.`,
@@ -3881,7 +3883,7 @@ Use this data source to access information about an existing Key Vault Secret.
 					Description: `Any tags assigned to this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Key Vault Secret ID.`,
@@ -3918,7 +3920,7 @@ Use this data source to access information about an existing Managed Kubernetes 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the managed Kubernetes Cluster.`,
@@ -4136,7 +4138,7 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `The Public SSH Key used to access the cluster.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Kubernetes Managed Cluster.`,
@@ -4358,7 +4360,7 @@ Use this data source to retrieve the version of Kubernetes supported by Azure Ku
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `(Required) Specifies the location in which to query for versions.`,
@@ -4376,7 +4378,7 @@ Use this data source to retrieve the version of Kubernetes supported by Azure Ku
 					Description: `The most recent version available.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "versions",
 					Description: `The list of all supported versions.`,
@@ -4398,7 +4400,7 @@ Use this data source to access information about an existing Load Balancer
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Load Balancer.`,
@@ -4460,7 +4462,7 @@ Use this data source to access information about an existing Load Balancer
 					Description: `A list of Availability Zones which the Load Balancer's IP Addresses should be created in.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Load Balancer.`,
@@ -4526,7 +4528,7 @@ Use this data source to access information about an existing Load Balancer Backe
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Backend Address Pool.`,
@@ -4540,7 +4542,7 @@ Use this data source to access information about an existing Load Balancer Backe
 					Description: `The ID of the Backend Address Pool.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Backend Address Pool.`,
@@ -4558,7 +4560,7 @@ Use this data source to access information about an existing Log Analytics (form
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Log Analytics Workspace.`,
@@ -4600,7 +4602,7 @@ Use this data source to access information about an existing Log Analytics (form
 					Description: `A mapping of tags assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Azure Resource ID of the Log Analytics Workspace.`,
@@ -4646,7 +4648,7 @@ Use this data source to access information about an existing Logic App Workflow.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Logic App Workflow.`,
@@ -4684,7 +4686,7 @@ Use this data source to access information about an existing Logic App Workflow.
 					Description: `The Access Endpoint for the Logic App Workflow`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Logic App Workflow ID.`,
@@ -4726,7 +4728,7 @@ Use this data source to access information about an existing Managed Disk.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Managed Disk.`,
@@ -4764,7 +4766,7 @@ Use this data source to access information about an existing Managed Disk.
 					Description: `A collection containing the availability zone the managed disk is allocated in.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "storage_account_type",
 					Description: `The storage account type for the managed disk.`,
@@ -4806,7 +4808,7 @@ Use this data source to access information about an existing Management Group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `(Required) Specifies the UUID of this Management Group. ## Attributes Reference The following attributes are exported:`,
@@ -4828,7 +4830,7 @@ Use this data source to access information about an existing Management Group.
 					Description: `A list of Subscription ID's which are assigned to the Management Group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Management Group.`,
@@ -4858,7 +4860,7 @@ Use this data source to access the properties of an Action Group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Action Group.`,
@@ -4920,7 +4922,7 @@ Use this data source to access the properties of an Action Group.
 					Description: `The URI where webhooks should be sent.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Action Group.`,
@@ -4986,7 +4988,7 @@ Use this data source to access information about the Monitor Diagnostics Categor
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_id",
 					Description: `(Required) The ID of an existing Resource which Monitor Diagnostics Categories should be retrieved for. ## Attributes Reference`,
@@ -5004,7 +5006,7 @@ Use this data source to access information about the Monitor Diagnostics Categor
 					Description: `A list of the Metric Categories supported for this Resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Resource.`,
@@ -5030,7 +5032,7 @@ Use this data source to access the properties of a Log Profile.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the Name of the Log Profile. ## Attributes Reference`,
@@ -5064,7 +5066,7 @@ Use this data source to access the properties of a Log Profile.
 					Description: `The number of days for the retention policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Log Profile.`,
@@ -5106,7 +5108,7 @@ Use this data source to access information about an existing Network Interface.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Network Interface.`,
@@ -5208,7 +5210,7 @@ Use this data source to access information about an existing Network Interface.
 					Description: `is this the Primary IP Configuration for this Network Interface?`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Network Interface.`,
@@ -5314,7 +5316,7 @@ Use this data source to access information about an existing Network Security Gr
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the Name of the Network Security Group.`,
@@ -5396,7 +5398,7 @@ Use this data source to access information about an existing Network Security Gr
 					Description: `The direction specifies if rule will be evaluated on incoming or outgoing traffic.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Network Security Group.`,
@@ -5482,7 +5484,7 @@ Use this data source to access information about an existing Network Watcher.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the Name of the Network Watcher.`,
@@ -5504,7 +5506,7 @@ Use this data source to access information about an existing Network Watcher.
 					Description: `A mapping of tags assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Network Watcher.`,
@@ -5530,7 +5532,7 @@ Use this data source to access information about an existing Notification Hub Na
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the Name of the Notification Hub Namespace.`,
@@ -5564,7 +5566,7 @@ Use this data source to access information about an existing Notification Hub Na
 					Description: `(Required) The name of the SKU to use for this Notification Hub Namespace. Possible values are ` + "`" + `Free` + "`" + `, ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard.` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Notification Hub Namespace.`,
@@ -5602,7 +5604,7 @@ Use this data source to access information about a Platform Image.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `(Required) Specifies the Location to pull information about this Platform Image from.`,
@@ -5628,7 +5630,7 @@ Use this data source to access information about a Platform Image.
 					Description: `The latest version of the Platform Image.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Platform Image.`,
@@ -5650,7 +5652,7 @@ Use this data source to access information about a Policy Definition, both custo
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) Specifies the name of the Policy Definition.`,
@@ -5692,7 +5694,7 @@ Use this data source to access information about a Policy Definition, both custo
 					Description: `Any Metadata defined in the Policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Policy Definition.`,
@@ -5738,7 +5740,7 @@ Use this data source to access information about an existing Public IP Address.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the public IP address.`,
@@ -5772,7 +5774,7 @@ Use this data source to access information about an existing Public IP Address.
 					Description: `A mapping of tags to assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name_label",
 					Description: `The label for the Domain Name.`,
@@ -5810,7 +5812,7 @@ Use this data source to access information about a set of existing Public IP Add
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_group_name",
 					Description: `(Required) Specifies the name of the resource group.`,
@@ -5848,7 +5850,7 @@ Use this data source to access information about a set of existing Public IP Add
 					Description: `The Name of the Public IP Address`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "public_ips",
 					Description: `A List of ` + "`" + `public_ips` + "`" + ` blocks as defined below filtered by the criteria above. A ` + "`" + `public_ips` + "`" + ` block contains:`,
@@ -5882,7 +5884,7 @@ Use this data source to access information about an existing Recovery Services V
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Recovery Services VM Protection Policy.`,
@@ -5904,7 +5906,7 @@ Use this data source to access information about an existing Recovery Services V
 					Description: `A mapping of tags assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Recovery Services VM Protection Policy.`,
@@ -5926,7 +5928,7 @@ Use this data source to access information about an existing Recovery Services V
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Recovery Services Vault.`,
@@ -5952,7 +5954,7 @@ Use this data source to access information about an existing Recovery Services V
 					Description: `The vault's current SKU.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Recovery Services Vault.`,
@@ -5982,7 +5984,7 @@ Use this data source to access information about an existing Resource Group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the resource group. ~>`,
@@ -5996,7 +5998,7 @@ Use this data source to access information about an existing Resource Group.
 					Description: `A mapping of tags assigned to the resource group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `The location of the resource group.`,
@@ -6018,7 +6020,7 @@ Use this data source to access information about an existing Role Definition.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Specifies the Name of either a built-in or custom Role Definition. -> You can also use this for built-in roles such as ` + "`" + `Contributor` + "`" + `, ` + "`" + `Owner` + "`" + `, ` + "`" + `Reader` + "`" + ` and ` + "`" + `Virtual Machine Contributor` + "`" + ``,
@@ -6060,7 +6062,7 @@ Use this data source to access information about an existing Role Definition.
 					Description: `a list of actions which are denied by this role`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ID of the built-in Role Definition.`,
@@ -6102,7 +6104,7 @@ Use this data source to access information about an existing Route Table.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Route Table.`,
@@ -6148,7 +6150,7 @@ Use this data source to access information about an existing Route Table.
 					Description: `Contains the IP address packets should be forwarded to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Route Table ID.`,
@@ -6200,7 +6202,7 @@ Use this data source to access information about an existing Scheduler Job Colle
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Scheduler Job Collection.`,
@@ -6246,7 +6248,7 @@ Use this data source to access information about an existing Scheduler Job Colle
 					Description: `The maximum interval between retries.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Scheduler Job Collection.`,
@@ -6296,7 +6298,7 @@ Use this data source to access information about an existing ServiceBus Namespac
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the ServiceBus Namespace.`,
@@ -6338,7 +6340,7 @@ Use this data source to access information about an existing ServiceBus Namespac
 					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `The location of the Resource Group in which the ServiceBus Namespace exists.`,
@@ -6386,7 +6388,7 @@ Use this data source to access information about an existing Shared Image within
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Shared Image.`,
@@ -6448,7 +6450,7 @@ Use this data source to access information about an existing Shared Image within
 					Description: `The Name of the SKU for this Gallery Image.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the Shared Image.`,
@@ -6512,7 +6514,7 @@ Use this data source to access information about an existing Shared Image Galler
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Shared Image Gallery.`,
@@ -6538,7 +6540,7 @@ Use this data source to access information about an existing Shared Image Galler
 					Description: `A mapping of tags which are assigned to the Shared Image Gallery.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the Shared Image Gallery.`,
@@ -6570,7 +6572,7 @@ Use this data source to access information about an existing Version of a Shared
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Image Version.`,
@@ -6620,7 +6622,7 @@ Use this data source to access information about an existing Version of a Shared
 					Description: `The number of replicas of the Image Version to be created per region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the Shared Image.`,
@@ -6666,7 +6668,7 @@ Use this data source to access information about an existing SQL Azure Database 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SQL Server.`,
@@ -6696,7 +6698,7 @@ Use this data source to access information about an existing SQL Azure Database 
 					Description: `A mapping of tags assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `The location of the Resource Group in which the SQL Server exists.`,
@@ -6730,7 +6732,7 @@ Use this data source to access information about an existing Storage Account.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Storage Account`,
@@ -6924,7 +6926,7 @@ Use this data source to access information about an existing Storage Account.
 					Description: `The Custom Domain Name used for the Storage Account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Storage Account.`,
@@ -7127,7 +7129,7 @@ and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservi
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connection_string",
 					Description: `(Required) The connection string for the storage account to which this SAS applies. Typically directly from the ` + "`" + `primary_connection_string` + "`" + ` attribute of a terraform created ` + "`" + `azurerm_storage_account` + "`" + ` resource.`,
@@ -7221,7 +7223,7 @@ and *not* a [Service SAS](https://docs.microsoft.com/en-us/rest/api/storageservi
 					Description: `The computed Account Shared Access Signature (SAS).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sas",
 					Description: `The computed Account Shared Access Signature (SAS).`,
@@ -7239,7 +7241,7 @@ Use this data source to access information about an existing Stream Analytics Jo
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Stream Analytics Job.`,
@@ -7293,7 +7295,7 @@ Use this data source to access information about an existing Stream Analytics Jo
 					Description: `The query that will be run in the streaming job, [written in Stream Analytics Query Language (SAQL)](https://msdn.microsoft.com/library/azure/dn834998).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Job.`,
@@ -7351,7 +7353,7 @@ Use this data source to access information about an existing Subnet within a Vir
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Subnet.`,
@@ -7389,7 +7391,7 @@ Use this data source to access information about an existing Subnet within a Vir
 					Description: `A list of Service Endpoints within this subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Subnet.`,
@@ -7427,7 +7429,7 @@ Use this data source to access information about an existing Subscription.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subscription_id",
 					Description: `(Optional) Specifies the ID of the subscription. If this argument is omitted, the subscription ID of the current Azure Resource Manager provider is used. ## Attributes Reference`,
@@ -7461,7 +7463,7 @@ Use this data source to access information about an existing Subscription.
 					Description: `The subscription spending limit.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the subscription.`,
@@ -7503,7 +7505,7 @@ Use this data source to access information about all the Subscriptions currently
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name_prefix",
 					Description: `(Optional) A case-insensitive prefix which can be used to filter on the ` + "`" + `display_name` + "`" + ` field`,
@@ -7537,7 +7539,7 @@ Use this data source to access information about all the Subscriptions currently
 					Description: `The subscription spending limit.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subscriptions",
 					Description: `One or more ` + "`" + `subscription` + "`" + ` blocks as defined below. The ` + "`" + `subscription` + "`" + ` block contains:`,
@@ -7575,7 +7577,7 @@ Use this data source to access the ID of a specified Traffic Manager Geographica
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Location, for example ` + "`" + `World` + "`" + `, ` + "`" + `Europe` + "`" + ` or ` + "`" + `Germany` + "`" + `. ## Attributes Reference`,
@@ -7585,7 +7587,7 @@ Use this data source to access the ID of a specified Traffic Manager Geographica
 					Description: `The ID of this Location, also known as the ` + "`" + `Code` + "`" + ` of this Location.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of this Location, also known as the ` + "`" + `Code` + "`" + ` of this Location.`,
@@ -7603,7 +7605,7 @@ Use this data source to access information about an existing User Assigned Ident
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the User Assigned Identity.`,
@@ -7633,7 +7635,7 @@ Use this data source to access information about an existing User Assigned Ident
 					Description: `A mapping of tags assigned to the User Assigned Identity.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the User Assigned Identity.`,
@@ -7667,7 +7669,7 @@ Use this data source to access information about an existing Virtual Machine.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Virtual Machine.`,
@@ -7681,7 +7683,7 @@ Use this data source to access information about an existing Virtual Machine.
 					Description: `The ID of the Virtual Machine.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Machine.`,
@@ -7699,7 +7701,7 @@ Use this data source to access information about an existing Virtual Network.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Virtual Network.`,
@@ -7729,7 +7731,7 @@ Use this data source to access information about an existing Virtual Network.
 					Description: `A mapping of name - virtual network id of the virtual network peerings.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual network.`,
@@ -7763,7 +7765,7 @@ Use this data source to access information about an existing Virtual Network Gat
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Virtual Network Gateway.`,
@@ -7885,7 +7887,7 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `The SHA1 thumbprint of the certificate to be revoked.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Network Gateway.`,
@@ -8011,7 +8013,7 @@ Use this data source to access information about an existing Virtual Network Gat
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Virtual Network Gateway Connection.`,
@@ -8109,7 +8111,7 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `The IPSec SA lifetime in seconds. Must be at least ` + "`" + `300` + "`" + ` seconds.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Network Gateway Connection.`,
@@ -8202,7 +8204,7 @@ Use this data source to access information about an existing Virtual Network Gat
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"azurerm_api_management":                         0,
 		"azurerm_api_management_api":                     1,
@@ -8285,10 +8287,10 @@ Use this data source to access information about an existing Virtual Network Gat
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

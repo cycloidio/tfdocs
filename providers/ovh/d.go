@@ -1,11 +1,13 @@
-package aws
+package ovh
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get information & status of a region associated with a public cloud project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
@@ -52,7 +54,7 @@ var (
 					Description: `the status of the service`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "continent_code",
 					Description: `the code of the geographic continent the region is running. E.g.: EU for Europe, US for America...`,
@@ -90,7 +92,7 @@ var (
 			ShortDescription: `Get the list of regions associated with a public cloud project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
@@ -100,7 +102,7 @@ var (
 					Description: `The list of regions associated with the project`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `The list of regions associated with the project`,
@@ -114,7 +116,7 @@ var (
 			ShortDescription: `Get information & status of a domain zone.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the domain zone. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the domain zone name. In addition, the following attributes are exported:`,
@@ -136,7 +138,7 @@ var (
 					Description: `Is DNSSEC supported by this zone`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "last_update",
 					Description: `Last update date of the DNS zone`,
@@ -162,7 +164,7 @@ var (
 			ShortDescription: `Get information & status of an IP Load Balancing product.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ipv6",
 					Description: `The IPV6 associated to your IP load balancing`,
@@ -224,7 +226,7 @@ var (
 					Description: `The billing planCode for this zone`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metrics_token",
 					Description: `The metrics token associated with your IP load balancing This attribute is sensitive.`,
@@ -250,7 +252,7 @@ var (
 			ShortDescription: `Get information & status of an ovh bank account payment mean`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description_regexp",
 					Description: `(Optional) a regexp used to filter bank accounts on their ` + "`" + `description` + "`" + ` attributes.`,
@@ -276,7 +278,7 @@ var (
 					Description: `a boolean which tells if the retrieved bank account is marked as the default payment mean`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `the description attribute of the bank account`,
@@ -294,7 +296,7 @@ var (
 			ShortDescription: `Get information & status of an ovh credit card payment mean`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description_regexp",
 					Description: `(Optional) a regexp used to filter credit cards on their ` + "`" + `description` + "`" + ` attributes.`,
@@ -324,7 +326,7 @@ var (
 					Description: `a boolean which tells if the retrieved credit card is marked as the default payment mean`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `the description attribute of the credit card`,
@@ -346,7 +348,7 @@ var (
 			ShortDescription: `Get information & status of a region associated with a public cloud project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
@@ -384,7 +386,7 @@ var (
 					Description: `the status of the service`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "continent_code",
 					Description: `the code of the geographic continent the region is running. E.g.: EU for Europe, US for America...`,
@@ -422,7 +424,7 @@ var (
 			ShortDescription: `Get the list of regions associated with a public cloud project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
@@ -432,7 +434,7 @@ var (
 					Description: `The list of regions associated with the project`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `The list of regions associated with the project`,
@@ -441,7 +443,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"ovh_cloud_region":               0,
 		"ovh_cloud_regions":              1,
@@ -454,10 +456,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

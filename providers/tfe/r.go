@@ -1,11 +1,13 @@
-package aws
+package tfe
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"oauth",
 				"client",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "organization",
 					Description: `(Required) Name of the organization.`,
@@ -47,7 +49,7 @@ var (
 					Description: `The ID of the OAuth token associated with the OAuth client.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the OAuth client.`,
@@ -67,7 +69,7 @@ var (
 			Keywords: []string{
 				"organization",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the organization.`,
@@ -97,7 +99,7 @@ var (
 					Description: `The name of the organization. ## Import Organizations can be imported; use ` + "`" + `<ORGANIZATION NAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_organization.test my-org-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the organization. ## Import Organizations can be imported; use ` + "`" + `<ORGANIZATION NAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_organization.test my-org-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -114,7 +116,7 @@ var (
 				"organization",
 				"token",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "organization",
 					Description: `(Required) Name of the organization.`,
@@ -132,7 +134,7 @@ var (
 					Description: `The generated token. ## Import Organization tokens can be imported; use ` + "`" + `<ORGANIZATION NAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_organization_token.test my-org-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the token.`,
@@ -153,7 +155,7 @@ var (
 				"policy",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the policy set.`,
@@ -207,7 +209,7 @@ var (
 					Description: `The ID of the policy set. ## Import Policy sets can be imported; use ` + "`" + `<POLICY SET ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_policy_set.test polset-wAs3zYmWAhYK7peR ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy set. ## Import Policy sets can be imported; use ` + "`" + `<POLICY SET ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_policy_set.test polset-wAs3zYmWAhYK7peR ` + "`" + `` + "`" + `` + "`" + ``,
@@ -224,7 +226,7 @@ var (
 				"sentinel",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the policy.`,
@@ -250,7 +252,7 @@ var (
 					Description: `The ID of the policy. ## Import Sentinel policies can be imported; use ` + "`" + `<ORGANIZATION NAME>/<POLICY ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_sentinel_policy.test my-org-name/pol-wAs3zYmWAhYK7peR ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy. ## Import Sentinel policies can be imported; use ` + "`" + `<ORGANIZATION NAME>/<POLICY ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_sentinel_policy.test my-org-name/pol-wAs3zYmWAhYK7peR ` + "`" + `` + "`" + `` + "`" + ``,
@@ -267,7 +269,7 @@ var (
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name to identify the SSH key.`,
@@ -281,7 +283,7 @@ var (
 					Description: `(Required) The text of the SSH private key. ## Attributes Reference`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -292,7 +294,7 @@ var (
 			Keywords: []string{
 				"team",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the team.`,
@@ -302,7 +304,7 @@ var (
 					Description: `(Required) Name of the organization. ## Attributes Reference`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -314,7 +316,7 @@ var (
 				"team",
 				"access",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access",
 					Description: `(Required) Type of access to grant. Valid values are ` + "`" + `admin` + "`" + `, ` + "`" + `read` + "`" + `, ` + "`" + `plan` + "`" + `, or ` + "`" + `write` + "`" + `.`,
@@ -328,7 +330,7 @@ var (
 					Description: `(Required) The workspace to which the team will be added, specified as a human-readable ID (` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `). ## Attributes Reference`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -340,7 +342,7 @@ var (
 				"team",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `(Required) ID of the team.`,
@@ -350,7 +352,7 @@ var (
 					Description: `(Required) Name of the user to add. ## Import A team member can be imported; use ` + "`" + `<TEAM ID>/<USERNAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_team_member.test team-47qC3LmA47piVan7/sander ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -362,7 +364,7 @@ var (
 				"team",
 				"members",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `(Required) ID of the team.`,
@@ -376,7 +378,7 @@ var (
 					Description: `The ID of the team. ## Import Team members can be imported; use ` + "`" + `<TEAM ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_team_members.test team-47qC3LmA47piVan7 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the team. ## Import Team members can be imported; use ` + "`" + `<TEAM ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_team_members.test team-47qC3LmA47piVan7 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -393,7 +395,7 @@ var (
 				"team",
 				"token",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team_id",
 					Description: `(Required) ID of the team.`,
@@ -411,7 +413,7 @@ var (
 					Description: `The generated token. ## Import Team tokens can be imported; use ` + "`" + `<TEAM ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_team_token.test team-47qC3LmA47piVan7 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the token.`,
@@ -431,7 +433,7 @@ var (
 			Keywords: []string{
 				"variable",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `(Required) Name of the variable.`,
@@ -461,7 +463,7 @@ var (
 					Description: `The ID of the variable. ## Import Variables can be imported; use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>/<VARIABLE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_variable.test my-org-name/my-workspace-name/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the variable. ## Import Variables can be imported; use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>/<VARIABLE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_variable.test my-org-name/my-workspace-name/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ``,
@@ -477,7 +479,7 @@ var (
 			Keywords: []string{
 				"workspace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the workspace.`,
@@ -543,7 +545,7 @@ var (
 					Description: `The workspace's opaque external ID, which looks like ` + "`" + `ws-<RANDOM STRING>` + "`" + `. ## Import Workspaces can be imported; use ` + "`" + `<ORGANIZATION NAME>/<WORKSPACE NAME>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_workspace.test my-org-name/my-workspace-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The workspace's human-readable ID, which looks like ` + "`" + `<ORGANIZATION>/<WORKSPACE>` + "`" + `.`,
@@ -574,10 +576,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package opc
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Gets information about the configuration of an Image List Entry within an Oracle Cloud Infrastructure Compute Classic domain.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_list",
 					Description: `(Required) - The name of the image list to lookup.`,
@@ -44,7 +46,7 @@ var (
 					Description: `The URI of the image list`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dns",
 					Description: `Array of DNS servers for the interface.`,
@@ -70,7 +72,7 @@ var (
 			ShortDescription: `Gets information about an existing IP Network IP address reservation.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ip address reservation. ## Attributes Reference`,
@@ -96,7 +98,7 @@ var (
 					Description: `The Uniform Resource Identifier of the ip address reservation`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address_pool",
 					Description: `The IP address pool from which the IP address is allocated.`,
@@ -126,7 +128,7 @@ var (
 			ShortDescription: `Gets information about an existing IP reservation for the Shared Network.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the IP Reservation. ## Attributes Reference`,
@@ -152,7 +154,7 @@ var (
 					Description: `indicates that the IP reservation is associated with an instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip",
 					Description: `The reserved IPv4 Public IP address.`,
@@ -182,7 +184,7 @@ var (
 			ShortDescription: `Gets information about the configuration of an Machine Image in a Compute Classic identity domain.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account",
 					Description: `(Required) The two part name of the compute object storage account in the format ` + "`" + `/Compute-{identity_domain}/cloud_storage` + "`" + ``,
@@ -228,7 +230,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Machine Image.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file",
 					Description: `The name of the Machine Image .tar.gz file in the ` + "`" + `compute_images` + "`" + ` storage container.`,
@@ -274,7 +276,7 @@ var (
 			ShortDescription: `Gets information about the configuration of an instance's network interface`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dns",
 					Description: `Array of DNS servers for the interface.`,
@@ -328,7 +330,7 @@ var (
 					Description: `The array of vNIC Sets the interface was added to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dns",
 					Description: `Array of DNS servers for the interface.`,
@@ -390,7 +392,7 @@ var (
 			ShortDescription: `Gets information about an existing SSH key.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique (within this identity domain) name of the SSH key. ## Attributes Reference`,
@@ -404,7 +406,7 @@ var (
 					Description: `Whether or not the key is enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `The public SSH key.`,
@@ -422,7 +424,7 @@ var (
 			ShortDescription: `Gets information about the configuration of a storage volume snapshot`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account",
 					Description: `Account of the snapshot.`,
@@ -492,7 +494,7 @@ var (
 					Description: `The name of the storage volume that the snapshot was created from`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account",
 					Description: `Account of the snapshot.`,
@@ -570,12 +572,12 @@ var (
 			ShortDescription: `Gets information about the configuration of a Virtual NIC.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"opc_compute_image_list_entry":        0,
 		"opc_compute_ip_address_reservation":  1,
@@ -588,10 +590,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

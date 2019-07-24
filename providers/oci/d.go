@@ -1,11 +1,13 @@
-package aws
+package oci
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -19,7 +21,7 @@ Returns all audit events for the specified compartment that were processed withi
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -121,7 +123,7 @@ Returns all audit events for the specified compartment that were processed withi
 					Description: `The OCID of the tenant.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "audit_events",
 					Description: `The list of audit_events. ### AuditEvent Reference The following attributes are exported:`,
@@ -220,7 +222,7 @@ Get the configuration
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) ID of the root compartment (tenancy) ## Attributes Reference The following attributes are exported:`,
@@ -230,7 +232,7 @@ Get the configuration
 					Description: `The retention period days`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "retention_period_days",
 					Description: `The retention period days`,
@@ -249,7 +251,7 @@ Gets information about the specified autoscaling configuration.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auto_scaling_configuration_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the autoscaling configuration. ## Attributes Reference The following attributes are exported:`,
@@ -379,7 +381,7 @@ Gets information about the specified autoscaling configuration.
 					Description: `The date and time the AutoScalingConfiguration was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auto_scaling_resources",
 					Description: ``,
@@ -519,7 +521,7 @@ Lists autoscaling configurations in the specifed compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
@@ -581,7 +583,7 @@ Lists autoscaling configurations in the specifed compartment.
 					Description: `The date and time the AutoScalingConfiguration was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auto_scaling_configurations",
 					Description: `The list of auto_scaling_configurations. ### AutoScalingConfiguration Reference The following attributes are exported:`,
@@ -648,7 +650,7 @@ Gets an Alert Rule for a Budget by identifier
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alert_rule_id",
 					Description: `(Required) The unique Alert Rule OCID`,
@@ -718,7 +720,7 @@ Gets an Alert Rule for a Budget by identifier
 					Description: `Version of the alert rule. Starts from 1 and increments by 1.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "budget_id",
 					Description: `The OCID of the budget`,
@@ -794,7 +796,7 @@ Returns a list of Alert Rules.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "budget_id",
 					Description: `(Required) The unique Budget OCID`,
@@ -872,7 +874,7 @@ Returns a list of Alert Rules.
 					Description: `Version of the alert rule. Starts from 1 and increments by 1.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alert_rules",
 					Description: `The list of alert_rules. ### AlertRule Reference The following attributes are exported:`,
@@ -951,7 +953,7 @@ Gets a Budget by identifier
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "budget_id",
 					Description: `(Required) The unique Budget OCID ## Attributes Reference The following attributes are exported:`,
@@ -1025,7 +1027,7 @@ Gets a Budget by identifier
 					Description: `Version of the budget. Starts from 1 and increments by 1.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "actual_spend",
 					Description: `The actual spend in currency for the current budget cycle`,
@@ -1109,7 +1111,7 @@ Returns a list of Budgets.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The ID of the compartment in which to list resources.`,
@@ -1195,7 +1197,7 @@ Returns a list of Budgets.
 					Description: `Version of the budget. Starts from 1 and increments by 1.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "budgets",
 					Description: `The list of budgets. ### Budget Reference The following attributes are exported:`,
@@ -1282,7 +1284,7 @@ This data source provides details about a specific Cluster Kube Config resource 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) The OCID of the cluster.`,
@@ -1300,7 +1302,7 @@ This data source provides details about a specific Cluster Kube Config resource 
 					Description: `content of the Kubeconfig YAML for the cluster.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "content",
 					Description: `content of the Kubeconfig YAML for the cluster.`,
@@ -1319,7 +1321,7 @@ Get options available for clusters.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_option_id",
 					Description: `(Required) The id of the option set to retrieve. Only "all" is supported. ## Attributes Reference The following attributes are exported:`,
@@ -1329,7 +1331,7 @@ Get options available for clusters.
 					Description: `Available Kubernetes versions.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "kubernetes_versions",
 					Description: `Available Kubernetes versions.`,
@@ -1348,7 +1350,7 @@ List all the cluster objects in a compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -1478,7 +1480,7 @@ List all the cluster objects in a compartment.
 					Description: `The OCID of the virtual cloud network (VCN) in which the cluster exists.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "clusters",
 					Description: `The list of clusters. ### Cluster Reference The following attributes are exported:`,
@@ -1609,7 +1611,7 @@ Get the details of a node pool.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "node_pool_id",
 					Description: `(Required) The OCID of the node pool. ## Attributes Reference The following attributes are exported:`,
@@ -1723,7 +1725,7 @@ Get the details of a node pool.
 					Description: `The OCIDs of the subnets in which to place nodes for this node pool.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `The OCID of the cluster to which this node pool is attached.`,
@@ -1846,7 +1848,7 @@ Get options available for node pools.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "node_pool_option_id",
 					Description: `(Required) The id of the option set to retrieve. Use "all" get all options, or use a cluster ID to get options specific to the provided cluster. ## Attributes Reference The following attributes are exported:`,
@@ -1864,7 +1866,7 @@ Get options available for node pools.
 					Description: `Available shapes for nodes.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "images",
 					Description: `Available Kubernetes versions.`,
@@ -1891,7 +1893,7 @@ List all the node pools in a compartment, and optionally filter by cluster.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Optional) The OCID of the cluster.`,
@@ -2017,7 +2019,7 @@ List all the node pools in a compartment, and optionally filter by cluster.
 					Description: `The OCIDs of the subnets in which to place nodes for this node pool.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "node_pools",
 					Description: `The list of node_pools. ### NodePool Reference The following attributes are exported:`,
@@ -2144,7 +2146,7 @@ Get the errors of a work request.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -2170,7 +2172,7 @@ Get the errors of a work request.
 					Description: `The date and time the error occurred.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "work_request_errors",
 					Description: `The list of work_request_errors. ### WorkRequestError Reference The following attributes are exported:`,
@@ -2201,7 +2203,7 @@ Get the logs of a work request.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -2223,7 +2225,7 @@ Get the logs of a work request.
 					Description: `The date and time the log entry occurred.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "work_request_log_entries",
 					Description: `The list of work_request_log_entries. ### WorkRequestLogEntry Reference The following attributes are exported:`,
@@ -2250,7 +2252,7 @@ List all work requests in a compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Optional) The OCID of the cluster.`,
@@ -2324,7 +2326,7 @@ List all work requests in a compartment.
 					Description: `The time the work request was started.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "work_requests",
 					Description: `The list of work_requests. ### WorkRequest Reference The following attributes are exported:`,
@@ -2391,7 +2393,7 @@ Gets the specified listing.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listing_id",
 					Description: `(Required) The OCID of the listing. ## Attributes Reference The following attributes are exported:`,
@@ -2429,7 +2431,7 @@ Gets the specified listing.
 					Description: `Date and time the listing was published, in RFC3339 format. Example: ` + "`" + `2018-03-20T12:32:53.532Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "contact_url",
 					Description: `Listing's contact URL.`,
@@ -2476,7 +2478,7 @@ Gets the specified listing resource version.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listing_id",
 					Description: `(Required) The OCID of the listing.`,
@@ -2518,7 +2520,7 @@ Gets the specified listing resource version.
 					Description: `Date and time the listing resource version was published, in RFC3339 format. Example: ` + "`" + `2018-03-20T12:32:53.532Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessible_ports",
 					Description: `List of accessible ports for instances launched with this listing resource version.`,
@@ -2565,7 +2567,7 @@ Gets all resource versions for a particular listing.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listing_id",
 					Description: `(Required) The OCID of the listing. ## Attributes Reference The following attributes are exported:`,
@@ -2607,7 +2609,7 @@ Gets all resource versions for a particular listing.
 					Description: `Date and time the listing resource version was published, in RFC3339 format. Example: ` + "`" + `2018-03-20T12:32:53.532Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_catalog_listing_resource_versions",
 					Description: `The list of app_catalog_listing_resource_versions. ### AppCatalogListingResourceVersion Reference The following attributes are exported:`,
@@ -2658,7 +2660,7 @@ Lists the published listings.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Optional) A filter to return only resources that match the given display name exactly.`,
@@ -2708,7 +2710,7 @@ Lists the published listings.
 					Description: `Date and time the listing was published, in RFC3339 format. Example: ` + "`" + `2018-03-20T12:32:53.532Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_catalog_listings",
 					Description: `The list of app_catalog_listings. ### AppCatalogListing Reference The following attributes are exported:`,
@@ -2759,7 +2761,7 @@ Lists subscriptions for a compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -2805,7 +2807,7 @@ Lists subscriptions for a compartment.
 					Description: `Date and time at which the subscription was created, in RFC3339 format. Example: ` + "`" + `2018-03-20T12:32:53.532Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_catalog_subscriptions",
 					Description: `The list of app_catalog_subscriptions. ### AppCatalogSubscription Reference The following attributes are exported:`,
@@ -2856,7 +2858,7 @@ Gets information for the specified boot volume.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volume_id",
 					Description: `(Required) The OCID of the boot volume. ## Attributes Reference The following attributes are exported:`,
@@ -2930,7 +2932,7 @@ Gets information for the specified boot volume.
 					Description: `The OCID of the source volume group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the boot volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -3015,7 +3017,7 @@ list by specifying an instance OCID, boot volume OCID, or both.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -3073,7 +3075,7 @@ list by specifying an instance OCID, boot volume OCID, or both.
 					Description: `The date and time the boot volume was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volume_attachments",
 					Description: `The list of boot_volume_attachments. ### BootVolumeAttachment Reference The following attributes are exported:`,
@@ -3128,7 +3130,7 @@ Gets information for the specified boot volume backup.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volume_backup_id",
 					Description: `(Required) The OCID of the boot volume backup. ## Attributes Reference The following attributes are exported:`,
@@ -3198,7 +3200,7 @@ Gets information for the specified boot volume backup.
 					Description: `The size used by the backup, in GBs. It is typically smaller than ` + "`" + `size_in_gbs` + "`" + `, depending on the space consumed on the boot volume and whether the backup is full or incremental.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volume_id",
 					Description: `The OCID of the boot volume.`,
@@ -3278,7 +3280,7 @@ Lists the boot volume backups in the specified compartment. You can filter the r
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volume_id",
 					Description: `(Optional) The OCID of the boot volume.`,
@@ -3364,7 +3366,7 @@ Lists the boot volume backups in the specified compartment. You can filter the r
 					Description: `The size used by the backup, in GBs. It is typically smaller than ` + "`" + `size_in_gbs` + "`" + `, depending on the space consumed on the boot volume and whether the backup is full or incremental.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volume_backups",
 					Description: `The list of boot_volume_backups. ### BootVolumeBackup Reference The following attributes are exported:`,
@@ -3448,7 +3450,7 @@ Lists the boot volumes in the specified compartment and availability domain.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -3534,7 +3536,7 @@ Lists the boot volumes in the specified compartment and availability domain.
 					Description: `The OCID of the source volume group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volumes",
 					Description: `The list of boot_volumes. ### BootVolume Reference The following attributes are exported:`,
@@ -3622,7 +3624,7 @@ Lists the console history metadata for the specified compartment or instance.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -3680,7 +3682,7 @@ Lists the console history metadata for the specified compartment or instance.
 					Description: `The date and time the history was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "console_histories",
 					Description: `The list of console_histories. ### ConsoleHistory Reference The following attributes are exported:`,
@@ -3738,7 +3740,7 @@ for details about using the console history operations.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "console_history_id",
 					Description: `(Required) The OCID of the console history.`,
@@ -3756,7 +3758,7 @@ for details about using the console history operations.
 					Description: `The console history data.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data",
 					Description: `The console history data.`,
@@ -3776,7 +3778,7 @@ Lists the customer-premises equipment objects (CPEs) in the specified compartmen
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -3814,7 +3816,7 @@ Lists the customer-premises equipment objects (CPEs) in the specified compartmen
 					Description: `The date and time the CPE was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cpes",
 					Description: `The list of cpes. ### Cpe Reference The following attributes are exported:`,
@@ -3861,7 +3863,7 @@ Gets the specified cross-connect's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connect_id",
 					Description: `(Required) The OCID of the cross-connect. ## Attributes Reference The following attributes are exported:`,
@@ -3907,7 +3909,7 @@ Gets the specified cross-connect's information.
 					Description: `The date and time the cross-connect was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the cross-connect group.`,
@@ -3962,7 +3964,7 @@ Gets the specified cross-connect group's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connect_group_id",
 					Description: `(Required) The OCID of the cross-connect group. ## Attributes Reference The following attributes are exported:`,
@@ -3992,7 +3994,7 @@ Gets the specified cross-connect group's information.
 					Description: `The date and time the cross-connect group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the cross-connect group.`,
@@ -4032,7 +4034,7 @@ Lists the cross-connect groups in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -4074,7 +4076,7 @@ Lists the cross-connect groups in the specified compartment.
 					Description: `The date and time the cross-connect group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connect_groups",
 					Description: `The list of cross_connect_groups. ### CrossConnectGroup Reference The following attributes are exported:`,
@@ -4119,7 +4121,7 @@ this information so you can specify your desired location when you create a cros
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -4137,7 +4139,7 @@ this information so you can specify your desired location when you create a cros
 					Description: `The name of the location. Example: ` + "`" + `CyrusOne, Chandler, AZ` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connect_locations",
 					Description: `The list of cross_connect_locations. ### CrossConnectLocation Reference The following attributes are exported:`,
@@ -4167,7 +4169,7 @@ cross-connect.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -4185,7 +4187,7 @@ cross-connect.
 					Description: `The port speed in Gbps. Example: ` + "`" + `10` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connect_port_speed_shapes",
 					Description: `The list of cross_connect_port_speed_shapes. ### CrossConnectPortSpeedShape Reference The following attributes are exported:`,
@@ -4213,7 +4215,7 @@ Gets the status of the specified cross-connect.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connect_id",
 					Description: `(Required) The OCID of the cross-connect. ## Attributes Reference The following attributes are exported:`,
@@ -4235,7 +4237,7 @@ Gets the status of the specified cross-connect.
 					Description: `Status indicator corresponding to the light level.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connect_id",
 					Description: `The OCID of the cross-connect.`,
@@ -4268,7 +4270,7 @@ by specifying the OCID of a cross-connect group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -4330,7 +4332,7 @@ by specifying the OCID of a cross-connect group.
 					Description: `The date and time the cross-connect was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connects",
 					Description: `The list of cross_connects. ### CrossConnect Reference The following attributes are exported:`,
@@ -4392,7 +4394,7 @@ plus any other sets you've created.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -4466,7 +4468,7 @@ plus any other sets you've created.
 					Description: `The OCID of the VCN the set of DHCP options belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "options",
 					Description: `The list of options. ### DhcpOptions Reference The following attributes are exported:`,
@@ -4539,7 +4541,7 @@ results by VCN or DRG.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -4589,7 +4591,7 @@ results by VCN or DRG.
 					Description: `The OCID of the VCN.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "drg_attachments",
 					Description: `The list of drg_attachments. ### DrgAttachment Reference The following attributes are exported:`,
@@ -4641,7 +4643,7 @@ Lists the DRGs in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -4679,7 +4681,7 @@ Lists the DRGs in the specified compartment.
 					Description: `The date and time the DRG was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "drgs",
 					Description: `The list of drgs. ### Drg Reference The following attributes are exported:`,
@@ -4728,7 +4730,7 @@ For more information, see [FastConnect Overview](https://docs.cloud.oracle.com/i
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "provider_service_id",
 					Description: `(Required) The OCID of the provider service. ## Attributes Reference The following attributes are exported:`,
@@ -4782,7 +4784,7 @@ For more information, see [FastConnect Overview](https://docs.cloud.oracle.com/i
 					Description: `Provider service type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bandwith_shape_management",
 					Description: `Who is responsible for managing the virtual circuit bandwidth.`,
@@ -4847,7 +4849,7 @@ provider service key. An invalid key returns a 404 error.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "provider_service_id",
 					Description: `(Required) The OCID of the provider service.`,
@@ -4869,7 +4871,7 @@ provider service key. An invalid key returns a 404 error.
 					Description: `The provider's peering location.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bandwidth_shape_name",
 					Description: `The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see [ListFastConnectProviderServiceVirtualCircuitBandwidthShapes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes). Example: ` + "`" + `10 Gbps` + "`" + ``,
@@ -4903,7 +4905,7 @@ For more information, see [FastConnect Overview](https://docs.cloud.oracle.com/i
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -4961,7 +4963,7 @@ For more information, see [FastConnect Overview](https://docs.cloud.oracle.com/i
 					Description: `Provider service type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fast_connect_provider_services",
 					Description: `The list of fast_connect_provider_services. ### FastConnectProviderService Reference The following attributes are exported:`,
@@ -5035,7 +5037,7 @@ The order of images returned may change when new images are released.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -5237,7 +5239,7 @@ The order of images returned may change when new images are released.
 					Description: `The date and time the image was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "images",
 					Description: `The list of images. ### Image Reference The following attributes are exported:`,
@@ -5420,7 +5422,7 @@ Gets information about the specified instance.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required) The OCID of the instance. ## Attributes Reference The following attributes are exported:`,
@@ -5642,7 +5644,7 @@ Gets information about the specified instance.
 					Description: `The date and time the instance is expected to be stopped / started, in the format defined by RFC3339. After that time if instance hasn't been rebooted, Oracle will reboot the instance within 24 hours of the due time. Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state. Example: ` + "`" + `2018-05-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "agent_config",
 					Description: ``,
@@ -5873,7 +5875,7 @@ Gets the specified instance configuration
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_configuration_id",
 					Description: `(Required) The OCID of the instance configuration. ## Attributes Reference The following attributes are exported:`,
@@ -6127,7 +6129,7 @@ Gets the specified instance configuration
 					Description: `The date and time the instance configuration was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the instance configuration.`,
@@ -6391,7 +6393,7 @@ Lists the available instanceConfigurations in the specific compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -6649,7 +6651,7 @@ Lists the available instanceConfigurations in the specific compartment.
 					Description: `The date and time the instance configuration was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_configurations",
 					Description: `The list of instance_configurations. ### InstanceConfiguration Reference The following attributes are exported:`,
@@ -6919,7 +6921,7 @@ For more information about console access, see [Accessing the Console](https://d
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -6969,7 +6971,7 @@ For more information about console access, see [Accessing the Console](https://d
 					Description: `The SSH connection string for the SSH tunnel used to connect to the console connection over VNC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_console_connections",
 					Description: `The list of instance_console_connections. ### InstanceConsoleConnection Reference The following attributes are exported:`,
@@ -7026,7 +7028,7 @@ For certain OS'es, users will be forced to change the initial credentials.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required) The OCID of the instance. ## Attributes Reference The following attributes are exported:`,
@@ -7040,7 +7042,7 @@ For certain OS'es, users will be forced to change the initial credentials.
 					Description: `The username.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "password",
 					Description: `The password for the username.`,
@@ -7063,7 +7065,7 @@ Gets a list of all the devices for given instance. You can optionally filter res
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required) The OCID of the instance.`,
@@ -7089,7 +7091,7 @@ Gets a list of all the devices for given instance. You can optionally filter res
 					Description: `The device name.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "devices",
 					Description: `The list of devices. ### InstanceDevice Reference The following attributes are exported:`,
@@ -7116,7 +7118,7 @@ Gets the specified instance pool
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_pool_id",
 					Description: `(Required) The OCID of the instance pool. ## Attributes Reference The following attributes are exported:`,
@@ -7214,7 +7216,7 @@ Gets the specified instance pool
 					Description: `The date and time the instance pool was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the instance pool.`,
@@ -7321,7 +7323,7 @@ List the instances in the specified instance pool.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -7399,7 +7401,7 @@ List the instances in the specified instance pool.
 					Description: `The date and time the instance pool instance was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instances",
 					Description: `The list of instances. ### InstancePoolInstance Reference The following attributes are exported:`,
@@ -7479,7 +7481,7 @@ Gets information about a load balancer that is attached to the specified instanc
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_pool_id",
 					Description: `(Required) The OCID of the instance pool.`,
@@ -7517,7 +7519,7 @@ Gets information about a load balancer that is attached to the specified instanc
 					Description: `Indicates which VNIC on each instance in the instance pool should be used to associate with the load balancer. Possible values are "PrimaryVnic" or the displayName of one of the secondary VNICs on the instance configuration that is associated with the instance pool.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend_set_name",
 					Description: `The name of the backend set on the load balancer.`,
@@ -7560,7 +7562,7 @@ Lists the instance pools in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -7670,7 +7672,7 @@ Lists the instance pools in the specified compartment.
 					Description: `The date and time the instance pool was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_pools",
 					Description: `The list of instance_pools. ### InstancePool Reference The following attributes are exported:`,
@@ -7784,7 +7786,7 @@ instances in the compartment).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -8010,7 +8012,7 @@ instances in the compartment).
 					Description: `The date and time the instance is expected to be stopped / started, in the format defined by RFC3339. After that time if instance hasn't been rebooted, Oracle will reboot the instance within 24 hours of the due time. Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state. Example: ` + "`" + `2018-05-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instances",
 					Description: `The list of instances. ### Instance Reference The following attributes are exported:`,
@@ -8234,7 +8236,7 @@ Lists the internet gateways in the specified VCN and the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -8292,7 +8294,7 @@ Lists the internet gateways in the specified VCN and the specified compartment.
 					Description: `The OCID of the VCN the internet gateway belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gateways",
 					Description: `The list of gateways. ### InternetGateway Reference The following attributes are exported:`,
@@ -8349,7 +8351,7 @@ response includes the IP address of Oracle's VPN headend and the shared secret.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ipsec_id",
 					Description: `(Required) The OCID of the IPSec connection. ## Attributes Reference The following attributes are exported:`,
@@ -8383,7 +8385,7 @@ response includes the IP address of Oracle's VPN headend and the shared secret.
 					Description: `The date and time the IPSec connection was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the IPSec connection.`,
@@ -8427,7 +8429,7 @@ Gets the status of the specified IPSec connection (whether it's up or down).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ipsec_id",
 					Description: `(Required) The OCID of the IPSec connection. ## Attributes Reference The following attributes are exported:`,
@@ -8465,7 +8467,7 @@ Gets the status of the specified IPSec connection (whether it's up or down).
 					Description: `When the state of the tunnel last changed, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the IPSec connection.`,
@@ -8513,7 +8515,7 @@ Gets the specified IPSec connection's specified tunnel basic information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ipsec_id",
 					Description: `(Required) The OCID of the IPSec connection.`,
@@ -8587,7 +8589,7 @@ Gets the specified IPSec connection's specified tunnel basic information.
 					Description: `The IP address of Oracle's VPN headend. Example: ` + "`" + `129.146.17.50` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bgp_session_info",
 					Description: `Information needed to establish a BGP Session on an interface.`,
@@ -8667,7 +8669,7 @@ Lists the tunnel information for the specified IPSec connection.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ipsec_id",
 					Description: `(Required) The OCID of the IPSec connection. ## Attributes Reference The following attributes are exported:`,
@@ -8741,7 +8743,7 @@ Lists the tunnel information for the specified IPSec connection.
 					Description: `The IP address of Oracle's VPN headend. Example: ` + "`" + `192.0.2.5` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_sec_connection_tunnels",
 					Description: `The list of ip_sec_connection_tunnels. ### IpSecConnectionTunnel Reference The following attributes are exported:`,
@@ -8826,7 +8828,7 @@ results by DRG or CPE.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -8892,7 +8894,7 @@ results by DRG or CPE.
 					Description: `The date and time the IPSec connection was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connections",
 					Description: `The list of connections. ### IpSecConnection Reference The following attributes are exported:`,
@@ -8959,7 +8961,7 @@ Gets the Letter of Authority for the specified cross-connect.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cross_connect_id",
 					Description: `(Required) The OCID of the cross-connect. ## Attributes Reference The following attributes are exported:`,
@@ -8993,7 +8995,7 @@ Gets the Letter of Authority for the specified cross-connect.
 					Description: `The date and time the Letter of Authority was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "authorized_entity_name",
 					Description: `The name of the entity authorized by this Letter of Authority.`,
@@ -9038,7 +9040,7 @@ Lists the local peering gateways (LPGs) for the specified VCN and compartment
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -9108,7 +9110,7 @@ Lists the local peering gateways (LPGs) for the specified VCN and compartment
 					Description: `The OCID of the VCN the LPG belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "local_peering_gateways",
 					Description: `The list of local_peering_gateways. ### LocalPeeringGateway Reference The following attributes are exported:`,
@@ -9183,7 +9185,7 @@ Gets the specified NAT gateway's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nat_gateway_id",
 					Description: `(Required) The NAT gateway's [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -9229,7 +9231,7 @@ Gets the specified NAT gateway's information.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the NAT gateway belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "block_traffic",
 					Description: `Whether the NAT gateway blocks traffic through it. The default is ` + "`" + `false` + "`" + `. Example: ` + "`" + `true` + "`" + ``,
@@ -9286,7 +9288,7 @@ to filter the results by VCN.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -9348,7 +9350,7 @@ to filter the results by VCN.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the NAT gateway belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nat_gateways",
 					Description: `The list of nat_gateways. ### NatGateway Reference The following attributes are exported:`,
@@ -9414,7 +9416,7 @@ To list the security rules in an NSG, see
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_security_group_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group. ## Attributes Reference The following attributes are exported:`,
@@ -9452,7 +9454,7 @@ To list the security rules in an NSG, see
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group's VCN.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment the network security group is in.`,
@@ -9500,7 +9502,7 @@ Lists the security rules in the specified network security group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "direction",
 					Description: `(Optional) Direction of the security rule. Set to ` + "`" + `EGRESS` + "`" + ` for rules that allow outbound IP packets, or ` + "`" + `INGRESS` + "`" + ` for rules that allow inbound IP packets.`,
@@ -9626,7 +9628,7 @@ Lists the security rules in the specified network security group.
 					Description: `The minimum port number. Must not be greater than the maximum port number.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_rules",
 					Description: `The list of security_rules. ### NetworkSecurityGroupSecurityRule Reference The following attributes are exported:`,
@@ -9758,7 +9760,7 @@ Lists the VNICs in the specified network security group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_security_group_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group. ## Attributes Reference The following attributes are exported:`,
@@ -9780,7 +9782,7 @@ Lists the VNICs in the specified network security group.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_security_group_vnics",
 					Description: `The list of network_security_group_vnics. ### NetworkSecurityGroupVnic Reference The following attributes are exported:`,
@@ -9812,7 +9814,7 @@ Lists the network security groups in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -9866,7 +9868,7 @@ Lists the network security groups in the specified compartment.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group's VCN.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_security_groups",
 					Description: `The list of network_security_groups. ### NetworkSecurityGroup Reference The following attributes are exported:`,
@@ -9919,7 +9921,7 @@ For more information, see [VCN Peering](https://docs.cloud.oracle.com/iaas/Conte
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "peer_region_for_remote_peerings",
 					Description: `The list of peer_region_for_remote_peerings. ### PeerRegionForRemotePeering Reference The following attributes are exported:`,
@@ -9929,7 +9931,7 @@ For more information, see [VCN Peering](https://docs.cloud.oracle.com/iaas/Conte
 					Description: `The region's name. Example: ` + "`" + `us-phoenix-1` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "peer_region_for_remote_peerings",
 					Description: `The list of peer_region_for_remote_peerings. ### PeerRegionForRemotePeering Reference The following attributes are exported:`,
@@ -9956,7 +9958,7 @@ with the private IP address (for example, 10.0.3.3) and subnet OCID.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "private_ip_id",
 					Description: `(Required) The OCID of the private IP. ## Attributes Reference The following attributes are exported:`,
@@ -10010,7 +10012,7 @@ with the private IP address (for example, 10.0.3.3) and subnet OCID.
 					Description: `The OCID of the VNIC the private IP is assigned to. The VNIC and private IP must be in the same subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The private IP's availability domain. This attribute will be null if this is a`,
@@ -10086,7 +10088,7 @@ or VNIC, the response includes both primary and secondary private IPs.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `(Optional) An IP address. Example: ` + "`" + `10.0.3.3` + "`" + ``,
@@ -10152,7 +10154,7 @@ or VNIC, the response includes both primary and secondary private IPs.
 					Description: `The OCID of the VNIC the private IP is assigned to. The VNIC and private IP must be in the same subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "private_ips",
 					Description: `The list of private_ips. ### PrivateIp Reference The following attributes are exported:`,
@@ -10230,7 +10232,7 @@ moved to a different private IP, the service returns the public IP object with
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The OCID of the public IP.`,
@@ -10300,7 +10302,7 @@ moved to a different private IP, the service returns the public IP object with
 					Description: `The date and time the public IP was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "assigned_entity_id",
 					Description: `The OCID of the entity the public IP is assigned to, or in the process of being assigned to.`,
@@ -10391,7 +10393,7 @@ is always in the same availability domain and compartment as the private IP.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -10469,7 +10471,7 @@ is always in the same availability domain and compartment as the private IP.
 					Description: `The date and time the public IP was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "public_ips",
 					Description: `The list of public_ips. ### PublicIp Reference The following attributes are exported:`,
@@ -10546,7 +10548,7 @@ Lists the remote peering connections (RPCs) for the specified DRG and compartmen
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -10604,7 +10606,7 @@ Lists the remote peering connections (RPCs) for the specified DRG and compartmen
 					Description: `The date and time the RPC was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "remote_peering_connections",
 					Description: `The list of remote_peering_connections. ### RemotePeeringConnection Reference The following attributes are exported:`,
@@ -10670,7 +10672,7 @@ you've created.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -10744,7 +10746,7 @@ you've created.
 					Description: `The OCID of the VCN the route table list belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_tables",
 					Description: `The list of route_tables. ### RouteTable Reference The following attributes are exported:`,
@@ -10816,7 +10818,7 @@ Lists the security lists in the specified VCN and compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -11030,7 +11032,7 @@ Lists the security lists in the specified VCN and compartment.
 					Description: `The OCID of the VCN the security list belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_lists",
 					Description: `The list of security_lists. ### SecurityList Reference The following attributes are exported:`,
@@ -11243,7 +11245,7 @@ to filter the results by VCN.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -11313,7 +11315,7 @@ to filter the results by VCN.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the service gateway belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_gateways",
 					Description: `The list of service_gateways. ### ServiceGateway Reference The following attributes are exported:`,
@@ -11386,7 +11388,7 @@ service gateway in this region.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "services",
 					Description: `The list of services. ### Service Reference The following attributes are exported:`,
@@ -11408,7 +11410,7 @@ service gateway in this region.
 					Description: `Name of the ` + "`" + `Service` + "`" + ` object. This name can change and is not guaranteed to be unique. Example: ` + "`" + `OCI PHX Object Storage` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "services",
 					Description: `The list of services. ### Service Reference The following attributes are exported:`,
@@ -11445,7 +11447,7 @@ filter the list by compatibility with a specific image.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -11467,7 +11469,7 @@ filter the list by compatibility with a specific image.
 					Description: `The name of the shape. You can enumerate all available shapes by calling [ListShapes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/Shape/ListShapes).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "shapes",
 					Description: `The list of shapes. ### Shape Reference The following attributes are exported:`,
@@ -11490,7 +11492,7 @@ Gets the specified subnet's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `(Required) The OCID of the subnet. ## Attributes Reference The following attributes are exported:`,
@@ -11568,7 +11570,7 @@ Gets the specified subnet's information.
 					Description: `The MAC address of the virtual router. Example: ` + "`" + `00:00:17:B6:4D:DD` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The subnet's availability domain. This attribute will be null if this is a regional subnet instead of an AD-specific subnet. Oracle recommends creating regional subnets. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -11656,7 +11658,7 @@ Lists the subnets in the specified VCN and the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -11750,7 +11752,7 @@ Lists the subnets in the specified VCN and the specified compartment.
 					Description: `The MAC address of the virtual router. Example: ` + "`" + `00:00:17:B6:4D:DD` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnets",
 					Description: `The list of subnets. ### Subnet Reference The following attributes are exported:`,
@@ -11841,7 +11843,7 @@ Gets the specified VCN's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vcn_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN. ## Attributes Reference The following attributes are exported:`,
@@ -11899,7 +11901,7 @@ Gets the specified VCN's information.
 					Description: `The VCN's domain name, which consists of the VCN's DNS label, and the ` + "`" + `oraclevcn.com` + "`" + ` domain. For more information, see [DNS in Your Virtual Cloud Network](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm). Example: ` + "`" + `vcn1.oraclevcn.com` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The CIDR IP address block of the VCN. Example: ` + "`" + `172.16.0.0/16` + "`" + ``,
@@ -11967,7 +11969,7 @@ Lists the virtual cloud networks (VCNs) in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -12037,7 +12039,7 @@ Lists the virtual cloud networks (VCNs) in the specified compartment.
 					Description: `The VCN's domain name, which consists of the VCN's DNS label, and the ` + "`" + `oraclevcn.com` + "`" + ` domain. For more information, see [DNS in Your Virtual Cloud Network](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm). Example: ` + "`" + `vcn1.oraclevcn.com` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_networks",
 					Description: `The list of virtual_networks. ### Vcn Reference The following attributes are exported:`,
@@ -12108,7 +12110,7 @@ Gets the specified virtual circuit's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_circuit_id",
 					Description: `(Required) The OCID of the virtual circuit. ## Attributes Reference The following attributes are exported:`,
@@ -12214,7 +12216,7 @@ Gets the specified virtual circuit's information.
 					Description: `Whether the virtual circuit supports private or public peering. For more information, see [FastConnect Overview](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bandwidth_shape_name",
 					Description: `The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see [ListFastConnectProviderServiceVirtualCircuitBandwidthShapes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes). Example: ` + "`" + `10 Gbps` + "`" + ``,
@@ -12333,7 +12335,7 @@ For more information about virtual circuits, see [FastConnect Overview](https://
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "provider_service_id",
 					Description: `(Required) The OCID of the provider service. ## Attributes Reference The following attributes are exported:`,
@@ -12351,7 +12353,7 @@ For more information about virtual circuits, see [FastConnect Overview](https://
 					Description: `The name of the bandwidth shape. Example: ` + "`" + `10 Gbps` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_circuit_bandwidth_shapes",
 					Description: `The list of virtual_circuit_bandwidth_shapes. ### VirtualCircuitBandwidthShape Reference The following attributes are exported:`,
@@ -12380,7 +12382,7 @@ public virtual circuit.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "verification_state",
 					Description: `(Optional) A filter to only return resources that match the given verification state. The state value is case-insensitive.`,
@@ -12402,7 +12404,7 @@ public virtual circuit.
 					Description: `Oracle must verify that the customer owns the public IP prefix before traffic for that prefix can flow across the virtual circuit. Verification can take a few business days. ` + "`" + `IN_PROGRESS` + "`" + ` means Oracle is verifying the prefix. ` + "`" + `COMPLETED` + "`" + ` means verification succeeded. ` + "`" + `FAILED` + "`" + ` means verification failed and traffic for this prefix will not flow across the connection.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_circuit_public_prefixes",
 					Description: `The list of virtual_circuit_public_prefixes. ### VirtualCircuitPublicPrefix Reference The following attributes are exported:`,
@@ -12430,7 +12432,7 @@ Lists the virtual circuits in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -12548,7 +12550,7 @@ Lists the virtual circuits in the specified compartment.
 					Description: `Whether the virtual circuit supports private or public peering. For more information, see [FastConnect Overview](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_circuits",
 					Description: `The list of virtual_circuits. ### VirtualCircuit Reference The following attributes are exported:`,
@@ -12671,7 +12673,7 @@ operation.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vnic_id",
 					Description: `(Required) The OCID of the VNIC. ## Attributes Reference The following attributes are exported:`,
@@ -12741,7 +12743,7 @@ operation.
 					Description: `The date and time the VNIC was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The VNIC's availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -12823,7 +12825,7 @@ filtered by instance, VNIC, or availability domain.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -12889,7 +12891,7 @@ filtered by instance, VNIC, or availability domain.
 					Description: `The OCID of the VNIC. Available after the attachment process is complete.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vnic_attachments",
 					Description: `The list of vnic_attachments. ### VnicAttachment Reference The following attributes are exported:`,
@@ -12952,7 +12954,7 @@ Gets information for the specified volume.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_id",
 					Description: `(Required) The OCID of the volume. ## Attributes Reference The following attributes are exported:`,
@@ -13022,7 +13024,7 @@ Gets information for the specified volume.
 					Description: `The OCID of the source volume group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -13106,7 +13108,7 @@ Currently, the only supported volume attachment type are [IScsiVolumeAttachment]
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -13196,7 +13198,7 @@ Currently, the only supported volume attachment type are [IScsiVolumeAttachment]
 					Description: `The OCID of the volume.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_attachments",
 					Description: `The list of volume_attachments. ### VolumeAttachment Reference The following attributes are exported:`,
@@ -13283,7 +13285,7 @@ Lists all volume backup policies available to the caller.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_backup_policies",
 					Description: `The list of volume_backup_policies. ### VolumeBackupPolicy Reference The following attributes are exported:`,
@@ -13321,7 +13323,7 @@ Lists all volume backup policies available to the caller.
 					Description: `The date and time the volume backup policy was created. Format defined by RFC3339.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_backup_policies",
 					Description: `The list of volume_backup_policies. ### VolumeBackupPolicy Reference The following attributes are exported:`,
@@ -13375,7 +13377,7 @@ one item (since any given asset can only have one policy assigned to it).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "asset_id",
 					Description: `(Required) The OCID of an asset (e.g. a volume). ## Attributes Reference The following attributes are exported:`,
@@ -13401,7 +13403,7 @@ one item (since any given asset can only have one policy assigned to it).
 					Description: `The date and time the volume backup policy assignment was created. Format defined by RFC3339.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_backup_policy_assignments",
 					Description: `The list of volume_backup_policy_assignments. ### VolumeBackupPolicyAssignment Reference The following attributes are exported:`,
@@ -13437,7 +13439,7 @@ Lists the volume backups in the specified compartment. You can filter the result
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -13535,7 +13537,7 @@ Lists the volume backups in the specified compartment. You can filter the result
 					Description: `The OCID of the volume.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_backups",
 					Description: `The list of volume_backups. ### VolumeBackup Reference The following attributes are exported:`,
@@ -13628,7 +13630,7 @@ For more information, see [Volume Groups](https://docs.cloud.oracle.com/iaas/Con
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -13706,7 +13708,7 @@ For more information, see [Volume Groups](https://docs.cloud.oracle.com/iaas/Con
 					Description: `The OCID of the source volume group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_group_backups",
 					Description: `The list of volume_group_backups. ### VolumeGroupBackup Reference The following attributes are exported:`,
@@ -13787,7 +13789,7 @@ For more information, see [Volume Groups](https://docs.cloud.oracle.com/iaas/Con
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -13877,7 +13879,7 @@ For more information, see [Volume Groups](https://docs.cloud.oracle.com/iaas/Con
 					Description: `OCIDs for the volumes in this volume group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_groups",
 					Description: `The list of volume_groups. ### VolumeGroup Reference The following attributes are exported:`,
@@ -13965,7 +13967,7 @@ Lists the volumes in the specified compartment and availability domain.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -14055,7 +14057,7 @@ Lists the volumes in the specified compartment and availability domain.
 					Description: `The OCID of the source volume group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volumes",
 					Description: `The list of volumes. ### Volume Reference The following attributes are exported:`,
@@ -14138,7 +14140,7 @@ Gets information about the specified Autonomous Container Database.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_container_database_id",
 					Description: `(Required) The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -14208,7 +14210,7 @@ Gets information about the specified Autonomous Container Database.
 					Description: `The date and time the Autonomous was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_exadata_infrastructure_id",
 					Description: `The OCID of the Autonomous Exadata Infrastructure.`,
@@ -14288,7 +14290,7 @@ Gets a list of the Autonomous Container Databases in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_exadata_infrastructure_id",
 					Description: `(Optional) The Autonomous Exadata Infrastructure [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -14378,7 +14380,7 @@ Gets a list of the Autonomous Container Databases in the specified compartment.
 					Description: `The date and time the Autonomous was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_container_databases",
 					Description: `The list of autonomous_container_databases. ### AutonomousContainerDatabase Reference The following attributes are exported:`,
@@ -14463,7 +14465,7 @@ Gets the details of the specified Autonomous Data Warehouse.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouse_id",
 					Description: `(Required) The database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -14545,7 +14547,7 @@ Gets the details of the specified Autonomous Data Warehouse.
 					Description: `The date and time the database was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -14638,7 +14640,7 @@ Gets information about the specified Autonomous Data Warehouse backup.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouse_backup_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Autonomous Data Warehouse backup. ## Attributes Reference The following attributes are exported:`,
@@ -14684,7 +14686,7 @@ Gets information about the specified Autonomous Data Warehouse backup.
 					Description: `The type of backup.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouse_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Autonomous Data Warehouse.`,
@@ -14741,7 +14743,7 @@ Gets a list of Autonomous Data Warehouse backups based on either the ` + "`" + `
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouse_id",
 					Description: `(Optional) The database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -14803,7 +14805,7 @@ Gets a list of Autonomous Data Warehouse backups based on either the ` + "`" + `
 					Description: `The type of backup.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouse_backups",
 					Description: `The list of autonomous_data_warehouse_backups. ### AutonomousDataWarehouseBackup Reference The following attributes are exported:`,
@@ -14863,7 +14865,7 @@ This data source provides details about a specific Autonomous Data Warehouse Wal
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouse_id",
 					Description: `(Required) The database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -14881,7 +14883,7 @@ This data source provides details about a specific Autonomous Data Warehouse Wal
 					Description: `content of the downloaded zipped wallet for the Autonomous Data Warehouse. If ` + "`" + `base64_encode_content` + "`" + ` is set to ` + "`" + `true` + "`" + `, then this content will be base64 encoded. If passing the base64 encoded content to a ` + "`" + `local_file` + "`" + ` resource, please use the ` + "`" + `content_base64` + "`" + ` attribute of the ` + "`" + `local_file` + "`" + ` resource. See this [example](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/database/adb/autonomous_database_wallet.tf) for more details.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "content",
 					Description: `content of the downloaded zipped wallet for the Autonomous Data Warehouse. If ` + "`" + `base64_encode_content` + "`" + ` is set to ` + "`" + `true` + "`" + `, then this content will be base64 encoded. If passing the base64 encoded content to a ` + "`" + `local_file` + "`" + ` resource, please use the ` + "`" + `content_base64` + "`" + ` attribute of the ` + "`" + `local_file` + "`" + ` resource. See this [example](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/database/adb/autonomous_database_wallet.tf) for more details.`,
@@ -14902,7 +14904,7 @@ Gets a list of Autonomous Data Warehouses.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The compartment [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -14996,7 +14998,7 @@ Gets a list of Autonomous Data Warehouses.
 					Description: `The date and time the database was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouses",
 					Description: `The list of autonomous_data_warehouses. ### AutonomousDataWarehouse Reference The following attributes are exported:`,
@@ -15092,7 +15094,7 @@ Gets the details of the specified Autonomous Database.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_database_id",
 					Description: `(Required) The database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -15218,7 +15220,7 @@ Gets the details of the specified Autonomous Database.
 					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_container_database_id",
 					Description: `The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -15353,7 +15355,7 @@ Gets information about the specified Autonomous Database backup.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_database_backup_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Autonomous Database backup. ## Attributes Reference The following attributes are exported:`,
@@ -15403,7 +15405,7 @@ Gets information about the specified Autonomous Database backup.
 					Description: `The type of backup.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_database_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Autonomous Database.`,
@@ -15463,7 +15465,7 @@ Gets a list of Autonomous Database backups based on either the ` + "`" + `autono
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_database_id",
 					Description: `(Optional) The database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -15529,7 +15531,7 @@ Gets a list of Autonomous Database backups based on either the ` + "`" + `autono
 					Description: `The type of backup.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_database_backups",
 					Description: `The list of autonomous_database_backups. ### AutonomousDatabaseBackup Reference The following attributes are exported:`,
@@ -15593,7 +15595,7 @@ Creates and downloads a wallet for the specified Autonomous Database.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_database_id",
 					Description: `(Required) The database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -15611,7 +15613,7 @@ Creates and downloads a wallet for the specified Autonomous Database.
 					Description: `content of the downloaded zipped wallet for the Autonomous Database. If ` + "`" + `base64_encode_content` + "`" + ` is set to ` + "`" + `true` + "`" + `, then this content will be base64 encoded. If passing the base64 encoded content to a ` + "`" + `local_file` + "`" + ` resource, please use the ` + "`" + `content_base64` + "`" + ` attribute of the ` + "`" + `local_file` + "`" + ` resource. See this [example](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/database/adb/autonomous_data_warehouse_wallet.tf) for more details.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "content",
 					Description: `content of the downloaded zipped wallet for the Autonomous Database. If ` + "`" + `base64_encode_content` + "`" + ` is set to ` + "`" + `true` + "`" + `, then this content will be base64 encoded. If passing the base64 encoded content to a ` + "`" + `local_file` + "`" + ` resource, please use the ` + "`" + `content_base64` + "`" + ` attribute of the ` + "`" + `local_file` + "`" + ` resource. See this [example](https://github.com/terraform-providers/terraform-provider-oci/blob/master/examples/database/adb/autonomous_data_warehouse_wallet.tf) for more details.`,
@@ -15631,7 +15633,7 @@ Gets a list of Autonomous Databases.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_container_database_id",
 					Description: `(Optional) The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -15777,7 +15779,7 @@ Gets a list of Autonomous Databases.
 					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_databases",
 					Description: `The list of autonomous_databases. ### AutonomousDatabase Reference The following attributes are exported:`,
@@ -15916,7 +15918,7 @@ Gets a list of supported Autonomous Database versions.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The compartment [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -15946,7 +15948,7 @@ Gets a list of supported Autonomous Database versions.
 					Description: `A valid Autonomous Database preview version.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_db_preview_versions",
 					Description: `The list of autonomous_db_preview_versions. ### AutonomousDbPreviewVersion Reference The following attributes are exported:`,
@@ -15985,7 +15987,7 @@ Gets information about the specified Autonomous Exadata Infrastructure.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_exadata_infrastructure_id",
 					Description: `(Required) The Autonomous Exadata Infrastructure [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -16087,7 +16089,7 @@ Gets information about the specified Autonomous Exadata Infrastructure.
 					Description: `The date and time the Autonomous Exadata Infrastructure was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The name of the availability domain that the Autonomous Exadata Infrastructure is located in.`,
@@ -16198,7 +16200,7 @@ Gets a list of the shapes that can be used to launch a new Autonomous Exadata In
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The name of the Availability Domain.`,
@@ -16236,7 +16238,7 @@ Gets a list of the shapes that can be used to launch a new Autonomous Exadata In
 					Description: `The name of the shape used for the Autonomous Exadata Infrastructure.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_exadata_infrastructure_shapes",
 					Description: `The list of autonomous_exadata_infrastructure_shapes. ### AutonomousExadataInfrastructureShape Reference The following attributes are exported:`,
@@ -16280,7 +16282,7 @@ Gets a list of the Autonomous Exadata Infrastructures in the specified compartme
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) A filter to return only resources that match the given availability domain exactly.`,
@@ -16398,7 +16400,7 @@ Gets a list of the Autonomous Exadata Infrastructures in the specified compartme
 					Description: `The date and time the Autonomous Exadata Infrastructure was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_exadata_infrastructures",
 					Description: `The list of autonomous_exadata_infrastructures. ### AutonomousExadataInfrastructure Reference The following attributes are exported:`,
@@ -16514,7 +16516,7 @@ Gets a list of backups based on the databaseId or compartmentId specified. Eithe
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) The compartment [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -16576,7 +16578,7 @@ Gets a list of backups based on the databaseId or compartmentId specified. Eithe
 					Description: `The type of backup.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backups",
 					Description: `The list of backups. ### Backup Reference The following attributes are exported:`,
@@ -16644,7 +16646,7 @@ Gets the specified Data Guard association's configuration information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data_guard_association_id",
 					Description: `(Required) The Data Guard association's [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -16714,7 +16716,7 @@ Gets the specified Data Guard association's configuration information.
 					Description: `The redo transport type used by this Data Guard association. For more information, see [Redo Transport Services](http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400) in the Oracle Data Guard documentation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "apply_lag",
 					Description: `The lag time between updates to the primary database and application of the redo data on the standby database, as computed by the reporting database. Example: ` + "`" + `9 seconds` + "`" + ``,
@@ -16790,7 +16792,7 @@ Lists all Data Guard associations for the specified database.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "database_id",
 					Description: `(Required) The database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -16860,7 +16862,7 @@ Lists all Data Guard associations for the specified database.
 					Description: `The redo transport type used by this Data Guard association. For more information, see [Redo Transport Services](http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400) in the Oracle Data Guard documentation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data_guard_associations",
 					Description: `The list of data_guard_associations. ### DataGuardAssociation Reference The following attributes are exported:`,
@@ -16939,7 +16941,7 @@ Gets information about a specific database.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "database_id",
 					Description: `(Required) The database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -17029,7 +17031,7 @@ Gets information about a specific database.
 					Description: `The date and time the database was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "character_set",
 					Description: `The character set for the database.`,
@@ -17129,7 +17131,7 @@ Gets a list of the databases in the specified database home.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The compartment [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -17235,7 +17237,7 @@ Gets a list of the databases in the specified database home.
 					Description: `The date and time the database was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "databases",
 					Description: `The list of databases. ### Database Reference The following attributes are exported:`,
@@ -17338,7 +17340,7 @@ Gets information about the specified database home.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_home_id",
 					Description: `(Required) The database home [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -17376,7 +17378,7 @@ Gets information about the specified database home.
 					Description: `The date and time the database home was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -17424,7 +17426,7 @@ Gets history of the actions taken for patches for the specified database home.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_home_id",
 					Description: `(Required) The database home [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -17462,7 +17464,7 @@ Gets history of the actions taken for patches for the specified database home.
 					Description: `The date and time when the patch action started.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "patch_history_entries",
 					Description: `The list of patch_history_entries. ### DbHomePatchHistoryEntry Reference The following attributes are exported:`,
@@ -17510,7 +17512,7 @@ Lists patches applicable to the requested database home.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_home_id",
 					Description: `(Required) The database home [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -17552,7 +17554,7 @@ Lists patches applicable to the requested database home.
 					Description: `The version of this patch package.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "patches",
 					Description: `The list of patches. ### DbHomePatch Reference The following attributes are exported:`,
@@ -17604,7 +17606,7 @@ Gets a list of database homes in the specified DB system and compartment. A data
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The compartment [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -17658,7 +17660,7 @@ Gets a list of database homes in the specified DB system and compartment. A data
 					Description: `The date and time the database home was created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_homes",
 					Description: `The list of db_homes. ### DbHome Reference The following attributes are exported:`,
@@ -17709,7 +17711,7 @@ Gets information about the specified database node.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_node_id",
 					Description: `(Required) The database node [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -17751,7 +17753,7 @@ Gets information about the specified database node.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backup_vnic_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the backup VNIC.`,
@@ -17803,7 +17805,7 @@ Gets a list of database nodes in the specified DB system and compartment. A data
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The compartment [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -17857,7 +17859,7 @@ Gets a list of database nodes in the specified DB system and compartment. A data
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VNIC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_nodes",
 					Description: `The list of db_nodes. ### DbNode Reference The following attributes are exported:`,
@@ -17913,7 +17915,7 @@ Gets the history of the patch actions performed on the specified DB system.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_system_id",
 					Description: `(Required) The DB system [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -17951,7 +17953,7 @@ Gets the history of the patch actions performed on the specified DB system.
 					Description: `The date and time when the patch action started.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "patch_history_entries",
 					Description: `The list of patch_history_entries. ### DbSystemPatchHistoryEntry Reference The following attributes are exported:`,
@@ -17999,7 +18001,7 @@ Lists the patches applicable to the requested DB system.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_system_id",
 					Description: `(Required) The DB system [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -18041,7 +18043,7 @@ Lists the patches applicable to the requested DB system.
 					Description: `The version of this patch package.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "patches",
 					Description: `The list of patches. ### DbSystemPatch Reference The following attributes are exported:`,
@@ -18092,7 +18094,7 @@ Gets a list of the shapes that can be used to launch a new DB system. The shape 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The name of the Availability Domain.`,
@@ -18134,7 +18136,7 @@ Gets a list of the shapes that can be used to launch a new DB system. The shape 
 					Description: `Deprecated. Use ` + "`" + `name` + "`" + ` instead of ` + "`" + `shape` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_system_shapes",
 					Description: `The list of db_system_shapes. ### DbSystemShape Reference The following attributes are exported:`,
@@ -18183,7 +18185,7 @@ Gets a list of the DB systems in the specified compartment. You can specify a ba
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) A filter to return only resources that match the given availability domain exactly.`,
@@ -18349,7 +18351,7 @@ Gets a list of the DB systems in the specified compartment. You can specify a ba
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the virtual IP (VIP) addresses associated with the DB system. The Cluster Ready Services (CRS) creates and maintains one VIP address for each node in the DB system to enable failover. If one node fails, the VIP is reassigned to another active node in the cluster.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_systems",
 					Description: `The list of db_systems. ### DbSystem Reference The following attributes are exported:`,
@@ -18508,7 +18510,7 @@ Gets a list of supported Oracle Database versions.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The compartment [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -18538,7 +18540,7 @@ Gets a list of supported Oracle Database versions.
 					Description: `A valid Oracle Database version.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_versions",
 					Description: `The list of db_versions. ### DbVersion Reference The following attributes are exported:`,
@@ -18571,7 +18573,7 @@ The default IORM Settings is pre-created in all the Exadata DB System.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_system_id",
 					Description: `(Required) The DB system [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). ## Attributes Reference The following attributes are exported:`,
@@ -18605,7 +18607,7 @@ The default IORM Settings is pre-created in all the Exadata DB System.
 					Description: `The current config state of IORM settings for this Exadata System.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_plans",
 					Description: `Array of IORM Setting for all the database in this Exadata DB System`,
@@ -18648,7 +18650,7 @@ Gets information about the specified Maintenance Run.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "maintenance_run_id",
 					Description: `(Required) The Maintenance Run OCID. ## Attributes Reference The following attributes are exported:`,
@@ -18706,7 +18708,7 @@ Gets information about the specified Maintenance Run.
 					Description: `The date and time the Maintenance Run starts.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment.`,
@@ -18774,7 +18776,7 @@ Gets a list of the Maintenance Runs in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) A filter to return only resources that match the given availability domain exactly.`,
@@ -18856,7 +18858,7 @@ Gets a list of the Maintenance Runs in the specified compartment.
 					Description: `The date and time the Maintenance Run starts.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "maintenance_runs",
 					Description: `The list of maintenance_runs. ### MaintenanceRun Reference The following attributes are exported:`,
@@ -18930,7 +18932,7 @@ information about records, see [Resource Record (RR) TYPEs](https://www.iana.org
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) The OCID of the compartment the resource belongs to.`,
@@ -19004,7 +19006,7 @@ information about records, see [Resource Record (RR) TYPEs](https://www.iana.org
 					Description: `The name or OCID of the target zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "records",
 					Description: `The list of records. ### Record Reference The following attributes are exported:`,
@@ -19060,7 +19062,7 @@ Gets a list of all steering policies in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment the resource belongs to.`,
@@ -19274,7 +19276,7 @@ Gets a list of all steering policies in the specified compartment.
 					Description: `The Time To Live (TTL) for responses from the steering policy, in seconds. If not specified during creation, a value of 30 seconds will be used.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "steering_policies",
 					Description: `The list of steering_policies. ### SteeringPolicy Reference The following attributes are exported:`,
@@ -19466,7 +19468,7 @@ Gets information about the specified steering policy.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "steering_policy_id",
 					Description: `(Required) The OCID of the target steering policy. ## Attributes Reference The following attributes are exported:`,
@@ -19644,7 +19646,7 @@ Gets information about the specified steering policy.
 					Description: `The Time To Live (TTL) for responses from the steering policy, in seconds. If not specified during creation, a value of 30 seconds will be used.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "answers",
 					Description: `The set of all answers that can potentially issue from the steering policy.`,
@@ -19832,7 +19834,7 @@ Gets information about the specified steering policy attachment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "steering_policy_attachment_id",
 					Description: `(Required) The OCID of the target steering policy attachment. ## Attributes Reference The following attributes are exported:`,
@@ -19878,7 +19880,7 @@ Gets information about the specified steering policy attachment.
 					Description: `The OCID of the attached zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the steering policy attachment.`,
@@ -19934,7 +19936,7 @@ Lists the steering policy attachments in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment the resource belongs to.`,
@@ -20020,7 +20022,7 @@ Lists the steering policy attachments in the specified compartment.
 					Description: `The OCID of the attached zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "steering_policy_attachments",
 					Description: `The list of steering_policy_attachments. ### SteeringPolicyAttachment Reference The following attributes are exported:`,
@@ -20081,7 +20083,7 @@ can be filtered by name, time created, and zone type.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment the resource belongs to.`,
@@ -20203,7 +20205,7 @@ can be filtered by name, time created, and zone type.
 					Description: `The type of the zone. Must be either ` + "`" + `PRIMARY` + "`" + ` or ` + "`" + `SECONDARY` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zones",
 					Description: `The list of zones. ### Zone Reference The following attributes are exported:`,
@@ -20302,7 +20304,7 @@ Gets an approved sender for a given ` + "`" + `senderId` + "`" + `.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sender_id",
 					Description: `(Required) The unique OCID of the sender. ## Attributes Reference The following attributes are exported:`,
@@ -20340,7 +20342,7 @@ Gets an approved sender for a given ` + "`" + `senderId` + "`" + `.
 					Description: `The date and time the approved sender was added in "YYYY-MM-ddThh:mmZ" format with a Z offset, as defined by RFC 3339.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID for the compartment.`,
@@ -20388,7 +20390,7 @@ Gets a collection of approved sender email addresses and sender IDs.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID for the compartment.`,
@@ -20438,7 +20440,7 @@ Gets a collection of approved sender email addresses and sender IDs.
 					Description: `The date and time the approved sender was added in "YYYY-MM-ddThh:mmZ" format with a Z offset, as defined by RFC 3339.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "senders",
 					Description: `The list of senders. ### Sender Reference The following attributes are exported:`,
@@ -20491,7 +20493,7 @@ Gets the details of a suppressed recipient email address for a given
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "suppression_id",
 					Description: `(Required) The unique OCID of the suppression. ## Attributes Reference The following attributes are exported:`,
@@ -20517,7 +20519,7 @@ Gets the details of a suppressed recipient email address for a given
 					Description: `The date and time a recipient's email address was added to the suppression list, in "YYYY-MM-ddThh:mmZ" format with a Z offset, as defined by RFC 3339.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment to contain the suppression. Since suppressions are at the customer level, this must be the tenancy OCID.`,
@@ -20555,7 +20557,7 @@ is sorted by creation time in descending order.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID for the compartment.`,
@@ -20597,7 +20599,7 @@ is sorted by creation time in descending order.
 					Description: `The date and time a recipient's email address was added to the suppression list, in "YYYY-MM-ddThh:mmZ" format with a Z offset, as defined by RFC 3339.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "suppressions",
 					Description: `The list of suppressions. ### Suppression Reference The following attributes are exported:`,
@@ -20637,7 +20639,7 @@ Lists the export set resources in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -20699,7 +20701,7 @@ Lists the export set resources in the specified compartment.
 					Description: `The OCID of the virtual cloud network (VCN) the export set is in.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "export_sets",
 					Description: `The list of export_sets. ### ExportSet Reference The following attributes are exported:`,
@@ -20757,7 +20759,7 @@ set. You must specify an export set ID, a file system ID, and
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) The OCID of the compartment.`,
@@ -20835,7 +20837,7 @@ set. You must specify an export set ID, a file system ID, and
 					Description: `The date and time the export was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "exports",
 					Description: `The list of exports. ### Export Reference The following attributes are exported:`,
@@ -20907,7 +20909,7 @@ Lists the file system resources in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -20969,7 +20971,7 @@ Lists the file system resources in the specified compartment.
 					Description: `The date and time the file system was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file_systems",
 					Description: `The list of file_systems. ### FileSystem Reference The following attributes are exported:`,
@@ -21025,7 +21027,7 @@ Lists the mount target resources in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The name of the availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -21103,7 +21105,7 @@ Lists the mount target resources in the specified compartment.
 					Description: `The date and time the mount target was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "mount_targets",
 					Description: `The list of mount_targets. ### MountTarget Reference The following attributes are exported:`,
@@ -21170,7 +21172,7 @@ Gets the specified snapshot's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `(Required) The OCID of the snapshot. ## Attributes Reference The following attributes are exported:`,
@@ -21204,7 +21206,7 @@ Gets the specified snapshot's information.
 					Description: `The date and time the snapshot was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
@@ -21248,7 +21250,7 @@ Lists snapshots of the specified file system.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file_system_id",
 					Description: `(Required) The OCID of the file system.`,
@@ -21294,7 +21296,7 @@ Lists snapshots of the specified file system.
 					Description: `The date and time the snapshot was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "snapshots",
 					Description: `The list of snapshots. ### Snapshot Reference The following attributes are exported:`,
@@ -21341,7 +21343,7 @@ Retrieves an application.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this application. ## Attributes Reference The following attributes are exported:`,
@@ -21387,7 +21389,7 @@ Retrieves an application.
 					Description: `The time the application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-09-12T22:47:12.613Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains the application.`,
@@ -21442,7 +21444,7 @@ Lists applications for a compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this resource belongs.`,
@@ -21504,7 +21506,7 @@ Lists applications for a compartment.
 					Description: `The time the application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-09-12T22:47:12.613Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "applications",
 					Description: `The list of applications. ### Application Reference The following attributes are exported:`,
@@ -21563,7 +21565,7 @@ Retrieves a function.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "function_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of this function. ## Attributes Reference The following attributes are exported:`,
@@ -21629,7 +21631,7 @@ Retrieves a function.
 					Description: `Timeout for executions of the function. Value in seconds.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `The OCID of the application the function belongs to.`,
@@ -21704,7 +21706,7 @@ Lists functions for an application.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the application to which this function belongs.`,
@@ -21786,7 +21788,7 @@ Lists functions for an application.
 					Description: `Timeout for executions of the function. Value in seconds.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "functions",
 					Description: `The list of functions. ### Function Reference The following attributes are exported:`,
@@ -21866,7 +21868,7 @@ Gets the configuration for the specified monitor.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "monitor_id",
 					Description: `(Required) The OCID of a monitor. ## Attributes Reference The following attributes are exported:`,
@@ -21936,7 +21938,7 @@ Gets the configuration for the specified monitor.
 					Description: `An array of The name of a vantage point from which to execute the probe.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment.`,
@@ -22016,7 +22018,7 @@ Gets a list of HTTP monitors.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) Filters results by compartment.`,
@@ -22094,7 +22096,7 @@ Gets a list of HTTP monitors.
 					Description: `An array of The name of a vantage point from which to execute the probe.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "http_monitors",
 					Description: `The list of http_monitors. ### HttpMonitor Reference The following attributes are exported:`,
@@ -22180,7 +22182,7 @@ on-demand probe.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "probe_configuration_id",
 					Description: `(Required) The OCID of a monitor or on-demand probe.`,
@@ -22322,7 +22324,7 @@ on-demand probe.
 					Description: `The name of the vantage point that executed the probe.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "http_probe_results",
 					Description: `The list of http_probe_results. ### HttpProbeResult Reference The following attributes are exported:`,
@@ -22462,7 +22464,7 @@ Gets the configuration for the specified ping monitor.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "monitor_id",
 					Description: `(Required) The OCID of a monitor. ## Attributes Reference The following attributes are exported:`,
@@ -22520,7 +22522,7 @@ Gets the configuration for the specified ping monitor.
 					Description: `An array of The name of a vantage point from which to execute the probe.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment.`,
@@ -22591,7 +22593,7 @@ a URL for fetching the next page.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) Filters results by compartment.`,
@@ -22657,7 +22659,7 @@ a URL for fetching the next page.
 					Description: `An array of The name of a vantage point from which to execute the probe.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ping_monitors",
 					Description: `The list of ping_monitors. ### PingMonitor Reference The following attributes are exported:`,
@@ -22735,7 +22737,7 @@ results.  If ` + "`" + `sortOrder` + "`" + ` is unspecified, results are sorted 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "probe_configuration_id",
 					Description: `(Required) The OCID of a monitor or on-demand probe.`,
@@ -22837,7 +22839,7 @@ results.  If ` + "`" + `sortOrder` + "`" + ` is unspecified, results are sorted 
 					Description: `The name of the vantage point that executed the probe.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ping_probe_results",
 					Description: `The list of ping_probe_results. ### PingProbeResult Reference The following attributes are exported:`,
@@ -22937,7 +22939,7 @@ Gets information about all vantage points available to the user.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Optional) Filters results that exactly match the ` + "`" + `displayName` + "`" + ` field.`,
@@ -23015,7 +23017,7 @@ Gets information about all vantage points available to the user.
 					Description: `An integer between 0 and 100 used to select between multiple origin ASNs when routing to ` + "`" + `prefix` + "`" + `. Most prefixes have exactly one origin ASN, in which case ` + "`" + `weight` + "`" + ` will be 100.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "health_checks_vantage_points",
 					Description: `The list of health_checks_vantage_points. ### VantagePoint Reference The following attributes are exported:`,
@@ -23102,7 +23104,7 @@ organization does not need to write a policy to give users this ability.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user. ## Attributes Reference The following attributes are exported:`,
@@ -23140,7 +23142,7 @@ organization does not need to write a policy to give users this ability.
 					Description: `The OCID of the user the key belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_keys",
 					Description: `The list of api_keys. ### ApiKey Reference The following attributes are exported:`,
@@ -23189,7 +23191,7 @@ the token itself. The actual token is returned only upon creation.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user. ## Attributes Reference The following attributes are exported:`,
@@ -23231,7 +23233,7 @@ the token itself. The actual token is returned only upon creation.
 					Description: `The OCID of the user the auth token belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tokens",
 					Description: `The list of tokens. ### AuthToken Reference The following attributes are exported:`,
@@ -23284,7 +23286,7 @@ the compartment ID (remember that the tenancy is simply the root compartment).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -23322,7 +23324,7 @@ the compartment ID (remember that the tenancy is simply the root compartment).
 					Description: `Minimum password length required.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `Compartment OCID.`,
@@ -23368,7 +23370,7 @@ This data source provides the details of a single Availability Domain in Oracle 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the tenancy.`,
@@ -23398,7 +23400,7 @@ This data source provides the details of a single Availability Domain in Oracle 
 					Description: `The name of the Availability Domain.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the tenancy.`,
@@ -23434,7 +23436,7 @@ create a dependency on the list order.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment). ## Attributes Reference The following attributes are exported:`,
@@ -23456,7 +23458,7 @@ create a dependency on the list order.
 					Description: `The name of the Availability Domain.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domains",
 					Description: `The list of availability_domains. ### AvailabilityDomain Reference The following attributes are exported:`,
@@ -23495,7 +23497,7 @@ Service or the [ListVolumes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Required) The OCID of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -23541,7 +23543,7 @@ Service or the [ListVolumes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20
 					Description: `Date and time the compartment was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the parent compartment containing the compartment.`,
@@ -23614,7 +23616,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_level",
 					Description: `(Optional) Valid values are ` + "`" + `ANY` + "`" + ` and ` + "`" + `ACCESSIBLE` + "`" + `. Default is ` + "`" + `ANY` + "`" + `. Setting this to ` + "`" + `ACCESSIBLE` + "`" + ` returns only those compartments for which the user has INSPECT permissions directly or indirectly (permissions can be on a resource in a subcompartment). For the compartments on which the user indirectly has INSPECT permissions, a restricted set of fields is returned. When set to ` + "`" + `ANY` + "`" + ` permissions are not checked.`,
@@ -23672,7 +23674,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 					Description: `Date and time the compartment was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartments",
 					Description: `The list of compartments. ### Compartment Reference The following attributes are exported:`,
@@ -23733,7 +23735,7 @@ cost-tracking tags, see [Using Cost-tracking Tags](https://docs.cloud.oracle.com
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment). ## Attributes Reference The following attributes are exported:`,
@@ -23791,7 +23793,7 @@ cost-tracking tags, see [Using Cost-tracking Tags](https://docs.cloud.oracle.com
 					Description: `Date and time the tag was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
 					Description: `The list of tags. ### CostTrackingTag Reference The following attributes are exported:`,
@@ -23860,7 +23862,7 @@ the secret key itself. The actual secret key is returned only upon creation.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user. ## Attributes Reference The following attributes are exported:`,
@@ -23898,7 +23900,7 @@ the secret key itself. The actual secret key is returned only upon creation.
 					Description: `The OCID of the user the password belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "customer_secret_keys",
 					Description: `The list of customer_secret_keys. ### CustomerSecretKey Reference The following attributes are exported:`,
@@ -23948,7 +23950,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment). ## Attributes Reference The following attributes are exported:`,
@@ -23998,7 +24000,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 					Description: `Date and time the group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dynamic_groups",
 					Description: `The list of dynamic_groups. ### DynamicGroup Reference The following attributes are exported:`,
@@ -24060,7 +24062,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The name of the availibilityDomain.`,
@@ -24090,7 +24092,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 					Description: `The name of the Fault Domain.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fault_domains",
 					Description: `The list of fault_domains. ### FaultDomain Reference The following attributes are exported:`,
@@ -24130,7 +24132,7 @@ provide the group's OCID as a query parameter in the request.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `(Required) The OCID of the group. ## Attributes Reference The following attributes are exported:`,
@@ -24172,7 +24174,7 @@ provide the group's OCID as a query parameter in the request.
 					Description: `Date and time the group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the tenancy containing the group.`,
@@ -24226,7 +24228,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment). ## Attributes Reference The following attributes are exported:`,
@@ -24272,7 +24274,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 					Description: `Date and time the group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "groups",
 					Description: `The list of groups. ### Group Reference The following attributes are exported:`,
@@ -24327,7 +24329,7 @@ Lists the identity provider groups.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "identity_provider_id",
 					Description: `(Required) The OCID of the identity provider. ## Attributes Reference The following attributes are exported:`,
@@ -24361,7 +24363,7 @@ Lists the identity provider groups.
 					Description: `Date and time the ` + "`" + `IdentityProviderGroup` + "`" + ` was last modified, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "identity_provider_groups",
 					Description: `The list of identity_provider_groups. ### IdentityProviderGroup Reference The following attributes are exported:`,
@@ -24408,7 +24410,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment).`,
@@ -24482,7 +24484,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 					Description: `Date and time the ` + "`" + `IdentityProvider` + "`" + ` was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "identity_providers",
 					Description: `The list of identity_providers. ### IdentityProvider Reference The following attributes are exported:`,
@@ -24562,7 +24564,7 @@ Lists the group mappings for the specified identity provider.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "identity_provider_id",
 					Description: `(Required) The OCID of the identity provider. ## Attributes Reference The following attributes are exported:`,
@@ -24604,7 +24606,7 @@ Lists the group mappings for the specified identity provider.
 					Description: `Date and time the mapping was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "idp_group_mappings",
 					Description: `The list of idp_group_mappings. ### IdpGroupMapping Reference The following attributes are exported:`,
@@ -24660,7 +24662,7 @@ statements inside all your policies. There isn't a way to automatically obtain t
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment). ## Attributes Reference The following attributes are exported:`,
@@ -24714,7 +24716,7 @@ statements inside all your policies. There isn't a way to automatically obtain t
 					Description: `The version of the policy. If null or set to an empty string, when a request comes in for authorization, the policy will be evaluated according to the current behavior of the services at that moment. If set to a particular date (YYYY-MM-DD), the policy will be evaluated according to the behavior of the services on that date.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policies",
 					Description: `The list of policies. ### Policy Reference The following attributes are exported:`,
@@ -24777,7 +24779,7 @@ Lists the region subscriptions for the specified tenancy.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenancy_id",
 					Description: `(Required) The OCID of the tenancy. ## Attributes Reference The following attributes are exported:`,
@@ -24803,7 +24805,7 @@ Lists the region subscriptions for the specified tenancy.
 					Description: `The region subscription state.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region_subscriptions",
 					Description: `The list of region_subscriptions. ### RegionSubscription Reference The following attributes are exported:`,
@@ -24838,7 +24840,7 @@ Lists all the regions offered by Oracle Cloud Infrastructure.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
 					Description: `The list of regions. ### Region Reference The following attributes are exported:`,
@@ -24852,7 +24854,7 @@ Lists all the regions offered by Oracle Cloud Infrastructure.
 					Description: `The name of the region. Allowed values are:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
 					Description: `The list of regions. ### Region Reference The following attributes are exported:`,
@@ -24881,7 +24883,7 @@ the SMTP user name but not the SMTP password. The SMTP password is returned only
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user. ## Attributes Reference The following attributes are exported:`,
@@ -24923,7 +24925,7 @@ the SMTP user name but not the SMTP password. The SMTP password is returned only
 					Description: `The SMTP user name.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "smtp_credentials",
 					Description: `The list of smtp_credentials. ### SmtpCredential Reference The following attributes are exported:`,
@@ -24978,7 +24980,7 @@ the password itself. The actual password is returned only upon creation.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user. ## Attributes Reference The following attributes are exported:`,
@@ -25020,7 +25022,7 @@ the password itself. The actual password is returned only upon creation.
 					Description: `The OCID of the user the password belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "passwords",
 					Description: `The list of passwords. ### SwiftPassword Reference The following attributes are exported:`,
@@ -25072,7 +25074,7 @@ Retrieves the specified tag default.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tag_default_id",
 					Description: `(Required) The OCID of the tag default. ## Attributes Reference The following attributes are exported:`,
@@ -25110,7 +25112,7 @@ Retrieves the specified tag default.
 					Description: `The default value for the tag definition. This will be applied to all new resources created in the compartment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment. The tag default applies to all new resources that get created in the compartment. Resources that existed before the tag default was created are not tagged.`,
@@ -25158,7 +25160,7 @@ Lists the tag defaults for tag definitions in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) The OCID of the compartment (remember that the tenancy is simply the root compartment).`,
@@ -25212,7 +25214,7 @@ Lists the tag defaults for tag definitions in the specified compartment.
 					Description: `The default value for the tag definition. This will be applied to all new resources created in the compartment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tag_defaults",
 					Description: `The list of tag_defaults. ### TagDefault Reference The following attributes are exported:`,
@@ -25264,7 +25266,7 @@ Lists the tag namespaces in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment).`,
@@ -25318,7 +25320,7 @@ Lists the tag namespaces in the specified compartment.
 					Description: `Date and time the tag namespace was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tag_namespaces",
 					Description: `The list of tag_namespaces. ### TagNamespace Reference The following attributes are exported:`,
@@ -25374,7 +25376,7 @@ Lists the tag definitions in the specified tag namespace.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "state",
 					Description: `(Optional) A filter to only return resources that match the given lifecycle state. The state value is case-insensitive.`,
@@ -25428,7 +25430,7 @@ Lists the tag definitions in the specified tag namespace.
 					Description: `Date and time the tag was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
 					Description: `The list of tags. ### Tag Reference The following attributes are exported:`,
@@ -25487,7 +25489,7 @@ Get the specified tenancy's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenancy_id",
 					Description: `(Required) The OCID of the tenancy. ## Attributes Reference The following attributes are exported:`,
@@ -25517,7 +25519,7 @@ Get the specified tenancy's information.
 					Description: `The name of the tenancy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
@@ -25558,7 +25560,7 @@ but not the password itself. The actual password is returned only when created o
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user. ## Attributes Reference The following attributes are exported:`,
@@ -25576,7 +25578,7 @@ but not the password itself. The actual password is returned only when created o
 					Description: `The OCID of the user.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "state",
 					Description: `The password's current state.`,
@@ -25603,7 +25605,7 @@ Gets the specified user's information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user. ## Attributes Reference The following attributes are exported:`,
@@ -25681,7 +25683,7 @@ Gets the specified user's information.
 					Description: `Date and time the user was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "capabilities",
 					Description: `Properties indicating how the user is allowed to authenticate.`,
@@ -25778,7 +25780,7 @@ If the answer is no, the response is an empty list.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment).`,
@@ -25824,7 +25826,7 @@ If the answer is no, the response is an empty list.
 					Description: `The OCID of the user.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "memberships",
 					Description: `The list of memberships. ### UserGroupMembership Reference The following attributes are exported:`,
@@ -25874,7 +25876,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment (remember that the tenancy is simply the root compartment).`,
@@ -25964,7 +25966,7 @@ See [Where to Get the Tenancy's OCID and User's OCID](https://docs.cloud.oracle.
 					Description: `Date and time the user was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "users",
 					Description: `The list of users. ### User Reference The following attributes are exported:`,
@@ -26056,7 +26058,7 @@ Decrypts data using the given DecryptDataDetails resource.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "associated_data",
 					Description: `(Optional) Information that can be used to provide an encryption context for the encrypted data. The length of the string representation of the associatedData must be fewer than 4096 characters.`,
@@ -26082,7 +26084,7 @@ Decrypts data using the given DecryptDataDetails resource.
 					Description: `Checksum of the decrypted data.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plaintext",
 					Description: `The decrypted data, in the form of a base64-encoded value.`,
@@ -26108,7 +26110,7 @@ of a UTF-8 string.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "associated_data",
 					Description: `(Optional) Information that can be used to provide an encryption context for the encrypted data. The length of the string representation of the associatedData must be fewer than 4096 characters.`,
@@ -26130,7 +26132,7 @@ of a UTF-8 string.
 					Description: `The encrypted data.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ciphertext",
 					Description: `The encrypted data.`,
@@ -26150,7 +26152,7 @@ Gets information about the specified key.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Required) The OCID of the key.`,
@@ -26212,7 +26214,7 @@ Gets information about the specified key.
 					Description: `The OCID of the vault that contains this key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains this key.`,
@@ -26280,7 +26282,7 @@ Gets information about the specified key version.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Required) The OCID of the key.`,
@@ -26314,7 +26316,7 @@ Gets information about the specified key version.
 					Description: `The OCID of the vault that contains this key version.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains this key version.`,
@@ -26350,7 +26352,7 @@ Lists all key versions for the specified key.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Required) The OCID of the key.`,
@@ -26384,7 +26386,7 @@ Lists all key versions for the specified key.
 					Description: `The OCID of the vault that contains this key version.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_versions",
 					Description: `The list of key_versions. ### KeyVersion Reference The following attributes are exported:`,
@@ -26424,7 +26426,7 @@ Lists the keys in the specified vault and compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -26490,7 +26492,7 @@ Lists the keys in the specified vault and compartment.
 					Description: `The OCID of the vault that contains this key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "keys",
 					Description: `The list of keys. ### Key Reference The following attributes are exported:`,
@@ -26562,7 +26564,7 @@ Gets the specified vault's configuration information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vault_id",
 					Description: `(Required) The OCID of the vault. ## Attributes Reference The following attributes are exported:`,
@@ -26612,7 +26614,7 @@ Gets the specified vault's configuration information.
 					Description: `The type of vault. Each type of vault stores the key with different degrees of isolation and has different options and pricing.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains a particular vault.`,
@@ -26672,7 +26674,7 @@ Lists the vaults in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment. ## Attributes Reference The following attributes are exported:`,
@@ -26726,7 +26728,7 @@ Lists the vaults in the specified compartment.
 					Description: `The type of vault. Each type of vault stores the key with different degrees of isolation and has different options and pricing.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vaults",
 					Description: `The list of vaults. ### Vault Reference The following attributes are exported:`,
@@ -26789,7 +26791,7 @@ Gets the quota for the OCID specified.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "quota_id",
 					Description: `(Required) The OCID of the quota. ## Attributes Reference The following attributes are exported:`,
@@ -26831,7 +26833,7 @@ Gets the quota for the OCID specified.
 					Description: `Date and time the quota was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the resource this quota applies to.`,
@@ -26882,7 +26884,7 @@ Lists all quotas on resources from the given compartment
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the parent compartment (remember that the tenancy is simply the root compartment).`,
@@ -26936,7 +26938,7 @@ Lists all quotas on resources from the given compartment
 					Description: `Date and time the quota was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "quotas",
 					Description: `The list of quotas. ### Quota Reference The following attributes are exported:`,
@@ -26991,7 +26993,7 @@ Gets the current health status of the specified backend server.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend_name",
 					Description: `(Required) The IP address and port of the backend server to retrieve the health status for. Example: ` + "`" + `10.0.0.3:8080` + "`" + ``,
@@ -27029,7 +27031,7 @@ Gets the current health status of the specified backend server.
 					Description: `The general health status of the specified backend server as reported by the primary and standby load balancers.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "health_check_results",
 					Description: `A list of the most recent health check results returned for the specified backend server.`,
@@ -27068,7 +27070,7 @@ Gets the health status for the specified backend set.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend_set_name",
 					Description: `(Required) The name of the backend set to retrieve the health status for. Example: ` + "`" + `example_backend_set` + "`" + ``,
@@ -27098,7 +27100,7 @@ Gets the health status for the specified backend set.
 					Description: `A list of backend servers that are currently in the ` + "`" + `WARNING` + "`" + ` health state. The list identifies each backend server by IP address and port. Example: ` + "`" + `10.0.0.3:8080` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "critical_state_backend_names",
 					Description: `A list of backend servers that are currently in the ` + "`" + `CRITICAL` + "`" + ` health state. The list identifies each backend server by IP address and port. Example: ` + "`" + `10.0.0.4:8080` + "`" + ``,
@@ -27133,7 +27135,7 @@ Lists all backend sets associated with a given load balancer.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer associated with the backend sets to retrieve. ## Attributes Reference The following attributes are exported:`,
@@ -27279,7 +27281,7 @@ Lists all backend sets associated with a given load balancer.
 					Description: `Whether the load balancer listener should verify peer certificates. Defaults to true. Example: ` + "`" + `true` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backendsets",
 					Description: `The list of backendsets. ### BackendSet Reference The following attributes are exported:`,
@@ -27434,7 +27436,7 @@ Lists the backend servers for a given load balancer and backend set.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backendset_name",
 					Description: `(Required) The name of the backend set associated with the backend servers. Example: ` + "`" + `example_backend_set` + "`" + ``,
@@ -27476,7 +27478,7 @@ Lists the backend servers for a given load balancer and backend set.
 					Description: `The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger proportion of incoming traffic. For example, a server weighted '3' receives 3 times the number of new connections as a server weighted '1'. For more information on load balancing policies, see [How Load Balancing Policies Work](https://docs.cloud.oracle.com/iaas/Content/Balance/Reference/lbpolicies.htm). Example: ` + "`" + `3` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backends",
 					Description: `The list of backends. ### Backend Reference The following attributes are exported:`,
@@ -27523,7 +27525,7 @@ Lists all SSL certificates bundles associated with a given load balancer.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer associated with the certificate bundles to be listed. ## Attributes Reference The following attributes are exported:`,
@@ -27545,7 +27547,7 @@ Lists all SSL certificates bundles associated with a given load balancer.
 					Description: `The public certificate, in PEM format, that you received from your SSL certificate provider. Example: -----BEGIN CERTIFICATE----- MIIC2jCCAkMCAg38MA0GCSqGSIb3DQEBBQUAMIGbMQswCQYDVQQGEwJKUDEOMAwG A1UECBMFVG9reW8xEDAOBgNVBAcTB0NodW8ta3UxETAPBgNVBAoTCEZyYW5rNERE MRgwFgYDVQQLEw9XZWJDZXJ0IFN1cHBvcnQxGDAWBgNVBAMTD0ZyYW5rNEREIFdl YiBDQTEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBmcmFuazRkZC5jb20wHhcNMTIw ... -----END CERTIFICATE-----`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificates",
 					Description: `The list of certificates. ### Certificate Reference The following attributes are exported:`,
@@ -27576,7 +27578,7 @@ Lists all hostname resources associated with the specified load balancer.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer associated with the hostnames to retrieve. ## Attributes Reference The following attributes are exported:`,
@@ -27594,7 +27596,7 @@ Lists all hostname resources associated with the specified load balancer.
 					Description: `A friendly name for the hostname resource. It must be unique and it cannot be changed. Avoid entering confidential information. Example: ` + "`" + `example_hostname_001` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostnames",
 					Description: `The list of hostnames. ### Hostname Reference The following attributes are exported:`,
@@ -27628,7 +27630,7 @@ the rules in the following order:
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_name",
 					Description: `(Required) The name of the listener the rules are associated with.`,
@@ -27694,7 +27696,7 @@ the rules in the following order:
 					Description: `A header value that conforms to RFC 7230. Example: ` + "`" + `example_value` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_rules",
 					Description: `The list of listener_rules. ### ListenerRule Reference The following attributes are exported:`,
@@ -27765,7 +27767,7 @@ Gets the health status for the specified load balancer.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer to return health status for. ## Attributes Reference The following attributes are exported:`,
@@ -27791,7 +27793,7 @@ Gets the health status for the specified load balancer.
 					Description: `A list of backend sets that are currently in the ` + "`" + `WARNING` + "`" + ` health state. The list identifies each backend set by the friendly name you assigned when you created it. Example: ` + "`" + `example_backend_set3` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "critical_state_backend_set_names",
 					Description: `A list of backend sets that are currently in the ` + "`" + `CRITICAL` + "`" + ` health state. The list identifies each backend set by the friendly name you assigned when you created it. Example: ` + "`" + `example_backend_set` + "`" + ``,
@@ -27826,7 +27828,7 @@ Lists the available load balancer policies.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancer policies to list. ## Attributes Reference The following attributes are exported:`,
@@ -27840,7 +27842,7 @@ Lists the available load balancer policies.
 					Description: `The name of a load balancing policy. Example: 'LEAST_CONNECTIONS'`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policies",
 					Description: `The list of policies. ### LoadBalancerPolicy Reference The following attributes are exported:`,
@@ -27863,7 +27865,7 @@ Lists all supported traffic protocols.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancer protocols to list. ## Attributes Reference The following attributes are exported:`,
@@ -27877,7 +27879,7 @@ Lists all supported traffic protocols.
 					Description: `The name of a protocol. Example: 'HTTP'`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "protocols",
 					Description: `The list of protocols. ### LoadBalancerProtocol Reference The following attributes are exported:`,
@@ -27900,7 +27902,7 @@ Lists the valid load balancer shapes.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancer shapes to list. ## Attributes Reference The following attributes are exported:`,
@@ -27914,7 +27916,7 @@ Lists the valid load balancer shapes.
 					Description: `The name of the shape. Example: ` + "`" + `100Mbps` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "shapes",
 					Description: `The list of shapes. ### LoadBalancerShape Reference The following attributes are exported:`,
@@ -27937,7 +27939,7 @@ Lists all load balancers in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancers to list.`,
@@ -28019,7 +28021,7 @@ Lists all load balancers in the specified compartment.
 					Description: `The date and time the load balancer was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancers",
 					Description: `The list of load_balancers. ### LoadBalancer Reference The following attributes are exported:`,
@@ -28098,7 +28100,7 @@ Lists all path route sets associated with the specified load balancer.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer associated with the path route sets to retrieve. ## Attributes Reference The following attributes are exported:`,
@@ -28132,7 +28134,7 @@ Lists all path route sets associated with the specified load balancer.
 					Description: `Specifies how the load balancing service compares a [PathRoute](https://docs.cloud.oracle.com/iaas/api/#/en/loadbalancer/20170115/requests/PathRoute) object's ` + "`" + `path` + "`" + ` string against the incoming URI.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path_route_sets",
 					Description: `The list of path_route_sets. ### PathRouteSet Reference The following attributes are exported:`,
@@ -28175,7 +28177,7 @@ Gets the specified set of rules.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the specified load balancer.`,
@@ -28237,7 +28239,7 @@ Gets the specified set of rules.
 					Description: `The name for this set of rules. It must be unique and it cannot be changed. Avoid entering confidential information. Example: ` + "`" + `example_rule_set` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "items",
 					Description: `An array of rules that compose the rule set.`,
@@ -28304,7 +28306,7 @@ Lists all rule sets associated with the specified load balancer.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the specified load balancer. ## Attributes Reference The following attributes are exported:`,
@@ -28366,7 +28368,7 @@ Lists all rule sets associated with the specified load balancer.
 					Description: `The name for this set of rules. It must be unique and it cannot be changed. Avoid entering confidential information. Example: ` + "`" + `example_rule_set` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule_sets",
 					Description: `The list of rule_sets. ### RuleSet Reference The following attributes are exported:`,
@@ -28438,7 +28440,7 @@ Gets the specified alarm.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of an alarm. ## Attributes Reference The following attributes are exported:`,
@@ -28536,7 +28538,7 @@ Gets the specified alarm.
 					Description: `The date and time the alarm was last updated. Format defined by RFC3339. Example: ` + "`" + `2019-02-03T01:02:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "body",
 					Description: `The human-readable content of the notification delivered. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information. Example: ` + "`" + `High CPU usage alert. Follow runbook instructions for resolution.` + "`" + ``,
@@ -28644,7 +28646,7 @@ Get the history of the specified alarm.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_historytype",
 					Description: `(Optional) The type of history entries to retrieve. State history (STATE_HISTORY) or state transition history (STATE_TRANSITION_HISTORY). If not specified, entries of both types are retrieved. Example: ` + "`" + `STATE_HISTORY` + "`" + ``,
@@ -28686,7 +28688,7 @@ Get the history of the specified alarm.
 					Description: `Whether the alarm is enabled. Example: ` + "`" + `true` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the alarm for which to retrieve history.`,
@@ -28726,7 +28728,7 @@ List the status of each alarm in the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
@@ -28780,7 +28782,7 @@ List the status of each alarm in the specified compartment.
 					Description: `Timestamp for the transition of the alarm state. For example, the time when the alarm transitioned from OK to Firing. Example: ` + "`" + `2019-02-01T01:02:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_statuses",
 					Description: `The list of alarm_statuses. ### AlarmStatus Reference The following attributes are exported:`,
@@ -28836,7 +28838,7 @@ Lists the alarms for the specified compartment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
@@ -28950,7 +28952,7 @@ Lists the alarms for the specified compartment.
 					Description: `The date and time the alarm was last updated. Format defined by RFC3339. Example: ` + "`" + `2019-02-03T01:02:29.600Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarms",
 					Description: `The list of alarms. ### Alarm Reference The following attributes are exported:`,
@@ -29063,7 +29065,7 @@ For information on metric queries, see [Building Metric Queries](https://docs.cl
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
@@ -29133,7 +29135,7 @@ For information on metric queries, see [Building Metric Queries](https://docs.cl
 					Description: `The time between calculated aggregation windows. Use with the query interval to vary the frequency at which aggregated data points are returned. For example, use a query interval of 5 minutes with a resolution of 1 minute to retrieve five-minute aggregations at a one-minute frequency. The resolution must be equal or less than the interval in the query. The default resolution is 1m (one minute). Supported values: ` + "`" + `1m` + "`" + `-` + "`" + `60m` + "`" + ` (also ` + "`" + `1h` + "`" + `). Example: ` + "`" + `5m` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metric_data",
 					Description: `The list of metric_data. ### MetricData Reference The following attributes are exported:`,
@@ -29190,7 +29192,7 @@ For information about metrics, see [Metrics Overview](https://docs.cloud.oracle.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
@@ -29236,7 +29238,7 @@ For information about metrics, see [Metrics Overview](https://docs.cloud.oracle.
 					Description: `The source service or application emitting the metric. Example: ` + "`" + `oci_computeagent` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metrics",
 					Description: `The list of metrics. ### Metric Reference The following attributes are exported:`,
@@ -29272,7 +29274,7 @@ Gets the current representation of the given bucket in the given Object Storage 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -29342,7 +29344,7 @@ Gets the current representation of the given bucket in the given Object Storage 
 					Description: `The date and time the bucket was created, as described in [RFC 2616](https://tools.ietf.org/rfc/rfc2616), section 14.29.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_type",
 					Description: `The type of public access enabled on this bucket. A bucket is set to ` + "`" + `NoPublicAccess` + "`" + ` by default, which only allows an authenticated caller to access the bucket and its contents. When ` + "`" + `ObjectRead` + "`" + ` is enabled on the bucket, public access is allowed for the ` + "`" + `GetObject` + "`" + `, ` + "`" + `HeadObject` + "`" + `, and ` + "`" + `ListObjects` + "`" + ` operations. When ` + "`" + `ObjectReadWithoutList` + "`" + ` is enabled on the bucket, public access is allowed for the ` + "`" + `GetObject` + "`" + ` and ` + "`" + `HeadObject` + "`" + ` operations.`,
@@ -29423,7 +29425,7 @@ talk to an administrator. If you are an administrator who needs to write policie
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The ID of the compartment in which to list buckets.`,
@@ -29497,7 +29499,7 @@ talk to an administrator. If you are an administrator who needs to write policie
 					Description: `The date and time the bucket was created, as described in [RFC 2616](https://tools.ietf.org/rfc/rfc2616), section 14.29.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_summaries",
 					Description: `The list of bucket_summaries. ### Bucket Reference The following attributes are exported:`,
@@ -29583,7 +29585,7 @@ tenancy, provided the user has access to it.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) This is an optional field representing the tenancy OCID or the compartment OCID within the tenancy whose Object Storage namespace name has to be retrieved. ## Attributes Reference The following attributes are exported:`,
@@ -29593,7 +29595,7 @@ tenancy, provided the user has access to it.
 					Description: `(Computed) The name of the user's namespace.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "namespace",
 					Description: `(Computed) The name of the user's namespace.`,
@@ -29613,7 +29615,7 @@ Gets the metadata and body of an object.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -29675,7 +29677,7 @@ Gets the metadata and body of an object.
 					Description: `The name of the object. Avoid entering confidential information. Example: ` + "`" + `test/object1.log` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -29730,7 +29732,7 @@ Gets the metadata of an object.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -29760,7 +29762,7 @@ Gets the metadata of an object.
 					Description: `The etag of the object`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `The metadata of the object`,
@@ -29792,7 +29794,7 @@ Gets the object lifecycle policy for the bucket.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -29846,7 +29848,7 @@ Gets the object lifecycle policy for the bucket.
 					Description: `The date and time the object lifecycle policy was created, as described in [RFC 3339](https://tools.ietf.org/rfc/rfc3339), section 14.29.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rules",
 					Description: `The live lifecycle policy on the bucket. For an example of this value, see the [PutObjectLifecyclePolicy API documentation](https://docs.cloud.oracle.com/iaas/api/#/en/objectstorage/20160918/ObjectLifecyclePolicy/PutObjectLifecyclePolicy).`,
@@ -29910,7 +29912,7 @@ talk to an administrator. If you are an administrator who needs to write policie
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -29980,7 +29982,7 @@ talk to an administrator. If you are an administrator who needs to write policie
 					Description: `The name of the object. Avoid entering confidential information. Example: ` + "`" + `test/object1.log` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "list_objects",
 					Description: `The list of list_objects. ### Object Reference The following attributes are exported:`,
@@ -30039,7 +30041,7 @@ Gets the pre-authenticated request for the bucket.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -30089,7 +30091,7 @@ Gets the pre-authenticated request for the bucket.
 					Description: `The expiration date for the pre-authenticated request as per [RFC 3339](https://tools.ietf.org/rfc/rfc3339). After this date the pre-authenticated request will no longer be valid.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_type",
 					Description: `The operation that can be performed on this resource.`,
@@ -30141,7 +30143,7 @@ Lists pre-authenticated requests for the bucket.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -30195,7 +30197,7 @@ Lists pre-authenticated requests for the bucket.
 					Description: `The expiration date for the pre-authenticated request as per [RFC 3339](https://tools.ietf.org/rfc/rfc3339). After this date the pre-authenticated request will no longer be valid.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "preauthenticated_requests",
 					Description: `The list of preauthenticated_requests. ### PreauthenticatedRequest Reference The following attributes are exported:`,
@@ -30251,7 +30253,7 @@ Gets the specified topic's configuration information.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic to retrieve. Transactions Per Minute (TPM) per-tenancy limit for this operation: 120. ## Attributes Reference The following attributes are exported:`,
@@ -30297,7 +30299,7 @@ Gets the specified topic's configuration information.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_endpoint",
 					Description: `The endpoint for managing topic subscriptions or publishing messages to the topic.`,
@@ -30355,7 +30357,7 @@ Transactions Per Minute (TPM) per-tenancy limit for this operation: 120.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -30417,7 +30419,7 @@ Transactions Per Minute (TPM) per-tenancy limit for this operation: 120.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "notification_topics",
 					Description: `The list of notification_topics. ### NotificationTopic Reference The following attributes are exported:`,
@@ -30479,7 +30481,7 @@ Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subscription_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription to retrieve. ## Attributes Reference The following attributes are exported:`,
@@ -30529,7 +30531,7 @@ Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.`,
@@ -30591,7 +30593,7 @@ Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -30661,7 +30663,7 @@ Transactions Per Minute (TPM) per-tenancy limit for this operation: 60.
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated topic.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subscriptions",
 					Description: `The list of subscriptions. ### Subscription Reference The following attributes are exported:`,
@@ -30736,7 +30738,7 @@ Gets detailed information about a stream, including the number of partitions.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stream_id",
 					Description: `(Required) The OCID of the stream to retrieve. ## Attributes Reference The following attributes are exported:`,
@@ -30786,7 +30788,7 @@ Gets detailed information about a stream, including the number of partitions.
 					Description: `The date and time the stream was created, expressed in in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2018-04-20T00:00:07.405Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains the stream.`,
@@ -30845,7 +30847,7 @@ Lists the streams.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -30911,7 +30913,7 @@ Lists the streams.
 					Description: `The date and time the stream was created, expressed in in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2018-04-20T00:00:07.405Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "streams",
 					Description: `The list of streams. ### Stream Reference The following attributes are exported:`,
@@ -30974,7 +30976,7 @@ Gets the details of an SSL certificate.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the SSL certificate used in the WAAS policy. This number is generated when the certificate is added to the policy. ## Attributes Reference The following attributes are exported:`,
@@ -31128,7 +31130,7 @@ Gets the details of an SSL certificate.
 					Description: ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the SSL certificate's compartment.`,
@@ -31291,7 +31293,7 @@ Gets a list of SSL certificates that can be used in a WAAS policy.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. This number is generated when the compartment is created.`,
@@ -31469,7 +31471,7 @@ Gets a list of SSL certificates that can be used in a WAAS policy.
 					Description: ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificates",
 					Description: `The list of certificates. ### Certificate Reference The following attributes are exported:`,
@@ -31636,7 +31638,7 @@ Return the list of the tenant's edge node subnets. Use these CIDR blocks to rest
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "edge_subnets",
 					Description: `The list of edge_subnets. ### EdgeSubnet Reference The following attributes are exported:`,
@@ -31654,7 +31656,7 @@ Return the list of the tenant's edge node subnets. Use these CIDR blocks to rest
 					Description: `The date and time the last change was made to the indicated edge node subnet, expressed in RFC 3339 timestamp format.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "edge_subnets",
 					Description: `The list of edge_subnets. ### EdgeSubnet Reference The following attributes are exported:`,
@@ -31685,7 +31687,7 @@ Gets a list of WAAS policies.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. This number is generated when the compartment is created.`,
@@ -32199,7 +32201,7 @@ Gets a list of WAAS policies.
 					Description: `The unique name of the whitelist.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "waas_policies",
 					Description: `The list of waas_policies. ### WaasPolicy Reference The following attributes are exported:`,
@@ -32702,7 +32704,7 @@ Gets the details of a WAAS policy.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "waas_policy_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the WAAS policy. ## Attributes Reference The following attributes are exported:`,
@@ -33192,7 +33194,7 @@ Gets the details of a WAAS policy.
 					Description: `The unique name of the whitelist.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "additional_domains",
 					Description: `An array of additional domains for this web application.`,
@@ -33681,7 +33683,7 @@ Gets the details of a WAAS policy.
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"oci_audit_events":                                      0,
 		"oci_audit_configuration":                               1,
@@ -33927,10 +33929,10 @@ Gets the details of a WAAS policy.
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

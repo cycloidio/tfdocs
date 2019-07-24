@@ -1,11 +1,13 @@
-package aws
+package cloudstack
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"affinity",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the affinity group. Changing this forces a new resource to be created.`,
@@ -43,7 +45,7 @@ var (
 					Description: `The description of the affinity group. ## Import Affinity groups can be imported; use ` + "`" + `<AFFINITY GROUP ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_affinity_group.default 6226ea4d-9cbe-4cc9-b30c-b9532146da5b ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_affinity_group.default my-project/6226ea4d-9cbe-4cc9-b30c-b9532146da5b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the affinity group.`,
@@ -63,7 +65,7 @@ var (
 			Keywords: []string{
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the disk volume. Changing this forces a new resource to be created.`,
@@ -109,7 +111,7 @@ var (
 					Description: `The device ID the disk volume is mapped to within the guest OS. ## Import Disks can be imported; use ` + "`" + `<DISK ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_disk.default 6f3ee798-d417-4e7a-92bc-95ad41cf1244 ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_disk.default my-project/6f3ee798-d417-4e7a-92bc-95ad41cf1244 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the disk volume.`,
@@ -130,7 +132,7 @@ var (
 				"egress",
 				"firewall",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `(Required) The network ID for which to create the egress firewall rules. Changing this forces a new resource to be created.`,
@@ -168,7 +170,7 @@ var (
 					Description: `The network ID for which the egress firewall rules are created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The network ID for which the egress firewall rules are created.`,
@@ -184,7 +186,7 @@ var (
 			Keywords: []string{
 				"firewall",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address_id",
 					Description: `(Required) The IP address ID for which to create the firewall rules. Changing this forces a new resource to be created.`,
@@ -222,7 +224,7 @@ var (
 					Description: `The IP address ID for which the firewall rules are created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The IP address ID for which the firewall rules are created.`,
@@ -238,7 +240,7 @@ var (
 			Keywords: []string{
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the instance.`,
@@ -320,7 +322,7 @@ var (
 					Description: `The display name of the instance. ## Import Instances can be imported; use ` + "`" + `<INSTANCE ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_instance.default 5cf69677-7e4b-4bf4-b868-f0b02bb72ee0 ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_instance.default my-project/5cf69677-7e4b-4bf4-b868-f0b02bb72ee0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The instance ID.`,
@@ -340,7 +342,7 @@ var (
 			Keywords: []string{
 				"ipaddress",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "is_portable",
 					Description: `(Optional) This determines if the IP address should be transferable across zones (defaults false)`,
@@ -370,7 +372,7 @@ var (
 					Description: `The IP address that was acquired and associated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the acquired and associated IP address.`,
@@ -391,7 +393,7 @@ var (
 				"loadbalancer",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the loadbalancer rule. Changing this forces a new resource to be created.`,
@@ -441,7 +443,7 @@ var (
 					Description: `The description of the load balancer rule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The load balancer rule ID.`,
@@ -461,7 +463,7 @@ var (
 			Keywords: []string{
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the network.`,
@@ -535,7 +537,7 @@ var (
 					Description: `The ID of the associated source NAT IP. ## Import Networks can be imported; use ` + "`" + `<NETWORK ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_network.default 36619b20-5584-43bf-9a84-e242bacd5582 ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_network.default my-project/36619b20-5584-43bf-9a84-e242bacd5582 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the network.`,
@@ -564,7 +566,7 @@ var (
 				"network",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ACL. Changing this forces a new resource to be created.`,
@@ -586,7 +588,7 @@ var (
 					Description: `The ID of the Network ACL ## Import Network ACLs can be imported; use ` + "`" + `<NETWORK ACL ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_network_acl.default e8b5982a-1b50-4ea9-9920-6ea2290c7359 ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_network_acl.default my-project/e8b5982a-1b50-4ea9-9920-6ea2290c7359 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Network ACL ## Import Network ACLs can be imported; use ` + "`" + `<NETWORK ACL ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_network_acl.default e8b5982a-1b50-4ea9-9920-6ea2290c7359 ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_network_acl.default my-project/e8b5982a-1b50-4ea9-9920-6ea2290c7359 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -604,7 +606,7 @@ var (
 				"acl",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "acl_id",
 					Description: `(Required) The network ACL ID for which to create the rules. Changing this forces a new resource to be created.`,
@@ -654,7 +656,7 @@ var (
 					Description: `The ACL ID for which the rules are created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ACL ID for which the rules are created.`,
@@ -670,7 +672,7 @@ var (
 			Keywords: []string{
 				"nic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `(Required) The ID of the network to plug the NIC into. Changing this forces a new resource to be created.`,
@@ -692,7 +694,7 @@ var (
 					Description: `The assigned IP address.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the NIC.`,
@@ -713,7 +715,7 @@ var (
 				"port",
 				"forward",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address_id",
 					Description: `(Required) The IP address ID for which to create the port forwards. Changing this forces a new resource to be created.`,
@@ -759,7 +761,7 @@ var (
 					Description: `The IP address of the virtual machine that is used for the port forwarding rule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the IP address for which the port forwards are created.`,
@@ -780,7 +782,7 @@ var (
 				"private",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gateway",
 					Description: `(Required) the gateway of the Private gateway. Changing this forces a new resource to be created.`,
@@ -818,7 +820,7 @@ var (
 					Description: `The ID of the private gateway. ## Import Private gateways can be imported; use ` + "`" + `<PRIVATE GATEWAY ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_private_gateway.default e42a24d2-46cb-4b18-9d41-382582fad309 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the private gateway. ## Import Private gateways can be imported; use ` + "`" + `<PRIVATE GATEWAY ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_private_gateway.default e42a24d2-46cb-4b18-9d41-382582fad309 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -835,7 +837,7 @@ var (
 				"secondary",
 				"ipaddress",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `(Optional) The IP address to bind the to NIC. If not supplied an IP address will be selected randomly. Changing this forces a new resource to be created.`,
@@ -857,7 +859,7 @@ var (
 					Description: `The IP address that was acquired and associated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The secondary IP address ID.`,
@@ -878,7 +880,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the security group. Changing this forces a new resource to be created.`,
@@ -896,7 +898,7 @@ var (
 					Description: `The ID of the security group. ## Import Security groups can be imported; use ` + "`" + `<SECURITY GROUP ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_security_group.default e54970f1-f563-46dd-a365-2b2e9b78c54b ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_security_group.default my-project/e54970f1-f563-46dd-a365-2b2e9b78c54b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the security group. ## Import Security groups can be imported; use ` + "`" + `<SECURITY GROUP ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_security_group.default e54970f1-f563-46dd-a365-2b2e9b78c54b ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_security_group.default my-project/e54970f1-f563-46dd-a365-2b2e9b78c54b ` + "`" + `` + "`" + `` + "`" + ``,
@@ -914,7 +916,7 @@ var (
 				"group",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `(Required) The security group ID for which to create the rules. Changing this forces a new resource to be created.`,
@@ -960,7 +962,7 @@ var (
 					Description: `The security group ID for which the rules are created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The security group ID for which the rules are created.`,
@@ -977,7 +979,7 @@ var (
 				"ssh",
 				"keypair",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SSH key pair. This is a unique value within a CloudStack account. Changing this forces a new resource to be created.`,
@@ -1003,7 +1005,7 @@ var (
 					Description: `The private key generated by CloudStack. Only available if CloudStack generated the key pair.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The key pair ID.`,
@@ -1028,7 +1030,7 @@ var (
 				"static",
 				"nat",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address_id",
 					Description: `(Required) The public IP address ID for which static NAT will be enabled. Changing this forces a new resource to be created.`,
@@ -1054,7 +1056,7 @@ var (
 					Description: `The IP address of the virtual machine that is used to forward the static NAT traffic to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The static nat ID.`,
@@ -1075,7 +1077,7 @@ var (
 				"static",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr",
 					Description: `(Required) The CIDR for the static route. Changing this forces a new resource to be created.`,
@@ -1089,7 +1091,7 @@ var (
 					Description: `The ID of the static route.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the static route.`,
@@ -1105,7 +1107,7 @@ var (
 			Keywords: []string{
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the template.`,
@@ -1195,7 +1197,7 @@ var (
 					Description: `Set to "true" once the template is ready for use.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The template ID.`,
@@ -1239,7 +1241,7 @@ var (
 			Keywords: []string{
 				"vpc",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the VPC.`,
@@ -1281,7 +1283,7 @@ var (
 					Description: `The source NAT IP assigned to the VPC. ## Import VPCs can be imported; use ` + "`" + `<VPC ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_vpc.default 84b23264-917a-4712-b8bf-cd7604db43b0 ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_vpc.default my-project/84b23264-917a-4712-b8bf-cd7604db43b0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC.`,
@@ -1306,7 +1308,7 @@ var (
 				"vpn",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "customer_gateway_id",
 					Description: `(Required) The Customer Gateway ID to connect. Changing this forces a new resource to be created.`,
@@ -1320,7 +1322,7 @@ var (
 					Description: `The ID of the VPN Connection.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPN Connection.`,
@@ -1338,7 +1340,7 @@ var (
 				"customer",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the VPN Customer Gateway.`,
@@ -1396,7 +1398,7 @@ var (
 					Description: `The IKE lifetime of phase 2 VPN connection to this VPN Customer Gateway. ## Import VPN customer gateways can be imported; use ` + "`" + `<VPN CUSTOMER GATEWAY ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_vpn_customer_gateway.default 741a7fca-1d05-4bb6-9290-1008300f0e5a ` + "`" + `` + "`" + `` + "`" + ` When importing into a project you need to prefix the import ID with the project name: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_vpn_customer_gateway.default my-project/741a7fca-1d05-4bb6-9290-1008300f0e5a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPN Customer Gateway.`,
@@ -1425,7 +1427,7 @@ var (
 				"vpn",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The ID of the VPC for which to create the VPN Gateway. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
@@ -1439,7 +1441,7 @@ var (
 					Description: `The public IP address associated with the VPN Gateway. ## Import VPC gateways can be imported; use ` + "`" + `<VPN GATEWAY ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import cloudstack_vpn_gateway.default 49cf1821-3b9f-4627-be19-8a15ffec508d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPN Gateway.`,
@@ -1481,10 +1483,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

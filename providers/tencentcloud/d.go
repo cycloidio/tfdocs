@@ -1,11 +1,13 @@
-package aws
+package tencentcloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Use this data source to query scaling configuration information.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "configuration_id",
 					Description: `(Optional) Launch configuration ID.`,
@@ -120,7 +122,7 @@ var (
 					Description: `Base64-encoded User Data text.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "configuration_list",
 					Description: `A list of configuration. Each element contains the following attributes:`,
@@ -222,7 +224,7 @@ var (
 			ShortDescription: `Use this data source to query the detail information of an existing autoscaling group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "configuration_id",
 					Description: `(Optional) Filter results by launch configuration ID.`,
@@ -340,7 +342,7 @@ var (
 					Description: `A list of available zones.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_list",
 					Description: `A list of scaling group. Each element contains the following attributes:`,
@@ -450,7 +452,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of scaling policy.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_name",
 					Description: `(Optional) Scaling policy name.`,
@@ -520,7 +522,7 @@ var (
 					Description: `Alarm threshold.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_policy_list",
 					Description: `A list of scaling policy. Each element contains the following attributes:`,
@@ -582,7 +584,7 @@ var (
 			ShortDescription: `Get available zones in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "include_unavailable",
 					Description: `(Optional) A bool variable Indicates that the query will include ` + "`" + `UNAVAILABLE` + "`" + ` zones.`,
@@ -608,7 +610,7 @@ var (
 					Description: `The state for the zone, indicate availability using ` + "`" + `AVAILABLE` + "`" + ` and ` + "`" + `UNAVAILABLE` + "`" + ` values.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `An internal id for the zone, like ` + "`" + `200003` + "`" + `, usually not so useful for end user.`,
@@ -634,7 +636,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of CBS snapshots.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) The available zone that the CBS instance locates at.`,
@@ -708,7 +710,7 @@ var (
 					Description: `Types of CBS which this snapshot created from.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "snapshot_list",
 					Description: `A list of snapshot. Each element contains the following attributes:`,
@@ -762,7 +764,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of CBS storages.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) The available zone that the CBS instance locates at.`,
@@ -848,7 +850,7 @@ var (
 					Description: `The available tags within this CBS.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "storage_list",
 					Description: `A list of storage. Each element contains the following attributes:`,
@@ -914,7 +916,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of CCN bandwidth limits.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ccn_id",
 					Description: `(Required, ForceNew) ID of the CCN to be queried.`,
@@ -936,7 +938,7 @@ var (
 					Description: `Limitation of region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "limits",
 					Description: `The bandwidth limits of regions`,
@@ -958,7 +960,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of CCN instances.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ccn_id",
 					Description: `(Optional, ForceNew) ID of the CCN to be queried.`,
@@ -1028,7 +1030,7 @@ var (
 					Description: `States of instance. The available value include 'ISOLATED'(arrears) and 'AVAILABLE'.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `Information list of CCN.`,
@@ -1094,7 +1096,7 @@ var (
 			ShortDescription: `Get all instances of the specific cluster.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) An id identify the cluster, like cls-xxxxxx.`,
@@ -1136,7 +1138,7 @@ var (
 					Description: `Describe the lan ip of the node.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "total_count",
 					Description: `Describe how many nodes in the cluster. A list of nodes will be exported and its every element contains the following attributes:`,
@@ -1178,7 +1180,7 @@ var (
 			ShortDescription: `Get container clusters in the current region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Optional) An id identify the cluster, like ` + "`" + `cls-xxxxxx` + "`" + `.`,
@@ -1232,7 +1234,7 @@ var (
 					Description: `Describe the total memory of each instance in the cluster.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `An id identify the cluster, like ` + "`" + `cls-xxxxxx` + "`" + `.`,
@@ -1286,7 +1288,7 @@ var (
 			ShortDescription: `Use this data source to query the metadata of an object stored inside a bucket.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) Name of the bucket that contains the objects to query.`,
@@ -1328,7 +1330,7 @@ var (
 					Description: `Object storage type such as STANDARD.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cache_control",
 					Description: `Specifies caching behavior along the request/reply chain.`,
@@ -1366,7 +1368,7 @@ var (
 			ShortDescription: `Use this data source to query the COS buckets of the current Tencent Cloud user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_prefix",
 					Description: `(Optional) A prefix string to filter results by bucket name`,
@@ -1456,7 +1458,7 @@ var (
 					Description: `COS returns this index document when requests are made to the root domain or any of the subfolders.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_list",
 					Description: `A list of bucket. Each element contains the following attributes:`,
@@ -1546,7 +1548,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of direct connect gateway route entries.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dcg_id",
 					Description: `(Required) ID of the DCG to be queried.`,
@@ -1576,7 +1578,7 @@ var (
 					Description: `ID of the DCG route.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `Information list of the DCG route entries.`,
@@ -1606,7 +1608,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of direct connect gateway instances.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dcg_id",
 					Description: `(Optional) ID of the DCG to be queried.`,
@@ -1660,7 +1662,7 @@ var (
 					Description: `IP of the DCG`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `Information list of the DCG.`,
@@ -1710,7 +1712,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of DC instances.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dc_id",
 					Description: `(Optional, ForceNew) ID of the DC to be queried.`,
@@ -1808,7 +1810,7 @@ var (
 					Description: `Interconnect IP of the DC within Tencent. Note: This field may return null, indicating that no valid values are taken.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `Information list of the DC.`,
@@ -1902,7 +1904,7 @@ var (
 			ShortDescription: `Use this data source to query detailed information of dedicated tunnels instances.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dcx_id",
 					Description: `(Optional, ForceNew) ID of the dedicated tunnels to be queried.`,
@@ -1988,7 +1990,7 @@ var (
 					Description: `ID of the VPC or BMVPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `Information list of the dedicated tunnels.`,
@@ -2070,7 +2072,7 @@ var (
 			ShortDescription: `Provides an available EIP for the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) One or more name/value pairs to filter off of. There are several valid keys: ` + "`" + `address-id` + "`" + `,` + "`" + `address-name` + "`" + `,` + "`" + `address-ip` + "`" + `. For a full reference, check out [DescribeImages in the TencentCloud API reference](https://intl.cloud.tencent.com/document/api/213/9451#filter). ## Attributes Reference`,
@@ -2088,7 +2090,7 @@ var (
 					Description: `The status of the EIP, there are several status like ` + "`" + `BIND` + "`" + `, ` + "`" + `UNBIND` + "`" + `, and ` + "`" + `BIND_ENI` + "`" + `. For a full reference, check out [DescribeImages in the TencentCloud API reference](https://intl.cloud.tencent.com/document/api/213/9452#eip_state).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `An EIP id indicate the uniqueness of a certain EIP, which can be used for instance binding or network interface binding.`,
@@ -2110,7 +2112,7 @@ var (
 			ShortDescription: `Provides an available image for the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_name_regex",
 					Description: `(Optional) A regex string to apply to the image list returned by TencentCloud.`,
@@ -2132,7 +2134,7 @@ var (
 					Description: `Name of this image.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_id",
 					Description: `An image id indicate the uniqueness of a certain image, which can be used for instance creation or resetting.`,
@@ -2150,7 +2152,7 @@ var (
 			ShortDescription: `Provides a list of instance types available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) One or more name/value pairs to filter off of. There are several valid keys: ` + "`" + `zone` + "`" + `,` + "`" + `instance-family` + "`" + `. For a full reference, check out [DescribeInstanceTypeConfigs in the TencentCloud API reference](https://intl.cloud.tencent.com/document/api/213/9391).`,
@@ -2184,7 +2186,7 @@ var (
 					Description: `The instance type family.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `Indicate the availability zone for this instance type.`,
@@ -2214,7 +2216,7 @@ var (
 			ShortDescription: `Use this data source to query the list of backup databases.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "mysql_id",
 					Description: `(Required, ForceNew) Instance ID, such as cdb-c1nl9rpv. It is identical to the instance ID displayed in the database console page.`,
@@ -2264,7 +2266,7 @@ var (
 					Description: `The earliest time at which the backup starts. For example, 2 indicates 2:00 am.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "list",
 					Description: `A list of MySQL backup. Each element contains the following attributes:`,
@@ -2310,7 +2312,7 @@ var (
 			ShortDescription: `Use this data source to get information about a MySQL instance.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine_version",
 					Description: `(Optional) The version number of the database engine to use. Supported versions include 5.5/5.6/5.7.`,
@@ -2460,7 +2462,7 @@ var (
 					Description: `Information of available zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `A list of instances. Each element contains the following attributes:`,
@@ -2566,7 +2568,7 @@ var (
 			ShortDescription: `Use this data source to get information about a parameter group of a database instance.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "engine_version",
 					Description: `(Optional) The version number of the database engine to use. Supported versions include 5.5/5.6/5.7.`,
@@ -2620,7 +2622,7 @@ var (
 					Description: `Parameter type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "parameter_list",
 					Description: `A list of parameters. Each element contains the following attributes:`,
@@ -2670,7 +2672,7 @@ var (
 			ShortDescription: `Use this data source to query the available database specifications for different regions. And a maximum of 20 requests can be initiated per second for this query.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional, ForceNew) Region parameter, which is used to identify the region to which the data you want to work with belongs.`,
@@ -2748,7 +2750,7 @@ var (
 					Description: `Data replication mode. 0 - Async replication; 1 - Semisync replication; 2 - Strongsync replication.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "list",
 					Description: `A list of zone config. Each element contains the following attributes:`,
@@ -2826,7 +2828,7 @@ var (
 			ShortDescription: `The NATs data source lists a number of NATs resource information owned by an TencentCloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID for NAT Gateway.`,
@@ -2884,7 +2886,7 @@ var (
 					Description: `The create time of the NAT gateway`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the NAT Gateway.`,
@@ -2922,7 +2924,7 @@ var (
 			ShortDescription: `Use this data source to query the detail information of redis instance.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "limit",
 					Description: `(Optional, ForceNew) The number limitation of results for a query.`,
@@ -2996,7 +2998,7 @@ var (
 					Description: `Available zone to which a redis instance belongs.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `A list of redis instance. Each element contains the following attributes:`,
@@ -3058,7 +3060,7 @@ var (
 			ShortDescription: `Use this data source to query which instance types of Redis are available in a specific region.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional, ForceNew) Name of a region. If this value is not set, the current region getting from provider's configuration will be used.`,
@@ -3088,7 +3090,7 @@ var (
 					Description: `ID of available zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "list",
 					Description: `A list of zone. Each element contains the following attributes:`,
@@ -3118,7 +3120,7 @@ var (
 			ShortDescription: `Provides details about a specific Route Table.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_table_id",
 					Description: `(Required) The Route Table ID. ## Attributes Reference`,
@@ -3160,7 +3162,7 @@ var (
 					Description: `Creation time of routing table, for example: 2018-01-22 17:50:21.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name for Route Table.`,
@@ -3206,7 +3208,7 @@ var (
 			ShortDescription: `Provides details about a specific Security Group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `(Required) The ID of the security group. ## Attributes Reference The following attributes are exported:`,
@@ -3228,7 +3230,7 @@ var (
 					Description: `Creation time of security group, for example: 2018-01-22 17:50:21.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the security group.`,
@@ -3254,7 +3256,7 @@ var (
 			ShortDescription: `Provides details about a specific VPC subnet.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The VPC ID.`,
@@ -3276,7 +3278,7 @@ var (
 					Description: `The Route Table ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name for the Subnet.`,
@@ -3298,7 +3300,7 @@ var (
 			ShortDescription: `Provides details about a specific VPC.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The id of the specific VPC to retrieve.`,
@@ -3312,7 +3314,7 @@ var (
 					Description: `The CIDR block of the VPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The CIDR block of the VPC.`,
@@ -3326,7 +3328,7 @@ var (
 			ShortDescription: `Use this data source to query vpc instances' information.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, ForceNew) Name of the VPC to be queried.`,
@@ -3376,7 +3378,7 @@ var (
 					Description: `ID of the VPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `The information list of the VPC.`,
@@ -3422,7 +3424,7 @@ var (
 			ShortDescription: `Use this data source to query vpc route tables information.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, ForceNew) Name of the routing table to be queried.`,
@@ -3488,7 +3490,7 @@ var (
 					Description: `ID of the VPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `The information list of the VPC.`,
@@ -3550,7 +3552,7 @@ var (
 			ShortDescription: `Use this data source to query vpc subnets information.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, ForceNew) Name of the subnet to be queried.`,
@@ -3608,7 +3610,7 @@ var (
 					Description: `ID of the VPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_list",
 					Description: `List of subnets.`,
@@ -3657,7 +3659,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"tencentcloud_as_scaling_configs":          0,
 		"tencentcloud_as_scaling_groups":           1,
@@ -3695,10 +3697,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

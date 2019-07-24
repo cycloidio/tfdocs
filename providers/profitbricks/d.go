@@ -1,11 +1,13 @@
-package aws
+package profitbricks
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get information on a ProfitBricks Data Centers`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name or part of the name of an existing Virtual Data Center that you want to search for.`,
@@ -28,7 +30,7 @@ var (
 					Description: `UUID of the Virtual Data Center`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `UUID of the Virtual Data Center`,
@@ -42,7 +44,7 @@ var (
 			ShortDescription: `Get information on a ProfitBricks Images`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name or part of the name of an existing image that you want to search for.`,
@@ -64,7 +66,7 @@ var (
 					Description: `UUID of the image`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `UUID of the image`,
@@ -78,7 +80,7 @@ var (
 			ShortDescription: `Get information on a ProfitBricks Locations`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name or part of the location name to search for.`,
@@ -92,7 +94,7 @@ var (
 					Description: `UUID of the location`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `UUID of the location`,
@@ -106,7 +108,7 @@ var (
 			ShortDescription: `Get information on a ProfitBricks Resource`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_type",
 					Description: `(Optional) The specific type of resources to retrieve information about.`,
@@ -120,7 +122,7 @@ var (
 					Description: `UUID of the Resource`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `UUID of the Resource`,
@@ -134,7 +136,7 @@ var (
 			ShortDescription: `Get information on a ProfitBricks Snapshots`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name or part of the name of an existing snapshot that you want to search for.`,
@@ -152,7 +154,7 @@ var (
 					Description: `UUID of the snapshot`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `UUID of the snapshot`,
@@ -161,7 +163,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"profitbricks_datacenter": 0,
 		"profitbricks_image":      1,
@@ -171,10 +173,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

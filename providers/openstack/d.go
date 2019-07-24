@@ -1,11 +1,13 @@
-package aws
+package openstack
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get a list of Block Storage availability zones from OpenStack`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the Block Storage client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -36,7 +38,7 @@ var (
 					Description: `The names of the availability zones, ordered alphanumerically, that match the queried ` + "`" + `state` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -58,7 +60,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Snapshot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Block Storage client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -108,7 +110,7 @@ var (
 					Description: `The snapshot's metadata.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -146,7 +148,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Snapshot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V3 Block Storage client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -196,7 +198,7 @@ var (
 					Description: `The snapshot's metadata.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -234,7 +236,7 @@ var (
 			ShortDescription: `Get a list of availability zones from OpenStack`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The ` + "`" + `region` + "`" + ` to fetch availability zones from, defaults to the provider's ` + "`" + `region` + "`" + ``,
@@ -248,7 +250,7 @@ var (
 					Description: `The names of the availability zones, ordered alphanumerically, that match the queried ` + "`" + `state` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `The names of the availability zones, ordered alphanumerically, that match the queried ` + "`" + `state` + "`" + ``,
@@ -262,7 +264,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Flavor.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Compute client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -312,7 +314,7 @@ var (
 					Description: `Whether the flavor is public or private.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "extra_specs",
 					Description: `Key/Value pairs of metadata for the flavor.`,
@@ -330,7 +332,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Keypair.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Compute client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -356,7 +358,7 @@ var (
 					Description: `The OpenSSH-formatted public key of the keypair.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -382,7 +384,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Magnum cluster.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V1 Container Infra client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -476,7 +478,7 @@ var (
 					Description: `UUID of the Orchestration service stack.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -570,7 +572,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Magnum cluster template.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V1 Container Infra client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -708,7 +710,7 @@ var (
 					Description: `The name of the driver that is used for the volumes of the cluster nodes.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -846,7 +848,7 @@ var (
 			ShortDescription: `Get information on an OpenStack DNS Zone.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 DNS client. A DNS client is needed to retrieve zone ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -940,7 +942,7 @@ var (
 					Description: `The project ID that owns the zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1014,7 +1016,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Firewall Policy.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve firewall policy ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1064,7 +1066,7 @@ var (
 					Description: `The array of one or more firewall rules that comprise the policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -1106,7 +1108,7 @@ var (
 			ShortDescription: `Get authentication information from the current authenticated scope.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the scope. This is an arbitrary name which is only used as a unique identifier so an actual token isn't used as the ID.`,
@@ -1160,7 +1162,7 @@ var (
 					Description: `The name of the role.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_name",
 					Description: `The username of the scope.`,
@@ -1214,7 +1216,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Endpoint.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_id",
 					Description: `(Optional) The service id this endpoint belongs to.`,
@@ -1252,7 +1254,7 @@ var (
 					Description: `The region the endpoint is located in.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_id",
 					Description: `See Argument Reference above.`,
@@ -1282,7 +1284,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the group.`,
@@ -1308,7 +1310,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1330,7 +1332,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_id",
 					Description: `(Optional) The domain this project belongs to.`,
@@ -1380,7 +1382,7 @@ var (
 					Description: `The region the project is located in.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the project.`,
@@ -1418,7 +1420,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Role.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the role.`,
@@ -1444,7 +1446,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1466,7 +1468,7 @@ var (
 			ShortDescription: `Get information on an OpenStack User.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A description of the user.`,
@@ -1540,7 +1542,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_project_id",
 					Description: `See Argument Reference above.`,
@@ -1586,7 +1588,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Image.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Glance client. A Glance client is needed to create an Image that can be used with a compute instance. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1684,7 +1686,7 @@ var (
 					Description: `The date the image was last updated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "checksum",
 					Description: `The checksum of the data associated with the image.`,
@@ -1742,7 +1744,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Address Scope.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve address-scopes. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1780,7 +1782,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1806,7 +1808,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Floating IP.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve floating IP ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1856,7 +1858,7 @@ var (
 					Description: `The floating IP DNS domain. Available, when Neutron DNS extension is enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "all_tags",
 					Description: `A set of string tags applied on the floating IP.`,
@@ -1878,7 +1880,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Network.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve networks ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -1972,7 +1974,7 @@ var (
 					Description: `The network DNS domain. Available, when Neutron DNS extension is enabled`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_state_up",
 					Description: `The administrative state of the network.`,
@@ -2026,7 +2028,7 @@ var (
 			ShortDescription: `Provides a list of Openstack Port IDs.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve port ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2088,7 +2090,7 @@ var (
 					Description: `(Optional) Order the results in either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. Defaults to none. ## Attributes Reference ` + "`" + `ids` + "`" + ` is set to the list of Openstack Port IDs.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2097,7 +2099,7 @@ var (
 			ShortDescription: `Get information of an OpenStack Port.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve port ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2271,7 +2273,7 @@ var (
 					Description: `The VNIC type of the port binding.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2393,7 +2395,7 @@ var (
 			ShortDescription: `Get information on an OpenStack QoS Bandwidth limit rule.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a Neutron QoS bandwidth limit rule. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2435,7 +2437,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2465,7 +2467,7 @@ var (
 			ShortDescription: `Get information on an OpenStack QoS DSCP marking rule.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a Neutron QoS DSCP marking rule. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2491,7 +2493,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2513,7 +2515,7 @@ var (
 			ShortDescription: `Get information on an OpenStack QoS minimum bandwidth rule.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a Neutron QoS minimum bandwidth rule. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2539,7 +2541,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2561,7 +2563,7 @@ var (
 			ShortDescription: `Get information on an OpenStack QoS Policy.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to retrieve a QoS policy ID. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2627,7 +2629,7 @@ var (
 					Description: `The set of string tags applied on the QoS policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -2673,7 +2675,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Floating IP.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve router ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2735,7 +2737,7 @@ var (
 					Description: `The set of string tags applied on the router.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enable_snat",
 					Description: `The value that points out if the Source NAT is enabled on the router.`,
@@ -2769,7 +2771,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Security Group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve security groups ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2807,7 +2809,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -2829,7 +2831,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Subnet.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve subnet ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -2915,7 +2917,7 @@ var (
 					Description: `A set of string tags applied on the subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocation_pools",
 					Description: `Allocation pools of the subnet.`,
@@ -2949,7 +2951,7 @@ var (
 			ShortDescription: `Get information on an OpenStack Subnetpool.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to retrieve a subnetpool id. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -3071,7 +3073,7 @@ var (
 					Description: `The set of string tags applied on the subnetpool.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -3145,7 +3147,7 @@ var (
 			ShortDescription: `Get information of an OpenStack Trunk.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve trunk ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -3203,7 +3205,7 @@ var (
 					Description: `The numeric id of the subport segment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "all_tags",
 					Description: `The set of string tags applied on the trunk.`,
@@ -3233,7 +3235,7 @@ var (
 			ShortDescription: `Get a list of Shared File System availability zones from OpenStack`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Shared File System client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to hash of the returned zone list. In addition, the following attributes are exported:`,
@@ -3247,7 +3249,7 @@ var (
 					Description: `The names of the availability zones, ordered alphanumerically.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -3265,7 +3267,7 @@ var (
 			ShortDescription: `Get information on an Shared File System share.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the share.`,
@@ -3359,7 +3361,7 @@ var (
 					Description: `A list of export locations. For example, when a share server has more than one network interface, it can have multiple export locations.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3425,7 +3427,7 @@ var (
 			ShortDescription: `Get information on an Shared File System share network.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Shared File System client. A Shared File System client is needed to read a share network. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
@@ -3519,7 +3521,7 @@ var (
 					Description: `The list of security service IDs associated with the share network.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
@@ -3577,7 +3579,7 @@ var (
 			ShortDescription: `Get information on an Shared File System snapshot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region in which to obtain the V2 Shared File System client.`,
@@ -3631,7 +3633,7 @@ var (
 					Description: `The share snapshot size, in GBs.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3668,7 +3670,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"openstack_blockstorage_availability_zones_v3":       0,
 		"openstack_blockstorage_snapshot_v2":                 1,
@@ -3708,10 +3710,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

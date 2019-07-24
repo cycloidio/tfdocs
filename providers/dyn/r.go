@@ -1,11 +1,13 @@
-package aws
+package dyn
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the record.`,
@@ -46,7 +48,7 @@ var (
 					Description: `The FQDN of the record, built from the ` + "`" + `name` + "`" + ` and the ` + "`" + `zone` + "`" + `. ## Import Dyn records can be imported using a combination of the ` + "`" + `type` + "`" + `, ` + "`" + `zone` + "`" + `, ` + "`" + `fdqn` + "`" + `, and optionally ` + "`" + `id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $terraform import dyn_record.record {type}/{zone}/{fqdn}[/{id}] ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record ID.`,
@@ -65,10 +67,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

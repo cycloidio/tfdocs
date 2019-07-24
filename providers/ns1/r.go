@@ -1,11 +1,13 @@
-package aws
+package ns1
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"apikey",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The free form name of the apikey.`,
@@ -106,7 +108,7 @@ var (
 					Description: `(Optional) Whether the apikey can view monitoring jobs.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -117,7 +119,7 @@ var (
 			Keywords: []string{
 				"datafeed",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_id",
 					Description: `(Required) The data source id that this feed is connected to.`,
@@ -131,7 +133,7 @@ var (
 					Description: `(Optional) The feeds configuration matching the specification in 'feed\_config' from /data/sourcetypes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -142,7 +144,7 @@ var (
 			Keywords: []string{
 				"datasource",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The free form name of the data source.`,
@@ -156,7 +158,7 @@ var (
 					Description: `(Optional) The data source configuration, determined by its type.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -167,7 +169,7 @@ var (
 			Keywords: []string{
 				"monitoringjob",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The free-form display name for the monitoring job.`,
@@ -241,7 +243,7 @@ var (
 					Description: `(Required) The value to compare to.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -252,7 +254,7 @@ var (
 			Keywords: []string{
 				"notifylist",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The free-form display name for the notify list.`,
@@ -270,7 +272,7 @@ var (
 					Description: `(Required) Configuration details for the given notifier type.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -281,7 +283,7 @@ var (
 			Keywords: []string{
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The zone the record belongs to.`,
@@ -335,7 +337,7 @@ var (
 					Description: `(Optional) The filters' configuration. Simple key/value pairs determined by the filter type.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -346,7 +348,7 @@ var (
 			Keywords: []string{
 				"team",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The free form name of the team.`,
@@ -428,7 +430,7 @@ var (
 					Description: `(Optional) Whether the team can view monitoring jobs.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -439,7 +441,7 @@ var (
 			Keywords: []string{
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The free form name of the user.`,
@@ -537,7 +539,7 @@ var (
 					Description: `(Optional) Whether the user can view monitoring jobs.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -548,7 +550,7 @@ var (
 			Keywords: []string{
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain name of the zone.`,
@@ -582,7 +584,7 @@ var (
 					Description: `(Optional) The primary zones' ip. This makes the zone a secondary.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -600,10 +602,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

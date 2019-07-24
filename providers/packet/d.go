@@ -1,11 +1,13 @@
-package aws
+package packet
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get a Packet operating system image`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "distro",
 					Description: `(Optional) Name of the OS distribution.`,
@@ -40,7 +42,7 @@ var (
 					Description: `Operating system slug (same as ` + "`" + `id` + "`" + `)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Operating system slug`,
@@ -58,7 +60,7 @@ var (
 			ShortDescription: `Load automatically created IP blocks from your Packet project`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) ID of the project where the searched block should be.`,
@@ -84,7 +86,7 @@ var (
 					Description: `CIDR notation of the looked up block.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_notation",
 					Description: `CIDR notation of the looked up block.`,
@@ -98,7 +100,7 @@ var (
 			ShortDescription: `Get a Packet Spot Market Price`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "facility",
 					Description: `(Required) Name of the facility.`,
@@ -112,7 +114,7 @@ var (
 					Description: `Current spot market price for given plan in given facility.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "price",
 					Description: `Current spot market price for given plan in given facility.`,
@@ -121,7 +123,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"packet_operating_system":    0,
 		"packet_precreated_ip_block": 1,
@@ -129,10 +131,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

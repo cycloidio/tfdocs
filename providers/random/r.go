@@ -1,11 +1,13 @@
-package aws
+package random
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"id",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "byte_length",
 					Description: `(Required) The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.`,
@@ -46,7 +48,7 @@ var (
 					Description: `The generated id presented in non-padded decimal digits. ## Import Random Ids can be imported using the ` + "`" + `b64_url` + "`" + ` with an optional ` + "`" + `prefix` + "`" + `. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example with no prefix: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_id.server p-9hUg ` + "`" + `` + "`" + `` + "`" + ` Example with prefix (prefix is separated by a ` + "`" + `,` + "`" + `): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_id.server my-prefix-,p-9hUg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "b64_url",
 					Description: `The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters ` + "`" + `_` + "`" + ` and ` + "`" + `-` + "`" + `.`,
@@ -74,7 +76,7 @@ var (
 			Keywords: []string{
 				"integer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "min",
 					Description: `(int) The minimum inclusive value of the range.`,
@@ -100,7 +102,7 @@ var (
 					Description: `(int) The random Integer result. ## Import Random integers can be imported using the ` + "`" + `result` + "`" + `, ` + "`" + `min` + "`" + `, and ` + "`" + `max` + "`" + `, with an optional ` + "`" + `seed` + "`" + `. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ` + "`" + `,` + "`" + `): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_integer.priority 15390,1,99999 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) An internal id.`,
@@ -120,7 +122,7 @@ var (
 			Keywords: []string{
 				"pet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "keepers",
 					Description: `(Optional) Arbitrary map of values that, when changed, will trigger a new id to be generated. See [the main provider documentation](../index.html) for more information.`,
@@ -142,7 +144,7 @@ var (
 					Description: `(string) The random pet name`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) The random pet name`,
@@ -158,7 +160,7 @@ var (
 			Keywords: []string{
 				"shuffle",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "input",
 					Description: `(Required) The list of strings to shuffle.`,
@@ -180,7 +182,7 @@ var (
 					Description: `Random permutation of the list of strings given in ` + "`" + `input` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "result",
 					Description: `Random permutation of the list of strings given in ` + "`" + `input` + "`" + `.`,
@@ -196,7 +198,7 @@ var (
 			Keywords: []string{
 				"string",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "length",
 					Description: `(Required) The length of the string desired`,
@@ -246,7 +248,7 @@ var (
 					Description: `Random string generated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "result",
 					Description: `Random string generated.`,
@@ -262,7 +264,7 @@ var (
 			Keywords: []string{
 				"uuid",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "keepers",
 					Description: `(Optional) Arbitrary map of values that, when changed, will trigger a new uuid to be generated. See [the main provider documentation](../index.html) for more information. ## Attributes Reference The following attributes are exported:`,
@@ -272,7 +274,7 @@ var (
 					Description: `The generated uuid presented in string format. ## Import Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_uuid.main aabbccdd-eeff-0011-2233-445566778899 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "result",
 					Description: `The generated uuid presented in string format. ## Import Random UUID's can be imported. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_uuid.main aabbccdd-eeff-0011-2233-445566778899 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -292,10 +294,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

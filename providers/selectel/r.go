@@ -1,11 +1,13 @@
-package aws
+package selectel
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -19,7 +21,7 @@ var (
 				"subnet",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) An associated Selectel VPC project. Changing this creates a new Cross-region subnet.`,
@@ -53,7 +55,7 @@ var (
 					Description: `Shows id of the associated VLAN in the OpenStack Networking service for this Cross-region subnet. ## Import Cross-region subnets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_crossregion_subnet_v2.crossregion_subnet_1 2060 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "servers",
 					Description: `Shows information about servers that use this Cross-region subnet. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields.`,
@@ -83,7 +85,7 @@ var (
 				"floatingip",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) An associated Selectel VPC project. Changing this creates a new floating IP.`,
@@ -113,7 +115,7 @@ var (
 					Description: `Shows information about servers that use this floating IP. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields. ## Import Floating IPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_floatingip_v2.floatingip_1 aa402146-d83e-4c8c-8b74-1f415d4b8253 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "port_id",
 					Description: `Contains id of the Networking service port.`,
@@ -147,7 +149,7 @@ var (
 				"keypair",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the keypair. Changing this creates a new keypair.`,
@@ -165,7 +167,7 @@ var (
 					Description: `(Required) An associated Selectel VPC user. Changing this creates a new keypair. ## Attributes Reference There are no additional attributes for this resource. ## Import Keypairs can be imported by specifying ` + "`" + `user_id` + "`" + ` and ` + "`" + `name` + "`" + ` arguments, separated by a forward slash: ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_keypair_v2.keypair_1 <user_id>/<name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -178,7 +180,7 @@ var (
 				"license",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) An associated Selectel VPC project. Changing this creates a new license.`,
@@ -200,7 +202,7 @@ var (
 					Description: `Shows information about servers that use this license. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields. ## Import Licenses can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_license_v2.license_1 4123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Shows if the license is used or not.`,
@@ -222,7 +224,7 @@ var (
 				"project",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the project.`,
@@ -284,7 +286,7 @@ var (
 					Description: `Contains all quotas. They can differ from the configurable ` + "`" + `quota` + "`" + ` argument since the project will have all available resource quotas automatically applied. ## Import Projects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_project_v2.project_1 0a343062504b4d06a0fac375e466db25 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `An url of the Selectel VP project. It is set by the Selectel and can't be changed by the user.`,
@@ -310,7 +312,7 @@ var (
 				"role",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) An associated Selectel VPC project. Changing this creates a new role.`,
@@ -320,7 +322,7 @@ var (
 					Description: `(Required) An associated Selectel VPC user. Changing this creates a new role. ## Attributes Reference There are no additional attributes for this resource. ## Import Roles can be imported by specifying ` + "`" + `project_id` + "`" + ` and ` + "`" + `user_id` + "`" + ` arguments, separated by a forward slash: ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_role_v2.role_1 <project_id>/<user_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -333,7 +335,7 @@ var (
 				"subnet",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) An associated Selectel VPC project. Changing this creates a new subnet.`,
@@ -371,7 +373,7 @@ var (
 					Description: `Shows information about servers that use this subnet. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields. ## Import Subnets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_subnet_v2.subnet_1 2060 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr",
 					Description: `Shows subnet CIDR representation.`,
@@ -405,7 +407,7 @@ var (
 				"token",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Optional) An associated Selectel VPC project. Changing this creates a new token.`,
@@ -415,7 +417,7 @@ var (
 					Description: `(Optional) An associated Selectel VPC account. Changing this creates a new token. ## Attributes Reference There are no additional attributes for this resource. ## Import Tokens can't be imported at this time.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -428,7 +430,7 @@ var (
 				"user",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the user. Changing this updates the name of the existing user.`,
@@ -442,7 +444,7 @@ var (
 					Description: `(Optional) Enabled state of the user. Changing this updates the enabled state of the existing user. ## Attributes Reference There are no additional attributes for this resource. ## Import Users can't be imported at this time.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -456,7 +458,7 @@ var (
 				"subnet",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) An associated Selectel VPC project. Changing this creates a new VRRP subnet.`,
@@ -494,7 +496,7 @@ var (
 					Description: `Shows information about servers that use this VRRP subnet. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields. ## Import VRRP subnets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_vrrp_subnet_v2.vrrp_subnet_1 2060 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr",
 					Description: `Shows VRRP subnet CIDR representation.`,
@@ -530,10 +532,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

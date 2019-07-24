@@ -1,11 +1,13 @@
-package aws
+package cloudstack
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get informations on a Cloudstack template.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template_filter",
 					Description: `(Required) The template filter. Possible values are ` + "`" + `featured` + "`" + `, ` + "`" + `self` + "`" + `, ` + "`" + `selfexecutable` + "`" + `, ` + "`" + `sharedexecutable` + "`" + `, ` + "`" + `executable` + "`" + ` and ` + "`" + `community` + "`" + ` (see the Cloudstack API`,
@@ -56,7 +58,7 @@ var (
 					Description: `The size of the template.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The template ID.`,
@@ -93,16 +95,16 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"cloudstack_template": 0,
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

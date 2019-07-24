@@ -1,11 +1,13 @@
-package aws
+package vcd
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"catalog",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
@@ -34,7 +36,7 @@ var (
 					Description: `(Required) - When destroying use delete_recursive=True to remove the catalog and any objects it contains that are in a state that normally allows removal`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -46,7 +48,7 @@ var (
 				"catalog",
 				"item",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
@@ -76,7 +78,7 @@ var (
 					Description: `(Optional) - Default false. Allows to see upload progress`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -88,7 +90,7 @@ var (
 				"catalog",
 				"media",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
@@ -118,7 +120,7 @@ var (
 					Description: `(Optional) - Default false. Allows to see upload progress`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -129,7 +131,7 @@ var (
 			Keywords: []string{
 				"dnat",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "edge_gateway",
 					Description: `(Required) The name of the edge gateway on which to apply the DNAT`,
@@ -167,7 +169,7 @@ var (
 					Description: `(Optional;`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -179,7 +181,7 @@ var (
 				"edgegateway",
 				"vpn",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "edge_gateway",
 					Description: `(Required) The name of the edge gateway on which to apply the Firewall Rules`,
@@ -261,7 +263,7 @@ var (
 					Description: `(Required) Subnet mask of the peer subnet`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -273,7 +275,7 @@ var (
 				"external",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the network`,
@@ -335,7 +337,7 @@ var (
 					Description: `(Required) The vCenter server name`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -347,7 +349,7 @@ var (
 				"firewall",
 				"rules",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "edge_gateway",
 					Description: `(Required) The name of the edge gateway on which to apply the Firewall Rules`,
@@ -397,7 +399,7 @@ var (
 					Description: `(Required) The source IP to match. Either an IP address, IP range or "any"`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -409,7 +411,7 @@ var (
 				"independent",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
@@ -439,7 +441,7 @@ var (
 					Description: `(Optional) - The name of storage profile where disk will be created`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -451,7 +453,7 @@ var (
 				"inserted",
 				"media",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional;`,
@@ -481,7 +483,7 @@ var (
 					Description: `(Optional;`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -492,7 +494,7 @@ var (
 			Keywords: []string{
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the network`,
@@ -546,7 +548,7 @@ var (
 					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -558,7 +560,7 @@ var (
 				"network",
 				"direct",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional;`,
@@ -580,7 +582,7 @@ var (
 					Description: `(Optional) Defines if this network is shared between multiple vDCs in the vOrg. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -592,7 +594,7 @@ var (
 				"network",
 				"isolated",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional;`,
@@ -650,7 +652,7 @@ var (
 					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -662,7 +664,7 @@ var (
 				"network",
 				"routed",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional;`,
@@ -724,7 +726,7 @@ var (
 					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -735,7 +737,7 @@ var (
 			Keywords: []string{
 				"org",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Org name`,
@@ -777,7 +779,7 @@ var (
 					Description: `(Optional) - Specifies this organization's default for virtual machine boot delay after power on. Default is ` + "`" + `0` + "`" + `. ## Sources`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -789,7 +791,7 @@ var (
 				"org",
 				"vdc",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional) Organization to create the VDC in, optional if defined at provider level`,
@@ -899,7 +901,7 @@ var (
 					Description: `(Optional) Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go").`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -910,7 +912,7 @@ var (
 			Keywords: []string{
 				"snat",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "edge_gateway",
 					Description: `(Required) The name of the edge gateway on which to apply the SNAT`,
@@ -932,7 +934,7 @@ var (
 					Description: `(Optional;`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -943,7 +945,7 @@ var (
 			Keywords: []string{
 				"vapp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the vApp`,
@@ -1001,7 +1003,7 @@ var (
 					Description: `(Optional;`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1013,7 +1015,7 @@ var (
 				"vapp",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional;`,
@@ -1075,7 +1077,7 @@ var (
 					Description: `(Optional) Allows to enable or disable service. Default is true.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1087,7 +1089,7 @@ var (
 				"vapp",
 				"vm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional;`,
@@ -1193,7 +1195,7 @@ var (
 					Description: `No IP address will be set because VM will have a NIC without network.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1221,10 +1223,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

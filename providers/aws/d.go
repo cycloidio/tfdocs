@@ -1,11 +1,13 @@
 package aws
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -20,7 +22,7 @@ it by domain without having to hard code the ARNs as input.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) The domain of the certificate to look up. If no certificate is found with this name, an error will be returned.`,
@@ -46,7 +48,7 @@ it by domain without having to hard code the ARNs as input.
 					Description: `Set to the ARN of the found certificate, suitable for referencing in other resources that support ACM certificates.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Set to the ARN of the found certificate, suitable for referencing in other resources that support ACM certificates.`,
@@ -64,7 +66,7 @@ Get information on a AWS Certificate Manager Private Certificate Authority (ACM 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `(Required) Amazon Resource Name (ARN) of the certificate authority. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
@@ -134,7 +136,7 @@ Get information on a AWS Certificate Manager Private Certificate Authority (ACM 
 					Description: `The type of the certificate authority.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the certificate authority.`,
@@ -213,7 +215,7 @@ resources.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owners",
 					Description: `(Required) List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, ` + "`" + `self` + "`" + ` (the current account), or an AWS owner alias (e.g. ` + "`" + `amazon` + "`" + `, ` + "`" + `aws-marketplace` + "`" + `, ` + "`" + `microsoft` + "`" + `).`,
@@ -391,7 +393,7 @@ resources.
 					Description: `The type of virtualization of the AMI (ie: ` + "`" + `hvm` + "`" + ` or ` + "`" + `paravirtual` + "`" + `). [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "architecture",
 					Description: `The OS architecture of the AMI (ie: ` + "`" + `i386` + "`" + ` or ` + "`" + `x86_64` + "`" + `).`,
@@ -561,7 +563,7 @@ Use this data source to get a list of AMI IDs matching the specified criteria.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owners",
 					Description: `(Required) List of AMI owners to limit search. At least 1 value must be specified. Valid values: an AWS account ID, ` + "`" + `self` + "`" + ` (the current account), or an AWS owner alias (e.g. ` + "`" + `amazon` + "`" + `, ` + "`" + `aws-marketplace` + "`" + `, ` + "`" + `microsoft` + "`" + `).`,
@@ -579,7 +581,7 @@ Use this data source to get a list of AMI IDs matching the specified criteria.
 					Description: `(Optional) A regex string to apply to the AMI list returned by AWS. This allows more advanced filtering not supported from the AWS API. This filtering is done locally on what AWS returns, and could have a performance impact if the result is large. It is recommended to combine this with other options to narrow down the list AWS returns.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -593,7 +595,7 @@ example to supply credentials for a dependency microservice.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Required) The ID of the API Key to look up. ## Attributes Reference`,
@@ -611,7 +613,7 @@ example to supply credentials for a dependency microservice.
 					Description: `Set to the value of the API Key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Set to the ID of the API Key.`,
@@ -638,7 +640,7 @@ To fetch the Resource, you must provide the REST API id as well as the full path
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The REST API id that owns the resource. If no REST API is found, an error will be returned.`,
@@ -660,7 +662,7 @@ To fetch the Resource, you must provide the REST API id as well as the full path
 					Description: `Set to the path relative to the parent Resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Set to the ID of the found Resource.`,
@@ -689,7 +691,7 @@ error if there is more than one match.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the REST API to look up. If no REST API is found with this name, an error will be returned. If multiple REST APIs are found with this name, an error will be returned. ## Attributes Reference`,
@@ -703,7 +705,7 @@ error if there is more than one match.
 					Description: `Set to the ID of the API Gateway Resource on the found REST API where the route matches '/'.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Set to the ID of the found REST API.`,
@@ -728,7 +730,7 @@ error if there is more than one match.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Gateway VPC Link to look up. If no API Gateway VPC Link is found with this name, an error will be returned. If multiple API Gateway VPC Links are found with this name, an error will be returned. ## Attributes Reference`,
@@ -738,7 +740,7 @@ error if there is more than one match.
 					Description: `Set to the ID of the found API Gateway VPC Link.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Set to the ID of the found API Gateway VPC Link.`,
@@ -756,7 +758,7 @@ Parses an Amazon Resource Name (ARN) into its constituent parts.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `(Required) The ARN to parse. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -782,7 +784,7 @@ Parses an Amazon Resource Name (ARN) into its constituent parts.
 					Description: `The content of this part of the ARN varies by service. It often includes an indicator of the type of resource—for example, an IAM user or Amazon RDS database —followed by a slash (/) or a colon (:), followed by the resource name itself.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "partition",
 					Description: `The partition that the resource is in.`,
@@ -816,7 +818,7 @@ Use this data source to get information on an existing autoscaling group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `Specify the exact name of the desired autoscaling group. ## Attributes Reference ~>`,
@@ -890,7 +892,7 @@ Use this data source to get information on an existing autoscaling group.
 					Description: `VPC ID for the group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the Auto Scaling group.`,
@@ -973,7 +975,7 @@ ASGs within a specific region. This will allow you to pass a list of AutoScaling
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) A filter used to scope the list e.g. by tags. See [related docs](http://docs.aws.amazon.com/AutoScaling/latest/APIReference/API_Filter.html).`,
@@ -995,7 +997,7 @@ ASGs within a specific region. This will allow you to pass a list of AutoScaling
 					Description: `A list of the Autoscaling Groups Arns in the current region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of the Autoscaling Groups in the current region.`,
@@ -1027,7 +1029,7 @@ which provides a list of the available zones.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The full name of the availability zone to select.`,
@@ -1061,7 +1063,7 @@ which provides a list of the available zones.
 					Description: `(Optional) The zone ID of the selected availability zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the selected availability zone.`,
@@ -1100,7 +1102,7 @@ which provides some details about a specific availability zone.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "blacklisted_names",
 					Description: `(Optional) List of blacklisted Availability Zone names.`,
@@ -1122,7 +1124,7 @@ which provides some details about a specific availability zone.
 					Description: `A list of the Availability Zone IDs available to the account. Note that the indexes of Availability Zone names and IDs correspond.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of the Availability Zone names available to the account.`,
@@ -1145,7 +1147,7 @@ compute environment within AWS Batch.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_environment_name",
 					Description: `(Required) The name of the Batch Compute Environment ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -1179,7 +1181,7 @@ compute environment within AWS Batch.
 					Description: `The state of the compute environment (for example, ` + "`" + `ENABLED` + "`" + ` or ` + "`" + `DISABLED` + "`" + `). If the state is ` + "`" + `ENABLED` + "`" + `, then the compute environment accepts jobs from a queue and can scale out automatically based on queues.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the compute environment.`,
@@ -1222,7 +1224,7 @@ job queue within AWS Batch.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the job queue. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -1260,7 +1262,7 @@ job queue within AWS Batch.
 					Description: `The ARN of the compute environment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the job queue.`,
@@ -1306,8 +1308,8 @@ Use this data source to get the Account ID of the [AWS Billing and Cost Manageme
 
 `,
 			Keywords:  []string{},
-			Arguments: []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the AWS billing service account.`,
@@ -1330,7 +1332,7 @@ which Terraform is authorized.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `The AWS Account ID number of the account that owns or contains the calling entity.`,
@@ -1344,7 +1346,7 @@ which Terraform is authorized.
 					Description: `The unique identifier of the calling entity.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `The AWS Account ID number of the account that owns or contains the calling entity.`,
@@ -1371,7 +1373,7 @@ for the effective account in which Terraform is working.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The canonical user ID associated with the AWS account.`,
@@ -1381,7 +1383,7 @@ for the effective account in which Terraform is working.
 					Description: `The human-friendly name linked to the canonical user ID. The bucket owner's display name.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The canonical user ID associated with the AWS account.`,
@@ -1406,7 +1408,7 @@ exports specified in the [Output](http://docs.aws.amazon.com/AWSCloudFormation/l
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the export as it appears in the console or from [list-exports](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/list-exports.html) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -1420,7 +1422,7 @@ exports specified in the [Output](http://docs.aws.amazon.com/AWSCloudFormation/l
 					Description: `The exporting_stack_id (AWS ARNs) equivalent ` + "`" + `ExportingStackId` + "`" + ` from [list-exports](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/list-exports.html)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "value",
 					Description: `The value from Cloudformation export identified by the export name found from [list-exports](http://docs.aws.amazon.com/cli/latest/reference/cloudformation/list-exports.html)`,
@@ -1443,7 +1445,7 @@ outputs and other useful data including the template body.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the stack ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -1489,7 +1491,7 @@ outputs and other useful data including the template body.
 					Description: `The amount of time that can pass before the stack status becomes ` + "`" + `CREATE_FAILED` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "capabilities",
 					Description: `A list of capabilities`,
@@ -1543,7 +1545,7 @@ Use this data source to get information about a CloudHSM v2 cluster
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) The id of Cloud HSM v2 cluster.`,
@@ -1589,7 +1591,7 @@ Use this data source to get information about a CloudHSM v2 cluster
 					Description: `The HSM hardware certificate issued (signed) by the hardware manufacturer. The number of available cluster certificates may vary depending on state of the cluster.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `The id of the VPC that the CloudHSM cluster resides in.`,
@@ -1640,7 +1642,7 @@ in a given region for the purpose of allowing CloudTrail to store trail data in 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) Name of the region whose AWS CloudTrail account ID is desired. Defaults to the region from the AWS provider configuration. ## Attributes Reference`,
@@ -1654,7 +1656,7 @@ in a given region for the purpose of allowing CloudTrail to store trail data in 
 					Description: `The ARN of the AWS CloudTrail service account in the selected region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the AWS CloudTrail service account in the selected region.`,
@@ -1676,7 +1678,7 @@ Use this data source to get information about an AWS Cloudwatch Log Group
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Cloudwatch log group ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -1690,7 +1692,7 @@ Use this data source to get information about an AWS Cloudwatch Log Group
 					Description: `The creation time of the log group, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the Cloudwatch log group`,
@@ -1712,7 +1714,7 @@ The CodeCommit Repository data source allows the ARN, Repository ID, Repository 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository_name",
 					Description: `(Required) The name for the repository. This needs to be less than 100 characters. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -1734,7 +1736,7 @@ The CodeCommit Repository data source allows the ARN, Repository ID, Repository 
 					Description: `The URL to use for cloning the repository over SSH.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository_id",
 					Description: `The ID of the repository`,
@@ -1764,7 +1766,7 @@ Use this data source to get a list of cognito user pools.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(required) Name of the cognito user pools. Name is not a unique attribute for cognito user pool, so multiple pools might be returned with given name. ## Attributes Reference`,
@@ -1774,7 +1776,7 @@ Use this data source to get a list of cognito user pools.
 					Description: `The list of cognito user pool ids.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `The list of cognito user pool ids.`,
@@ -1796,7 +1798,7 @@ Use this data source to get information on an AWS Cost and Usage Report Definiti
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "report_name",
 					Description: `(Required) The name of the report definition to match. ## Attributes Reference`,
@@ -1834,7 +1836,7 @@ Use this data source to get information on an AWS Cost and Usage Report Definiti
 					Description: `A list of additional artifacts.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "time_unit",
 					Description: `The frequency on which report data are measured and displayed.`,
@@ -1880,7 +1882,7 @@ Get an existing AWS Customer Gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of the gateway.`,
@@ -1906,7 +1908,7 @@ Get an existing AWS Customer Gateway.
 					Description: `(Optional) The type of customer gateway. The only type AWS supports at this time is "ipsec.1".`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bgp_asn",
 					Description: `(Optional) The gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).`,
@@ -1939,7 +1941,7 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent Snapshot.`,
@@ -2025,7 +2027,7 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 					Description: `The VPC ID associated with the DB cluster snapshot.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocated_storage",
 					Description: `Specifies the allocated storage size in gigabytes (GB).`,
@@ -2097,7 +2099,7 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_type",
 					Description: `(Optional) The type of source that will be generating the events. Valid options are db-instance, db-security-group, db-parameter-group, db-snapshot, db-cluster or db-cluster-snapshot. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -2107,7 +2109,7 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 					Description: `A list of the event categories.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "event_categories",
 					Description: `A list of the event categories.`,
@@ -2125,7 +2127,7 @@ Use this data source to get information about an RDS instance
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_instance_identifier",
 					Description: `(Required) The name of the RDS instance ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -2279,7 +2281,7 @@ Use this data source to get information about an RDS instance
 					Description: `Specifies the identifier of the CA certificate for the DB instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `The hostname of the RDS instance. See also ` + "`" + `endpoint` + "`" + ` and ` + "`" + `port` + "`" + `.`,
@@ -2444,7 +2446,7 @@ See the [` + "`" + `aws_db_cluster_snapshot` + "`" + ` data source](/docs/provid
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent Snapshot.`,
@@ -2538,7 +2540,7 @@ See the [` + "`" + `aws_db_cluster_snapshot` + "`" + ` data source](/docs/provid
 					Description: `Provides the time when the snapshot was taken, in Universal Coordinated Time (UTC).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The snapshot ID.`,
@@ -2620,7 +2622,7 @@ Retrieve information about a Direct Connect Gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the gateway to retrieve. ## Attributes Reference`,
@@ -2638,7 +2640,7 @@ Retrieve information about a Direct Connect Gateway.
 					Description: `AWS Account ID of the gateway.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "amazon_side_asn",
 					Description: `The ASN on the Amazon side of the connection.`,
@@ -2664,13 +2666,13 @@ Provides information about a DynamoDB table.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DynamoDB table. ## Attributes Reference See the [DynamoDB Table Resource](/docs/providers/aws/r/dynamodb_table.html) for details on the returned attributes - they are identical.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2682,8 +2684,8 @@ Use this data source to get the default EBS encryption KMS key in the current re
 
 `,
 			Keywords:  []string{},
-			Arguments: []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_arn",
 					Description: `Amazon Resource Name (ARN) of the default KMS key uses to encrypt an EBS volume in this region when no key is specified in an API call that creates the volume and encryption by default is enabled.`,
@@ -2701,8 +2703,8 @@ Provides a way to check whether default EBS encryption is enabled for your AWS a
 
 `,
 			Keywords:  []string{},
-			Arguments: []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `Whether or not default EBS encryption is enabled. Returns as ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
@@ -2720,7 +2722,7 @@ Use this data source to get information about an EBS Snapshot for use when provi
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent snapshot.`,
@@ -2790,7 +2792,7 @@ Use this data source to get information about an EBS Snapshot for use when provi
 					Description: `A mapping of tags for the resource. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The snapshot ID (e.g. snap-59fcb34e).`,
@@ -2853,7 +2855,7 @@ criteria.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owners",
 					Description: `(Optional) Returns the snapshots owned by the specified owner id. Multiple owners can be specified.`,
@@ -2867,7 +2869,7 @@ criteria.
 					Description: `(Optional) One or more name/value pairs to filter off of. There are several valid keys, for a full reference, check out [describe-volumes in the AWS CLI reference][1]. ## Attributes Reference ` + "`" + `ids` + "`" + ` is set to the list of EBS snapshot IDs, sorted by creation time in descending order. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-snapshots.html`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2881,7 +2883,7 @@ resources.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent Volume.`,
@@ -2935,7 +2937,7 @@ resources.
 					Description: `A mapping of tags for the resource. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The volume ID (e.g. vol-59fcb34e).`,
@@ -2993,7 +2995,7 @@ Get information on an EC2 Transit Gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) One or more configuration blocks containing name-values filters. Detailed below.`,
@@ -3063,7 +3065,7 @@ Get information on an EC2 Transit Gateway.
 					Description: `Whether VPN Equal Cost Multipath Protocol support is enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "amazon_side_asn",
 					Description: `Private Autonomous System Number (ASN) for the Amazon side of a BGP session`,
@@ -3129,7 +3131,7 @@ Get information on an EC2 Transit Gateway's attachment to a Direct Connect Gatew
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "transit_gateway_id",
 					Description: `(Required) Identifier of the EC2 Transit Gateway.`,
@@ -3147,7 +3149,7 @@ Get information on an EC2 Transit Gateway's attachment to a Direct Connect Gatew
 					Description: `Key-value tags for the EC2 Transit Gateway Attachment`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `EC2 Transit Gateway Attachment identifier`,
@@ -3169,7 +3171,7 @@ Get information on an EC2 Transit Gateway Route Table.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) One or more configuration blocks containing name-values filters. Detailed below.`,
@@ -3207,7 +3209,7 @@ Get information on an EC2 Transit Gateway Route Table.
 					Description: `Key-value tags for the EC2 Transit Gateway Route Table`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_association_route_table",
 					Description: `Boolean whether this is the default association route table for the EC2 Transit Gateway`,
@@ -3241,7 +3243,7 @@ Get information on an EC2 Transit Gateway VPC Attachment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) One or more configuration blocks containing name-values filters. Detailed below.`,
@@ -3291,7 +3293,7 @@ Get information on an EC2 Transit Gateway VPC Attachment.
 					Description: `Identifier of the AWS account that owns the EC2 VPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dns_support",
 					Description: `Whether DNS support is enabled.`,
@@ -3337,7 +3339,7 @@ Get information on an EC2 Transit Gateway VPN Attachment.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "transit_gateway_id",
 					Description: `(Required) Identifier of the EC2 Transit Gateway.`,
@@ -3355,7 +3357,7 @@ Get information on an EC2 Transit Gateway VPN Attachment.
 					Description: `Key-value tags for the EC2 Transit Gateway VPN Attachment`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `EC2 Transit Gateway VPN Attachment identifier`,
@@ -3377,7 +3379,7 @@ The ECR Image data source allows the details of an image with a particular tag o
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "registry_id",
 					Description: `(Optional) The ID of the Registry where the repository resides.`,
@@ -3407,7 +3409,7 @@ The ECR Image data source allows the details of an image with a particular tag o
 					Description: `The list of tags associated with this image.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_pushed_at",
 					Description: `The date and time, expressed as a unix timestamp, at which the current image was pushed to the repository.`,
@@ -3433,7 +3435,7 @@ The ECR Repository data source allows the ARN, Repository URI and Registry ID to
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ECR Repository. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -3455,7 +3457,7 @@ The ECR Repository data source allows the ARN, Repository URI and Registry ID to
 					Description: `A mapping of tags assigned to the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Full ARN of the repository.`,
@@ -3486,7 +3488,7 @@ cluster within an AWS ECS service.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_name",
 					Description: `(Required) The name of the ECS Cluster ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -3512,7 +3514,7 @@ cluster within an AWS ECS service.
 					Description: `The number of registered container instances for the ECS Cluster`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the ECS Cluster`,
@@ -3547,7 +3549,7 @@ a specific container within an AWS ECS service.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "task_definition",
 					Description: `(Required) The ARN of the task definition which contains the container`,
@@ -3589,7 +3591,7 @@ a specific container within an AWS ECS service.
 					Description: `Set docker labels`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image",
 					Description: `The docker image in use, including the digest`,
@@ -3636,7 +3638,7 @@ Service within a AWS ECS Cluster.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `(Required) The name of the ECS Service`,
@@ -3666,7 +3668,7 @@ Service within a AWS ECS Cluster.
 					Description: `The family for the latest ACTIVE revision`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the ECS Service`,
@@ -3702,7 +3704,7 @@ a specific AWS ECS task definition.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "task_definition",
 					Description: `(Required) The family for the latest ACTIVE revision, family and revision (family:revision) for a specific revision in the family, the ARN of the task definition to access to. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -3728,7 +3730,7 @@ a specific AWS ECS task definition.
 					Description: `The ARN of the IAM role that containers in this task can assume`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "family",
 					Description: `The family of this task definition`,
@@ -3762,7 +3764,7 @@ Provides information about an Elastic File System (EFS).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file_system_id",
 					Description: `(Optional) The ID that identifies the file system (e.g. fs-ccfc0d65).`,
@@ -3796,7 +3798,7 @@ Provides information about an Elastic File System (EFS).
 					Description: `The DNS name for the filesystem per [documented convention](http://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-cmd-dns-name.html).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name of the file system.`,
@@ -3834,7 +3836,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "mount_target_id",
 					Description: `(Required) ID of the mount target that you want to have described ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -3868,7 +3870,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 					Description: `The ID of the network interface that Amazon EFS created when it created the mount target.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file_system_arn",
 					Description: `Amazon Resource Name of the file system for which the mount target is intended.`,
@@ -3910,7 +3912,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) One or more name/value pairs to use as filters. There are several valid keys, for a full reference, check out the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAddresses.html).`,
@@ -3976,7 +3978,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 					Description: `Key-value map of tags associated with Elastic IP. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "association_id",
 					Description: `The ID representing the association of the address with an instance in a VPC.`,
@@ -4038,7 +4040,7 @@ Retrieve information about an EKS Cluster.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the cluster ## Attributes Reference`,
@@ -4096,7 +4098,7 @@ Retrieve information about an EKS Cluster.
 					Description: `Indicates whether or not the Amazon EKS public API server endpoint is enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the cluster`,
@@ -4167,7 +4169,7 @@ server configured.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the cluster ## Attributes Reference`,
@@ -4177,7 +4179,7 @@ server configured.
 					Description: `The token to use to authenticate with the cluster.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "token",
 					Description: `The token to use to authenticate with the cluster.`,
@@ -4195,7 +4197,7 @@ Retrieve information about an Elastic Beanstalk Application.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the application ## Attributes Reference`,
@@ -4229,7 +4231,7 @@ Retrieve information about an Elastic Beanstalk Application.
 					Description: `Specifies whether delete a version's source bundle from S3 when the application version is deleted.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the application`,
@@ -4271,7 +4273,7 @@ Use this data source to get the ID of an [elastic beanstalk hosted zone](http://
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) The region you'd like the zone for. By default, fetches the current region. ## Attributes Reference`,
@@ -4285,7 +4287,7 @@ Use this data source to get the ID of an [elastic beanstalk hosted zone](http://
 					Description: `The region of the hosted zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the hosted zone.`,
@@ -4307,7 +4309,7 @@ Use this data source to get the name of a elastic beanstalk solution stack.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent solution stack.`,
@@ -4321,7 +4323,7 @@ Use this data source to get the name of a elastic beanstalk solution stack.
 					Description: `The name of the solution stack. [beanstalk-platforms]: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html "AWS Elastic Beanstalk Supported Platforms documentation"`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the solution stack. [beanstalk-platforms]: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html "AWS Elastic Beanstalk Supported Platforms documentation"`,
@@ -4339,7 +4341,7 @@ Use this data source to get information about an Elasticache Cluster
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "replication_group_id",
 					Description: `The replication group to which this cache cluster belongs.`,
@@ -4373,7 +4375,7 @@ Use this data source to get information about an Elasticache Cluster
 					Description: `The tags assigned to the resource`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "replication_group_id",
 					Description: `The replication group to which this cache cluster belongs.`,
@@ -4419,7 +4421,7 @@ Use this data source to get information about an Elasticache Replication Group.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "replication_group_id",
 					Description: `The identifier for the replication group.`,
@@ -4457,7 +4459,7 @@ Use this data source to get information about an Elasticache Replication Group.
 					Description: `The endpoint of the primary node in this node group (shard).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "replication_group_id",
 					Description: `The identifier for the replication group.`,
@@ -4503,13 +4505,13 @@ Use this data source to get information about an Elasticache Replication Group.
 			ShortDescription: `Provides a classic Elastic Load Balancer data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique name of the load balancer. ## Attributes Reference See the [ELB Resource](/docs/providers/aws/r/elb.html) for details on the returned attributes - they are identical.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4523,7 +4525,7 @@ in a given region for the purpose of using in an AWS Route53 Alias.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) Name of the region whose AWS ELB HostedZoneId is desired. Defaults to the region from the AWS provider configuration. ## Attributes Reference`,
@@ -4533,7 +4535,7 @@ in a given region for the purpose of using in an AWS Route53 Alias.
 					Description: `The ID of the AWS ELB HostedZoneId in the selected region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the AWS ELB HostedZoneId in the selected region.`,
@@ -4552,7 +4554,7 @@ in a given region for the purpose of whitelisting in S3 bucket policy.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) Name of the region whose AWS ELB account ID is desired. Defaults to the region from the AWS provider configuration. ## Attributes Reference`,
@@ -4566,7 +4568,7 @@ in a given region for the purpose of whitelisting in S3 bucket policy.
 					Description: `The ARN of the AWS ELB service account in the selected region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the AWS ELB service account in the selected region.`,
@@ -4588,7 +4590,7 @@ Use this data source to generate a Glue script from a Directed Acyclic Graph (DA
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dag_edge",
 					Description: `(Required) A list of the edges in the DAG. Defined below.`,
@@ -4650,7 +4652,7 @@ Use this data source to generate a Glue script from a Directed Acyclic Graph (DA
 					Description: `The Scala code generated from the DAG when the ` + "`" + `language` + "`" + ` argument is set to ` + "`" + `SCALA` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "python_script",
 					Description: `The Python script generated from the DAG when the ` + "`" + `language` + "`" + ` argument is set to ` + "`" + `PYTHON` + "`" + `.`,
@@ -4673,13 +4675,13 @@ for the effective account in which Terraform is working.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The alias associated with the AWS account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_alias",
 					Description: `The alias associated with the AWS account.`,
@@ -4699,7 +4701,7 @@ properties without having to hard code ARNs as input.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_name",
 					Description: `(Required) The friendly IAM group name to match. ## Attributes Reference`,
@@ -4717,7 +4719,7 @@ properties without having to hard code ARNs as input.
 					Description: `The stable and unique string identifying the group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) specifying the group.`,
@@ -4745,7 +4747,7 @@ instance profile properties without having to hard code ARNs as input.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The friendly IAM instance profile name to match. ## Attributes Reference`,
@@ -4775,7 +4777,7 @@ instance profile properties without having to hard code ARNs as input.
 					Description: `The role name associated with this instance profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) specifying the instance profile.`,
@@ -4809,7 +4811,7 @@ instance profile properties without having to hard code ARNs as input.
 			ShortDescription: `Get information on a Amazon IAM policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `(Required) ARN of the IAM policy. ## Attributes Reference`,
@@ -4835,7 +4837,7 @@ instance profile properties without having to hard code ARNs as input.
 					Description: `The policy document of the policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the IAM policy.`,
@@ -4934,13 +4936,13 @@ valid to use literal JSON strings within your configuration, or to use the
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
 					Description: `The above arguments serialized as a standard JSON policy document. ## Example with Multiple Principals Showing how you can use this as an assume role policy as well as showing how you can specify multiple principal blocks with different types. ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "event_stream_bucket_role_assume_role_policy" { statement { actions = ["sts:AssumeRole"] principals { type = "Service" identifiers = ["firehose.amazonaws.com"] } principals { type = "AWS" identifiers = ["${var.trusted_role_arn}"] } } } ` + "`" + `` + "`" + `` + "`" + ` ## Example with Source and Override Showing how you can use ` + "`" + `source_json` + "`" + ` and ` + "`" + `override_json` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "source" { statement { actions = ["ec2:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "json",
 					Description: `The above arguments serialized as a standard JSON policy document. ## Example with Multiple Principals Showing how you can use this as an assume role policy as well as showing how you can specify multiple principal blocks with different types. ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "event_stream_bucket_role_assume_role_policy" { statement { actions = ["sts:AssumeRole"] principals { type = "Service" identifiers = ["firehose.amazonaws.com"] } principals { type = "AWS" identifiers = ["${var.trusted_role_arn}"] } } } ` + "`" + `` + "`" + `` + "`" + ` ## Example with Source and Override Showing how you can use ` + "`" + `source_json` + "`" + ` and ` + "`" + `override_json` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "source" { statement { actions = ["ec2:`,
@@ -4960,7 +4962,7 @@ properties without having to hard code ARNs as input.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The friendly IAM role name to match. ## Attributes Reference`,
@@ -5002,7 +5004,7 @@ properties without having to hard code ARNs as input.
 					Description: `The stable and unique string identifying the role.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The friendly IAM role name to match.`,
@@ -5052,7 +5054,7 @@ Use this data source to lookup information about IAM Server Certificates.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_prefix",
 					Description: `prefix of cert to filter by`,
@@ -5070,7 +5072,7 @@ Use this data source to lookup information about IAM Server Certificates.
 					Description: `sort results by expiration date. returns the certificate with expiration date in furthest in the future. ## Attributes Reference`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5085,7 +5087,7 @@ properties without having to hard code ARNs or unique IDs as input.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_name",
 					Description: `(Required) The friendly IAM user name to match. ## Attributes Reference`,
@@ -5111,7 +5113,7 @@ properties without having to hard code ARNs or unique IDs as input.
 					Description: `The name associated to this User`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) assigned by AWS for this user.`,
@@ -5147,8 +5149,8 @@ configured in the provider.
 
 `,
 			Keywords:  []string{},
-			Arguments: []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments: []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arns",
 					Description: `A list of the AWS Inspector Rules Packages arns available in the AWS region.`,
@@ -5167,7 +5169,7 @@ resources.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Optional) Specify the exact Instance ID with which to populate the data source.`,
@@ -5365,7 +5367,7 @@ resources.
 					Description: `The credit specification of the Instance. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ami",
 					Description: `The ID of the AMI used to launch the instance.`,
@@ -5566,7 +5568,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_tags",
 					Description: `(Optional) A mapping of tags, each pair of which must exactly match a pair on desired instances.`,
@@ -5592,7 +5594,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 					Description: `Public IP addresses of instances found through the filter [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `IDs of instances found through the filter`,
@@ -5618,7 +5620,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_gateway_id",
 					Description: `(Optional) The id of the specific Internet Gateway to retrieve.`,
@@ -5652,7 +5654,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 					Description: `The ID of an attached VPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owner_id",
 					Description: `The ID of the AWS account that owns the internet gateway.`,
@@ -5678,7 +5680,7 @@ Returns a unique endpoint specific to the AWS account making the call.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_type",
 					Description: `(Optional) Endpoint type. Valid values: ` + "`" + `iot:CredentialProvider` + "`" + `, ` + "`" + `iot:Data` + "`" + `, ` + "`" + `iot:Data-ATS` + "`" + `, ` + "`" + `iot:Job` + "`" + `. ## Attributes Reference`,
@@ -5688,7 +5690,7 @@ Returns a unique endpoint specific to the AWS account making the call.
 					Description: `The endpoint based on ` + "`" + `endpoint_type` + "`" + `:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_address",
 					Description: `The endpoint based on ` + "`" + `endpoint_type` + "`" + `:`,
@@ -5706,7 +5708,7 @@ Use this data source to get the IP ranges of various AWS products and services. 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
 					Description: `(Optional) Filter IP ranges by regions (or include all regions, if omitted). Valid items are ` + "`" + `global` + "`" + ` (for ` + "`" + `cloudfront` + "`" + `) as well as all AWS regions (e.g. ` + "`" + `eu-central-1` + "`" + `)`,
@@ -5736,7 +5738,7 @@ Use this data source to get the IP ranges of various AWS products and services. 
 					Description: `The publication time of the IP ranges, in Unix epoch time format (e.g. ` + "`" + `1470267965` + "`" + `). [1]: https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_blocks",
 					Description: `The lexically ordered list of CIDR blocks.`,
@@ -5769,7 +5771,7 @@ For more details, see the [Amazon Kinesis Documentation][1].
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Kinesis Stream. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the Amazon Resource Name (ARN) of the Kinesis Stream. In addition, the following attributes are exported:`,
@@ -5811,7 +5813,7 @@ For more details, see the [Amazon Kinesis Documentation][1].
 					Description: `A mapping of tags to assigned to the stream. [1]: https://aws.amazon.com/documentation/kinesis/ [2]: https://docs.aws.amazon.com/streams/latest/dev/kinesis-using-sdk-java-after-resharding.html#kinesis-using-sdk-java-resharding-data-routing [3]: https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-cloudwatch.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the Kinesis Stream (same as id).`,
@@ -5863,7 +5865,7 @@ without having to hard code the ARN as input.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/) ## Attributes Reference`,
@@ -5881,7 +5883,7 @@ without having to hard code the ARN as input.
 					Description: `ARN pointed to by the alias.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name(ARN) of the key alias.`,
@@ -5913,7 +5915,7 @@ resource](/docs/providers/aws/r/kms_ciphertext.html).
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plaintext",
 					Description: `(Required) Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.`,
@@ -5931,7 +5933,7 @@ resource](/docs/providers/aws/r/kms_ciphertext.html).
 					Description: `Base64 encoded ciphertext`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ciphertext_blob",
 					Description: `Base64 encoded ciphertext`,
@@ -5945,7 +5947,7 @@ resource](/docs/providers/aws/r/kms_ciphertext.html).
 			ShortDescription: `Get information on a AWS Key Management Service (KMS) Key`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Required) Key identifier which can be one of the following format:`,
@@ -5955,7 +5957,7 @@ resource](/docs/providers/aws/r/kms_ciphertext.html).
 					Description: `(Optional) List of grant tokens ## Attributes Reference`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5970,7 +5972,7 @@ Decrypt multiple secrets from data encrypted with the AWS KMS service.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "secret",
 					Description: `(Required) One or more encrypted payload definitions from the KMS service. See the Secret Definitions below. ### Secret Definitions Each ` + "`" + `secret` + "`" + ` supports the following arguments:`,
@@ -5992,7 +5994,7 @@ Decrypt multiple secrets from data encrypted with the AWS KMS service.
 					Description: `Map containing each ` + "`" + `secret` + "`" + ` ` + "`" + `name` + "`" + ` as the key with its decrypted plaintext value`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plaintext",
 					Description: `Map containing each ` + "`" + `secret` + "`" + ` ` + "`" + `name` + "`" + ` as the key with its decrypted plaintext value`,
@@ -6006,7 +6008,7 @@ Decrypt multiple secrets from data encrypted with the AWS KMS service.
 			ShortDescription: `Provides a Lambda Function data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "function_name",
 					Description: `(Required) Name of the lambda function.`,
@@ -6096,7 +6098,7 @@ Decrypt multiple secrets from data encrypted with the AWS KMS service.
 					Description: `VPC configuration associated with your Lambda function.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Unqualified (no ` + "`" + `:QUALIFIER` + "`" + ` or ` + "`" + `:VERSION` + "`" + ` suffix) Amazon Resource Name (ARN) identifying your Lambda Function. See also ` + "`" + `qualified_arn` + "`" + `.`,
@@ -6192,7 +6194,7 @@ invocation type.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "function_name",
 					Description: `(Required) The name of the lambda function.`,
@@ -6214,7 +6216,7 @@ invocation type.
 					Description: `This field is set only if result is a map of primitive types, where the map is string keys and string values. In Terraform 0.12 and later, use the [` + "`" + `jsondecode()` + "`" + ` function](/docs/configuration/functions/jsondecode.html) with the ` + "`" + `result` + "`" + ` attribute instead to convert the result to all supported native Terraform types.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "result",
 					Description: `String result of the lambda function invocation.`,
@@ -6232,7 +6234,7 @@ invocation type.
 			ShortDescription: `Provides a Lambda Layer Version data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "layer_name",
 					Description: `(Required) Name of the lambda layer.`,
@@ -6278,7 +6280,7 @@ invocation type.
 					Description: `This Lamba Layer version. [1]: https://docs.aws.amazon.com/lambda/latest/dg/API_GetLayerVersion.html#SSS-GetLayerVersion-response-CompatibleRuntimes`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the specific Lambda Layer version.`,
@@ -6328,7 +6330,7 @@ Provides information about a Launch Configuration.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the launch configuration. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -6458,7 +6460,7 @@ Provides information about a Launch Configuration.
 					Description: `The Virtual Name of the device.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the launch configuration.`,
@@ -6596,7 +6598,7 @@ Provides information about a Launch Template.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the launch template. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -6706,7 +6708,7 @@ Provides information about a Launch Template.
 					Description: `The Base64-encoded user data to provide when launching the instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the launch template.`,
@@ -6830,7 +6832,7 @@ with it, etc.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `(Optional) The full ARN of the load balancer.`,
@@ -6840,7 +6842,7 @@ with it, etc.
 					Description: `(Optional) The unique name of the load balancer. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6859,7 +6861,7 @@ information specific to the listener in question.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `(Optional) The arn of the listener. Required if ` + "`" + `load_balancer_arn` + "`" + ` and ` + "`" + `port` + "`" + ` is not set.`,
@@ -6873,7 +6875,7 @@ information specific to the listener in question.
 					Description: `(Optional) The port of the listener. Required if ` + "`" + `arn` + "`" + ` is not set. ## Attributes Reference See the [LB Listener Resource](/docs/providers/aws/r/lb_listener.html) for details on the returned attributes - they are identical.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6892,7 +6894,7 @@ an LB Target Group for use in other resources, given LB Target Group name.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `(Optional) The full ARN of the target group.`,
@@ -6902,7 +6904,7 @@ an LB Target Group for use in other resources, given LB Target Group name.
 					Description: `(Optional) The unique name of the target group. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6915,7 +6917,7 @@ Provides information about a MQ Broker.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "broker_id",
 					Description: `(Optional) The unique id of the mq broker.`,
@@ -6925,7 +6927,7 @@ Provides information about a MQ Broker.
 					Description: `(Optional) The unique name of the mq broker. ## Attributes Reference See the [` + "`" + `aws_mq_broker` + "`" + ` resource](/docs/providers/aws/r/mq_broker.html) for details on the returned attributes. They are identical except for user password, which is not returned when describing broker.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6938,7 +6940,7 @@ Get information on an Amazon MSK Cluster.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_name",
 					Description: `(Required) Name of the cluster. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
@@ -6972,7 +6974,7 @@ Get information on an Amazon MSK Cluster.
 					Description: `A comma separated list of one or more IP:port pairs to use to connect to the Apache Zookeeper cluster.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the MSK cluster.`,
@@ -7014,7 +7016,7 @@ Get information on an Amazon MSK Configuration.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the configuration. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
@@ -7040,7 +7042,7 @@ Get information on an Amazon MSK Configuration.
 					Description: `Contents of the server.properties file.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the configuration.`,
@@ -7074,7 +7076,7 @@ Provides details about a specific Nat Gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The id of the specific Nat Gateway to retrieve.`,
@@ -7124,7 +7126,7 @@ Provides details about a specific Nat Gateway.
 					Description: `The public Ip (EIP) address of the selected Nat Gateway.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocation_id",
 					Description: `The Id of the EIP allocated to the selected Nat Gateway.`,
@@ -7152,7 +7154,7 @@ Provides details about a specific Nat Gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Optional) The VPC ID that you want to filter from.`,
@@ -7178,7 +7180,7 @@ Provides details about a specific Nat Gateway.
 					Description: `A list of all the network ACL ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the network ACL ids found. This data source will fail if none are found.`,
@@ -7192,7 +7194,7 @@ Provides details about a specific Nat Gateway.
 			ShortDescription: `Get information on a Network Interface resource.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "association",
 					Description: `The association information for an Elastic IP address (IPv4) associated with the network interface. See supported fields below.`,
@@ -7274,7 +7276,7 @@ Provides details about a specific Nat Gateway.
 					Description: `The address of the Elastic IP address bound to the network interface. ## Import Elastic Network Interfaces can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_network_interface.test eni-12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "association",
 					Description: `The association information for an Elastic IP address (IPv4) associated with the network interface. See supported fields below.`,
@@ -7366,7 +7368,7 @@ Provides details about a specific Nat Gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags, each pair of which must exactly match a pair on the desired network interfaces.`,
@@ -7388,7 +7390,7 @@ Provides details about a specific Nat Gateway.
 					Description: `A list of all the network interface ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the network interface ids found. This data source will fail if none are found.`,
@@ -7406,8 +7408,8 @@ Use this data source to lookup current AWS partition in which Terraform is worki
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7426,7 +7428,7 @@ rules.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "prefix_list_id",
 					Description: `(Optional) The ID of the prefix list to select.`,
@@ -7448,7 +7450,7 @@ rules.
 					Description: `The list of CIDR blocks for the AWS service associated with the prefix list.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the selected prefix list.`,
@@ -7475,7 +7477,7 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_code",
 					Description: `(Required) The code of the service. Available service codes can be fetched using the DescribeServices pricing API call.`,
@@ -7489,7 +7491,7 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 					Description: `Set to the product returned from the API.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "result",
 					Description: `Set to the product returned from the API.`,
@@ -7507,7 +7509,7 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the resource share to retrieve.`,
@@ -7541,7 +7543,7 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 					Description: `The Tags attached to the RAM share`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the resource share.`,
@@ -7571,13 +7573,13 @@ Provides information about a RDS cluster.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_identifier",
 					Description: `(Required) The cluster identifier of the RDS cluster. ## Attributes Reference See the [RDS Cluster Resource](/docs/providers/aws/r/rds_cluster.html) for details on the returned attributes - they are identical.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7590,7 +7592,7 @@ Provides details about a specific redshift cluster.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_identifier",
 					Description: `(Required) The cluster identifier ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
@@ -7712,7 +7714,7 @@ Provides details about a specific redshift cluster.
 					Description: `The VPC security group Ids associated with the cluster`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allow_version_upgrade",
 					Description: `Whether major version upgrades can be applied during maintenance period`,
@@ -7843,7 +7845,7 @@ in a given region for the purpose of allowing Redshift to store audit data in S3
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) Name of the region whose AWS Redshift account ID is desired. Defaults to the region from the AWS provider configuration. ## Attributes Reference`,
@@ -7857,7 +7859,7 @@ in a given region for the purpose of allowing Redshift to store audit data in S3
 					Description: `The ARN of the AWS Redshift service account in the selected region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the AWS Redshift service account in the selected region.`,
@@ -7884,7 +7886,7 @@ configuration from its parent module.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The full name of the region to select.`,
@@ -7906,7 +7908,7 @@ configuration from its parent module.
 					Description: `The region's description in this format: "Location (Region name)".`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the selected region.`,
@@ -7936,7 +7938,7 @@ connection associated with a CIDR value.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_table_id",
 					Description: `(Required) The id of the specific Route Table containing the Route entry.`,
@@ -7978,7 +7980,7 @@ connection associated with a CIDR value.
 					Description: `(Optional) The Network Interface ID of the Route belonging to the Route Table. ## Attributes Reference All of the argument attributes are also exported as result attributes when there is data available. For example, the ` + "`" + `vpc_peering_connection_id` + "`" + ` field will be empty when the route is attached to a Network Interface.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7993,7 +7995,7 @@ This data source allows to find a list of name servers associated with a specifi
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Required) The Hosted Zone id of the desired delegation set. The following attribute is additionally exported:`,
@@ -8007,7 +8009,7 @@ This data source allows to find a list of name servers associated with a specifi
 					Description: `The list of DNS name servers for the delegation set.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8022,7 +8024,7 @@ This data source allows to find a Hosted Zone ID given Hosted Zone name and cert
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Optional) The Hosted Zone id of the desired Hosted Zone.`,
@@ -8068,7 +8070,7 @@ This data source allows to find a Hosted Zone ID given Hosted Zone name and cert
 					Description: `The description provided by the service that created the Hosted Zone (e.g. ` + "`" + `arn:aws:servicediscovery:us-east-1:1234567890:namespace/ns-xxxxxxxxxxxxxxxx` + "`" + `).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "caller_reference",
 					Description: `Caller Reference of the Hosted Zone.`,
@@ -8110,7 +8112,7 @@ the Route Table.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Custom filter block as described below.`,
@@ -8196,7 +8198,7 @@ the Route Table.
 					Description: `If the Association due to the Main Route Table.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "owner_id",
 					Description: `The ID of the AWS account that owns the route table ` + "`" + `routes` + "`" + ` are also exported with the following attributes, when there are relevants: Each route supports the following:`,
@@ -8266,7 +8268,7 @@ This resource can be useful for getting back a list of route table ids to be ref
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Custom filter block as described below.`,
@@ -8292,7 +8294,7 @@ This resource can be useful for getting back a list of route table ids to be ref
 					Description: `A list of all the route table ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the route table ids found. This data source will fail if none are found.`,
@@ -8313,7 +8315,7 @@ Distribution.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
@@ -8351,7 +8353,7 @@ Distribution.
 					Description: `The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the bucket.`,
@@ -8400,7 +8402,7 @@ _optionally_ (see below) content of an object stored inside S3 bucket.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to read the object from`,
@@ -8482,7 +8484,7 @@ _optionally_ (see below) content of an object stored inside S3 bucket.
 					Description: `If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "body",
 					Description: `Object data (see`,
@@ -8564,7 +8566,7 @@ Retrieve metadata information about a Secrets Manager secret. To retrieve a secr
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `(Optional) The Amazon Resource Name (ARN) of the secret to retrieve.`,
@@ -8610,7 +8612,7 @@ Retrieve metadata information about a Secrets Manager secret. To retrieve a secr
 					Description: `The resource-based policy document that's attached to the secret.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the secret.`,
@@ -8660,7 +8662,7 @@ Retrieve information about a Secrets Manager secret version, including its secre
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "secret_id",
 					Description: `(Required) Specifies the secret containing the version that you want to retrieve. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret.`,
@@ -8694,7 +8696,7 @@ Retrieve information about a Secrets Manager secret version, including its secre
 					Description: `The unique identifier of this version of the secret.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the secret.`,
@@ -8732,7 +8734,7 @@ VPC that the security group belongs to.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Custom filter block as described below.`,
@@ -8770,7 +8772,7 @@ VPC that the security group belongs to.
 					Description: `The computed ARN of the security group. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the security group.`,
@@ -8793,7 +8795,7 @@ outside of Terraform.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags, each pair of which must exactly match for desired security groups.`,
@@ -8811,7 +8813,7 @@ outside of Terraform.
 					Description: `The VPC IDs of the matched security groups. The data source's tag or filter`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `IDs of the matches security groups.`,
@@ -8833,7 +8835,7 @@ Retrieve information about a Service Quotas Service.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `(Required) Service name to lookup within Service Quotas. Available values can be found with the [AWS CLI service-quotas list-services command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-services.html). ## Attributes Reference`,
@@ -8847,7 +8849,7 @@ Retrieve information about a Service Quotas Service.
 					Description: `Code of the service.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Code of the service.`,
@@ -8869,7 +8871,7 @@ Retrieve information about a Service Quota.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_code",
 					Description: `(Required) Service code for the quota. Available values can be found with the [` + "`" + `aws_servicequotas_service` + "`" + ` data source](/docs/providers/aws/d/servicequotas_service.html) or [AWS CLI service-quotas list-services command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-services.html).`,
@@ -8911,7 +8913,7 @@ Retrieve information about a Service Quota.
 					Description: `Current value of the service quota.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "adjustable",
 					Description: `Whether the service quota is adjustable.`,
@@ -8955,7 +8957,7 @@ without having to hard code the ARNs as input.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The friendly name of the topic to match. ## Attributes Reference`,
@@ -8965,7 +8967,7 @@ without having to hard code the ARNs as input.
 					Description: `Set to the ARN of the found topic, suitable for referencing in other resources that support SNS topics.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Set to the ARN of the found topic, suitable for referencing in other resources that support SNS topics.`,
@@ -8985,7 +8987,7 @@ the ARNs as input.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the queue to match. ## Attributes Reference`,
@@ -8999,7 +9001,7 @@ the ARNs as input.
 					Description: `The URL of the queue.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the queue.`,
@@ -9021,7 +9023,7 @@ Gets the contents of the specified Systems Manager document.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Systems Manager document.`,
@@ -9047,7 +9049,7 @@ Gets the contents of the specified Systems Manager document.
 					Description: `The type of the document.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the document.`,
@@ -9073,7 +9075,7 @@ Provides an SSM Parameter data source.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the parameter.`,
@@ -9103,7 +9105,7 @@ Provides an SSM Parameter data source.
 					Description: `The version of the parameter.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9116,7 +9118,7 @@ Retrieve information about a Storage Gateway local disk. The disk identifier is 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gateway_arn",
 					Description: `(Required) The Amazon Resource Name (ARN) of the gateway.`,
@@ -9138,7 +9140,7 @@ Retrieve information about a Storage Gateway local disk. The disk identifier is 
 					Description: `The disk identifier. e.g. ` + "`" + `pci-0000:03:00.0-scsi-0:0:0:0` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk_id",
 					Description: `The disk identifier. e.g. ` + "`" + `pci-0000:03:00.0-scsi-0:0:0:0` + "`" + ``,
@@ -9164,7 +9166,7 @@ VPC that the subnet belongs to.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) The availability zone where the subnet must reside.`,
@@ -9222,7 +9224,7 @@ VPC that the subnet belongs to.
 					Description: `The ID of the AWS account that owns the subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the subnet.`,
@@ -9246,7 +9248,7 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The VPC ID that you want to filter from.`,
@@ -9272,7 +9274,7 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
@@ -9291,7 +9293,7 @@ resources.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_id",
 					Description: `(Required) ID for an SFTP server. ## Attributes Reference`,
@@ -9321,7 +9323,7 @@ resources.
 					Description: `URL of the service endpoint used to authenticate users with an ` + "`" + `identity_provider_type` + "`" + ` of ` + "`" + `API_GATEWAY` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of Transfer Server`,
@@ -9363,7 +9365,7 @@ VPC.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Optional) The cidr block of the desired VPC.`,
@@ -9445,7 +9447,7 @@ VPC.
 					Description: `The State of the association.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of VPC`,
@@ -9503,7 +9505,7 @@ Retrieve information about an EC2 DHCP Options configuration.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dhcp_options_id",
 					Description: `(Optional) The EC2 DHCP Options ID.`,
@@ -9557,7 +9559,7 @@ Retrieve information about an EC2 DHCP Options configuration.
 					Description: `The ID of the AWS account that owns the DHCP options set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dhcp_options_id",
 					Description: `EC2 DHCP Options ID`,
@@ -9608,7 +9610,7 @@ a specific VPC endpoint.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of the specific VPC Endpoint to retrieve.`,
@@ -9686,7 +9688,7 @@ a specific VPC endpoint.
 					Description: `The ID of the private hosted zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_blocks",
 					Description: `The list of CIDR blocks for the exposed AWS service. Applicable for endpoints of type ` + "`" + `Gateway` + "`" + `.`,
@@ -9761,7 +9763,7 @@ can be specified when creating a VPC endpoint within the region configured in th
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service",
 					Description: `(Optional) The common name of an AWS service (e.g. ` + "`" + `s3` + "`" + `).`,
@@ -9811,7 +9813,7 @@ can be specified when creating a VPC endpoint within the region configured in th
 					Description: `Whether or not the service supports endpoint policies - ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "acceptance_required",
 					Description: `Whether or not VPC endpoint connection requests to the service must be accepted by the service owner - ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
@@ -9866,7 +9868,7 @@ a specific VPC peering connection.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of the specific VPC Peering Connection to retrieve.`,
@@ -9944,7 +9946,7 @@ a specific VPC peering connection.
 					Description: `Indicates whether a local VPC can communicate with a ClassicLink connection in the peer VPC over the VPC peering connection.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accepter",
 					Description: `A configuration block that describes [VPC Peering Connection] (http://docs.aws.amazon.com/AmazonVPC/latest/PeeringGuide) options set for the accepter VPC.`,
@@ -9980,7 +9982,7 @@ The following example retrieves a list of VPC Ids with a custom tag of ` + "`" +
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags, each pair of which must exactly match a pair on the desired vpcs.`,
@@ -10002,7 +10004,7 @@ The following example retrieves a list of VPC Ids with a custom tag of ` + "`" +
 					Description: `A list of all the VPC Ids found. This data source will fail if none are found.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of all the VPC Ids found. This data source will fail if none are found.`,
@@ -10021,7 +10023,7 @@ a specific VPN gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of the specific VPN Gateway to retrieve.`,
@@ -10059,11 +10061,11 @@ a specific VPN gateway.
 					Description: `(Required) Set of values that are accepted for the given field. A VPN Gateway will be selected if any one of the given values matches. ## Attributes Reference All of the argument attributes are also exported as result attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "aws_vpn_gateway",
+			Type:             "aws_waf_rule",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieves an AWS WAF rule id.`,
 			Description: `
@@ -10072,7 +10074,7 @@ a specific VPN gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the WAF rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -10082,7 +10084,7 @@ a specific VPN gateway.
 					Description: `The ID of the WAF rule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF rule.`,
@@ -10100,7 +10102,7 @@ a specific VPN gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the WAF Web ACL. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -10110,7 +10112,7 @@ a specific VPN gateway.
 					Description: `The ID of the WAF WebACL.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF WebACL.`,
@@ -10128,7 +10130,7 @@ a specific VPN gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the WAF rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -10138,7 +10140,7 @@ a specific VPN gateway.
 					Description: `The ID of the WAF Regional rule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional rule.`,
@@ -10156,7 +10158,7 @@ a specific VPN gateway.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the WAF Web ACL. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -10166,7 +10168,7 @@ a specific VPN gateway.
 					Description: `The ID of the WAF Regional WebACL.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional WebACL.`,
@@ -10184,7 +10186,7 @@ Use this data source to get information about a Workspaces Bundle.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the compute type. ### ` + "`" + `root_storage` + "`" + ``,
@@ -10198,7 +10200,7 @@ Use this data source to get information about a Workspaces Bundle.
 					Description: `The size of the user storage.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the compute type. ### ` + "`" + `root_storage` + "`" + ``,
@@ -10215,7 +10217,7 @@ Use this data source to get information about a Workspaces Bundle.
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"aws_acm_certificate":                           0,
 		"aws_acmpca_certificate_authority":              1,
@@ -10350,7 +10352,7 @@ Use this data source to get information about a Workspaces Bundle.
 		"aws_vpc_peering_connection":                    130,
 		"aws_vpcs":                                      131,
 		"aws_vpn_gateway":                               132,
-		"aws_vpn_gateway":                               133,
+		"aws_waf_rule":                                  133,
 		"aws_waf_web_acl":                               134,
 		"aws_wafregional_rule":                          135,
 		"aws_wafregional_web_acl":                       136,
@@ -10358,10 +10360,10 @@ Use this data source to get information about a Workspaces Bundle.
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

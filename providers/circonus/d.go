@@ -1,11 +1,13 @@
-package aws
+package circonus
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Provides details about a specific Circonus Account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The Circonus ID of a given account.`,
@@ -88,7 +90,7 @@ var (
 					Description: `A list of users who have access to this account. Each element in the list has both an ` + "`" + `id` + "`" + ` and a ` + "`" + `role` + "`" + `. The ` + "`" + `id` + "`" + ` is a Circonus ID referencing the user.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address1",
 					Description: `The first line of the address associated with the account.`,
@@ -162,7 +164,7 @@ var (
 			ShortDescription: `Provides details about a specific Circonus Collector.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The Circonus ID of a given collector. At least one of the above attributes should be provided when searching for a collector. ## Attributes Reference The following attributes are exported:`,
@@ -236,7 +238,7 @@ var (
 					Description: `The version of the collector software the collector is running.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Circonus ID of the selected Collector.`,
@@ -309,17 +311,17 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"circonus_account":   0,
 		"circonus_collector": 1,
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

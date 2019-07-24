@@ -1,11 +1,13 @@
-package aws
+package influxdb
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"continuous",
 				"query",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name for the continuous_query. This must be unique on the InfluxDB server.`,
@@ -31,7 +33,7 @@ var (
 					Description: `(Required) The query for the continuous_query. ## Attributes Reference This resource exports no further attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -42,7 +44,7 @@ var (
 			Keywords: []string{
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name for the database. This must be unique on the InfluxDB server.`,
@@ -68,7 +70,7 @@ var (
 					Description: `(Optional) Marks current retention policy as default. Default value is false. ## Attributes Reference This resource exports no further attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -79,7 +81,7 @@ var (
 			Keywords: []string{
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name for the user.`,
@@ -109,7 +111,7 @@ var (
 					Description: `(Bool) indication if the user is an admin or not.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin",
 					Description: `(Bool) indication if the user is an admin or not.`,
@@ -126,10 +128,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

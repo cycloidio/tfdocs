@@ -1,11 +1,13 @@
-package aws
+package runscope
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get information about a single runscope bucket.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `(Required) The unique key of the bucket. ## Attributes Reference The following attributes are exported:`,
@@ -32,7 +34,7 @@ var (
 					Description: `Type name of the bucket.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique key of the found bucket.`,
@@ -54,7 +56,7 @@ var (
 			ShortDescription: `Get information about runscope buckets.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Filter to reduce the list of buckets returned. Variables (` + "`" + `filter` + "`" + `) supports the following:`,
@@ -72,7 +74,7 @@ var (
 					Description: `A list of the keys of matching buckets.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "keys",
 					Description: `A list of the keys of matching buckets.`,
@@ -86,7 +88,7 @@ var (
 			ShortDescription: `Get information about runscope integrations enabled on for your team.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team_uuid",
 					Description: `(Required) Your team unique identifier.`,
@@ -100,7 +102,7 @@ var (
 					Description: `The unique identifier of the found integration.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier of the found integration.`,
@@ -114,7 +116,7 @@ var (
 			ShortDescription: `Get information about runscope integrations enabled on for your team.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) Filter to reduce the list of integrations returned. Variables (` + "`" + `filter` + "`" + `) supports the following:`,
@@ -132,7 +134,7 @@ var (
 					Description: `The unique identifier of the found integration.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier of the found integration.`,
@@ -141,7 +143,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"runscope_bucket":       0,
 		"runscope_buckets":      1,
@@ -150,10 +152,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

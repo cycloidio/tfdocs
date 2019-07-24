@@ -1,11 +1,13 @@
-package aws
+package nutanix
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,13 +16,13 @@ var (
 			ShortDescription: `Describes a Cluster`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The API version.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The API version.`,
@@ -34,13 +36,13 @@ var (
 			ShortDescription: `Describes a Clusters`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The API version.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The API version.`,
@@ -54,8 +56,8 @@ var (
 			ShortDescription: `Describes a Image`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -64,13 +66,13 @@ var (
 			ShortDescription: `Describes a Network security rule`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `(Optional)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `(Optional)`,
@@ -84,8 +86,8 @@ var (
 			ShortDescription: `This operation retrieves a subnet based on the input parameters. A subnet is a block of IP addresses.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -94,7 +96,7 @@ var (
 			ShortDescription: `Describes a Virtual Machine`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API.`,
@@ -136,7 +138,7 @@ var (
 					Description: `Fraction of the physical GPU assigned.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API.`,
@@ -186,13 +188,13 @@ var (
 			ShortDescription: `Describes a Image`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `(Optional) Version of the API.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `(Optional) Version of the API.`,
@@ -201,7 +203,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"nutanix_cluster":               0,
 		"nutanix_clusters":              1,
@@ -213,10 +215,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

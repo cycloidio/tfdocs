@@ -1,11 +1,13 @@
-package aws
+package icinga2
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"checkcommand",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arguments",
 					Description: `(Optional) A mapping of arguments to include with the command.`,
@@ -34,7 +36,7 @@ var (
 					Description: `(Optional) A list of Icinga2 templates to assign to the host.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -45,7 +47,7 @@ var (
 			Keywords: []string{
 				"host",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "check_command",
 					Description: `(Required) The name of an existing Icinga2 CheckCommand object that is used to determine if the host is available or not.`,
@@ -63,7 +65,7 @@ var (
 					Description: `(Optional) A mapping of variables to assign to the host.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -74,7 +76,7 @@ var (
 			Keywords: []string{
 				"hostgroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the hostgroup.`,
@@ -84,7 +86,7 @@ var (
 					Description: `(Required) The name of the hostgroup to display in the Icinga2 interface.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -95,13 +97,13 @@ var (
 			Keywords: []string{
 				"notification",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "servicename",
 					Description: `(Optional) Service to send notification for.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -112,7 +114,7 @@ var (
 			Keywords: []string{
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Service object.`,
@@ -126,7 +128,7 @@ var (
 					Description: `(Required) The host to check the service's status on`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -137,13 +139,13 @@ var (
 			Keywords: []string{
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `(Optional) An email string for this user. Useful for notification commands.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -158,10 +160,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package tls
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"cert",
 				"request",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_algorithm",
 					Description: `(Required) The name of the algorithm for the key provided in ` + "`" + `private_key_pem` + "`" + `.`,
@@ -43,7 +45,7 @@ var (
 					Description: `The certificate request data in PEM format.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cert_request_pem",
 					Description: `The certificate request data in PEM format.`,
@@ -61,7 +63,7 @@ var (
 				"signed",
 				"cert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cert_request_pem",
 					Description: `(Required) PEM-encoded request certificate data.`,
@@ -107,7 +109,7 @@ var (
 					Description: `The time until which the certificate is invalid, as an [RFC3339](https://tools.ietf.org/html/rfc3339) timestamp. ## Automatic Renewal This resource considers its instances to have been deleted after either their validity periods ends or the early renewal period is reached. At this time, applying the Terraform configuration will cause a new certificate to be generated for the instance. Therefore in a development environment with frequent deployments it may be convenient to set a relatively-short expiration time and use early renewal to automatically provision a new certificate when the current one is about to expire. The creation of a new certificate may of course cause dependent resources to be updated or replaced, depending on the lifecycle rules applying to those resources.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cert_pem",
 					Description: `The certificate data in PEM format.`,
@@ -132,7 +134,7 @@ var (
 				"private",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "algorithm",
 					Description: `(Required) The name of the algorithm to use for the key. Currently-supported values are "RSA" and "ECDSA".`,
@@ -166,7 +168,7 @@ var (
 					Description: `The md5 hash of the public key data in OpenSSH MD5 hash format, e.g. ` + "`" + `aa:bb:cc:...` + "`" + `. Only available if the selected private key format is compatible, as per the rules for ` + "`" + `public_key_openssh` + "`" + `. ## Generating a New Key Since a private key is a logical resource that lives only in the Terraform state, it will persist until it is explicitly destroyed by the user. In order to force the generation of a new key within an existing state, the private key instance can be "tainted": ` + "`" + `` + "`" + `` + "`" + ` terraform taint tls_private_key.example ` + "`" + `` + "`" + `` + "`" + ` A new key will then be generated on the next ` + "`" + `` + "`" + `terraform apply` + "`" + `` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "algorithm",
 					Description: `The algorithm that was selected for the key.`,
@@ -200,7 +202,7 @@ var (
 				"signed",
 				"cert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_algorithm",
 					Description: `(Required) The name of the algorithm for the key provided in ` + "`" + `private_key_pem` + "`" + `.`,
@@ -250,7 +252,7 @@ var (
 					Description: `The time until which the certificate is invalid, as an [RFC3339](https://tools.ietf.org/html/rfc3339) timestamp. ## Automatic Renewal This resource considers its instances to have been deleted after either their validity periods ends or the early renewal period is reached. At this time, applying the Terraform configuration will cause a new certificate to be generated for the instance. Therefore in a development environment with frequent deployments it may be convenient to set a relatively-short expiration time and use early renewal to automatically provision a new certificate when the current one is about to expire. The creation of a new certificate may of course cause dependent resources to be updated or replaced, depending on the lifecycle rules applying to those resources.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cert_pem",
 					Description: `The certificate data in PEM format.`,
@@ -276,10 +278,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

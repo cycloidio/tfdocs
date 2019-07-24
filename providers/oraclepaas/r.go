@@ -1,11 +1,13 @@
-package aws
+package oraclepaas
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ var (
 				"application",
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Application Container.`,
@@ -208,7 +210,7 @@ var (
 					Description: `Web URL of the application`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -222,7 +224,7 @@ var (
 				"access",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Access Rule`,
@@ -248,7 +250,7 @@ var (
 					Description: `(Optional) Determines whether the access rule is enabled. Default is ` + "`" + `true` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -262,7 +264,7 @@ var (
 				"service",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Service Instance.`,
@@ -560,7 +562,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Service Instance`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -574,7 +576,7 @@ var (
 				"access",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Access Rule`,
@@ -608,7 +610,7 @@ var (
 					Description: `(Optional) Specifies the communication protocol. Valid values are ` + "`" + `tcp` + "`" + ` or ` + "`" + `udp` + "`" + `. Default is ` + "`" + `tcp` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -622,7 +624,7 @@ var (
 				"service",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Service Instance.`,
@@ -1024,7 +1026,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Service Instance For ` + "`" + `load_balancer` + "`" + ` the ` + "`" + `admin_url` + "`" + `, ` + "`" + `console_url` + "`" + `, and ` + "`" + `url` + "`" + ` are exported. (eg. ` + "`" + `load_balancer.0.url` + "`" + `)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1038,7 +1040,7 @@ var (
 				"access",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_instance_id",
 					Description: `(Required) The name of MySQL instance to attach the access rule to.`,
@@ -1072,7 +1074,7 @@ var (
 					Description: `(Optional) Determines whether the access rule is enabled. Valid values are ` + "`" + `true` + "`" + ` and ` + "`" + `false` + "`" + `. The Default is ` + "`" + `true` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1086,7 +1088,7 @@ var (
 				"service",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required). The name of MySQL Cloud Service instance.`,
@@ -1212,7 +1214,7 @@ var (
 					Description: `(Optional) The port number for the MySQL Enterprise Monitor instance. The default is 18443.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1228,10 +1230,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

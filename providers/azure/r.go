@@ -1,11 +1,13 @@
-package aws
+package azure
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"affinity",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the affinity group. Must be unique on your Azure subscription.`,
@@ -39,7 +41,7 @@ var (
 					Description: `The affinity group ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The affinity group ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -56,7 +58,7 @@ var (
 				"data",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of an existing registered disk to attach to the virtual machine. If left empty, a new empty disk will be created and attached instead. Changing this forces a new resource to be created.`,
@@ -110,7 +112,7 @@ var (
 					Description: `The location of the blob in storage where the VHD of this disk is created.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The security group ID.`,
@@ -139,7 +141,7 @@ var (
 				"dns",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS server reference. Changing this forces a new resource to be created.`,
@@ -153,7 +155,7 @@ var (
 					Description: `The DNS server definition ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS server definition ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -170,7 +172,7 @@ var (
 				"hosted",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the hosted service. Must be unique on Azure.`,
@@ -200,7 +202,7 @@ var (
 					Description: `The hosted service ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The hosted service ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -216,7 +218,7 @@ var (
 			Keywords: []string{
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the instance. Changing this forces a new resource to be created.`,
@@ -350,7 +352,7 @@ var (
 					Description: `The public IP address assigned to the instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The instance ID.`,
@@ -392,7 +394,7 @@ var (
 				"network",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name by which this local network connection will be referenced by. Changing this forces a new resource to be created.`,
@@ -410,7 +412,7 @@ var (
 					Description: `The local network connection ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The local network connection ID.`,
@@ -427,7 +429,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the security group. Changing this forces a new resource to be created.`,
@@ -449,7 +451,7 @@ var (
 					Description: `The identifier for the security group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The security group ID.`,
@@ -471,7 +473,7 @@ var (
 				"group",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the security group rule.`,
@@ -517,7 +519,7 @@ var (
 					Description: `The security group rule ID. Coincides with its given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -530,7 +532,7 @@ var (
 				"database",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Computed) The name of the database server. It is determined upon creation as it is randomly-generated per server.`,
@@ -560,7 +562,7 @@ var (
 					Description: `The database server ID. Coincides with the randomly-generated ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The database server ID. Coincides with the randomly-generated ` + "`" + `name` + "`" + `.`,
@@ -580,7 +582,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the rule. Changing forces the creation of a new resource.`,
@@ -602,7 +604,7 @@ var (
 					Description: `The database server ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The database server ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -620,7 +622,7 @@ var (
 				"database",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the database service.`,
@@ -650,7 +652,7 @@ var (
 					Description: `The database service ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The database service ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -667,7 +669,7 @@ var (
 				"storage",
 				"blob",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage blob. Must be unique within the storage service the blob is located.`,
@@ -693,7 +695,7 @@ var (
 					Description: `The storage blob ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The storage blob ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -710,7 +712,7 @@ var (
 				"storage",
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage container. Must be unique within the storage service the container is located.`,
@@ -732,7 +734,7 @@ var (
 					Description: `The storage container ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The storage container ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -749,7 +751,7 @@ var (
 				"storage",
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage queue. Must be unique within the storage service the queue is located.`,
@@ -763,7 +765,7 @@ var (
 					Description: `The storage queue ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The storage queue ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -780,7 +782,7 @@ var (
 				"storage",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage service. Must be between 4 and 24 lowercase-only characters or digits. Must be unique on Azure.`,
@@ -814,7 +816,7 @@ var (
 					Description: `The storage service ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The storage service ID. Coincides with the given ` + "`" + `name` + "`" + `.`,
@@ -831,7 +833,7 @@ var (
 				"virtual",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual network. Changing this forces a new resource to be created.`,
@@ -869,7 +871,7 @@ var (
 					Description: `The virtual NetworkConfiguration ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The virtual NetworkConfiguration ID.`,
@@ -899,10 +901,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

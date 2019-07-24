@@ -1,11 +1,13 @@
-package aws
+package digitalocean
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,13 +16,13 @@ var (
 			ShortDescription: `Get information on a certificate.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of certificate. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29,7 +31,7 @@ var (
 			ShortDescription: `Get information on a database cluster resource.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the database cluster. ## Attributes Reference The following attributes are exported:`,
@@ -91,7 +93,7 @@ var (
 					Description: `The hour in UTC at which maintenance updates will be applied in 24 hour format.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the database cluster.`,
@@ -157,7 +159,7 @@ var (
 			ShortDescription: `Get information on a domain.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the domain. ## Attributes Reference The following attributes are exported:`,
@@ -167,7 +169,7 @@ var (
 					Description: `The uniform resource name of the domain`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "urn",
 					Description: `The uniform resource name of the domain`,
@@ -181,7 +183,7 @@ var (
 			ShortDescription: `Get information on a Droplet.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of Droplet. ## Attributes Reference The following attributes are exported:`,
@@ -271,7 +273,7 @@ var (
 					Description: `A list of the tags associated to the Droplet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "urn",
 					Description: `The uniform resource name of the Droplet`,
@@ -365,7 +367,7 @@ var (
 			ShortDescription: `Get information about a DigitalOcean Droplet snapshot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the Droplet snapshot.`,
@@ -403,7 +405,7 @@ var (
 					Description: `The billable size of the Droplet snapshot in gigabytes.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `The date and time the Droplet snapshot was created.`,
@@ -433,13 +435,13 @@ var (
 			ShortDescription: `Get information on a floating IP.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `(Required) The allocated IP address of the specific floating IP to retrieve. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -448,7 +450,7 @@ var (
 			ShortDescription: `Get information on an snapshot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the private image.`,
@@ -470,7 +472,7 @@ var (
 					Description: `Is image a public image or not. Public images represent Linux distributions or One-Click Applications, while non-public images represent snapshots and backups and are only available within your account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image",
 					Description: `The id of the image.`,
@@ -492,7 +494,7 @@ var (
 			ShortDescription: `Get information on a DigitalOcean Kubernetes cluster.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of Kubernetes cluster. ## Attributes Reference The following attributes are exported:`,
@@ -550,7 +552,7 @@ var (
 					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID that can be used to identify and reference a Kubernetes cluster.`,
@@ -612,7 +614,7 @@ var (
 			ShortDescription: `Get information on a loadbalancer.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of load balancer.`,
@@ -622,7 +624,7 @@ var (
 					Description: `The uniform resource name for the Load Balancer ## Attributes Reference See the [Load Balancer Resource](/docs/providers/do/r/loadbalancer.html) for details on the returned attributes - they are identical.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -631,7 +633,7 @@ var (
 			ShortDescription: `Get information on a DNS record.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the record.`,
@@ -641,7 +643,7 @@ var (
 					Description: `(Required) The domain name of the record. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -650,13 +652,13 @@ var (
 			ShortDescription: `Get information on a ssh key.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ssh key. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -665,13 +667,13 @@ var (
 			ShortDescription: `Get information on a tag.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the tag. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -680,7 +682,7 @@ var (
 			ShortDescription: `Get information on a volume.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of block storage volume.`,
@@ -710,7 +712,7 @@ var (
 					Description: `A list of associated Droplet ids.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `The size of the block storage volume in GiB.`,
@@ -740,7 +742,7 @@ var (
 			ShortDescription: `Get information about a DigitalOcean volume snapshot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the volume snapshot.`,
@@ -778,7 +780,7 @@ var (
 					Description: `The billable size of the volume snapshot in gigabytes.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `The date and time the volume snapshot was created.`,
@@ -803,7 +805,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"digitalocean_certificate":        0,
 		"digitalocean_database_cluster":   1,
@@ -822,10 +824,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

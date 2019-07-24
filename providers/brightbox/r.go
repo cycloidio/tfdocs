@@ -1,11 +1,13 @@
-package aws
+package brightbox
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"cloudip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) a label to assign to the CloudIP`,
@@ -66,7 +68,7 @@ var (
 					Description: `The username used to log onto the server ## Import CloudIPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_cloudip.mycloudip cip-vsalc ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_cloudip` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Mapping Cloud IPs - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Unmapping Cloud IPs`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the CloudIP`,
@@ -99,7 +101,7 @@ var (
 				"database",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A label assigned to the Database Server`,
@@ -161,7 +163,7 @@ var (
 					Description: `The approximate UTC time when the next snapshot is scheduled ## Import Database Servers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_database_server.mydatabase dbs-qwert ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_database_server` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Databases - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Databases`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Database Server`,
@@ -198,7 +200,7 @@ var (
 				"firewall",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_group",
 					Description: `(Optional) The ID of the Server Group the policy will be applied to`,
@@ -216,7 +218,7 @@ var (
 					Description: `The ID of the Firewall Policy ## Import Firewall Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_firewall_policy.mypolicy fwp-zxcvb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Firewall Policy ## Import Firewall Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_firewall_policy.mypolicy fwp-zxcvb ` + "`" + `` + "`" + `` + "`" + ``,
@@ -233,7 +235,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "firewall_policy",
 					Description: `(Required) The ID of the firewall policy this rule belongs to`,
@@ -271,7 +273,7 @@ var (
 					Description: `The ID of the Firewall Rule ## Import Firewall Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_firewall_rule.myrule fwr-ghjkl ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Firewall Rule ## Import Firewall Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_firewall_rule.myrule fwr-ghjkl ` + "`" + `` + "`" + `` + "`" + ``,
@@ -288,7 +290,7 @@ var (
 				"load",
 				"balancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A label assigned to the Load Balancer`,
@@ -382,7 +384,7 @@ var (
 					Description: `True if the database server has been set to locked and cannot be deleted ## Import Load Balancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_load_balancer.mylba lba-12345 ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_load_balancer` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Load Balancers - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Load Balancers`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Load Balancer`,
@@ -407,7 +409,7 @@ var (
 				"orbit",
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A label assigned to the Orbit container`,
@@ -433,7 +435,7 @@ var (
 					Description: `The time the container was created ## Import Orbit Containers can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_orbit_container.myorbitcontainer initial ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "object_count",
 					Description: `The number of items in the Orbit Container`,
@@ -461,7 +463,7 @@ var (
 			Keywords: []string{
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image",
 					Description: `(Required) The Server image ID`,
@@ -527,7 +529,7 @@ var (
 					Description: `The username used to log onto the server ## Import Servers can be imported using the server ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_server.myserver srv-ojy3o ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `brightbox_server` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating Servers - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Deleting Servers`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Server`,
@@ -588,7 +590,7 @@ var (
 				"server",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A label assigned to the Server Group`,
@@ -602,7 +604,7 @@ var (
 					Description: `The ID of the Server ## Import Server Groups can be imported using the server group ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_server_group.default grp-ok8vw ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Server ## Import Server Groups can be imported using the server group ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import brightbox_server_group.default grp-ok8vw ` + "`" + `` + "`" + `` + "`" + ``,
@@ -624,10 +626,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

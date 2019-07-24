@@ -1,11 +1,13 @@
-package aws
+package scaleway
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get information on a Scaleway bootscript.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "architecture",
 					Description: `(Optional) any supported Scaleway architecture, e.g. ` + "`" + `x86_64` + "`" + `, ` + "`" + `arm` + "`" + ``,
@@ -56,7 +58,7 @@ var (
 					Description: `URL to used kernel`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "architecture",
 					Description: `architecture of the Bootscript, e.g. ` + "`" + `arm` + "`" + ` or ` + "`" + `x86_64` + "`" + ``,
@@ -94,7 +96,7 @@ var (
 			ShortDescription: `Get information on a Scaleway image.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "architecture",
 					Description: `(Required) any supported Scaleway architecture, e.g. ` + "`" + `x86_64` + "`" + `, ` + "`" + `arm` + "`" + ``,
@@ -128,7 +130,7 @@ var (
 					Description: `date when image was created`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "architecture",
 					Description: `architecture of the Image, e.g. ` + "`" + `arm` + "`" + ` or ` + "`" + `x86_64` + "`" + ``,
@@ -154,7 +156,7 @@ var (
 			ShortDescription: `Gets information about a Security Group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Exact name of desired Security Group ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found Image. In addition, the following attributes are exported:`,
@@ -168,7 +170,7 @@ var (
 					Description: `have default security group rules been added to this security group?`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `description of the security group`,
@@ -186,7 +188,7 @@ var (
 			ShortDescription: `Gets information about a Volume.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Exact name of the Volume. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found Volume. In addition, the following attributes are exported:`,
@@ -204,7 +206,7 @@ var (
 					Description: `The ID of the Server which this Volume is currently attached to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size_in_gb",
 					Description: `(Required) size of the volume in GB`,
@@ -221,7 +223,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"scaleway_bootscript":     0,
 		"scaleway_image":          1,
@@ -230,10 +232,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

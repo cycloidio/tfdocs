@@ -1,11 +1,13 @@
-package aws
+package vault
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -19,7 +21,7 @@ var (
 				"backend",
 				"login",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_id",
 					Description: `(Required) The ID of the role to log in with.`,
@@ -61,7 +63,7 @@ var (
 					Description: `The metadata associated with the token.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policies",
 					Description: `A list of policies applied to the token.`,
@@ -104,7 +106,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role.`,
@@ -154,7 +156,7 @@ var (
 					Description: `(Optional) The unique name of the auth backend to configure. Defaults to ` + "`" + `approle` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import AppRole authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_approle_auth_backend_role.example auth/approle/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -170,7 +172,7 @@ var (
 				"secret",
 				"id",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role to create the SecretID for.`,
@@ -192,7 +194,7 @@ var (
 					Description: `The unique ID for this SecretID that can be safely logged.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
 					Description: `The unique ID for this SecretID that can be safely logged.`,
@@ -208,7 +210,7 @@ var (
 			Keywords: []string{
 				"audit",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) Type of the audit device, such as 'file'.`,
@@ -226,7 +228,7 @@ var (
 					Description: `(Required) Configuration options to pass to the audit device itself. For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html) ## Attributes Reference No additional attributes are exported by this resource. ## Import Audit devices can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_audit.test syslog ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -238,7 +240,7 @@ var (
 				"auth",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The name of the auth method type`,
@@ -272,7 +274,7 @@ var (
 					Description: `The accessor for this auth method ## Import Auth methods can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
 					Description: `The accessor for this auth method ## Import Auth methods can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
@@ -291,7 +293,7 @@ var (
 				"backend",
 				"cert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cert_name",
 					Description: `(Required) The name of the certificate.`,
@@ -309,7 +311,7 @@ var (
 					Description: `(Optional) The path the AWS auth backend being configured was mounted at. Defaults to ` + "`" + `aws` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend certificates can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/config/certificate/` + "`" + `, and the ` + "`" + `cert_name` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_cert.example auth/aws/config/certificate/my-cert ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -323,7 +325,7 @@ var (
 				"backend",
 				"client",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The path the AWS auth backend being configured was mounted at. Defaults to ` + "`" + `aws` + "`" + `.`,
@@ -353,7 +355,7 @@ var (
 					Description: `(Optional) The value to require in the ` + "`" + `X-Vault-AWS-IAM-Server-ID` + "`" + ` header as part of ` + "`" + `GetCallerIdentity` + "`" + ` requests that are used in the IAM auth method. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend clients can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, and ` + "`" + `/config/client` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_client.example auth/aws/config/client ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -368,7 +370,7 @@ var (
 				"identity",
 				"whitelist",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The path of the AWS backend being configured.`,
@@ -382,7 +384,7 @@ var (
 					Description: `(Optional) If set to true, disables the periodic tidying of the identity-whitelist entries. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend identity whitelists can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, and ` + "`" + `/config/tidy/identity-whitelist` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_identity_whitelist.example auth/aws/config/tidy/identity-whitelist ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -396,7 +398,7 @@ var (
 				"backend",
 				"login",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The unique name of the AWS auth backend. Defaults to 'aws'.`,
@@ -470,7 +472,7 @@ var (
 					Description: `The token returned by Vault.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "lease_duration",
 					Description: `The duration in seconds the token will be valid, relative to the time in ` + "`" + `lease_start_time` + "`" + `.`,
@@ -517,7 +519,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) The name of the role.`,
@@ -599,7 +601,7 @@ var (
 					Description: `(Optional) IF set to ` + "`" + `true` + "`" + `, only allows a single token to be granted per instance ID. This can only be set when ` + "`" + `auth_type` + "`" + ` is set to ` + "`" + `ec2` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_role.example auth/aws/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -614,7 +616,7 @@ var (
 				"role",
 				"tag",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) The name of the AWS auth backend role to read role tags from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -652,7 +654,7 @@ var (
 					Description: `The value to set the role key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tag_key",
 					Description: `The key of the role tag.`,
@@ -676,7 +678,7 @@ var (
 				"roletag",
 				"blacklist",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the AWS auth backend being configured was mounted at.`,
@@ -690,7 +692,7 @@ var (
 					Description: `(Optional) If set to true, disables the periodic tidying of the roletag blacklist entries. Defaults to false. ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -705,7 +707,7 @@ var (
 				"sts",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `(Optional) The AWS account ID to configure the STS role for.`,
@@ -719,7 +721,7 @@ var (
 					Description: `(Optional) The path the AWS auth backend being configured was mounted at. Defaults to ` + "`" + `aws` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend STS roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/config/sts/` + "`" + `, and the ` + "`" + `account_id` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_sts_role.example auth/aws/config/sts/1234567890 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -732,7 +734,7 @@ var (
 				"secret",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_key",
 					Description: `(Required) The AWS Access Key ID this backend should use to issue new credentials.`,
@@ -762,7 +764,7 @@ var (
 					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend.aws aws ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -776,7 +778,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the AWS secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -802,7 +804,7 @@ var (
 					Description: `(Required) Specifies the type of credential to be used when retrieving credentials from the role. Must be one of ` + "`" + `iam_user` + "`" + `, ` + "`" + `assumed_role` + "`" + `, or ` + "`" + `federation_token` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_secret_backend_role.role aws/roles/deploy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -816,7 +818,7 @@ var (
 				"backend",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_id",
 					Description: `(Required) The tenant id for the Azure Active Directory organization.`,
@@ -842,7 +844,7 @@ var (
 					Description: `(Optional) The Azure cloud environment. Valid values: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud. Defaults to ` + "`" + `AzurePublicCloud` + "`" + `. ## Attributes Reference No additional attributes are exported by this resource. ## Import Azure auth backends can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, and ` + "`" + `/config` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_azure_auth_backend_config.example auth/azure/config ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -856,7 +858,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) The name of the role.`,
@@ -902,7 +904,7 @@ var (
 					Description: `(Optional) An array of strings specifying the policies to be set on tokens issued using this role. ## Attributes Reference No additional attributes are exported by this resource. ## Import Azure auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_azure_auth_backend_role.example auth/azure/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -916,7 +918,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the role`,
@@ -982,7 +984,7 @@ var (
 					Description: `(Optional) Path to the mounted Cert auth backend For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api/auth/cert/index.html). ## Attribute Reference No additional attributes are exposed by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -995,7 +997,7 @@ var (
 				"secret",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "token",
 					Description: `(Required) The Consul management token this backend should use to issue new tokens. ~>`,
@@ -1025,7 +1027,7 @@ var (
 					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend. ## Attributes Reference No additional attributes are exported by this resource. ## Import Consul secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_consul_secret_backend.example consul ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1039,7 +1041,7 @@ var (
 				"backend",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name to give the database connection.`,
@@ -1221,7 +1223,7 @@ var (
 					Description: `(Optional) The maximum number of seconds to keep a connection alive for. ## Attributes Reference No additional attributes are exported by this resource. ## Import Database secret backend connections can be imported using the ` + "`" + `backend` + "`" + `, ` + "`" + `/config/` + "`" + `, and the ` + "`" + `name` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_database_secret_backend_connection.example postgres/config/postgres ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1235,7 +1237,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name to give the role.`,
@@ -1273,7 +1275,7 @@ var (
 					Description: `(Optional) The maximum number of seconds for leases for this role. ## Attributes Reference No additional attributes are exported by this resource. ## Import Database secret backend roles can be imported using the ` + "`" + `backend` + "`" + `, ` + "`" + `/roles/` + "`" + `, and the ` + "`" + `name` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_database_secret_backend_role.example postgres/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1285,7 +1287,7 @@ var (
 				"egp",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy`,
@@ -1303,7 +1305,7 @@ var (
 					Description: `(Required) String containing a Sentinel policy ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1316,7 +1318,7 @@ var (
 				"auth",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "credentials",
 					Description: `(Required) A JSON string containing the contents of a GCP credentials file. For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api/auth/gcp/index.html#configure). ## Attribute Reference In addition to the fields above, the following attributes are also exposed:`,
@@ -1338,7 +1340,7 @@ var (
 					Description: `The clients email assosiated with the credentials`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "client_id",
 					Description: `The Client ID of the credentials`,
@@ -1369,7 +1371,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role",
 					Description: `(Required) Name of the GCP role`,
@@ -1439,7 +1441,7 @@ var (
 					Description: `(Optional) GCP Projects that the role exists within For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api/auth/gcp/index.html). ## Attribute Reference No additional attributes are exposed by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1452,7 +1454,7 @@ var (
 				"secret",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "credentials",
 					Description: `(Optional) The GCP service account credentails in JSON format. ~>`,
@@ -1474,7 +1476,7 @@ var (
 					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend. Defaults to '0'. ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1487,7 +1489,7 @@ var (
 				"secret",
 				"roleset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required, Forces new resource) Path where the GCP Secrets Engine is mounted`,
@@ -1521,7 +1523,7 @@ var (
 					Description: `(Required) List of [GCP IAM roles](https://cloud.google.com/iam/docs/understanding-roles) for the resource. ## Attributes Reference In addition to the fields above, the following attributes are also exposed:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1533,7 +1535,7 @@ var (
 				"generic",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The full logical path at which to write the given data. Consult each backend's documentation to see which endpoints support the ` + "`" + `PUT` + "`" + ` methods and to determine whether they also support ` + "`" + `DELETE` + "`" + ` and ` + "`" + `GET` + "`" + `.`,
@@ -1547,7 +1549,7 @@ var (
 					Description: `(Optional) True/false. Set this to true if your vault authentication is not able to read the data or if the endpoint does not support the ` + "`" + `GET` + "`" + ` method. Setting this to ` + "`" + `true` + "`" + ` will break drift detection. You should set this to ` + "`" + `true` + "`" + ` for endpoints that are write-only. Defaults to false.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1559,7 +1561,7 @@ var (
 				"generic",
 				"secret",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The full logical path at which to write the given data. To write data into the "generic" secret backend mounted in Vault by default, this should be prefixed with ` + "`" + `secret/` + "`" + `. Writing to other backends with this resource is possible; consult each backend's documentation to see which endpoints support the ` + "`" + `PUT` + "`" + ` and ` + "`" + `DELETE` + "`" + ` methods.`,
@@ -1581,7 +1583,7 @@ var (
 					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON. ## Import Generic secrets can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_generic_secret.example secret/foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data",
 					Description: `A mapping whose keys are the top-level data keys returned from Vault and whose values are the corresponding values. This map can only represent string data, so any non-string values returned from Vault are serialized as JSON. ## Import Generic secrets can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_generic_secret.example secret/foo ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1599,7 +1601,7 @@ var (
 				"auth",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) Path where the auth backend is mounted. Defaults to ` + "`" + `auth/github` + "`" + ` if not specified.`,
@@ -1653,7 +1655,7 @@ var (
 					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html). ## Import Github authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
 					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html). ## Import Github authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1670,7 +1672,7 @@ var (
 				"github",
 				"team",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) Path where the github auth backend is mounted. Defaults to ` + "`" + `github` + "`" + ` if not specified.`,
@@ -1684,7 +1686,7 @@ var (
 					Description: `(Optional) A list of policies to be assigned to this team. ## Attributes Reference No additional attributes are exported by this resource. ## Import Github team mappings can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_team.tf_devs auth/github/map/teams/terraform-developers ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1696,7 +1698,7 @@ var (
 				"github",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) Path where the github auth backend is mounted. Defaults to ` + "`" + `github` + "`" + ` if not specified.`,
@@ -1710,7 +1712,7 @@ var (
 					Description: `(Optional) A list of policies to be assigned to this user. ## Attributes Reference No additional attributes are exported by this resource. ## Import Github user mappings can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_user.tf_user auth/github/map/users/john.doe ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1722,7 +1724,7 @@ var (
 				"identity",
 				"entity",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the identity entity to create.`,
@@ -1744,7 +1746,7 @@ var (
 					Description: `The ` + "`" + `id` + "`" + ` of the created entity.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ` + "`" + `id` + "`" + ` of the created entity.`,
@@ -1762,7 +1764,7 @@ var (
 				"entity",
 				"alias",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.`,
@@ -1780,7 +1782,7 @@ var (
 					Description: `ID of the entity alias.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the entity alias.`,
@@ -1797,7 +1799,7 @@ var (
 				"identity",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, Forces new resource) Name of the identity group to create.`,
@@ -1827,7 +1829,7 @@ var (
 					Description: `The ` + "`" + `id` + "`" + ` of the created group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ` + "`" + `id` + "`" + ` of the created group.`,
@@ -1845,7 +1847,7 @@ var (
 				"group",
 				"alias",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, Forces new resource) Name of the group alias to create.`,
@@ -1863,7 +1865,7 @@ var (
 					Description: `The ` + "`" + `id` + "`" + ` of the created group alias.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ` + "`" + `id` + "`" + ` of the created group alias.`,
@@ -1881,7 +1883,7 @@ var (
 				"auth",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) Path to mount the JWT/OIDC auth backend`,
@@ -1947,7 +1949,7 @@ var (
 					Description: `(Optional) List of headers to whitelist and pass from the request to the backend. ## Attributes Reference No additional attributes are exposed by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1961,7 +1963,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role.`,
@@ -2035,7 +2037,7 @@ var (
 					Description: `(Optional) The list of allowed values for redirect_uri during OIDC logins. Required for OIDC roles ## Attributes Reference No additional attributes are exported by this resource. ## Import JWT authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_jwt_auth_backend_role.example auth/jwt/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2049,7 +2051,7 @@ var (
 				"backend",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "kubernetes_host",
 					Description: `(Required) Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.`,
@@ -2067,7 +2069,7 @@ var (
 					Description: `(Optional) List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys. ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2081,7 +2083,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) Name of the role.`,
@@ -2123,7 +2125,7 @@ var (
 					Description: `(Optional) Unique name of the kubernetes backend to configure. ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2136,7 +2138,7 @@ var (
 				"auth",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `(Required) The URL of the LDAP server`,
@@ -2210,7 +2212,7 @@ var (
 					Description: `The accessor for this auth mount. ## Import LDAP authentication backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ldap_auth_backend.ldap ldap ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
 					Description: `The accessor for this auth mount. ## Import LDAP authentication backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ldap_auth_backend.ldap ldap ` + "`" + `` + "`" + `` + "`" + ``,
@@ -2229,7 +2231,7 @@ var (
 				"backend",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "groupname",
 					Description: `(Required) The LDAP groupname`,
@@ -2243,7 +2245,7 @@ var (
 					Description: `(Optional) Path to the authentication backend For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api/auth/ldap/index.html). ## Attribute Reference No additional attributes are exposed by this resource. ## Import LDAP authentication backend groups can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ldap_auth_backend_group.foo auth/ldap/groups/foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2257,7 +2259,7 @@ var (
 				"backend",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Required) The LDAP username`,
@@ -2275,7 +2277,7 @@ var (
 					Description: `(Optional) Path to the authentication backend For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api/auth/ldap/index.html). ## Attribute Reference No additional attributes are exposed by this resource. ## Import LDAP authentication backend users can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ldap_auth_backend_user.foo auth/ldap/users/foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2286,7 +2288,7 @@ var (
 			Keywords: []string{
 				"mount",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) Where the secret backend will be mounted`,
@@ -2316,7 +2318,7 @@ var (
 					Description: `The accessor for this mount. ## Import Mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_mount.example dummy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
 					Description: `The accessor for this mount. ## Import Mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_mount.example dummy ` + "`" + `` + "`" + `` + "`" + ``,
@@ -2332,7 +2334,7 @@ var (
 			Keywords: []string{
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The path of the namespace. Must not have a trailing ` + "`" + `/` + "`" + ` ## Attributes Reference`,
@@ -2342,7 +2344,7 @@ var (
 					Description: `ID of the namespace.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the namespace.`,
@@ -2360,7 +2362,7 @@ var (
 				"auth",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) Path to mount the Okta auth backend`,
@@ -2426,7 +2428,7 @@ var (
 					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
 					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).`,
@@ -2445,7 +2447,7 @@ var (
 				"backend",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The path where the Okta auth backend is mounted`,
@@ -2459,7 +2461,7 @@ var (
 					Description: `(Optional) Vault policies to associate with this group ## Attributes Reference No additional attributes are exposed by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2473,7 +2475,7 @@ var (
 				"backend",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The path where the Okta auth backend is mounted`,
@@ -2491,7 +2493,7 @@ var (
 					Description: `(Optional) List of Vault policies to associate with this user ## Attributes Reference No additional attributes are exposed by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2504,7 +2506,7 @@ var (
 				"secret",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The unique path this backend should be mounted at. Must not begin or end with a ` + "`" + `/` + "`" + `.`,
@@ -2522,7 +2524,7 @@ var (
 					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend. ## Attributes Reference No additional attributes are exported by this resource. ## Import PKI secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_pki_secret_backend.pki pki ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2536,7 +2538,7 @@ var (
 				"backend",
 				"cert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -2610,7 +2612,7 @@ var (
 					Description: `The expiration date of the certificate in unix epoch format`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate",
 					Description: `The certificate`,
@@ -2654,7 +2656,7 @@ var (
 				"config",
 				"ca",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -2664,7 +2666,7 @@ var (
 					Description: `(Required) The key and certificate PEM bundle ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2679,7 +2681,7 @@ var (
 				"config",
 				"urls",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the PKI secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -2697,7 +2699,7 @@ var (
 					Description: `(Optional) Specifies the URL values for the OCSP Servers field. Comma-separated string if multiple. ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2713,7 +2715,7 @@ var (
 				"cert",
 				"request",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -2807,7 +2809,7 @@ var (
 					Description: `The serial number`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "csr",
 					Description: `The CSR`,
@@ -2840,7 +2842,7 @@ var (
 				"set",
 				"signed",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -2850,7 +2852,7 @@ var (
 					Description: `(Required) The certificate ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2864,7 +2866,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the PKI secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -3010,7 +3012,7 @@ var (
 					Description: `(Optional) Flag to mark basic constraints valid when issuing non-CA certificates ## Attributes Reference No additional attributes are exported by this resource. ## Import PKI secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_pki_secret_backend_role.role pki/roles/my_role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3025,7 +3027,7 @@ var (
 				"root",
 				"cert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -3131,7 +3133,7 @@ var (
 					Description: `The serial`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate",
 					Description: `The certificate`,
@@ -3164,7 +3166,7 @@ var (
 				"sign",
 				"intermediate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -3274,7 +3276,7 @@ var (
 					Description: `The serial`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate",
 					Description: `The certificate`,
@@ -3305,7 +3307,7 @@ var (
 				"backend",
 				"sign",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The PKI secret backend the resource belongs to.`,
@@ -3375,7 +3377,7 @@ var (
 					Description: `The expiration date of the certificate in unix epoch format`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate",
 					Description: `The certificate`,
@@ -3407,7 +3409,7 @@ var (
 			Keywords: []string{
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy`,
@@ -3417,7 +3419,7 @@ var (
 					Description: `(Required) String containing a Vault policy ## Attributes Reference No additional attributes are exported by this resource. ## Import Policies can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_policy.example dev-team ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3430,7 +3432,7 @@ var (
 				"secret",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connection_uri",
 					Description: `(Required) Specifies the RabbitMQ connection URI.`,
@@ -3464,7 +3466,7 @@ var (
 					Description: `(Optional) The maximum TTL that can be requested for credentials issued by this backend. ## Attributes Reference No additional attributes are exported by this resource. ## Import RabbitMQ secret backends can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_rabbitmq_secret_backend.rabbitmq rabbitmq ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3478,7 +3480,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path the RabbitMQ secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -3496,7 +3498,7 @@ var (
 					Description: `(Optional) Specifies a map of virtual hosts to permissions. ## Attributes Reference No additional attributes are exported by this resource. ## Import RabbitMQ secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_rabbitmq_secret_backend_role.role rabbitmq/roles/deploy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3508,7 +3510,7 @@ var (
 				"rgp",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy`,
@@ -3522,7 +3524,7 @@ var (
 					Description: `(Required) String containing a Sentinel policy ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3536,7 +3538,7 @@ var (
 				"backend",
 				"ca",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The path where the SSH secret backend is mounted. Defaults to 'ssh'`,
@@ -3554,7 +3556,7 @@ var (
 					Description: `(Optional) The private key part the SSH CA key pair; required if generate_signing_key is false. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3568,7 +3570,7 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the role to create.`,
@@ -3646,7 +3648,7 @@ var (
 					Description: `(Optional) Specifies the maximum Time To Live value. ## Attributes Reference No additional attributes are exposed by this resource. ## Import SSH secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ssh_secret_backend_role.foo ssh/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3657,7 +3659,7 @@ var (
 			Keywords: []string{
 				"token",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Optional) The token role name`,
@@ -3719,7 +3721,7 @@ var (
 					Description: `String containing the client token if stored in present file ## Import Tokens can be imported using its ` + "`" + `id` + "`" + ` as accessor id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token.example <accessor_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "lease_duration",
 					Description: `String containing the token lease duration if present in state file`,
@@ -3746,13 +3748,13 @@ var (
 				"backend",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -3826,10 +3828,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

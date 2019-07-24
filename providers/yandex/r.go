@@ -1,11 +1,13 @@
-package aws
+package yandex
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ var (
 				"service",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the disk. Provide this property when you create a resource.`,
@@ -64,7 +66,7 @@ var (
 					Description: `Creation timestamp of the disk. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 5 minutes. - ` + "`" + `delete` + "`" + ` - Default is 5 minutes. ## Import A disk can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_compute_disk.default disk_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the disk.`,
@@ -86,7 +88,7 @@ var (
 				"service",
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the disk.`,
@@ -152,7 +154,7 @@ var (
 					Description: `Creation timestamp of the image. ## Timeouts ` + "`" + `yandex_compute_image` + "`" + ` provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default 5 minutes - ` + "`" + `update` + "`" + ` - Default 5 minutes - ` + "`" + `delete` + "`" + ` - Default 5 minutes ## Import A VM image can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_compute_image.web-image image_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `The size of the image, specified in GB.`,
@@ -178,7 +180,7 @@ var (
 				"service",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resources",
 					Description: `(Required) Compute resources that are allocated for the instance. The structure is documented below.`,
@@ -356,7 +358,7 @@ var (
 					Description: `Creation timestamp of the instance. ## Import Instances can be imported using the ` + "`" + `ID` + "`" + ` of an instance, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_compute_instance.default instance_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fqdn",
 					Description: `The fully qualified DNS name of this instance.`,
@@ -391,7 +393,7 @@ var (
 				"instance",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder_id",
 					Description: `(Required) The ID of the folder that the resources belong to.`,
@@ -657,7 +659,7 @@ var (
 					Description: `The instance group creation timestamp.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the instance group.`,
@@ -679,7 +681,7 @@ var (
 				"service",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_disk_id",
 					Description: `(Required) ID of the disk to create a snapshot from. - - -`,
@@ -713,7 +715,7 @@ var (
 					Description: `Creation timestamp of the snapshot.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk_size",
 					Description: `Size of the disk when the snapshot was created, specified in GB.`,
@@ -739,7 +741,7 @@ var (
 				"service",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the service account. Can be updated without creating a new resource.`,
@@ -753,7 +755,7 @@ var (
 					Description: `(Optional) ID of the folder that the service account will be created in. Defaults to the provider folder configuration. ## Import Service accounts can be imported using their IDs, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_iam_service_account.my_sa service_account_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -767,7 +769,7 @@ var (
 				"account",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_account_id",
 					Description: `(Required) The service account ID to apply a binding to.`,
@@ -781,7 +783,7 @@ var (
 					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -795,7 +797,7 @@ var (
 				"account",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_account_id",
 					Description: `(Required) The service account ID to apply a policy to.`,
@@ -809,7 +811,7 @@ var (
 					Description: `(Required) Identity that will be granted the privilege in ` + "`" + `role` + "`" + `. Entry can have one of the following values:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -823,7 +825,7 @@ var (
 				"account",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_account_id",
 					Description: `(Required) The service account ID to apply a policy to.`,
@@ -841,7 +843,7 @@ var (
 					Description: `(Required only by ` + "`" + `yandex_iam_service_account_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `yandex_iam_policy` + "`" + ` data source. ## Import Service account IAM policy resources can be imported using the service account ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_iam_service_account_iam_policy.admin-account-iam service_account_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -857,7 +859,7 @@ var (
 				"access",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_account_id",
 					Description: `(Required) ID of the service account which is used to get a static key. - - -`,
@@ -879,7 +881,7 @@ var (
 					Description: `Creation timestamp of the static access key. [Yandex Object Storage]: https://cloud.yandex.com/docs/storage/`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_key",
 					Description: `ID of the static access key.`,
@@ -908,7 +910,7 @@ var (
 				"iam",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_id",
 					Description: `(Required) ID of the cloud to attach the policy to.`,
@@ -922,7 +924,7 @@ var (
 					Description: `(Required) An array of identities that will be granted the privilege in the ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -938,7 +940,7 @@ var (
 				"iam",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_id",
 					Description: `(Required) ID of the cloud to attach a policy to.`,
@@ -952,7 +954,7 @@ var (
 					Description: `(Required) The identity that will be granted the privilege that is specified in the ` + "`" + `role` + "`" + ` field. This field can have one of the following values:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -968,7 +970,7 @@ var (
 				"iam",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder_id",
 					Description: `(Required) ID of the folder to attach a policy to.`,
@@ -982,7 +984,7 @@ var (
 					Description: `(Required) An array of identities that will be granted the privilege that is specified in the ` + "`" + `role` + "`" + ` field. Each entry can have one of the following values:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -998,7 +1000,7 @@ var (
 				"iam",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder_id",
 					Description: `(Required) ID of the folder to attach a policy to.`,
@@ -1012,7 +1014,7 @@ var (
 					Description: `(Required) The identity that will be granted the privilege that is specified in the ` + "`" + `role` + "`" + ` field. This field can have one of the following values:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1028,7 +1030,7 @@ var (
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder_id",
 					Description: `(Required) ID of the folder that the policy is attached to.`,
@@ -1038,7 +1040,7 @@ var (
 					Description: `(Required) The ` + "`" + `yandex_iam_policy` + "`" + ` data source that represents the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1050,7 +1052,7 @@ var (
 				"vpc",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the network. Provided by the client when the network is created.`,
@@ -1072,7 +1074,7 @@ var (
 					Description: `Creation timestamp of the key. ## Import A network can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_vpc_network.default network_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `Creation timestamp of the key. ## Import A network can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_vpc_network.default network_id ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1090,7 +1092,7 @@ var (
 				"route",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `(Required) ID of the network this route table belongs to. - - -`,
@@ -1128,7 +1130,7 @@ var (
 					Description: `Creation timestamp of the route table. ## Import A route table can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_vpc_route_table.default route_table_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `Creation timestamp of the route table. ## Import A route table can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_vpc_route_table.default route_table_id ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1145,7 +1147,7 @@ var (
 				"vpc",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `(Required) ID of the network this subnet belongs to. Only networks that are in the distributed mode can have subnets.`,
@@ -1183,7 +1185,7 @@ var (
 					Description: `(Optional) An optional list of blocks of IPv6 addresses that are owned by this subnet. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1210,10 +1212,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package panos
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ var (
 				"address",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The address group's name.`,
@@ -44,7 +46,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -57,7 +59,7 @@ var (
 				"address",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The address object's name.`,
@@ -83,7 +85,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -96,7 +98,7 @@ var (
 				"administrative",
 				"tag",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The administrative tag's name.`,
@@ -114,7 +116,7 @@ var (
 					Description: `(Optional) The administrative tag's description.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -127,7 +129,7 @@ var (
 				"bfd",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The BBFD profile's name.`,
@@ -157,7 +159,7 @@ var (
 					Description: `(Optional, int) Minimum accepted ttl on received BFD packet.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -169,7 +171,7 @@ var (
 				"firewall",
 				"bgp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this BGP configuration to.`,
@@ -255,7 +257,7 @@ var (
 					Description: `(Optional, bool) Allow redistribute default route to BGP.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -268,7 +270,7 @@ var (
 				"bgp",
 				"aggregate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to put the rule into.`,
@@ -342,7 +344,7 @@ var (
 					Description: `(Optional) If ` + "`" + `extended_community_type` + "`" + ` is ` + "`" + `remove-regex` + "`" + `, ` + "`" + `append` + "`" + `, or ` + "`" + `overwrite` + "`" + `, the value associated with that setting.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -357,7 +359,7 @@ var (
 				"advertise",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this filter to.`,
@@ -415,7 +417,7 @@ var (
 					Description: `(Optional, bool) Match exact prefix length.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -430,7 +432,7 @@ var (
 				"suppress",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this filter to.`,
@@ -488,7 +490,7 @@ var (
 					Description: `(Optional, bool) Match exact prefix length.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -502,7 +504,7 @@ var (
 				"auth",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this BGP auth profile to.`,
@@ -516,7 +518,7 @@ var (
 					Description: `(Optional) Shared secret for the TCP MD5 authentication.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -530,7 +532,7 @@ var (
 				"conditional",
 				"adv",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this BGP conditional advertisement to.`,
@@ -548,7 +550,7 @@ var (
 					Description: `(Optional) List of BGP peer groups that use this rule.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -564,7 +566,7 @@ var (
 				"advertise",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this filter to.`,
@@ -614,7 +616,7 @@ var (
 					Description: `(Optional) List of peers that advertised the route entry.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -631,7 +633,7 @@ var (
 				"exist",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this filter to.`,
@@ -681,7 +683,7 @@ var (
 					Description: `(Optional) List of peers that advertised the route entry.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -695,7 +697,7 @@ var (
 				"dampening",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this BGP dampening profile to.`,
@@ -729,7 +731,7 @@ var (
 					Description: `(Optional, int) Decay half-life while unreachable, in seconds (default: ` + "`" + `900` + "`" + `).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -744,7 +746,7 @@ var (
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to put the rule into.`,
@@ -870,7 +872,7 @@ var (
 					Description: `(Optional, bool) Match exact prefix length.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -885,7 +887,7 @@ var (
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to put the rule into.`,
@@ -1007,7 +1009,7 @@ var (
 					Description: `(Optional, bool) Match exact prefix length.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1020,7 +1022,7 @@ var (
 				"bgp",
 				"peer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this BGP peer to.`,
@@ -1134,7 +1136,7 @@ var (
 					Description: `(Optional, int, PAN-OS 8.1+) Minimum route advertisement interval, in seconds.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1148,7 +1150,7 @@ var (
 				"peer",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this BGP peer group to.`,
@@ -1186,7 +1188,7 @@ var (
 					Description: `(Optional, bool) Remove private AS when exporting route. Only available for ` + "`" + `type=ebgp` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1200,7 +1202,7 @@ var (
 				"redist",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this BGP redist rule to.`,
@@ -1250,7 +1252,7 @@ var (
 					Description: `(Optional) List of EXTENDED COMMUNITY path attributes to add.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1263,7 +1265,7 @@ var (
 				"dag",
 				"tags",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vsys",
 					Description: `(Optional) The vsys to put the DAG tags in (default: ` + "`" + `vsys1` + "`" + `).`,
@@ -1273,7 +1275,7 @@ var (
 					Description: `(Required) A set that includes ` + "`" + `ip` + "`" + `, the IP address to be tagged and ` + "`" + `tags` + "`" + `, a list of tags to associate with the given IP.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1285,7 +1287,7 @@ var (
 				"firewall",
 				"edl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The object's name`,
@@ -1339,7 +1341,7 @@ var (
 					Description: `(Optional, list) Provide a list of exception entries.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1352,7 +1354,7 @@ var (
 				"ethernet",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The ethernet interface's name. This should be something like ` + "`" + `ethernet1/X` + "`" + `.`,
@@ -1438,7 +1440,7 @@ var (
 					Description: `(Optional, PAN-OS 8.0+) The IPv6 MSS adjust value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1451,7 +1453,7 @@ var (
 				"general",
 				"settings",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `Firewall hostname.`,
@@ -1537,7 +1539,7 @@ var (
 					Description: `Secondary NTP ` + "`" + `symmetric-key` + "`" + ` auth key. This is the SHA1 hash if the algorithm is ` + "`" + `sha1` + "`" + `, or the md5sum if the algorithm is ` + "`" + `md5` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1551,7 +1553,7 @@ var (
 				"crypto",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The object's name`,
@@ -1581,7 +1583,7 @@ var (
 					Description: `(Optional, PAN-OS 7.0+, int) IKEv2 SA reauthentication interval equals authetication-multiple`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1594,7 +1596,7 @@ var (
 				"ike",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The object's name`,
@@ -1744,7 +1746,7 @@ var (
 					Description: `(Optional, , PAN-OS 7.0+int) Delay interval before sending probing packets (in seconds).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1758,7 +1760,7 @@ var (
 				"crypto",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The object's name`,
@@ -1796,7 +1798,7 @@ var (
 					Description: `(Optional, int) the lifesize value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1809,7 +1811,7 @@ var (
 				"ipsec",
 				"tunnel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The object's name`,
@@ -1951,7 +1953,7 @@ var (
 					Description: `(Optional, PAN-OS 7.0+) Which proxy-id (or proxy-id-v6) the monitoring traffic will use.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1967,7 +1969,7 @@ var (
 				"id",
 				"ipv4",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The object's name`,
@@ -2009,7 +2011,7 @@ var (
 					Description: `(Optional, int) Remote UDP port number.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2023,7 +2025,7 @@ var (
 				"api",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key",
 					Description: `(Required) The licensing API key.`,
@@ -2033,7 +2035,7 @@ var (
 					Description: `(Optional) Set to ` + "`" + `true` + "`" + ` to retain the licensing API key even after the deletion of this resource (recommended).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2045,7 +2047,7 @@ var (
 				"firewall",
 				"licensing",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auth_codes",
 					Description: `(Required) The list of auth codes to install.`,
@@ -2091,7 +2093,7 @@ var (
 					Description: `Associated auth code (if applicable).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "licenses",
 					Description: `List of licenses. Licenses have the following attributes:`,
@@ -2137,7 +2139,7 @@ var (
 				"loopback",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The interface's name. This must start with ` + "`" + `loopback.` + "`" + `.`,
@@ -2179,7 +2181,7 @@ var (
 					Description: `(Optional, PAN-OS 8.0+) The IPv6 MSS adjust value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2192,7 +2194,7 @@ var (
 				"management",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The management profile's name.`,
@@ -2246,7 +2248,7 @@ var (
 					Description: `(Optional) The list of permitted IP addresses or address ranges for this management profile.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2259,7 +2261,7 @@ var (
 				"nat",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The NAT rule's name.`,
@@ -2377,7 +2379,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2391,7 +2393,7 @@ var (
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vsys",
 					Description: `(Optional) The vsys to put the NAT rule group into (default: ` + "`" + `vsys1` + "`" + `).`,
@@ -2569,7 +2571,7 @@ var (
 					Description: `(Optional, PAN-OS 8.1+) Distribution algorithm for destination address pool. The PAN-OS 8.1 GUI doesn't seem to set this anywhere, but this is added here for completeness' sake. The GUI sets this to ` + "`" + `round-robin` + "`" + ` currently.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2582,7 +2584,7 @@ var (
 				"address",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The address group's name.`,
@@ -2608,7 +2610,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2621,7 +2623,7 @@ var (
 				"address",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The address object's name.`,
@@ -2647,7 +2649,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2660,7 +2662,7 @@ var (
 				"administrative",
 				"tag",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The administrative tag's name.`,
@@ -2678,7 +2680,7 @@ var (
 					Description: `(Optional) The administrative tag's description.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2691,7 +2693,7 @@ var (
 				"bfd",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -2729,7 +2731,7 @@ var (
 					Description: `(Optional, int) Minimum accepted ttl on received BFD packet.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2741,7 +2743,7 @@ var (
 				"panorama",
 				"bgp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -2835,7 +2837,7 @@ var (
 					Description: `(Optional, bool) Allow redistribute default route to BGP.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2848,7 +2850,7 @@ var (
 				"bgp",
 				"aggregate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -2930,7 +2932,7 @@ var (
 					Description: `(Optional) If ` + "`" + `extended_community_type` + "`" + ` is ` + "`" + `remove-regex` + "`" + `, ` + "`" + `append` + "`" + `, or ` + "`" + `overwrite` + "`" + `, the value associated with that setting.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2945,7 +2947,7 @@ var (
 				"advertise",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3011,7 +3013,7 @@ var (
 					Description: `(Optional, bool) Match exact prefix length.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3026,7 +3028,7 @@ var (
 				"suppress",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3092,7 +3094,7 @@ var (
 					Description: `(Optional, bool) Match exact prefix length.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3106,7 +3108,7 @@ var (
 				"auth",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router to add this BGP auth profile to.`,
@@ -3120,7 +3122,7 @@ var (
 					Description: `(Optional) Shared secret for the TCP MD5 authentication.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3134,7 +3136,7 @@ var (
 				"conditional",
 				"adv",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3160,7 +3162,7 @@ var (
 					Description: `(Optional) List of BGP peer groups that use this rule.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3176,7 +3178,7 @@ var (
 				"advertise",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3234,7 +3236,7 @@ var (
 					Description: `(Optional) List of peers that advertised the route entry.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3251,7 +3253,7 @@ var (
 				"exist",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3309,7 +3311,7 @@ var (
 					Description: `(Optional) List of peers that advertised the route entry.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3323,7 +3325,7 @@ var (
 				"dampening",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3365,7 +3367,7 @@ var (
 					Description: `(Optional, int) Decay half-life while unreachable, in seconds (default: ` + "`" + `900` + "`" + `).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3380,7 +3382,7 @@ var (
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3514,7 +3516,7 @@ var (
 					Description: `(Optional, bool) Match exact prefix length.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3529,7 +3531,7 @@ var (
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3659,7 +3661,7 @@ var (
 					Description: `(Optional, bool) Match exact prefix length.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3672,7 +3674,7 @@ var (
 				"bgp",
 				"peer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3794,7 +3796,7 @@ var (
 					Description: `(Optional, int, PAN-OS 8.1+) Minimum route advertisement interval, in seconds.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3808,7 +3810,7 @@ var (
 				"peer",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3854,7 +3856,7 @@ var (
 					Description: `(Optional, bool) Remove private AS when exporting route. Only available for ` + "`" + `type=ebgp` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3868,7 +3870,7 @@ var (
 				"redist",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -3926,7 +3928,7 @@ var (
 					Description: `(Optional) List of EXTENDED COMMUNITY path attributes to add.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3939,7 +3941,7 @@ var (
 				"device",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The device group's name.`,
@@ -3961,7 +3963,7 @@ var (
 					Description: `(Optional) A subset of all available vsys on the firewall that should be in this device group. If the firewall is a virtual firewall, then this parameter should just be omitted.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3975,7 +3977,7 @@ var (
 				"group",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_group",
 					Description: `(Required) The device group's name.`,
@@ -3989,7 +3991,7 @@ var (
 					Description: `(Optional) A subset of all available vsys on the firewall that should be in this device group. If the firewall is a virtual firewall, then this parameter should just be omitted.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4001,7 +4003,7 @@ var (
 				"panorama",
 				"edl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The object's name`,
@@ -4055,7 +4057,7 @@ var (
 					Description: `(Optional, list) Provide a list of exception entries.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4068,7 +4070,7 @@ var (
 				"ethernet",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The ethernet interface's name. This should be something like ` + "`" + `ethernet1/X` + "`" + `.`,
@@ -4158,7 +4160,7 @@ var (
 					Description: `(Optional, PAN-OS 8.0+) The IPv6 MSS adjust value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4172,7 +4174,7 @@ var (
 				"crypto",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -4210,7 +4212,7 @@ var (
 					Description: `(Optional, PAN-OS 7.0+, int) IKEv2 SA reauthentication interval equals authetication-multiple`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4223,7 +4225,7 @@ var (
 				"ike",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -4381,7 +4383,7 @@ var (
 					Description: `(Optional, , PAN-OS 7.0+int) Delay interval before sending probing packets (in seconds).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4395,7 +4397,7 @@ var (
 				"crypto",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -4441,7 +4443,7 @@ var (
 					Description: `(Optional, int) the lifesize value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4454,7 +4456,7 @@ var (
 				"ipsec",
 				"tunnel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The object's name`,
@@ -4600,7 +4602,7 @@ var (
 					Description: `(Optional, PAN-OS 7.0+) Which proxy-id (or proxy-id-v6) the monitoring traffic will use.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4616,7 +4618,7 @@ var (
 				"id",
 				"ipv4",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `(Required) The template name.`,
@@ -4662,7 +4664,7 @@ var (
 					Description: `(Optional, int) Remote UDP port number.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4675,7 +4677,7 @@ var (
 				"loopback",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The interface's name. This must start with ` + "`" + `loopback.` + "`" + `.`,
@@ -4721,7 +4723,7 @@ var (
 					Description: `(Optional, PAN-OS 8.0+) The IPv6 MSS adjust value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4734,7 +4736,7 @@ var (
 				"management",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -4796,7 +4798,7 @@ var (
 					Description: `(Optional) The list of permitted IP addresses or address ranges for this management profile.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4809,7 +4811,7 @@ var (
 				"nat",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The NAT rule's name.`,
@@ -4943,7 +4945,7 @@ var (
 					Description: `(Optional) A subset of all available vsys on the firewall that should be in this device group. If the firewall is a virtual firewall, then this parameter should just be omitted.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4957,7 +4959,7 @@ var (
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vsys",
 					Description: `(Optional) The vsys to put the NAT rule group into (default: ` + "`" + `vsys1` + "`" + `).`,
@@ -5159,7 +5161,7 @@ var (
 					Description: `(Optional, PAN-OS 8.1+) Distribution algorithm for destination address pool. The PAN-OS 8.1 GUI doesn't seem to set this anywhere, but this is added here for completeness' sake. The GUI sets this to ` + "`" + `round-robin` + "`" + ` currently.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5173,7 +5175,7 @@ var (
 				"profile",
 				"ipv4",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The redistribution profile's name.`,
@@ -5231,7 +5233,7 @@ var (
 					Description: `(Optional) BGP extended communities.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5244,7 +5246,7 @@ var (
 				"security",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_group",
 					Description: `(Optional) The device group to put the security policy into (default: ` + "`" + `shared` + "`" + `).`,
@@ -5398,7 +5400,7 @@ var (
 					Description: `(Optional) A subset of all available vsys on the firewall that should be in this device group. If the firewall is a virtual firewall, then this parameter should just be omitted.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5412,7 +5414,7 @@ var (
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_group",
 					Description: `(Optional) The device group to put the security rules into (default: ` + "`" + `shared` + "`" + `).`,
@@ -5574,7 +5576,7 @@ var (
 					Description: `(Optional) A subset of all available vsys on the firewall that should be in this device group. If the firewall is a virtual firewall, then this parameter should just be omitted.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5587,7 +5589,7 @@ var (
 				"service",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The service group's name.`,
@@ -5605,7 +5607,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5618,7 +5620,7 @@ var (
 				"service",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The service object's name.`,
@@ -5648,7 +5650,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5662,7 +5664,7 @@ var (
 				"route",
 				"ipv4",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -5712,7 +5714,7 @@ var (
 					Description: `(Optional, PAN-OS 7.1+) BFD configuration.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5724,7 +5726,7 @@ var (
 				"panorama",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The template's name.`,
@@ -5746,7 +5748,7 @@ var (
 					Description: `(Optional) A subset of all available vsys on the firewall that should be in this template. If the firewall is a virtual firewall, then this parameter should just be omitted.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5759,7 +5761,7 @@ var (
 				"template",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `(Required) The template name.`,
@@ -5773,7 +5775,7 @@ var (
 					Description: `(Optional) A subset of all available vsys on the firewall that should be in this template. If the firewall is a virtual firewall, then this parameter should just be omitted.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5786,7 +5788,7 @@ var (
 				"template",
 				"stack",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The stack's name.`,
@@ -5808,7 +5810,7 @@ var (
 					Description: `(Optional) List of serial numbers to include in this stack.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5822,7 +5824,7 @@ var (
 				"stack",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template_stack",
 					Description: `(Required) The template name.`,
@@ -5832,7 +5834,7 @@ var (
 					Description: `(Required) The serial number of the device to add.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5845,7 +5847,7 @@ var (
 				"template",
 				"variable",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -5867,7 +5869,7 @@ var (
 					Description: `(Required) The variable value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5880,7 +5882,7 @@ var (
 				"tunnel",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The interface's name. This must start with ` + "`" + `tunnel.` + "`" + `.`,
@@ -5914,7 +5916,7 @@ var (
 					Description: `(Optional) The MTU.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5927,7 +5929,7 @@ var (
 				"virtual",
 				"router",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The virtual router's name.`,
@@ -5981,7 +5983,7 @@ var (
 					Description: `(Optional) Admin distance - RIP (default: ` + "`" + `120` + "`" + `).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -5995,7 +5997,7 @@ var (
 				"router",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `(Required) The template name.`,
@@ -6009,7 +6011,7 @@ var (
 					Description: `(Required) The interface to import into the virtual router.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6022,7 +6024,7 @@ var (
 				"vlan",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The interface's name. Must start with ` + "`" + `vlan.` + "`" + `.`,
@@ -6080,7 +6082,7 @@ var (
 					Description: `(Optional, PAN-OS 8.0+) The IPv6 MSS adjust value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6092,7 +6094,7 @@ var (
 				"panorama",
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `The template name.`,
@@ -6138,7 +6140,7 @@ var (
 					Description: `(Optional) Users from these addresses/subnets will not be identified. This can be an address object, an address group, a single IP address, or an IP address subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6151,7 +6153,7 @@ var (
 				"zone",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `(Required) The template name.`,
@@ -6173,7 +6175,7 @@ var (
 					Description: `(Required) The interface's name.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6187,7 +6189,7 @@ var (
 				"profile",
 				"ipv4",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The redistribution profile's name.`,
@@ -6241,7 +6243,7 @@ var (
 					Description: `(Optional) BGP extended communities.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6254,7 +6256,7 @@ var (
 				"security",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vsys",
 					Description: `(Optional) The vsys to put the security policy into (default: ` + "`" + `vsys1` + "`" + `).`,
@@ -6392,7 +6394,7 @@ var (
 					Description: `(Optional) Profile Setting: ` + "`" + `Profiles` + "`" + ` - The Data Filtering setting.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6406,7 +6408,7 @@ var (
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vsys",
 					Description: `(Optional) The vsys to put the security rule into (default: ` + "`" + `vsys1` + "`" + `).`,
@@ -6548,7 +6550,7 @@ var (
 					Description: `(Optional) Profile Setting: ` + "`" + `Profiles` + "`" + ` - The Data Filtering setting.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6561,7 +6563,7 @@ var (
 				"service",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The service group's name.`,
@@ -6579,7 +6581,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6592,7 +6594,7 @@ var (
 				"service",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The service object's name.`,
@@ -6622,7 +6624,7 @@ var (
 					Description: `(Optional) List of administrative tags.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6636,7 +6638,7 @@ var (
 				"route",
 				"ipv4",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The static route's name.`,
@@ -6678,7 +6680,7 @@ var (
 					Description: `(Optional, PAN-OS 7.1+) BFD configuration.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6690,7 +6692,7 @@ var (
 				"firewall",
 				"telemetry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_reports",
 					Description: `(Bool, optional) Application reports.`,
@@ -6724,7 +6726,7 @@ var (
 					Description: `(Bool, optional) Passive DNS monitoring.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6737,7 +6739,7 @@ var (
 				"tunnel",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The interface's name. This must start with ` + "`" + `tunnel.` + "`" + `.`,
@@ -6767,7 +6769,7 @@ var (
 					Description: `(Optional) The MTU.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6780,7 +6782,7 @@ var (
 				"virtual",
 				"router",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The virtual router's name.`,
@@ -6830,7 +6832,7 @@ var (
 					Description: `(Optional) Admin distance - RIP (default: ` + "`" + `120` + "`" + `).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6844,7 +6846,7 @@ var (
 				"router",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_router",
 					Description: `(Required) The virtual router's name.`,
@@ -6854,7 +6856,7 @@ var (
 					Description: `(Required) The interface to import into the virtual router.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6867,7 +6869,7 @@ var (
 				"vlan",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The interface's name. Must start with ` + "`" + `vlan.` + "`" + `.`,
@@ -6921,7 +6923,7 @@ var (
 					Description: `(Optional, PAN-OS 8.0+) The IPv6 MSS adjust value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6933,7 +6935,7 @@ var (
 				"firewall",
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The zone's name.`,
@@ -6971,7 +6973,7 @@ var (
 					Description: `(Optional) Users from these addresses/subnets will not be identified. This can be an address object, an address group, a single IP address, or an IP address subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6984,7 +6986,7 @@ var (
 				"zone",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vsys",
 					Description: `(Optional) The vsys (default: ` + "`" + `vsys1` + "`" + `).`,
@@ -7002,7 +7004,7 @@ var (
 					Description: `(Required) The interface's name.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -7105,10 +7107,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

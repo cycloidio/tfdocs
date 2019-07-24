@@ -1,11 +1,13 @@
-package aws
+package template
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Renders a multi-part cloud-init config from source files.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gzip",
 					Description: `(Optional) Specify whether or not to gzip the rendered output. Defaults to ` + "`" + `true` + "`" + `.`,
@@ -48,7 +50,7 @@ var (
 					Description: `The final rendered multi-part cloud-init config.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rendered",
 					Description: `The final rendered multi-part cloud-init config.`,
@@ -62,7 +64,7 @@ var (
 			ShortDescription: `Renders a template from a file.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `(Required) The contents of the template, as a string using [Terraform template syntax](/docs/configuration/expressions.html#string-templates). Use [the ` + "`" + `file` + "`" + ` function](/docs/configuration/functions/file.html) to load the template source from a separate file on disk.`,
@@ -84,7 +86,7 @@ var (
 					Description: `The final rendered template.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template",
 					Description: `See Argument Reference above.`,
@@ -101,17 +103,17 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"template_cloudinit_config": 0,
 		"template_file":             1,
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

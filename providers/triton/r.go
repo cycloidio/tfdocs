@@ -1,11 +1,13 @@
-package aws
+package triton
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"fabric",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(String, Required, Change forces new resource) Network name.`,
@@ -110,7 +112,7 @@ var (
 					Description: `(Int) - VLAN id the network is on. Number between 0-4095 indicating VLAN ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) - The identifier representing the network in Triton.`,
@@ -175,7 +177,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule",
 					Description: `(string, Required) The firewall rule described using the Cloud API rule syntax defined at https://docs.joyent.com/public-cloud/network/firewall/cloud-firewall-rules-reference. Note: Cloud API will normalize rules based on case-sensitivity, parentheses, ordering of IP addresses, etc. This can result in Terraform updating rules repeatedly if the rule definition differs from the normalized value.`,
@@ -193,7 +195,7 @@ var (
 					Description: `(string) - The identifier representing the firewall rule in Triton.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) - The identifier representing the firewall rule in Triton.`,
@@ -210,7 +212,7 @@ var (
 				"instance",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "template_name",
 					Description: `(string, Required) Friendly name for the instance template.`,
@@ -248,7 +250,7 @@ var (
 					Description: `(string) - The identifier representing the Triton Service Group instance template.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) - The identifier representing the Triton Service Group instance template.`,
@@ -264,7 +266,7 @@ var (
 			Keywords: []string{
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string, Change forces new resource) The name of the key. If this is left empty, the name is inferred from the comment in the SSH key material.`,
@@ -274,7 +276,7 @@ var (
 					Description: `(string, Required, Change forces new resource) The SSH key material. In order to read this from a file, use the ` + "`" + `file` + "`" + ` interpolation.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -285,7 +287,7 @@ var (
 			Keywords: []string{
 				"machine",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string) The friendly name for the machine. Triton will generate a name if one is not specified.`,
@@ -443,7 +445,7 @@ var (
 					Description: `(list of strings) - List of container UUIDs that a new instance should not be placed onto the same host. [1]: https://eng.joyent.com/mdata/datadict.html [2]: https://docs.joyent.com/private-cloud/instances/using-mdata`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) - The identifier representing the machine in Triton.`,
@@ -548,7 +550,7 @@ var (
 				"service",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_name",
 					Description: `(string, Required) Friendly name for the service group.`,
@@ -566,7 +568,7 @@ var (
 					Description: `(string) - The identifier representing the Triton Service Group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) - The identifier representing the Triton Service Group.`,
@@ -582,7 +584,7 @@ var (
 			Keywords: []string{
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(string, Required) The name for the snapshot.`,
@@ -600,7 +602,7 @@ var (
 					Description: `(string) - The current state of the snapshot.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(string) - The identifier representing the snapshot in Triton.`,
@@ -620,7 +622,7 @@ var (
 			Keywords: []string{
 				"vlan",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vlan_id",
 					Description: `(int, Required, Change forces new resource) Number between 0-4095 indicating VLAN ID`,
@@ -634,7 +636,7 @@ var (
 					Description: `(string, Optional) Description of the VLAN`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -651,10 +653,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

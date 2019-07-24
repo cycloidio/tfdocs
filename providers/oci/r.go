@@ -1,11 +1,13 @@
-package aws
+package oci
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"audit",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) ID of the root compartment (tenancy)`,
@@ -31,7 +33,7 @@ var (
 					Description: `The retention period days ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "retention_period_days",
 					Description: `The retention period days ## Import Import is not supported for this resource.`,
@@ -50,7 +52,7 @@ var (
 				"autoscaling",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auto_scaling_resources",
 					Description: `(Required)`,
@@ -280,7 +282,7 @@ var (
 					Description: `The date and time the AutoScalingConfiguration was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import AutoScalingConfigurations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_autoscaling_auto_scaling_configuration.test_auto_scaling_configuration "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auto_scaling_resources",
 					Description: ``,
@@ -418,7 +420,7 @@ var (
 				"alert",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "budget_id",
 					Description: `(Required) The unique Budget OCID`,
@@ -520,7 +522,7 @@ var (
 					Description: `Version of the alert rule. Starts from 1 and increments by 1. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "budget_id",
 					Description: `The OCID of the budget`,
@@ -592,7 +594,7 @@ var (
 			Keywords: []string{
 				"budget",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "amount",
 					Description: `(Required) (Updatable) The amount of the budget expressed as a decimal number in the currency of the customer's rate card.`,
@@ -694,7 +696,7 @@ var (
 					Description: `Version of the budget. Starts from 1 and increments by 1. ## Import Budgets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_budget_budget.test_budget "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "actual_spend",
 					Description: `The actual spend in currency for the current budget cycle`,
@@ -777,7 +779,7 @@ var (
 				"containerengine",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment in which to create the cluster.`,
@@ -939,7 +941,7 @@ var (
 					Description: `The OCID of the virtual cloud network (VCN) in which the cluster exists. ## Import Clusters can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_containerengine_cluster.test_cluster "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "available_kubernetes_upgrades",
 					Description: `Available Kubernetes versions to which the clusters masters may be upgraded.`,
@@ -1067,7 +1069,7 @@ var (
 				"node",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) The OCID of the cluster to which this node pool is attached.`,
@@ -1233,7 +1235,7 @@ var (
 					Description: `The OCIDs of the subnets in which to place nodes for this node pool. ## Import NodePools can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_containerengine_node_pool.test_node_pool "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `The OCID of the cluster to which this node pool is attached.`,
@@ -1359,7 +1361,7 @@ var (
 				"version",
 				"agreement",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listing_id",
 					Description: `(Required) The OCID of the listing.`,
@@ -1393,7 +1395,7 @@ var (
 					Description: `Date and time the agreements were retrieved, in RFC3339 format. Example: ` + "`" + `2018-03-20T12:32:53.532Z` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "eula_link",
 					Description: `EULA link`,
@@ -1432,7 +1434,7 @@ var (
 				"catalog",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) The compartmentID for the subscription.`,
@@ -1494,7 +1496,7 @@ var (
 					Description: `Date and time at which the subscription was created, in RFC3339 format. Example: ` + "`" + `2018-03-20T12:32:53.532Z` + "`" + ` ## Import AppCatalogSubscriptions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_app_catalog_subscription.test_app_catalog_subscription "compartmentId/{compartmentId}/listingId/{listingId}/listingResourceVersion/{listingResourceVersion}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The compartmentID of the subscription.`,
@@ -1540,7 +1542,7 @@ var (
 				"boot",
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The availability domain of the boot volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -1654,7 +1656,7 @@ var (
 					Description: `The OCID of the source volume group. ## Import BootVolumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_boot_volume.test_boot_volume "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the boot volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -1737,7 +1739,7 @@ var (
 				"volume",
 				"backup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volume_id",
 					Description: `(Required) The OCID of the boot volume that needs to be backed up.`,
@@ -1827,7 +1829,7 @@ var (
 					Description: `The size used by the backup, in GBs. It is typically smaller than ` + "`" + `size_in_gbs` + "`" + `, depending on the space consumed on the boot volume and whether the backup is full or incremental. ## Import BootVolumeBackups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_boot_volume_backup.test_boot_volume_backup "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_volume_id",
 					Description: `The OCID of the boot volume.`,
@@ -1905,7 +1907,7 @@ var (
 				"console",
 				"history",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
@@ -1959,7 +1961,7 @@ var (
 					Description: `The date and time the history was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import ConsoleHistories can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_console_history.test_console_history "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of an instance. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -2008,7 +2010,7 @@ var (
 				"core",
 				"cpe",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the CPE.`,
@@ -2058,7 +2060,7 @@ var (
 					Description: `The date and time the CPE was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Cpes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_cpe.test_cpe "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the CPE.`,
@@ -2100,7 +2102,7 @@ var (
 				"cross",
 				"connect",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the cross-connect.`,
@@ -2178,7 +2180,7 @@ var (
 					Description: `The date and time the cross-connect was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import CrossConnects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_cross_connect.test_cross_connect "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the cross-connect group.`,
@@ -2233,7 +2235,7 @@ var (
 				"connect",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the cross-connect group.`,
@@ -2271,7 +2273,7 @@ var (
 					Description: `The date and time the cross-connect group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import CrossConnectGroups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_cross_connect_group.test_cross_connect_group "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the cross-connect group.`,
@@ -2309,7 +2311,7 @@ var (
 				"dhcp",
 				"options",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the set of DHCP options.`,
@@ -2403,7 +2405,7 @@ var (
 					Description: `The OCID of the VCN the set of DHCP options belongs to. ## Import DhcpOptions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_dhcp_options.test_dhcp_options "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the set of DHCP options.`,
@@ -2468,7 +2470,7 @@ var (
 				"core",
 				"drg",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the DRG.`,
@@ -2514,7 +2516,7 @@ var (
 					Description: `The date and time the DRG was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Drgs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_drg.test_drg "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the DRG.`,
@@ -2556,7 +2558,7 @@ var (
 				"drg",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Optional) (Updatable) A user-friendly name. Does not have to be unique. Avoid entering confidential information.`,
@@ -2606,7 +2608,7 @@ var (
 					Description: `The OCID of the VCN. ## Import DrgAttachments can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_drg_attachment.test_drg_attachment "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the DRG attachment.`,
@@ -2651,7 +2653,7 @@ var (
 				"core",
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment containing the instance you want to use as the basis for the image.`,
@@ -2885,7 +2887,7 @@ var (
 					Description: `The date and time the image was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Images can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_image.test_image "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "agent_features",
 					Description: ``,
@@ -3062,7 +3064,7 @@ var (
 				"core",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "agent_config",
 					Description: `(Optional) (Updatable)`,
@@ -3412,7 +3414,7 @@ var (
 					Description: `The date and time the instance is expected to be stopped / started, in the format defined by RFC3339. After that time if instance hasn't been rebooted, Oracle will reboot the instance within 24 hours of the due time. Regardless of how the instance was stopped, the flag will be reset to empty as soon as instance reaches Stopped state. Example: ` + "`" + `2018-05-25T21:10:29.600Z` + "`" + ` ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_instance.test_instance "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "agent_config",
 					Description: ``,
@@ -3642,7 +3644,7 @@ var (
 				"instance",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment containing the instance configuration.`,
@@ -4128,7 +4130,7 @@ var (
 					Description: `The date and time the instance configuration was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import InstanceConfigurations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_instance_configuration.test_instance_configuration "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the instance configuration.`,
@@ -4391,7 +4393,7 @@ var (
 				"console",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `(Optional) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
@@ -4445,7 +4447,7 @@ var (
 					Description: `The SSH connection string for the SSH tunnel used to connect to the console connection over VNC. ## Import InstanceConsoleConnections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_instance_console_connection.test_instance_console_connection "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment to contain the console connection.`,
@@ -4495,7 +4497,7 @@ var (
 				"instance",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment containing the instance pool`,
@@ -4665,7 +4667,7 @@ var (
 					Description: `The date and time the instance pool was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import InstancePools can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_instance_pool.test_instance_pool "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the instance pool.`,
@@ -4775,7 +4777,7 @@ var (
 				"internet",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the internet gateway.`,
@@ -4837,7 +4839,7 @@ var (
 					Description: `The OCID of the VCN the internet gateway belongs to. ## Import InternetGateways can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_internet_gateway.test_internet_gateway "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the internet gateway.`,
@@ -4886,7 +4888,7 @@ var (
 				"core",
 				"ipsec",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the IPSec connection.`,
@@ -4972,7 +4974,7 @@ var (
 					Description: `The date and time the IPSec connection was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import IpSecConnections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_ipsec.test_ip_sec_connection "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the IPSec connection.`,
@@ -5036,7 +5038,7 @@ var (
 				"tunnel",
 				"management",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ipsec_id",
 					Description: `(Required) The OCID of the IPSec connection.`,
@@ -5138,7 +5140,7 @@ var (
 					Description: `The IP address of Oracle's VPN headend. Example: ` + "`" + `129.146.17.50` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bgp_session_info",
 					Description: `Information needed to establish a BGP Session on an interface.`,
@@ -5217,7 +5219,7 @@ var (
 				"peering",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment containing the local peering gateway (LPG).`,
@@ -5303,7 +5305,7 @@ var (
 					Description: `The OCID of the VCN the LPG belongs to. ## Import LocalPeeringGateways can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_local_peering_gateway.test_local_peering_gateway "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the LPG.`,
@@ -5373,7 +5375,7 @@ var (
 				"nat",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "block_traffic",
 					Description: `(Optional) (Updatable) Whether the NAT gateway blocks traffic through it. The default is ` + "`" + `false` + "`" + `. Example: ` + "`" + `true` + "`" + ``,
@@ -5439,7 +5441,7 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the NAT gateway belongs to. ## Import NatGateways can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_nat_gateway.test_nat_gateway "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "block_traffic",
 					Description: `Whether the NAT gateway blocks traffic through it. The default is ` + "`" + `false` + "`" + `. Example: ` + "`" + `true` + "`" + ``,
@@ -5494,7 +5496,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the network security group.`,
@@ -5548,7 +5550,7 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group's VCN. ## Import NetworkSecurityGroups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_network_security_group.test_network_security_group "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment the network security group is in.`,
@@ -5596,7 +5598,7 @@ var (
 				"group",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_security_group_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group.`,
@@ -5818,7 +5820,7 @@ var (
 					Description: `The minimum port number. Must not be greater than the maximum port number. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_security_group_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group.`,
@@ -5948,7 +5950,7 @@ var (
 				"private",
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
@@ -6022,7 +6024,7 @@ var (
 					Description: `The OCID of the VNIC the private IP is assigned to. The VNIC and private IP must be in the same subnet. ## Import PrivateIps can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_private_ip.test_private_ip "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The private IP's availability domain. This attribute will be null if this is a`,
@@ -6084,7 +6086,7 @@ var (
 				"public",
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the public IP. For ephemeral public IPs, you must set this to the private IP's compartment OCID.`,
@@ -6166,7 +6168,7 @@ var (
 					Description: `The date and time the public IP was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import PublicIps can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_public_ip.test_public_ip "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "assigned_entity_id",
 					Description: `The OCID of the entity the public IP is assigned to, or in the process of being assigned to.`,
@@ -6237,7 +6239,7 @@ var (
 				"peering",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the RPC.`,
@@ -6303,7 +6305,7 @@ var (
 					Description: `The date and time the RPC was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import RemotePeeringConnections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_remote_peering_connection.test_remote_peering_connection "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains the RPC.`,
@@ -6361,7 +6363,7 @@ var (
 				"route",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment to contain the route table.`,
@@ -6455,7 +6457,7 @@ var (
 					Description: `The OCID of the VCN the route table list belongs to. ## Import RouteTables can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_route_table.test_route_table "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the route table.`,
@@ -6522,7 +6524,7 @@ var (
 				"table",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet.`,
@@ -6540,7 +6542,7 @@ var (
 					Description: `(Required) The OCID of the route table. ## Import Route Table Attachment can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_route_table_attachment.test_route_table_attachment "{subnetId}/{routeTableId}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `(Required) The OCID of the subnet.`,
@@ -6562,7 +6564,7 @@ var (
 				"security",
 				"list",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment to contain the security list.`,
@@ -6952,7 +6954,7 @@ var (
 					Description: `The OCID of the VCN the security list belongs to. ## Import SecurityLists can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_security_list.test_security_list "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the security list.`,
@@ -7158,7 +7160,7 @@ var (
 				"service",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The [OCID] (https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to contain the service gateway.`,
@@ -7244,7 +7246,7 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the service gateway belongs to. ## Import ServiceGateways can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_service_gateway.test_service_gateway "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "block_traffic",
 					Description: `Whether the service gateway blocks all traffic through it. The default is ` + "`" + `false` + "`" + `. When this is ` + "`" + `true` + "`" + `, traffic is not routed to any services, regardless of route rules. Example: ` + "`" + `true` + "`" + ``,
@@ -7309,7 +7311,7 @@ var (
 				"core",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Optional) Controls whether the subnet is regional or specific to an availability domain. Oracle recommends creating regional subnets because they're more flexible and make it easier to implement failover across availability domains. Originally, AD-specific subnets were the only kind available to use. To create a regional subnet, omit this attribute. Then any resources later created in this subnet (such as a Compute instance) can be created in any availability domain in the region. To instead create an AD-specific subnet, set this attribute to the availability domain you want this subnet to be in. Then any resources later created in this subnet can only be created in that availability domain. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -7431,7 +7433,7 @@ var (
 					Description: `The MAC address of the virtual router. Example: ` + "`" + `00:00:17:B6:4D:DD` + "`" + ` ## Import Subnets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_subnet.test_subnet "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The subnet's availability domain. This attribute will be null if this is a regional subnet instead of an AD-specific subnet. Oracle recommends creating regional subnets. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -7516,7 +7518,7 @@ var (
 				"core",
 				"vcn",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Required) The CIDR IP address block of the VCN. Example: ` + "`" + `172.16.0.0/16` + "`" + ``,
@@ -7594,7 +7596,7 @@ var (
 					Description: `The VCN's domain name, which consists of the VCN's DNS label, and the ` + "`" + `oraclevcn.com` + "`" + ` domain. For more information, see [DNS in Your Virtual Cloud Network](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm). Example: ` + "`" + `vcn1.oraclevcn.com` + "`" + ` ## Import Vcns can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_vcn.test_vcn "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The CIDR IP address block of the VCN. Example: ` + "`" + `172.16.0.0/16` + "`" + ``,
@@ -7660,7 +7662,7 @@ var (
 				"virtual",
 				"circuit",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bandwidth_shape_name",
 					Description: `(Optional) (Updatable) The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see [ListFastConnectProviderServiceVirtualCircuitBandwidthShapes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes). Example: ` + "`" + `10 Gbps` + "`" + ``,
@@ -7830,7 +7832,7 @@ var (
 					Description: `Whether the virtual circuit supports private or public peering. For more information, see [FastConnect Overview](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/fastconnect.htm). ## Import VirtualCircuits can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_virtual_circuit.test_virtual_circuit "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bandwidth_shape_name",
 					Description: `The provisioned data rate of the connection. To get a list of the available bandwidth levels (that is, shapes), see [ListFastConnectProviderServiceVirtualCircuitBandwidthShapes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/FastConnectProviderService/ListFastConnectProviderVirtualCircuitBandwidthShapes). Example: ` + "`" + `10 Gbps` + "`" + ``,
@@ -7944,7 +7946,7 @@ var (
 				"vnic",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_vnic_details",
 					Description: `(Required) Details for creating a new VNIC.`,
@@ -8042,7 +8044,7 @@ var (
 					Description: `The OCID of the VNIC. Available after the attachment process is complete. ## Import VnicAttachments can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_vnic_attachment.test_vnic_attachment "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the instance. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -8099,7 +8101,7 @@ var (
 				"core",
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The availability domain of the volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -8217,7 +8219,7 @@ var (
 					Description: `The OCID of the source volume group. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_volume.test_volume "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the volume. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -8295,7 +8297,7 @@ var (
 				"volume",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "attachment_type",
 					Description: `(Required) The type of volume. The only supported value are "iscsi" and "paravirtualized".`,
@@ -8397,7 +8399,7 @@ var (
 					Description: `The OCID of the volume. ## Import VolumeAttachments can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_volume_attachment.test_volume_attachment "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "attachment_type",
 					Description: `The type of volume attachment.`,
@@ -8479,7 +8481,7 @@ var (
 				"volume",
 				"backup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) (Updatable) The OCID of the compartment that contains the volume backup.`,
@@ -8593,7 +8595,7 @@ var (
 					Description: `The OCID of the volume. ## Import VolumeBackups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_volume_backup.test_volume_backup "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains the volume backup.`,
@@ -8681,7 +8683,7 @@ var (
 				"policy",
 				"assignment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "asset_id",
 					Description: `(Required) The OCID of the asset (e.g. a volume) to which to assign the policy.`,
@@ -8707,7 +8709,7 @@ var (
 					Description: `The date and time the volume backup policy assignment was created. Format defined by RFC3339. ## Import VolumeBackupPolicyAssignments can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_volume_backup_policy_assignment.test_volume_backup_policy_assignment "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "asset_id",
 					Description: `The OCID of the asset (e.g. a volume) to which the policy has been assigned.`,
@@ -8737,7 +8739,7 @@ var (
 				"volume",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The availability domain of the volume group.`,
@@ -8847,7 +8849,7 @@ var (
 					Description: `OCIDs for the volumes in this volume group. ## Import VolumeGroups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_volume_group.test_volume_group "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain of the volume group.`,
@@ -8930,7 +8932,7 @@ var (
 				"group",
 				"backup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) (Updatable) The OCID of the compartment that will contain the volume group backup. This parameter is optional, by default backup will be created in the same compartment and source volume group.`,
@@ -9016,7 +9018,7 @@ var (
 					Description: `The OCID of the source volume group. ## Import VolumeGroupBackups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_core_volume_group_backup.test_volume_group_backup "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains the volume group backup.`,
@@ -9090,7 +9092,7 @@ var (
 				"autonomous",
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_exadata_infrastructure_id",
 					Description: `(Required) The OCID of the Autonomous Exadata Infrastructure.`,
@@ -9192,7 +9194,7 @@ var (
 					Description: `The date and time the Autonomous was created. ## Import AutonomousContainerDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_container_database.test_autonomous_container_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_exadata_infrastructure_id",
 					Description: `The OCID of the Autonomous Exadata Infrastructure.`,
@@ -9271,7 +9273,7 @@ var (
 				"data",
 				"warehouse",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_password",
 					Description: `(Required) (Updatable) The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing.`,
@@ -9385,7 +9387,7 @@ var (
 					Description: `The date and time the database was created. ## Import AutonomousDataWarehouses can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_data_warehouse.test_autonomous_data_warehouse "id" ` + "`" + `` + "`" + `` + "`" + ` ## Deprecation Guide To rename existing ` + "`" + `oci_database_autonomous_data_warehouse` + "`" + ` resource in your Terraform configuration and state to the new type ` + "`" + `oci_database_autonomous_database` + "`" + `, follow the steps below. 1. Using Terraform, move the existing resource in the state with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform state mv oci_database_autonomous_data_warehouse.test_autonomous_data_warehouse oci_database_autonomous_database.test_autonomous_data_warehouse ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -9477,7 +9479,7 @@ var (
 				"warehouse",
 				"backup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouse_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Autonomous Data Warehouse backup.`,
@@ -9527,7 +9529,7 @@ var (
 					Description: `The type of backup. ## Import AutonomousDataWarehouseBackups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_data_warehouse_backup.test_autonomous_data_warehouse_backup "id" ` + "`" + `` + "`" + `` + "`" + ` ## Deprecation Guide To rename existing ` + "`" + `oci_database_autonomous_data_warehouse_backup` + "`" + ` resource in your Terraform configuration and state to the new type ` + "`" + `oci_database_autonomous_database_backup` + "`" + `, follow the steps below. 1. Using Terraform, move the existing resource in the state with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform state mv oci_database_autonomous_data_warehouse_backup.test_autonomous_data_warehouse_backup oci_database_autonomous_database_backup.test_autonomous_data_warehouse_backup ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_data_warehouse_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Autonomous Data Warehouse.`,
@@ -9580,7 +9582,7 @@ var (
 				"database",
 				"autonomous",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_password",
 					Description: `(Required) (Updatable) The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (") or the username "admin", regardless of casing.`,
@@ -9790,7 +9792,7 @@ var (
 					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet. ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_container_database_id",
 					Description: `The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -9924,7 +9926,7 @@ var (
 				"autonomous",
 				"backup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_database_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Autonomous Database backup.`,
@@ -9978,7 +9980,7 @@ var (
 					Description: `The type of backup. ## Import AutonomousDatabaseBackups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database_backup.test_autonomous_database_backup "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autonomous_database_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Autonomous Database.`,
@@ -10037,7 +10039,7 @@ var (
 				"exadata",
 				"infrastructure",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The availability domain where the Autonomous Exadata Infrastructure is located.`,
@@ -10203,7 +10205,7 @@ var (
 					Description: `The date and time the Autonomous Exadata Infrastructure was created. ## Import AutonomousExadataInfrastructures can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_exadata_infrastructure.test_autonomous_exadata_infrastructure "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The name of the availability domain that the Autonomous Exadata Infrastructure is located in.`,
@@ -10312,7 +10314,7 @@ var (
 				"database",
 				"backup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "database_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.`,
@@ -10370,7 +10372,7 @@ var (
 					Description: `The type of backup. ## Import Backups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_backup.test_backup "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The name of the availability domain where the database backup is stored.`,
@@ -10433,7 +10435,7 @@ var (
 				"guard",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Applicable when creation_type=NewDbSystem) The name of the availability domain that the standby database DB system will be located in. For example- "Uocm:PHX-AD-1".`,
@@ -10547,7 +10549,7 @@ var (
 					Description: `The redo transport type used by this Data Guard association. For more information, see [Redo Transport Services](http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400) in the Oracle Data Guard documentation. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "apply_lag",
 					Description: `The lag time between updates to the primary database and application of the redo data on the standby database, as computed by the reporting database. Example: ` + "`" + `9 seconds` + "`" + ``,
@@ -10621,7 +10623,7 @@ var (
 				"db",
 				"home",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "database",
 					Description: `(Required)`,
@@ -10815,7 +10817,7 @@ var (
 					Description: `The date and time the database home was created. ## Import DbHomes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_db_home.test_db_home "id" ` + "`" + `` + "`" + `` + "`" + ` Import is only supported for source=NONE database.0.admin_password is not returned by the service for security reasons. To avoid a force new of the db_home on the next apply you can manually modify the statefile to add the field or you can add the following to the resource: ` + "`" + `` + "`" + `` + "`" + ` lifecycle { ignore_changes = ["database.0.admin_password"] } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
@@ -10949,7 +10951,7 @@ var (
 				"db",
 				"system",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The availability domain where the DB system is located.`,
@@ -11383,7 +11385,7 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the virtual IP (VIP) addresses associated with the DB system. The Cluster Ready Services (CRS) creates and maintains one VIP address for each node in the DB system to enable failover. If one node fails, the VIP is reassigned to another active node in the cluster.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The name of the availability domain that the DB system is located in.`,
@@ -11662,7 +11664,7 @@ var (
 				"iorm",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_system_id",
 					Description: `(Required) The DB system [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
@@ -11716,7 +11718,7 @@ var (
 					Description: `The current config state of IORM settings for this Exadata System.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_plans",
 					Description: `Array of IORM Setting for all the database in this Exadata DB System`,
@@ -11758,7 +11760,7 @@ var (
 				"maintenance",
 				"run",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "is_enabled",
 					Description: `(Optional) (Updatable) If set to false, skips the Maintenance Run.`,
@@ -11820,7 +11822,7 @@ var (
 					Description: `The date and time the Maintenance Run starts. ## Import MaintenanceRuns can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_maintenance_run.test_maintenance_run "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment.`,
@@ -11885,7 +11887,7 @@ var (
 				"dns",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Optional) (Updatable) The OCID of the compartment the resource belongs to. If supplied, it must match the Zone's compartment ocid.`,
@@ -11947,7 +11949,7 @@ var (
 					Description: `The name or OCID of the target zone. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment the resource belongs to.`,
@@ -11997,7 +11999,7 @@ var (
 				"steering",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "answers",
 					Description: `(Optional) The set of all answers that can potentially issue from the steering policy.`,
@@ -12327,7 +12329,7 @@ var (
 					Description: `The Time To Live (TTL) for responses from the steering policy, in seconds. If not specified during creation, a value of 30 seconds will be used. ## Import SteeringPolicies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_dns_steering_policy.test_steering_policy "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "answers",
 					Description: `The set of all answers that can potentially issue from the steering policy.`,
@@ -12514,7 +12516,7 @@ var (
 				"policy",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Optional) (Updatable) A user-friendly name for the steering policy attachment. Does not have to be unique and can be changed. Avoid entering confidential information.`,
@@ -12572,7 +12574,7 @@ var (
 					Description: `The OCID of the attached zone. ## Import SteeringPolicyAttachments can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_dns_steering_policy_attachment.test_steering_policy_attachment "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the steering policy attachment.`,
@@ -12625,7 +12627,7 @@ var (
 				"dns",
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment the resource belongs to.`,
@@ -12755,7 +12757,7 @@ var (
 					Description: `The type of the zone. Must be either ` + "`" + `PRIMARY` + "`" + ` or ` + "`" + `SECONDARY` + "`" + `. ## Import Zones can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_dns_zone.test_zone "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the zone.`,
@@ -12848,7 +12850,7 @@ var (
 				"email",
 				"sender",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment that contains the sender.`,
@@ -12898,7 +12900,7 @@ var (
 					Description: `The date and time the approved sender was added in "YYYY-MM-ddThh:mmZ" format with a Z offset, as defined by RFC 3339. ## Import Senders can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_email_sender.test_sender "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID for the compartment.`,
@@ -12943,7 +12945,7 @@ var (
 				"email",
 				"suppression",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment to contain the suppression. Since suppressions are at the customer level, this must be the tenancy OCID.`,
@@ -12973,7 +12975,7 @@ var (
 					Description: `The date and time a recipient's email address was added to the suppression list, in "YYYY-MM-ddThh:mmZ" format with a Z offset, as defined by RFC 3339. ## Import Suppressions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_email_suppression.test_suppression "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment to contain the suppression. Since suppressions are at the customer level, this must be the tenancy OCID.`,
@@ -13007,7 +13009,7 @@ var (
 				"storage",
 				"export",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "export_options",
 					Description: `(Optional) (Updatable) Export options for the new export. If left unspecified, defaults to: []`,
@@ -13101,7 +13103,7 @@ var (
 					Description: `The date and time the export was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Exports can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_file_storage_export.test_export "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "export_options",
 					Description: `Policies that apply to NFS requests made through this export. ` + "`" + `exportOptions` + "`" + ` contains a sequential list of ` + "`" + `ClientOptions` + "`" + `. Each ` + "`" + `ClientOptions` + "`" + ` item defines the export options that are applied to a specified set of clients. For each NFS request, the first ` + "`" + `ClientOptions` + "`" + ` option in the list whose ` + "`" + `source` + "`" + ` attribute matches the source IP address of the request is applied. If a client source IP address does not match the ` + "`" + `source` + "`" + ` property of any ` + "`" + `ClientOptions` + "`" + ` in the list, then the export will be invisible to that client. This export will not be returned by ` + "`" + `MOUNTPROC_EXPORT` + "`" + ` calls made by the client and any attempt to mount or access the file system through this export will result in an error.`,
@@ -13168,7 +13170,7 @@ var (
 				"export",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "mount_target_id",
 					Description: `(Required) (Updatable) The OCID of the mount target that the export set is associated with`,
@@ -13222,7 +13224,7 @@ var (
 					Description: `The OCID of the virtual cloud network (VCN) the export set is in. ## Import ExportSets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_file_storage_export_set.test_export_set "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain the export set is in. May be unset as a blank or NULL value. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -13272,7 +13274,7 @@ var (
 				"storage",
 				"system",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The availability domain to create the file system in. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -13330,7 +13332,7 @@ var (
 					Description: `The date and time the file system was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import FileSystems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_file_storage_file_system.test_file_system "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain the file system is in. May be unset as a blank or NULL value. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -13381,7 +13383,7 @@ var (
 				"mount",
 				"target",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `(Required) The availability domain in which to create the mount target. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -13463,7 +13465,7 @@ var (
 					Description: `The date and time the mount target was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import MountTargets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_file_storage_mount_target.test_mount_target "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_domain",
 					Description: `The availability domain the mount target is in. May be unset as a blank or NULL value. Example: ` + "`" + `Uocm:PHX-AD-1` + "`" + ``,
@@ -13525,7 +13527,7 @@ var (
 				"storage",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
@@ -13571,7 +13573,7 @@ var (
 					Description: `The date and time the snapshot was created, expressed in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Snapshots can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_file_storage_snapshot.test_snapshot "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
@@ -13612,7 +13614,7 @@ var (
 				"functions",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment to create the application within.`,
@@ -13678,7 +13680,7 @@ var (
 					Description: `The time the application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-09-12T22:47:12.613Z` + "`" + ` ## Import Applications can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_functions_application.test_application "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains the application.`,
@@ -13731,7 +13733,7 @@ var (
 				"functions",
 				"function",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The OCID of the application this function belongs to.`,
@@ -13829,7 +13831,7 @@ var (
 					Description: `Timeout for executions of the function. Value in seconds. ## Import Functions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_functions_function.test_function "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `The OCID of the application the function belongs to.`,
@@ -13903,7 +13905,7 @@ var (
 				"invoke",
 				"function",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "base64_encode_content",
 					Description: `(Optional) Encodes the response returned, if any, in base64. It is recommended to set this to ` + "`" + `true` + "`" + ` to avoid corrupting the returned response, if any, in Terraform state. The default value is ` + "`" + `false` + "`" + `.`,
@@ -13937,7 +13939,7 @@ var (
 					Description: `Content of the response string, if any. If ` + "`" + `base64_encode_content` + "`" + ` is set to ` + "`" + `true` + "`" + `, then this content will be base64 encoded. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "content",
 					Description: `Content of the response string, if any. If ` + "`" + `base64_encode_content` + "`" + ` is set to ` + "`" + `true` + "`" + `, then this content will be base64 encoded. ## Import Import is not supported for this resource.`,
@@ -13956,7 +13958,7 @@ var (
 				"http",
 				"monitor",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -14078,7 +14080,7 @@ var (
 					Description: `An array of The name of a vantage point from which to execute the probe. ## Import HttpMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_monitor.test_http_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment.`,
@@ -14157,7 +14159,7 @@ var (
 				"http",
 				"probe",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -14239,7 +14241,7 @@ var (
 					Description: `An array of The name of a vantage point from which to execute the probe. ## Import HttpProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_probe.test_http_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment.`,
@@ -14298,7 +14300,7 @@ var (
 				"ping",
 				"monitor",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -14396,7 +14398,7 @@ var (
 					Description: `An array of The name of a vantage point from which to execute the probe. ## Import PingMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_monitor.test_ping_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment.`,
@@ -14463,7 +14465,7 @@ var (
 				"ping",
 				"probe",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -14521,7 +14523,7 @@ var (
 					Description: `An array of The name of a vantage point from which to execute the probe. ## Import PingProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_probe.test_ping_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment.`,
@@ -14567,7 +14569,7 @@ var (
 				"api",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_value",
 					Description: `(Required) The public key. Must be an RSA key in PEM format.`,
@@ -14605,7 +14607,7 @@ var (
 					Description: `The OCID of the user the key belongs to. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `The key's fingerprint (e.g., 12:34:56:78:90:ab:cd:ef:12:34:56:78:90:ab:cd:ef).`,
@@ -14647,7 +14649,7 @@ var (
 				"auth",
 				"token",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Required) (Updatable) The description you assign to the auth token during creation. Does not have to be unique, and it's changeable.`,
@@ -14689,7 +14691,7 @@ var (
 					Description: `The OCID of the user the auth token belongs to. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description you assign to the auth token. Does not have to be unique, and it's changeable.`,
@@ -14735,7 +14737,7 @@ var (
 				"authentication",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment.`,
@@ -14801,7 +14803,7 @@ var (
 					Description: `Minimum password length required. ## Import AuthenticationPolicies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_authentication_policy.test_authentication_policy "authenticationPolicies/{compartmentId}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `Compartment OCID.`,
@@ -14846,7 +14848,7 @@ var (
 				"identity",
 				"compartment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the parent compartment containing the compartment.`,
@@ -14912,7 +14914,7 @@ var (
 					Description: `Date and time the compartment was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Compartments can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_compartment.test_compartment "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the parent compartment containing the compartment.`,
@@ -14967,7 +14969,7 @@ var (
 				"secret",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) (Updatable) The name you assign to the secret key during creation. Does not have to be unique, and it's changeable.`,
@@ -15009,7 +15011,7 @@ var (
 					Description: `The OCID of the user the password belongs to. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The display name you assign to the secret key. Does not have to be unique, and it's changeable.`,
@@ -15055,7 +15057,7 @@ var (
 				"dynamic",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the tenancy containing the group.`,
@@ -15121,7 +15123,7 @@ var (
 					Description: `Date and time the group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import DynamicGroups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_dynamic_group.test_dynamic_group "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the tenancy containing the group.`,
@@ -15174,7 +15176,7 @@ var (
 				"identity",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the tenancy containing the group.`,
@@ -15232,7 +15234,7 @@ var (
 					Description: `Date and time the group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_group.test_group "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the tenancy containing the group.`,
@@ -15281,7 +15283,7 @@ var (
 				"identity",
 				"provider",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of your tenancy.`,
@@ -15383,7 +15385,7 @@ var (
 					Description: `Date and time the ` + "`" + `IdentityProvider` + "`" + ` was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import IdentityProviders can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_identity_provider.test_identity_provider "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the tenancy containing the ` + "`" + `IdentityProvider` + "`" + `.`,
@@ -15458,7 +15460,7 @@ var (
 				"group",
 				"mapping",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `(Required) (Updatable) The OCID of the IAM Service [group](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/Group/) you want to map to the IdP group.`,
@@ -15504,7 +15506,7 @@ var (
 					Description: `Date and time the mapping was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the tenancy containing the ` + "`" + `IdentityProvider` + "`" + `.`,
@@ -15549,7 +15551,7 @@ var (
 				"identity",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment containing the policy (either the tenancy or another compartment).`,
@@ -15623,7 +15625,7 @@ var (
 					Description: `The version of the policy. If null or set to an empty string, when a request comes in for authorization, the policy will be evaluated according to the current behavior of the services at that moment. If set to a particular date (YYYY-MM-DD), the policy will be evaluated according to the behavior of the services on that date. ## Import Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_policy.test_policy "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the policy (either the tenancy or another compartment).`,
@@ -15681,7 +15683,7 @@ var (
 				"smtp",
 				"credential",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Required) (Updatable) The description you assign to the SMTP credentials during creation. Does not have to be unique, and it's changeable.`,
@@ -15727,7 +15729,7 @@ var (
 					Description: `The SMTP user name. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description you assign to the SMTP credential. Does not have to be unique, and it's changeable.`,
@@ -15777,7 +15779,7 @@ var (
 				"swift",
 				"password",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Required) (Updatable) The description you assign to the Swift password during creation. Does not have to be unique, and it's changeable.`,
@@ -15819,7 +15821,7 @@ var (
 					Description: `The OCID of the user the password belongs to. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description you assign to the Swift password. Does not have to be unique, and it's changeable.`,
@@ -15864,7 +15866,7 @@ var (
 				"identity",
 				"tag",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
@@ -15934,7 +15936,7 @@ var (
 					Description: `Date and time the tag was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Tags can be imported using the ` + "`" + `tagNamespaceId` + "`" + ` and ` + "`" + `tagName` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_tag.test_tag "tagNamespaces/{tagNamespaceId}/tags/{tagName}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + `` + "`" + ``,
@@ -15988,7 +15990,7 @@ var (
 				"tag",
 				"default",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment. The tag default will be applied to all new resources created in this compartment.`,
@@ -16034,7 +16036,7 @@ var (
 					Description: `The default value for the tag definition. This will be applied to all new resources created in the compartment. ## Import TagDefaults can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_tag_default.test_tag_default "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment. The tag default applies to all new resources that get created in the compartment. Resources that existed before the tag default was created are not tagged.`,
@@ -16080,7 +16082,7 @@ var (
 				"tag",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the tenancy containing the tag namespace.`,
@@ -16142,7 +16144,7 @@ var (
 					Description: `Date and time the tag namespace was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import TagNamespaces can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_tag_namespace.test_tag_namespace "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains the tag namespace.`,
@@ -16192,7 +16194,7 @@ var (
 				"ui",
 				"password",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user.`,
@@ -16218,7 +16220,7 @@ var (
 					Description: `The OCID of the user. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "inactive_status",
 					Description: `The detailed status of INACTIVE lifecycleState.`,
@@ -16251,7 +16253,7 @@ var (
 				"identity",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the tenancy containing the user.`,
@@ -16349,7 +16351,7 @@ var (
 					Description: `Date and time the user was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_user.test_user "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "capabilities",
 					Description: `Properties indicating how the user is allowed to authenticate.`,
@@ -16436,7 +16438,7 @@ var (
 				"capabilities",
 				"management",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The OCID of the user.`,
@@ -16486,7 +16488,7 @@ var (
 					Description: `Indicates if the user can use SMTP passwords. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_user_capabilities_management.test_user_capabilities_management "capabilities/{userId}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `The OCID of the user.`,
@@ -16525,7 +16527,7 @@ var (
 				"group",
 				"membership",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `(Required) The OCID of the group.`,
@@ -16563,7 +16565,7 @@ var (
 					Description: `The OCID of the user. ## Import UserGroupMemberships can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_user_group_membership.test_user_group_membership "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the tenancy containing the user, group, and membership object.`,
@@ -16605,7 +16607,7 @@ var (
 				"encrypted",
 				"data",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "associated_data",
 					Description: `(Optional) Information that can be used to provide an encryption context for the encrypted data. The length of the string representation of the associatedData must be fewer than 4096 characters.`,
@@ -16631,7 +16633,7 @@ var (
 					Description: `The encrypted data. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ciphertext",
 					Description: `The encrypted data. ## Import Import is not supported for this resource.`,
@@ -16649,7 +16651,7 @@ var (
 				"generated",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "associated_data",
 					Description: `(Optional) Information that can be used to provide an encryption context for the encrypted data. The length of the string representation of the associatedData must be fewer than 4096 characters.`,
@@ -16695,7 +16697,7 @@ var (
 					Description: `The checksum of the plaintext generated data encryption key, which is included if the GenerateDataEncryptionKey request includes the "includePlaintextKey parameter and sets its value to 'true'. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ciphertext",
 					Description: `The encrypted generated data encryption key.`,
@@ -16720,7 +16722,7 @@ var (
 				"kms",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment that contains this key.`,
@@ -16814,7 +16816,7 @@ var (
 					Description: `The OCID of the vault that contains this key. ## Import Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_kms_key.test_key "managementEndpoint/{managementEndpoint}/keys/{keyId}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains this key.`,
@@ -16880,7 +16882,7 @@ var (
 				"key",
 				"version",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Required) The OCID of the key.`,
@@ -16910,7 +16912,7 @@ var (
 					Description: `The OCID of the vault that contains this key version. ## Import KeyVersions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_kms_key_version.test_key_version "managementEndpoint/{managementEndpoint}/keys/{keyId}/keyVersions/{keyVersionId}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains this key version.`,
@@ -16943,7 +16945,7 @@ var (
 				"kms",
 				"vault",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The OCID of the compartment where you want to create this vault.`,
@@ -17009,7 +17011,7 @@ var (
 					Description: `The type of vault. Each type of vault stores the key with different degrees of isolation and has different options and pricing. ## Import Vaults can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_kms_vault.test_vault "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains a particular vault.`,
@@ -17066,7 +17068,7 @@ var (
 				"limits",
 				"quota",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment containing the resource this quota applies to.`,
@@ -17128,7 +17130,7 @@ var (
 					Description: `Date and time the quota was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import Quotas can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_limits_quota.test_quota "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the resource this quota applies to.`,
@@ -17178,7 +17180,7 @@ var (
 				"balancer",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backendset_name",
 					Description: `(Required) The name of the backend set to add the backend server to. Example: ` + "`" + `example_backend_set` + "`" + ``,
@@ -17240,7 +17242,7 @@ var (
 					Description: `The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger proportion of incoming traffic. For example, a server weighted '3' receives 3 times the number of new connections as a server weighted '1'. For more information on load balancing policies, see [How Load Balancing Policies Work](https://docs.cloud.oracle.com/iaas/Content/Balance/Reference/lbpolicies.htm). Example: ` + "`" + `3` + "`" + ` ## Import Backends can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_load_balancer_backend.test_backend "loadBalancers/{loadBalancerId}/backendSets/{backendSetName}/backends/{backendName}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backup",
 					Description: `Whether the load balancer should treat this server as a backup unit. If ` + "`" + `true` + "`" + `, the load balancer forwards no ingress traffic to this backend server unless all other backend servers not marked as "backup" fail the health check policy. Example: ` + "`" + `false` + "`" + ``,
@@ -17283,7 +17285,7 @@ var (
 				"backend",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) (Updatable)`,
@@ -17557,7 +17559,7 @@ var (
 					Description: `Whether the load balancer listener should verify peer certificates. Defaults to true. Example: ` + "`" + `true` + "`" + ` ## Import BackendSets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_load_balancer_backend_set.test_backend_set "loadBalancers/{loadBalancerId}/backendSets/{backendSetName}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: ``,
@@ -17707,7 +17709,7 @@ var (
 				"balancer",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ca_certificate",
 					Description: `(Optional) The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider. Example: -----BEGIN CERTIFICATE----- MIIEczCCA1ugAwIBAgIBADANBgkqhkiG9w0BAQQFAD..AkGA1UEBhMCR0Ix EzARBgNVBAgTClNvbWUtU3RhdGUxFDASBgNVBAoTC0..0EgTHRkMTcwNQYD VQQLEy5DbGFzcyAxIFB1YmxpYyBQcmltYXJ5IENlcn..XRpb24gQXV0aG9y aXR5MRQwEgYDVQQDEwtCZXN0IENBIEx0ZDAeFw0wMD..TUwMTZaFw0wMTAy ... -----END CERTIFICATE-----`,
@@ -17745,7 +17747,7 @@ var (
 					Description: `The public certificate, in PEM format, that you received from your SSL certificate provider. Example: -----BEGIN CERTIFICATE----- MIIC2jCCAkMCAg38MA0GCSqGSIb3DQEBBQUAMIGbMQswCQYDVQQGEwJKUDEOMAwG A1UECBMFVG9reW8xEDAOBgNVBAcTB0NodW8ta3UxETAPBgNVBAoTCEZyYW5rNERE MRgwFgYDVQQLEw9XZWJDZXJ0IFN1cHBvcnQxGDAWBgNVBAMTD0ZyYW5rNEREIFdl YiBDQTEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBmcmFuazRkZC5jb20wHhcNMTIw ... -----END CERTIFICATE----- ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ca_certificate",
 					Description: `The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider. Example: -----BEGIN CERTIFICATE----- MIIEczCCA1ugAwIBAgIBADANBgkqhkiG9w0BAQQFAD..AkGA1UEBhMCR0Ix EzARBgNVBAgTClNvbWUtU3RhdGUxFDASBgNVBAoTC0..0EgTHRkMTcwNQYD VQQLEy5DbGFzcyAxIFB1YmxpYyBQcmltYXJ5IENlcn..XRpb24gQXV0aG9y aXR5MRQwEgYDVQQDEwtCZXN0IENBIEx0ZDAeFw0wMD..TUwMTZaFw0wMTAy ... -----END CERTIFICATE-----`,
@@ -17771,7 +17773,7 @@ var (
 				"balancer",
 				"hostname",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) (Updatable) A virtual hostname. For more information about virtual hostname string construction, see [Managing Request Routing](https://docs.cloud.oracle.com/iaas/Content/Balance/Tasks/managingrequest.htm#routing). Example: ` + "`" + `app.example.com` + "`" + ``,
@@ -17793,7 +17795,7 @@ var (
 					Description: `A friendly name for the hostname resource. It must be unique and it cannot be changed. Avoid entering confidential information. Example: ` + "`" + `example_hostname_001` + "`" + ` ## Import Hostnames can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_load_balancer_hostname.test_hostname "loadBalancers/{loadBalancerId}/hostnames/{name}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `A virtual hostname. For more information about virtual hostname string construction, see [Managing Request Routing](https://docs.cloud.oracle.com/iaas/Content/Balance/Tasks/managingrequest.htm#routing). Example: ` + "`" + `app.example.com` + "`" + ``,
@@ -17815,7 +17817,7 @@ var (
 				"balancer",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connection_configuration",
 					Description: `(Optional) (Updatable)`,
@@ -17925,7 +17927,7 @@ var (
 					Description: `Whether the load balancer listener should verify peer certificates. Example: ` + "`" + `true` + "`" + ` ## Import Listeners can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_load_balancer_listener.test_listener "loadBalancers/{loadBalancerId}/listeners/{listenerName}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connection_configuration",
 					Description: ``,
@@ -17990,7 +17992,7 @@ var (
 				"load",
 				"balancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment in which to create the load balancer.`,
@@ -18084,7 +18086,7 @@ var (
 					Description: `The date and time the load balancer was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ` ## Import LoadBalancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_load_balancer_load_balancer.test_load_balancer "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the load balancer.`,
@@ -18160,7 +18162,7 @@ var (
 				"route",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the load balancer to add the path route set to.`,
@@ -18214,7 +18216,7 @@ var (
 					Description: `Specifies how the load balancing service compares a [PathRoute](https://docs.cloud.oracle.com/iaas/api/#/en/loadbalancer/20170115/requests/PathRoute) object's ` + "`" + `path` + "`" + ` string against the incoming URI.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The unique name for this set of path route rules. Avoid entering confidential information. Example: ` + "`" + `example_path_route_set` + "`" + ``,
@@ -18253,7 +18255,7 @@ var (
 				"rule",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "items",
 					Description: `(Required) (Updatable) An array of rules that compose the rule set.`,
@@ -18363,7 +18365,7 @@ var (
 					Description: `The name for this set of rules. It must be unique and it cannot be changed. Avoid entering confidential information. Example: ` + "`" + `example_rule_set` + "`" + ` ## Import RuleSets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_load_balancer_rule_set.test_rule_set "loadBalancers/{loadBalancerId}/ruleSets/{ruleSetName}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "items",
 					Description: `An array of rules that compose the rule set.`,
@@ -18428,7 +18430,7 @@ var (
 				"monitoring",
 				"alarm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "body",
 					Description: `(Optional) (Updatable) The human-readable content of the notification delivered. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information. Example: ` + "`" + `High CPU usage alert. Follow runbook instructions for resolution.` + "`" + ``,
@@ -18598,7 +18600,7 @@ var (
 					Description: `The date and time the alarm was last updated. Format defined by RFC3339. Example: ` + "`" + `2019-02-03T01:02:29.600Z` + "`" + ` ## Import Alarms can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_monitoring_alarm.test_alarm "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "body",
 					Description: `The human-readable content of the notification delivered. Oracle recommends providing guidance to operators for resolving the alarm condition. Consider adding links to standard runbook practices. Avoid entering confidential information. Example: ` + "`" + `High CPU usage alert. Follow runbook instructions for resolution.` + "`" + ``,
@@ -18705,7 +18707,7 @@ var (
 				"objectstorage",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_type",
 					Description: `(Optional) (Updatable) The type of public access enabled on this bucket. A bucket is set to ` + "`" + `NoPublicAccess` + "`" + ` by default, which only allows an authenticated caller to access the bucket and its contents. When ` + "`" + `ObjectRead` + "`" + ` is enabled on the bucket, public access is allowed for the ` + "`" + `GetObject` + "`" + `, ` + "`" + `HeadObject` + "`" + `, and ` + "`" + `ListObjects` + "`" + ` operations. When ` + "`" + `ObjectReadWithoutList` + "`" + ` is enabled on the bucket, public access is allowed for the ` + "`" + `GetObject` + "`" + ` and ` + "`" + `HeadObject` + "`" + ` operations.`,
@@ -18803,7 +18805,7 @@ var (
 					Description: `The date and time the bucket was created, as described in [RFC 2616](https://tools.ietf.org/rfc/rfc2616), section 14.29. ## Import Buckets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_objectstorage_bucket.test_bucket "n/{namespaceName}/b/{bucketName}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_type",
 					Description: `The type of public access enabled on this bucket. A bucket is set to ` + "`" + `NoPublicAccess` + "`" + ` by default, which only allows an authenticated caller to access the bucket and its contents. When ` + "`" + `ObjectRead` + "`" + ` is enabled on the bucket, public access is allowed for the ` + "`" + `GetObject` + "`" + `, ` + "`" + `HeadObject` + "`" + `, and ` + "`" + `ListObjects` + "`" + ` operations. When ` + "`" + `ObjectReadWithoutList` + "`" + ` is enabled on the bucket, public access is allowed for the ` + "`" + `GetObject` + "`" + ` and ` + "`" + `HeadObject` + "`" + ` operations.`,
@@ -18877,7 +18879,7 @@ var (
 				"storage",
 				"objectstorage",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -19011,7 +19013,7 @@ var (
 					Description: `The name of the source object. ## Import Objects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_objectstorage_object.test_object "n/{namespaceName}/b/{bucketName}/o/{objectName}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -19091,7 +19093,7 @@ var (
 				"lifecycle",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket. Avoid entering confidential information. Example: ` + "`" + `my-new-bucket1` + "`" + ``,
@@ -19185,7 +19187,7 @@ var (
 					Description: `The date and time the object lifecycle policy was created, as described in [RFC 3339](https://tools.ietf.org/rfc/rfc3339), section 14.29. ## Import ObjectLifecyclePolicies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_objectstorage_object_lifecycle_policy.test_object_lifecycle_policy "n/{namespaceName}/b/{bucketName}/l" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rules",
 					Description: `The live lifecycle policy on the bucket. For an example of this value, see the [PutObjectLifecyclePolicy API documentation](https://docs.cloud.oracle.com/iaas/api/#/en/objectstorage/20160918/ObjectLifecyclePolicy/PutObjectLifecyclePolicy).`,
@@ -19244,7 +19246,7 @@ var (
 				"objectstorage",
 				"preauthrequest",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_type",
 					Description: `(Required) The operation that can be performed on this resource. Allowed Values: ` + "`" + `ObjectRead` + "`" + `, ` + "`" + `ObjectWrite` + "`" + `, ` + "`" + `ObjectReadWrite` + "`" + `, or ` + "`" + `AnyObjectWrite` + "`" + ``,
@@ -19310,7 +19312,7 @@ var (
 					Description: `The expiration date for the pre-authenticated request as per [RFC 3339](https://tools.ietf.org/rfc/rfc3339). After this date the pre-authenticated request will no longer be valid. ## Import PreauthenticatedRequests can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_objectstorage_preauthrequest.test_preauthenticated_request "n/{namespaceName}/b/{bucketName}/p/{parId}" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_type",
 					Description: `The operation that can be performed on this resource.`,
@@ -19364,7 +19366,7 @@ var (
 				"notification",
 				"topic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to create the topic in.`,
@@ -19426,7 +19428,7 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic. ## Import NotificationTopics can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_ons_notification_topic.test_notification_topic "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_endpoint",
 					Description: `The endpoint for managing topic subscriptions or publishing messages to the topic.`,
@@ -19479,7 +19481,7 @@ var (
 				"ons",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.`,
@@ -19549,7 +19551,7 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated topic. ## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment for the subscription.`,
@@ -19606,7 +19608,7 @@ var (
 				"streaming",
 				"stream",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `(Required) The OCID of the compartment that contains the stream.`,
@@ -19676,7 +19678,7 @@ var (
 					Description: `The date and time the stream was created, expressed in in [RFC 3339](https://tools.ietf.org/rfc/rfc3339) timestamp format. Example: ` + "`" + `2018-04-20T00:00:07.405Z` + "`" + ` ## Import Streams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_streaming_stream.test_stream "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment that contains the stream.`,
@@ -19733,7 +19735,7 @@ var (
 				"waas",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate_data",
 					Description: `(Required) The data of the SSL certificate.`,
@@ -19911,7 +19913,7 @@ var (
 					Description: `## Import Import is not supported for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the SSL certificate's compartment.`,
@@ -20072,7 +20074,7 @@ var (
 				"waas",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "additional_domains",
 					Description: `(Optional) (Updatable) An array of additional domains for the specified web application.`,
@@ -21026,7 +21028,7 @@ var (
 					Description: `The unique name of the whitelist. ## Import WaasPolicies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_waas_waas_policy.test_waas_policy "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "additional_domains",
 					Description: `An array of additional domains for this web application.`,
@@ -21639,10 +21641,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

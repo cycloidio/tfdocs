@@ -1,11 +1,13 @@
-package aws
+package logicmonitor
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"collector",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backup_collector_id",
 					Description: `(Optional) The Id of the failover Collector configured for this Collector`,
@@ -50,7 +52,7 @@ var (
 					Description: `(Optional) Whether alert clear notifications are suppressed for the Collector`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -61,7 +63,7 @@ var (
 			Keywords: []string{
 				"collectorgroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of collector group`,
@@ -71,7 +73,7 @@ var (
 					Description: `(Optional) Set description of collector group`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -82,7 +84,7 @@ var (
 			Keywords: []string{
 				"device",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_addr",
 					Description: `(Required) Ip Address/Hostname of device`,
@@ -108,7 +110,7 @@ var (
 					Description: `(Optional) The properties associated with this device group. Any string value pair will work (see example). ## Import Devices can be imported using their device id or ip address/dns name ` + "`" + `` + "`" + `` + "`" + ` $ terraform import logicmonitor_device.host 751 $ terraform import logicmonitor_device.host server01.us-east-1.logicmonitor.net ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -119,7 +121,7 @@ var (
 			Keywords: []string{
 				"devicegroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of device group`,
@@ -145,7 +147,7 @@ var (
 					Description: `(Optional) The properties associated with this device group. Any string value pair will work (see example). ## Import Device Groups can be imported using their group id or full path ` + "`" + `` + "`" + `` + "`" + ` $ terraform import logicmonitor_device_group.group1 451 $ terraform import logicmonitor_device_group.group1 Production/SBA/Linux ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -158,10 +160,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package nutanix
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,13 +19,13 @@ var (
 				"category",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `(Optional) The version of the API. See detailed information in [Nutanix Image](https://nutanix.github.io/Automation/experimental/swagger-redoc-sandbox/#tag/category/paths/~1categories~1{name}/get).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `(Optional) The version of the API. See detailed information in [Nutanix Image](https://nutanix.github.io/Automation/experimental/swagger-redoc-sandbox/#tag/category/paths/~1categories~1{name}/get).`,
@@ -40,7 +42,7 @@ var (
 				"category",
 				"value",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "value",
 					Description: `(Required) The value for the category value.`,
@@ -50,7 +52,7 @@ var (
 					Description: `(Optional) The version of the API. See detailed information in [Nutanix Image](http://developer.nutanix.com/reference/prism_central/v3/#category).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `(Optional) The version of the API. See detailed information in [Nutanix Image](http://developer.nutanix.com/reference/prism_central/v3/#category).`,
@@ -66,13 +68,13 @@ var (
 			Keywords: []string{
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
@@ -88,13 +90,13 @@ var (
 			Keywords: []string{
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
@@ -111,7 +113,7 @@ var (
 				"virtual",
 				"machine",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ngt_enabled_capability_list",
 					Description: `(Optional) Application names that are enabled.`,
@@ -153,7 +155,7 @@ var (
 					Description: `The version of the API.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `The version of the API.`,
@@ -170,13 +172,13 @@ var (
 				"volume",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_version",
 					Description: `(Optional) Version of the API.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -191,10 +193,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

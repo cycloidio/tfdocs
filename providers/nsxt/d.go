@@ -1,11 +1,13 @@
-package aws
+package nsxt
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `A certificate data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of Certificate to retrieve.`,
@@ -28,7 +30,7 @@ var (
 					Description: `The description of the Certificate.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the Certificate.`,
@@ -42,7 +44,7 @@ var (
 			ShortDescription: `An Edge Cluster data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of Edge Cluster to retrieve.`,
@@ -64,7 +66,7 @@ var (
 					Description: `An Edge cluster is homogeneous collection of NSX transport nodes used for north/south connectivity between NSX logical networking and physical networking. Hence all transport nodes of the cluster must be of same type. This field shows the type of transport node,`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the edge cluster.`,
@@ -86,7 +88,7 @@ var (
 			ShortDescription: `A logical Tier 0 router data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of Logical Tier 0 Router to retrieve.`,
@@ -108,7 +110,7 @@ var (
 					Description: `The high availability mode of this logical router.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the logical Tier 0 router.`,
@@ -130,7 +132,7 @@ var (
 			ShortDescription: `A logical Tier 1 router data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of Logical Tier 1 Router to retrieve.`,
@@ -148,7 +150,7 @@ var (
 					Description: `The id of the Edge cluster where this logical router is placed.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the logical Tier 0 router.`,
@@ -166,7 +168,7 @@ var (
 			ShortDescription: `A MAC pool data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of MAC pool to retrieve`,
@@ -180,7 +182,7 @@ var (
 					Description: `The description of the MAC pool.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the MAC pool.`,
@@ -194,7 +196,7 @@ var (
 			ShortDescription: `A networking and security group data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of NS group to retrieve`,
@@ -208,7 +210,7 @@ var (
 					Description: `The description of the NS group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the NS group.`,
@@ -222,7 +224,7 @@ var (
 			ShortDescription: `A networking and security service data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of NS service to retrieve`,
@@ -236,7 +238,7 @@ var (
 					Description: `The description of the NS service.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the NS service.`,
@@ -250,7 +252,7 @@ var (
 			ShortDescription: `A switching profile data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of Switching Profile to retrieve.`,
@@ -268,7 +270,7 @@ var (
 					Description: `The description of the switching profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_type",
 					Description: `The resource type representing the specific type of this switching profile.`,
@@ -286,7 +288,7 @@ var (
 			ShortDescription: `A transport zone data source.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of Transport Zone to retrieve.`,
@@ -308,7 +310,7 @@ var (
 					Description: `The transport type of this transport zone (OVERLAY or VLAN).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the Transport Zone.`,
@@ -325,7 +327,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"nsxt_certificate":          0,
 		"nsxt_edge_cluster":         1,
@@ -339,10 +341,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

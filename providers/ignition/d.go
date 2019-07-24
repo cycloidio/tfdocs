@@ -1,11 +1,13 @@
-package aws
+package ignition
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Renders an ignition configuration as JSON`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disks",
 					Description: `(Optional) The list of disks to be configured and their options.`,
@@ -76,7 +78,7 @@ var (
 					Description: `The final rendered template.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rendered",
 					Description: `The final rendered template.`,
@@ -90,7 +92,7 @@ var (
 			ShortDescription: `Describes a directory to be created in a particular filesystem.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filesystem",
 					Description: `(Required) The internal identifier of the filesystem. This matches the last filesystem with the given identifier. This should be a valid name from a _ignition\_filesystem_ resource.`,
@@ -116,7 +118,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_.`,
@@ -130,7 +132,7 @@ var (
 			ShortDescription: `Describes the desired state of a system’s disk.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device",
 					Description: `(Required) The absolute path to the device. Devices are typically referenced by the _/dev/disk/by-`,
@@ -168,7 +170,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_.`,
@@ -182,7 +184,7 @@ var (
 			ShortDescription: `Describes a file to be written in a particular filesystem.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filesystem",
 					Description: `(Required) The internal identifier of the filesystem. This matches the last filesystem with the given identifier. This should be a valid name from a _ignition\_filesystem_ resource.`,
@@ -236,7 +238,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_. [rfc2397]: https://tools.ietf.org/html/rfc2397`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_. [rfc2397]: https://tools.ietf.org/html/rfc2397`,
@@ -250,7 +252,7 @@ var (
 			ShortDescription: `Describes the desired state of a system’s filesystem.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The identifier for the filesystem, internal to Ignition. This is only required if the filesystem needs to be referenced in the a _ignition\_files_ resource.`,
@@ -292,7 +294,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_.`,
@@ -306,7 +308,7 @@ var (
 			ShortDescription: `Describes the desired group additions to the passwd database.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The groupname for the account.`,
@@ -324,7 +326,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_.`,
@@ -338,7 +340,7 @@ var (
 			ShortDescription: `Describes a link to be created in a particular filesystem.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filesystem",
 					Description: `(Required) The internal identifier of the filesystem. This matches the last filesystem with the given identifier. This should be a valid name from a _ignition\_filesystem_ resource.`,
@@ -368,7 +370,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_.`,
@@ -382,7 +384,7 @@ var (
 			ShortDescription: `Describes the desired state of the networkd units.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the file. This must be suffixed with a valid unit type (e.g. _00-eth0.network_).`,
@@ -396,7 +398,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_.`,
@@ -410,7 +412,7 @@ var (
 			ShortDescription: `Describes the desired state of the system’s RAID.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for the resulting md device.`,
@@ -432,7 +434,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_`,
@@ -446,7 +448,7 @@ var (
 			ShortDescription: `Describes the desired state of the systemd units.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the unit. This must be suffixed with a valid unit type (e.g. _thing.service_).`,
@@ -480,7 +482,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_.`,
@@ -494,7 +496,7 @@ var (
 			ShortDescription: `Describes the desired user additions to the passwd database.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The username for the account.`,
@@ -552,7 +554,7 @@ var (
 					Description: `ID used to reference this resource in _ignition_config_.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID used to reference this resource in _ignition_config_.`,
@@ -561,7 +563,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"ignition_config":        0,
 		"ignition_directory":     1,
@@ -577,10 +579,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package circonus
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"check",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "active",
 					Description: `(Optional) Whether or not the check is enabled or not (default ` + "`" + `true` + "`" + `).`,
@@ -442,7 +444,7 @@ var (
 					Description: `List of Check ` + "`" + `uuid` + "`" + `s created by this ` + "`" + `circonus_check` + "`" + `. There is one element in this list per collector specified in the check. ## Import Example ` + "`" + `circonus_check` + "`" + ` supports importing resources. Supposing the following Terraform (and that the referenced [` + "`" + `circonus_metric` + "`" + `](metric.html) has already been imported): ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_metric" "used" { name = "_usage` + "`" + `0` + "`" + `_used" type = "numeric" } resource "circonus_check" "usage" { collector { id = "/broker/1" } json { url = "https://api.circonus.com/account/current" headers = { "Accept" = "application/json" "X-Circonus-App-Name" = "TerraformCheck" "X-Circonus-Auth-Token" = "${var.api_token}" } } metric { name = "${circonus_metric.used.name}" type = "${circonus_metric.used.type}" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_check` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_check.usage ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the Check Bundle (e.g. ` + "`" + `/check_bundle/12345` + "`" + `) and ` + "`" + `circonus_check.usage` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -454,7 +456,7 @@ var (
 				"contact",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "aggregation_window",
 					Description: `(Optional) The aggregation window for batching up alert notifications.`,
@@ -632,7 +634,7 @@ var (
 					Description: `(Optional) An XMPP notification will be sent to the XMPP address of record for the corresponding user ID (e.g. ` + "`" + `/user/1234` + "`" + `). ## Import Example ` + "`" + `circonus_contact_group` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_contact_group" "myteam" { name = "My Team's Contact Group" email { address = "myteam@example.com" } slack { channel = "#myteam" team = "T024UT03C" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_contact_group` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_contact_group.myteam ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the Contact Group (e.g. ` + "`" + `/contact_group/12345` + "`" + `) and ` + "`" + `circonus_contact_group.myteam` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -643,7 +645,7 @@ var (
 			Keywords: []string{
 				"graph",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description of what the graph is for.`,
@@ -761,7 +763,7 @@ var (
 					Description: `(Optional) A name which will appear in the graph legend for this metric cluster. ## Import Example ` + "`" + `circonus_graph` + "`" + ` supports importing resources. Supposing the following Terraform (and that the referenced [` + "`" + `circonus_metric` + "`" + `](metric.html) and [` + "`" + `circonus_check` + "`" + `](check.html) have already been imported): ` + "`" + `` + "`" + `` + "`" + `text resource "circonus_graph" "icmp-graph" { name = "Test graph" graph_style = "line" line_style = "stepped" metric { check = "${circonus_check.api_latency.checks[0]}" metric_name = "maximum" metric_type = "numeric" name = "Maximum Latency" axis = "left" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_graph` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_graph.icmp-graph ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the graph (e.g. ` + "`" + `/graph/bd72aabc-90b9-4039-cc30-c9ab838c18f5` + "`" + `) and ` + "`" + `circonus_graph.icmp-graph` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -772,7 +774,7 @@ var (
 			Keywords: []string{
 				"metric",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "active",
 					Description: `(Optional) A boolean indicating if the metric is being filtered out at the ` + "`" + `circonus_check` + "`" + `'s collector(s) or not.`,
@@ -794,7 +796,7 @@ var (
 					Description: `(Optional) The unit of measurement for this ` + "`" + `circonus_metric` + "`" + `. ## Import Example ` + "`" + `circonus_metric` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_metric" "usage" { name = "_usage` + "`" + `0` + "`" + `_used" type = "numeric" unit = "qty" tags = { source = "circonus" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_metric` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_metric.usage ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is a random, never before used UUID and ` + "`" + `circonus_metric.usage` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -806,7 +808,7 @@ var (
 				"metric",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A long-form description of the metric cluster.`,
@@ -836,7 +838,7 @@ var (
 					Description: `ID of the Metric Cluster. ## Import Example ` + "`" + `circonus_metric_cluster` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_metric_cluster" "mymetriccluster" { name = "Metric Cluster for a particular metric in a job" query { definition = "`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -848,7 +850,7 @@ var (
 				"rule",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "check",
 					Description: `(Required) The Circonus ID that this Rule Set will use to search for a metric stream to alert on.`,
@@ -942,7 +944,7 @@ var (
 					Description: `(Optional) The severity level of the notification. This can be set to any value between ` + "`" + `0` + "`" + ` and ` + "`" + `5` + "`" + `. Defaults to ` + "`" + `1` + "`" + `. ## Import Example ` + "`" + `circonus_rule_set` + "`" + ` supports importing resources. Supposing the following Terraform (and that the referenced [` + "`" + `circonus_metric` + "`" + `](metric.html) and [` + "`" + `circonus_check` + "`" + `](check.html) have already been imported): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_rule_set" "icmp-latency-alert" { check = "${circonus_check.api_latency.checks[0]}" metric_name = "maximum" if { value { absent = "600s" } then { notify = [ "${circonus_contact_group.test-trigger.id}" ] severity = 1 } } if { value { over { last = "120s" using = "average" } max_value = 0.5 # units are in miliseconds } then { notify = [ "${circonus_contact_group.test-trigger.id}" ] severity = 2 } } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_rule_set` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_rule_set.icmp-latency-alert ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the Rule Set (e.g. ` + "`" + `/rule_set/201285_maximum` + "`" + `) and ` + "`" + `circonus_rule_set.icmp-latency-alert` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -953,7 +955,7 @@ var (
 			Keywords: []string{
 				"worksheet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "title",
 					Description: `(Required) The title of the worksheet.`,
@@ -991,7 +993,7 @@ var (
 					Description: `(Required) A search query that determines which graphs will be shown.. ## Import Example It is possible to import a ` + "`" + `circonus_worksheet` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_worksheet.icmp-latency ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the worksheet (e.g. ` + "`" + `worksheets/45640239-bb81-4ecb-81e6-b5c6015e5dd5` + "`" + `) and ` + "`" + `circonus_worksheet.icmp-latency` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1007,10 +1009,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

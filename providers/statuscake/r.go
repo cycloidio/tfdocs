@@ -1,11 +1,13 @@
-package aws
+package statuscake
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"test",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "website_name",
 					Description: `(Required) This is the name of the test and the website to be monitored.`,
@@ -146,7 +148,7 @@ var (
 					Description: `A unique identifier for the test. ## Import StatusCake test can be imported using the test id, e.g. ` + "`" + `` + "`" + `` + "`" + ` tf import statuscake_test.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "test_id",
 					Description: `A unique identifier for the test. ## Import StatusCake test can be imported using the test id, e.g. ` + "`" + `` + "`" + `` + "`" + ` tf import statuscake_test.example 123 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -161,10 +163,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

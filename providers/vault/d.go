@@ -1,11 +1,13 @@
-package aws
+package vault
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Manages AppRole auth backend roles in Vault.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role to retrieve the Role ID for.`,
@@ -28,7 +30,7 @@ var (
 					Description: `The RoleID of the role.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_id",
 					Description: `The RoleID of the role.`,
@@ -42,7 +44,7 @@ var (
 			ShortDescription: `Reads AWS credentials from an AWS secret backend in Vault`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Required) The path to the AWS secret backend to read credentials from, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
@@ -84,7 +86,7 @@ var (
 					Description: `` + "`" + `true` + "`" + ` if the lease can be renewed using Vault's ` + "`" + `sys/renew/{lease-id}` + "`" + ` endpoint. Terraform does not currently support lease renewal, and so it will request a new lease each time this data source is refreshed.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_key",
 					Description: `The AWS Access Key ID returned by Vault.`,
@@ -122,7 +124,7 @@ var (
 			ShortDescription: `Reads arbitrary data from a given path in Vault`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The full logical path from which to request data. To read data from the "generic" secret backend mounted in Vault by default, this should be prefixed with ` + "`" + `secret/` + "`" + `. Reading from other backends with this data source is possible; consult each backend's documentation to see which endpoints support the ` + "`" + `GET` + "`" + ` method. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `read` + "`" + ` capability on the given path. ## Attributes Reference The following attributes are exported:`,
@@ -152,7 +154,7 @@ var (
 					Description: `` + "`" + `true` + "`" + ` if the lease can be renewed using Vault's ` + "`" + `sys/renew/{lease-id}` + "`" + ` endpoint. Terraform does not currently support lease renewal, and so it will request a new lease each time this data source is refreshed.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data_json",
 					Description: `A string containing the full data payload retrieved from Vault, serialized in JSON format.`,
@@ -186,7 +188,7 @@ var (
 			ShortDescription: `Manages Kubernetes auth backend configs in Vault.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backend",
 					Description: `(Optional) The unique name for the Kubernetes backend the config to retrieve Role attributes for resides in. Defaults to "kubernetes". ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
@@ -204,7 +206,7 @@ var (
 					Description: `Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "kubernetes_host",
 					Description: `Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.`,
@@ -226,7 +228,7 @@ var (
 			ShortDescription: `Manages Kubernetes auth backend roles in Vault.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_name",
 					Description: `(Required) The name of the role to retrieve the Role attributes for.`,
@@ -268,7 +270,7 @@ var (
 					Description: `Policies to be set on tokens issued using this role.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bound_cirs",
 					Description: `List of CIDR blocks. If set, specifies the blocks of IP addresses which can perform the login operation.`,
@@ -310,7 +312,7 @@ var (
 			ShortDescription: `Generates an Vault policy document in HCL format.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) A path in Vault that this rule applies to.`,
@@ -356,7 +358,7 @@ var (
 					Description: `The above arguments serialized as a standard Vault HCL policy document.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hcl",
 					Description: `The above arguments serialized as a standard Vault HCL policy document.`,
@@ -365,7 +367,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"vault_approle_auth_backend_role_id":   0,
 		"vault_aws_access_credentials":         1,
@@ -376,10 +378,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

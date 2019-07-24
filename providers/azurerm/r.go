@@ -1,11 +1,13 @@
-package aws
+package azurerm
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"api",
 				"management",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Management Service. Changing this forces a new resource to be created.`,
@@ -283,7 +285,7 @@ var (
 					Description: `The Tenant ID associated with this Managed Service Identity. ## Import API Management Services can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Service.`,
@@ -348,7 +350,7 @@ var (
 				"api",
 				"management",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Management API. Changing this forces a new resource to be created.`,
@@ -446,7 +448,7 @@ var (
 					Description: `The ID of the Version Set which this API is associated with. ## Import API Management API's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management API.`,
@@ -480,7 +482,7 @@ var (
 				"management",
 				"operation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "operation_id",
 					Description: `(Required) A unique identifier for this API Operation. Changing this forces a new resource to be created.`,
@@ -678,7 +680,7 @@ var (
 					Description: `The ID of the API Management API Operation. ## Import API Management API Operation's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_operation.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/operations/operation1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management API Operation. ## Import API Management API Operation's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_operation.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/operations/operation1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -697,7 +699,7 @@ var (
 				"operation",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_name",
 					Description: `(Required) The ID of the API Management API Operation within the API Management Service. Changing this forces a new resource to be created.`,
@@ -723,7 +725,7 @@ var (
 					Description: `The ID of the API Management API Operation Policy. ## Import API Management API Operation Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_operation_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/operations/operation1/policies/policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management API Operation Policy. ## Import API Management API Operation Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_operation_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/operations/operation1/policies/policy ` + "`" + `` + "`" + `` + "`" + ``,
@@ -741,7 +743,7 @@ var (
 				"management",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_name",
 					Description: `(Required) The ID of the API Management API within the API Management Service. Changing this forces a new resource to be created.`,
@@ -767,7 +769,7 @@ var (
 					Description: `The ID of the API Management API Policy. ## Import API Management API Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/apis/exampleId/policies/policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management API Policy. ## Import API Management API Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/apis/exampleId/policies/policy ` + "`" + `` + "`" + `` + "`" + ``,
@@ -785,7 +787,7 @@ var (
 				"management",
 				"schema",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "schema_id",
 					Description: `(Required) A unique identifier for this API Schema. Changing this forces a new resource to be created.`,
@@ -815,7 +817,7 @@ var (
 					Description: `The ID of the API Management API Schema. ## Import API Management API Schema's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_schema.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/schemas/schema1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management API Schema. ## Import API Management API Schema's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_schema.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/schemas/schema1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -834,7 +836,7 @@ var (
 				"version",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Version Set. Changing this forces a new resource to be created.`,
@@ -872,7 +874,7 @@ var (
 					Description: `The ID of the API Version Set. ## Import API Version Set can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_version_set.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/api-version-sets/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Version Set. ## Import API Version Set can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_version_set.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/api-version-sets/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
@@ -891,7 +893,7 @@ var (
 				"authorization",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
 					Description: `(Required) The name of the API Management Service in which this Authorization Server should be created. Changing this forces a new resource to be created.`,
@@ -981,7 +983,7 @@ var (
 					Description: `The ID of the API Management Authorization Server. ## Import API Management Authorization Servers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_authorization_server.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/authorizationServers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Authorization Server. ## Import API Management Authorization Servers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_authorization_server.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/authorizationServers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -999,7 +1001,7 @@ var (
 				"management",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Management Certificate. Changing this forces a new resource to be created.`,
@@ -1037,7 +1039,7 @@ var (
 					Description: `The Thumbprint of this Certificate. ## Import API Management Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_certificate.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/certificates/certificate1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Certificate.`,
@@ -1067,7 +1069,7 @@ var (
 				"management",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Management Group. Changing this forces a new resource to be created.`,
@@ -1101,7 +1103,7 @@ var (
 					Description: `The ID of the API Management Group. ## Import API Management Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/groups/example-apimg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Group. ## Import API Management Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/groups/example-apimg ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1120,7 +1122,7 @@ var (
 				"group",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_id",
 					Description: `(Required) The ID of the API Management User which should be assigned to this API Management Group. Changing this forces a new resource to be created.`,
@@ -1142,7 +1144,7 @@ var (
 					Description: `The ID of the API Management Group User. ## Import API Management Group Users can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_group_user.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/groups/groupId/users/user123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Group User. ## Import API Management Group Users can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_group_user.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/groups/groupId/users/user123 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1160,7 +1162,7 @@ var (
 				"management",
 				"logger",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of this Logger, which must be unique within the API Management Service. Changing this forces a new resource to be created.`,
@@ -1206,7 +1208,7 @@ var (
 					Description: `The ID of the API Management Logger. ## Import API Management Loggers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_api_management_logger.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/example-rg/Microsoft.ApiManagement/service/example-apim/loggers/example-logger ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Logger. ## Import API Management Loggers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_api_management_logger.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/example-rg/Microsoft.ApiManagement/service/example-apim/loggers/example-logger ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1226,7 +1228,7 @@ var (
 				"connect",
 				"provider",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) the Name of the OpenID Connect Provider which should be created within the API Management Service. Changing this forces a new resource to be created.`,
@@ -1264,7 +1266,7 @@ var (
 					Description: `The ID of the API Management OpenID Connect Provider. ## Import API Management OpenID Connect Providers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_openid_connect_provider.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/openidConnectProviders/provider1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management OpenID Connect Provider. ## Import API Management OpenID Connect Providers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_openid_connect_provider.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/openidConnectProviders/provider1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1282,7 +1284,7 @@ var (
 				"management",
 				"product",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
 					Description: `(Required) The name of the API Management Service. Changing this forces a new resource to be created.`,
@@ -1328,7 +1330,7 @@ var (
 					Description: `The ID of the API Management Product. ## Import API Management Products can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/products/myproduct ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Product. ## Import API Management Products can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/products/myproduct ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1346,7 +1348,7 @@ var (
 				"management",
 				"product",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_name",
 					Description: `(Required) The Name of the API Management API within the API Management Service. Changing this forces a new resource to be created.`,
@@ -1368,7 +1370,7 @@ var (
 					Description: `The ID of the API Management Product API. ## Import API Management Product API's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product_api.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/products/exampleId/apis/apiId ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Product API. ## Import API Management Product API's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product_api.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/products/exampleId/apis/apiId ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1387,7 +1389,7 @@ var (
 				"product",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "product_id",
 					Description: `(Required) The ID of the API Management Product within the API Management Service. Changing this forces a new resource to be created.`,
@@ -1409,7 +1411,7 @@ var (
 					Description: `The ID of the API Management Product Group. ## Import API Management Product Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/products/exampleId/groups/groupId ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Product Group. ## Import API Management Product Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/products/exampleId/groups/groupId ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1428,7 +1430,7 @@ var (
 				"product",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "product_id",
 					Description: `(Required) The ID of the API Management Product within the API Management Service. Changing this forces a new resource to be created.`,
@@ -1454,7 +1456,7 @@ var (
 					Description: `The ID of the API Management Product Policy. ## Import API Management Product Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/products/exampleId/policies/policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Product Policy. ## Import API Management Product Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ApiManagement/service/service1/products/exampleId/policies/policy ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1472,7 +1474,7 @@ var (
 				"management",
 				"property",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API Management Property. Changing this forces a new resource to be created.`,
@@ -1506,7 +1508,7 @@ var (
 					Description: `The ID of the API Management Property. ## Import API Management Properties can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_property.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/properties/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management Property. ## Import API Management Properties can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_property.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/properties/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1524,7 +1526,7 @@ var (
 				"management",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_management_name",
 					Description: `(Required) The name of the API Management Service in which the User should be created. Changing this forces a new resource to be created.`,
@@ -1570,7 +1572,7 @@ var (
 					Description: `The ID of the API Management User. ## Import API Management Users can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_user.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/users/abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API Management User. ## Import API Management Users can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_user.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/users/abc123 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1589,7 +1591,7 @@ var (
 				"web",
 				"apps",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the App Service. Changing this forces a new resource to be created.`,
@@ -1939,7 +1941,7 @@ var (
 					Description: `Branch name of the Git repository for this App Service. ## Import App Services can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the App Service.`,
@@ -2008,7 +2010,7 @@ var (
 				"active",
 				"slot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_group_name",
 					Description: `(Required) The name of the resource group in which the App Service exists. Changing this forces a new resource to be created.`,
@@ -2022,7 +2024,7 @@ var (
 					Description: `(Required) The name of the App Service Slot which should be promoted to the Production Slot within the App Service.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2039,7 +2041,7 @@ var (
 				"hostname",
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) Specifies the Custom Hostname to use for the App Service, example ` + "`" + `www.example.com` + "`" + `. Changing this forces a new resource to be created. ~>`,
@@ -2057,7 +2059,7 @@ var (
 					Description: `The ID of the App Service Custom Hostname Binding ## Import App Service Custom Hostname Bindings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_custom_hostname_binding.mywebsite /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/instance1/hostNameBindings/mywebsite.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the App Service Custom Hostname Binding ## Import App Service Custom Hostname Bindings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_custom_hostname_binding.mywebsite /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/instance1/hostNameBindings/mywebsite.com ` + "`" + `` + "`" + `` + "`" + ``,
@@ -2077,7 +2079,7 @@ var (
 				"apps",
 				"plan",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the App Service Plan component. Changing this forces a new resource to be created.`,
@@ -2139,7 +2141,7 @@ var (
 					Description: `The maximum number of workers supported with the App Service Plan's sku. ## Import App Service Plan instances can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_plan.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/serverfarms/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the App Service Plan component.`,
@@ -2163,7 +2165,7 @@ var (
 				"apps",
 				"slot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the App Service Slot component. Changing this forces a new resource to be created.`,
@@ -2353,7 +2355,7 @@ var (
 					Description: `The password associated with the username, which can be used to publish to this App Service. ## Import App Service Slots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_slot.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/website1/slots/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the App Service Slot.`,
@@ -2387,7 +2389,7 @@ var (
 				"application",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Application Gateway. Changing this forces a new resource to be created.`,
@@ -3161,7 +3163,7 @@ var (
 					Description: `The ID of the Rewrite Rule Set ## Import Application Gateway's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_gateway.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/applicationGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Application Gateway.`,
@@ -3374,7 +3376,7 @@ var (
 				"application",
 				"insights",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Application Insights component. Changing this forces a new resource to be created.`,
@@ -3408,7 +3410,7 @@ var (
 					Description: `The Instrumentation Key for this Application Insights component. ## Import Application Insights instances can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_insights.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/components/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Application Insights component.`,
@@ -3435,7 +3437,7 @@ var (
 				"api",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Application Insights API key. Changing this forces a new resource to be created.`,
@@ -3461,7 +3463,7 @@ var (
 					Description: `The API Key secret (Sensitive). ## Import Application Insights API keys can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_insights_api_key.my_key/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/components/instance1/apikeys/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Application Insights API key.`,
@@ -3483,7 +3485,7 @@ var (
 				"insights",
 				"webtests",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Application Insights WebTest. Changing this forces a new resource to be created.`,
@@ -3529,7 +3531,7 @@ var (
 					Description: `(Optional) Resource tags. ## Import Application Insights Web Tests can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_insights_web_test.my_test/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/webtests/my_test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3543,7 +3545,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Application Security Group. Changing this forces a new resource to be created.`,
@@ -3565,7 +3567,7 @@ var (
 					Description: `The ID of the Application Security Group. ## Import Application Security Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_security_group.securitygroup1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/applicationSecurityGroups/securitygroup1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Application Security Group. ## Import Application Security Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_security_group.securitygroup1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/applicationSecurityGroups/securitygroup1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -3582,7 +3584,7 @@ var (
 				"automation",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Automation Account. Changing this forces a new resource to be created.`,
@@ -3628,7 +3630,7 @@ var (
 					Description: `The Secondary Access Key for the DSC Endpoint associated with this Automation Account. ## Import Automation Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_account.account1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Automation Account ID.`,
@@ -3657,7 +3659,7 @@ var (
 				"automation",
 				"credential",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Credential. Changing this forces a new resource to be created.`,
@@ -3687,7 +3689,7 @@ var (
 					Description: `The Automation Credential ID. ## Import Automation Credentials can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_credential.credential1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1/credentials/credential1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Automation Credential ID. ## Import Automation Credentials can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_credential.credential1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1/credentials/credential1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -3705,7 +3707,7 @@ var (
 				"dsc",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the DSC Configuration. Changing this forces a new resource to be created.`,
@@ -3739,7 +3741,7 @@ var (
 					Description: `The DSC Configuration ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DSC Configuration ID.`,
@@ -3757,7 +3759,7 @@ var (
 				"dsc",
 				"nodeconfiguration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the DSC Node Configuration. Changing this forces a new resource to be created.`,
@@ -3779,7 +3781,7 @@ var (
 					Description: `The DSC Node Configuration ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DSC Node Configuration ID.`,
@@ -3796,7 +3798,7 @@ var (
 				"automation",
 				"module",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Module. Changing this forces a new resource to be created.`,
@@ -3822,7 +3824,7 @@ var (
 					Description: `The Automation Module ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Automation Module ID.`,
@@ -3839,7 +3841,7 @@ var (
 				"automation",
 				"runbook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Runbook. Changing this forces a new resource to be created.`,
@@ -3893,7 +3895,7 @@ var (
 					Description: `The Automation Runbook ID. ## Import Automation Runbooks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_runbook.Get-AzureVMTutorial /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1/runbooks/Get-AzureVMTutorial ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Automation Runbook ID. ## Import Automation Runbooks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_runbook.Get-AzureVMTutorial /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1/runbooks/Get-AzureVMTutorial ` + "`" + `` + "`" + `` + "`" + ``,
@@ -3910,7 +3912,7 @@ var (
 				"automation",
 				"schedule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Schedule. Changing this forces a new resource to be created.`,
@@ -3972,7 +3974,7 @@ var (
 					Description: `The Automation Schedule ID. ## Import Automation Schedule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_schedule.schedule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1/schedules/schedule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Automation Schedule ID. ## Import Automation Schedule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_schedule.schedule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1/schedules/schedule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -3982,7 +3984,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_variable_bool",
-			Category:         "Automation Resources",
+			Category:         "Automation Resources Automation Resources",
 			ShortDescription: `Manages a boolean variable in Azure Automation.`,
 			Description:      ``,
 			Keywords: []string{
@@ -3990,7 +3992,7 @@ var (
 				"variable",
 				"bool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Automation Variable. Changing this forces a new resource to be created.`,
@@ -4020,7 +4022,7 @@ var (
 					Description: `The ID of the Automation Variable. ## Import Automation Bool Variable can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_automation_variable_bool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/tfex-example-rg/providers/Microsoft.Automation/automationAccounts/tfex-example-account/variables/tfex-example-var ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Automation Variable. ## Import Automation Bool Variable can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_automation_variable_bool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/tfex-example-rg/providers/Microsoft.Automation/automationAccounts/tfex-example-account/variables/tfex-example-var ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4038,7 +4040,7 @@ var (
 				"variable",
 				"datetime",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Automation Variable. Changing this forces a new resource to be created.`,
@@ -4068,7 +4070,7 @@ var (
 					Description: `The ID of the Automation Variable. ## Import Automation Datetime Variable can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_automation_variable_datetime.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/tfex-example-rg/providers/Microsoft.Automation/automationAccounts/tfex-example-account/variables/tfex-example-var ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Automation Variable. ## Import Automation Datetime Variable can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_automation_variable_datetime.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/tfex-example-rg/providers/Microsoft.Automation/automationAccounts/tfex-example-account/variables/tfex-example-var ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4077,16 +4079,16 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "azurerm_automation_variable_int",
-			Category:         "Automation Resources",
+			Type:             "azurerm_automation_variable_bool",
+			Category:         "Automation Resources Automation Resources",
 			ShortDescription: `Manages a integer variable in Azure Automation.`,
 			Description:      ``,
 			Keywords: []string{
 				"automation",
 				"variable",
-				"int",
+				"bool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Automation Variable. Changing this forces a new resource to be created.`,
@@ -4116,7 +4118,7 @@ var (
 					Description: `The ID of the Automation Variable. ## Import Automation Int Variable can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_automation_variable_int.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/tfex-example-rg/providers/Microsoft.Automation/automationAccounts/tfex-example-account/variables/tfex-example-var ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Automation Variable. ## Import Automation Int Variable can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_automation_variable_int.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/tfex-example-rg/providers/Microsoft.Automation/automationAccounts/tfex-example-account/variables/tfex-example-var ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4126,7 +4128,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_variable_string",
-			Category:         "Automation Resources",
+			Category:         "Automation Resources Automation Resources",
 			ShortDescription: `Manages a string variable in Azure Automation.`,
 			Description:      ``,
 			Keywords: []string{
@@ -4134,7 +4136,7 @@ var (
 				"variable",
 				"string",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Automation Variable. Changing this forces a new resource to be created.`,
@@ -4164,7 +4166,7 @@ var (
 					Description: `The ID of the Automation Variable. ## Import Automation String Variable can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_automation_variable_string.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/tfex-example-rg/providers/Microsoft.Automation/automationAccounts/tfex-example-account/variables/tfex-example-var ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Automation Variable. ## Import Automation String Variable can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_automation_variable_string.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/tfex-example-rg/providers/Microsoft.Automation/automationAccounts/tfex-example-account/variables/tfex-example-var ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4182,7 +4184,7 @@ var (
 				"autoscale",
 				"setting",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the AutoScale Setting. Changing this forces a new resource to be created.`,
@@ -4360,7 +4362,7 @@ var (
 					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_autoscale_setting.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_autoscale_setting.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4378,7 +4380,7 @@ var (
 				"availability",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the availability set. Changing this forces a new resource to be created.`,
@@ -4412,7 +4414,7 @@ var (
 					Description: `The virtual Availability Set ID. ## Import Availability Sets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_availability_set.group1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/availabilitySets/webAvailSet ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The virtual Availability Set ID. ## Import Availability Sets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_availability_set.group1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/availabilitySets/webAvailSet ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4432,7 +4434,7 @@ var (
 				"azuread",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The display name for the application.`,
@@ -4462,7 +4464,7 @@ var (
 					Description: `The Application ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_application.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `The Application ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_application.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4483,7 +4485,7 @@ var (
 				"service",
 				"principal",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The ID of the Azure AD Application for which to create a Service Principal. ## Attributes Reference The following attributes are exported:`,
@@ -4497,7 +4499,7 @@ var (
 					Description: `The Display Name of the Azure Active Directory Application associated with this Service Principal. ## Import Azure Active Directory Service Principals can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Object ID for the Service Principal.`,
@@ -4523,7 +4525,7 @@ var (
 				"principal",
 				"password",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_principal_id",
 					Description: `(Required) The ID of the Service Principal for which this password should be created. Changing this field forces a new resource to be created.`,
@@ -4549,7 +4551,7 @@ var (
 					Description: `The Key ID for the Service Principal Password. ## Import Service Principal Passwords can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal_password.test 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Key ID for the Service Principal Password. ## Import Service Principal Passwords can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal_password.test 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -4566,7 +4568,7 @@ var (
 				"batch",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Batch account. Changing this forces a new resource to be created.`,
@@ -4608,7 +4610,7 @@ var (
 					Description: `The account endpoint used to interact with the Batch service. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Batch account ID.`,
@@ -4637,7 +4639,7 @@ var (
 				"batch",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_name",
 					Description: `(Required) Specifies the name of the Batch account. Changing this forces a new resource to be created.`,
@@ -4675,7 +4677,7 @@ var (
 					Description: `The public key of the certificate.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Batch certificate ID.`,
@@ -4700,7 +4702,7 @@ var (
 				"batch",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Batch pool. Changing this forces a new resource to be created.`,
@@ -4862,7 +4864,7 @@ var (
 					Description: `The Batch pool ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Batch pool ID.`,
@@ -4879,7 +4881,7 @@ var (
 				"cdn",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the CDN Endpoint. Changing this forces a new resource to be created.`,
@@ -4977,7 +4979,7 @@ var (
 					Description: `The CDN Endpoint ID. ## Import CDN Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_endpoint.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1/endpoints/myendpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The CDN Endpoint ID. ## Import CDN Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_endpoint.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1/endpoints/myendpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4994,7 +4996,7 @@ var (
 				"cdn",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the CDN Profile. Changing this forces a new resource to be created.`,
@@ -5020,7 +5022,7 @@ var (
 					Description: `The CDN Profile ID. ## Import CDN Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_profile.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The CDN Profile ID. ## Import CDN Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_profile.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5038,7 +5040,7 @@ var (
 				"services",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Cognitive Service Account. Changing this forces a new resource to be created.`,
@@ -5088,7 +5090,7 @@ var (
 					Description: `The secondary access key which can be used to connect to the Cognitive Service Account. ## Import Cognitive Service Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cognitive_account.account1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.CognitiveServices/accounts/account1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Cognitive Service Account.`,
@@ -5118,7 +5120,7 @@ var (
 				"connection",
 				"monitor",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Connection Monitor. Changing this forces a new resource to be created.`,
@@ -5180,7 +5182,7 @@ var (
 					Description: `The Connection Monitor ID. ## Import Connection Monitors can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_connection_monitor.monitor1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkWatchers/watcher1/connectionMonitors/monitor1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Connection Monitor ID. ## Import Connection Monitors can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_connection_monitor.monitor1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkWatchers/watcher1/connectionMonitors/monitor1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5197,7 +5199,7 @@ var (
 				"container",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Container Group. Changing this forces a new resource to be created.`,
@@ -5459,7 +5461,7 @@ var (
 					Description: `The FQDN of the container group derived from ` + "`" + `dns_name_label` + "`" + `. ## Import Container Group's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_group.containerGroup1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ContainerInstance/containerGroups/myContainerGroup1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The container group ID.`,
@@ -5484,7 +5486,7 @@ var (
 				"container",
 				"registry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Container Registry. Changing this forces a new resource to be created.`,
@@ -5534,7 +5536,7 @@ var (
 					Description: `The Password associated with the Container Registry Admin account - if the admin account is enabled. ## Import Container Registries can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Container Registry ID.`,
@@ -5563,7 +5565,7 @@ var (
 				"container",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Container Service instance to create. Changing this forces a new resource to be created.`,
@@ -5669,7 +5671,7 @@ var (
 					Description: `The URI of the storage account where diagnostics are stored.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Container Service ID.`,
@@ -5699,7 +5701,7 @@ var (
 				"documentdb",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the CosmosDB Account. Changing this forces a new resource to be created.`,
@@ -5825,7 +5827,7 @@ var (
 					Description: `A list of connection strings available for this CosmosDB account. If the kind is ` + "`" + `GlobalDocumentDB` + "`" + `, this will be empty. ## Import CosmosDB Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_account.account1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DocumentDB/databaseAccounts/account1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The CosmosDB Account ID.`,
@@ -5876,7 +5878,7 @@ var (
 				"cassandra",
 				"keyspace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Cosmos DB Cassandra KeySpace. Changing this forces a new resource to be created.`,
@@ -5894,7 +5896,7 @@ var (
 					Description: `the Cosmos DB Cassandra KeySpace ID. ## Import Cosmos Cassandra KeySpace can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_cassandra_keyspace.ks1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/cassandra/keyspaces/ks1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the Cosmos DB Cassandra KeySpace ID. ## Import Cosmos Cassandra KeySpace can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_cassandra_keyspace.ks1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/cassandra/keyspaces/ks1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5913,7 +5915,7 @@ var (
 				"mongo",
 				"collection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Cosmos DB Mongo Collection. Changing this forces a new resource to be created.`,
@@ -5951,7 +5953,7 @@ var (
 					Description: `the Cosmos DB Mongo Collection ID. ## Import Cosmos DB Mongo Collection can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_mongo_collection.collection1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/mongodb/databases/db1/collections/collection1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the Cosmos DB Mongo Collection ID. ## Import Cosmos DB Mongo Collection can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_mongo_collection.collection1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/mongodb/databases/db1/collections/collection1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5970,7 +5972,7 @@ var (
 				"mongo",
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Cosmos DB Mongo Database. Changing this forces a new resource to be created.`,
@@ -5988,7 +5990,7 @@ var (
 					Description: `the Cosmos DB Mongo Database ID. ## Import Cosmos Mongo Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_mongo_database.db1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/mongodb/databases/db1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the Cosmos DB Mongo Database ID. ## Import Cosmos Mongo Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_mongo_database.db1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/mongodb/databases/db1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6007,7 +6009,7 @@ var (
 				"sql",
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Cosmos DB SQL Database. Changing this forces a new resource to be created.`,
@@ -6025,7 +6027,7 @@ var (
 					Description: `the Cosmos DB SQL Database ID. ## Import Cosmos SQL Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_sql_database.db1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/sql/databases/db1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the Cosmos DB SQL Database ID. ## Import Cosmos SQL Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_sql_database.db1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/sql/databases/db1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6043,7 +6045,7 @@ var (
 				"documentdb",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Cosmos DB Table. Changing this forces a new resource to be created.`,
@@ -6061,7 +6063,7 @@ var (
 					Description: `the Cosmos DB Table ID. ## Import Cosmos Tables can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_table.t1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/table/tables/t1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the Cosmos DB Table ID. ## Import Cosmos Tables can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_table.t1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/table/tables/t1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6078,7 +6080,7 @@ var (
 				"data",
 				"factory",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6172,7 +6174,7 @@ var (
 					Description: `The ID of the Azure Active Directory Tenant. ## Import Data Factory can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Data Factory ID.`,
@@ -6203,7 +6205,7 @@ var (
 				"dataset",
 				"mysql",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory Dataset MySQL. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6265,7 +6267,7 @@ var (
 					Description: `The ID of the Data Factory Dataset. ## Import Data Factory Dataset MySQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_dataset_mysql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/datasets/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Factory Dataset. ## Import Data Factory Dataset MySQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_dataset_mysql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/datasets/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6284,7 +6286,7 @@ var (
 				"dataset",
 				"postgresql",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory Dataset PostgreSQL. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6346,7 +6348,7 @@ var (
 					Description: `The ID of the Data Factory Dataset. ## Import Data Factory Dataset PostgreSQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_dataset_postgresql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/datasets/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Factory Dataset. ## Import Data Factory Dataset PostgreSQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_dataset_postgresql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/datasets/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6367,7 +6369,7 @@ var (
 				"server",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory Dataset SQL Server Table. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6429,7 +6431,7 @@ var (
 					Description: `The ID of the Data Factory Dataset. ## Import Data Factory Dataset SQL Server Table can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_dataset_sql_server_table.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/datasets/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Factory Dataset. ## Import Data Factory Dataset SQL Server Table can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_dataset_sql_server_table.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/datasets/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6451,7 +6453,7 @@ var (
 				"storage",
 				"gen2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory Linked Service MySQL. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6505,7 +6507,7 @@ var (
 					Description: `The ID of the Data Factory Linked Service. ## Import Data Factory Linked Service MySQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_mysql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Factory Linked Service. ## Import Data Factory Linked Service MySQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_mysql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6525,7 +6527,7 @@ var (
 				"service",
 				"mysql",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory Linked Service MySQL. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6567,7 +6569,7 @@ var (
 					Description: `The ID of the Data Factory Linked Service. ## Import Data Factory Linked Service MySQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_mysql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Factory Linked Service. ## Import Data Factory Linked Service MySQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_mysql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6587,7 +6589,7 @@ var (
 				"service",
 				"postgresql",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory Linked Service PostgreSQL. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6629,7 +6631,7 @@ var (
 					Description: `The ID of the Data Factory Linked Service. ## Import Data Factory Linked Service PostgreSQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_postgresql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Factory Linked Service. ## Import Data Factory Linked Service PostgreSQL can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_postgresql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6650,7 +6652,7 @@ var (
 				"sql",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory Linked Service SQL Server. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6692,7 +6694,7 @@ var (
 					Description: `The ID of the Data Factory Linked Service. ## Import Data Factory Linked Service SQL Server can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_sql_server.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Factory Linked Service. ## Import Data Factory Linked Service SQL Server can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_linked_service_sql_server.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/linkedservices/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6710,7 +6712,7 @@ var (
 				"factory",
 				"pipeline",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Factory Pipeline. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
@@ -6744,7 +6746,7 @@ var (
 					Description: `The ID of the Data Factory Pipeline. ## Import Data Factory Pipeline can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_pipeline.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/pipelines/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Data Factory Pipeline. ## Import Data Factory Pipeline can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_pipeline.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/pipelines/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6763,7 +6765,7 @@ var (
 				"analytics",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Lake Analytics Account. Changing this forces a new resource to be created. Has to be between 3 to 24 characters.`,
@@ -6793,7 +6795,7 @@ var (
 					Description: `The Date Lake Store ID. ## Import Date Lake Analytics Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_analytics_account.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeAnalytics/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Date Lake Store ID. ## Import Date Lake Analytics Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_analytics_account.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeAnalytics/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6813,7 +6815,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Lake Analytics. Changing this forces a new resource to be created. Has to be between 3 to 24 characters.`,
@@ -6839,7 +6841,7 @@ var (
 					Description: `The Date Lake Store Firewall Rule ID. ## Import Date Lake Store Firewall Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_analytics_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeAnalytics/accounts/mydatalakeaccount/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Date Lake Store Firewall Rule ID. ## Import Date Lake Store Firewall Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_analytics_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeAnalytics/accounts/mydatalakeaccount/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6857,7 +6859,7 @@ var (
 				"lake",
 				"store",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Lake Store. Changing this forces a new resource to be created. Has to be between 3 to 24 characters.`,
@@ -6903,7 +6905,7 @@ var (
 					Description: `The Endpoint for the Data Lake Store. ## Import Date Lake Store can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_store.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeStore/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Date Lake Store ID.`,
@@ -6927,7 +6929,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Data Lake Store. Changing this forces a new resource to be created. Has to be between 3 to 24 characters.`,
@@ -6953,7 +6955,7 @@ var (
 					Description: `The Date Lake Store Firewall Rule ID. ## Import Date Lake Store Firewall Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_store_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeStore/accounts/mydatalakeaccount/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Date Lake Store Firewall Rule ID. ## Import Date Lake Store Firewall Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_store_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeStore/accounts/mydatalakeaccount/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6970,7 +6972,7 @@ var (
 				"databricks",
 				"workspace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Databricks Workspace resource. Changing this forces a new resource to be created.`,
@@ -7004,7 +7006,7 @@ var (
 					Description: `The ID of the Managed Resource Group created by the Databricks Workspace. ## Import Databrick Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_databrick_workspace.workspace1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Databricks/workspaces/workspace1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Databricks Workspace.`,
@@ -7027,7 +7029,7 @@ var (
 				"protection",
 				"plan",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the DDoS Protection Plan. Changing this forces a new resource to be created.`,
@@ -7053,7 +7055,7 @@ var (
 					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_ddos_protection_plan.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the DDoS Protection Plan`,
@@ -7075,7 +7077,7 @@ var (
 				"test",
 				"lab",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Dev Test Lab. Changing this forces a new resource to be created.`,
@@ -7125,7 +7127,7 @@ var (
 					Description: `The unique immutable identifier of the Dev Test Lab. ## Import Dev Test Labs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dev_test_lab.lab1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevTestLab/labs/lab1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Dev Test Lab.`,
@@ -7169,7 +7171,7 @@ var (
 				"virtual",
 				"machine",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Dev Test Machine. Changing this forces a new resource to be created. ->`,
@@ -7283,7 +7285,7 @@ var (
 					Description: `The frontend port associated with this Inbound NAT Rule. ## Import Dev Test Linux Virtual Machines can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dev_test_linux_virtual_machine.machine1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevTestLab/labs/lab1/virtualmachines/machine1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Machine.`,
@@ -7317,7 +7319,7 @@ var (
 				"test",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Dev Test Policy. Possible values are ` + "`" + `GalleryImage` + "`" + `, ` + "`" + `LabPremiumVmCount` + "`" + `, ` + "`" + `LabTargetCost` + "`" + `, ` + "`" + `LabVmCount` + "`" + `, ` + "`" + `LabVmSize` + "`" + `, ` + "`" + `UserOwnedLabPremiumVmCount` + "`" + `, ` + "`" + `UserOwnedLabVmCount` + "`" + ` and ` + "`" + `UserOwnedLabVmCountInSubnet` + "`" + `. Changing this forces a new resource to be created.`,
@@ -7363,7 +7365,7 @@ var (
 					Description: `The ID of the Dev Test Policy. ## Import Dev Test Policies can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dev_test_policy.policy1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevTestLab/labs/lab1/policysets/default/policies/policy1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Dev Test Policy. ## Import Dev Test Policies can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dev_test_policy.policy1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevTestLab/labs/lab1/policysets/default/policies/policy1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7382,7 +7384,7 @@ var (
 				"virtual",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Dev Test Virtual Network. Changing this forces a new resource to be created.`,
@@ -7432,7 +7434,7 @@ var (
 					Description: `The name of the Subnet for this Virtual Network. ## Import Dev Test Virtual Networks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dev_test_virtual_network.network1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevTestLab/labs/lab1/virtualnetworks/network1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Dev Test Virtual Network.`,
@@ -7464,7 +7466,7 @@ var (
 				"virtual",
 				"machine",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Dev Test Machine. Changing this forces a new resource to be created. ->`,
@@ -7574,7 +7576,7 @@ var (
 					Description: `The frontend port associated with this Inbound NAT Rule. ## Import Dev Test Windows Virtual Machines can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dev_test_windows_virtual_machine.machine1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevTestLab/labs/lab1/virtualmachines/machine1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Machine.`,
@@ -7607,7 +7609,7 @@ var (
 				"devspace",
 				"controller",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the DevSpace Controller. Changing this forces a new resource to be created.`,
@@ -7657,7 +7659,7 @@ var (
 					Description: `DNS name for accessing DataPlane services. ## Import DevSpace Controller's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_devspace_controller.controller1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevSpaces/controllers/controller1Name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the DevSpace Controller.`,
@@ -7679,7 +7681,7 @@ var (
 				"a",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS A Record.`,
@@ -7709,7 +7711,7 @@ var (
 					Description: `The DNS A Record ID. ## Import A records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS A Record ID. ## Import A records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7727,7 +7729,7 @@ var (
 				"aaaa",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS AAAA Record.`,
@@ -7757,7 +7759,7 @@ var (
 					Description: `The DNS AAAA Record ID. ## Import AAAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_aaaa_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/AAAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS AAAA Record ID. ## Import AAAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_aaaa_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/AAAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7775,7 +7777,7 @@ var (
 				"caa",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS CAA Record.`,
@@ -7817,7 +7819,7 @@ var (
 					Description: `The DNS CAA Record ID. ## Import CAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_caa_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS CAA Record ID. ## Import CAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_caa_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7835,7 +7837,7 @@ var (
 				"cname",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS CNAME Record.`,
@@ -7865,7 +7867,7 @@ var (
 					Description: `The DNS CName Record ID. ## Import CNAME records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_cname_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CNAME/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS CName Record ID. ## Import CNAME records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_cname_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CNAME/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7883,7 +7885,7 @@ var (
 				"mx",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS MX Record.`,
@@ -7921,7 +7923,7 @@ var (
 					Description: `The DNS MX Record ID. ## Import MX records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_mx_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/MX/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS MX Record ID. ## Import MX records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_mx_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/MX/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7939,7 +7941,7 @@ var (
 				"ns",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS NS Record.`,
@@ -7977,7 +7979,7 @@ var (
 					Description: `The DNS NS Record ID. ## Import NS records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ns_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/NS/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS NS Record ID. ## Import NS records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ns_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/NS/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7995,7 +7997,7 @@ var (
 				"ptr",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS PTR Record.`,
@@ -8025,7 +8027,7 @@ var (
 					Description: `The DNS PTR Record ID. ## Import PTR records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ptr_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/PTR/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS PTR Record ID. ## Import PTR records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ptr_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/PTR/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8043,7 +8045,7 @@ var (
 				"srv",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS SRV Record.`,
@@ -8089,7 +8091,7 @@ var (
 					Description: `The DNS SRV Record ID. ## Import SRV records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_srv_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/SRV/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS SRV Record ID. ## Import SRV records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_srv_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/SRV/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8107,7 +8109,7 @@ var (
 				"txt",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS TXT Record.`,
@@ -8141,7 +8143,7 @@ var (
 					Description: `The DNS TXT Record ID. ## Import TXT records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_txt_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/TXT/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS TXT Record ID. ## Import TXT records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_txt_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/TXT/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8158,7 +8160,7 @@ var (
 				"dns",
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DNS Zone. Must be a valid domain name.`,
@@ -8200,7 +8202,7 @@ var (
 					Description: `(Optional) A list of values that make up the NS record for the zone. ## Import DNS Zones can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_zone.zone1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DNS Zone ID.`,
@@ -8230,7 +8232,7 @@ var (
 				"eventgrid",
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the EventGrid Domain resource. Changing this forces a new resource to be created.`,
@@ -8304,7 +8306,7 @@ var (
 					Description: `The Endpoint associated with the EventGrid Domain. ## Import EventGrid Domain's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventgrid_domain.domain1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventGrid/domains/domain1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the EventGrid Domain.`,
@@ -8327,7 +8329,7 @@ var (
 				"event",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the EventGrid Event Subscription resource. Changing this forces a new resource to be created.`,
@@ -8433,7 +8435,7 @@ var (
 					Description: `The ID of the EventGrid Event Subscription. ## Import EventGrid Domain's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventgrid_event_subscription.eventSubscription1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventGrid/eventSubscriptions/eventSubscription1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the EventGrid Event Subscription. ## Import EventGrid Domain's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventgrid_event_subscription.eventSubscription1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventGrid/eventSubscriptions/eventSubscription1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8451,7 +8453,7 @@ var (
 				"eventgrid",
 				"topic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the EventGrid Topic resource. Changing this forces a new resource to be created.`,
@@ -8485,7 +8487,7 @@ var (
 					Description: `The Secondary Shared Access Key associated with the EventGrid Topic. ## Import EventGrid Topic's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventgrid_topic.topic1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventGrid/topics/topic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EventGrid Topic ID.`,
@@ -8514,7 +8516,7 @@ var (
 				"messaging",
 				"eventhub",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the EventHub Namespace resource. Changing this forces a new resource to be created.`,
@@ -8588,7 +8590,7 @@ var (
 					Description: `The identifiers for partitions created for Event Hubs. ## Import EventHubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub.eventhub1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1/eventhubs/eventhub1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EventHub ID.`,
@@ -8611,7 +8613,7 @@ var (
 				"authorization",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the EventHub Authorization Rule resource. Changing this forces a new resource to be created.`,
@@ -8661,7 +8663,7 @@ var (
 					Description: `The Secondary Connection String for the Event Hubs authorization Rule. ## Import EventHubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub_authorization_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1/eventhubs/eventhub1/authorizationRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EventHub ID.`,
@@ -8696,7 +8698,7 @@ var (
 				"consumer",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the EventHub Consumer Group resource. Changing this forces a new resource to be created.`,
@@ -8722,7 +8724,7 @@ var (
 					Description: `The EventHub Consumer Group ID. ## Import EventHub Consumer Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub_consumer_group.consumerGroup1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1/eventhubs/eventhub1/consumergroups/consumerGroup1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EventHub Consumer Group ID. ## Import EventHub Consumer Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub_consumer_group.consumerGroup1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1/eventhubs/eventhub1/consumergroups/consumerGroup1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8740,7 +8742,7 @@ var (
 				"eventhub",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the EventHub Namespace resource. Changing this forces a new resource to be created.`,
@@ -8798,7 +8800,7 @@ var (
 					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Import EventHub Namespaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub_namespace.namespace1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EventHub Namespace ID. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
@@ -8834,7 +8836,7 @@ var (
 				"authorization",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Authorization Rule. Changing this forces a new resource to be created.`,
@@ -8880,7 +8882,7 @@ var (
 					Description: `The Secondary Connection String for the Authorization Rule. ## Import EventHubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub_namespace_authorization_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1/authorizationRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EventHub ID.`,
@@ -8915,7 +8917,7 @@ var (
 				"route",
 				"circuit",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ExpressRoute circuit. Changing this forces a new resource to be created.`,
@@ -8973,7 +8975,7 @@ var (
 					Description: `The string needed by the service provider to provision the ExpressRoute circuit. ## Import ExpressRoute circuits can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_express_route_circuit.myExpressRoute /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/expressRouteCircuits/myExpressRoute ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the ExpressRoute circuit.`,
@@ -9001,7 +9003,7 @@ var (
 				"circuit",
 				"authorization",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ExpressRoute circuit. Changing this forces a new resource to be created.`,
@@ -9027,7 +9029,7 @@ var (
 					Description: `The authorization use status. ## Import ExpressRoute Circuit Authorizations can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_express_route_circuit_authorization.auth1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/expressRouteCircuits/myExpressRoute/authorizations/auth1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the ExpressRoute Circuit Authorization.`,
@@ -9055,7 +9057,7 @@ var (
 				"circuit",
 				"peering",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "peering_type",
 					Description: `(Required) The type of the ExpressRoute Circuit Peering. Acceptable values include ` + "`" + `AzurePrivatePeering` + "`" + `, ` + "`" + `AzurePublicPeering` + "`" + ` and ` + "`" + `MicrosoftPeering` + "`" + `. Changing this forces a new resource to be created. ~>`,
@@ -9113,7 +9115,7 @@ var (
 					Description: `The Secondary Port used by Azure for this Peering. ## Import ExpressRoute Circuit Peerings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_express_route_circuit_peering.peering1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/expressRouteCircuits/myExpressRoute/peerings/peering1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the ExpressRoute Circuit Peering.`,
@@ -9142,7 +9144,7 @@ var (
 				"network",
 				"firewall",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Firewall. Changing this forces a new resource to be created.`,
@@ -9188,7 +9190,7 @@ var (
 					Description: `The private IP address of the Azure Firewall. ## Import Azure Firewalls can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/azureFirewalls/testfirewall ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the Azure Firewall.`,
@@ -9216,7 +9218,7 @@ var (
 				"rule",
 				"collection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Application Rule Collection which must be unique within the Firewall. Changing this forces a new resource to be created.`,
@@ -9274,7 +9276,7 @@ var (
 					Description: `(Required) Specifies the type of connection. Possible values are ` + "`" + `Http` + "`" + ` or ` + "`" + `Https` + "`" + `. ## Import Azure Firewall Application Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_application_rule_collection.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/applicationRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9289,7 +9291,7 @@ var (
 				"rule",
 				"collection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the NAT Rule Collection which must be unique within the Firewall. Changing this forces a new resource to be created.`,
@@ -9347,7 +9349,7 @@ var (
 					Description: `(Required) The port of the service behind the Firewall. ## Import Azure Firewall NAT Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_nat_rule_collection.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/natRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9361,7 +9363,7 @@ var (
 				"rule",
 				"collection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Network Rule Collection which must be unique within the Firewall. Changing this forces a new resource to be created.`,
@@ -9411,7 +9413,7 @@ var (
 					Description: `(Required) A list of protocols. Possible values are ` + "`" + `Any` + "`" + `, ` + "`" + `ICMP` + "`" + `, ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `. ## Import Azure Firewall Network Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_network_rule_collection.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/networkRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9426,7 +9428,7 @@ var (
 				"apps",
 				"function",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Function App. Changing this forces a new resource to be created.`,
@@ -9564,7 +9566,7 @@ var (
 					Description: `The password associated with the username, which can be used to publish to this App Service. ## Import Function Apps can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_function_app.functionapp1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/functionapp1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Function App`,
@@ -9622,7 +9624,7 @@ var (
 				"hadoop",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name for this HDInsight Hadoop Cluster. Changing this forces a new resource to be created.`,
@@ -9796,7 +9798,7 @@ var (
 					Description: `The SSH Connectivity Endpoint for this HDInsight Hadoop Cluster. ## Import HDInsight Hadoop Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hadoop_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HDInsight Hadoop Cluster.`,
@@ -9822,7 +9824,7 @@ var (
 				"hbase",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name for this HDInsight HBase Cluster. Changing this forces a new resource to be created.`,
@@ -9996,7 +9998,7 @@ var (
 					Description: `The SSH Connectivity Endpoint for this HDInsight HBase Cluster. ## Import HDInsight HBase Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hbase_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HDInsight HBase Cluster.`,
@@ -10023,7 +10025,7 @@ var (
 				"query",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name for this HDInsight Interactive Query Cluster. Changing this forces a new resource to be created.`,
@@ -10197,7 +10199,7 @@ var (
 					Description: `The SSH Connectivity Endpoint for this HDInsight Interactive Query Cluster. ## Import HDInsight Interactive Query Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_interactive_query_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HDInsight Interactive Query Cluster.`,
@@ -10223,7 +10225,7 @@ var (
 				"kafka",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name for this HDInsight Kafka Cluster. Changing this forces a new resource to be created.`,
@@ -10401,7 +10403,7 @@ var (
 					Description: `The SSH Connectivity Endpoint for this HDInsight Kafka Cluster. ## Import HDInsight Kafka Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_kafka_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HDInsight Kafka Cluster.`,
@@ -10428,7 +10430,7 @@ var (
 				"services",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name for this HDInsight ML Services Cluster. Changing this forces a new resource to be created.`,
@@ -10630,7 +10632,7 @@ var (
 					Description: `The SSH Connectivity Endpoint for this HDInsight ML Services Cluster. ## Import HDInsight ML Services Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_ml_services_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HDInsight ML Services Cluster.`,
@@ -10660,7 +10662,7 @@ var (
 				"rserver",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name for this HDInsight RServer Cluster. Changing this forces a new resource to be created.`,
@@ -10862,7 +10864,7 @@ var (
 					Description: `The SSH Connectivity Endpoint for this HDInsight RServer Cluster. ## Import HDInsight RServer Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_rserver_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HDInsight RServer Cluster.`,
@@ -10892,7 +10894,7 @@ var (
 				"spark",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name for this HDInsight Spark Cluster. Changing this forces a new resource to be created.`,
@@ -11066,7 +11068,7 @@ var (
 					Description: `The SSH Connectivity Endpoint for this HDInsight Spark Cluster. ## Import HDInsight Spark Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_spark_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HDInsight Spark Cluster.`,
@@ -11092,7 +11094,7 @@ var (
 				"storm",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name for this HDInsight Storm Cluster. Changing this forces a new resource to be created.`,
@@ -11266,7 +11268,7 @@ var (
 					Description: `The SSH Connectivity Endpoint for this HDInsight Storm Cluster. ## Import HDInsight Storm Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_storm_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HDInsight Storm Cluster.`,
@@ -11291,7 +11293,7 @@ var (
 				"compute",
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the image. Changing this forces a new resource to be created.`,
@@ -11373,7 +11375,7 @@ var (
 					Description: `The managed image ID. ## Import Image can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_image.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The managed image ID. ## Import Image can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_image.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11391,7 +11393,7 @@ var (
 				"iot",
 				"dps",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Iot Device Provisioning Service resource. Changing this forces a new resource to be created.`,
@@ -11429,7 +11431,7 @@ var (
 					Description: `The ID of the IoT Device Provisioning Service. ## Import IoT Device Provisioning Service can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iot_dps.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the IoT Device Provisioning Service. ## Import IoT Device Provisioning Service can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iot_dps.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11448,7 +11450,7 @@ var (
 				"dps",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Iot Device Provisioning Service Certificate resource. Changing this forces a new resource to be created.`,
@@ -11470,7 +11472,7 @@ var (
 					Description: `The ID of the IoT Device Provisioning Service Certificate. ## Import IoT Device Provisioning Service Certificate can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iot_dps_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example/certificates/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the IoT Device Provisioning Service Certificate. ## Import IoT Device Provisioning Service Certificate can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iot_dps_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example/certificates/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11487,7 +11489,7 @@ var (
 				"messaging",
 				"iothub",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the IotHub resource. Changing this forces a new resource to be created.`,
@@ -11661,7 +11663,7 @@ var (
 					Description: `The permissions assigned to the shared access policy. ## Import IoTHubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub.hub1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the IoTHub.`,
@@ -11720,7 +11722,7 @@ var (
 				"consumer",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of this Consumer Group. Changing this forces a new resource to be created.`,
@@ -11742,7 +11744,7 @@ var (
 					Description: `The ID of the IoTHub Consumer Group. ## Import IoTHub Consumer Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_consumer_group.group1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/eventHubEndpoints/events/ConsumerGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the IoTHub Consumer Group. ## Import IoTHub Consumer Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_consumer_group.group1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/eventHubEndpoints/events/ConsumerGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11762,7 +11764,7 @@ var (
 				"access",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the IotHub Shared Access Policy resource. Changing this forces a new resource to be created.`,
@@ -11812,7 +11814,7 @@ var (
 					Description: `The secondary connection string of the Shared Access Policy. ## Import IoTHub Shared Access Policies can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_shared_access_policy.shared_access_policy1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/IotHubKeys/shared_access_policy1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the IoTHub Shared Access Policy.`,
@@ -11845,7 +11847,7 @@ var (
 				"key",
 				"vault",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Key Vault. Changing this forces a new resource to be created.`,
@@ -11951,7 +11953,7 @@ var (
 					Description: `The URI of the Key Vault, used for performing operations on keys and secrets. ## Import Key Vault's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.KeyVault/vaults/vault1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Key Vault.`,
@@ -11974,7 +11976,7 @@ var (
 				"access",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_vault_id",
 					Description: `(Required) Specifies the id of the Key Vault resource. Changing this forces a new resource to be created. ->`,
@@ -12020,7 +12022,7 @@ var (
 					Description: `Key Vault Access Policy ID. ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Key Vault Access Policy ID. ->`,
@@ -12038,7 +12040,7 @@ var (
 				"vault",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Key Vault Certificate. Changing this forces a new resource to be created.`,
@@ -12184,7 +12186,7 @@ var (
 					Description: `The X509 Thumbprint of the Key Vault Certificate returned as hex string. ## Import Key Vault Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_certificate.test https://example-keyvault.vault.azure.net/certificates/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Key Vault Certificate ID.`,
@@ -12217,7 +12219,7 @@ var (
 				"key",
 				"vault",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Key Vault Key. Changing this forces a new resource to be created.`,
@@ -12271,7 +12273,7 @@ var (
 					Description: `The EC Y component of this Key Vault Key. ## Import Key Vault Key which is Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_key.test https://example-keyvault.vault.azure.net/keys/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Key Vault Key ID.`,
@@ -12309,7 +12311,7 @@ var (
 				"vault",
 				"secret",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Key Vault Secret. Changing this forces a new resource to be created.`,
@@ -12339,7 +12341,7 @@ var (
 					Description: `The current version of the Key Vault Secret. ## Import Key Vault Secrets which are Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_secret.test https://example-keyvault.vault.azure.net/secrets/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Key Vault Secret ID.`,
@@ -12361,7 +12363,7 @@ var (
 				"kubernetes",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Managed Kubernetes Cluster to create. Changing this forces a new resource to be created.`,
@@ -12603,7 +12605,7 @@ var (
 					Description: `A password or token used to authenticate to the Kubernetes cluster. ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Kubernetes Managed Cluster ID.`,
@@ -12677,7 +12679,7 @@ var (
 				"balancer",
 				"lb",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Load Balancer.`,
@@ -12743,7 +12745,7 @@ var (
 					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Load Balancer ID.`,
@@ -12772,7 +12774,7 @@ var (
 				"address",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Backend Address Pool.`,
@@ -12798,7 +12800,7 @@ var (
 					Description: `The Load Balancing Rules associated with this Backend Address Pool. ## Import Load Balancer Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_backend_address_pool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Backend Address Pool.`,
@@ -12826,7 +12828,7 @@ var (
 				"nat",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the NAT pool.`,
@@ -12864,7 +12866,7 @@ var (
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer NAT Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_pool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer NAT Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_pool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -12884,7 +12886,7 @@ var (
 				"nat",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the NAT Rule.`,
@@ -12922,7 +12924,7 @@ var (
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer NAT Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer NAT Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -12942,7 +12944,7 @@ var (
 				"outbound",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Outbound Rule. Changing this forces a new resource to be created.`,
@@ -12988,7 +12990,7 @@ var (
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Outbound Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_outbound_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/outboundRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Outbound Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_outbound_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/outboundRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13007,7 +13009,7 @@ var (
 				"lb",
 				"probe",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Probe.`,
@@ -13045,7 +13047,7 @@ var (
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Probes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_probe.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/probes/probe1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Probes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_probe.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/probes/probe1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13064,7 +13066,7 @@ var (
 				"lb",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the LB Rule.`,
@@ -13122,7 +13124,7 @@ var (
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/loadBalancingRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/loadBalancingRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13140,7 +13142,7 @@ var (
 				"local",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the local network gateway. Changing this forces a new resource to be created.`,
@@ -13186,7 +13188,7 @@ var (
 					Description: `The local network gateway unique ID within Azure. ## Import Local Network Gateways can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_local_network_gateway.lng1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/localNetworkGateways/lng1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The local network gateway unique ID within Azure. ## Import Local Network Gateways can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_local_network_gateway.lng1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/localNetworkGateways/lng1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13205,7 +13207,7 @@ var (
 				"linked",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_group_name",
 					Description: `(Required) The name of the resource group in which the Log Analytics Linked Service is created. Changing this forces a new resource to be created.`,
@@ -13243,7 +13245,7 @@ var (
 					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_linked_service.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Log Analytics Linked Service ID.`,
@@ -13265,7 +13267,7 @@ var (
 				"analytics",
 				"solution",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "solution_name",
 					Description: `(Required) Specifies the name of the solution to be deployed. See [here for options](https://docs.microsoft.com/en-us/azure/log-analytics/log-analytics-add-solutions).Changing this forces a new resource to be created.`,
@@ -13303,7 +13305,7 @@ var (
 					Description: `(Optional) A promotion code to be used with the solution. ## Import Log Analytics Solutions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_solution.solution1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationsManagement/solutions/solution1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -13316,7 +13318,7 @@ var (
 				"analytics",
 				"workspace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Log Analytics Workspace. Workspace name should include 4-63 letters, digits or '-'. The '-' shouldn't be the first or the last symbol. Changing this forces a new resource to be created.`,
@@ -13362,7 +13364,7 @@ var (
 					Description: `The Portal URL for the Log Analytics Workspace. ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_workspace.workspace1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Log Analytics Workspace ID.`,
@@ -13398,7 +13400,7 @@ var (
 				"linked",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_group_name",
 					Description: `(Required) The name of the resource group in which the Log Analytics Linked Service is created. Changing this forces a new resource to be created.`,
@@ -13436,7 +13438,7 @@ var (
 					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_workspace_linked_service.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Log Analytics Linked Service ID.`,
@@ -13459,7 +13461,7 @@ var (
 				"action",
 				"custom",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the HTTP Action to be created within the Logic App Workflow. Changing this forces a new resource to be created. ->`,
@@ -13477,7 +13479,7 @@ var (
 					Description: `The ID of the Action within the Logic App Workflow. ## Import Logic App Custom Actions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_action_custom.custom1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/actions/custom1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Action within the Logic App Workflow. ## Import Logic App Custom Actions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_action_custom.custom1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/actions/custom1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -13496,7 +13498,7 @@ var (
 				"action",
 				"http",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the HTTP Action to be created within the Logic App Workflow. Changing this forces a new resource to be created. ->`,
@@ -13526,7 +13528,7 @@ var (
 					Description: `The ID of the HTTP Action within the Logic App Workflow. ## Import Logic App HTTP Actions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_action_http.webhook1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/actions/webhook1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HTTP Action within the Logic App Workflow. ## Import Logic App HTTP Actions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_action_http.webhook1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/actions/webhook1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -13545,7 +13547,7 @@ var (
 				"trigger",
 				"custom",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the HTTP Trigger to be created within the Logic App Workflow. Changing this forces a new resource to be created. ->`,
@@ -13563,7 +13565,7 @@ var (
 					Description: `The ID of the Trigger within the Logic App Workflow. ## Import Logic App Custom Triggers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_trigger_custom.custom1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/triggers/custom1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Trigger within the Logic App Workflow. ## Import Logic App Custom Triggers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_trigger_custom.custom1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/triggers/custom1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -13583,7 +13585,7 @@ var (
 				"http",
 				"request",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the HTTP Request Trigger to be created within the Logic App Workflow. Changing this forces a new resource to be created. ->`,
@@ -13609,7 +13611,7 @@ var (
 					Description: `The ID of the HTTP Request Trigger within the Logic App Workflow. ## Import Logic App HTTP Request Triggers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_trigger_http_request.request1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/triggers/request1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the HTTP Request Trigger within the Logic App Workflow. ## Import Logic App HTTP Request Triggers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_trigger_http_request.request1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/triggers/request1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -13628,7 +13630,7 @@ var (
 				"trigger",
 				"recurrence",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Recurrence Triggers to be created within the Logic App Workflow. Changing this forces a new resource to be created. ->`,
@@ -13650,7 +13652,7 @@ var (
 					Description: `The ID of the Recurrence Trigger within the Logic App Workflow. ## Import Logic App Recurrence Triggers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_trigger_recurrence.daily /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/triggers/daily ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Recurrence Trigger within the Logic App Workflow. ## Import Logic App Recurrence Triggers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_trigger_recurrence.daily /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1/triggers/daily ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -13668,7 +13670,7 @@ var (
 				"app",
 				"workflow",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Logic App Workflow. Changing this forces a new resource to be created.`,
@@ -13706,7 +13708,7 @@ var (
 					Description: `The Access Endpoint for the Logic App Workflow ## Import Logic App Workflows can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_logic_app_workflow.workflow1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Logic/workflows/workflow1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Logic App Workflow ID.`,
@@ -13728,7 +13730,7 @@ var (
 				"managed",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the managed disk. Changing this forces a new resource to be created.`,
@@ -13834,7 +13836,7 @@ var (
 					Description: `The managed disk ID. ## Import Managed Disks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_managed_disk.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/disks/manageddisk1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The managed disk ID. ## Import Managed Disks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_managed_disk.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/disks/manageddisk1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13851,7 +13853,7 @@ var (
 				"management",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `(Optional) The UUID for this Management Group, which needs to be unique across your tenant - which will be generated if not provided. Changing this forces a new resource to be created.`,
@@ -13873,7 +13875,7 @@ var (
 					Description: `The ID of the Management Group. ## Import Management Groups can be imported using the ` + "`" + `management group resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_group.test /providers/Microsoft.Management/ManagementGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Management Group. ## Import Management Groups can be imported using the ` + "`" + `management group resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_group.test /providers/Microsoft.Management/ManagementGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13890,7 +13892,7 @@ var (
 				"management",
 				"lock",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Management Lock. Changing this forces a new resource to be created.`,
@@ -13912,7 +13914,7 @@ var (
 					Description: `The ID of the Management Lock ## Import Management Locks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_lock.lock1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Authorization/locks/lock1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Management Lock ## Import Management Locks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_lock.lock1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Authorization/locks/lock1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13929,7 +13931,7 @@ var (
 				"database",
 				"mariadb",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the MariaDB Database, which needs [to be a valid MariaDB identifier](https://mariadb.com/kb/en/library/identifier-names/). Changing this forces a new resource to be created.`,
@@ -13955,7 +13957,7 @@ var (
 					Description: `The ID of the MariaDB Database. ## Import MariaDB Database's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMariaDB/servers/server1/databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MariaDB Database. ## Import MariaDB Database's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMariaDB/servers/server1/databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13974,7 +13976,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the MariaDB Firewall Rule. Changing this forces a new resource to be created.`,
@@ -14000,7 +14002,7 @@ var (
 					Description: `The ID of the MariaDB Firewall Rule. ## Import MariaDB Firewall rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMariaDB/servers/server1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MariaDB Firewall Rule. ## Import MariaDB Firewall rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMariaDB/servers/server1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14018,7 +14020,7 @@ var (
 				"mariadb",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the MariaDB Server. Changing this forces a new resource to be created.`,
@@ -14096,7 +14098,7 @@ var (
 					Description: `The FQDN of the MariaDB Server. ## Import MariaDB Server's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_server.server1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMariaDB/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MariaDB Server.`,
@@ -14118,7 +14120,7 @@ var (
 				"services",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Media Services Account. Changing this forces a new resource to be created.`,
@@ -14148,7 +14150,7 @@ var (
 					Description: `The Resource ID of the Media Services Account. ## Import Media Services Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_media_services_account.account /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Media/mediaservices/account1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the Media Services Account. ## Import Media Services Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_media_services_account.account /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Media/mediaservices/account1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14166,7 +14168,7 @@ var (
 				"metric",
 				"alertrule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the alert rule. Changing this forces a new resource to be created.`,
@@ -14244,7 +14246,7 @@ var (
 					Description: `The ID of the alert rule. ## Import Metric Alert Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_metric_alertrule.alertrule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/alertrules/alertrule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the alert rule. ## Import Metric Alert Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_metric_alertrule.alertrule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/alertrules/alertrule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14262,7 +14264,7 @@ var (
 				"action",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Action Group. Changing this forces a new resource to be created.`,
@@ -14328,7 +14330,7 @@ var (
 					Description: `The ID of the Action Group. ## Import Action Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_action_group.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Insights/actionGroups/myagname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Action Group. ## Import Action Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_action_group.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Insights/actionGroups/myagname ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14347,7 +14349,7 @@ var (
 				"log",
 				"alert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the activity log alert. Changing this forces a new resource to be created.`,
@@ -14433,7 +14435,7 @@ var (
 					Description: `The ID of the activity log alert. ## Import Activity log alerts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_activity_log_alert.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/activityLogAlerts/myalertname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the activity log alert. ## Import Activity log alerts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_activity_log_alert.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/activityLogAlerts/myalertname ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14451,7 +14453,7 @@ var (
 				"autoscale",
 				"setting",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the AutoScale Setting. Changing this forces a new resource to be created.`,
@@ -14629,7 +14631,7 @@ var (
 					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_autoscale_setting.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_autoscale_setting.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14647,7 +14649,7 @@ var (
 				"diagnostic",
 				"setting",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Diagnostic Setting. Changing this forces a new resource to be created.`,
@@ -14717,7 +14719,7 @@ var (
 					Description: `The ID of the Diagnostic Setting. ## Import Diagnostic Settings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_diagnostics.test /subscriptions/XXX/resourcegroups/resource_group/providers/microsoft.keyvault/vaults/vault|logMonitoring ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Diagnostic Setting. ## Import Diagnostic Settings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_diagnostics.test /subscriptions/XXX/resourcegroups/resource_group/providers/microsoft.keyvault/vaults/vault|logMonitoring ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -14735,7 +14737,7 @@ var (
 				"log",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Log Profile. Changing this forces a new resource to be created.`,
@@ -14773,7 +14775,7 @@ var (
 					Description: `The Log Profile resource ID. ## Import A Log Profile can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_log_profile.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/microsoft.insights/logprofiles/test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Log Profile resource ID. ## Import A Log Profile can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_log_profile.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/microsoft.insights/logprofiles/test ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14791,7 +14793,7 @@ var (
 				"metric",
 				"alert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Metric Alert. Changing this forces a new resource to be created.`,
@@ -14889,7 +14891,7 @@ var (
 					Description: `The ID of the metric alert. ## Import Metric Alerts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_metric_alert.main /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/microsoft.insights/metricalerts/example-metricalert ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the metric alert. ## Import Metric Alerts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_metric_alert.main /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/microsoft.insights/metricalerts/example-metricalert ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14907,7 +14909,7 @@ var (
 				"metric",
 				"alertrule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the alert rule. Changing this forces a new resource to be created.`,
@@ -14985,7 +14987,7 @@ var (
 					Description: `The ID of the alert rule. ## Import Metric Alert Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_metric_alertrule.alertrule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/alertrules/alertrule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the alert rule. ## Import Metric Alert Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_metric_alertrule.alertrule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/alertrules/alertrule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -15003,7 +15005,7 @@ var (
 				"mssql",
 				"elasticpool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the elastic pool. This needs to be globally unique. Changing this forces a new resource to be created.`,
@@ -15073,7 +15075,7 @@ var (
 					Description: `The MsSQL Elastic Pool ID. ## Import SQL Elastic Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_elasticpool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/elasticPools/myelasticpoolname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The MsSQL Elastic Pool ID. ## Import SQL Elastic Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_elasticpool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/elasticPools/myelasticpoolname ` + "`" + `` + "`" + `` + "`" + ``,
@@ -15091,7 +15093,7 @@ var (
 				"mysql",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the MySQL Configuration, which needs [to be a valid MySQL configuration name](https://dev.mysql.com/doc/refman/5.7/en/server-configuration.html). Changing this forces a new resource to be created.`,
@@ -15113,7 +15115,7 @@ var (
 					Description: `The ID of the MySQL Configuration. ## Import MySQL Configurations can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_configuration.interactive_timeout /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMySQL/servers/server1/configurations/interactive_timeout ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MySQL Configuration. ## Import MySQL Configurations can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_configuration.interactive_timeout /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMySQL/servers/server1/configurations/interactive_timeout ` + "`" + `` + "`" + `` + "`" + ``,
@@ -15130,7 +15132,7 @@ var (
 				"database",
 				"mysql",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the MySQL Database, which needs [to be a valid MySQL identifier](https://dev.mysql.com/doc/refman/5.7/en/identifiers.html). Changing this forces a new resource to be created.`,
@@ -15156,7 +15158,7 @@ var (
 					Description: `The ID of the MySQL Database. ## Import MySQL Database's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMySQL/servers/server1/databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MySQL Database. ## Import MySQL Database's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMySQL/servers/server1/databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -15175,7 +15177,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the MySQL Firewall Rule. Changing this forces a new resource to be created.`,
@@ -15201,7 +15203,7 @@ var (
 					Description: `The ID of the MySQL Firewall Rule. ## Import MySQL Firewall Rule's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMySQL/servers/server1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MySQL Firewall Rule. ## Import MySQL Firewall Rule's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMySQL/servers/server1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -15219,7 +15221,7 @@ var (
 				"mysql",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the MySQL Server. Changing this forces a new resource to be created. This needs to be globally unique within Azure.`,
@@ -15297,7 +15299,7 @@ var (
 					Description: `The FQDN of the MySQL Server. ## Import MySQL Server's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_server.server1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMySQL/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MySQL Server.`,
@@ -15321,7 +15323,7 @@ var (
 				"network",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the MySQL Virtual Network Rule. Cannot be empty and must only contain alphanumeric characters and hyphens. Cannot start with a number, and cannot start or end with a hyphen. Changing this forces a new resource to be created. ~>`,
@@ -15343,7 +15345,7 @@ var (
 					Description: `The ID of the MySQL Virtual Network Rule. ## Import MySQL Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.DBforMySQL/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MySQL Virtual Network Rule. ## Import MySQL Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.DBforMySQL/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
@@ -15361,7 +15363,7 @@ var (
 				"connection",
 				"monitor",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Network Connection Monitor. Changing this forces a new resource to be created.`,
@@ -15423,7 +15425,7 @@ var (
 					Description: `The Connection Monitor ID. ## Import Connection Monitors can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_connection_monitor.monitor1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkWatchers/watcher1/connectionMonitors/monitor1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Connection Monitor ID. ## Import Connection Monitors can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_connection_monitor.monitor1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkWatchers/watcher1/connectionMonitors/monitor1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -15442,7 +15444,7 @@ var (
 				"protection",
 				"plan",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Network DDoS Protection Plan. Changing this forces a new resource to be created.`,
@@ -15468,7 +15470,7 @@ var (
 					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_ddos_protection_plan.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the DDoS Protection Plan`,
@@ -15489,7 +15491,7 @@ var (
 				"network",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the network interface. Changing this forces a new resource to be created.`,
@@ -15599,7 +15601,7 @@ var (
 					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Virtual Network Interface ID.`,
@@ -15642,7 +15644,7 @@ var (
 				"pool",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_interface_id",
 					Description: `(Required) The ID of the Network Interface. Changing this forces a new resource to be created.`,
@@ -15660,7 +15662,7 @@ var (
 					Description: `The (Terraform specific) ID of the Association between the Network Interface and the Application Gateway Backend Address Pool. ## Import Associations between Network Interfaces and Application Gateway Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_application_gateway_backend_address_pool_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1/ipConfigurations/example|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/applicationGateways/gateway1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The (Terraform specific) ID of the Association between the Network Interface and the Application Gateway Backend Address Pool. ## Import Associations between Network Interfaces and Application Gateway Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_application_gateway_backend_address_pool_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1/ipConfigurations/example|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/applicationGateways/gateway1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -15681,7 +15683,7 @@ var (
 				"group",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_interface_id",
 					Description: `(Required) The ID of the Network Interface. Changing this forces a new resource to be created.`,
@@ -15699,7 +15701,7 @@ var (
 					Description: `The (Terraform specific) ID of the Association between the Network Interface and the Application Security Group. ## Import Associations between Network Interfaces and Application Security Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_application_security_group_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1/ipConfigurations/example|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/applicationSecurityGroups/securityGroup1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The (Terraform specific) ID of the Association between the Network Interface and the Application Security Group. ## Import Associations between Network Interfaces and Application Security Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_application_security_group_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1/ipConfigurations/example|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/applicationSecurityGroups/securityGroup1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -15720,7 +15722,7 @@ var (
 				"pool",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_interface_id",
 					Description: `(Required) The ID of the Network Interface. Changing this forces a new resource to be created.`,
@@ -15738,7 +15740,7 @@ var (
 					Description: `The (Terraform specific) ID of the Association between the Network Interface and the Load Balancers Backend Address Pool. ## Import Associations between Network Interfaces and Load Balancer Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_backend_address_pool_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1/ipConfigurations/example|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The (Terraform specific) ID of the Association between the Network Interface and the Load Balancers Backend Address Pool. ## Import Associations between Network Interfaces and Load Balancer Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_backend_address_pool_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1/ipConfigurations/example|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -15758,7 +15760,7 @@ var (
 				"rule",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_interface_id",
 					Description: `(Required) The ID of the Network Interface. Changing this forces a new resource to be created.`,
@@ -15776,7 +15778,7 @@ var (
 					Description: `The (Terraform specific) ID of the Association between the Network Interface and the Load Balancers NAT Rule. ## Import Associations between Network Interfaces and Load Balancer NAT Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_nat_rule_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1/ipConfigurations/example|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatRules/rule1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The (Terraform specific) ID of the Association between the Network Interface and the Load Balancers NAT Rule. ## Import Associations between Network Interfaces and Load Balancer NAT Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface_nat_rule_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1/ipConfigurations/example|/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatRules/rule1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -15794,7 +15796,7 @@ var (
 				"packet",
 				"capture",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for this Network Packet Capture. Changing this forces a new resource to be created.`,
@@ -15872,7 +15874,7 @@ var (
 					Description: `The URI of the storage path to save the packet capture. ## Import Packet Captures can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_packet_capture.capture1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkWatchers/watcher1/packetCaptures/capture1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Packet Capture ID.`,
@@ -15897,7 +15899,7 @@ var (
 				"network",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Network Profile. Changing this forces a new resource to be created.`,
@@ -15943,7 +15945,7 @@ var (
 					Description: `One or more Resource IDs of Azure Container Network Interfaces. ## Import Azure Network Profile can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_profile.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/networkProfiles/examplenetprofile ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Resource ID of the Azure Network Profile.`,
@@ -15965,7 +15967,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the network security group. Changing this forces a new resource to be created.`,
@@ -16055,7 +16057,7 @@ var (
 					Description: `The Network Security Group ID. ## Import Network Security Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_security_group.group1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Network Security Group ID. ## Import Network Security Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_security_group.group1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16073,7 +16075,7 @@ var (
 				"security",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the security rule. This needs to be unique across all Rules in the Network Security Group. Changing this forces a new resource to be created.`,
@@ -16151,7 +16153,7 @@ var (
 					Description: `The Network Security Rule ID. ## Import Network Security Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_security_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/securityRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Network Security Rule ID. ## Import Network Security Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_security_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkSecurityGroups/mySecurityGroup/securityRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16168,7 +16170,7 @@ var (
 				"network",
 				"watcher",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Network Watcher. Changing this forces a new resource to be created.`,
@@ -16190,7 +16192,7 @@ var (
 					Description: `The Network Watcher ID. ## Import Network Watchers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_watcher.watcher1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkWatchers/watcher1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Network Watcher ID. ## Import Network Watchers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_watcher.watcher1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkWatchers/watcher1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16208,7 +16210,7 @@ var (
 				"notification",
 				"hub",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for this Notification Hub. Changing this forces a new resource to be created.`,
@@ -16262,7 +16264,7 @@ var (
 					Description: `The ID of the Notification Hub. ## Import Notification Hubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_notification_hub.hub1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/hub1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Notification Hub. ## Import Notification Hubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_notification_hub.hub1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/hub1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16282,7 +16284,7 @@ var (
 				"authorization",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for this Authorization Rule. Changing this forces a new resource to be created.`,
@@ -16324,7 +16326,7 @@ var (
 					Description: `The Secondary Access Key associated with this Authorization Rule. ## Import Notification Hub Authorization Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_notification_hub_authorization_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.NotificationHubs/namespaces/{namespaceName}/notificationHubs/hub1/AuthorizationRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Authorization Rule.`,
@@ -16351,7 +16353,7 @@ var (
 				"hub",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for this Notification Hub Namespace. Changing this forces a new resource to be created.`,
@@ -16393,7 +16395,7 @@ var (
 					Description: `The ServiceBus Endpoint for this Notification Hub Namespace. ## Import Notification Hub Namespaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_notification_hub_namespace.namespace1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.NotificationHubs/namespaces/{namespaceName} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Notification Hub Namespace.`,
@@ -16415,7 +16417,7 @@ var (
 				"packet",
 				"capture",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for this Packet Capture. Changing this forces a new resource to be created.`,
@@ -16493,7 +16495,7 @@ var (
 					Description: `The URI of the storage path to save the packet capture. ## Import Packet Captures can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_packet_capture.capture1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/networkWatchers/watcher1/packetCaptures/capture1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Packet Capture ID.`,
@@ -16518,7 +16520,7 @@ var (
 				"policy",
 				"assignment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Policy Assignment. Changing this forces a new resource to be created.`,
@@ -16572,7 +16574,7 @@ var (
 					Description: `The Tenant ID of this Policy Assignment if ` + "`" + `type` + "`" + ` is ` + "`" + `SystemAssigned` + "`" + `. --- ## Import Policy Assignments can be imported using the ` + "`" + `policy name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_assignment.assignment1 /subscriptions/00000000-0000-0000-000000000000/providers/Microsoft.Authorization/policyAssignments/assignment1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Policy Assignment id.`,
@@ -16601,7 +16603,7 @@ var (
 				"policy",
 				"definition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy definition. Changing this forces a new resource to be created.`,
@@ -16643,7 +16645,7 @@ var (
 					Description: `The policy definition id. ## Import Policy Definitions can be imported using the ` + "`" + `policy name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.testPolicy /subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.testPolicy /providers/Microsoft.Management/managementgroups/<MANGAGEMENT_GROUP_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The policy definition id. ## Import Policy Definitions can be imported using the ` + "`" + `policy name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.testPolicy /subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.testPolicy /providers/Microsoft.Management/managementgroups/<MANGAGEMENT_GROUP_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16661,7 +16663,7 @@ var (
 				"set",
 				"definition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy set definition. Changing this forces a new resource to be created.`,
@@ -16699,7 +16701,7 @@ var (
 					Description: `The policy set definition id. ## Import Policy Set Definitions can be imported using the Resource ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.test /providers/Microsoft.Management/managementgroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The policy set definition id. ## Import Policy Set Definitions can be imported using the Resource ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.test /providers/Microsoft.Management/managementgroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16717,7 +16719,7 @@ var (
 				"postgresql",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the PostgreSQL Configuration, which needs [to be a valid PostgreSQL configuration name](https://www.postgresql.org/docs/current/static/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIER). Changing this forces a new resource to be created.`,
@@ -16739,7 +16741,7 @@ var (
 					Description: `The ID of the PostgreSQL Configuration. ## Import PostgreSQL Configurations can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_configuration.backslash_quote /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforPostgreSQL/servers/server1/configurations/backslash_quote ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the PostgreSQL Configuration. ## Import PostgreSQL Configurations can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_configuration.backslash_quote /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforPostgreSQL/servers/server1/configurations/backslash_quote ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16756,7 +16758,7 @@ var (
 				"database",
 				"postgresql",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the PostgreSQL Database, which needs [to be a valid PostgreSQL identifier](https://www.postgresql.org/docs/current/static/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS). Changing this forces a new resource to be created.`,
@@ -16782,7 +16784,7 @@ var (
 					Description: `The ID of the PostgreSQL Database. ## Import PostgreSQL Database's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforPostgreSQL/servers/server1/databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the PostgreSQL Database. ## Import PostgreSQL Database's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforPostgreSQL/servers/server1/databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16801,7 +16803,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the PostgreSQL Firewall Rule. Changing this forces a new resource to be created.`,
@@ -16827,7 +16829,7 @@ var (
 					Description: `The ID of the PostgreSQL Firewall Rule. ## Import PostgreSQL Firewall Rule's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforPostgreSQL/servers/server1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the PostgreSQL Firewall Rule. ## Import PostgreSQL Firewall Rule's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforPostgreSQL/servers/server1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16845,7 +16847,7 @@ var (
 				"postgresql",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the PostgreSQL Server. Changing this forces a new resource to be created.`,
@@ -16923,7 +16925,7 @@ var (
 					Description: `The FQDN of the PostgreSQL Server. ## Import PostgreSQL Server's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_server.server1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforPostgreSQL/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the PostgreSQL Server.`,
@@ -16947,7 +16949,7 @@ var (
 				"network",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the PostgreSQL virtual network rule. Cannot be empty and must only contain alphanumeric characters and hyphens. Cannot start with a number, and cannot start or end with a hyphen. Changing this forces a new resource to be created. ~>`,
@@ -16973,7 +16975,7 @@ var (
 					Description: `The ID of the PostgreSQL Virtual Network Rule. ## Import PostgreSQL Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.DBforPostgreSQL/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the PostgreSQL Virtual Network Rule. ## Import PostgreSQL Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_postgresql_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.DBforPostgreSQL/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16991,7 +16993,7 @@ var (
 				"dns",
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Private DNS Zone. Must be a valid domain name.`,
@@ -17025,7 +17027,7 @@ var (
 					Description: `The maximum number of virtual networks that can be linked to this Private DNS zone with registration enabled. ## Import Private DNS Zones can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_zone.zone1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Prviate DNS Zone ID.`,
@@ -17059,7 +17061,7 @@ var (
 				"public",
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Public IP resource . Changing this forces a new resource to be created.`,
@@ -17121,7 +17123,7 @@ var (
 					Description: `Fully qualified domain name of the A DNS record associated with the public IP. ` + "`" + `domain_name_label` + "`" + ` must be specified to get the ` + "`" + `fqdn` + "`" + `. This is the concatenation of the ` + "`" + `domain_name_label` + "`" + ` and the regionalized DNS zone ## Import Public IPs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_public_ip.myPublicIp /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/publicIPAddresses/myPublicIpAddress1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Public IP ID.`,
@@ -17148,7 +17150,7 @@ var (
 				"ip",
 				"prefix",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Public IP resource . Changing this forces a new resource to be created.`,
@@ -17186,7 +17188,7 @@ var (
 					Description: `The IP address prefix value that was allocated. ## Import Public IP Prefixes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_public_ip_prefix.myPublicIpPrefix /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/publicIPFixes/myPublicIpPrefix1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Public IP Prefix ID.`,
@@ -17209,7 +17211,7 @@ var (
 				"protected",
 				"vm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_group_name",
 					Description: `(Required) The name of the resource group in which to create the Recovery Services Protected VM. Changing this forces a new resource to be created.`,
@@ -17235,7 +17237,7 @@ var (
 					Description: `The ID of the Recovery Services Vault. ## Import Recovery Services Protected VMs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protected_vm.item1 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.RecoveryServices/vaults/example-recovery-vault/backupFabrics/Azure/protectionContainers/iaasvmcontainer;iaasvmcontainerv2;group1;vm1/protectedItems/vm;iaasvmcontainerv2;group1;vm1" ` + "`" + `` + "`" + `` + "`" + ` Note the ID requires quoting as there are semicolons`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Recovery Services Vault. ## Import Recovery Services Protected VMs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protected_vm.item1 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.RecoveryServices/vaults/example-recovery-vault/backupFabrics/Azure/protectionContainers/iaasvmcontainer;iaasvmcontainerv2;group1;vm1/protectedItems/vm;iaasvmcontainerv2;group1;vm1" ` + "`" + `` + "`" + `` + "`" + ` Note the ID requires quoting as there are semicolons`,
@@ -17255,7 +17257,7 @@ var (
 				"policy",
 				"vm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Recovery Services Vault Policy. Changing this forces a new resource to be created.`,
@@ -17353,7 +17355,7 @@ var (
 					Description: `The ID of the Recovery Services VM Protection Policy. ## Import Recovery Services VM Protection Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protection_policy_vm.policy1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.RecoveryServices/vaults/example-recovery-vault/backupPolicies/policy1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Recovery Services VM Protection Policy. ## Import Recovery Services VM Protection Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protection_policy_vm.policy1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.RecoveryServices/vaults/example-recovery-vault/backupPolicies/policy1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -17371,7 +17373,7 @@ var (
 				"services",
 				"vault",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Recovery Services Vault. Changing this forces a new resource to be created.`,
@@ -17397,7 +17399,7 @@ var (
 					Description: `The ID of the Recovery Services Vault. ## Import Recovery Services Vaults can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_vault.vault1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.RecoveryServices/vaults/vault1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Recovery Services Vault. ## Import Recovery Services Vaults can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_vault.vault1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.RecoveryServices/vaults/vault1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -17414,7 +17416,7 @@ var (
 				"redis",
 				"cache",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Redis instance. Changing this forces a new resource to be created.`,
@@ -17552,7 +17554,7 @@ var (
 					Description: `Returns the max number of connected clients at the same time. ## Relevant Links - [Azure Redis Cache: SKU specific configuration limitations](https://azure.microsoft.com/en-us/documentation/articles/cache-configure/#advanced-settings) - [Redis: Available Configuration Settings](http://redis.io/topics/config) ## Import Redis Cache's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_redis_cache.cache1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Cache/Redis/cache1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Route ID.`,
@@ -17598,7 +17600,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Firewall Rule. Changing this forces a new resource to be created.`,
@@ -17624,7 +17626,7 @@ var (
 					Description: `The Redis Firewall Rule ID. ## Import Redis Firewall Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_redis_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Cache/Redis/cache1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Redis Firewall Rule ID. ## Import Redis Firewall Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_redis_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Cache/Redis/cache1/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -17642,7 +17644,7 @@ var (
 				"relay",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Azure Relay Namespace. Changing this forces a new resource to be created.`,
@@ -17696,7 +17698,7 @@ var (
 					Description: `The Identifier for Azure Insights metrics. ## Import Azure Relay Namespace's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_relay_namespace.relay1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Relay/namespaces/relay1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Azure Relay Namespace ID. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
@@ -17734,7 +17736,7 @@ var (
 				"resource",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the resource group. Must be unique on your Azure subscription.`,
@@ -17752,7 +17754,7 @@ var (
 					Description: `The resource group ID. ## Import Resource Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_resource_group.mygroup /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The resource group ID. ## Import Resource Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_resource_group.mygroup /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup ` + "`" + `` + "`" + `` + "`" + ``,
@@ -17770,7 +17772,7 @@ var (
 				"role",
 				"assignment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A unique UUID/GUID for this Role Assignment - one will be generated if not specified. Changing this forces a new resource to be created.`,
@@ -17796,7 +17798,7 @@ var (
 					Description: `The Role Assignment ID. ## Import Role Assignments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_assignment.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Role Assignment ID. ## Import Role Assignments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_assignment.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -17814,7 +17816,7 @@ var (
 				"role",
 				"definition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_definition_id",
 					Description: `(Optional) A unique UUID/GUID which identifies this role - one will be generated if not specified. Changing this forces a new resource to be created.`,
@@ -17860,7 +17862,7 @@ var (
 					Description: `The Role Definition ID. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Role Definition ID. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -17877,7 +17879,7 @@ var (
 				"network",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the route. Changing this forces a new resource to be created.`,
@@ -17907,7 +17909,7 @@ var (
 					Description: `The Route ID. ## Import Routes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route.testRoute /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1/routes/myroute1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Route ID. ## Import Routes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route.testRoute /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1/routes/myroute1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -17925,7 +17927,7 @@ var (
 				"route",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the route table. Changing this forces a new resource to be created.`,
@@ -17975,7 +17977,7 @@ var (
 					Description: `The collection of Subnets associated with this route table. ## Import Route Tables can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route_table.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Route Table ID.`,
@@ -17996,7 +17998,7 @@ var (
 				"scheduler",
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Scheduler Job. Changing this forces a new resource to be created.`,
@@ -18186,7 +18188,7 @@ var (
 					Description: `(Computed) The certificate's certificate subject name. ## Import Scheduler Job can be imported using a ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_scheduler_job.job1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourceGroup1/providers/Microsoft.Scheduler/jobCollections/jobCollection1/jobs/job1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Scheduler Job ID. ` + "`" + `authentication_certificate` + "`" + ` block exports the following:`,
@@ -18216,7 +18218,7 @@ var (
 				"job",
 				"collection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Scheduler Job Collection. Changing this forces a new resource to be created.`,
@@ -18262,7 +18264,7 @@ var (
 					Description: `The ID of the Scheduler Job Collection. ## Import Scheduler Job Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_scheduler_job_collection.jobcollection1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Scheduler/jobCollections/jobcollection1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Scheduler Job Collection. ## Import Scheduler Job Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_scheduler_job_collection.jobcollection1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Scheduler/jobCollections/jobcollection1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18279,7 +18281,7 @@ var (
 				"search",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Search Service. Changing this forces a new resource to be created.`,
@@ -18321,7 +18323,7 @@ var (
 					Description: `The Search Service Administration secondary key. ## Import Search Services can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_search_service.service1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Search/searchServices/service1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Search Service ID.`,
@@ -18347,7 +18349,7 @@ var (
 				"center",
 				"contact",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `(Required) The email of the Security Center Contact.`,
@@ -18369,7 +18371,7 @@ var (
 					Description: `The Security Center Contact ID. ## Import The contact can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_contact.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/securityContacts/default1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Security Center Contact ID. ## Import The contact can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_contact.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/securityContacts/default1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18388,7 +18390,7 @@ var (
 				"subscription",
 				"pricing",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tier",
 					Description: `(Required) The pricing tier to use. Possible values are ` + "`" + `Free` + "`" + ` and ` + "`" + `Standard` + "`" + `. ~>`,
@@ -18398,7 +18400,7 @@ var (
 					Description: `The subscription pricing ID. ## Import The pricing tier can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_subscription_pricing.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/pricings/default ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The subscription pricing ID. ## Import The pricing tier can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_subscription_pricing.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/pricings/default ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18416,7 +18418,7 @@ var (
 				"center",
 				"workspace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scope",
 					Description: `(Required) The scope of VMs to send their security data to the desired workspace, unless overridden by a setting with more specific scope.`,
@@ -18430,7 +18432,7 @@ var (
 					Description: `The Security Center Workspace ID. ## Import The contact can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_workspace.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/workspaceSettings/default ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Security Center Workspace ID. ## Import The contact can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_security_center_workspace.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Security/workspaceSettings/default ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18448,7 +18450,7 @@ var (
 				"fabric",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Service Fabric Cluster. Changing this forces a new resource to be created.`,
@@ -18678,7 +18680,7 @@ var (
 					Description: `The Cluster Endpoint for this Service Fabric Cluster. ## Import Service Fabric Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_service_fabric_cluster.cluster1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ServiceFabric/clusters/cluster1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Service Fabric Cluster.`,
@@ -18700,7 +18702,7 @@ var (
 				"servicebus",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the ServiceBus Namespace resource . Changing this forces a new resource to be created.`,
@@ -18746,7 +18748,7 @@ var (
 					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Import Service Bus Namespace can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_namespace.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ServiceBus Namespace ID. The following attributes are exported only if there is an authorization rule named ` + "`" + `RootManageSharedAccessKey` + "`" + ` which is created automatically by Azure.`,
@@ -18782,7 +18784,7 @@ var (
 				"authorization",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the ServiceBus Namespace Authorization Rule resource. Changing this forces a new resource to be created.`,
@@ -18828,7 +18830,7 @@ var (
 					Description: `The Secondary Connection String for the ServiceBus Namespace authorization Rule. ## Import ServiceBus Namespace authorization rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_namespace_authorization_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ServiceBus/namespaces/namespace1/AuthorizationRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ServiceBus Topic ID.`,
@@ -18862,7 +18864,7 @@ var (
 				"servicebus",
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the ServiceBus Queue resource. Changing this forces a new resource to be created.`,
@@ -18928,7 +18930,7 @@ var (
 					Description: `The ServiceBus Queue ID. ## Import Service Bus Queue can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_queue.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/queues/snqueue1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ServiceBus Queue ID. ## Import Service Bus Queue can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_queue.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/queues/snqueue1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18948,7 +18950,7 @@ var (
 				"authorization",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Authorization Rule. Changing this forces a new resource to be created.`,
@@ -18998,7 +19000,7 @@ var (
 					Description: `The Secondary Connection String for the Authorization Rule. ## Import ServiceBus Queue Authorization Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_queue_authorization_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ServiceBus/namespaces/namespace1/queues/queue1/authorizationRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Authorization Rule.`,
@@ -19032,7 +19034,7 @@ var (
 				"servicebus",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the ServiceBus Subscription resource. Changing this forces a new resource to be created.`,
@@ -19090,7 +19092,7 @@ var (
 					Description: `The ServiceBus Subscription ID. ## Import Service Bus Subscriptions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ServiceBus Subscription ID. ## Import Service Bus Subscriptions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19109,7 +19111,7 @@ var (
 				"subscription",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the ServiceBus Subscription Rule. Changing this forces a new resource to be created.`,
@@ -19183,7 +19185,7 @@ var (
 					Description: `The ServiceBus Subscription Rule ID. ## Import Service Bus Subscription Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1/rules/sbrule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ServiceBus Subscription Rule ID. ## Import Service Bus Subscription Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1/rules/sbrule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19201,7 +19203,7 @@ var (
 				"servicebus",
 				"topic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the ServiceBus Topic resource. Changing this forces a new resource to be created.`,
@@ -19263,7 +19265,7 @@ var (
 					Description: `The ServiceBus Topic ID. ## Import Service Bus Topics can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_topic.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ServiceBus Topic ID. ## Import Service Bus Topics can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_topic.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19283,7 +19285,7 @@ var (
 				"authorization",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the ServiceBus Topic Authorization Rule resource. Changing this forces a new resource to be created.`,
@@ -19333,7 +19335,7 @@ var (
 					Description: `The Secondary Connection String for the ServiceBus Topic authorization Rule. ## Import ServiceBus Topic authorization rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_topic_authorization_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ServiceBus/namespaces/namespace1/topics/topic1/authorizationRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ServiceBus Topic ID.`,
@@ -19367,7 +19369,7 @@ var (
 				"shared",
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Shared Image. Changing this forces a new resource to be created.`,
@@ -19429,7 +19431,7 @@ var (
 					Description: `The ID of the Shared Image. ## Import Shared Images can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_shared_image.image1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/galleries/gallery1/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Shared Image. ## Import Shared Images can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_shared_image.image1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/galleries/gallery1/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19448,7 +19450,7 @@ var (
 				"image",
 				"gallery",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Shared Image Gallery. Changing this forces a new resource to be created.`,
@@ -19478,7 +19480,7 @@ var (
 					Description: `The Unique Name for this Shared Image Gallery. ## Import Shared Image Galleries can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_shared_image_gallery.gallery1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/galleries/gallery1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Shared Image Gallery.`,
@@ -19501,7 +19503,7 @@ var (
 				"image",
 				"version",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The version number for this Image Version, such as ` + "`" + `1.0.0` + "`" + `. Changing this forces a new resource to be created.`,
@@ -19551,7 +19553,7 @@ var (
 					Description: `The ID of the Shared Image Version. ## Import Shared Image Versions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_shared_image_version.version /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/galleries/gallery1/images/image1/versions/1.2.3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Shared Image Version. ## Import Shared Image Versions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_shared_image_version.version /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/galleries/gallery1/images/image1/versions/1.2.3 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19569,7 +19571,7 @@ var (
 				"signalr",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SignalR service. Changing this forces a new resource to be created.`,
@@ -19635,7 +19637,7 @@ var (
 					Description: `The secondary connection string for the SignalR service. ## Import SignalR services can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_signalr_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/terraform-signalr/providers/Microsoft.SignalRService/SignalR/tfex-signalr ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the SignalR service.`,
@@ -19684,7 +19686,7 @@ var (
 				"compute",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Snapshot resource. Changing this forces a new resource to be created.`,
@@ -19730,7 +19732,7 @@ var (
 					Description: `The Size of the Snapshotted Disk in GB. ## Import Snapshots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_snapshot.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/snapshots/snapshot1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Snapshot ID.`,
@@ -19754,7 +19756,7 @@ var (
 				"directory",
 				"administrator",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_name",
 					Description: `(Required) The name of the SQL Server on which to set the administrator. Changing this forces a new resource to be created.`,
@@ -19780,7 +19782,7 @@ var (
 					Description: `The SQL Active Directory Administrator ID. ## Import A SQL Active Directory Administrator can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_active_directory_administrator.administrator /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/administrators/activeDirectory ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The SQL Active Directory Administrator ID. ## Import A SQL Active Directory Administrator can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_active_directory_administrator.administrator /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/administrators/activeDirectory ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19797,7 +19799,7 @@ var (
 				"database",
 				"sql",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the database.`,
@@ -19943,7 +19945,7 @@ var (
 					Description: `The default secondary location of the SQL Database. ## Import SQL Databases can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The SQL Database ID.`,
@@ -19969,7 +19971,7 @@ var (
 				"sql",
 				"elasticpool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the elastic pool. This needs to be globally unique. Changing this forces a new resource to be created.`,
@@ -20019,7 +20021,7 @@ var (
 					Description: `The creation date of the SQL Elastic Pool.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The SQL Elastic Pool ID.`,
@@ -20042,7 +20044,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the firewall rule.`,
@@ -20068,7 +20070,7 @@ var (
 					Description: `The SQL Firewall Rule ID. ## Import SQL Firewall Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The SQL Firewall Rule ID. ## Import SQL Firewall Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_firewall_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/firewallRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -20086,7 +20088,7 @@ var (
 				"sql",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SQL Server. This needs to be globally unique within Azure.`,
@@ -20124,7 +20126,7 @@ var (
 					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net) ## Import SQL Servers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_server.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The SQL Server ID.`,
@@ -20148,7 +20150,7 @@ var (
 				"network",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SQL virtual network rule. Changing this forces a new resource to be created. Cannot be empty and must only contain alphanumeric characters and hyphens. Cannot start with a number, and cannot start or end with a hyphen. ~>`,
@@ -20174,7 +20176,7 @@ var (
 					Description: `The ID of the SQL virtual network rule. ## Import SQL Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the SQL virtual network rule. ## Import SQL Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
@@ -20191,7 +20193,7 @@ var (
 				"storage",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the storage account. Changing this forces a new resource to be created. This must be unique across the entire Azure service, not just within the resource group.`,
@@ -20429,7 +20431,7 @@ var (
 					Description: `The Tenant ID for the Service Principal associated with the Identity of this Storage Account. -> You can access the Principal ID via ` + "`" + `${azurerm_storage_account.test.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_storage_account.test.identity.0.tenant_id}` + "`" + ` ## Import Storage Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_account.storageAcc1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Storage/storageAccounts/myaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The storage account Resource ID.`,
@@ -20586,7 +20588,7 @@ var (
 				"storage",
 				"blob",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage blob. Must be unique within the storage container the blob is located.`,
@@ -20644,7 +20646,7 @@ var (
 					Description: `The URL of the blob ## Import Storage Blob's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_blob.blob1 https://example.blob.core.windows.net/container/blob.vhd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Storage Blob.`,
@@ -20665,7 +20667,7 @@ var (
 				"storage",
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage container. Must be unique within the storage service the container is located.`,
@@ -20691,7 +20693,7 @@ var (
 					Description: `Key-value definition of additional properties associated to the storage container ## Import Storage Containers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_container.container1 https://example.blob.core.windows.net/container ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Storage Container.`,
@@ -20712,7 +20714,7 @@ var (
 				"storage",
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage queue. Must be unique within the storage account the queue is located.`,
@@ -20730,7 +20732,7 @@ var (
 					Description: `The ID of the Storage Queue. ## Import Storage Queue's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_queue.queue1 https://example.queue.core.windows.net/queue1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Storage Queue. ## Import Storage Queue's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_queue.queue1 https://example.queue.core.windows.net/queue1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -20747,7 +20749,7 @@ var (
 				"storage",
 				"share",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the share. Must be unique within the storage account where the share is located.`,
@@ -20773,7 +20775,7 @@ var (
 					Description: `The URL of the share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.testShare storageShareName/resourceGroupName/storageAccoutName ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The storage share Resource ID.`,
@@ -20794,7 +20796,7 @@ var (
 				"storage",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage table. Must be unique within the storage account the table is located.`,
@@ -20812,7 +20814,7 @@ var (
 					Description: `The ID of the Storage Table. ## Import Storage Table's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 https://example.table.core.windows.net/table1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Storage Table. ## Import Storage Table's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 https://example.table.core.windows.net/table1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -20832,7 +20834,7 @@ var (
 				"javascript",
 				"udf",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the JavaScript UDF Function. Changing this forces a new resource to be created.`,
@@ -20870,7 +20872,7 @@ var (
 					Description: `The ID of the Stream Analytics JavaScript UDF Function. ## Import Stream Analytics JavaScript UDF Functions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics JavaScript UDF Function. ## Import Stream Analytics JavaScript UDF Functions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -20888,7 +20890,7 @@ var (
 				"analytics",
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Stream Analytics Job. Changing this forces a new resource to be created.`,
@@ -20946,7 +20948,7 @@ var (
 					Description: `The Job ID assigned by the Stream Analytics Job. ## Import Stream Analytics Job's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_job.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Job.`,
@@ -20969,7 +20971,7 @@ var (
 				"output",
 				"blob",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Stream Output. Changing this forces a new resource to be created.`,
@@ -21031,7 +21033,7 @@ var (
 					Description: `The ID of the Stream Analytics Output Blob Storage. ## Import Stream Analytics Outputs to Blob Storage can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Output Blob Storage. ## Import Stream Analytics Outputs to Blob Storage can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21050,7 +21052,7 @@ var (
 				"output",
 				"eventhub",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Stream Output. Changing this forces a new resource to be created.`,
@@ -21104,7 +21106,7 @@ var (
 					Description: `The ID of the Stream Analytics Output EventHub. ## Import Stream Analytics Outputs to an EventHub can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_eventhub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Output EventHub. ## Import Stream Analytics Outputs to an EventHub can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_eventhub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21123,7 +21125,7 @@ var (
 				"output",
 				"mssql",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Stream Output. Changing this forces a new resource to be created.`,
@@ -21157,7 +21159,7 @@ var (
 					Description: `The ID of the Stream Analytics Output Microsoft SQL Server Database. ## Import Stream Analytics Outputs to Microsoft SQL Server Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_mssql.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Output Microsoft SQL Server Database. ## Import Stream Analytics Outputs to Microsoft SQL Server Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_mssql.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21177,7 +21179,7 @@ var (
 				"servicebus",
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Stream Output. Changing this forces a new resource to be created.`,
@@ -21231,7 +21233,7 @@ var (
 					Description: `The ID of the Stream Analytics Output ServiceBus Queue. ## Import Stream Analytics Output ServiceBus Queue's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_servicebus_queue.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Output ServiceBus Queue. ## Import Stream Analytics Output ServiceBus Queue's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_servicebus_queue.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21250,7 +21252,7 @@ var (
 				"input",
 				"blob",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Stream Input Blob. Changing this forces a new resource to be created.`,
@@ -21308,7 +21310,7 @@ var (
 					Description: `The ID of the Stream Analytics Stream Input Blob. ## Import Stream Analytics Stream Input Blob's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Stream Input Blob. ## Import Stream Analytics Stream Input Blob's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21327,7 +21329,7 @@ var (
 				"input",
 				"eventhub",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Stream Input EventHub. Changing this forces a new resource to be created.`,
@@ -21381,7 +21383,7 @@ var (
 					Description: `The ID of the Stream Analytics Stream Input EventHub. ## Import Stream Analytics Stream Input EventHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_eventhub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Stream Input EventHub. ## Import Stream Analytics Stream Input EventHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_eventhub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21400,7 +21402,7 @@ var (
 				"input",
 				"iothub",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Stream Input IoTHub. Changing this forces a new resource to be created.`,
@@ -21454,7 +21456,7 @@ var (
 					Description: `The ID of the Stream Analytics Stream Input IoTHub. ## Import Stream Analytics Stream Input IoTHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_iothub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Stream Analytics Stream Input IoTHub. ## Import Stream Analytics Stream Input IoTHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_iothub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21471,7 +21473,7 @@ var (
 				"network",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the subnet. Changing this forces a new resource to be created.`,
@@ -21537,7 +21539,7 @@ var (
 					Description: `The address prefix for the subnet ## Import Subnets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet.testSubnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The subnet ID.`,
@@ -21577,7 +21579,7 @@ var (
 				"group",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_security_group_id",
 					Description: `(Required) The ID of the Network Security Group which should be associated with the Subnet. Changing this forces a new resource to be created.`,
@@ -21591,7 +21593,7 @@ var (
 					Description: `The ID of the Subnet. ## Import Subnet ` + "`" + `<->` + "`" + ` Network Security Group Associations can be imported using the ` + "`" + `resource id` + "`" + ` of the Subnet, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet_network_security_group_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Subnet. ## Import Subnet ` + "`" + `<->` + "`" + ` Network Security Group Associations can be imported using the ` + "`" + `resource id` + "`" + ` of the Subnet, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet_network_security_group_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21611,7 +21613,7 @@ var (
 				"table",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_table_id",
 					Description: `(Required) The ID of the Route Table which should be associated with the Subnet. Changing this forces a new resource to be created.`,
@@ -21625,7 +21627,7 @@ var (
 					Description: `The ID of the Subnet. ## Import Subnet Route Table Associations can be imported using the ` + "`" + `resource id` + "`" + ` of the Subnet, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet_route_table_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Subnet. ## Import Subnet Route Table Associations can be imported using the ` + "`" + `resource id` + "`" + ` of the Subnet, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet_route_table_association.association1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21642,7 +21644,7 @@ var (
 				"template",
 				"deployment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the template deployment. Changing this forces a new resource to be created.`,
@@ -21676,7 +21678,7 @@ var (
 					Description: `A map of supported scalar output types returned from the deployment (currently, Azure Template Deployment outputs of type String, Int and Bool are supported, and are converted to strings - others will be ignored) and can be accessed using ` + "`" + `.outputs["name"]` + "`" + `. ## Note Terraform does not know about the individual resources created by Azure using a deployment template and therefore cannot delete these resources during a destroy. Destroying a template deployment removes the associated deployment operations, but will not delete the Azure resources created by the deployment. In order to delete these resources, the containing resource group must also be destroyed. [More information](https://docs.microsoft.com/en-us/rest/api/resources/deployments#Deployments_Delete).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Template Deployment ID.`,
@@ -21699,7 +21701,7 @@ var (
 				"manager",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Traffic Manager endpoint. Changing this forces a new resource to be created.`,
@@ -21753,7 +21755,7 @@ var (
 					Description: `The Traffic Manager Endpoint id. ## Import Traffic Manager Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_endpoint.testEndpoints /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1/azureEndpoints/mytrafficmanagerendpoint ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Traffic Manager Endpoint id. ## Import Traffic Manager Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_endpoint.testEndpoints /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1/azureEndpoints/mytrafficmanagerendpoint ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21772,7 +21774,7 @@ var (
 				"manager",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual network. Changing this forces a new resource to be created.`,
@@ -21830,7 +21832,7 @@ var (
 					Description: `The FQDN of the created Profile. ## Notes The Traffic Manager is created with the location ` + "`" + `global` + "`" + `. ## Import Traffic Manager Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_profile.testProfile /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Traffic Manager Profile id.`,
@@ -21853,7 +21855,7 @@ var (
 				"assigned",
 				"identity",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the user assigned identity. Changing this forces a new identity to be created.`,
@@ -21883,7 +21885,7 @@ var (
 					Description: `Client ID associated with the user assigned identity. ## Import User Assigned Identities can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_user_assigned_identity.testIdentity /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/acceptanceTestResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testIdentity ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The user assigned identity ID.`,
@@ -21909,7 +21911,7 @@ var (
 				"virtual",
 				"machine",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the Virtual Machine. Changing this forces a new resource to be created.`,
@@ -22219,7 +22221,7 @@ var (
 					Description: `The ID of the Virtual Machine. ## Import Virtual Machines can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Machine. ## Import Virtual Machines can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -22240,7 +22242,7 @@ var (
 				"disk",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_machine_id",
 					Description: `(Required) The ID of the Virtual Machine to which the Data Disk should be attached. Changing this forces a new resource to be created.`,
@@ -22270,7 +22272,7 @@ var (
 					Description: `The ID of the Virtual Machine Data Disk attachment. ## Import Virtual Machines Data Disk Attachments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_data_disk_attachment.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1/dataDisks/disk1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Machine Data Disk attachment. ## Import Virtual Machines Data Disk Attachments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_data_disk_attachment.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1/dataDisks/disk1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
@@ -22289,7 +22291,7 @@ var (
 				"machine",
 				"extension",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual machine extension peering. Changing this forces a new resource to be created.`,
@@ -22339,7 +22341,7 @@ var (
 					Description: `The Virtual Machine Extension ID. ## Import Virtual Machine Extensions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_extension.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/virtualMachines/myVM/extensions/hostname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Virtual Machine Extension ID. ## Import Virtual Machine Extensions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_extension.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/virtualMachines/myVM/extensions/hostname ` + "`" + `` + "`" + `` + "`" + ``,
@@ -22359,7 +22361,7 @@ var (
 				"scale",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the virtual machine scale set resource. Changing this forces a new resource to be created.`,
@@ -22773,7 +22775,7 @@ var (
 					Description: `The virtual machine scale set ID. ## Import Virtual Machine Scale Sets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_scale_set.scaleset1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/virtualMachineScaleSets/scaleset1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The virtual machine scale set ID. ## Import Virtual Machine Scale Sets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_scale_set.scaleset1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/virtualMachineScaleSets/scaleset1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -22790,7 +22792,7 @@ var (
 				"network",
 				"virtual",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual network. Changing this forces a new resource to be created.`,
@@ -22868,7 +22870,7 @@ var (
 					Description: `The ID of this subnet. ## Import Virtual Networks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network.testNetwork /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The virtual NetworkConfiguration ID.`,
@@ -22906,7 +22908,7 @@ var (
 				"virtual",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Virtual Network Gateway. Changing the name forces a new resource to be created.`,
@@ -23020,7 +23022,7 @@ var (
 					Description: `The ID of the Virtual Network Gateway. ## Import Virtual Network Gateways can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway.testGateway /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/virtualNetworkGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Virtual Network Gateway. ## Import Virtual Network Gateways can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway.testGateway /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/virtualNetworkGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -23039,7 +23041,7 @@ var (
 				"gateway",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the connection. Changing the name forces a new resource to be created.`,
@@ -23137,7 +23139,7 @@ var (
 					Description: `The connection ID. ## Import Virtual Network Gateway Connections can be imported using their ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway_connection.testConnection /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/connections/myConnection1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The connection ID. ## Import Virtual Network Gateway Connections can be imported using their ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway_connection.testConnection /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/connections/myConnection1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -23155,7 +23157,7 @@ var (
 				"virtual",
 				"peering",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the virtual network peering. Changing this forces a new resource to be created.`,
@@ -23193,7 +23195,7 @@ var (
 					Description: `The Virtual Network Peering resource ID. ## Note Virtual Network peerings cannot be created, updated or deleted concurrently. ## Import Virtual Network Peerings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network_peering.testPeering /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/virtualNetworkPeerings/myvnet1peering ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Virtual Network Peering resource ID. ## Note Virtual Network peerings cannot be created, updated or deleted concurrently. ## Import Virtual Network Peerings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network_peering.testPeering /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/virtualNetworkPeerings/myvnet1peering ` + "`" + `` + "`" + `` + "`" + ``,
@@ -23468,10 +23470,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

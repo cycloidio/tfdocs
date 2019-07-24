@@ -1,11 +1,13 @@
-package aws
+package google
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get information about the configuration of the Google Cloud provider.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `The ID of the project to apply any resources to.`,
@@ -32,7 +34,7 @@ var (
 					Description: `The OAuth2 access token used by the client to authenticate against the Google Cloud API.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `The ID of the project to apply any resources to.`,
@@ -58,7 +60,7 @@ var (
 			ShortDescription: `Get information about a Google Cloud Function.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of a Cloud Function. - - -`,
@@ -136,7 +138,7 @@ var (
 					Description: `Whether the function should be retried on failure.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the Cloud Function.`,
@@ -210,7 +212,7 @@ var (
 			ShortDescription: `Get the IP address from a static address.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the resource, required by GCE. - - -`,
@@ -236,7 +238,7 @@ var (
 					Description: `Indicates if the address is used. Possible values are: RESERVED or IN_USE.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource.`,
@@ -258,7 +260,7 @@ var (
 			ShortDescription: `Get a forwarding rule within GCE.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the forwarding rule. - - -`,
@@ -320,7 +322,7 @@ var (
 					Description: `The URI of the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of this forwarding rule.`,
@@ -378,7 +380,7 @@ var (
 			ShortDescription: `Get the IP address from a static address reserved for a Global Forwarding Rule.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the resource, required by GCE. - - -`,
@@ -400,7 +402,7 @@ var (
 					Description: `Indicates if the address is used. Possible values are: RESERVED or IN_USE.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource.`,
@@ -422,7 +424,7 @@ var (
 			ShortDescription: `Get information about a Google Compute Image.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. If you are using a [public base image][pubimg], be sure to specify the correct Image Project. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
@@ -496,7 +498,7 @@ var (
 					Description: `The status of the image. Possible values are`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the image.`,
@@ -574,7 +576,7 @@ var (
 			ShortDescription: `Get a VM instance within GCE.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `(Optional) The self link of the instance. One of ` + "`" + `name` + "`" + ` or ` + "`" + `self_link` + "`" + ` must be provided.`,
@@ -808,7 +810,7 @@ var (
 					Description: `The number of the guest accelerator cards exposed to this instance. [network-tier]: https://cloud.google.com/network-tiers/docs/overview The ` + "`" + `shielded_instance_config` + "`" + ` block supports:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_disk",
 					Description: `The boot disk for the instance. Structure is documented below.`,
@@ -1034,7 +1036,7 @@ var (
 			ShortDescription: `Get information about the IP ranges used when health-checking load balancers.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network",
 					Description: `The IP ranges used for health checks when`,
@@ -1044,7 +1046,7 @@ var (
 					Description: `The IP ranges used for health checks when`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network",
 					Description: `The IP ranges used for health checks when`,
@@ -1062,7 +1064,7 @@ var (
 			ShortDescription: `Get a network within GCE.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the network. - - -`,
@@ -1092,7 +1094,7 @@ var (
 					Description: `The URI of the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network",
 					Description: `The network name or resource link to the parent network of this network.`,
@@ -1122,7 +1124,7 @@ var (
 			ShortDescription: `Get the instances inside a Compute Region Instance Group within GCE.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the instance group. One of ` + "`" + `name` + "`" + ` or ` + "`" + `self_link` + "`" + ` must be provided.`,
@@ -1168,7 +1170,7 @@ var (
 					Description: `String description of current state of the instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `The number of instances in the group.`,
@@ -1206,13 +1208,13 @@ var (
 			ShortDescription: `Get info about a Google Compute SSL Certificate.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference See [google_compute_ssl_certificate](https://www.terraform.io/docs/providers/google/r/compute_ssl_certificate.html) resource for details of the available attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1221,7 +1223,7 @@ var (
 			ShortDescription: `Gets an SSL Policy within GCE, for use with Target HTTPS and Target SSL Proxies.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SSL Policy. - - -`,
@@ -1259,7 +1261,7 @@ var (
 					Description: `The URI of the created resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enabled_features",
 					Description: `The set of enabled encryption ciphers as a result of the policy config`,
@@ -1297,7 +1299,7 @@ var (
 			ShortDescription: `Get a subnetwork within GCE.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `(Optional) The self link of the subnetwork. If ` + "`" + `self_link` + "`" + ` is specified, ` + "`" + `name` + "`" + `, ` + "`" + `project` + "`" + `, and ` + "`" + `region` + "`" + ` are ignored.`,
@@ -1347,7 +1349,7 @@ var (
 					Description: `The range of IP addresses belonging to this subnetwork secondary range.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network",
 					Description: `The network name or resource link to the parent network of this subnetwork.`,
@@ -1389,7 +1391,7 @@ var (
 			ShortDescription: `Get a VPN gateway within GCE.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the VPN gateway. - - -`,
@@ -1419,7 +1421,7 @@ var (
 					Description: `The URI of the resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network",
 					Description: `The network of this VPN gateway.`,
@@ -1445,13 +1447,13 @@ var (
 			ShortDescription: `Get OpenID userinfo about the credentials used with the Google provider, specifically the email.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `The email of the account used by the provider to authenticate with GCP.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `The email of the account used by the provider to authenticate with GCP.`,
@@ -1465,7 +1467,7 @@ var (
 			ShortDescription: `Provides available Cloud Composer versions.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The ID of the project to list versions in. If it is not provided, the provider project is used.`,
@@ -1487,7 +1489,7 @@ var (
 					Description: `Supported python versions for this image version`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_versions",
 					Description: `A list of composer image versions available in the given project and location. Each ` + "`" + `image_version` + "`" + ` contains:`,
@@ -1509,7 +1511,7 @@ var (
 			ShortDescription: `Get information about a Backend Service.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Backend Service. - - -`,
@@ -1563,7 +1565,7 @@ var (
 					Description: `The set of HTTP/HTTPS health checks used by the Backend Service.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connection_draining_timeout_sec",
 					Description: `Time for which instance will be drained (not accept new connections, but still work to finish started ones).`,
@@ -1617,7 +1619,7 @@ var (
 			ShortDescription: `Retrieve Organization policies for a Google Folder`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder",
 					Description: `(Required) The resource name of the folder to set the policy for. Its format is folders/{folder_id}.`,
@@ -1627,7 +1629,7 @@ var (
 					Description: `(Required) (Required) The name of the Constraint the Policy is configuring, for example, ` + "`" + `serviceuser.services` + "`" + `. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints). ## Attributes Reference See [google_folder_organization_policy](https://www.terraform.io/docs/providers/google/r/google_folder_organization_policy.html) resource for details of the available attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1636,7 +1638,7 @@ var (
 			ShortDescription: `Get information about a Google IAM Role.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "title",
 					Description: `is a friendly title for the role, such as "Role Viewer"`,
@@ -1650,7 +1652,7 @@ var (
 					Description: `indicates the stage of a role in the launch lifecycle, such as ` + "`" + `GA` + "`" + `, ` + "`" + `BETA` + "`" + ` or ` + "`" + `ALPHA` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "title",
 					Description: `is a friendly title for the role, such as "Role Viewer"`,
@@ -1672,8 +1674,8 @@ var (
 			ShortDescription: `Use this data source to get the IP ranges from the sender policy framework (SPF) record of \_cloud-netblocks.googleusercontent.com`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_blocks",
 					Description: `Retrieve list of all CIDR blocks.`,
@@ -1695,7 +1697,7 @@ var (
 			ShortDescription: `Retrieve Organization policies for a Google Project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The project ID.`,
@@ -1705,7 +1707,7 @@ var (
 					Description: `(Required) (Required) The name of the Constraint the Policy is configuring, for example, ` + "`" + `serviceuser.services` + "`" + `. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints). ## Attributes Reference See [google_project_organization_policy](https://www.terraform.io/docs/providers/google/r/google_project.html) resource for details of the available attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1714,7 +1716,7 @@ var (
 			ShortDescription: `Get the service account from a project.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `(Required) The Service account id. (This is the part of the service account's email field that comes before the @ symbol.)`,
@@ -1740,7 +1742,7 @@ var (
 					Description: `The display name for the service account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `The e-mail address of the service account. This value should be referenced from any ` + "`" + `google_iam_policy` + "`" + ` data sources that would grant the service account privileges.`,
@@ -1766,13 +1768,13 @@ var (
 			ShortDescription: `Produces access_token for impersonated service accounts`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_token",
 					Description: `The ` + "`" + `access_token` + "`" + ` representing the new generated identity.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_token",
 					Description: `The ` + "`" + `access_token` + "`" + ` representing the new generated identity.`,
@@ -1786,7 +1788,7 @@ var (
 			ShortDescription: `Get a Google Cloud Platform service account Public Key`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the service account key. This must have format ` + "`" + `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{KEYID}` + "`" + `, where ` + "`" + `{ACCOUNT}` + "`" + ` is the email address or unique id of the service account.`,
@@ -1800,7 +1802,7 @@ var (
 					Description: `The public key, base64 encoded`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "public_key",
 					Description: `The public key, base64 encoded`,
@@ -1814,7 +1816,7 @@ var (
 			ShortDescription: `Provides access to the attributes of a zone within Google Cloud DNS`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the resource.`,
@@ -1836,7 +1838,7 @@ var (
 					Description: `The list of nameservers that will be authoritative for this domain. Use NS records to redirect from your DNS provider to these names, thus making Google Cloud DNS authoritative for this zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dns_name",
 					Description: `The fully qualified DNS name of this zone, e.g. ` + "`" + `terraform.io.` + "`" + `.`,
@@ -1858,7 +1860,7 @@ var (
 			ShortDescription: `Get a folder within GCP.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `(Required) The folder's display name.`,
@@ -1872,7 +1874,7 @@ var (
 					Description: `The resource name of the Folder. This uniquely identifies the folder.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The resource name of the Folder. This uniquely identifies the folder.`,
@@ -1886,7 +1888,7 @@ var (
 			ShortDescription: `Get information about a Google Billing Account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The billing account ID.`,
@@ -1900,7 +1902,7 @@ var (
 					Description: `The IDs of any projects associated with the billing account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The billing account ID.`,
@@ -1922,7 +1924,7 @@ var (
 			ShortDescription: `Retrieve default service account used by VMs running in this project`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
@@ -1944,7 +1946,7 @@ var (
 					Description: `The display name for the service account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `Email address of the default service account used by VMs running in this project`,
@@ -1970,7 +1972,7 @@ var (
 			ShortDescription: `Get a Compute Instance Group within GCE.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the instance group. Either ` + "`" + `name` + "`" + ` or ` + "`" + `self_link` + "`" + ` must be provided.`,
@@ -2012,7 +2014,7 @@ var (
 					Description: `The number of instances in the group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `Textual description of the instance group.`,
@@ -2046,13 +2048,13 @@ var (
 			ShortDescription: `Provides list of available Google Compute Engine node types for sole-tenant nodes.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of node types available in the given zone and project.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of node types available in the given zone and project.`,
@@ -2066,13 +2068,13 @@ var (
 			ShortDescription: `Provides a list of available Google Compute regions`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of regions available in the given project`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of regions available in the given project`,
@@ -2086,13 +2088,13 @@ var (
 			ShortDescription: `Provides a list of available Google Compute zones`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of zones available in the given region`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of zones available in the given region`,
@@ -2106,13 +2108,13 @@ var (
 			ShortDescription: `Get info about a Google Kubernetes Engine cluster.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference See [google_container_cluster](https://www.terraform.io/docs/providers/google/r/container_cluster.html) resource for details of the available attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2121,7 +2123,7 @@ var (
 			ShortDescription: `Provides lists of available Google Kubernetes Engine versions for masters and nodes.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "valid_master_versions",
 					Description: `A list of versions available in the given zone for use with master instances.`,
@@ -2143,7 +2145,7 @@ var (
 					Description: `Version of Kubernetes the service deploys by default.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "valid_master_versions",
 					Description: `A list of versions available in the given zone for use with master instances.`,
@@ -2173,8 +2175,8 @@ var (
 			ShortDescription: `Get URLs for a given project's container registry image.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2183,8 +2185,8 @@ var (
 			ShortDescription: `Get URLs for a given project's container registry repository.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2193,7 +2195,7 @@ var (
 			ShortDescription: `Get information about a Google Cloud Folder.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Folder ID.`,
@@ -2223,7 +2225,7 @@ var (
 					Description: `If ` + "`" + `lookup_organization` + "`" + ` is enable, the resource name of the Organization that the folder belongs.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Folder ID.`,
@@ -2261,13 +2263,13 @@ var (
 			ShortDescription: `Generates an IAM policy that can be referenced by other resources, applying the policy to them.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_data",
 					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_data",
 					Description: `The above bindings serialized in a format suitable for referencing from a resource that supports IAM.`,
@@ -2281,7 +2283,7 @@ var (
 			ShortDescription: `Provides access to KMS key data with Google Cloud KMS.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The CryptoKey's name. A CryptoKey’s name belonging to the specified Google Cloud Platform KeyRing and match the regular expression ` + "`" + `[a-zA-Z0-9_-]{1,63}` + "`" + ``,
@@ -2303,7 +2305,7 @@ var (
 					Description: `The self link of the created CryptoKey. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rotation_period",
 					Description: `Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will take place after the specified period. The rotation period has the format of a decimal number with up to 9 fractional digits, followed by the letter s (seconds).`,
@@ -2325,7 +2327,7 @@ var (
 			ShortDescription: `Provides access to KMS key ring data with Google Cloud KMS.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The KeyRing's name. A KeyRing name must exist within the provided location and match the regular expression ` + "`" + `[a-zA-Z0-9_-]{1,63}` + "`" + ``,
@@ -2343,7 +2345,7 @@ var (
 					Description: `The self link of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The self link of the created KeyRing. Its format is ` + "`" + `projects/{projectId}/locations/{location}/keyRings/{keyRingName}` + "`" + `.`,
@@ -2357,13 +2359,13 @@ var (
 			ShortDescription: `Provides access to secret data encrypted with Google Cloud KMS`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plaintext",
 					Description: `Contains the result of decrypting the provided ciphertext.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plaintext",
 					Description: `Contains the result of decrypting the provided ciphertext.`,
@@ -2377,7 +2379,7 @@ var (
 			ShortDescription: `Get information about a Google Cloud Organization.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Organization ID.`,
@@ -2399,7 +2401,7 @@ var (
 					Description: `The Organization's current lifecycle state.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Organization ID.`,
@@ -2429,13 +2431,13 @@ var (
 			ShortDescription: `Retrieve project details`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported: See [google_project](https://www.terraform.io/docs/providers/google/r/google_project.html) resource for details of the available attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2444,13 +2446,13 @@ var (
 			ShortDescription: `Retrieve enabled of API services for a Google Cloud Platform project`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The project ID. ## Attributes Reference The following attributes are exported: See [google_project_services](https://www.terraform.io/docs/providers/google/r/google_project_services.html) resource for details of the available attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2459,7 +2461,7 @@ var (
 			ShortDescription: `Retrieve a set of projects based on a filter.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
 					Description: `(Optional) A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters). ## Attributes Reference The following attributes are exported:`,
@@ -2473,7 +2475,7 @@ var (
 					Description: `The project id of the project.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "projects",
 					Description: `A list of projects matching the provided filter. Structure is defined below. The ` + "`" + `projects` + "`" + ` block supports:`,
@@ -2491,7 +2493,7 @@ var (
 			ShortDescription: `Get the email address of the project's Google Cloud Storage service account`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The project the unique service account was created for. If it is not provided, the provider project is used.`,
@@ -2505,7 +2507,7 @@ var (
 					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email_address",
 					Description: `The email address of the service account. This value is often used to refer to the service account in order to grant IAM permissions.`,
@@ -2519,7 +2521,7 @@ var (
 			ShortDescription: `Retrieve default service account used by Storage Transfer Jobs running in this project`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The project ID. If it is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
@@ -2529,7 +2531,7 @@ var (
 					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `Email address of the default service account used by Storage Transfer Jobs running in this project`,
@@ -2543,7 +2545,7 @@ var (
 			ShortDescription: `Provides signed URL to Google Cloud Storage object.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to read the object from`,
@@ -2581,7 +2583,7 @@ var (
 					Description: `The signed URL that can be used to access the storage object without authentication.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "signed_url",
 					Description: `The signed URL that can be used to access the storage object without authentication.`,
@@ -2595,7 +2597,7 @@ var (
 			ShortDescription: `Get information about a Google Cloud Storage bucket object.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the containing bucket.`,
@@ -2641,7 +2643,7 @@ var (
 					Description: `(Computed) The [StorageClass](https://cloud.google.com/storage/docs/storage-classes) of the new bucket object. Supported values include: ` + "`" + `MULTI_REGIONAL` + "`" + `, ` + "`" + `REGIONAL` + "`" + `, ` + "`" + `NEARLINE` + "`" + `, ` + "`" + `COLDLINE` + "`" + `. If not provided, this defaults to the bucket's default storage class or to a [standard](https://cloud.google.com/storage/docs/storage-classes#standard) class.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cache_control",
 					Description: `(Computed) [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2) directive to specify caching behavior of object data. If omitted and object is accessible to all anonymous users, the default will be public, max-age=3600`,
@@ -2682,7 +2684,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"google_client_config":                            0,
 		"google_cloudfunctions_function":                  1,
@@ -2736,10 +2738,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

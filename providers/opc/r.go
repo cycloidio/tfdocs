@@ -1,11 +1,13 @@
-package aws
+package opc
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -18,7 +20,7 @@ var (
 				"classic",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ACL.`,
@@ -40,7 +42,7 @@ var (
 					Description: `The Uniform Resource Identifier for the ACL ## Import ACL's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_acl.acl1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -54,7 +56,7 @@ var (
 				"image",
 				"list",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Image List.`,
@@ -68,7 +70,7 @@ var (
 					Description: `(Required) The image list entry to be used, by default, when launching instances using this image list. Defaults to ` + "`" + `1` + "`" + `. ## Import Image List's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_image_list.imagelist1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -83,7 +85,7 @@ var (
 				"list",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Image List.`,
@@ -105,7 +107,7 @@ var (
 					Description: `The Unique Resource Identifier for the Image List Entry. ## Import Image List's can be imported using the Name of the Image List, along with the Version of the Image List Entry, delimited via the ` + "`" + `|` + "`" + ` character, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_image_list_entry.entry1 my_image_list|2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "uri",
 					Description: `The Unique Resource Identifier for the Image List Entry. ## Import Image List's can be imported using the Name of the Image List, along with the Version of the Image List Entry, delimited via the ` + "`" + `|` + "`" + ` character, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_image_list_entry.entry1 my_image_list|2 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -123,7 +125,7 @@ var (
 				"classic",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the instance.`,
@@ -329,7 +331,7 @@ var (
 					Description: `The VNC address and port of the instance. ## Import Instances can be imported using the Instance's combined ` + "`" + `Name` + "`" + ` and ` + "`" + `ID` + "`" + ` with a ` + "`" + `/` + "`" + ` character separating them. If viewing an instance in the Oracle Web Console, the instance's ` + "`" + `name` + "`" + ` and ` + "`" + `id` + "`" + ` are the last two fields in the instances fully qualified ` + "`" + `Name` + "`" + ` For example, in the Web Console an instance's fully qualified name is: ` + "`" + `` + "`" + `` + "`" + ` /Compute-<identify>/<user>@<account>/<instance_name>/<instance_id> ` + "`" + `` + "`" + `` + "`" + ` The instance can be imported as such: ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_instance.instance1 instance_name/instance_id ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `opc_compute_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `20 minutes` + "`" + `) Used for Creating Instances. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `20 minutes` + "`" + `) Used for updating Instances. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `20 minutes` + "`" + `) Used for Deleting Instances.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ` + "`" + `id` + "`" + ` of the instance.`,
@@ -429,7 +431,7 @@ var (
 				"address",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ip address association.`,
@@ -455,7 +457,7 @@ var (
 					Description: `(Computed) The Uniform Resource Identifier of the ip address association. ## Import IP Address Associations can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_ip_address_association.default example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -471,7 +473,7 @@ var (
 				"prefix",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ip address prefix set.`,
@@ -493,7 +495,7 @@ var (
 					Description: `(Computed) The Uniform Resource Identifier of the ip address prefix set. ## Import IP Address Prefix Set can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_ip_address_prefix_set.default example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -508,7 +510,7 @@ var (
 				"address",
 				"reservation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ip address reservation.`,
@@ -534,7 +536,7 @@ var (
 					Description: `The Uniform Resource Identifier of the ip address reservation ## Import IP Address Reservations can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_ip_address_reservation.default example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -548,7 +550,7 @@ var (
 				"ip",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vcable",
 					Description: `(Required) The vcable of the instance to associate the IP address with.`,
@@ -558,7 +560,7 @@ var (
 					Description: `(Required) The pool from which to take an IP address. To associate a specific reserved IP address, use the prefix ` + "`" + `ipreservation:` + "`" + ` followed by the name of the IP reservation. To allocate an IP address from a pool, use the prefix ` + "`" + `ippool:` + "`" + `, e.g. ` + "`" + `ippool:/oracle/public/ippool` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -572,7 +574,7 @@ var (
 				"ip",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the IP Network. Changing this name forces a new resource to be created.`,
@@ -618,7 +620,7 @@ var (
 					Description: `Uniform Resource Identifier for the IP Network ## Import IP Networks can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_ip_network.default example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the IP Network`,
@@ -658,7 +660,7 @@ var (
 				"network",
 				"exchange",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ip network exchange.`,
@@ -672,7 +674,7 @@ var (
 					Description: `(Optional) List of tags that may be applied to the IP network exchange. ## Import IP Network Exchange's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_ip_network_exchange.exchange1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -686,7 +688,7 @@ var (
 				"ip",
 				"reservation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "permanent",
 					Description: `(Required) Whether the IP address remains reserved even when it is no longer associated with an instance (if true), or may be returned to the pool and replaced with a different IP address when an instance is restarted, or deleted and recreated (if false).`,
@@ -712,7 +714,7 @@ var (
 					Description: `indicates that the IP reservation is associated with an instance. ## Import IP Reservations can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_ip_reservations.reservation1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip",
 					Description: `The Public IP address.`,
@@ -735,7 +737,7 @@ var (
 				"machine",
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account",
 					Description: `(Required) The two part name of the compute object storage account in the format ` + "`" + `/Compute-{identity_domain}/cloud_storage` + "`" + ``,
@@ -781,7 +783,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Machine Image. ## Import Machine Images can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_machine_image.machine_image1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -795,7 +797,7 @@ var (
 				"orchestrated",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the orchestration.`,
@@ -825,7 +827,7 @@ var (
 					Description: `(Optional) The version of the orchestration.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -838,7 +840,7 @@ var (
 				"classic",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the route.`,
@@ -876,7 +878,7 @@ var (
 					Description: `Name of the virtual NIC set to route matching packets to. Routed flows are load-balanced among all the virtual NICs in the virtual NIC set. ## Import Route's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_route.route1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the route.`,
@@ -907,7 +909,7 @@ var (
 				"sec",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique (within the identity domain) name of the security rule.`,
@@ -941,7 +943,7 @@ var (
 					Description: `The Uniform Resource Identifier of the sec rule. ## Import Sec Rule's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_sec_rule.rule1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -955,7 +957,7 @@ var (
 				"security",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique (within the identity domain) name of the application`,
@@ -977,7 +979,7 @@ var (
 					Description: `(Optional) The ICMP code to enable for this application, if the ` + "`" + `protocol` + "`" + ` is ` + "`" + `icmp` + "`" + `. Must be one of ` + "`" + `admin` + "`" + `, ` + "`" + `df` + "`" + `, ` + "`" + `host` + "`" + `, ` + "`" + `network` + "`" + `, ` + "`" + `port` + "`" + ` or ` + "`" + `protocol` + "`" + `. ## Import Security Application's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_security_application.application1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -991,7 +993,7 @@ var (
 				"security",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The Name for the Security Association. If not specified, one is created automatically. Changing this forces a new resource to be created.`,
@@ -1005,7 +1007,7 @@ var (
 					Description: `(Required) The name of the security list to associate the instance to. ## Import Security Association's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_security_association.association1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1020,7 +1022,7 @@ var (
 				"ip",
 				"list",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique (within the identity domain) name of the security IP list.`,
@@ -1034,7 +1036,7 @@ var (
 					Description: `(Optional) The description of the security ip list. ## Import IP List's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_ip_list.list1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1048,7 +1050,7 @@ var (
 				"security",
 				"list",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique (within the identity domain) name of the security list.`,
@@ -1062,7 +1064,7 @@ var (
 					Description: `(Required) The policy for outbound traffic from the security list. Must be one of ` + "`" + `permit` + "`" + `, ` + "`" + `reject` + "`" + ` (packets are dropped but a reply is sent) and ` + "`" + `deny` + "`" + ` (packets are dropped and no reply is sent). ## Import Security List's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_security_list.list1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1076,7 +1078,7 @@ var (
 				"security",
 				"protocol",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the security protocol.`,
@@ -1094,7 +1096,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Security Protocol ## Import ACL's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_security_protocol.default example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1108,7 +1110,7 @@ var (
 				"security",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the security rule.`,
@@ -1158,7 +1160,7 @@ var (
 					Description: `The Uniform Resource Identifier of the security rule. ## Import Security Rule's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_security_rule.rule1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "uri",
 					Description: `The Uniform Resource Identifier of the security rule. ## Import Security Rule's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_security_rule.rule1 example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1177,7 +1179,7 @@ var (
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique (within this identity domain) name of the SSH key.`,
@@ -1191,7 +1193,7 @@ var (
 					Description: `(Optional) Whether or not the key is enabled. This is useful if you want to temporarily disable an SSH key, without removing it entirely from your Terraform resource definition. Defaults to ` + "`" + `true` + "`" + ` ## Import SSH Key's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_ssh_key.key1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1205,7 +1207,7 @@ var (
 				"storage",
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "storage_type",
 					Description: `(Optional) - The Type of Storage to provision. Defaults to ` + "`" + `/oracle/public/storage/default` + "`" + `.`,
@@ -1271,7 +1273,7 @@ var (
 					Description: `Unique Resource Identifier of the Storage Volume. ## Import Storage Volume's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_storage_volume.volume1 example ` + "`" + `` + "`" + `` + "`" + ` <a id="snapshots"></a> ## Snapshots Restoring a storage volume from a snapshot can happen via the use of the ` + "`" + `snapshot` + "`" + `, ` + "`" + `snapshot_id` + "`" + `, and ` + "`" + `snapshot_account` + "`" + ` attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hypervisor",
 					Description: `The hypervisor that this volume is compatible with.`,
@@ -1319,7 +1321,7 @@ var (
 				"volume",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance",
 					Description: `(Required) The name of the instance the volume will be attached to.`,
@@ -1333,7 +1335,7 @@ var (
 					Description: `(Required) The index on the instance that the storage volume will be attached to.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1348,7 +1350,7 @@ var (
 				"volume",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) Comma-separated strings that tag the storage volume. ## Attributes Reference In addition to the attributes above, the following attributes are exported:`,
@@ -1402,7 +1404,7 @@ var (
 					Description: `Uniform Resource Identifier ## Import Storage Volume Snapshot's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_storage_volume_snapshot.volume1 example ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `opc_compute_storage_volume_snapshot` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Creating Storage Volume Snapshots. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Deleting Storage Volume Snapshots.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account",
 					Description: `Account to use for snapshots.`,
@@ -1465,7 +1467,7 @@ var (
 				"vnic",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique (within this identity domain) name of the virtual nic set.`,
@@ -1487,7 +1489,7 @@ var (
 					Description: `(Optional) A list of tags to apply to the storage volume. ## Import VNIC Set's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_vnic_set.set1 example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1502,7 +1504,7 @@ var (
 				"endpoint",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the VPN Endpoint V2.`,
@@ -1596,7 +1598,7 @@ var (
 					Description: `The Uniform Resource Identifier for the VPN Endpoint V2. ## Import VPN Endpoint V2's can be imported using the ` + "`" + `resource name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_compute_vpn_endpoint_v2.vpnaas1 /Compute-mydomain/user/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1611,7 +1613,7 @@ var (
 				"lbaas",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Certificate.`,
@@ -1641,7 +1643,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Certificate resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1656,7 +1658,7 @@ var (
 				"lbaas",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Listener.`,
@@ -1722,7 +1724,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Listner. ## Import Listeners can be imported using the a combinable of the resource region, load balancer name and policy name and in the format ` + "`" + `region/loadbalancer/name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_lbaas_listener.listener1 uscom-central-1/lb1/example-listener1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1736,7 +1738,7 @@ var (
 				"classic",
 				"lbaas",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Load Balancer.`,
@@ -1794,7 +1796,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Load Balancer. ## Import Load Balancers can be imported using the a combinable of the resource ` + "`" + `region` + "`" + ` and ` + "`" + `name` + "`" + ` in the format ` + "`" + `region/name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_lbaas_load_balancer.lb1 uscom-central-1/example-lb1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1809,7 +1811,7 @@ var (
 				"lbaas",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Listener.`,
@@ -1975,7 +1977,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Policy. ## Import Policies can be imported using the a combinable of the resource region, load balancer name and policy name and in the format ` + "`" + `region/loadbalancer/name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_lbaas_policy.policy1 uscom-central-1/lb1/example-policy1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1991,7 +1993,7 @@ var (
 				"server",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Server Pool.`,
@@ -2069,7 +2071,7 @@ var (
 					Description: `The Uniform Resource Identifier for the Server Pool. ## Import Origin Server Pools can be imported using the combination of the resource region, load balancer name, and policy name and in the format ` + "`" + `region/loadbalancer/name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_lbaas_server_pool.serverpool1 uscom-central-1/lb1/example-serverpool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2083,7 +2085,7 @@ var (
 				"classic",
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Storage Container.`,
@@ -2129,7 +2131,7 @@ var (
 					Description: `(Optional) Additional object metadata headers. See [Container Metadata ](#container-metadata) below for more information. ## Setting Container ACLs The ` + "`" + `read_acl` + "`" + ` consists of a list of`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2142,7 +2144,7 @@ var (
 				"storage",
 				"classic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Storage Object.`,
@@ -2220,7 +2222,7 @@ var (
 					Description: `Transaction ID of the request. ## Object Metadata The ` + "`" + `metadata` + "`" + ` config defines a map of additional meta data header name value pairs. The additional meta data items are set HTTP Headers on the object in the form ` + "`" + `X-Object-Meta-{name}: {value}` + "`" + `, where ` + "`" + `{name}` + "`" + ` is the name of the metadata item ` + "`" + `{value}` + "`" + ` is the header content. For example: ` + "`" + `` + "`" + `` + "`" + `hcl metadata { "Foo-Bar" = "barfoo", "Sha256" = "e91ed4f93637379a7539cb5d8d0b5bca3972755de4f9371ab2e123e7b4c53680" } ` + "`" + `` + "`" + `` + "`" + ` ## Import Object's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import opc_storage_object.default container/example ` + "`" + `` + "`" + `` + "`" + ` Please note though, importing a Storage Object does _not_ allow a user to modify the content, or attributes for the Storage Object. It is, however, possible to import a Storage Object, and replace the object with new content, or a copy of another Storage Object. It is also possible to import a Storage Object into Terraform in order to delete the object.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -2263,10 +2265,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

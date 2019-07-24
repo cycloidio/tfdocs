@@ -1,11 +1,13 @@
-package aws
+package digitalocean
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"cdn",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "origin",
 					Description: `(Required) The fully qualified domain name, (FQDN) for a Space.`,
@@ -54,7 +56,7 @@ var (
 					Description: `The fully qualified domain name (FQDN) of the custom subdomain used with the CDN Endpoint. ## Import CDN Endpoints can be imported using the CDN ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_cdn.mycdn fb06ad00-351f-45c8-b5eb-13523c438661 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique ID that can be used to identify and reference a CDN Endpoint.`,
@@ -90,7 +92,7 @@ var (
 			Keywords: []string{
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the certificate for identification.`,
@@ -132,7 +134,7 @@ var (
 					Description: `The SHA-1 fingerprint of the certificate ## Import Certificates can be imported using the certificate ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_certificate.mycertificate 892071a0-bb95-49bc-8021-3afd67a210bf ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the certificate`,
@@ -161,7 +163,7 @@ var (
 				"database",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the database cluster.`,
@@ -227,7 +229,7 @@ var (
 					Description: `Password for the cluster's default user. ## Import Database clusters can be imported using the ` + "`" + `id` + "`" + ` returned from DigitalOcean, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_cluster.mycluster 245bcfd0-7f31-4ce6-a2bc-475a116cca97 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the database cluster.`,
@@ -267,7 +269,7 @@ var (
 			Keywords: []string{
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the domain`,
@@ -285,7 +287,7 @@ var (
 					Description: `The uniform resource name of the domain ## Import Domains can be imported using the ` + "`" + `domain name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_domain.mydomain mytestdomain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the domain`,
@@ -305,7 +307,7 @@ var (
 			Keywords: []string{
 				"droplet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image",
 					Description: `(Required) The Droplet image ID or slug.`,
@@ -423,7 +425,7 @@ var (
 					Description: `A list of the attached block storage volumes ## Import Droplets can be imported using the Droplet ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_droplet.mydroplet 100823 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Droplet`,
@@ -508,7 +510,7 @@ var (
 				"droplet",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A name for the Droplet snapshot.`,
@@ -534,7 +536,7 @@ var (
 					Description: `The billable size of the Droplet snapshot in gigabytes. ## Import Droplet Snapshots can be imported using the ` + "`" + `snapshot id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_droplet_snapshot.mysnapshot 123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `The date and time the Droplet snapshot was created.`,
@@ -562,7 +564,7 @@ var (
 			Keywords: []string{
 				"firewall",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The Firewall name`,
@@ -660,7 +662,7 @@ var (
 					Description: `The outbound access rule block for the Firewall. ## Import Firewalls can be imported using the firewall ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_firewall.myfirewall b8ecd2ab-2267-4a5e-8692-cbf1d32583e3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique ID that can be used to identify and reference a Firewall.`,
@@ -709,7 +711,7 @@ var (
 				"floating",
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) The region that the Floating IP is reserved to.`,
@@ -727,7 +729,7 @@ var (
 					Description: `The uniform resource name of the floating ip ## Import Floating IPs can be imported using the ` + "`" + `ip` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_floating_ip.myip 192.168.0.1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `The IP Address of the resource`,
@@ -749,7 +751,7 @@ var (
 				"ip",
 				"assignment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `(Required) The Floating IP to assign to the Droplet.`,
@@ -759,7 +761,7 @@ var (
 					Description: `(Optional) The ID of Droplet that the Floating IP will be assigned to.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -771,7 +773,7 @@ var (
 				"kubernetes",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A name for the Kubernetes cluster.`,
@@ -833,7 +835,7 @@ var (
 					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes clusters can not be imported at this time.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique ID that can be used to identify and reference a Kubernetes cluster.`,
@@ -887,7 +889,7 @@ var (
 				"node",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) The ID of the Kubernetes cluster to which the node pool is associated.`,
@@ -917,7 +919,7 @@ var (
 					Description: `A list of nodes in the pool. Each node exports the following attributes: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. - ` + "`" + `name` + "`" + ` - The auto-generated name for the node. - ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. - ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. - ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes node pools can not be imported at this time.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique ID that can be used to identify and reference the node pool.`,
@@ -937,7 +939,7 @@ var (
 			Keywords: []string{
 				"loadbalancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The Load Balancer name`,
@@ -1043,7 +1045,7 @@ var (
 					Description: `The uniform resource name for the Load Balancer ## Import Load Balancers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_loadbalancer.myloadbalancer 4de7ac8b-495b-4884-9a69-1050c6793cd6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Load Balancer`,
@@ -1063,7 +1065,7 @@ var (
 			Keywords: []string{
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Project`,
@@ -1105,7 +1107,7 @@ var (
 					Description: `the date and time when the project was last updated, (ISO8601)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the project`,
@@ -1137,7 +1139,7 @@ var (
 			Keywords: []string{
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of record. Must be one of ` + "`" + `A` + "`" + `, ` + "`" + `AAAA` + "`" + `, ` + "`" + `CAA` + "`" + `, ` + "`" + `CNAME` + "`" + `, ` + "`" + `MX` + "`" + `, ` + "`" + `NS` + "`" + `, ` + "`" + `TXT` + "`" + `, or ` + "`" + `SRV` + "`" + `.`,
@@ -1187,7 +1189,7 @@ var (
 					Description: `The FQDN of the record ## Import Records can be imported using the domain name and record ` + "`" + `id` + "`" + ` when joined with a comma. See the following example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_record.example_record example.com,12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record ID`,
@@ -1208,7 +1210,7 @@ var (
 				"spaces",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the bucket`,
@@ -1242,7 +1244,7 @@ var (
 					Description: `The FQDN of the bucket (e.g. bucket-name.nyc3.digitaloceanspaces.com) ## Import Buckets can be imported using the ` + "`" + `region` + "`" + ` and ` + "`" + `name` + "`" + ` attributes (delimited by a comma): ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_spaces_bucket.foobar ` + "`" + `region` + "`" + `,` + "`" + `name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the bucket`,
@@ -1271,7 +1273,7 @@ var (
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SSH key for identification`,
@@ -1297,7 +1299,7 @@ var (
 					Description: `The fingerprint of the SSH key ## Import SSH Keys can be imported using the ` + "`" + `ssh key id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_ssh_key.mykey 263654 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the key`,
@@ -1325,7 +1327,7 @@ var (
 			Keywords: []string{
 				"tag",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the tag ## Attributes Reference The following attributes are exported:`,
@@ -1339,7 +1341,7 @@ var (
 					Description: `The name of the tag ## Import Tags can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_tag.mytag tagname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the tag`,
@@ -1359,7 +1361,7 @@ var (
 			Keywords: []string{
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) The region that the block storage volume will be created in.`,
@@ -1405,7 +1407,7 @@ var (
 					Description: `A list of associated droplet ids. ## Import Volumes can be imported using the ` + "`" + `volume id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_volume.volume 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier for the block storage volume.`,
@@ -1434,7 +1436,7 @@ var (
 				"volume",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "droplet_id",
 					Description: `(Required) ID of the Droplet to attach the volume to.`,
@@ -1448,7 +1450,7 @@ var (
 					Description: `The unique identifier for the volume attachment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier for the volume attachment.`,
@@ -1465,7 +1467,7 @@ var (
 				"volume",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A name for the volume snapshot.`,
@@ -1491,7 +1493,7 @@ var (
 					Description: `The billable size of the volume snapshot in gigabytes. ## Import Volume Snapshots can be imported using the ` + "`" + `snapshot id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_volume_snapshot.snapshot 506f78a4-e098-11e5-ad9f-000f53306ae1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `The date and time the volume snapshot was created.`,
@@ -1537,10 +1539,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package ultradns
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"dirpool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain to add the record to`,
@@ -58,7 +60,7 @@ var (
 					Description: `The FQDN of the record`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record ID`,
@@ -79,7 +81,7 @@ var (
 				"probe",
 				"http",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain of the pool to probe.`,
@@ -89,7 +91,7 @@ var (
 					Description: `(Required) The name of the pool to probe. - ` + "`" + `pool_record` + "`" + ` - (optional) IP address or domain. If provided, a record-level probe is created, otherwise a pool-level probe is created. - ` + "`" + `agents` + "`" + ` - (Required) List of locations that will be used for probing. One or more values must be specified. Valid values are ` + "`" + `"NEW_YORK"` + "`" + `, ` + "`" + `"PALO_ALTO"` + "`" + `, ` + "`" + `"DALLAS"` + "`" + ` & ` + "`" + `"AMSTERDAM"` + "`" + `. - ` + "`" + `threshold` + "`" + ` - (Required) Number of agents that must agree for a probe state to be changed. - ` + "`" + `http_probe` + "`" + ` - (Required) an HTTP Probe block. - ` + "`" + `interval` + "`" + ` - (Optional) Length of time between probes in minutes. Valid values are ` + "`" + `"HALF_MINUTE"` + "`" + `, ` + "`" + `"ONE_MINUTE"` + "`" + `, ` + "`" + `"TWO_MINUTES"` + "`" + `, ` + "`" + `"FIVE_MINUTES"` + "`" + `, ` + "`" + `"TEN_MINUTES"` + "`" + ` & ` + "`" + `"FIFTEEN_MINUTE"` + "`" + `. Default: ` + "`" + `"FIVE_MINUTES"` + "`" + `. HTTP Probe block - ` + "`" + `transaction` + "`" + ` - (Optional) One or more Transaction blocks. - ` + "`" + `total_limits` + "`" + ` - (Optional) A Limit block, but with no ` + "`" + `name` + "`" + ` attribute. Transaction block - ` + "`" + `method` + "`" + ` - (Required) HTTP method. Valid values are` + "`" + `"GET"` + "`" + `, ` + "`" + `"POST"` + "`" + `. - ` + "`" + `url` + "`" + ` - (Required) URL to probe. - ` + "`" + `transmitted_data` + "`" + ` - (Optional) Data to send to URL. - ` + "`" + `follow_redirects` + "`" + ` - (Optional) Whether to follow redirects. - ` + "`" + `limit` + "`" + ` - (Required) One or more Limit blocks. Only one limit block may exist for each name. Limit block - ` + "`" + `name` + "`" + ` - (Required) Kind of limit. Valid values are ` + "`" + `"lossPercent"` + "`" + `, ` + "`" + `"total"` + "`" + `, ` + "`" + `"average"` + "`" + `, ` + "`" + `"run"` + "`" + ` & ` + "`" + `"avgRun"` + "`" + `. - ` + "`" + `warning` + "`" + ` - (Optional) Amount to trigger a warning. - ` + "`" + `critical` + "`" + ` - (Optional) Amount to trigger a critical. - ` + "`" + `fail` + "`" + ` - (Optional) Amount to trigger a failure.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -101,7 +103,7 @@ var (
 				"probe",
 				"ping",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain of the pool to probe.`,
@@ -111,7 +113,7 @@ var (
 					Description: `(Required) The name of the pool to probe. - ` + "`" + `pool_record` + "`" + ` - (optional) IP address or domain. If provided, a record-level probe is created, otherwise a pool-level probe is created. - ` + "`" + `agents` + "`" + ` - (Required) List of locations that will be used for probing. One or more values must be specified. Valid values are ` + "`" + `"NEW_YORK"` + "`" + `, ` + "`" + `"PALO_ALTO"` + "`" + `, ` + "`" + `"DALLAS"` + "`" + ` & ` + "`" + `"AMSTERDAM"` + "`" + `. - ` + "`" + `threshold` + "`" + ` - (Required) Number of agents that must agree for a probe state to be changed. - ` + "`" + `ping_probe` + "`" + ` - (Required) a Ping Probe block. - ` + "`" + `interval` + "`" + ` - (Optional) Length of time between probes in minutes. Valid values are ` + "`" + `"HALF_MINUTE"` + "`" + `, ` + "`" + `"ONE_MINUTE"` + "`" + `, ` + "`" + `"TWO_MINUTES"` + "`" + `, ` + "`" + `"FIVE_MINUTES"` + "`" + `, ` + "`" + `"TEN_MINUTES"` + "`" + ` & ` + "`" + `"FIFTEEN_MINUTE"` + "`" + `. Default: ` + "`" + `"FIVE_MINUTES"` + "`" + `. Ping Probe block - ` + "`" + `packets` + "`" + ` - (Optional) Number of ICMP packets to send. Default ` + "`" + `3` + "`" + `. - ` + "`" + `packet_size` + "`" + ` - (Optional) Size of packets in bytes. Default ` + "`" + `56` + "`" + `. - ` + "`" + `limit` + "`" + ` - (Required) One or more Limit blocks. Only one limit block may exist for each name. Limit block - ` + "`" + `name` + "`" + ` - (Required) Kind of limit. Valid values are ` + "`" + `"lossPercent"` + "`" + `, ` + "`" + `"total"` + "`" + `, ` + "`" + `"average"` + "`" + `, ` + "`" + `"run"` + "`" + ` & ` + "`" + `"avgRun"` + "`" + `. - ` + "`" + `warning` + "`" + ` - (Optional) Amount to trigger a warning. - ` + "`" + `critical` + "`" + ` - (Optional) Amount to trigger a critical. - ` + "`" + `fail` + "`" + ` - (Optional) Amount to trigger a failure.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -122,7 +124,7 @@ var (
 			Keywords: []string{
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain to add the record to`,
@@ -172,7 +174,7 @@ var (
 					Description: `The FQDN of the record`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record ID`,
@@ -212,7 +214,7 @@ var (
 			Keywords: []string{
 				"tcpool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The domain to add the record to`,
@@ -290,7 +292,7 @@ var (
 					Description: `The FQDN of the record`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record ID`,
@@ -313,10 +315,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

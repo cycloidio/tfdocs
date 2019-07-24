@@ -1,11 +1,13 @@
-package aws
+package bigip
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,8 +19,8 @@ var (
 				"cm",
 				"device",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -30,7 +32,7 @@ var (
 				"cm",
 				"devicegroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bigip_cm_devicegroup",
 					Description: `Is the resource used to configure new device group on the BIG-IP.`,
@@ -52,7 +54,7 @@ var (
 					Description: `Name of the device to be included in device group, this need to be configured before using devicegroup resource`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -64,7 +66,7 @@ var (
 				"ltm",
 				"datagroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the datagroup`,
@@ -86,7 +88,7 @@ var (
 					Description: `(Optional if ` + "`" + `record` + "`" + ` defined), sets the value of the record's ` + "`" + `data` + "`" + ` attribute, specifying a value here will create a record in the form of ` + "`" + `name := data` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -98,7 +100,7 @@ var (
 				"ltm",
 				"irule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the iRule`,
@@ -108,7 +110,7 @@ var (
 					Description: `(Required) Body of the iRule`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -120,7 +122,7 @@ var (
 				"ltm",
 				"monitor",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "parent",
 					Description: `(Required) Existing LTM monitor to inherit from`,
@@ -178,7 +180,7 @@ var (
 					Description: `(Optional) Specifies the data transfer process (DTP) mode. The default value is passive. The options are passive (Specifies that the monitor sends a data transfer request to the FTP server. When the FTP server receives the request, the FTP server then initiates and establishes the data connection.) and active (Specifies that the monitor initiates and establishes the data connection with the FTP server.).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -190,7 +192,7 @@ var (
 				"ltm",
 				"node",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the node`,
@@ -224,7 +226,7 @@ var (
 					Description: `(Optional) Specifies the node's address family. The default is 'unspecified', or IP-agnostic. This needs to be specified inside the fqdn (fully qualified domain name).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -238,8 +240,8 @@ var (
 				"profile",
 				"cookie",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -253,8 +255,8 @@ var (
 				"profile",
 				"dstaddr",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -268,8 +270,8 @@ var (
 				"profile",
 				"srcaddr",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -283,8 +285,8 @@ var (
 				"profile",
 				"ssl",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -296,7 +298,7 @@ var (
 				"ltm",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "strategy",
 					Description: `(Optional) Specifies the match strategy`,
@@ -326,7 +328,7 @@ var (
 					Description: `(Optional ) This action will direct the stream to this pool.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -338,7 +340,7 @@ var (
 				"ltm",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the pool`,
@@ -360,7 +362,7 @@ var (
 					Description: `(Optional, Default = round-robin)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -373,7 +375,7 @@ var (
 				"pool",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
 					Description: `(Required) Name of the pool in /Partition/Name format`,
@@ -383,7 +385,7 @@ var (
 					Description: `(Required) Node to add to the pool in /Partition/NodeName:Port format (e.g. /Common/Node01:80)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -396,7 +398,7 @@ var (
 				"profile",
 				"fasthttp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
 					Description: `(Optional) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
@@ -434,7 +436,7 @@ var (
 					Description: `(Optional) Specifies the maximum amount of HTTP header data that the system buffers before making a load balancing decision. The default setting is 32768.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -447,7 +449,7 @@ var (
 				"profile",
 				"fastl4",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
 					Description: `(Optional) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
@@ -481,7 +483,7 @@ var (
 					Description: `(Optional) Specifies the keep alive probe interval, in seconds. The default value is disabled (0 seconds).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -494,7 +496,7 @@ var (
 				"profile",
 				"http",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
 					Description: `(Required) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
@@ -524,7 +526,7 @@ var (
 					Description: `(Optional) When using connection pooling, which allows clients to make use of other client requests' server-side connections, you can insert the X-Forwarded-For header and specify a client IP address`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -537,7 +539,7 @@ var (
 				"profile",
 				"http2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
 					Description: `(Required) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
@@ -559,7 +561,7 @@ var (
 					Description: `(Optional) Specifies what will cause an incoming connection to be handled as a HTTP/2 connection. The default values npn and alpn specify that the TLS next-protocol-negotiation and application-layer-protocol-negotiation extensions will be used.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -572,7 +574,7 @@ var (
 				"profile",
 				"httpcompress",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defaults_from",
 					Description: `(Optional) Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.`,
@@ -586,7 +588,7 @@ var (
 					Description: `(Optional) Excludes a specified list of content types from compression of HTTP Content-Type responses. Use a string list to specify a list of content types you want to compress.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -599,7 +601,7 @@ var (
 				"profile",
 				"oneconnect",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "partition",
 					Description: `(Optional) Displays the administrative partition within which this profile resides`,
@@ -633,7 +635,7 @@ var (
 					Description: `(Optional) Specifies a source IP mask. The default value is 0.0.0.0. The system applies the value of this option to the source address to determine its eligibility for reuse. A mask of 0.0.0.0 causes the system to share reused connections across all clients. A host mask (all 1's in binary), causes the system to share only those reused connections originating from the same client IP address.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -646,7 +648,7 @@ var (
 				"profile",
 				"tcp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "partition",
 					Description: `(Optional) Displays the administrative partition within which this profile resides`,
@@ -684,7 +686,7 @@ var (
 					Description: `(Optional) Specifies, when enabled, that the system defers allocation of the connection chain context until the client response is received. This option is useful for dealing with 3-way handshake DOS attacks. The default value is disabled.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -696,7 +698,7 @@ var (
 				"ltm",
 				"snat",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the snat`,
@@ -734,7 +736,7 @@ var (
 					Description: `(Optional) Specifies the name of the VLAN to which you want to assign the SNAT. The default is vlans-enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -746,7 +748,7 @@ var (
 				"ltm",
 				"snatpool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the snatpool`,
@@ -756,7 +758,7 @@ var (
 					Description: `(Required) Specifies a translation address to add to or delete from a SNAT pool (at least one address is required)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -769,7 +771,7 @@ var (
 				"virtual",
 				"address",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the virtual address`,
@@ -807,7 +809,7 @@ var (
 					Description: `(Optional, Default=/Common/traffic-group-1) Specify the partition and traffic group`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -820,7 +822,7 @@ var (
 				"virtual",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Required) Listen port for the virtual server`,
@@ -894,7 +896,7 @@ var (
 					Description: `(Optional) Specifies a fallback persistence profile for the Virtual Server to use when the default persistence profile is not available.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -906,7 +908,7 @@ var (
 				"net",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the route`,
@@ -920,7 +922,7 @@ var (
 					Description: `(Optional) Specifies a gateway address for the route.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -932,7 +934,7 @@ var (
 				"net",
 				"selfip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the selfip`,
@@ -950,7 +952,7 @@ var (
 					Description: `(Optional) Specifies the traffic group, defaults to ` + "`" + `traffic-group-local-only` + "`" + ` if not specified.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -962,7 +964,7 @@ var (
 				"net",
 				"vlan",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the vlan`,
@@ -984,7 +986,7 @@ var (
 					Description: `Specifies a list of tagged interfaces or trunks associated with this VLAN. Note that you can associate tagged interfaces or trunks with any number of VLANs.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -996,7 +998,7 @@ var (
 				"ltm",
 				"dns",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_servers",
 					Description: `Name or IP address of the DNS server`,
@@ -1010,7 +1012,7 @@ var (
 					Description: `Specify what domains you want to search`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1022,7 +1024,7 @@ var (
 				"sys",
 				"iapp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the iApp.`,
@@ -1088,7 +1090,7 @@ var (
 					Description: `Name, values, encrypted or not`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1100,7 +1102,7 @@ var (
 				"sys",
 				"ntp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bigip_sys_ntp",
 					Description: `Is the resource is used to configure ntp server on the BIG-IP.`,
@@ -1122,7 +1124,7 @@ var (
 					Description: `(Optional) Specifies the time zone that you want to use for the system time.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1134,7 +1136,7 @@ var (
 				"sys",
 				"provision",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bigip_sys_provision",
 					Description: `Is the resource which is used to provision big-ip modules like asm, afm, ilx etc`,
@@ -1156,7 +1158,7 @@ var (
 					Description: `how much memory you want to deidcate for this resource`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1168,7 +1170,7 @@ var (
 				"sys",
 				"snmp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "sys_contact",
 					Description: `(Optional) Specifies the contact information for the system administrator.`,
@@ -1182,7 +1184,7 @@ var (
 					Description: `Configures hosts or networks from which snmpd can accept traffic. Entries go directly into hosts.allow.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1195,7 +1197,7 @@ var (
 				"snmp",
 				"traps",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the snmp trap.`,
@@ -1217,7 +1219,7 @@ var (
 					Description: `(Optional) User defined description.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1259,10 +1261,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

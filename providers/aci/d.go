@@ -1,11 +1,13 @@
-package aws
+package aci
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud Application container`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -36,7 +38,7 @@ var (
 					Description: `(Optional) name_alias for object cloud_applicationcontainer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Application container.`,
@@ -58,7 +60,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud AWS Provider`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object. ## Attribute Reference`,
@@ -112,7 +114,7 @@ var (
 					Description: `(Optional) secret_access_key for object cloud_aws_provider.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud AWS Provider.`,
@@ -170,7 +172,7 @@ var (
 			ShortDescription: `Data source for ACI Autonomous System Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Autonomous System Profile.`,
@@ -188,7 +190,7 @@ var (
 					Description: `(Optional) name_alias for object autonomous_system_profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Autonomous System Profile.`,
@@ -214,7 +216,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud CIDR Pool`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_context_profile_dn",
 					Description: `(Required) Distinguished name of parent CloudContextProfile object.`,
@@ -240,7 +242,7 @@ var (
 					Description: `(Optional) This will represent whether CIDR is primary CIDR or not.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud CIDR Pool.`,
@@ -266,7 +268,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud Domain Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Domain Profile.`,
@@ -284,7 +286,7 @@ var (
 					Description: `(Optional) site_id for object cloud_domain_profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Domain Profile.`,
@@ -310,7 +312,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud EPg`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_applicationcontainer_dn",
 					Description: `(Required) Distinguished name of parent CloudApplicationcontainer object.`,
@@ -352,7 +354,7 @@ var (
 					Description: `(Optional) qos priority class id.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud EPg.`,
@@ -394,7 +396,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud Endpoint Selector`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_e_pg_dn",
 					Description: `(Required) Distinguished name of parent CloudEPg object.`,
@@ -420,7 +422,7 @@ var (
 					Description: `(Optional) name_alias for object cloud_endpoint_selector.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Endpoint Selector.`,
@@ -446,7 +448,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud External EPg`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_applicationcontainer_dn",
 					Description: `(Required) Distinguished name of parent CloudApplicationcontainer object.`,
@@ -492,7 +494,7 @@ var (
 					Description: `(Optional) Route reachability for this EPG.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud External EPg.`,
@@ -538,7 +540,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud Endpoint Selector for External EPgs`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_external_e_pg_dn",
 					Description: `(Required) Distinguished name of parent CloudExternalEPg object.`,
@@ -568,7 +570,7 @@ var (
 					Description: `(Optional) Subnet from which EP to select.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Endpoint Selector for External EPgs.`,
@@ -598,7 +600,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud Provider Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vendor",
 					Description: `(Required) vendor of Object cloud_provider_profile. ## Attribute Reference`,
@@ -612,7 +614,7 @@ var (
 					Description: `(Optional) annotation for object cloud_provider_profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Provider Profile.`,
@@ -630,7 +632,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud Providers Region`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_provider_profile_dn",
 					Description: `(Required) Distinguished name of parent CloudProviderProfile object.`,
@@ -656,7 +658,7 @@ var (
 					Description: `(Optional) name_alias for object cloud_providers_region.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Providers Region.`,
@@ -682,7 +684,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud Subnet`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_cidr_pool_dn",
 					Description: `(Required) Distinguished name of parent CloudCIDRPool object.`,
@@ -712,7 +714,7 @@ var (
 					Description: `(Optional) The usage of the port. This property shows how the port is used.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Subnet.`,
@@ -742,7 +744,7 @@ var (
 			ShortDescription: `Data source for ACI Cloud Availability Zone`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_providers_region_dn",
 					Description: `(Required) Distinguished name of parent CloudProvidersRegion object.`,
@@ -764,7 +766,7 @@ var (
 					Description: `(Optional) name_alias for object cloud_availability_zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Cloud Availability Zone.`,
@@ -786,7 +788,7 @@ var (
 			ShortDescription: `Data source for ACI Interface FC Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object interface_fc_policy. ## Attribute Reference`,
@@ -828,7 +830,7 @@ var (
 					Description: `(Optional) Trunking on/off for native FC ports.Default value is OFF.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Interface FC Policy.`,
@@ -874,7 +876,7 @@ var (
 			ShortDescription: `Data source for ACI Application EPG`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_profile_dn",
 					Description: `(Required) Distinguished name of parent ApplicationProfile object.`,
@@ -936,7 +938,7 @@ var (
 					Description: `(Optional) shutdown for object application_epg.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Application EPG.`,
@@ -998,7 +1000,7 @@ var (
 			ShortDescription: `Data source for ACI Application Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -1024,7 +1026,7 @@ var (
 					Description: `(Optional) priority class id`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Application Profile.`,
@@ -1050,7 +1052,7 @@ var (
 			ShortDescription: `Data source for ACI Bridge Domain`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -1152,7 +1154,7 @@ var (
 					Description: `(Optional) Virtual MAC address of the BD/SVI. This is used when the BD is extended to multiple sites using l2 Outside.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Bridge Domain.`,
@@ -1254,7 +1256,7 @@ var (
 			ShortDescription: `Data source for ACI VRF`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -1296,7 +1298,7 @@ var (
 					Description: `(Optional) Determines if the fabric should enforce contract policies to allow routing and packet forwarding.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the VRF.`,
@@ -1338,7 +1340,7 @@ var (
 			ShortDescription: `Data source for ACI End Point Retention Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -1384,7 +1386,7 @@ var (
 					Description: `(Optional) The aging interval for all remote endpoints learned in this bridge domain.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the End Point Retention Policy.`,
@@ -1430,7 +1432,7 @@ var (
 			ShortDescription: `Data source for ACI Subnet`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bridge_domain_dn",
 					Description: `(Required) Distinguished name of parent BridgeDomain object.`,
@@ -1468,7 +1470,7 @@ var (
 					Description: `(Optional) Treated as virtual IP address. Used in case of BD extended to multiple sites.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Subnet.`,
@@ -1506,7 +1508,7 @@ var (
 			ShortDescription: `Data source for ACI Tenant`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object tenant. ## Attribute Reference`,
@@ -1524,7 +1526,7 @@ var (
 					Description: `(Optional) name_alias for object tenant.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Tenant.`,
@@ -1546,7 +1548,7 @@ var (
 			ShortDescription: `Data source for ACI PC/VPC Interface Policy Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object pcvpc_interface_policy_group. ## Attribute Reference`,
@@ -1568,7 +1570,7 @@ var (
 					Description: `(Optional) name_alias for object pcvpc_interface_policy_group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the PC/VPC Interface Policy Group.`,
@@ -1594,7 +1596,7 @@ var (
 			ShortDescription: `Data source for ACI Leaf Access Port Policy Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object leaf_access_port_policy_group. ## Attribute Reference`,
@@ -1612,7 +1614,7 @@ var (
 					Description: `(Optional) name_alias for object leaf_access_port_policy_group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Leaf Access Port Policy Group.`,
@@ -1634,7 +1636,7 @@ var (
 			ShortDescription: `Data source for ACI Leaf Interface Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object leaf_interface_profile. ## Attribute Reference`,
@@ -1652,7 +1654,7 @@ var (
 					Description: `(Optional) name_alias for object leaf_interface_profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Leaf Interface Profile.`,
@@ -1674,7 +1676,7 @@ var (
 			ShortDescription: `Data source for ACI Attachable Access Entity Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object attachable_access_entity_profile. ## Attribute Reference`,
@@ -1692,7 +1694,7 @@ var (
 					Description: `(Optional) name_alias for object attachable_access_entity_profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Attachable Access Entity Profile.`,
@@ -1714,7 +1716,7 @@ var (
 			ShortDescription: `Data source for ACI Access Port Selector`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "leaf_interface_profile_dn",
 					Description: `(Required) Distinguished name of parent LeafInterfaceProfile object.`,
@@ -1744,7 +1746,7 @@ var (
 					Description: `(Optional) host port selector type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Access Port Selector.`,
@@ -1770,7 +1772,7 @@ var (
 			ShortDescription: `Data source for ACI Leaf Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object leaf_profile. ## Attribute Reference`,
@@ -1788,7 +1790,7 @@ var (
 					Description: `(Optional) name_alias for object leaf_profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Leaf Profile.`,
@@ -1810,7 +1812,7 @@ var (
 			ShortDescription: `Data source for ACI Access Port Block`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_port_selector_dn",
 					Description: `(Required) Distinguished name of parent AccessPortSelector object.`,
@@ -1848,7 +1850,7 @@ var (
 					Description: `(Optional) The end (to-range) of the port range block for the leaf access port block.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Access Port Block.`,
@@ -1886,7 +1888,7 @@ var (
 			ShortDescription: `Data source for ACI Vlan Encapsulation for Vxlan Traffic`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "attachable_access_entity_profile_dn",
 					Description: `(Required) Distinguished name of parent AttachableAccessEntityProfile object. ## Attribute Reference`,
@@ -1904,7 +1906,7 @@ var (
 					Description: `(Optional) name_alias for object vlan_encapsulationfor_vxlan_traffic.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Vlan Encapsulation for Vxlan Traffic.`,
@@ -1926,7 +1928,7 @@ var (
 			ShortDescription: `Data source for ACI L2 Interface Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object l2_interface_policy. ## Attribute Reference`,
@@ -1956,7 +1958,7 @@ var (
 					Description: `(Optional) The scope of the VLAN.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the L2 Interface Policy.`,
@@ -1990,7 +1992,7 @@ var (
 			ShortDescription: `Data source for ACI Port Security Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object port_security_policy. ## Attribute Reference`,
@@ -2024,7 +2026,7 @@ var (
 					Description: `(Optional) Port security violation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Port Security Policy.`,
@@ -2062,7 +2064,7 @@ var (
 			ShortDescription: `Data source for ACI External Network Instance Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "l3_outside_dn",
 					Description: `(Required) Distinguished name of parent L3Outside object.`,
@@ -2108,7 +2110,7 @@ var (
 					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the External Network Instance Profile.`,
@@ -2154,7 +2156,7 @@ var (
 			ShortDescription: `Data source for ACI Logical Interface Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "logical_node_profile_dn",
 					Description: `(Required) Distinguished name of parent LogicalNodeProfile object.`,
@@ -2184,7 +2186,7 @@ var (
 					Description: `(Optional) label color`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Logical Interface Profile.`,
@@ -2214,7 +2216,7 @@ var (
 			ShortDescription: `Data source for ACI Logical Node Profile`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "l3_outside_dn",
 					Description: `(Required) Distinguished name of parent L3Outside object.`,
@@ -2248,7 +2250,7 @@ var (
 					Description: `(Optional) target dscp`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Logical Node Profile.`,
@@ -2282,7 +2284,7 @@ var (
 			ShortDescription: `Data source for ACI L3 Outside`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -2312,7 +2314,7 @@ var (
 					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the L3 Outside.`,
@@ -2342,7 +2344,7 @@ var (
 			ShortDescription: `Data source for ACI Subnet`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "external_network_instance_profile_dn",
 					Description: `(Required) Distinguished name of parent ExternalNetworkInstanceProfile object.`,
@@ -2372,7 +2374,7 @@ var (
 					Description: `(Optional) The domain applicable to the capability.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Subnet.`,
@@ -2402,7 +2404,7 @@ var (
 			ShortDescription: `Data source for ACI LACP Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of Object lacp_policy. ## Attribute Reference`,
@@ -2436,7 +2438,7 @@ var (
 					Description: `(Optional) Name_alias for object lacp_policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the LACP Policy.`,
@@ -2474,7 +2476,7 @@ var (
 			ShortDescription: `Data source for ACI LLDP Interface Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object lldp_interface_policy. ## Attribute Reference`,
@@ -2500,7 +2502,7 @@ var (
 					Description: `(Optional) name_alias for object lldp_interface_policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the LLDP Interface Policy.`,
@@ -2530,7 +2532,7 @@ var (
 			ShortDescription: `Data source for ACI Mis-cabling Protocol Interface Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) name of Object miscabling_protocol_interface_policy. ## Attribute Reference`,
@@ -2552,7 +2554,7 @@ var (
 					Description: `(Optional) name_alias for object miscabling_protocol_interface_policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Mis-cabling Protocol Interface Policy.`,
@@ -2578,7 +2580,7 @@ var (
 			ShortDescription: `Data source for ACI OSPF Interface Policy`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -2636,7 +2638,7 @@ var (
 					Description: `(Optional) The delay time needed to send an LSA update packet. OSPF increments the LSA age time by the transmit delay amount before transmitting the LSA update. You should take into account the transmission and propagation delays for the interface when you set this value.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the OSPF Interface Policy.`,
@@ -2694,7 +2696,7 @@ var (
 			ShortDescription: `Data source for ACI VMM Domain`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "provider_profile_dn",
 					Description: `(Required) Distinguished name of parent ProviderProfile object.`,
@@ -2780,7 +2782,7 @@ var (
 					Description: `(Optional) The preferred encapsulation mode for object vmm_domain.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the VMM Domain.`,
@@ -2866,7 +2868,7 @@ var (
 			ShortDescription: `Data source for ACI Any`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrf_dn",
 					Description: `(Required) Distinguished name of parent VRF object. ## Attribute Reference`,
@@ -2892,7 +2894,7 @@ var (
 					Description: `(Optional) Represents parameter used to determine if EPgs can be divided in a the context can be divided in two subgroups.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Any.`,
@@ -2922,7 +2924,7 @@ var (
 			ShortDescription: `Data source for ACI Contract`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -2956,7 +2958,7 @@ var (
 					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Contract.`,
@@ -2990,7 +2992,7 @@ var (
 			ShortDescription: `Data source for ACI Filter Entry`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter_dn",
 					Description: `(Required) Distinguished name of parent Filter object.`,
@@ -3064,7 +3066,7 @@ var (
 					Description: `(Optional) TCP Session Rules.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Filter Entry.`,
@@ -3138,7 +3140,7 @@ var (
 			ShortDescription: `Data source for ACI Filter`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_dn",
 					Description: `(Required) Distinguished name of parent Tenant object.`,
@@ -3160,7 +3162,7 @@ var (
 					Description: `(Optional) name_alias for object filter.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Filter.`,
@@ -3182,7 +3184,7 @@ var (
 			ShortDescription: `Data source for ACI Contract Subject`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "contract_dn",
 					Description: `(Required) Distinguished name of parent Contract object.`,
@@ -3224,7 +3226,7 @@ var (
 					Description: `(Optional) The target differentiated services code point (DSCP) of the path attached to the layer 3 outside profile.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Attribute id set to the Dn of the Contract Subject.`,
@@ -3261,7 +3263,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"aci_cloud_applicationcontainer":                0,
 		"aci_cloud_aws_provider":                        1,
@@ -3312,10 +3314,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

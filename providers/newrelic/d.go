@@ -1,11 +1,13 @@
-package aws
+package newrelic
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Looks up the information about an alert channel in New Relic.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the alert channel in New Relic. ## Attributes Reference`,
@@ -32,7 +34,7 @@ var (
 					Description: `A list of policy IDs associated with the alert channel.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the alert channel.`,
@@ -54,7 +56,7 @@ var (
 			ShortDescription: `Looks up the information about an alert policy in New Relic.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the alert policy in New Relic. ## Attributes Reference`,
@@ -76,7 +78,7 @@ var (
 					Description: `The time the policy was last updated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the alert policy.`,
@@ -102,7 +104,7 @@ var (
 			ShortDescription: `Looks up the information about an application in New Relic.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the application in New Relic. ## Attributes Reference`,
@@ -120,7 +122,7 @@ var (
 					Description: `A list of host IDs associated with the application.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the application.`,
@@ -142,7 +144,7 @@ var (
 			ShortDescription: `Looks up the information about a key transaction in New Relic.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the application in New Relic. ## Attributes Reference`,
@@ -152,7 +154,7 @@ var (
 					Description: `The ID of the application.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the application.`,
@@ -166,7 +168,7 @@ var (
 			ShortDescription: `Grabs a synthetics monitor by name.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the synthetics monitor in New Relic. ## Attributes Reference`,
@@ -176,7 +178,7 @@ var (
 					Description: `The ID of the synthetics monitor.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the synthetics monitor.`,
@@ -185,7 +187,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"newrelic_alert_channel": 0,
 		"newrelic_alert_policy":  1,
@@ -195,10 +197,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

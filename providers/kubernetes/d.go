@@ -1,11 +1,13 @@
-package aws
+package kubernetes
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `The resource provides mechanisms to inject containers with sensitive information while keeping containers agnostic of Kubernetes.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard secret's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
@@ -52,7 +54,7 @@ var (
 					Description: `The secret type. Defaults to ` + "`" + `Opaque` + "`" + `. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/c7151dd8dd7e487e96e5ce34c6a416bb3b037609/contributors/design-proposals/auth/secrets.md#proposed-design)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data",
 					Description: `A map of the secret data.`,
@@ -70,7 +72,7 @@ var (
 			ShortDescription: `A Service is an abstraction which defines a logical set of pods and a policy by which to access them - sometimes called a micro-service.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard service's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata) ## Attributes`,
@@ -184,7 +186,7 @@ var (
 					Description: `IP which is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -193,7 +195,7 @@ var (
 			ShortDescription: `Storage class is the foundation of dynamic provisioning, allowing cluster administrators to define abstractions for the underlying storage platform.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Required) Standard storage class's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
@@ -239,11 +241,11 @@ var (
 					Description: `Indicates whether the storage class allow volume expand.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"kubernetes_secret":        0,
 		"kubernetes_service":       1,
@@ -251,10 +253,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package brightbox
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Get information about a Brightbox Database Snapshot.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent image based upon the ` + "`" + `created_at` + "`" + ` time.`,
@@ -44,7 +46,7 @@ var (
 					Description: `true if image has been set as locked and can not be deleted`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `The size of database partition in megabytes`,
@@ -70,7 +72,7 @@ var (
 			ShortDescription: `Get information about a Brightbox Database Type.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A regex string to apply to the Database Type list returned by Brightbox Cloud.`,
@@ -88,7 +90,7 @@ var (
 					Description: `The memory size of the database server for this type`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk_size",
 					Description: `The disk size of the database server for this type`,
@@ -106,7 +108,7 @@ var (
 			ShortDescription: `Get information about a Brightbox Image.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent image based upon the ` + "`" + `created_at` + "`" + ` time.`,
@@ -176,7 +178,7 @@ var (
 					Description: `The actual size of the data within the Image in MB`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `The state the image is in. Usually ` + "`" + `available` + "`" + `, ` + "`" + `deprecated` + "`" + ` or ` + "`" + `deleted` + "`" + `.`,
@@ -206,7 +208,7 @@ var (
 			ShortDescription: `Get information about a Brightbox Server Group`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A regex string to apply to the Server Group list returned by Brightbox Cloud.`,
@@ -220,7 +222,7 @@ var (
 					Description: `The ID of the Server`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Server`,
@@ -229,7 +231,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"brightbox_database_snapshot": 0,
 		"brightbox_database_type":     1,
@@ -238,10 +240,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

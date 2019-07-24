@@ -1,11 +1,13 @@
-package aws
+package signalfx
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -22,7 +24,7 @@ A dashboard is a curated collection of specific charts and supports dimensional 
 			Keywords: []string{
 				"dashboard",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the dashboard.`,
@@ -240,7 +242,7 @@ A dashboard is a curated collection of specific charts and supports dimensional 
 					Description: `(Optional) If true, only data that does not match the specified value of the specified property appear in the event overlay. Defaults to ` + "`" + `false` + "`" + `. ## Dashboard Layout Information`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -258,7 +260,7 @@ In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/v2/d
 				"dashboard",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the dashboard group.`,
@@ -320,7 +322,7 @@ In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/v2/d
 					Description: `(Optional) A list of strings of suggested values for this variable; these suggestions will receive priority when values are autosuggested for this variable.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -335,7 +337,7 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 			Keywords: []string{
 				"detector",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the detector.`,
@@ -421,7 +423,7 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 					Description: `ID of the SignalFx detector ## Import Downtimes can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the SignalFx detector ## Import Downtimes can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -443,7 +445,7 @@ Displays a listing of events as a widget in a dashboard.
 				"feed",
 				"chart",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the text note.`,
@@ -469,7 +471,7 @@ Displays a listing of events as a widget in a dashboard.
 					Description: `(Optional) Seconds since epoch. Used for visualization. Conflicts with ` + "`" + `time_range` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -485,7 +487,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				"heatmap",
 				"chart",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the chart.`,
@@ -547,7 +549,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 					Description: `(Required) The color range to use. Must be either gray, blue, navy, orange, yellow, magenta, purple, violet, lilac, green, aquamarine.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -567,7 +569,7 @@ In a future release ` + "`" + `signalfx_integration` + "`" + ` will be replaced 
 			Keywords: []string{
 				"integration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the integration.`,
@@ -601,7 +603,7 @@ In a future release ` + "`" + `signalfx_integration` + "`" + ` will be replaced 
 					Description: `(Required for ` + "`" + `GCP` + "`" + `) GCP projects to add.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -617,7 +619,7 @@ SignalFx GCP Integration
 				"integration",
 				"gcp",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the integration.`,
@@ -639,7 +641,7 @@ SignalFx GCP Integration
 					Description: `(Required) GCP projects to add.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -655,7 +657,7 @@ SignalFx PagerDuty integrations
 				"integration",
 				"pagerduty",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the integration.`,
@@ -669,7 +671,7 @@ SignalFx PagerDuty integrations
 					Description: `(Required) PagerDuty API key.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -685,7 +687,7 @@ SignalFx Slack integration.
 				"integration",
 				"slack",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the integration.`,
@@ -699,7 +701,7 @@ SignalFx Slack integration.
 					Description: `(Required) Slack incoming webhook URL.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -718,7 +720,7 @@ The name of each value in the chart reflects the name of the plot and any associ
 				"list",
 				"chart",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the chart.`,
@@ -816,7 +818,7 @@ The name of each value in the chart reflects the name of the plot and any associ
 					Description: `(Optional) The property to use when sorting the elements. Use ` + "`" + `value` + "`" + ` if you want to sort by value. Must be prepended with ` + "`" + `+` + "`" + ` for ascending or ` + "`" + `-` + "`" + ` for descending (e.g. ` + "`" + `-foo` + "`" + `). Note there are some special values for some of the options provided in the UX: ` + "`" + `"value"` + "`" + ` for Value, ` + "`" + `"sf_originatingMetric"` + "`" + ` for Metric, and ` + "`" + `"sf_metric"` + "`" + ` for plot.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -835,7 +837,7 @@ If the time period is in the past, the number represents the value of the metric
 				"value",
 				"chart",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the chart.`,
@@ -925,7 +927,7 @@ If the time period is in the past, the number represents the value of the metric
 					Description: `(Optional) Whether to show a trend line below the current value. ` + "`" + `false` + "`" + ` by default.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -941,7 +943,7 @@ This special type of chart doesn’t display any metric data. Rather, it lets yo
 				"text",
 				"chart",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the text note.`,
@@ -955,7 +957,7 @@ This special type of chart doesn’t display any metric data. Rather, it lets yo
 					Description: `(Optional) Description of the text note.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -973,7 +975,7 @@ Time charts display data points over a period of time.
 				"time",
 				"chart",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the chart.`,
@@ -1155,7 +1157,7 @@ Time charts display data points over a period of time.
 					Description: `(Optional) Time zone that SignalFlow uses as the basis of calendar window transformation methods. For example, if you set "timezone": "Europe/Paris" and then use the transformation sum(cycle="week", cycle_start="Monday") in your chart's SignalFlow program, the calendar window starts on Monday, Paris time. See the [full list of timezones for more](https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html#_supported_signalflow_time_zones). ` + "`" + `"UTC"` + "`" + ` by default.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1177,10 +1179,10 @@ Time charts display data points over a period of time.
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

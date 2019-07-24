@@ -1,11 +1,13 @@
-package aws
+package opentelekomcloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"antiddos",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enable_l7",
 					Description: `(Required) Specifies whether to enable L7 defense.`,
@@ -43,7 +45,7 @@ var (
 					Description: `(Required) The ID corresponding to the Elastic IP Address (EIP) of a user. ## Attributes Reference All above argument parameters can be exported as attribute parameters. ## Import Antiddos can be imported using the floating_ip_id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_antiddos_v1.myantiddos c1881895-cdcb-4d23-96cb-032e6a3ee667 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -58,7 +60,7 @@ var (
 				"configuration",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_configuration_name",
 					Description: `(Required) The name of the AS configuration. The name can contain letters, digits, underscores(_), and hyphens(-), and cannot exceed 64 characters.`,
@@ -148,7 +150,7 @@ var (
 					Description: `(Required) The bandwidth charging mode. The system only supports ` + "`" + `traffic` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -163,7 +165,7 @@ var (
 				"group",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_name",
 					Description: `(Required) The name of the scaling group. The name can contain letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.`,
@@ -293,7 +295,7 @@ var (
 					Description: `The instances IDs of the AS group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_name",
 					Description: `See Argument Reference above.`,
@@ -361,7 +363,7 @@ var (
 				"policy",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_policy_name",
 					Description: `(Required) The name of the AS policy. The name can contain letters, digits, underscores(_), and hyphens(-),and cannot exceed 64 characters.`,
@@ -463,7 +465,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_policy_name",
 					Description: `See Argument Reference above.`,
@@ -523,7 +525,7 @@ var (
 				"volume",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) The size of the volume to create (in gigabytes). Changing this creates a new volume.`,
@@ -625,7 +627,7 @@ var (
 					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_blockstorage_volume_v2.volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `See Argument Reference above.`,
@@ -679,7 +681,7 @@ var (
 				"cluster",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Cluster name. Changing this parameter will create a new cluster resource.`,
@@ -821,7 +823,7 @@ var (
 					Description: `The endpoint of the cluster to be accessed through API Gateway. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Id of the cluster resource.`,
@@ -855,7 +857,7 @@ var (
 				"node",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) ID of the cluster. Changing this parameter will create a new resource.`,
@@ -969,7 +971,7 @@ var (
 					Description: `Private IP of the CCE node.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Node status information.`,
@@ -991,7 +993,7 @@ var (
 				"alarm",
 				"alarmrule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_name",
 					Description: `(Required) Specifies the name of an alarm rule. The value can be a string of 1 to 128 characters that can consist of numbers, lowercase letters, uppercase letters, underscores (_), or hyphens (-).`,
@@ -1145,7 +1147,7 @@ var (
 					Description: `Specifies the alarm status. The value can be: ok: The alarm status is normal, alarm: An alarm is generated, insufficient_data: The required data is insufficient.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_name",
 					Description: `See Argument Reference above.`,
@@ -1207,7 +1209,7 @@ var (
 				"server",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the BMS.`,
@@ -1305,7 +1307,7 @@ var (
 					Description: `The nova-compute status:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1319,7 +1321,7 @@ var (
 				"associate",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "floating_ip",
 					Description: `(Required) The floating IP to associate.`,
@@ -1345,7 +1347,7 @@ var (
 					Description: `See Argument Reference above. ## Import This resource can be imported by specifying all three arguments, separated by a forward slash: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_compute_floatingip_associate_v2.fip_1 <floating_ip>/<instance_id>/<fixed_ip> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "floating_ip",
 					Description: `See Argument Reference above.`,
@@ -1371,7 +1373,7 @@ var (
 				"floatingip",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
 					Description: `(Required) The name of the pool from which to obtain the floating IP. Changing this creates a new floating IP. ## Attributes Reference The following attributes are exported:`,
@@ -1393,7 +1395,7 @@ var (
 					Description: `UUID of the compute instance associated with the floating IP. ## Import Floating IPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_compute_floatingip_v2.floatip_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
 					Description: `See Argument Reference above.`,
@@ -1423,7 +1425,7 @@ var (
 				"instance",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the resource.`,
@@ -1657,7 +1659,7 @@ var (
 					Description: `See Argument Reference above. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "opentelekomcloud_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "volume" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "volume" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "volume" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1731,7 +1733,7 @@ var (
 				"keypair",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the keypair. Changing this creates a new keypair.`,
@@ -1753,7 +1755,7 @@ var (
 					Description: `See Argument Reference above. ## Import Keypairs can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_compute_keypair_v2.my-keypair test-keypair ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1775,7 +1777,7 @@ var (
 				"secgroup",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the security group. Changing this updates the ` + "`" + `name` + "`" + ` of an existing security group.`,
@@ -1825,7 +1827,7 @@ var (
 					Description: `See Argument Reference above. ## Notes ### ICMP Rules When using ICMP as the ` + "`" + `ip_protocol` + "`" + `, the ` + "`" + `from_port` + "`" + ` sets the ICMP _type_ and the ` + "`" + `to_port` + "`" + ` sets the ICMP _code_. To allow all ICMP types, set each value to ` + "`" + `-1` + "`" + `, like so: ` + "`" + `` + "`" + `` + "`" + `hcl rule { from_port = -1 to_port = -1 ip_protocol = "icmp" cidr = "0.0.0.0/0" } ` + "`" + `` + "`" + `` + "`" + ` A list of ICMP types and codes can be found [here](https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol#Control_messages). ### Referencing Security Groups When referencing a security group in a configuration (for example, a configuration creates a new security group and then needs to apply it to an instance being created in the same configuration), it is currently recommended to reference the security group by name and not by ID, like this: ` + "`" + `` + "`" + `` + "`" + `hcl resource "opentelekomcloud_compute_instance_v2" "test-server" { name = "tf-test" image_id = "ad091b52-742f-469e-8f3c-fd81cadf0743" flavor_id = "3" key_pair = "my_key_pair_name" security_groups = ["${opentelekomcloud_compute_secgroup_v2.secgroup_1.name}"] } ` + "`" + `` + "`" + `` + "`" + ` ## Import Security Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_compute_secgroup_v2.my_secgroup 1bc30ee9-9d5b-4c30-bdd5-7f1e663f5edf ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1851,7 +1853,7 @@ var (
 				"servergroup",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the server group. Changing this creates a new server group.`,
@@ -1889,7 +1891,7 @@ var (
 					Description: `ID of the server group. ## Import Server Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_compute_servergroup_v2.test-sg 1bc30ee9-9d5b-4c30-bdd5-7f1e663f5edf ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -1920,7 +1922,7 @@ var (
 				"attach",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required) The ID of the Instance to attach the Volume to.`,
@@ -1946,7 +1948,7 @@ var (
 					Description: `See Argument Reference above. _NOTE_: The correctness of this information is dependent upon the hypervisor in use. In some cases, this should not be used as an authoritative piece of information. ## Import Volume Attachments can be imported using the Instance ID and Volume ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `See Argument Reference above.`,
@@ -1973,7 +1975,7 @@ var (
 				"policy",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of backup policy. The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-).`,
@@ -2067,7 +2069,7 @@ var (
 					Description: `Specifies Scheduler type. ## Import Backup Policy can be imported using ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_csbs_backup_policy_v1.backup_policy_v1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of Backup Policy.`,
@@ -2105,7 +2107,7 @@ var (
 				"backup",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backup_name",
 					Description: `(Optional) Name for the backup. The value consists of 1 to 255 characters and can contain only letters, digits, underscores (_), and hyphens (-). Changing backup_name creates a new backup.`,
@@ -2227,7 +2229,7 @@ var (
 					Description: `Specifies image type. ## Import Backup can be imported using ` + "`" + `backup_record_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_csbs_backup_v1.backup_v1.backup_v1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `It specifies the status of backup.`,
@@ -2336,7 +2338,7 @@ var (
 				"cluster",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Cluster name. It contains 4 to 32 characters. Only letters, digits, hyphens (-), and underscores (_) are allowed. The value must start with a letter. Changing this parameter will create a new resource.`,
@@ -2434,7 +2436,7 @@ var (
 					Description: `Supported type: ess (indicating the Elasticsearch node) ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 15 minute. - ` + "`" + `update` + "`" + ` - Default is 30 minute.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created",
 					Description: `Time when a cluster is created. The format is ISO8601: CCYY-MM-DDThh:mm:ss.`,
@@ -2488,7 +2490,7 @@ var (
 				"tracker",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_name",
 					Description: `(Required) The OBS bucket name for a tracker.`,
@@ -2526,7 +2528,7 @@ var (
 					Description: `The tracker name. Currently, only tracker`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tracker_name",
 					Description: `The tracker name. Currently, only tracker`,
@@ -2544,7 +2546,7 @@ var (
 				"instance",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Indicates the name of an instance. An instance name starts with a letter, consists of 4 to 64 characters, and supports only letters, digits, and hyphens (-).`,
@@ -2742,7 +2744,7 @@ var (
 					Description: `Cache node's IP address in tenant's VPC.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -2880,7 +2882,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"host",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Specifies the Dedicated Host status.`,
@@ -2926,7 +2928,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The VM flavors placed on the Dedicated Host. ## Import DeH can be imported using the ` + "`" + `dedicated_host_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_deh_host_v1.deh_host 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Specifies the Dedicated Host status.`,
@@ -2984,7 +2986,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"group",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Indicates the unique name of a group. A string of 1 to 64 characters that contain a-z, A-Z, 0-9, hyphens (-), and underscores (_). The name cannot be modified once specified.`,
@@ -3026,7 +3028,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Indicates the accumulated number of dead letter messages that have not been consumed.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3072,7 +3074,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"queue",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Indicates the unique name of a queue. A string of 1 to 64 characters that contain a-z, A-Z, 0-9, hyphens (-), and underscores (_). The name cannot be modified once specified.`,
@@ -3134,7 +3136,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Indicates the total number of consumer groups in a queue.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3188,7 +3190,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"recordset",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The ID of the zone in which to create the record set. Changing this creates a new DNS record set.`,
@@ -3246,7 +3248,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import This resource can be imported by specifying the zone ID and recordset ID, separated by a forward slash. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_dns_recordset_v2.recordset_1 <zone_id>/<recordset_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3288,7 +3290,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"zone",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the zone. Note the ` + "`" + `.` + "`" + ` at the end of the name. Changing this creates a new DNS zone.`,
@@ -3346,7 +3348,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import This resource can be imported by specifying the zone ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_dns_zone_v2.zone_1 <zone_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3390,7 +3392,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"elb",
 				"backend",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_id",
 					Description: `(Required) Specifies the listener ID. Changing this creates a new elb backend.`,
@@ -3448,7 +3450,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies the listener to which the backend member belongs.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_id",
 					Description: `See Argument Reference above.`,
@@ -3508,7 +3510,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"elb",
 				"health",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_id",
 					Description: `(Required) Specifies the ID of the listener to which the health check task belongs. Changing this creates a new elb health.`,
@@ -3578,7 +3580,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies the health check task ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_id",
 					Description: `See Argument Reference above.`,
@@ -3630,7 +3632,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"elb",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the load balancer name. The name is a string of 1 to 64 characters that consist of letters, digits, underscores (_), and hyphens (-).`,
@@ -3784,7 +3786,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies the status of the load balancer. Value range: false: The load balancer is disabled. true: The load balancer runs properly.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -3880,7 +3882,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"elb",
 				"loadbalancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the load balancer name. The name is a string of 1 to 64 characters that consist of letters, digits, underscores (_), and hyphens (-).`,
@@ -3974,7 +3976,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies the load balancer ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -4037,7 +4039,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"group",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ingress_policy_id",
 					Description: `The ingress policy resource id for the firewall group. Changing this updates the ` + "`" + `ingress_policy_id` + "`" + ` of an existing firewall group.`,
@@ -4095,7 +4097,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Firewall Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_fw_firewall_group_v2.firewall_group_1 c9e39fb2-ce20-46c8-a964-25f3898c7a97 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `See Argument Reference above.`,
@@ -4134,7 +4136,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"policy",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A name for the firewall policy. Changing this updates the ` + "`" + `name` + "`" + ` of an existing firewall policy.`,
@@ -4176,7 +4178,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Firewall Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_fw_policy_v2.policy_1 07f422e6-c596-474b-8b94-fe2c12506ce0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -4207,7 +4209,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A unique name for the firewall rule. Changing this updates the ` + "`" + `name` + "`" + ` of an existing firewall rule.`,
@@ -4301,7 +4303,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Firewall Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_fw_rule_v2.rule_1 8dbc0c28-e49c-463f-b712-5c5d1bbac327 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -4359,7 +4361,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"agency",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of agency. The name is a string of 1 to 64 characters.`,
@@ -4425,7 +4427,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The agency ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -4476,7 +4478,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"membership",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group",
 					Description: `(Required) The group ID of this membership.`,
@@ -4494,7 +4496,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group",
 					Description: `See Argument Reference above.`,
@@ -4516,7 +4518,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"group",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the group.The length is less than or equal to 64 bytes`,
@@ -4534,7 +4536,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_identity_group_v3.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_id",
 					Description: `See Argument Reference above. ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_identity_group_v3.group_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4552,7 +4554,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"project",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the project. it must start with ID of an existing region_ and be less than or equal to 64 characters. Example: eu-de_project1.`,
@@ -4578,7 +4580,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Projects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_identity_project_v3.project_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_id",
 					Description: `See Argument Reference above.`,
@@ -4601,7 +4603,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"assignment",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_id",
 					Description: `(Optional; Required if ` + "`" + `project_id` + "`" + ` is empty) The domain to assign the role in.`,
@@ -4643,7 +4645,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_id",
 					Description: `See Argument Reference above.`,
@@ -4677,7 +4679,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"role",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Required) Description of a role. The value cannot exceed 256 characters.`,
@@ -4715,7 +4717,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Name of a role ## Import Role can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_identity_role_v3.default {{ resource id}} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "catalog",
 					Description: `Directory where a role locates`,
@@ -4741,7 +4743,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"user",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the user. The user name consists of 5 to 32 characters. It can contain only uppercase letters, lowercase letters, digits, spaces, and special characters (-_) and cannot start with a digit.`,
@@ -4767,7 +4769,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_identity_user_v3.user_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_id",
 					Description: `See Argument Reference above. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_identity_user_v3.user_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4785,7 +4787,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"image",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "container_format",
 					Description: `(Required) The container format. Must be one of "ami", "ari", "aki", "bare", "ovf".`,
@@ -4903,7 +4905,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Images can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_images_image_v2.rancheros 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "checksum",
 					Description: `The checksum of the data associated with the image.`,
@@ -4989,7 +4991,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"key",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
 					Description: `(Required) The alias in which to create the key. It is required when we create a new key. Changing this updates the alias of key.`,
@@ -5055,7 +5057,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_kms_key_v1.key_1 7056d636-ac60-4663-8a6c-82d3c32c1c64 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_alias",
 					Description: `See Argument Reference above.`,
@@ -5115,7 +5117,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"listener",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "protocol",
 					Description: `(Required) The protocol - can either be TCP, HTTP, HTTPS or TERMINATED_HTTPS. Changing this creates a new Listener.`,
@@ -5197,7 +5199,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the Listener.`,
@@ -5253,7 +5255,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"loadbalancer",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vip_subnet_id",
 					Description: `(Required) The network on which to allocate the Loadbalancer's address. A tenant can only create Loadbalancers on networks authorized by policy (e.g. networks that belong to them or networks that are shared). Changing this creates a new loadbalancer.`,
@@ -5323,7 +5325,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The Port ID of the Load Balancer IP.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vip_subnet_id",
 					Description: `See Argument Reference above.`,
@@ -5375,7 +5377,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"member",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool_id",
 					Description: `(Required) The id of the pool that this member will be assigned to.`,
@@ -5445,7 +5447,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the member.`,
@@ -5497,7 +5499,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"monitor",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool_id",
 					Description: `(Required) The id of the pool that this monitor will be assigned to.`,
@@ -5579,7 +5581,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the monitor.`,
@@ -5635,7 +5637,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"pool",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tenant_id",
 					Description: `(Optional) Required for admins. The UUID of the tenant who owns the pool. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new pool.`,
@@ -5709,7 +5711,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID for the pool.`,
@@ -5755,7 +5757,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"task",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "src_node",
 					Description: `(Required) Specifies the source node information.`,
@@ -5861,7 +5863,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies the task status as follows: 0: Not started, 1: Waiting to migrate, 2: Migrating, 3: Migration paused, 4: Migration failed, 5: Migration succeeded.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "src_node",
 					Description: `See Argument Reference above.`,
@@ -5907,7 +5909,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"cluster",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billing_type",
 					Description: `(Required) The value is 12, indicating on-demand payment.`,
@@ -6281,7 +6283,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Component description`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "billing_type",
 					Description: `See Argument Reference above.`,
@@ -6499,7 +6501,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"job",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "job_type",
 					Description: `(Required) Job type 1: MapReduce 2: Spark 3: Hive Script 4: HiveQL (not supported currently) 5: DistCp, importing and exporting data. 6: Spark Script 7: Spark SQL, submitting Spark SQL statements. (not supported in this APIcurrently) NOTE: Spark and Hive jobs can be added to only clusters including Spark and Hive components.`,
@@ -6589,7 +6591,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "job_type",
 					Description: `See Argument Reference above.`,
@@ -6647,7 +6649,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"gateway",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the nat gateway.`,
@@ -6697,7 +6699,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -6736,7 +6738,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nat_gateway_id",
 					Description: `(Required) ID of the nat gateway this snat rule belongs to. Changing this creates a new snat rule.`,
@@ -6778,7 +6780,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nat_gateway_id",
 					Description: `See Argument Reference above.`,
@@ -6813,7 +6815,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"associate",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "floating_ip",
 					Description: `(Required) IP Address of an existing floating IP.`,
@@ -6831,7 +6833,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Floating IP associations can be imported using the ` + "`" + `id` + "`" + ` of the floating IP, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_networking_floatingip_associate_v2.fip 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "floating_ip",
 					Description: `See Argument Reference above.`,
@@ -6853,7 +6855,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"floatingip",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
 					Description: `(Required) The name of the pool from which to obtain the floating IP. Changing this creates a new floating IP.`,
@@ -6895,7 +6897,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The fixed IP which the floating IP maps to. ## Import Floating IPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_networking_floatingip_v2.floatip_1 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
 					Description: `See Argument Reference above.`,
@@ -6929,7 +6931,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"network",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the network. Changing this updates the name of the existing network.`,
@@ -6983,7 +6985,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Networks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_networking_network_v2.network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -7013,7 +7015,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"port",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A unique name for the port. Changing this updates the ` + "`" + `name` + "`" + ` of an existing port.`,
@@ -7107,7 +7109,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The collection of Fixed IP addresses on the port in the order returned by the Network v2 API. ## Import Ports can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_networking_port_v2.port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1 ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### Ports and Instances There are some notes to consider when connecting Instances to networks using Ports. Please see the ` + "`" + `opentelekomcloud_compute_instance_v2` + "`" + ` documentation for further documentation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "admin_state_up",
 					Description: `See Argument Reference above.`,
@@ -7154,7 +7156,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"interface",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "router_id",
 					Description: `(Required) ID of the router this interface belongs to. Changing this creates a new router interface.`,
@@ -7180,7 +7182,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "router_id",
 					Description: `See Argument Reference above.`,
@@ -7207,7 +7209,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"route",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "router_id",
 					Description: `(Required) ID of the router this routing entry belongs to. Changing this creates a new routing entry.`,
@@ -7233,7 +7235,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Notes The ` + "`" + `next_hop` + "`" + ` IP address must be directly reachable from the router at the ` + "`" + `` + "`" + `opentelekomcloud_networking_router_route_v2` + "`" + `` + "`" + ` resource creation time. You can ensure that by explicitly specifying a dependency on the ` + "`" + `` + "`" + `opentelekomcloud_networking_router_interface_v2` + "`" + `` + "`" + ` resource that connects the next hop to the router, as in the example above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "router_id",
 					Description: `See Argument Reference above.`,
@@ -7259,7 +7261,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"router",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A unique name for the router. Changing this updates the ` + "`" + `name` + "`" + ` of an existing router.`,
@@ -7317,7 +7319,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the router.`,
@@ -7360,7 +7362,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "direction",
 					Description: `(Required) The direction of the rule, valid values are __ingress__ or __egress__. Changing this creates a new security group rule.`,
@@ -7434,7 +7436,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Security Group Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_networking_secgroup_rule_v2.secgroup_rule_1 aeb68ee3-6e9d-4256-955c-9584a6212745 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "direction",
 					Description: `See Argument Reference above.`,
@@ -7484,7 +7486,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"secgroup",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the security group.`,
@@ -7514,7 +7516,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Default Security Group Rules In most cases, OpenTelekomCloud will create some egress security group rules for each new security group. These security group rules will not be managed by Terraform, so if you prefer to have`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -7540,7 +7542,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"subnet",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `(Required) The UUID of the parent network. Changing this creates a new subnet.`,
@@ -7646,7 +7648,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Subnets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_networking_subnet_v2.subnet_1 da4faf16-5546-41e4-8330-4d0002b74048 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `See Argument Reference above.`,
@@ -7701,7 +7703,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"associate",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vip_id",
 					Description: `(Required) The ID of vip to attach the port to. Changing this creates a new vip associate.`,
@@ -7727,7 +7729,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The IP address in the subnet for this vip.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vip_id",
 					Description: `See Argument Reference above.`,
@@ -7757,7 +7759,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"vip",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `(Required) The ID of the network to attach the vip to. Changing this creates a new vip.`,
@@ -7807,7 +7809,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The device owner of the vip.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `See Argument Reference above.`,
@@ -7854,7 +7856,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rds",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type is unique in the same tenant. The changes of the instance name will be suppressed in HA scenario.`,
@@ -8024,7 +8026,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -8115,7 +8117,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rds",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) Specifies the AZ name. Changing this parameter will create a new resource.`,
@@ -8237,7 +8239,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Indicates the node status. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. ## Import RDS instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_rds_instance_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ` But due to some attrubutes missing from the API response, it's required to ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "opentelekomcloud_rds_instance_v3" "instance_1" { ... lifecycle { ignore_changes = [ "db", ] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created",
 					Description: `Indicates the creation time.`,
@@ -8289,7 +8291,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"parametergroup",
 				"v3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The parameter group name. It contains a maximum of 64 characters.`,
@@ -8351,7 +8353,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Indicates the parameter description. ## Import Parameter groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_rds_parametergroup_v3.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the parameter group.`,
@@ -8402,8 +8404,8 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"config",
 				"v1",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8417,8 +8419,8 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"deployment",
 				"v1",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8430,7 +8432,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rts",
 				"opentelekomcloud-resource-rts-stack-v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the stack. The value must meet the regular expression rule (` + "`" + `^[a-zA-Z][a-zA-Z0-9_.-]{0,254}$` + "`" + `). Changing this creates a new stack.`,
@@ -8480,7 +8482,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies the stack status. ## Import RTS Stacks can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_rts_stack_v1.mystack rts-stack ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `opentelekomcloud_rts_stack_v1` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Creating Stacks - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Stack modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for destroying stacks.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "outputs",
 					Description: `A map of outputs from the stack.`,
@@ -8510,7 +8512,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"resource",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Optional, Forces new resource) The name of the bucket. If omitted, Terraform will assign a random, unique name.`,
@@ -8632,7 +8634,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records. ## Import S3 bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_s3_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the bucket.`,
@@ -8670,7 +8672,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"resource",
 				"s3-bucket-object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to put the file in.`,
@@ -8736,7 +8738,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above`,
@@ -8763,7 +8765,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"bucket",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to which to apply the policy.`,
@@ -8773,7 +8775,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `(Required) The text of the policy.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8787,7 +8789,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"system",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) The size (GB) of the shared file system.`,
@@ -8861,7 +8863,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The status of the share access rule. ## Import SFS can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_sfs_file_system_v2 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The UUID of the shared file system.`,
@@ -8908,7 +8910,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"subscription",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_urn",
 					Description: `(Required) Resource identifier of a topic, which is unique.`,
@@ -8966,7 +8968,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_urn",
 					Description: `See Argument Reference above.`,
@@ -9009,7 +9011,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"topic",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the topic to be created.`,
@@ -9043,7 +9045,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Time when the topic was updated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `See Argument Reference above.`,
@@ -9080,8 +9082,8 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"vbs",
 				"opentelekomcloud-vbs-backup-policy-v2",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9093,8 +9095,8 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"vbs",
 				"opentelekomcloud-vbs-backup-share-v2",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9106,8 +9108,8 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"vbs",
 				"opentelekomcloud-vbs-backup-v2",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9120,7 +9122,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"vpc",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "publicip",
 					Description: `(Required) The elastic IP address object.`,
@@ -9186,7 +9188,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import EIPs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpc_eip_v1.eip_1 2c7f39f3-702b-48d1-940c-b50384177ee1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "publicip/type",
 					Description: `See Argument Reference above.`,
@@ -9231,7 +9233,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"accepter",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The VPC peering connection name.`,
@@ -9257,7 +9259,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The Tenant Id of the accepter tenant.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The VPC peering connection name.`,
@@ -9297,7 +9299,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"connection",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The VPC peering connection ID.`,
@@ -9307,7 +9309,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The VPC peering connection status. The value can be PENDING_ACCEPTANCE, REJECTED, EXPIRED, DELETED, or ACTIVE. ## Notes If you create a VPC peering connection with another VPC of your own, the connection is created without the need for you to accept the connection. ## Import VPC Peering resources can be imported using the ` + "`" + `vpc peering id` + "`" + `, e.g. > $ terraform import opentelekomcloud_vpc_peering_connection_v2.test_connection 22b76469-08e3-4937-8c1d-7aad34892be1`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The VPC peering connection ID.`,
@@ -9330,13 +9332,13 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"route",
 				"v2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The route ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The route ID.`,
@@ -9355,8 +9357,8 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"subnet",
 				"v1",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9369,7 +9371,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"vpc",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr",
 					Description: `(Required) The range of available subnets in the VPC. The value ranges from 10.0.0.0/8 to 10.255.255.0/24, 172.16.0.0/12 to 172.31.255.0/24, or 192.168.0.0/16 to 192.168.255.0/24.`,
@@ -9399,7 +9401,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies whether the cross-tenant sharing is supported. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the VPC.`,
@@ -9434,7 +9436,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The WAF policy ID. Changing this creates a new rule.`,
@@ -9512,7 +9514,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies whether the rule is the default CC attack protection rule. ## Import CC Attack Protection Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_ccattackprotection_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the rule.`,
@@ -9534,7 +9536,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"certificate",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The certificate name. The maximum length is 256 characters. Only digits, letters, underscores(_), and hyphens(-) are allowed.`,
@@ -9564,7 +9566,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above. ## Import Certificates can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_certificate_v1.cert_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the certificate.`,
@@ -9595,7 +9597,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The WAF policy ID. Changing this creates a new rule.`,
@@ -9617,7 +9619,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `ID of the rule. ## Import Data Masking Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_datamasking_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the rule. ## Import Data Masking Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_datamasking_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9635,7 +9637,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"domain",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) The domain name. For example, www.example.com or`,
@@ -9713,7 +9715,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The protocol type of the client. The options are HTTP, HTTPS, and HTTP&HTTPS. ## Import Domains can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_domain_v1.dom_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the domain.`,
@@ -9764,7 +9766,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The WAF policy ID. Changing this creates a new rule.`,
@@ -9782,7 +9784,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `ID of the rule. ## Import False Alarm Masking Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_falsealarmmasking_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the rule. ## Import False Alarm Masking Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_falsealarmmasking_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9800,7 +9802,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"policy",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The policy name. The maximum length is 256 characters. Only digits, letters, underscores(_), and hyphens(-) are allowed.`,
@@ -9894,7 +9896,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `Specifies the domain IDs. ## Import Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_policy_v1.policy_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the policy.`,
@@ -9917,7 +9919,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The WAF policy ID. Changing this creates a new rule.`,
@@ -9983,7 +9985,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `ID of the rule. ## Import Precise Protection Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_preciseprotection_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the rule. ## Import Precise Protection Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_preciseprotection_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10002,7 +10004,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The WAF policy ID. Changing this creates a new rule.`,
@@ -10020,7 +10022,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `ID of the rule. ## Import Web Tamper Protection Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_webtamperprotection_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the rule. ## Import Web Tamper Protection Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_webtamperprotection_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10039,7 +10041,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				"rule",
 				"v1",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The WAF policy ID. Changing this creates a new rule.`,
@@ -10057,7 +10059,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `ID of the rule. ## Import WhiteBlackIP Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_whiteblackip_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the rule. ## Import WhiteBlackIP Rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_waf_whiteblackip_rule_v1.rule_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
@@ -10165,10 +10167,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

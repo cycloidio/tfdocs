@@ -1,11 +1,13 @@
-package aws
+package chef
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"data",
 				"bag",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique name to assign to the data bag. This is the name that other server clients will use to find and retrieve data from the data bag. ## Attributes Reference The following attributes are exported:`,
@@ -27,7 +29,7 @@ var (
 					Description: `The URI representing this data bag in the Chef server API.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_uri",
 					Description: `The URI representing this data bag in the Chef server API.`,
@@ -45,7 +47,7 @@ var (
 				"bag",
 				"item",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data_bag_name",
 					Description: `(Required) The name of the data bag into which this item will be placed.`,
@@ -59,7 +61,7 @@ var (
 					Description: `The value of the "id" property in the ` + "`" + `` + "`" + `content_json` + "`" + `` + "`" + ` JSON object, which can be used by clients to retrieve this item's content.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The value of the "id" property in the ` + "`" + `` + "`" + `content_json` + "`" + `` + "`" + ` JSON object, which can be used by clients to retrieve this item's content.`,
@@ -75,7 +77,7 @@ var (
 			Keywords: []string{
 				"environment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique name to assign to the environment. This name will be used when nodes are created within the environment.`,
@@ -97,7 +99,7 @@ var (
 					Description: `(Optional) Mapping of cookbook names to cookbook version constraints that should apply for this environment. ## Attributes Reference This resource exports no further attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -108,7 +110,7 @@ var (
 			Keywords: []string{
 				"node",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique name to assign to the node.`,
@@ -134,7 +136,7 @@ var (
 					Description: `(Optional) List of strings to set as the [run list](https://docs.chef.io/run_lists.html) for the node. ## Attributes Reference This resource exports no further attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -145,7 +147,7 @@ var (
 			Keywords: []string{
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The unique name to assign to the role.`,
@@ -167,7 +169,7 @@ var (
 					Description: `(Optional) List of strings to set as the [run list](https://docs.chef.io/run_lists.html) for any nodes that belong to this role. ## Attributes Reference This resource exports no further attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -181,10 +183,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

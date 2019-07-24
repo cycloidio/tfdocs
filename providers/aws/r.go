@@ -1,11 +1,13 @@
 package aws
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -37,7 +39,7 @@ which is currently in use (eg, by [` + "`" + `aws_lb_listener` + "`" + `](lb_lis
 				"acm",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) A domain name for which the certificate should be issued`,
@@ -103,7 +105,7 @@ which is currently in use (eg, by [` + "`" + `aws_lb_listener` + "`" + `](lb_lis
 					Description: `The value the DNS record needs to have [1]: /docs/configuration/resources.html#lifecycle ## Import Certificates can be imported using their ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_acm_certificate.cert arn:aws:acm:eu-central-1:123456789012:certificate/7e7a28d2-163f-4b8f-b9cd-822f96c08d6a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the certificate`,
@@ -165,7 +167,7 @@ deploy the required validation records and wait for validation to complete.
 				"certificate",
 				"validation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate_arn",
 					Description: `(Required) The ARN of the certificate that is being validated.`,
@@ -179,7 +181,7 @@ deploy the required validation records and wait for validation to complete.
 					Description: `The time at which the certificate was issued ## Timeouts ` + "`" + `acm_certificate_validation` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `45m` + "`" + `) How long to wait for a certificate to be issued.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The time at which the certificate was issued ## Timeouts ` + "`" + `acm_certificate_validation` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `45m` + "`" + `) How long to wait for a certificate to be issued.`,
@@ -205,7 +207,7 @@ Provides a resource to manage AWS Certificate Manager Private Certificate Author
 				"certificate",
 				"authority",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate_authority_configuration",
 					Description: `(Required) Nested argument containing algorithms and certificate subject information. Defined below.`,
@@ -355,7 +357,7 @@ Provides a resource to manage AWS Certificate Manager Private Certificate Author
 					Description: `(Default ` + "`" + `1m` + "`" + `) How long to wait for a certificate authority to be created. ## Import ` + "`" + `aws_acmpca_certificate_authority` + "`" + ` can be imported by using the certificate authority Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_acmpca_certificate_authority.example arn:aws:acm-pca:us-east-1:123456789012:certificate-authority/12345678-1234-1234-1234-123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the certificate authority.`,
@@ -419,7 +421,7 @@ it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 				"ec2",
 				"ami",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A region-unique name for the AMI.`,
@@ -533,7 +535,7 @@ it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 					Description: `The Snapshot ID for the root volume (for EBS-backed AMIs) ## Import ` + "`" + `aws_ami` + "`" + ` can be imported using the ID of the AMI, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ami.example ami-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the created AMI.`,
@@ -569,7 +571,7 @@ block until the new AMI is available for use on new instances.
 				"ami",
 				"copy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A region-unique name for the AMI.`,
@@ -611,7 +613,7 @@ block until the new AMI is available for use on new instances.
 					Description: `The ID of the created AMI. This resource also exports a full set of attributes corresponding to the arguments of the [` + "`" + `aws_ami` + "`" + `](ami.html) resource, allowing the properties of the created AMI to be used elsewhere in the configuration.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the created AMI. This resource also exports a full set of attributes corresponding to the arguments of the [` + "`" + `aws_ami` + "`" + `](ami.html) resource, allowing the properties of the created AMI to be used elsewhere in the configuration.`,
@@ -650,7 +652,7 @@ to produce a fresh snapshot.
 				"from",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A region-unique name for the AMI.`,
@@ -684,7 +686,7 @@ to produce a fresh snapshot.
 					Description: `The ID of the created AMI. This resource also exports a full set of attributes corresponding to the arguments of the ` + "`" + `aws_ami` + "`" + ` resource, allowing the properties of the created AMI to be used elsewhere in the configuration.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the created AMI. This resource also exports a full set of attributes corresponding to the arguments of the ` + "`" + `aws_ami` + "`" + ` resource, allowing the properties of the created AMI to be used elsewhere in the configuration.`,
@@ -707,7 +709,7 @@ Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
 				"launch",
 				"permission",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "image_id",
 					Description: `(required) A region-unique name for the AMI.`,
@@ -721,7 +723,7 @@ Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
 					Description: `A combination of "` + "`" + `image_id` + "`" + `-` + "`" + `account_id` + "`" + `".`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A combination of "` + "`" + `image_id` + "`" + `-` + "`" + `account_id` + "`" + `".`,
@@ -745,7 +747,7 @@ Provides a settings of an API Gateway Account. Settings is applied region-wide p
 				"gateway",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloudwatch_role_arn",
 					Description: `(Optional) The ARN of an IAM role for CloudWatch (to allow logging & monitoring). See more [in AWS Docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-stage-settings.html#how-to-stage-settings-console). Logging & monitoring can be enabled/disabled and otherwise tuned on the API Gateway Stage level. ## Attribute Reference The following attribute is exported:`,
@@ -763,7 +765,7 @@ Provides a settings of an API Gateway Account. Settings is applied region-wide p
 					Description: `The number of times API Gateway allows the API to be called per second on average (RPS). ## Import API Gateway Accounts can be imported using the word ` + "`" + `api-gateway-account` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_account.demo api-gateway-account ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "throttle_settings",
 					Description: `Account-Level throttle settings. See exported fields below. ` + "`" + `throttle_settings` + "`" + ` block exports the following:`,
@@ -795,7 +797,7 @@ Provides an API Gateway API Key.
 				"gateway",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the API key`,
@@ -829,7 +831,7 @@ Provides an API Gateway API Key.
 					Description: `The value of the API key ## Import API Gateway Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_api_key.my_demo_key 8bklk8bl1k3sB38D9B3l0enyWT8c09B30lkq0blk ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API key`,
@@ -863,7 +865,7 @@ Provides an API Gateway Authorizer.
 				"gateway",
 				"authorizer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "authorizer_uri",
 					Description: `(Optional, required for type ` + "`" + `TOKEN` + "`" + `/` + "`" + `REQUEST` + "`" + `) The authorizer's Uniform Resource Identifier (URI). This must be a well-formed Lambda function URI in the form of ` + "`" + `arn:aws:apigateway:{region}:lambda:path/{service_api}` + "`" + `, e.g. ` + "`" + `arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:012345678912:function:my-function/invocations` + "`" + ``,
@@ -901,7 +903,7 @@ Provides an API Gateway Authorizer.
 					Description: `(Optional, required for type ` + "`" + `COGNITO_USER_POOLS` + "`" + `) A list of the Amazon Cognito user pool ARNs. Each element is of this format: ` + "`" + `arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -922,7 +924,7 @@ custom domain name.
 				"path",
 				"mapping",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) The already-registered domain name to connect the API to.`,
@@ -940,7 +942,7 @@ custom domain name.
 					Description: `(Optional) Path segment that must be prepended to the path when accessing the API via this mapping. If omitted, the API is exposed at the root of the given domain. ## Import ` + "`" + `aws_api_gateway_base_path_mapping` + "`" + ` can be imported by using the domain name and base path, e.g. For empty ` + "`" + `base_path` + "`" + ` (e.g. root path (` + "`" + `/` + "`" + `)): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_base_path_mapping.example example.com/ ` + "`" + `` + "`" + `` + "`" + ` Otherwise: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_base_path_mapping.example example.com/base-path ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -958,7 +960,7 @@ Provides an API Gateway Client Certificate.
 				"client",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) The description of the client certificate. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
@@ -980,7 +982,7 @@ Provides an API Gateway Client Certificate.
 					Description: `The PEM-encoded public key of the client certificate. ## Import API Gateway Client Certificates can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_client_certificate.demo ab1cqe ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identifier of the client certificate.`,
@@ -1017,7 +1019,7 @@ you might need to add an explicit ` + "`" + `depends_on = ["aws_api_gateway_inte
 				"gateway",
 				"deployment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the associated REST API`,
@@ -1055,7 +1057,7 @@ you might need to add an explicit ` + "`" + `depends_on = ["aws_api_gateway_inte
 					Description: `The creation date of the deployment`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the deployment`,
@@ -1090,7 +1092,7 @@ Provides a settings of an API Gateway Documentation Part.
 				"documentation",
 				"part",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `(Required) The location of the targeted API entity of the to-be-created documentation part. See below.`,
@@ -1128,7 +1130,7 @@ Provides a settings of an API Gateway Documentation Part.
 					Description: `The unique ID of the Documentation Part ## Import API Gateway documentation_parts can be imported using ` + "`" + `REST-API-ID/DOC-PART-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_documentation_part.example 5i4e1ko720/3oyy3t ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the Documentation Part ## Import API Gateway documentation_parts can be imported using ` + "`" + `REST-API-ID/DOC-PART-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_documentation_part.example 5i4e1ko720/3oyy3t ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1151,7 +1153,7 @@ Provides a resource to manage an API Gateway Documentation Version.
 				"documentation",
 				"version",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "version",
 					Description: `(Required) The version identifier of the API documentation snapshot.`,
@@ -1165,7 +1167,7 @@ Provides a resource to manage an API Gateway Documentation Version.
 					Description: `(Optional) The description of the API documentation version. ## Attribute Reference The arguments listed above are all exported as attributes. ## Import API Gateway documentation versions can be imported using ` + "`" + `REST-API-ID/VERSION` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_documentation_version.example 5i4e1ko720/example-version ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1205,7 +1207,7 @@ the ` + "`" + `regional_domain_name` + "`" + ` attribute.
 				"domain",
 				"name",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) The fully-qualified domain name to register`,
@@ -1275,7 +1277,7 @@ the ` + "`" + `regional_domain_name` + "`" + ` attribute.
 					Description: `The hosted zone ID that can be used to create a Route53 alias record for the regional endpoint. ## Import API Gateway domain names can be imported using their ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_domain_name.example dev.example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The internal id assigned to this domain name by API Gateway.`,
@@ -1317,7 +1319,7 @@ Provides an API Gateway Gateway Response for a REST API Gateway.
 				"gateway",
 				"response",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The string identifier of the associated REST API.`,
@@ -1339,7 +1341,7 @@ Provides an API Gateway Gateway Response for a REST API Gateway.
 					Description: `(Optional) A map specifying the parameters (paths, query strings and headers) of the Gateway Response. ## Import ` + "`" + `aws_api_gateway_gateway_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESPONSE-TYPE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_gateway_response.example 12345abcde/UNAUTHORIZED ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1356,7 +1358,7 @@ Provides an HTTP Method Integration for an API Gateway Integration.
 				"gateway",
 				"integration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the associated REST API.`,
@@ -1422,7 +1424,7 @@ Provides an HTTP Method Integration for an API Gateway Integration.
 					Description: `(Optional) Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds. ## Import ` + "`" + `aws_api_gateway_integration` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_integration.example 12345abcde/67890fghij/GET ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1443,7 +1445,7 @@ you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean run
 				"integration",
 				"response",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the associated REST API`,
@@ -1477,7 +1479,7 @@ you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean run
 					Description: `(Optional) Specifies how to handle request payload content type conversions. Supported values are ` + "`" + `CONVERT_TO_BINARY` + "`" + ` and ` + "`" + `CONVERT_TO_TEXT` + "`" + `. If this property is not defined, the response payload will be passed through from the integration response to the method response without modification. ## Import ` + "`" + `aws_api_gateway_integration_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD/STATUS-CODE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_integration_response.example 12345abcde/67890fghij/GET/200 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1494,7 +1496,7 @@ Provides a HTTP Method for an API Gateway Resource.
 				"gateway",
 				"method",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the associated REST API`,
@@ -1536,7 +1538,7 @@ Provides a HTTP Method for an API Gateway Resource.
 					Description: `(Optional) A map of request query string parameters and headers that should be passed to the integration. For example: ` + "`" + `request_parameters = {"method.request.header.X-Some-Header" = true "method.request.querystring.some-query-param" = true}` + "`" + ` would define that the header ` + "`" + `X-Some-Header` + "`" + ` and the query string ` + "`" + `some-query-param` + "`" + ` must be provided in the request ## Import ` + "`" + `aws_api_gateway_method` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_method.example 12345abcde/67890fghij/GET ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1554,7 +1556,7 @@ Provides an HTTP Method Response for an API Gateway Resource.
 				"method",
 				"response",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the associated REST API`,
@@ -1580,7 +1582,7 @@ Provides an HTTP Method Response for an API Gateway Resource.
 					Description: `(Optional) A map of response parameters that can be sent to the caller. For example: ` + "`" + `response_parameters = { "method.response.header.X-Some-Header" = true }` + "`" + ` would define that the header ` + "`" + `X-Some-Header` + "`" + ` can be provided on the response. ## Import ` + "`" + `aws_api_gateway_method_response` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID/HTTP-METHOD/STATUS-CODE` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_method_response.example 12345abcde/67890fghij/GET/200 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1598,7 +1600,7 @@ Provides an API Gateway Method Settings, e.g. logging or monitoring.
 				"method",
 				"settings",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the REST API`,
@@ -1656,7 +1658,7 @@ Provides an API Gateway Method Settings, e.g. logging or monitoring.
 					Description: `(Optional) Specifies how to handle unauthorized requests for cache invalidation. The available values are ` + "`" + `FAIL_WITH_403` + "`" + `, ` + "`" + `SUCCEED_WITH_RESPONSE_HEADER` + "`" + `, ` + "`" + `SUCCEED_WITHOUT_RESPONSE_HEADER` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1673,7 +1675,7 @@ Provides a Model for a API Gateway.
 				"gateway",
 				"model",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the associated REST API`,
@@ -1699,7 +1701,7 @@ Provides a Model for a API Gateway.
 					Description: `The ID of the model ## Import ` + "`" + `aws_api_gateway_model` + "`" + ` can be imported using ` + "`" + `REST-API-ID/NAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_model.example 12345abcde/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the model ## Import ` + "`" + `aws_api_gateway_model` + "`" + ` can be imported using ` + "`" + `REST-API-ID/NAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_model.example 12345abcde/example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1722,7 +1724,7 @@ Manages an API Gateway Request Validator.
 				"request",
 				"validator",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the request validator`,
@@ -1744,7 +1746,7 @@ Manages an API Gateway Request Validator.
 					Description: `The unique ID of the request validator ## Import ` + "`" + `aws_api_gateway_request_validator` + "`" + ` can be imported using ` + "`" + `REST-API-ID/REQUEST-VALIDATOR-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_request_validator.example 12345abcde/67890fghij ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the request validator ## Import ` + "`" + `aws_api_gateway_request_validator` + "`" + ` can be imported using ` + "`" + `REST-API-ID/REQUEST-VALIDATOR-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_request_validator.example 12345abcde/67890fghij ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1766,7 +1768,7 @@ Provides an API Gateway Resource.
 				"gateway",
 				"resource",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the associated REST API`,
@@ -1788,7 +1790,7 @@ Provides an API Gateway Resource.
 					Description: `The complete path for this API resource, including all parent paths. ## Import ` + "`" + `aws_api_gateway_resource` + "`" + ` can be imported using ` + "`" + `REST-API-ID/RESOURCE-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_resource.example 12345abcde/67890fghij ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The resource's identifier.`,
@@ -1814,7 +1816,7 @@ Provides an API Gateway REST API.
 				"gateway",
 				"rest",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the REST API`,
@@ -1868,7 +1870,7 @@ Provides an API Gateway REST API.
 					Description: `The execution ARN part to be used in [` + "`" + `lambda_permission` + "`" + `](/docs/providers/aws/r/lambda_permission.html)'s ` + "`" + `source_arn` + "`" + ` when allowing API Gateway to invoke a Lambda function, e.g. ` + "`" + `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j` + "`" + `, which can be concatenated with allowed stage, method and resource path. ## Import ` + "`" + `aws_api_gateway_rest_api` + "`" + ` can be imported by using the REST API ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_rest_api.example 12345abcde ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the REST API`,
@@ -1902,7 +1904,7 @@ Provides an API Gateway Stage.
 				"gateway",
 				"stage",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rest_api_id",
 					Description: `(Required) The ID of the associated REST API`,
@@ -1972,7 +1974,7 @@ Provides an API Gateway Stage.
 					Description: `The execution ARN to be used in [` + "`" + `lambda_permission` + "`" + `](/docs/providers/aws/r/lambda_permission.html)'s ` + "`" + `source_arn` + "`" + ` when allowing API Gateway to invoke a Lambda function, e.g. ` + "`" + `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j/prod` + "`" + ` ## Import ` + "`" + `aws_api_gateway_stage` + "`" + ` can be imported using ` + "`" + `REST-API-ID/STAGE-NAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_stage.example 12345abcde/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the stage`,
@@ -2003,7 +2005,7 @@ Provides an API Gateway Usage Plan.
 				"usage",
 				"plan",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the usage plan.`,
@@ -2057,7 +2059,7 @@ Provides an API Gateway Usage Plan.
 					Description: `The AWS Markeplace product identifier to associate with the usage plan as a SaaS product on AWS Marketplace. ## Import AWS API Gateway Usage Plan can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_api_gateway_usage_plan.myusageplan <usage_plan_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the API resource`,
@@ -2105,7 +2107,7 @@ Provides an API Gateway Usage Plan Key.
 				"plan",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Required) The identifier of the API key resource.`,
@@ -2143,7 +2145,7 @@ Provides an API Gateway Usage Plan Key.
 					Description: `The value of a usage plan key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Id of a usage plan key.`,
@@ -2186,7 +2188,7 @@ Provides an API Gateway VPC Link.
 				"vpc",
 				"link",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name used to label and identify the VPC link.`,
@@ -2204,7 +2206,7 @@ Provides an API Gateway VPC Link.
 					Description: `The identifier of the VpcLink. ## Import API Gateway VPC Link can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_vpc_link.example <vpc_link_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identifier of the VpcLink. ## Import API Gateway VPC Link can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_api_gateway_vpc_link.example <vpc_link_id> ` + "`" + `` + "`" + `` + "`" + ``,
@@ -2232,7 +2234,7 @@ Provides an application cookie stickiness policy, which allows an ELB to wed its
 				"stickiness",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the stickiness policy.`,
@@ -2270,7 +2272,7 @@ Provides an application cookie stickiness policy, which allows an ELB to wed its
 					Description: `The application cookie whose lifetime the ELB's cookie should follow. ## Import Application cookie stickiness policies can be imported using the ELB name, port, and policy name separated by colons (` + "`" + `:` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_app_cookie_stickiness_policy.example my-elb:80:my-policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -2309,7 +2311,7 @@ Provides an Application AutoScaling Policy resource.
 				"appautoscaling",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy.`,
@@ -2435,7 +2437,7 @@ Provides an Application AutoScaling Policy resource.
 					Description: `The scaling policy's type. ## Import Application AutoScaling Policy can be imported using the ` + "`" + `service-namespace` + "`" + ` , ` + "`" + `resource-id` + "`" + `, ` + "`" + `scalable-dimension` + "`" + ` and ` + "`" + `policy-name` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appautoscaling_policy.test-policy service-namespace/resource-id/scalable-dimension/policy-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS to the scaling policy.`,
@@ -2467,7 +2469,7 @@ Provides an Application AutoScaling ScheduledAction resource.
 				"scheduled",
 				"action",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the scheduled action.`,
@@ -2513,7 +2515,7 @@ Provides an Application AutoScaling ScheduledAction resource.
 					Description: `The Amazon Resource Name (ARN) of the scheduled action.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the scheduled action.`,
@@ -2536,7 +2538,7 @@ Provides an Application AutoScaling ScalableTarget resource. To manage policies 
 				"appautoscaling",
 				"target",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "max_capacity",
 					Description: `(Required) The max capacity of the scalable target.`,
@@ -2562,7 +2564,7 @@ Provides an Application AutoScaling ScalableTarget resource. To manage policies 
 					Description: `(Required) The AWS service namespace of the scalable target. Documentation can be found in the ` + "`" + `ServiceNamespace` + "`" + ` parameter at: [AWS Application Auto Scaling API Reference](https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html#API_RegisterScalableTarget_RequestParameters) ## Import Application AutoScaling Target can be imported using the ` + "`" + `service-namespace` + "`" + ` , ` + "`" + `resource-id` + "`" + ` and ` + "`" + `scalable-dimension` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appautoscaling_target.test-target service-namespace/resource-id/scalable-dimension ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2578,7 +2580,7 @@ Provides an AWS App Mesh service mesh resource.
 				"appmesh",
 				"mesh",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for the service mesh.`,
@@ -2612,7 +2614,7 @@ Provides an AWS App Mesh service mesh resource.
 					Description: `The last update date of the service mesh. ## Import App Mesh service meshes can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appmesh_mesh.simple simpleapp ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the service mesh.`,
@@ -2645,7 +2647,7 @@ Provides an AWS App Mesh route resource.
 				"appmesh",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for the route.`,
@@ -2719,7 +2721,7 @@ Provides an AWS App Mesh route resource.
 					Description: `The last update date of the route. ## Import App Mesh virtual routes can be imported using ` + "`" + `mesh_name` + "`" + ` and ` + "`" + `virtual_router_name` + "`" + ` together with the route's ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appmesh_virtual_route.serviceb simpleapp/serviceB/serviceB-route ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the route.`,
@@ -2753,7 +2755,7 @@ Provides an AWS App Mesh virtual node resource.
 				"virtual",
 				"node",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for the virtual node.`,
@@ -2887,7 +2889,7 @@ Provides an AWS App Mesh virtual node resource.
 					Description: `The last update date of the virtual node. ## Import App Mesh virtual nodes can be imported using ` + "`" + `mesh_name` + "`" + ` together with the virtual node's ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appmesh_virtual_node.serviceb1 simpleapp/serviceBv1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual node.`,
@@ -2921,7 +2923,7 @@ Provides an AWS App Mesh virtual router resource.
 				"virtual",
 				"router",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for the virtual router.`,
@@ -2971,7 +2973,7 @@ Provides an AWS App Mesh virtual router resource.
 					Description: `The last update date of the virtual router. ## Import App Mesh virtual routers can be imported using ` + "`" + `mesh_name` + "`" + ` together with the virtual router's ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appmesh_virtual_router.serviceb simpleapp/serviceB ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual router.`,
@@ -3005,7 +3007,7 @@ Provides an AWS App Mesh virtual service resource.
 				"virtual",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to use for the virtual service.`,
@@ -3055,7 +3057,7 @@ Provides an AWS App Mesh virtual service resource.
 					Description: `The last update date of the virtual service. ## Import App Mesh virtual services can be imported using ` + "`" + `mesh_name` + "`" + ` together with the virtual service's ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appmesh_virtual_service.servicea simpleapp/servicea.simpleapp.local ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual service.`,
@@ -3089,7 +3091,7 @@ Provides an AppSync API Key.
 				"api",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_id",
 					Description: `(Required) The ID of the associated AppSync API`,
@@ -3111,7 +3113,7 @@ Provides an AppSync API Key.
 					Description: `The API key ## Import ` + "`" + `aws_appsync_api_key` + "`" + ` can be imported using the AppSync API ID and key separated by ` + "`" + `:` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appsync_api_key.example xxxxx:yyyyy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `API Key ID (Formatted as ApiId:Key)`,
@@ -3136,7 +3138,7 @@ Provides an AppSync DataSource.
 				"appsync",
 				"datasource",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_id",
 					Description: `(Required) The API ID for the GraphQL API for the DataSource.`,
@@ -3206,7 +3208,7 @@ Provides an AppSync DataSource.
 					Description: `The ARN ## Import ` + "`" + `aws_appsync_datasource` + "`" + ` can be imported with their ` + "`" + `api_id` + "`" + `, a hyphen, and ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appsync_datasource.example abcdef123456-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN ## Import ` + "`" + `aws_appsync_datasource` + "`" + ` can be imported with their ` + "`" + `api_id` + "`" + `, a hyphen, and ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appsync_datasource.example abcdef123456-example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -3227,7 +3229,7 @@ Provides an AppSync Function.
 				"appsync",
 				"function",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_id",
 					Description: `(Required) The ID of the associated AppSync API.`,
@@ -3269,7 +3271,7 @@ Provides an AppSync Function.
 					Description: `A unique ID representing the Function object. ## Import ` + "`" + `aws_appsync_function` + "`" + ` can be imported using the AppSync API ID and Function ID separated by ` + "`" + `-` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appsync_function.example xxxxx-yyyyy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `API Function ID (Formatted as ApiId-FunctionId)`,
@@ -3299,7 +3301,7 @@ Provides an AppSync GraphQL API.
 				"graphql",
 				"api",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "authentication_type",
 					Description: `(Required) The authentication type. Valid values: ` + "`" + `API_KEY` + "`" + `, ` + "`" + `AWS_IAM` + "`" + `, ` + "`" + `AMAZON_COGNITO_USER_POOLS` + "`" + `, ` + "`" + `OPENID_CONNECT` + "`" + ``,
@@ -3381,7 +3383,7 @@ Provides an AppSync GraphQL API.
 					Description: `Map of URIs associated with the API. e.g. ` + "`" + `uris["GRAPHQL"] = https://ID.appsync-api.REGION.amazonaws.com/graphql` + "`" + ` ## Import AppSync GraphQL API can be imported using the GraphQL API ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appsync_graphql_api.example 0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `API ID`,
@@ -3410,7 +3412,7 @@ Provides an AppSync Resolver.
 				"appsync",
 				"resolver",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_id",
 					Description: `(Required) The API ID for the GraphQL API.`,
@@ -3448,7 +3450,7 @@ Provides an AppSync Resolver.
 					Description: `The ARN ## Import ` + "`" + `aws_appsync_resolver` + "`" + ` can be imported with their ` + "`" + `api_id` + "`" + `, a hyphen, ` + "`" + `type` + "`" + `, a hypen and ` + "`" + `field` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appsync_resolver.example abcdef123456-exampleType-exampleField ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN ## Import ` + "`" + `aws_appsync_resolver` + "`" + ` can be imported with their ` + "`" + `api_id` + "`" + `, a hyphen, ` + "`" + `type` + "`" + `, a hypen and ` + "`" + `field` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_appsync_resolver.example abcdef123456-exampleType-exampleField ` + "`" + `` + "`" + `` + "`" + ``,
@@ -3469,7 +3471,7 @@ Provides an Athena database.
 				"athena",
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the database to create.`,
@@ -3499,7 +3501,7 @@ Provides an Athena database.
 					Description: `The database name`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The database name`,
@@ -3521,7 +3523,7 @@ Provides an Athena Named Query resource.
 				"named",
 				"query",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The plain language name for the query. Maximum length of 128.`,
@@ -3547,7 +3549,7 @@ Provides an Athena Named Query resource.
 					Description: `The unique ID of the query. ## Import Athena Named Query can be imported using the query ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_athena_named_query.example 0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the query. ## Import Athena Named Query can be imported using the query ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_athena_named_query.example 0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -3568,7 +3570,7 @@ Provides an Athena Workgroup.
 				"athena",
 				"workgroup",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the workgroup.`,
@@ -3630,7 +3632,7 @@ Provides an Athena Workgroup.
 					Description: `The workgroup name ## Import Athena Workgroups can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_athena_workgroup.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the workgroup`,
@@ -3662,7 +3664,7 @@ conflict and will overwrite attachments.
 				"autoscaling",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autoscaling_group_name",
 					Description: `(Required) Name of ASG to associate with the ELB.`,
@@ -3676,7 +3678,7 @@ conflict and will overwrite attachments.
 					Description: `(Optional) The ARN of an ALB Target Group.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3694,7 +3696,7 @@ Provides an AutoScaling Group resource.
 				"autoscaling",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the auto scaling group. By default generated by Terraform.`,
@@ -3888,7 +3890,7 @@ Provides an AutoScaling Group resource.
 					Description: `The launch configuration of the autoscale group`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The autoscaling group id.`,
@@ -3958,7 +3960,7 @@ but take care to not duplicate those hooks with this resource.
 				"lifecycle",
 				"hook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the lifecycle hook.`,
@@ -3992,7 +3994,7 @@ but take care to not duplicate those hooks with this resource.
 					Description: `(Optional) The ARN of the IAM role that allows the Auto Scaling group to publish to the specified notification target. ## Import AutoScaling Lifecycle Hook can be imported using the role autoscaling_group_name and name separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_aws_autoscaling_lifecycle_hook.test-lifecycle-hook asg-name/lifecycle-hook-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4010,7 +4012,7 @@ Services, and are applied to each AutoScaling Group you supply.
 				"autoscaling",
 				"notification",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_names",
 					Description: `(Required) A list of AutoScaling Group Names`,
@@ -4024,7 +4026,7 @@ Services, and are applied to each AutoScaling Group you supply.
 					Description: `(Required) The Topic ARN for notifications to be sent through ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4046,7 +4048,7 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 				"autoscaling",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy.`,
@@ -4172,7 +4174,7 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 					Description: `The scaling policy's type. ## Import AutoScaling scaling policy can be imported using the role autoscaling_group_name and name separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_autoscaling_policy.test-policy asg-name/policy-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS to the scaling policy.`,
@@ -4209,7 +4211,7 @@ Provides an AutoScaling Schedule resource.
 				"autoscaling",
 				"schedule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "autoscaling_group_name",
 					Description: `(Required) The name or Amazon Resource Name (ARN) of the Auto Scaling group.`,
@@ -4247,7 +4249,7 @@ Provides an AutoScaling Schedule resource.
 					Description: `The ARN assigned by AWS to the autoscaling schedule. ## Import AutoScaling ScheduledAction can be imported using the ` + "`" + `auto-scaling-group-name` + "`" + ` and ` + "`" + `scheduled-action-name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_autoscaling_schedule.resource-name auto-scaling-group-name/scheduled-action-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS to the autoscaling schedule. ## Import AutoScaling ScheduledAction can be imported using the ` + "`" + `auto-scaling-group-name` + "`" + ` and ` + "`" + `scheduled-action-name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_autoscaling_schedule.resource-name auto-scaling-group-name/scheduled-action-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4268,7 +4270,7 @@ Provides an AWS Backup plan resource.
 				"backup",
 				"plan",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The display name of a backup plan.`,
@@ -4298,7 +4300,7 @@ Provides an AWS Backup plan resource.
 					Description: `Unique, randomly generated, Unicode, UTF-8 encoded string that serves as the version ID of the backup plan.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the backup plan.`,
@@ -4323,7 +4325,7 @@ Manages selection conditions for AWS Backup plan resources.
 				"backup",
 				"selection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The display name of a resource selection document.`,
@@ -4361,7 +4363,7 @@ Manages selection conditions for AWS Backup plan resources.
 					Description: `Backup Selection identifier ## Import Backup selection can be imported using the role plan_id and id separated by ` + "`" + `|` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_backup_selection.example plan-id|selection-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Backup Selection identifier ## Import Backup selection can be imported using the role plan_id and id separated by ` + "`" + `|` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_backup_selection.example plan-id|selection-id ` + "`" + `` + "`" + `` + "`" + ``,
@@ -4382,7 +4384,7 @@ Provides an AWS Backup vault resource.
 				"backup",
 				"vault",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the backup vault to create.`,
@@ -4408,7 +4410,7 @@ Provides an AWS Backup vault resource.
 					Description: `The number of recovery points that are stored in a backup vault. ## Import Backup vault can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_backup_vault.test-vault TestVault ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the vault.`,
@@ -4444,7 +4446,7 @@ For information about compute environment, see [Compute Environments][2] .
 				"compute",
 				"environment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compute_environment_name",
 					Description: `(Required) The name for your compute environment. Up to 128 letters (uppercase and lowercase), numbers, and underscores are allowed.`,
@@ -4550,7 +4552,7 @@ For information about compute environment, see [Compute Environments][2] .
 					Description: `A short, human-readable string to provide additional details about the current status of the compute environment. [1]: http://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html [2]: http://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html [3]: http://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the compute environment.`,
@@ -4584,7 +4586,7 @@ Provides a Batch Job Definition resource.
 				"job",
 				"definition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the job definition.`,
@@ -4626,7 +4628,7 @@ Provides a Batch Job Definition resource.
 					Description: `The revision of the job definition.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name of the job definition.`,
@@ -4652,7 +4654,7 @@ Provides a Batch Job Queue resource.
 				"job",
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the job queue.`,
@@ -4674,7 +4676,7 @@ Provides a Batch Job Queue resource.
 					Description: `The Amazon Resource Name of the job queue.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name of the job queue.`,
@@ -4695,7 +4697,7 @@ Provides a budgets budget resource. Budgets use the cost visualisation provided 
 				"budgets",
 				"budget",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `(Optional) The ID of the target account for budget. Will use current user's account_id by default if omitted.`,
@@ -4817,7 +4819,7 @@ Provides a budgets budget resource. Budgets use the cost visualisation provided 
 					Description: `(Optional) SNS topics to notify. Either this or ` + "`" + `subscriber_email_addresses` + "`" + ` is required. ## Import Budgets can be imported using ` + "`" + `AccountID:BudgetName` + "`" + `, e.g. ` + "`" + `$ terraform import aws_budgets_budget.myBudget 123456789012:myBudget` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `id of resource. ### CostTypes Valid keys for ` + "`" + `cost_types` + "`" + ` parameter.`,
@@ -4907,7 +4909,7 @@ Provides a Cloud9 EC2 Development Environment.
 				"environment",
 				"ec2",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the environment.`,
@@ -4945,7 +4947,7 @@ Provides a Cloud9 EC2 Development Environment.
 					Description: `The type of the environment (e.g. ` + "`" + `ssh` + "`" + ` or ` + "`" + `ec2` + "`" + `)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the environment.`,
@@ -4974,7 +4976,7 @@ Provides a CloudFormation Stack resource.
 				"cloudformation",
 				"stack",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Stack name.`,
@@ -5036,7 +5038,7 @@ Provides a CloudFormation Stack resource.
 					Description: `A map of outputs from the stack. ## Import Cloudformation Stacks can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudformation_stack.stack networking-stack ` + "`" + `` + "`" + `` + "`" + ` <a id="timeouts"></a> ## Timeouts ` + "`" + `aws_cloudformation_stack` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Creating Stacks - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Stack modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for destroying stacks.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique identifier of the stack.`,
@@ -5066,7 +5068,7 @@ Manages a CloudFormation Stack Set. Stack Sets allow CloudFormation templates to
 				"stack",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "administration_role_arn",
 					Description: `(Required) Amazon Resource Number (ARN) of the IAM Role in the administrator account.`,
@@ -5116,7 +5118,7 @@ Manages a CloudFormation Stack Set. Stack Sets allow CloudFormation templates to
 					Description: `Unique identifier of the Stack Set. ## Import CloudFormation Stack Sets can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudformation_stack.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the Stack Set.`,
@@ -5151,7 +5153,7 @@ Manages a CloudFormation Stack Set Instance. Instances are managed in the accoun
 				"set",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_set_name",
 					Description: `(Required) Name of the Stack Set.`,
@@ -5193,7 +5195,7 @@ Manages a CloudFormation Stack Set Instance. Instances are managed in the accoun
 					Description: `(Default ` + "`" + `30m` + "`" + `) How long to wait for a Stack to be deleted. ## Import CloudFormation Stack Set Instances can be imported using the Stack Set name, target AWS account ID, and target AWS region separated by commas (` + "`" + `,` + "`" + `) e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudformation_stack_set_instance.example example,123456789012,us-east-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Stack Set name, target AWS account ID, and target AWS region separated by commas (` + "`" + `,` + "`" + `)`,
@@ -5240,7 +5242,7 @@ want to wait, you need to use the ` + "`" + `retain_on_delete` + "`" + ` flag.
 				"cloudfront",
 				"distribution",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource.`,
@@ -5318,7 +5320,7 @@ want to wait, you need to use the ` + "`" + `retain_on_delete` + "`" + ` flag.
 					Description: `The CloudFront Route 53 zone ID that can be used to route an [Alias Resource Record Set][7] to. This attribute is simply an alias for the zone ID ` + "`" + `Z2FDTNDATAQYW2` + "`" + `. [1]: http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html [2]: https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html [3]: http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html [4]: http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm [5]: /docs/providers/aws/r/cloudfront_origin_access_identity.html [6]: https://aws.amazon.com/certificate-manager/ [7]: http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html ## Import Cloudfront Distributions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudfront_distribution.distribution E74FTE3EXAMPLE ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identifier for the distribution. For example: ` + "`" + `EDFDVBD632BHDS5` + "`" + `.`,
@@ -5382,7 +5384,7 @@ origin access identities, see
 				"access",
 				"identity",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identifier for the distribution. For example: ` + "`" + `EDFDVBD632BHDS5` + "`" + `.`,
@@ -5408,7 +5410,7 @@ origin access identities, see
 					Description: `The Amazon S3 canonical user ID for the origin access identity, which you use when giving the origin access identity read permission to an object in Amazon S3. ## Using With CloudFront Normally, when referencing an origin access identity in CloudFront, you need to prefix the ID with the ` + "`" + `origin-access-identity/cloudfront/` + "`" + ` special path. The ` + "`" + `cloudfront_access_identity_path` + "`" + ` allows this to be circumvented. The below snippet demonstrates use with the ` + "`" + `s3_origin_config` + "`" + ` structure for the [` + "`" + `aws_cloudfront_distribution` + "`" + `][3] resource: ` + "`" + `` + "`" + `` + "`" + `hcl s3_origin_config { origin_access_identity = "${aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path}" } ` + "`" + `` + "`" + `` + "`" + ` ### Updating your bucket policy Note that the AWS API may translate the ` + "`" + `s3_canonical_user_id` + "`" + ` ` + "`" + `CanonicalUser` + "`" + ` principal into an ` + "`" + `AWS` + "`" + ` IAM ARN principal when supplied in an [` + "`" + `aws_s3_bucket` + "`" + `][4] bucket policy, causing spurious diffs in Terraform. If you see this behaviour, use the ` + "`" + `iam_arn` + "`" + ` instead: ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "s3_policy" { statement { actions = ["s3:GetObject"] resources = ["${aws_s3_bucket.example.arn}/`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identifier for the distribution. For example: ` + "`" + `EDFDVBD632BHDS5` + "`" + `.`,
@@ -5448,7 +5450,7 @@ origin access identities, see
 				"public",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "comment",
 					Description: `(Optional) An optional comment about the public key.`,
@@ -5478,7 +5480,7 @@ origin access identities, see
 					Description: `The identifier for the public key. For example: ` + "`" + `K3D5EWEUDCCXON` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "caller_reference",
 					Description: `Internal value used by CloudFront to allow future updates to the public key configuration.`,
@@ -5517,7 +5519,7 @@ To initialize cluster you have to sign CSR and upload it.
 				"v2",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_backup_identifier",
 					Description: `(Optional) The id of Cloud HSM v2 cluster backup to be restored.`,
@@ -5575,7 +5577,7 @@ To initialize cluster you have to sign CSR and upload it.
 					Description: `The HSM hardware certificate issued (signed) by the hardware manufacturer. [1]: https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html [2]: https://docs.aws.amazon.com/cloudhsm/latest/APIReference/Welcome.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `The id of the CloudHSM cluster.`,
@@ -5633,7 +5635,7 @@ Creates an HSM module in Amazon CloudHSM v2 cluster.
 				"v2",
 				"hsm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `(Required) The ID of Cloud HSM v2 cluster to which HSM will be added.`,
@@ -5663,7 +5665,7 @@ Creates an HSM module in Amazon CloudHSM v2 cluster.
 					Description: `The id of the ENI interface allocated for HSM module.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hsm_id",
 					Description: `The id of the HSM module.`,
@@ -5695,7 +5697,7 @@ Provides a CloudTrail resource.
 			Keywords: []string{
 				"cloudtrail",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Specifies the name of the trail.`,
@@ -5765,7 +5767,7 @@ Provides a CloudTrail resource.
 					Description: `The Amazon Resource Name of the trail. ## Import Cloudtrails can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudtrail.sample my-sample-trail ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the trail.`,
@@ -5794,7 +5796,7 @@ Provides a CloudWatch Dashboard resource.
 				"cloudwatch",
 				"dashboard",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dashboard_name",
 					Description: `(Required) The name of the dashboard.`,
@@ -5808,7 +5810,7 @@ Provides a CloudWatch Dashboard resource.
 					Description: `The Amazon Resource Name (ARN) of the dashboard. ## Import CloudWatch dashboards can be imported using the ` + "`" + `dashboard_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_dashboard.sample <dashboard_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dashboard_arn",
 					Description: `The Amazon Resource Name (ARN) of the dashboard. ## Import CloudWatch dashboards can be imported using the ` + "`" + `dashboard_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_dashboard.sample <dashboard_name> ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5830,7 +5832,7 @@ Provides a resource to create a CloudWatch Events permission to support cross-ac
 				"event",
 				"permission",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "principal",
 					Description: `(Required) The 12-digit AWS account ID that you are permitting to put events to your default event bus. Specify ` + "`" + ``,
@@ -5864,7 +5866,7 @@ Provides a resource to create a CloudWatch Events permission to support cross-ac
 					Description: `The statement ID of the CloudWatch Events permission. ## Import CloudWatch Events permissions can be imported using the statement ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import aws_cloudwatch_event_permission.DevAccountAccess DevAccountAccess ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The statement ID of the CloudWatch Events permission. ## Import CloudWatch Events permissions can be imported using the statement ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import aws_cloudwatch_event_permission.DevAccountAccess DevAccountAccess ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5886,7 +5888,7 @@ Provides a CloudWatch Event Rule resource.
 				"event",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The rule's name. By default generated by Terraform.`,
@@ -5924,7 +5926,7 @@ Provides a CloudWatch Event Rule resource.
 					Description: `The Amazon Resource Name (ARN) of the rule. ## Import Cloudwatch Event Rules can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_event_rule.console capture-console-sign-in ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the rule. ## Import Cloudwatch Event Rules can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_event_rule.console capture-console-sign-in ` + "`" + `` + "`" + `` + "`" + ``,
@@ -5946,7 +5948,7 @@ Provides a CloudWatch Event Target resource.
 				"event",
 				"target",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule",
 					Description: `(Required) The name of the rule you want to add targets to.`,
@@ -6072,7 +6074,7 @@ Provides a CloudWatch Event Target resource.
 					Description: `(Required) Structure containing the template body.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6089,7 +6091,7 @@ Provides a CloudWatch Logs destination resource.
 				"log",
 				"destination",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A name for the log destination`,
@@ -6107,7 +6109,7 @@ Provides a CloudWatch Logs destination resource.
 					Description: `The Amazon Resource Name (ARN) specifying the log destination. ## Import CloudWatch Logs destinations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_destination.test_destination test_destination ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) specifying the log destination. ## Import CloudWatch Logs destinations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_destination.test_destination test_destination ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6130,7 +6132,7 @@ Provides a CloudWatch Logs destination policy resource.
 				"destination",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "destination_name",
 					Description: `(Required) A name for the subscription filter`,
@@ -6140,7 +6142,7 @@ Provides a CloudWatch Logs destination policy resource.
 					Description: `(Required) The policy document. This is a JSON formatted string. ## Import CloudWatch Logs destination policies can be imported using the ` + "`" + `destination_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_destination_policy.test_destination_policy test_destination ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6157,7 +6159,7 @@ Provides a CloudWatch Log Group resource.
 				"log",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the log group. If omitted, Terraform will assign a random, unique name.`,
@@ -6183,7 +6185,7 @@ Provides a CloudWatch Log Group resource.
 					Description: `The Amazon Resource Name (ARN) specifying the log group. ## Import Cloudwatch Log Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_group.test_group yada ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) specifying the log group. ## Import Cloudwatch Log Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_group.test_group yada ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6206,7 +6208,7 @@ Provides a CloudWatch Log Metric Filter resource.
 				"metric",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A name for the metric filter.`,
@@ -6244,7 +6246,7 @@ Provides a CloudWatch Log Metric Filter resource.
 					Description: `The name of the metric filter.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the metric filter.`,
@@ -6267,7 +6269,7 @@ Provides a resource to manage a CloudWatch log resource policy.
 				"resource",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_document",
 					Description: `(Required) Details of the resource policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string. Maximum length of 5120 characters.`,
@@ -6281,7 +6283,7 @@ Provides a resource to manage a CloudWatch log resource policy.
 					Description: `The name of the CloudWatch log resource policy ## Import CloudWatch log resource policies can be imported using the policy name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_resource_policy.MyPolicy MyPolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the CloudWatch log resource policy ## Import CloudWatch log resource policies can be imported using the policy name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_resource_policy.MyPolicy MyPolicy ` + "`" + `` + "`" + `` + "`" + ``,
@@ -6303,7 +6305,7 @@ Provides a CloudWatch Log Stream resource.
 				"log",
 				"stream",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the log stream. Must not be longer than 512 characters and must not contain ` + "`" + `:` + "`" + ``,
@@ -6317,7 +6319,7 @@ Provides a CloudWatch Log Stream resource.
 					Description: `The Amazon Resource Name (ARN) specifying the log stream.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) specifying the log stream.`,
@@ -6340,7 +6342,7 @@ Provides a CloudWatch Logs subscription filter resource.
 				"subscription",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A name for the subscription filter`,
@@ -6366,7 +6368,7 @@ Provides a CloudWatch Logs subscription filter resource.
 					Description: `(Optional) The method used to distribute log data to the destination. By default log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis stream. Valid values are "Random" and "ByLogStream". ## Attributes Reference No extra attributes are exported. ## Import CloudWatch Logs subscription filter can be imported using the log group name and subscription filter name separated by ` + "`" + `|` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_log_subscription_filter.test_lambdafunction_logfilter /aws/lambda/example_lambda_name|test_lambdafunction_logfilter ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6383,7 +6385,7 @@ Provides a CloudWatch Metric Alarm resource.
 				"metric",
 				"alarm",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alarm_name",
 					Description: `(Required) The descriptive name for the alarm. This name must be unique within the user's AWS account`,
@@ -6509,7 +6511,7 @@ Provides a CloudWatch Metric Alarm resource.
 					Description: `The ID of the health check ## Import Cloud Metric Alarms can be imported using the ` + "`" + `alarm_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cloudwatch_metric_alarm.test alarm-12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the cloudwatch metric alarm.`,
@@ -6534,7 +6536,7 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 				"codebuild",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "artifacts",
 					Description: `(Required) Information about the project's build output artifacts. Artifact blocks are documented below.`,
@@ -6844,7 +6846,7 @@ Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_we
 					Description: `The URL of the build badge when ` + "`" + `badge_enabled` + "`" + ` is enabled. ## Import CodeBuild Project can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_codebuild_project.name project-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name (if imported via ` + "`" + `name` + "`" + `) or ARN (if created via Terraform or imported via ARN) of the CodeBuild project.`,
@@ -6873,7 +6875,7 @@ Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild serv
 				"codebuild",
 				"webhook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_name",
 					Description: `(Required) The name of the build project.`,
@@ -6919,7 +6921,7 @@ Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild serv
 					Description: `The URL to the webhook. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the build project.`,
@@ -6956,7 +6958,7 @@ in all regions - available regions are listed
 				"codecommit",
 				"repository",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository_name",
 					Description: `(Required) The name for the repository. This needs to be less than 100 characters.`,
@@ -6990,7 +6992,7 @@ in all regions - available regions are listed
 					Description: `The URL to use for cloning the repository over SSH. ## Import Codecommit repository can be imported using repository name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_codecommit_repository.imported ExistingRepo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository_id",
 					Description: `The ID of the repository`,
@@ -7027,7 +7029,7 @@ in all regions - available regions are listed
 				"codecommit",
 				"trigger",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository_name",
 					Description: `(Required) The name for the repository. This needs to be less than 100 characters.`,
@@ -7053,7 +7055,7 @@ in all regions - available regions are listed
 					Description: `(Required) The repository events that will cause the trigger to run actions in another service, such as sending a notification through Amazon Simple Notification Service (SNS). If no events are specified, the trigger will run for all repository events. Event types include: ` + "`" + `all` + "`" + `, ` + "`" + `updateReference` + "`" + `, ` + "`" + `createReference` + "`" + `, ` + "`" + `deleteReference` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7069,7 +7071,7 @@ Provides a CodeDeploy application to be used as a basis for deployments
 				"codedeploy",
 				"app",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the application.`,
@@ -7087,7 +7089,7 @@ Provides a CodeDeploy application to be used as a basis for deployments
 					Description: `The application's name. ## Import CodeDeploy Applications can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_codedeploy_app.example my-application ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon's assigned ID for the application.`,
@@ -7113,7 +7115,7 @@ Provides a CodeDeploy deployment config for an application
 				"deployment",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "deployment_config_name",
 					Description: `(Required) The name of the deployment config.`,
@@ -7175,7 +7177,7 @@ Provides a CodeDeploy deployment config for an application
 					Description: `The AWS Assigned deployment config id ## Import CodeDeploy Deployment Configurations can be imported using the ` + "`" + `deployment_config_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_codedeploy_app.example my-deployment-config ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The deployment group's config name.`,
@@ -7203,7 +7205,7 @@ Provides a CodeDeploy Deployment Group for a CodeDeploy Application
 				"deployment",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_name",
 					Description: `(Required) The name of the application.`,
@@ -7417,7 +7419,7 @@ Provides a CodeDeploy Deployment Group for a CodeDeploy Application
 					Description: `Application name and deployment group name. ## Import CodeDeploy Deployment Groups can be imported by their ` + "`" + `app_name` + "`" + `, a colon, and ` + "`" + `deployment_group_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_codedeploy_deployment_group.example my-application:my-deployment-group ` + "`" + `` + "`" + `` + "`" + ` [1]: http://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications-create-trigger.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Application name and deployment group name. ## Import CodeDeploy Deployment Groups can be imported by their ` + "`" + `app_name` + "`" + `, a colon, and ` + "`" + `deployment_group_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_codedeploy_deployment_group.example my-application:my-deployment-group ` + "`" + `` + "`" + `` + "`" + ` [1]: http://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-sns-event-notifications-create-trigger.html`,
@@ -7439,7 +7441,7 @@ Provides a CodePipeline.
 			Keywords: []string{
 				"codepipeline",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the pipeline.`,
@@ -7529,7 +7531,7 @@ Provides a CodePipeline.
 					Description: `The codepipeline ARN. ## Import CodePipelines can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_codepipeline.foo example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The codepipeline ID.`,
@@ -7554,7 +7556,7 @@ Provides a CodePipeline Webhook.
 				"codepipeline",
 				"webhook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the webhook.`,
@@ -7604,7 +7606,7 @@ Provides a CodePipeline Webhook.
 					Description: `The CodePipeline webhook's URL. POST events to this endpoint to trigger the target. ## Import CodePipeline Webhooks can be imported by their ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_codepipeline_webhook.example arn:aws:codepipeline:us-west-2:123456789012:webhook:example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The CodePipeline webhook's ARN.`,
@@ -7630,7 +7632,7 @@ Provides an AWS Cognito Identity Pool.
 				"identity",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `An identity pool ID in the format REGION:GUID.`,
@@ -7640,7 +7642,7 @@ Provides an AWS Cognito Identity Pool.
 					Description: `The ARN of the identity pool. ## Import Cognito Identity Pool can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_identity_pool.mypool <identity-pool-id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `An identity pool ID in the format REGION:GUID.`,
@@ -7668,13 +7670,13 @@ Provides an AWS Cognito Identity Pool Roles Attachment.
 				"roles",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identity pool ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identity pool ID.`,
@@ -7696,8 +7698,8 @@ Provides a Cognito User Identity Provider resource.
 				"identity",
 				"provider",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7714,7 +7716,7 @@ Provides a Cognito Resource Server.
 				"resource",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "identifier",
 					Description: `(Required) An identifier for the resource server.`,
@@ -7740,7 +7742,7 @@ Provides a Cognito Resource Server.
 					Description: `A list of all scopes configured for this resource server in the format identifier/scope_name. ## Import ` + "`" + `aws_cognito_resource_server` + "`" + ` can be imported using their User Pool ID and Identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_resource_server.example xxx_yyyyy|https://example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scope_identifiers",
 					Description: `A list of all scopes configured for this resource server in the format identifier/scope_name. ## Import ` + "`" + `aws_cognito_resource_server` + "`" + ` can be imported using their User Pool ID and Identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_resource_server.example xxx_yyyyy|https://example.com ` + "`" + `` + "`" + `` + "`" + ``,
@@ -7762,7 +7764,7 @@ Provides a Cognito User Group resource.
 				"user",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the user group.`,
@@ -7784,7 +7786,7 @@ Provides a Cognito User Group resource.
 					Description: `(Optional) The ARN of the IAM role to be associated with the user group. ## Import Cognito User Groups can be imported using the ` + "`" + `user_pool_id` + "`" + `/` + "`" + `name` + "`" + ` attributes concatenated, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_user_group.group us-east-1_vG78M4goG/user-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7801,7 +7803,7 @@ Provides a Cognito User Pool resource.
 				"user",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alias_attributes",
 					Description: `(Optional) Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username. Conflicts with ` + "`" + `username_attributes` + "`" + `.`,
@@ -7867,7 +7869,7 @@ Provides a Cognito User Pool resource.
 					Description: `The date the user pool was last modified. ## Import Cognito User Pools can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_user_pool.pool <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the user pool.`,
@@ -7906,7 +7908,7 @@ Provides a Cognito User Pool Client resource.
 				"pool",
 				"client",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allowed_oauth_flows",
 					Description: `(Optional) List of allowed OAuth flows (code, implicit, client_credentials).`,
@@ -7972,7 +7974,7 @@ Provides a Cognito User Pool Client resource.
 					Description: `The client secret of the user pool client. ## Import Cognito User Pool Clients can be imported using the ` + "`" + `id` + "`" + ` of the Cognito User Pool, and the ` + "`" + `id` + "`" + ` of the Cognito User Pool Client, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_user_pool_client.client <user_pool_id>/<user_pool_client_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the user pool client.`,
@@ -7999,7 +8001,7 @@ Provides a Cognito User Pool Domain resource.
 				"pool",
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) The domain string.`,
@@ -8029,7 +8031,7 @@ Provides a Cognito User Pool Domain resource.
 					Description: `The app version. ## Import Cognito User Pool Domains can be imported using the ` + "`" + `domain` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cognito_user_pool_domain.main <domain> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "aws_account_id",
 					Description: `The AWS account ID for the user pool owner.`,
@@ -8063,7 +8065,7 @@ Manages an AWS Config Aggregate Authorization
 				"aggregate",
 				"authorization",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `(Required) Account ID`,
@@ -8077,7 +8079,7 @@ Manages an AWS Config Aggregate Authorization
 					Description: `The ARN of the authorization ## Import Config aggregate authorizations can be imported using ` + "`" + `account_id:region` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_authorization.example 123456789012:us-east-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the authorization ## Import Config aggregate authorizations can be imported using ` + "`" + `account_id:region` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_authorization.example 123456789012:us-east-1 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8100,7 +8102,7 @@ Provides an AWS Config Rule.
 				"config",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the rule`,
@@ -8190,7 +8192,7 @@ Provides an AWS Config Rule.
 					Description: `The ID of the config rule ## Import Config Rule can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_config_rule.foo example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the config rule`,
@@ -8216,7 +8218,7 @@ Manages an AWS Config Configuration Aggregator
 				"configuration",
 				"aggregator",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the configuration aggregator.`,
@@ -8258,7 +8260,7 @@ Manages an AWS Config Configuration Aggregator
 					Description: `The ARN of the aggregator ## Import Configuration Aggregators can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_configuration_aggregator.example foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the aggregator ## Import Configuration Aggregators can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_configuration_aggregator.example foo ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8282,7 +8284,7 @@ Provides an AWS Config Configuration Recorder. Please note that this resource **
 				"configuration",
 				"recorder",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the recorder. Defaults to ` + "`" + `default` + "`" + `. Changing it recreates the resource.`,
@@ -8312,7 +8314,7 @@ Provides an AWS Config Configuration Recorder. Please note that this resource **
 					Description: `Name of the recorder ## Import Configuration Recorder can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_configuration_recorder.foo example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Name of the recorder ## Import Configuration Recorder can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_configuration_recorder.foo example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8337,7 +8339,7 @@ Manages status (recording / stopped) of an AWS Config Configuration Recorder.
 				"recorder",
 				"status",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the recorder`,
@@ -8347,7 +8349,7 @@ Manages status (recording / stopped) of an AWS Config Configuration Recorder.
 					Description: `(Required) Whether the configuration recorder should be enabled or disabled. ## Import Configuration Recorder Status can be imported using the name of the Configuration Recorder, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_configuration_recorder_status.foo example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8366,7 +8368,7 @@ Provides an AWS Config Delivery Channel.
 				"delivery",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the delivery channel. Defaults to ` + "`" + `default` + "`" + `. Changing it recreates the resource.`,
@@ -8396,7 +8398,7 @@ Provides an AWS Config Delivery Channel.
 					Description: `The name of the delivery channel. ## Import Delivery Channel can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_delivery_channel.foo example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the delivery channel. ## Import Delivery Channel can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_config_delivery_channel.foo example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8425,7 +8427,7 @@ Manages Cost and Usage Report Definitions.
 				"cur",
 				"definition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "report_name",
 					Description: `(Required) Unique name for the report. Must start with a number/letter and is case sensitive. Limited to 256 characters.`,
@@ -8463,7 +8465,7 @@ Manages Cost and Usage Report Definitions.
 					Description: `(Required) A list of additional artifacts. Valid values are: REDSHIFT, QUICKSIGHT. ## Import Report Definitions can be imported using the ` + "`" + `report_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_cur_report_definition.example_cur_report_definition example-cur-report-definition ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8480,7 +8482,7 @@ Provides a customer gateway inside a VPC. These objects can be connected to VPN 
 				"customer",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bgp_asn",
 					Description: `(Required) The gateway's Border Gateway Protocol (BGP) Autonomous System Number (ASN).`,
@@ -8518,7 +8520,7 @@ Provides a customer gateway inside a VPC. These objects can be connected to VPN 
 					Description: `Tags applied to the gateway. ## Import Customer Gateways can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_customer_gateway.main cgw-b4dc3961 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The amazon-assigned ID of the gateway.`,
@@ -8555,7 +8557,7 @@ Provides a Data Pipeline resource.
 				"datapipeline",
 				"pipeline",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of Pipeline.`,
@@ -8573,7 +8575,7 @@ Provides a Data Pipeline resource.
 					Description: `The identifier of the client certificate. ## Import ` + "`" + `aws_datapipeline_pipeline` + "`" + ` can be imported by using the id (Pipeline ID), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_datapipeline_pipeline.default df-1234567890 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The identifier of the client certificate. ## Import ` + "`" + `aws_datapipeline_pipeline` + "`" + ` can be imported by using the id (Pipeline ID), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_datapipeline_pipeline.default df-1234567890 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -8596,7 +8598,7 @@ Manages an AWS DataSync Agent deployed on premises.
 				"datasync",
 				"agent",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the DataSync Agent.`,
@@ -8626,7 +8628,7 @@ Manages an AWS DataSync Agent deployed on premises.
 					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for agent activation and connection to DataSync. ## Import ` + "`" + `aws_datasync_agent` + "`" + ` can be imported by using the DataSync Agent Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_datasync_agent.example arn:aws:datasync:us-east-1:123456789012:agent/agent-12345678901234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the DataSync Agent.`,
@@ -8658,7 +8660,7 @@ Manages an AWS DataSync EFS Location.
 				"location",
 				"efs",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ec2_config",
 					Description: `(Required) Configuration block containing EC2 configurations for connecting to the EFS File System.`,
@@ -8692,7 +8694,7 @@ Manages an AWS DataSync EFS Location.
 					Description: `Amazon Resource Name (ARN) of the DataSync Location. ## Import ` + "`" + `aws_datasync_location_efs` + "`" + ` can be imported by using the DataSync Task Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_datasync_location_efs.example arn:aws:datasync:us-east-1:123456789012:location/loc-12345678901234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the DataSync Location.`,
@@ -8720,7 +8722,7 @@ Manages an NFS Location within AWS DataSync.
 				"location",
 				"nfs",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "on_prem_config",
 					Description: `(Required) Configuration block containing information for connecting to the NFS File System.`,
@@ -8750,7 +8752,7 @@ Manages an NFS Location within AWS DataSync.
 					Description: `Amazon Resource Name (ARN) of the DataSync Location. ## Import ` + "`" + `aws_datasync_location_nfs` + "`" + ` can be imported by using the DataSync Task Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_datasync_location_nfs.example arn:aws:datasync:us-east-1:123456789012:location/loc-12345678901234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the DataSync Location.`,
@@ -8776,7 +8778,7 @@ Manages an S3 Location within AWS DataSync.
 				"location",
 				"s3",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "s3_bucket_arn",
 					Description: `(Required) Amazon Resource Name (ARN) of the S3 Bucket.`,
@@ -8806,7 +8808,7 @@ Manages an S3 Location within AWS DataSync.
 					Description: `Amazon Resource Name (ARN) of the DataSync Location. ## Import ` + "`" + `aws_datasync_location_s3` + "`" + ` can be imported by using the DataSync Task Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_datasync_location_s3.example arn:aws:datasync:us-east-1:123456789012:location/loc-12345678901234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the DataSync Location.`,
@@ -8831,7 +8833,7 @@ Manages an AWS DataSync Task, which represents a configuration for synchronizati
 				"datasync",
 				"task",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "destination_location_arn",
 					Description: `(Required) Amazon Resource Name (ARN) of destination DataSync Location.`,
@@ -8905,7 +8907,7 @@ Manages an AWS DataSync Task, which represents a configuration for synchronizati
 					Description: `(Default ` + "`" + `5m` + "`" + `) How long to wait for DataSync Task availability. ## Import ` + "`" + `aws_datasync_task` + "`" + ` can be imported by using the DataSync Task Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_datasync_task.example arn:aws:datasync:us-east-1:123456789012:task/task-12345678901234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the DataSync Task.`,
@@ -8936,7 +8938,7 @@ Provides a DAX Cluster resource.
 				"dax",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "iam_role_arn",
 					Description: `(Required) A valid Amazon Resource Name (ARN) that identifies an IAM role. At runtime, DAX will assume this role and use the role's permissions to access DynamoDB on your behalf`,
@@ -8978,7 +8980,7 @@ Provides a DAX Cluster resource.
 					Description: `The port used by the configuration endpoint ## Timeouts ` + "`" + `aws_dax_cluster` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `45 minutes` + "`" + `) Used for creating a DAX cluster - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `45 minutes` + "`" + `) Used for cluster modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `90 minutes` + "`" + `) Used for destroying a DAX cluster ## Import DAX Clusters can be imported using the ` + "`" + `cluster_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dax_cluster.my_cluster my_cluster ` + "`" + `` + "`" + `` + "`" + ` [1]: http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.cluster.html#DAX.concepts.nodes`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the DAX cluster`,
@@ -9018,7 +9020,7 @@ Provides a DAX Parameter Group resource.
 				"parameter",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional, ForceNew) A description of the parameter group.`,
@@ -9036,7 +9038,7 @@ Provides a DAX Parameter Group resource.
 					Description: `The name of the parameter group. ## Import DAX Parameter Group can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dax_parameter_group.example my_dax_pg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the parameter group. ## Import DAX Parameter Group can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dax_parameter_group.example my_dax_pg ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9060,7 +9062,7 @@ Provides a DAX Subnet Group resource.
 				"subnet",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A description of the subnet group.`,
@@ -9070,7 +9072,7 @@ Provides a DAX Subnet Group resource.
 					Description: `The name of the subnet group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the subnet group.`,
@@ -9093,7 +9095,7 @@ Manages a RDS database cluster snapshot for Aurora clusters. For managing RDS da
 				"cluster",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_cluster_identifier",
 					Description: `(Required) The DB Cluster Identifier from which to take the snapshot.`,
@@ -9155,7 +9157,7 @@ Manages a RDS database cluster snapshot for Aurora clusters. For managing RDS da
 					Description: `(Default ` + "`" + `20m` + "`" + `) How long to wait for the snapshot to be available. ## Import ` + "`" + `aws_db_cluster_snapshot` + "`" + ` can be imported by using the cluster snapshot identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_cluster_snapshot.example my-cluster-snapshot ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocated_storage",
 					Description: `Specifies the allocated storage size in gigabytes (GB).`,
@@ -9226,7 +9228,7 @@ Provides a DB event subscription resource.
 				"event",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the DB event subscription. By default generated by Terraform.`,
@@ -9272,7 +9274,7 @@ Provides a DB event subscription resource.
 					Description: `The AWS customer account associated with the RDS event notification subscription ## Timeouts ` + "`" + `aws_db_event_subscription` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for a RDS event notification subscription to be ready. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for a RDS event notification subscription to be deleted. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for a RDS event notification subscription to be updated. ## Import DB Event Subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_event_subscription.default rds-event-sub ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9308,7 +9310,7 @@ state](/docs/state/sensitive-data.html).
 				"db",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocated_storage",
 					Description: `(Required unless a ` + "`" + `snapshot_identifier` + "`" + ` or ` + "`" + `replicate_source_db` + "`" + ` is provided) The allocated storage in gibibytes. If ` + "`" + `max_allocated_storage` + "`" + ` is configured, this argument represents the initial storage allocation and differences from the configuration will be ignored automatically when Storage Autoscaling occurs.`,
@@ -9614,7 +9616,7 @@ state](/docs/state/sensitive-data.html).
 					Description: `The character set used on Oracle instances. ## Import DB Instances can be imported using the ` + "`" + `identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_instance.default mydb-rds-instance ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `The hostname of the RDS instance. See also ` + "`" + `endpoint` + "`" + ` and ` + "`" + `port` + "`" + `.`,
@@ -9731,7 +9733,7 @@ Manages a RDS DB Instance association with an IAM Role. Example use cases:
 				"role",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_instance_identifier",
 					Description: `(Required) DB Instance Identifier to associate with the IAM Role.`,
@@ -9749,7 +9751,7 @@ Manages a RDS DB Instance association with an IAM Role. Example use cases:
 					Description: `DB Instance Identifier and IAM Role ARN separated by a comma (` + "`" + `,` + "`" + `) ## Import ` + "`" + `aws_db_instance_role_association` + "`" + ` can be imported using the DB Instance Identifier and IAM Role ARN separated by a comma (` + "`" + `,` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_instance_role_association.example my-db-instance,arn:aws:iam::123456789012:role/my-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `DB Instance Identifier and IAM Role ARN separated by a comma (` + "`" + `,` + "`" + `) ## Import ` + "`" + `aws_db_instance_role_association` + "`" + ` can be imported using the DB Instance Identifier and IAM Role ARN separated by a comma (` + "`" + `,` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_instance_role_association.example my-db-instance,arn:aws:iam::123456789012:role/my-role ` + "`" + `` + "`" + `` + "`" + ``,
@@ -9776,7 +9778,7 @@ Provides an RDS DB option group resource. Documentation of the available options
 				"option",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the option group. If omitted, Terraform will assign a random, unique name. Must be lowercase, to match as it is stored in AWS.`,
@@ -9846,7 +9848,7 @@ Provides an RDS DB option group resource. Documentation of the available options
 					Description: `The ARN of the db option group. ## Timeouts ` + "`" + `aws_db_option_group` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `15 minutes` + "`" + `) ## Import DB Option groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_option_group.bar mysql-option-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The db option group name.`,
@@ -9878,7 +9880,7 @@ Provides an RDS DB parameter group resource .Documentation of the available para
 				"parameter",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the DB parameter group. If omitted, Terraform will assign a random, unique name.`,
@@ -9924,7 +9926,7 @@ Provides an RDS DB parameter group resource .Documentation of the available para
 					Description: `The ARN of the db parameter group. ## Import DB Parameter groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_parameter_group.rds_pg rds-pg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The db parameter group name.`,
@@ -9954,7 +9956,7 @@ attribute instead.
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the DB security group.`,
@@ -9996,7 +9998,7 @@ attribute instead.
 					Description: `The arn of the DB security group. ## Import DB Security groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_security_group.default aws_rds_sg-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The db security group ID.`,
@@ -10022,7 +10024,7 @@ Manages a RDS database instance snapshot. For managing RDS database cluster snap
 				"db",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_instance_identifier",
 					Description: `(Required) The DB Instance Identifier from which to take the snapshot.`,
@@ -10096,7 +10098,7 @@ Manages a RDS database instance snapshot. For managing RDS database cluster snap
 					Description: `Specifies the storage type associated with DB snapshot.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocated_storage",
 					Description: `Specifies the allocated storage size in gigabytes (GB).`,
@@ -10175,7 +10177,7 @@ Provides an RDS DB subnet group resource.
 				"subnet",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the DB subnet group. If omitted, Terraform will assign a random, unique name.`,
@@ -10205,7 +10207,7 @@ Provides an RDS DB subnet group resource.
 					Description: `The ARN of the db subnet group. ## Import DB Subnet groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_db_subnet_group.default production-subnet-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The db subnet group name.`,
@@ -10255,7 +10257,7 @@ For more information about Network ACLs, see the AWS Documentation on
 				"network",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_network_acl_id",
 					Description: `(Required) The Network ACL ID to manage. This attribute is exported from ` + "`" + `aws_vpc` + "`" + `, or manually found via the AWS Console.`,
@@ -10333,7 +10335,7 @@ For more information about Network ACLs, see the AWS Documentation on
 					Description: `The ID of the AWS account that owns the Default Network ACL [aws-network-acls]: http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Default Network ACL`,
@@ -10402,7 +10404,7 @@ a conflict of rule settings and will overwrite routes.
 				"route",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_route_table_id",
 					Description: `(Required) The ID of the Default Routing Table.`,
@@ -10464,7 +10466,7 @@ a conflict of rule settings and will overwrite routes.
 					Description: `The ID of the AWS account that owns the route table [aws-route-tables]: http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html#Route_Replacing_Main_Table [tf-route-tables]: /docs/providers/aws/r/route_table.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the routing table`,
@@ -10515,7 +10517,7 @@ For more information about Default Security Groups, see the AWS Documentation on
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ingress",
 					Description: `(Optional) Can be specified multiple times for each ingress rule. Each ingress block supports fields documented below.`,
@@ -10561,7 +10563,7 @@ For more information about Default Security Groups, see the AWS Documentation on
 					Description: `The egress rules. See above for more. [aws-default-security-groups]: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#default-security-group`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the security group`,
@@ -10612,7 +10614,7 @@ into management.
 				"default",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "map_public_ip_on_launch",
 					Description: `(Optional) Specify true to indicate that instances launched into the subnet should be assigned a public IP address.`,
@@ -10646,7 +10648,7 @@ into management.
 					Description: `The ID of the AWS account that owns the subnet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the subnet`,
@@ -10696,7 +10698,7 @@ into management.
 				"vpc",
 				"default",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enable_dns_support",
 					Description: `(Optional) A boolean flag to enable/disable DNS support in the VPC. Defaults true.`,
@@ -10774,7 +10776,7 @@ into management.
 					Description: `The ID of the AWS account that owns the VPC. [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html ## Import Default VPCs can be imported using the ` + "`" + `vpc id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_default_vpc.default vpc-a01106c2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of VPC`,
@@ -10862,7 +10864,7 @@ into management.
 				"dhcp",
 				"options",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "netbios_name_servers",
 					Description: `(Optional) List of NETBIOS name servers.`,
@@ -10884,7 +10886,7 @@ into management.
 					Description: `The ID of the AWS account that owns the DHCP options set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the DHCP Options Set.`,
@@ -10916,7 +10918,7 @@ For more information about Device Farm Projects, see the AWS Documentation on
 				"devicefarm",
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the project ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -10926,7 +10928,7 @@ For more information about Device Farm Projects, see the AWS Documentation on
 					Description: `The Amazon Resource Name of this project [aws-get-project]: http://docs.aws.amazon.com/devicefarm/latest/APIReference/API_GetProject.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name of this project [aws-get-project]: http://docs.aws.amazon.com/devicefarm/latest/APIReference/API_GetProject.html`,
@@ -10949,7 +10951,7 @@ Provides a conditional forwarder for managed Microsoft AD in AWS Directory Servi
 				"conditional",
 				"forwarder",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "directory_id",
 					Description: `(Required) The id of directory.`,
@@ -10963,7 +10965,7 @@ Provides a conditional forwarder for managed Microsoft AD in AWS Directory Servi
 					Description: `(Required) The fully qualified domain name of the remote domain for which forwarders will be used. ## Import Conditional forwarders can be imported using the directory id and remote_domain_name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_directory_service_conditional_forwarder.example d-1234567890:example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10982,7 +10984,7 @@ Provides a Simple or Managed Microsoft directory in AWS Directory Service.
 				"directory",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The fully qualified name for the directory, such as ` + "`" + `corp.example.com` + "`" + ``,
@@ -11068,7 +11070,7 @@ Provides a Simple or Managed Microsoft directory in AWS Directory Service.
 					Description: `The ID of the security group created by the directory. ## Import DirectoryService directories can be imported using the directory ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_directory_service_directory.sample d-926724cf57 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The directory identifier.`,
@@ -11103,7 +11105,7 @@ Provides a Log subscription for AWS Directory Service that pushes logs to cloudw
 				"log",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "directory_id",
 					Description: `(Required) The id of directory.`,
@@ -11113,7 +11115,7 @@ Provides a Log subscription for AWS Directory Service that pushes logs to cloudw
 					Description: `(Required) Name of the cloudwatch log group to which the logs should be published. The log group should be already created and the directory service principal should be provided with required permission to create stream and publish logs. Changing this value would delete the current subscription and create a new one. A directory can only have one log subscription at a time. ## Import Directory Service Log Subscriptions can be imported using the directory id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_directory_service_log_subscription.msad d-1234567890 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -11132,7 +11134,7 @@ Provides a [Data Lifecycle Manager (DLM) lifecycle policy](https://docs.aws.amaz
 				"dlm",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Required) A description for the DLM lifecycle policy.`,
@@ -11194,7 +11196,7 @@ Provides a [Data Lifecycle Manager (DLM) lifecycle policy](https://docs.aws.amaz
 					Description: `(Required) How many snapshots to keep. Must be an integer between 1 and 1000. ## Attributes Reference All of the arguments above are exported as attributes. ## Import DLM lifecyle policies can be imported by their policy ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dlm_lifecycle_policy.example policy-abcdef12345678901 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -11216,7 +11218,7 @@ Provides a DMS (Data Migration Service) certificate resource. DMS certificates c
 				"dms",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate_id",
 					Description: `(Required) The certificate identifier. - Must contain from 1 to 255 alphanumeric characters and hyphens.`,
@@ -11234,7 +11236,7 @@ Provides a DMS (Data Migration Service) certificate resource. DMS certificates c
 					Description: `The Amazon Resource Name (ARN) for the certificate. ## Import Certificates can be imported using the ` + "`" + `certificate_arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_certificate.test arn:aws:dms:us-west-2:123456789:cert:xxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate_arn",
 					Description: `The Amazon Resource Name (ARN) for the certificate. ## Import Certificates can be imported using the ` + "`" + `certificate_arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_certificate.test arn:aws:dms:us-west-2:123456789:cert:xxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11261,7 +11263,7 @@ Provides a DMS (Data Migration Service) endpoint resource. DMS endpoints can be 
 				"dms",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate_arn",
 					Description: `(Optional, Default: empty string) The Amazon Resource Name (ARN) for the certificate.`,
@@ -11331,7 +11333,7 @@ Provides a DMS (Data Migration Service) endpoint resource. DMS endpoints can be 
 					Description: `The Amazon Resource Name (ARN) for the endpoint. ## Import Endpoints can be imported using the ` + "`" + `endpoint_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_endpoint.test test-dms-endpoint-tf ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_arn",
 					Description: `The Amazon Resource Name (ARN) for the endpoint. ## Import Endpoints can be imported using the ` + "`" + `endpoint_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_endpoint.test test-dms-endpoint-tf ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11356,7 +11358,7 @@ Provides a DMS (Data Migration Service) replication instance resource. DMS repli
 				"replication",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocated_storage",
 					Description: `(Optional, Default: 50, Min: 5, Max: 6144) The amount of storage (in gigabytes) to be initially allocated for the replication instance.`,
@@ -11426,7 +11428,7 @@ Provides a DMS (Data Migration Service) replication instance resource. DMS repli
 					Description: `A list of the public IP addresses of the replication instance. <a id="timeouts"></a> ## Timeouts ` + "`" + `aws_dms_replication_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Creating Instances - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for Database modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for destroying databases. ## Import Replication instances can be imported using the ` + "`" + `replication_instance_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_replication_instance.test test-dms-replication-instance-tf ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "replication_instance_arn",
 					Description: `The Amazon Resource Name (ARN) of the replication instance.`,
@@ -11460,7 +11462,7 @@ Provides a DMS (Data Migration Service) replication subnet group resource. DMS r
 				"subnet",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "replication_subnet_group_description",
 					Description: `(Required) The description for the subnet group.`,
@@ -11482,7 +11484,7 @@ Provides a DMS (Data Migration Service) replication subnet group resource. DMS r
 					Description: `The ID of the VPC the subnet group is in. ## Import Replication subnet groups can be imported using the ` + "`" + `replication_subnet_group_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_replication_subnet_group.test test-dms-replication-subnet-group-tf ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `The ID of the VPC the subnet group is in. ## Import Replication subnet groups can be imported using the ` + "`" + `replication_subnet_group_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_replication_subnet_group.test test-dms-replication-subnet-group-tf ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11507,7 +11509,7 @@ Provides a DMS (Data Migration Service) replication task resource. DMS replicati
 				"replication",
 				"task",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cdc_start_time",
 					Description: `(Optional) The Unix timestamp integer for the start of the Change Data Capture (CDC) operation.`,
@@ -11549,7 +11551,7 @@ Provides a DMS (Data Migration Service) replication task resource. DMS replicati
 					Description: `The Amazon Resource Name (ARN) for the replication task. ## Import Replication tasks can be imported using the ` + "`" + `replication_task_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_replication_task.test test-dms-replication-task-tf ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "replication_task_arn",
 					Description: `The Amazon Resource Name (ARN) for the replication task. ## Import Replication tasks can be imported using the ` + "`" + `replication_task_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dms_replication_task.test test-dms-replication-task-tf ` + "`" + `` + "`" + `` + "`" + ``,
@@ -11582,7 +11584,7 @@ phase because a modification has not yet taken place. You can use the
 				"docdb",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "apply_immediately",
 					Description: `(Optional) Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is ` + "`" + `false` + "`" + `.`,
@@ -11700,7 +11702,7 @@ phase because a modification has not yet taken place. You can use the
 					Description: `The DocDB instance status ## Timeouts ` + "`" + `aws_docdb_cluster` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Cluster creation - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Cluster modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for destroying cluster. This includes any cleanup task during the destroying process. ## Import DocDB Clusters can be imported using the ` + "`" + `cluster_identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_docdb_cluster.docdb_cluster docdb-prod-cluster ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of cluster`,
@@ -11758,7 +11760,7 @@ Cluster, or you may specify different Cluster Instance resources with various
 				"cluster",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "apply_immediately",
 					Description: `(Optional) Specifies whether any database modifications are applied immediately, or during the next maintenance window. Default is` + "`" + `false` + "`" + `.`,
@@ -11844,7 +11846,7 @@ Cluster, or you may specify different Cluster Instance resources with various
 					Description: `Specifies whether the DB cluster is encrypted.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of cluster instance`,
@@ -11904,7 +11906,7 @@ Manages a DocumentDB Cluster Parameter Group
 				"parameter",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the documentDB cluster parameter group. If omitted, Terraform will assign a random, unique name.`,
@@ -11950,7 +11952,7 @@ Manages a DocumentDB Cluster Parameter Group
 					Description: `The ARN of the documentDB cluster parameter group. ## Import DocumentDB Cluster Parameter Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_docdb_cluster_parameter_group.cluster_pg production-pg-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The documentDB cluster parameter group name.`,
@@ -11977,7 +11979,7 @@ Manages a DocDB database cluster snapshot for DocDB clusters.
 				"cluster",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_cluster_identifier",
 					Description: `(Required) The DocDB Cluster Identifier from which to take the snapshot.`,
@@ -12031,7 +12033,7 @@ Manages a DocDB database cluster snapshot for DocDB clusters.
 					Description: `(Default ` + "`" + `20m` + "`" + `) How long to wait for the snapshot to be available. ## Import ` + "`" + `aws_docdb_cluster_snapshot` + "`" + ` can be imported by using the cluster snapshot identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_docdb_cluster_snapshot.example my-cluster-snapshot ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zones",
 					Description: `List of EC2 Availability Zones that instances in the DocDB cluster snapshot can be restored in.`,
@@ -12094,7 +12096,7 @@ Provides an DocumentDB subnet group resource.
 				"subnet",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the docDB subnet group. If omitted, Terraform will assign a random, unique name.`,
@@ -12124,7 +12126,7 @@ Provides an DocumentDB subnet group resource.
 					Description: `The ARN of the docDB subnet group. ## Import DocumentDB Subnet groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_docdb_subnet_group.default production-subnet-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The docDB subnet group name.`,
@@ -12152,7 +12154,7 @@ Provides a Direct Connect BGP peer resource.
 				"bgp",
 				"peer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address_family",
 					Description: `(Required) The address family for the BGP peer. ` + "`" + `ipv4 ` + "`" + ` or ` + "`" + `ipv6` + "`" + `.`,
@@ -12194,7 +12196,7 @@ Provides a Direct Connect BGP peer resource.
 					Description: `The Direct Connect endpoint on which the BGP peer terminates. ## Timeouts ` + "`" + `aws_dx_bgp_peer` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating BGP peer - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying BGP peer`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the BGP peer resource.`,
@@ -12229,7 +12231,7 @@ Provides a Connection of Direct Connect.
 				"dx",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the connection.`,
@@ -12267,7 +12269,7 @@ Provides a Connection of Direct Connect.
 					Description: `The Direct Connect endpoint on which the physical connection terminates. ## Import Direct Connect connections can be imported using the ` + "`" + `connection id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_connection.test_connection dxcon-ffre0ec3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the connection.`,
@@ -12307,7 +12309,7 @@ Associates a Direct Connect Connection with a LAG.
 				"connection",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "connection_id",
 					Description: `(Required) The ID of the connection.`,
@@ -12317,7 +12319,7 @@ Associates a Direct Connect Connection with a LAG.
 					Description: `(Required) The ID of the LAG with which to associate the connection.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -12335,7 +12337,7 @@ Provides a Direct Connect Gateway.
 				"dx",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the connection.`,
@@ -12353,7 +12355,7 @@ Provides a Direct Connect Gateway.
 					Description: `AWS Account ID of the gateway. ## Timeouts ` + "`" + `aws_dx_gateway` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating the gateway - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying the gateway ## Import Direct Connect Gateways can be imported using the ` + "`" + `gateway id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_gateway.test abcd1234-dcba-5678-be23-cdef9876ab45 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the gateway.`,
@@ -12385,7 +12387,7 @@ by creating an ` + "`" + `aws_dx_gateway_association` + "`" + ` resource with th
 				"gateway",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dx_gateway_id",
 					Description: `(Required) The ID of the Direct Connect gateway.`,
@@ -12427,7 +12429,7 @@ by creating an ` + "`" + `aws_dx_gateway_association` + "`" + ` resource with th
 					Description: `The ID of the AWS account that owns the Direct Connect gateway. ## Timeouts ` + "`" + `aws_dx_gateway_association` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `15 minutes` + "`" + `) Used for creating the association - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for updating the association - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `15 minutes` + "`" + `) Used for destroying the association ## Import Direct Connect gateway associations can be imported using ` + "`" + `dx_gateway_id` + "`" + ` together with ` + "`" + `associated_gateway_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_gateway_association.example dxgw-12345678/vgw-98765432 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Direct Connect gateway association resource.`,
@@ -12464,7 +12466,7 @@ Manages a Direct Connect Gateway Association Proposal, typically for enabling cr
 				"association",
 				"proposal",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dx_gateway_id",
 					Description: `(Required) Direct Connect Gateway identifier.`,
@@ -12498,7 +12500,7 @@ Manages a Direct Connect Gateway Association Proposal, typically for enabling cr
 					Description: `The type of the associated gateway, ` + "`" + `transitGateway` + "`" + ` or ` + "`" + `virtualPrivateGateway` + "`" + `. ## Import Direct Connect Gateway Association Proposals can be imported using the proposal ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_gateway_association_proposal.example ac90e981-b718-4364-872d-65478c84fafe ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Direct Connect Gateway Association Proposal identifier.`,
@@ -12533,7 +12535,7 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 				"virtual",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address_family",
 					Description: `(Required) The address family for the BGP peer. ` + "`" + `ipv4 ` + "`" + ` or ` + "`" + `ipv6` + "`" + `.`,
@@ -12591,7 +12593,7 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 					Description: `The Direct Connect endpoint on which the virtual interface terminates. ## Timeouts ` + "`" + `aws_dx_hosted_private_virtual_interface` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating virtual interface - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for virtual interface modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying virtual interface ## Import Direct Connect hosted private virtual interfaces can be imported using the ` + "`" + `vif id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_hosted_private_virtual_interface.test dxvif-33cc44dd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual interface.`,
@@ -12631,7 +12633,7 @@ This resource accepts ownership of a private virtual interface created by anothe
 				"interface",
 				"accepter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_interface_id",
 					Description: `(Required) The ID of the Direct Connect virtual interface to accept.`,
@@ -12657,7 +12659,7 @@ This resource accepts ownership of a private virtual interface created by anothe
 					Description: `The ARN of the virtual interface. ## Timeouts ` + "`" + `aws_dx_hosted_private_virtual_interface_accepter` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating virtual interface - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying virtual interface ## Import Direct Connect hosted private virtual interfaces can be imported using the ` + "`" + `vif id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_hosted_private_virtual_interface_accepter.test dxvif-33cc44dd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual interface.`,
@@ -12688,7 +12690,7 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 				"virtual",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address_family",
 					Description: `(Required) The address family for the BGP peer. ` + "`" + `ipv4 ` + "`" + ` or ` + "`" + `ipv6` + "`" + `.`,
@@ -12742,7 +12744,7 @@ A hosted virtual interface is a virtual interface that is owned by another AWS a
 					Description: `The Direct Connect endpoint on which the virtual interface terminates. ## Timeouts ` + "`" + `aws_dx_hosted_public_virtual_interface` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating virtual interface - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying virtual interface ## Import Direct Connect hosted public virtual interfaces can be imported using the ` + "`" + `vif id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_hosted_public_virtual_interface.test dxvif-33cc44dd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual interface.`,
@@ -12778,7 +12780,7 @@ This resource accepts ownership of a public virtual interface created by another
 				"interface",
 				"accepter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "virtual_interface_id",
 					Description: `(Required) The ID of the Direct Connect virtual interface to accept.`,
@@ -12796,7 +12798,7 @@ This resource accepts ownership of a public virtual interface created by another
 					Description: `The ARN of the virtual interface. ## Timeouts ` + "`" + `aws_dx_hosted_public_virtual_interface_accepter` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating virtual interface - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying virtual interface ## Import Direct Connect hosted public virtual interfaces can be imported using the ` + "`" + `vif id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_hosted_public_virtual_interface_accepter.test dxvif-33cc44dd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual interface.`,
@@ -12825,7 +12827,7 @@ Provides a Direct Connect LAG. Connections can be added to the LAG via the [` + 
 				"dx",
 				"lag",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the LAG.`,
@@ -12859,7 +12861,7 @@ Provides a Direct Connect LAG. Connections can be added to the LAG via the [` + 
 					Description: `Indicates whether the LAG supports a secondary BGP peer in the same address family (IPv4/IPv6). ## Import Direct Connect LAGs can be imported using the ` + "`" + `lag id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_lag.test_lag dxlag-fgnsp5rq ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the LAG.`,
@@ -12892,7 +12894,7 @@ Provides a Direct Connect private virtual interface resource.
 				"virtual",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address_family",
 					Description: `(Required) The address family for the BGP peer. ` + "`" + `ipv4 ` + "`" + ` or ` + "`" + `ipv6` + "`" + `.`,
@@ -12958,7 +12960,7 @@ Provides a Direct Connect private virtual interface resource.
 					Description: `The Direct Connect endpoint on which the virtual interface terminates. ## Timeouts ` + "`" + `aws_dx_private_virtual_interface` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating virtual interface - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for virtual interface modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying virtual interface ## Import Direct Connect private virtual interfaces can be imported using the ` + "`" + `vif id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_private_virtual_interface.test dxvif-33cc44dd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual interface.`,
@@ -12995,7 +12997,7 @@ Provides a Direct Connect public virtual interface resource.
 				"virtual",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address_family",
 					Description: `(Required) The address family for the BGP peer. ` + "`" + `ipv4 ` + "`" + ` or ` + "`" + `ipv6` + "`" + `.`,
@@ -13049,7 +13051,7 @@ Provides a Direct Connect public virtual interface resource.
 					Description: `The Direct Connect endpoint on which the virtual interface terminates. ## Timeouts ` + "`" + `aws_dx_public_virtual_interface` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating virtual interface - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying virtual interface ## Import Direct Connect public virtual interfaces can be imported using the ` + "`" + `vif id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dx_public_virtual_interface.test dxvif-33cc44dd ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the virtual interface.`,
@@ -13081,7 +13083,7 @@ Provides a resource to manage a DynamoDB Global Table. These are layered on top 
 				"global",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the global table. Must match underlying DynamoDB Table names in all regions.`,
@@ -13103,7 +13105,7 @@ Provides a resource to manage a DynamoDB Global Table. These are layered on top 
 					Description: `The ARN of the DynamoDB Global Table ## Import DynamoDB Global Tables can be imported using the global table name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dynamodb_global_table.MyTable MyTable ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the DynamoDB Global Table`,
@@ -13130,7 +13132,7 @@ Provides a DynamoDB table resource
 				"dynamodb",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the table, this needs to be unique within a region.`,
@@ -13288,7 +13290,7 @@ Provides a DynamoDB table resource
 					Description: `A timestamp, in ISO 8601 format, for this stream. Note that this timestamp is not a unique identifier for the stream on its own. However, the combination of AWS customer ID, table name and this field is guaranteed to be unique. It can be used for creating CloudWatch Alarms. Only available when ` + "`" + `stream_enabled = true` + "`" + ` ## Import DynamoDB tables can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_dynamodb_table.basic-dynamodb-table GameScores ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The arn of the table`,
@@ -13325,7 +13327,7 @@ Provides a DynamoDB table item resource
 				"table",
 				"item",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "table_name",
 					Description: `(Required) The name of the table to contain the item.`,
@@ -13343,7 +13345,7 @@ Provides a DynamoDB table item resource
 					Description: `(Required) JSON representation of a map of attribute name/value pairs, one for each attribute. Only the primary key attributes are required; you can optionally provide other attribute name-value pairs for the item. ## Attributes Reference All of the arguments above are exported as attributes. ## Import DynamoDB table items cannot be imported.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -13369,13 +13371,13 @@ By using the ` + "`" + `aws_ebs_default_kms_key` + "`" + ` resource, you can spe
 				"kms",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_arn",
 					Description: `(Required, ForceNew) The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use to encrypt the EBS volume. ## Import The EBS default KMS CMK can be imported with the KMS key ARN, e.g. ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_ebs_default_kms_key.example arn:aws:kms:us-east-1:123456789012:key/abcd-1234 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -13396,13 +13398,13 @@ Provides a resource to manage whether default EBS encryption is enabled for your
 				"by",
 				"default",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Optional) Whether or not default EBS encryption is enabled. Valid values are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -13419,7 +13421,7 @@ Creates a Snapshot of an EBS Volume.
 				"ebs",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_id",
 					Description: `(Required) The Volume ID of which to make a snapshot.`,
@@ -13465,7 +13467,7 @@ Creates a Snapshot of an EBS Volume.
 					Description: `A mapping of tags for the snapshot.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The snapshot ID (e.g. snap-59fcb34e).`,
@@ -13516,7 +13518,7 @@ Creates a Snapshot of a snapshot.
 				"snapshot",
 				"copy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A description of what the snapshot is.`,
@@ -13566,7 +13568,7 @@ Creates a Snapshot of a snapshot.
 					Description: `A mapping of tags for the snapshot.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The snapshot ID (e.g. snap-59fcb34e).`,
@@ -13616,7 +13618,7 @@ Manages a single EBS volume.
 				"ebs",
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) The AZ where the EBS volume will exist.`,
@@ -13654,7 +13656,7 @@ Manages a single EBS volume.
 					Description: `The volume ARN (e.g. arn:aws:ec2:us-east-1:0123456789012:volume/vol-59fcb34e). ## Import EBS Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ebs_volume.id vol-049df61146c4d7901 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The volume ID (e.g. vol-59fcb34e).`,
@@ -13680,7 +13682,7 @@ Provides an EC2 Capacity Reservation. This allows you to reserve capacity for yo
 				"capacity",
 				"reservation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) The Availability Zone in which to create the Capacity Reservation.`,
@@ -13730,7 +13732,7 @@ Provides an EC2 Capacity Reservation. This allows you to reserve capacity for yo
 					Description: `The Capacity Reservation ID. ## Import Capacity Reservations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_capacity_reservation.web cr-0123456789abcdef0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Capacity Reservation ID. ## Import Capacity Reservations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_capacity_reservation.web cr-0123456789abcdef0 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -13754,7 +13756,7 @@ Provides an AWS Client VPN endpoint for OpenVPN clients. For more information on
 				"vpn",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Name of the repository.`,
@@ -13824,7 +13826,7 @@ Provides an AWS Client VPN endpoint for OpenVPN clients. For more information on
 					Description: `The current state of the Client VPN endpoint. ## Import AWS Client VPN endpoints can be imported using the ` + "`" + `id` + "`" + ` value found via ` + "`" + `aws ec2 describe-client-vpn-endpoints` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_client_vpn_endpoint.example cvpn-endpoint-0ac3a1abbccddd666 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Client VPN endpoint.`,
@@ -13857,7 +13859,7 @@ Provides network associations for AWS Client VPN endpoints. For more information
 				"network",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "client_vpn_endpoint_id",
 					Description: `(Required) The ID of the Client VPN endpoint.`,
@@ -13883,7 +13885,7 @@ Provides network associations for AWS Client VPN endpoints. For more information
 					Description: `The ID of the VPC in which the target network (subnet) is located.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the target network association.`,
@@ -13916,7 +13918,7 @@ Provides a resource to manage EC2 Fleets.
 				"ec2",
 				"fleet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "launch_template_config",
 					Description: `(Required) Nested argument containing EC2 Launch Template configurations. Defined below.`,
@@ -14050,7 +14052,7 @@ Provides a resource to manage EC2 Fleets.
 					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for a fleet to be deleted. If ` + "`" + `terminate_instances` + "`" + ` is ` + "`" + `true` + "`" + `, how long to wait for instances to terminate. ## Import ` + "`" + `aws_ec2_fleet` + "`" + ` can be imported by using the Fleet identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_fleet.example fleet-b9b55d27-c5fc-41ac-a6f3-48fcc91f080c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Fleet identifier ## Timeouts ` + "`" + `aws_ec2_fleet` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options:`,
@@ -14084,7 +14086,7 @@ Manages an EC2 Transit Gateway.
 				"transit",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "amazon_side_asn",
 					Description: `(Optional) Private Autonomous System Number (ASN) for the Amazon side of a BGP session. The range is ` + "`" + `64512` + "`" + ` to ` + "`" + `65534` + "`" + ` for 16-bit ASNs and ` + "`" + `4200000000` + "`" + ` to ` + "`" + `4294967294` + "`" + ` for 32-bit ASNs. Default value: ` + "`" + `64512` + "`" + `.`,
@@ -14138,7 +14140,7 @@ Manages an EC2 Transit Gateway.
 					Description: `Identifier of the default propagation route table ## Import ` + "`" + `aws_ec2_transit_gateway` + "`" + ` can be imported by using the EC2 Transit Gateway identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_transit_gateway.example tgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `EC2 Transit Gateway Amazon Resource Name (ARN)`,
@@ -14177,7 +14179,7 @@ Manages an EC2 Transit Gateway Route.
 				"gateway",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "destination_cidr_block",
 					Description: `(Required) IPv4 CIDR range used for destination matches. Routing decisions are based on the most specific match.`,
@@ -14199,7 +14201,7 @@ Manages an EC2 Transit Gateway Route.
 					Description: `EC2 Transit Gateway Route Table identifier combined with destination ## Import ` + "`" + `aws_ec2_transit_gateway_route` + "`" + ` can be imported by using the EC2 Transit Gateway Route Table, an underscore, and the destination, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_transit_gateway_route.example tgw-rtb-12345678_0.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `EC2 Transit Gateway Route Table identifier combined with destination ## Import ` + "`" + `aws_ec2_transit_gateway_route` + "`" + ` can be imported by using the EC2 Transit Gateway Route Table, an underscore, and the destination, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_transit_gateway_route.example tgw-rtb-12345678_0.0.0.0/0 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -14223,7 +14225,7 @@ Manages an EC2 Transit Gateway Route Table.
 				"route",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "transit_gateway_id",
 					Description: `(Required) Identifier of EC2 Transit Gateway.`,
@@ -14245,7 +14247,7 @@ Manages an EC2 Transit Gateway Route Table.
 					Description: `EC2 Transit Gateway Route Table identifier ## Import ` + "`" + `aws_ec2_transit_gateway_route_table` + "`" + ` can be imported by using the EC2 Transit Gateway Route Table identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_transit_gateway_route_table.example tgw-rtb-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_association_route_table",
 					Description: `Boolean whether this is the default association route table for the EC2 Transit Gateway.`,
@@ -14278,7 +14280,7 @@ Manages an EC2 Transit Gateway Route Table association.
 				"table",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "transit_gateway_attachment_id",
 					Description: `(Required) Identifier of EC2 Transit Gateway Attachment.`,
@@ -14300,7 +14302,7 @@ Manages an EC2 Transit Gateway Route Table association.
 					Description: `Type of the resource ## Import ` + "`" + `aws_ec2_transit_gateway_route_table_association` + "`" + ` can be imported by using the EC2 Transit Gateway Route Table identifier, an underscore, and the EC2 Transit Gateway Attachment identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_transit_gateway_route_table_association.example tgw-rtb-12345678_tgw-attach-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `EC2 Transit Gateway Route Table identifier combined with EC2 Transit Gateway Attachment identifier`,
@@ -14333,7 +14335,7 @@ Manages an EC2 Transit Gateway Route Table propagation.
 				"table",
 				"propagation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "transit_gateway_attachment_id",
 					Description: `(Required) Identifier of EC2 Transit Gateway Attachment.`,
@@ -14355,7 +14357,7 @@ Manages an EC2 Transit Gateway Route Table propagation.
 					Description: `Type of the resource ## Import ` + "`" + `aws_ec2_transit_gateway_route_table_propagation` + "`" + ` can be imported by using the EC2 Transit Gateway Route Table identifier, an underscore, and the EC2 Transit Gateway Attachment identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_transit_gateway_route_table_propagation.example tgw-rtb-12345678_tgw-attach-87654321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `EC2 Transit Gateway Route Table identifier combined with EC2 Transit Gateway Attachment identifier`,
@@ -14387,7 +14389,7 @@ Manages an EC2 Transit Gateway VPC Attachment. For examples of custom route tabl
 				"vpc",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnet_ids",
 					Description: `(Required) Identifiers of EC2 Subnets.`,
@@ -14429,7 +14431,7 @@ Manages an EC2 Transit Gateway VPC Attachment. For examples of custom route tabl
 					Description: `Identifier of the AWS account that owns the EC2 VPC. ## Import ` + "`" + `aws_ec2_transit_gateway_vpc_attachment` + "`" + ` can be imported by using the EC2 Transit Gateway Attachment identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_transit_gateway_vpc_attachment.example tgw-attach-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `EC2 Transit Gateway Attachment identifier`,
@@ -14464,7 +14466,7 @@ connection into management.
 				"attachment",
 				"accepter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "transit_gateway_attachment_id",
 					Description: `(Required) The ID of the EC2 Transit Gateway Attachment to manage.`,
@@ -14510,7 +14512,7 @@ connection into management.
 					Description: `Identifier of the AWS account that owns the EC2 VPC. ## Import ` + "`" + `aws_ec2_transit_gateway_vpc_attachment_accepter` + "`" + ` can be imported by using the EC2 Transit Gateway Attachment identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ec2_transit_gateway_vpc_attachment_accepter.example tgw-attach-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `EC2 Transit Gateway Attachment identifier`,
@@ -14560,7 +14562,7 @@ Manages an ECR repository lifecycle policy.
 				"lifecycle",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository",
 					Description: `(Required) Name of the repository to apply the policy.`,
@@ -14578,7 +14580,7 @@ Manages an ECR repository lifecycle policy.
 					Description: `The registry ID where the repository was created. ## Import ECR Lifecycle Policy can be imported using the name of the repository, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ecr_lifecycle_policy.example tf-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository",
 					Description: `The name of the repository.`,
@@ -14603,7 +14605,7 @@ Provides an Elastic Container Registry Repository.
 				"ecr",
 				"repository",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the repository.`,
@@ -14629,7 +14631,7 @@ Provides an Elastic Container Registry Repository.
 					Description: `The URL of the repository (in the form ` + "`" + `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName` + "`" + ` ## Timeouts ` + "`" + `aws_ecr_repository` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `20 minutes` + "`" + `) How long to wait for a repository to be deleted. ## Import ECR Repositories can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ecr_repository.service test-service ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Full ARN of the repository.`,
@@ -14665,7 +14667,7 @@ Note that currently only one policy may be applied to a repository.
 				"repository",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository",
 					Description: `(Required) Name of the repository to apply the policy.`,
@@ -14683,7 +14685,7 @@ Note that currently only one policy may be applied to a repository.
 					Description: `The registry ID where the repository was created. ## Import ECR Repository Policy can be imported using the repository name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ecr_repository_policy.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "repository",
 					Description: `The name of the repository.`,
@@ -14708,7 +14710,7 @@ Provides an ECS cluster.
 				"ecs",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the cluster (up to 255 letters, numbers, hyphens, and underscores)`,
@@ -14726,7 +14728,7 @@ Provides an ECS cluster.
 					Description: `The Amazon Resource Name (ARN) that identifies the cluster ## Import ECS clusters can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ecs_cluster.stateless stateless-app ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) that identifies the cluster`,
@@ -14755,7 +14757,7 @@ See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/Am
 				"ecs",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the service (up to 255 letters, numbers, hyphens, and underscores)`,
@@ -14921,7 +14923,7 @@ See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/Am
 					Description: `The number of instances of the task definition ## Import ECS services can be imported using the ` + "`" + `name` + "`" + ` together with ecs cluster ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ecs_service.imported cluster-name/service-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) that identifies the service`,
@@ -14959,7 +14961,7 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 				"task",
 				"definition",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "family",
 					Description: `(Required) A unique name for your task definition.`,
@@ -15081,7 +15083,7 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 					Description: `The revision of the task in a particular family. ## Import ECS Task Definitions can be imported via their Amazon Resource Name (ARN): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ecs_task_definition.example arn:aws:ecs:us-east-1:012345678910:task-definition/mytaskfamily:123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Full ARN of the Task Definition (including both ` + "`" + `family` + "`" + ` and ` + "`" + `revision` + "`" + `).`,
@@ -15111,7 +15113,7 @@ Provides an Elastic File System (EFS) resource.
 				"file",
 				"system",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "creation_token",
 					Description: `(Optional) A unique name (a maximum of 64 characters are allowed) used as reference when creating the Elastic File System to ensure idempotent file system creation. By default generated by Terraform. See [Elastic File System] (http://docs.aws.amazon.com/efs/latest/ug/) user guide for more information.`,
@@ -15153,7 +15155,7 @@ Provides an Elastic File System (EFS) resource.
 					Description: `The DNS name for the filesystem per [documented convention](http://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-cmd-dns-name.html). ## Import The EFS file systems can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_efs_file_system.foo fs-6fa144c6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name of the file system.`,
@@ -15183,7 +15185,7 @@ Provides an Elastic File System (EFS) mount target.
 				"mount",
 				"target",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file_system_id",
 					Description: `(Required) The ID of the file system for which the mount target is intended.`,
@@ -15217,7 +15219,7 @@ Provides an Elastic File System (EFS) mount target.
 					Description: `The ID of the network interface that Amazon EFS created when it created the mount target. ## Import The EFS mount targets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_efs_mount_target.alpha fsmt-52a643fb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the mount target.`,
@@ -15256,7 +15258,7 @@ outside of your VPC from initiating an IPv6 connection with your instance.
 				"internet",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The VPC ID to create in. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -15266,7 +15268,7 @@ outside of your VPC from initiating an IPv6 connection with your instance.
 					Description: `The ID of the Egress Only Internet Gateway.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Egress Only Internet Gateway.`,
@@ -15291,7 +15293,7 @@ Provides an Elastic IP resource.
 				"ec2",
 				"eip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc",
 					Description: `(Optional) Boolean if the EIP is in a VPC or not.`,
@@ -15353,7 +15355,7 @@ Provides an Elastic IP resource.
 					Description: `EC2 IPv4 address pool identifier (if in VPC). ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Contains the EIP allocation ID.`,
@@ -15413,7 +15415,7 @@ pre-existing or distributed to customers or users and therefore cannot be change
 				"eip",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocation_id",
 					Description: `(Optional) The allocation ID. This is required for EC2-VPC.`,
@@ -15463,7 +15465,7 @@ pre-existing or distributed to customers or users and therefore cannot be change
 					Description: `As above ## Import EIP Assocations can be imported using their association ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_eip_association.test eipassoc-ab12c345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "association_id",
 					Description: `The ID that represents the association of the Elastic IP address with an instance.`,
@@ -15504,7 +15506,7 @@ Manages an EKS Cluster.
 				"eks",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_arn",
 					Description: `(Required) The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.`,
@@ -15574,7 +15576,7 @@ Manages an EKS Cluster.
 					Description: `(Default ` + "`" + `15 minutes` + "`" + `) How long to wait for the EKS Cluster to be deleted. ## Import EKS Clusters can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_eks_cluster.my_cluster my_cluster ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the cluster.`,
@@ -15645,7 +15647,7 @@ This resource creates an application that has one configuration template named
 				"beanstalk",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the application, must be unique within your account`,
@@ -15679,7 +15681,7 @@ This resource creates an application that has one configuration template named
 					Description: `The ARN assigned by AWS for this Elastic Beanstalk Application. ## Import Elastic Beanstalk Applications can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elastic_beanstalk_application.tf_test tf-test-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS for this Elastic Beanstalk Application. ## Import Elastic Beanstalk Applications can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elastic_beanstalk_application.tf_test tf-test-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -15717,7 +15719,7 @@ Elastic Beanstalk Application. For example &lt;revision&gt;-&lt;environment&gt;.
 				"application",
 				"version",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the this Application Version.`,
@@ -15751,7 +15753,7 @@ Elastic Beanstalk Application. For example &lt;revision&gt;-&lt;environment&gt;.
 					Description: `The ARN assigned by AWS for this Elastic Beanstalk Application.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS for this Elastic Beanstalk Application.`,
@@ -15776,7 +15778,7 @@ application with the same configuration settings.
 				"configuration",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for this Template.`,
@@ -15802,7 +15804,7 @@ application with the same configuration settings.
 					Description: `(Optional) resource name for [scheduled action](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html#command-options-general-autoscalingscheduledaction) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -15824,7 +15826,7 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 				"beanstalk",
 				"environment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for this Environment. This name is used in the application URL`,
@@ -15910,7 +15912,7 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 					Description: `Autoscaling triggers in use by this environment. [1]: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.platforms.html [2]: https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html [3]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-environment.html#cfn-beanstalk-environment-platformarn ## Import Elastic Beanstalk Environments can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elastic_beanstalk_environment.prodenv e-rpqsewtp2j ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the Elastic Beanstalk Environment.`,
@@ -15973,7 +15975,7 @@ Provides an Elastic Transcoder pipeline resource.
 				"elastictranscoder",
 				"pipeline",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "aws_kms_key_arn",
 					Description: `(Optional) The AWS Key Management Service (AWS KMS) key that you want to use with this pipeline.`,
@@ -16071,7 +16073,7 @@ Provides an Elastic Transcoder pipeline resource.
 					Description: `Specify the type of value that appears in the ` + "`" + `thumbnail_config_permissions.grantee` + "`" + ` object. ## Import Elastic Transcoder pipelines can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elastic_transcoder_pipeline.basic_pipeline 1407981661351-cttk8b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -16089,7 +16091,7 @@ Provides an Elastic Transcoder preset resource.
 				"elastictranscoder",
 				"preset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "audio",
 					Description: `(Optional, Forces new resource) Audio parameters object (documented below).`,
@@ -16319,7 +16321,7 @@ Provides an Elastic Transcoder preset resource.
 					Description: `The number of times you want the output gif to loop (Gif only) ## Import Elastic Transcoder presets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elastic_transcoder_preset.basic_preset 1407981661351-cttk8b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -16344,7 +16346,7 @@ See the AWS Docs on [Modifying an ElastiCache Cache Cluster][2] for more informa
 				"elasticache",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "replication_group_id",
 					Description: `(Optional) The ID of the replication group to which this cluster should belong. If this parameter is specified, the cluster is added to the specified replication group as a read replica; otherwise, the cluster is a standalone primary that is not part of any replication group.`,
@@ -16394,7 +16396,7 @@ See the AWS Docs on [Modifying an ElastiCache Cache Cluster][2] for more informa
 					Description: `(Memcached only) The DNS name of the cache cluster without the port appended. [1]: https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheCluster.html [2]: https://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Clusters.Modify.html ## Import ElastiCache Clusters can be imported using the ` + "`" + `cluster_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elasticache_cluster.my_cluster my_cluster ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cache_nodes",
 					Description: `List of node objects including ` + "`" + `id` + "`" + `, ` + "`" + `address` + "`" + `, ` + "`" + `port` + "`" + ` and ` + "`" + `availability_zone` + "`" + `. Referenceable e.g. as ` + "`" + `${aws_elasticache_cluster.bar.cache_nodes.0.address}` + "`" + ``,
@@ -16426,7 +16428,7 @@ Provides an ElastiCache parameter group resource.
 				"parameter",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the ElastiCache parameter group.`,
@@ -16456,7 +16458,7 @@ Provides an ElastiCache parameter group resource.
 					Description: `The ElastiCache parameter group name. ## Import ElastiCache Parameter Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elasticache_parameter_group.default redis-params ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ElastiCache parameter group name. ## Import ElastiCache Parameter Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elasticache_parameter_group.default redis-params ` + "`" + `` + "`" + `` + "`" + ``,
@@ -16488,7 +16490,7 @@ servers reboots.
 				"replication",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "number_cache_clusters",
 					Description: `(Required for Cluster Mode Disabled) The number of cache clusters (primary and replicas) this replication group will have. If Multi-AZ is enabled, the value of this parameter must be at least 2. Updates will occur before other modifications.`,
@@ -16606,7 +16608,7 @@ servers reboots.
 					Description: `(Default ` + "`" + `40m` + "`" + `) How long to wait for replication group settings to be updated. This is also separately used for adding/removing replicas and online resize operation completion, if necessary. ## Import ElastiCache Replication Groups can be imported using the ` + "`" + `replication_group_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elasticache_replication_group.my_replication_group replication-group-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the ElastiCache Replication Group.`,
@@ -16657,8 +16659,8 @@ ElastiCache cluster **outside** of a VPC. If you are using a VPC, see the
 				"security",
 				"group",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -16679,8 +16681,8 @@ ElastiCache cluster **inside** of a VPC. If you are on EC2 Classic, see the
 				"subnet",
 				"group",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -16696,7 +16698,7 @@ Manages an AWS Elasticsearch Domain.
 				"elasticsearch",
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) Name of the domain.`,
@@ -16874,7 +16876,7 @@ Manages an AWS Elasticsearch Domain.
 					Description: `If the domain was created inside a VPC, the ID of the VPC. ## Import Elasticsearch domains can be imported using the ` + "`" + `domain_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elasticsearch_domain.example domain_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the domain.`,
@@ -16920,7 +16922,7 @@ Allows setting policy to an Elasticsearch domain while referencing domain attrib
 				"domain",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) Name of the domain.`,
@@ -16930,7 +16932,7 @@ Allows setting policy to an Elasticsearch domain while referencing domain attrib
 					Description: `(Optional) IAM policy document specifying the access policies for the domain`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -16958,7 +16960,7 @@ conflict and will overwrite attachments.
 				"elb",
 				"classic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the ELB. By default generated by Terraform.`,
@@ -17108,7 +17110,7 @@ conflict and will overwrite attachments.
 					Description: `The canonical hosted zone ID of the ELB (to be used in a Route 53 Alias record) ## Import ELBs can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_elb.bar elb-production-12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the ELB`,
@@ -17168,7 +17170,7 @@ conflict and will overwrite attachments.
 				"classic",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "elb",
 					Description: `(Required) The name of the ELB.`,
@@ -17178,7 +17180,7 @@ conflict and will overwrite attachments.
 					Description: `(Required) Instance ID to place in the ELB pool.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -17203,7 +17205,7 @@ To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/Management
 				"emr",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the job flow`,
@@ -17549,7 +17551,7 @@ To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/Management
 					Description: `The list of tags associated with a cluster. ## Example bootable config`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the EMR Cluster`,
@@ -17631,7 +17633,7 @@ Terraform will resize any Instance Group to zero when destroying the resource.
 				"instance",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bid_price",
 					Description: `(Optional) If set, the bid price for each EC2 instance in the instance group, expressed in USD. By setting this attribute, the instance group is being declared as a Spot Instance, and will implicitly create a Spot request. Leave this blank to use On-Demand Instances.`,
@@ -17661,7 +17663,7 @@ Terraform will resize any Instance Group to zero when destroying the resource.
 					Description: `The EMR Instance ID`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The EMR Instance ID`,
@@ -17686,7 +17688,7 @@ Provides a resource to manage AWS EMR Security Configurations
 				"security",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the EMR Security Configuration. By default generated by Terraform.`,
@@ -17716,7 +17718,7 @@ Provides a resource to manage AWS EMR Security Configurations
 					Description: `Date the Security Configuration was created ## Import EMR Security Configurations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_emr_security_configuration.sc example-sc-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the EMR Security Configuration (Same as the ` + "`" + `name` + "`" + `)`,
@@ -17751,7 +17753,7 @@ interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucke
 				"flow",
 				"log",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "traffic_type",
 					Description: `(Required) The type of traffic to capture. Valid values: ` + "`" + `ACCEPT` + "`" + `,` + "`" + `REJECT` + "`" + `, ` + "`" + `ALL` + "`" + `.`,
@@ -17789,7 +17791,7 @@ interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucke
 					Description: `The Flow Log ID ## Import Flow Logs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_flow_log.test_flow_log fl-1a2b3c4d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Flow Log ID ## Import Flow Logs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_flow_log.test_flow_log fl-1a2b3c4d ` + "`" + `` + "`" + `` + "`" + ``,
@@ -17810,7 +17812,7 @@ Provides a Gamelift Alias resource.
 				"gamelift",
 				"alias",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the alias.`,
@@ -17844,7 +17846,7 @@ Provides a Gamelift Alias resource.
 					Description: `Alias ARN. ## Import Gamelift Aliases can be imported using the ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_gamelift_alias.example <alias-id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Alias ID.`,
@@ -17869,7 +17871,7 @@ Provides an Gamelift Build resource.
 				"gamelift",
 				"build",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the build`,
@@ -17903,7 +17905,7 @@ Provides an Gamelift Build resource.
 					Description: `Build ID. ## Import Gamelift Builds cannot be imported at this time.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Build ID. ## Import Gamelift Builds cannot be imported at this time.`,
@@ -17924,7 +17926,7 @@ Provides a Gamelift Fleet resource.
 				"gamelift",
 				"fleet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "build_id",
 					Description: `(Required) ID of the Gamelift Build to be deployed on the fleet.`,
@@ -18022,7 +18024,7 @@ Provides a Gamelift Fleet resource.
 					Description: `Operating system of the fleet's computing resources. ## Import Gamelift Fleets cannot be imported at this time.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Fleet ID.`,
@@ -18053,7 +18055,7 @@ Provides an Gamelift Game Session Queue resource.
 				"session",
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the session queue.`,
@@ -18083,7 +18085,7 @@ Provides an Gamelift Game Session Queue resource.
 					Description: `Game Session Queue ARN. ## Import Gamelift Game Session Queues can be imported by their ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_gamelift_game_session_queue.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Game Session Queue ARN. ## Import Gamelift Game Session Queues can be imported by their ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_gamelift_game_session_queue.example example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18106,7 +18108,7 @@ Provides a Glacier Vault Resource. You can refer to the [Glacier Developer Guide
 				"glacier",
 				"vault",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Vault. Names can be between 1 and 255 characters long and the valid characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen), and '.' (period).`,
@@ -18140,7 +18142,7 @@ Provides a Glacier Vault Resource. You can refer to the [Glacier Developer Guide
 					Description: `The ARN of the vault. ## Import Glacier Vaults can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glacier_vault.archive my_archive ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "location",
 					Description: `The URI of the vault that was created.`,
@@ -18170,7 +18172,7 @@ Manages a Glacier Vault Lock. You can refer to the [Glacier Developer Guide](htt
 				"vault",
 				"lock",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "complete_lock",
 					Description: `(Required) Boolean whether to permanently apply this Glacier Lock Policy. Once completed, this cannot be undone. If set to ` + "`" + `false` + "`" + `, the Glacier Lock Policy remains in a testing mode for 24 hours. After that time, the Glacier Lock Policy is automatically removed by Glacier and the Terraform resource will show as needing recreation. Changing this from ` + "`" + `false` + "`" + ` to ` + "`" + `true` + "`" + ` will show as resource recreation, which is expected. Changing this from ` + "`" + `true` + "`" + ` to ` + "`" + `false` + "`" + ` is not possible unless the Glacier Vault is recreated at the same time.`,
@@ -18192,7 +18194,7 @@ Manages a Glacier Vault Lock. You can refer to the [Glacier Developer Guide](htt
 					Description: `Glacier Vault name. ## Import Glacier Vault Locks can be imported using the Glacier Vault name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glacier_vault_lock.example example-vault ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Glacier Vault name. ## Import Glacier Vault Locks can be imported using the Glacier Vault name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glacier_vault_lock.example example-vault ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18214,7 +18216,7 @@ Provides a Global Accelerator accelerator.
 				"accelerator",
 				"globalaccelerator",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the accelerator.`,
@@ -18260,7 +18262,7 @@ Provides a Global Accelerator accelerator.
 					Description: `The types of IP addresses included in this IP set. ## Import Global Accelerator accelerators can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_globalaccelerator_accelerator.example arn:aws:globalaccelerator::111111111111:accelerator/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) of the accelerator.`,
@@ -18296,7 +18298,7 @@ Provides a Global Accelerator endpoint group.
 				"endpoint",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_arn",
 					Description: `(Required) The Amazon Resource Name (ARN) of the listener.`,
@@ -18342,7 +18344,7 @@ Provides a Global Accelerator endpoint group.
 					Description: `The Amazon Resource Name (ARN) of the endpoint group. ## Import Global Accelerator endpoint groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import globalaccelerator_endpoint_group.example arn:aws:globalaccelerator::111111111111:accelerator/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/listener/xxxxxxx/endpoint-group/xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) of the endpoint group. ## Import Global Accelerator endpoint groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import globalaccelerator_endpoint_group.example arn:aws:globalaccelerator::111111111111:accelerator/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/listener/xxxxxxx/endpoint-group/xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18365,7 +18367,7 @@ Provides a Global Accelerator listener.
 				"globalaccelerator",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accelerator_arn",
 					Description: `(Required) The Amazon Resource Name (ARN) of your accelerator.`,
@@ -18395,7 +18397,7 @@ Provides a Global Accelerator listener.
 					Description: `The Amazon Resource Name (ARN) of the listener. ## Import Global Accelerator listeners can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_globalaccelerator_listener.example arn:aws:globalaccelerator::111111111111:accelerator/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/listener/xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) of the listener. ## Import Global Accelerator listeners can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_globalaccelerator_listener.example arn:aws:globalaccelerator::111111111111:accelerator/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/listener/xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18417,7 +18419,7 @@ Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer 
 				"catalog",
 				"database",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the database.`,
@@ -18439,7 +18441,7 @@ Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer 
 					Description: `(Optional) A list of key-value pairs that define parameters and properties of the database. ## Import Glue Catalog Databases can be imported using the ` + "`" + `catalog_id:name` + "`" + `. If you have not set a Catalog ID specify the AWS Account ID that the database is in, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_catalog_database.database 123456789012:my_database ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -18456,7 +18458,7 @@ Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Gui
 				"catalog",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the table. For Hive compatibility, this must be entirely lowercase.`,
@@ -18598,7 +18600,7 @@ Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Gui
 					Description: `(Optional) A mapping of skewed values to the columns that contain them. ## Import Glue Tables can be imported with their catalog ID (usually AWS account ID), database name, and table name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_catalog_table.MyTable 123456789012:MyDatabase:MyTable ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -18616,7 +18618,7 @@ Provides a Glue Classifier resource.
 				"glue",
 				"classifier",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "classification",
 					Description: `(Required) An identifier of the data format that the classifier matches, such as Twitter, JSON, Omniture logs, Amazon CloudWatch Logs, and so on.`,
@@ -18646,7 +18648,7 @@ Provides a Glue Classifier resource.
 					Description: `Name of the classifier ## Import Glue Classifiers can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_classifier.MyClassifier MyClassifier ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Name of the classifier ## Import Glue Classifiers can be imported using their name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_classifier.MyClassifier MyClassifier ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18667,7 +18669,7 @@ Provides a Glue Connection resource.
 				"glue",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "physical_connection_requirements",
 					Description: `(Optional) A map of physical connection requirements, such as VPC and SecurityGroup. Defined below. ### physical_connection_requirements`,
@@ -18689,7 +18691,7 @@ Provides a Glue Connection resource.
 					Description: `Catalog ID and name of the connection ## Import Glue Connections can be imported using the ` + "`" + `CATALOG-ID` + "`" + ` (AWS account ID if not custom) and ` + "`" + `NAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_connection.MyConnection 123456789012:MyConnection ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Catalog ID and name of the connection ## Import Glue Connections can be imported using the ` + "`" + `CATALOG-ID` + "`" + ` (AWS account ID if not custom) and ` + "`" + `NAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_connection.MyConnection 123456789012:MyConnection ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18710,7 +18712,7 @@ Manages a Glue Crawler. More information can be found in the [AWS Glue Developer
 				"glue",
 				"crawler",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "path",
 					Description: `(Required) The name of the DynamoDB table to crawl. ### jdbc_target Argument Reference`,
@@ -18752,7 +18754,7 @@ Manages a Glue Crawler. More information can be found in the [AWS Glue Developer
 					Description: `The ARN of the crawler ## Import Glue Crawlers can be imported using ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_crawler.MyJob MyJob ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Crawler name`,
@@ -18777,7 +18779,7 @@ Provides a Glue Job resource.
 				"glue",
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_configuration",
 					Description: `(Optional) The name of the Security Configuration to be associated with the job. ### command Argument Reference`,
@@ -18799,7 +18801,7 @@ Provides a Glue Job resource.
 					Description: `Job name ## Import Glue Jobs can be imported using ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_job.MyJob MyJob ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Job name ## Import Glue Jobs can be imported using ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_job.MyJob MyJob ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18821,7 +18823,7 @@ Manages a Glue Security Configuration.
 				"security",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloudwatch_encryption",
 					Description: `(Required) A ` + "`" + `cloudwatch_encryption ` + "`" + ` block as described below, which contains encryption configuration for CloudWatch.`,
@@ -18863,7 +18865,7 @@ Manages a Glue Security Configuration.
 					Description: `Glue security configuration name ## Import Glue Security Configurations can be imported using ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_security_configuration.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Glue security configuration name ## Import Glue Security Configurations can be imported using ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_security_configuration.example example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18884,7 +18886,7 @@ Manages a Glue Trigger resource.
 				"glue",
 				"trigger",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arguments",
 					Description: `(Optional) Arguments to be passed to the job. You can specify arguments here that your own job-execution script consumes, as well as arguments that AWS Glue itself consumes.`,
@@ -18922,7 +18924,7 @@ Manages a Glue Trigger resource.
 					Description: `Trigger name ## Timeouts ` + "`" + `aws_glue_trigger` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5m` + "`" + `) How long to wait for a trigger to be created. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5m` + "`" + `) How long to wait for a trigger to be deleted. ## Import Glue Triggers can be imported using ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_trigger.MyTrigger MyTrigger ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Trigger name ## Timeouts ` + "`" + `aws_glue_trigger` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5m` + "`" + `) How long to wait for a trigger to be created. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5m` + "`" + `) How long to wait for a trigger to be deleted. ## Import Glue Triggers can be imported using ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_glue_trigger.MyTrigger MyTrigger ` + "`" + `` + "`" + `` + "`" + ``,
@@ -18945,7 +18947,7 @@ Provides a resource to manage a GuardDuty detector.
 				"guardduty",
 				"detector",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enable",
 					Description: `(Optional) Enable monitoring and feedback reporting. Setting to ` + "`" + `false` + "`" + ` is equivalent to "suspending" GuardDuty. Defaults to ` + "`" + `true` + "`" + `.`,
@@ -18963,7 +18965,7 @@ Provides a resource to manage a GuardDuty detector.
 					Description: `The AWS account ID of the GuardDuty detector ## Import GuardDuty detectors can be imported using the detector ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_guardduty_detector.MyDetector 00b00fd5aecc0ab60a708659477e9617 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the GuardDuty detector`,
@@ -18989,7 +18991,7 @@ Provides a resource to accept a pending GuardDuty invite on creation, ensure the
 				"invite",
 				"accepter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "detector_id",
 					Description: `(Required) The detector ID of the member GuardDuty account.`,
@@ -19003,7 +19005,7 @@ Provides a resource to accept a pending GuardDuty invite on creation, ensure the
 					Description: `GuardDuty member detector ID ## Timeouts ` + "`" + `aws_guardduty_invite_accepter` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `1m` + "`" + `) How long to wait for an invite to accept. ## Import ` + "`" + `aws_guardduty_invite_accepter` + "`" + ` can be imported using the the member GuardDuty detector ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_guardduty_invite_accepter.member 00b00fd5aecc0ab60a708659477e9617 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `GuardDuty member detector ID ## Timeouts ` + "`" + `aws_guardduty_invite_accepter` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `1m` + "`" + `) How long to wait for an invite to accept. ## Import ` + "`" + `aws_guardduty_invite_accepter` + "`" + ` can be imported using the the member GuardDuty detector ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_guardduty_invite_accepter.member 00b00fd5aecc0ab60a708659477e9617 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19026,7 +19028,7 @@ Provides a resource to manage a GuardDuty IPSet.
 				"guardduty",
 				"ipset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "activate",
 					Description: `(Required) Specifies whether GuardDuty is to start using the uploaded IPSet.`,
@@ -19052,7 +19054,7 @@ Provides a resource to manage a GuardDuty IPSet.
 					Description: `The ID of the GuardDuty IPSet. ## Import GuardDuty IPSet can be imported using the the master GuardDuty detector ID and IPSet ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_guardduty_ipset.MyIPSet 00b00fd5aecc0ab60a708659477e9617:123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the GuardDuty IPSet. ## Import GuardDuty IPSet can be imported using the the master GuardDuty detector ID and IPSet ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_guardduty_ipset.MyIPSet 00b00fd5aecc0ab60a708659477e9617:123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19073,7 +19075,7 @@ Provides a resource to manage a GuardDuty member. To accept invitations in membe
 				"guardduty",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `(Required) AWS account ID for member account.`,
@@ -19107,7 +19109,7 @@ Provides a resource to manage a GuardDuty member. To accept invitations in membe
 					Description: `The status of the relationship between the member account and its master account. More information can be found in [Amazon GuardDuty API Reference](https://docs.aws.amazon.com/guardduty/latest/ug/get-members.html). ## Import GuardDuty members can be imported using the the master GuardDuty detector ID and member AWS account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_guardduty_member.MyMember 00b00fd5aecc0ab60a708659477e9617:123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the GuardDuty member`,
@@ -19134,7 +19136,7 @@ Provides a resource to manage a GuardDuty ThreatIntelSet.
 				"guardduty",
 				"threatintelset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "activate",
 					Description: `(Required) Specifies whether GuardDuty is to start using the uploaded ThreatIntelSet.`,
@@ -19160,7 +19162,7 @@ Provides a resource to manage a GuardDuty ThreatIntelSet.
 					Description: `The ID of the GuardDuty ThreatIntelSet and the detector ID. Format: ` + "`" + `<DetectorID>:<ThreatIntelSetID>` + "`" + ` ## Import GuardDuty ThreatIntelSet can be imported using the the master GuardDuty detector ID and ThreatIntelSetID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_guardduty_threatintelset.MyThreatIntelSet 00b00fd5aecc0ab60a708659477e9617:123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the GuardDuty ThreatIntelSet and the detector ID. Format: ` + "`" + `<DetectorID>:<ThreatIntelSetID>` + "`" + ` ## Import GuardDuty ThreatIntelSet can be imported using the the master GuardDuty detector ID and ThreatIntelSetID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_guardduty_threatintelset.MyThreatIntelSet 00b00fd5aecc0ab60a708659477e9617:123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19182,7 +19184,7 @@ Provides an IAM access key. This is a set of credentials that allow API requests
 				"access",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `(Required) The IAM user to associate with this access key.`,
@@ -19220,7 +19222,7 @@ Provides an IAM access key. This is a set of credentials that allow API requests
 					Description: `The secret access key converted into an SES SMTP password by applying [AWS's documented conversion algorithm](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html#smtp-credentials-convert).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The access key ID.`,
@@ -19264,13 +19266,13 @@ Manages the account alias for the AWS Account.
 				"account",
 				"alias",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_alias",
 					Description: `(Required) The account alias ## Import The current Account Alias can be imported using the ` + "`" + `account_alias` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_account_alias.alias my-account-alias ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -19292,7 +19294,7 @@ in the official AWS docs.
 				"password",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allow_users_to_change_password",
 					Description: `(Optional) Whether to allow users to change their own password`,
@@ -19334,7 +19336,7 @@ in the official AWS docs.
 					Description: `Indicates whether passwords in the account expire. Returns ` + "`" + `true` + "`" + ` if ` + "`" + `max_password_age` + "`" + ` contains a value greater than ` + "`" + `0` + "`" + `. Returns ` + "`" + `false` + "`" + ` if it is ` + "`" + `0` + "`" + ` or _not present_. ## Import IAM Account Password Policy can be imported using the word ` + "`" + `iam-account-password-policy` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_account_password_policy.strict iam-account-password-policy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "expire_passwords",
 					Description: `Indicates whether passwords in the account expire. Returns ` + "`" + `true` + "`" + ` if ` + "`" + `max_password_age` + "`" + ` contains a value greater than ` + "`" + `0` + "`" + `. Returns ` + "`" + `false` + "`" + ` if it is ` + "`" + `0` + "`" + ` or _not present_. ## Import IAM Account Password Policy can be imported using the word ` + "`" + `iam-account-password-policy` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_account_password_policy.strict iam-account-password-policy ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19355,7 +19357,7 @@ Provides an IAM group.
 				"iam",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The group's name. The name must consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: ` + "`" + `=,.@-_.` + "`" + `. Group names are not distinguished by case. For example, you cannot create groups named both "ADMINS" and "admins".`,
@@ -19385,7 +19387,7 @@ Provides an IAM group.
 					Description: `The [unique ID][1] assigned by AWS. [1]: https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#GUIDs ## Import IAM Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_group.developers developers ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The group's ID.`,
@@ -19430,7 +19432,7 @@ more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
 				"group",
 				"membership",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name to identify the Group Membership`,
@@ -19448,7 +19450,7 @@ more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
 					Description: `list of IAM User names`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name to identify the Group Membership`,
@@ -19474,7 +19476,7 @@ Provides an IAM policy attached to a group.
 				"group",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy",
 					Description: `(Required) The policy document. This is a JSON formatted string. For more information about building IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](/docs/providers/aws/guides/iam-policy-documents.html)`,
@@ -19508,7 +19510,7 @@ Provides an IAM policy attached to a group.
 					Description: `The policy document attached to the group. ## Import IAM Group Policies can be imported using the ` + "`" + `group_name:group_policy_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_group_policy.mypolicy group_of_mypolicy_name:mypolicy_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The group policy ID.`,
@@ -19545,8 +19547,8 @@ Attaches a Managed IAM Policy to an IAM group
 				"policy",
 				"attachment",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -19565,7 +19567,7 @@ Provides an IAM instance profile.
 				"instance",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The profile's name. If omitted, Terraform will assign a random, unique name.`,
@@ -19619,7 +19621,7 @@ Provides an IAM instance profile.
 					Description: `The [unique ID][1] assigned by AWS. [1]: https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#GUIDs ## Import Instance Profiles can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_instance_profile.test_profile app-instance-profile-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The instance profile's ID.`,
@@ -19670,7 +19672,7 @@ Provides an IAM OpenID Connect provider.
 				"connect",
 				"provider",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `(Required) The URL of the identity provider. Corresponds to the _iss_ claim.`,
@@ -19688,7 +19690,7 @@ Provides an IAM OpenID Connect provider.
 					Description: `The ARN assigned by AWS for this provider. ## Import IAM OpenID Connect Providers can be imported using the ` + "`" + `arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_openid_connect_provider.default arn:aws:iam::123456789012:oidc-provider/accounts.google.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS for this provider. ## Import IAM OpenID Connect Providers can be imported using the ` + "`" + `arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_openid_connect_provider.default arn:aws:iam::123456789012:oidc-provider/accounts.google.com ` + "`" + `` + "`" + `` + "`" + ``,
@@ -19709,7 +19711,7 @@ Provides an IAM policy.
 				"iam",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional, Forces new resource) Description of the IAM policy.`,
@@ -19755,7 +19757,7 @@ Provides an IAM policy.
 					Description: `The policy document. ## Import IAM Policies can be imported using the ` + "`" + `arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_policy.administrator arn:aws:iam::123456789012:policy/UsersManageOwnCredentials ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The policy's ID.`,
@@ -19801,7 +19803,7 @@ Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 				"policy",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The policy's ID.`,
@@ -19811,7 +19813,7 @@ Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 					Description: `The name of the attachment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The policy's ID.`,
@@ -19838,7 +19840,7 @@ Provides an IAM role.
 				"iam",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the role. If omitted, Terraform will assign a random, unique name.`,
@@ -19900,7 +19902,7 @@ Provides an IAM role.
 					Description: `The stable and unique string identifying the role. ## Example of Using Data Source for Assume Role Policy ` + "`" + `` + "`" + `` + "`" + `hcl data "aws_iam_policy_document" "instance-assume-role-policy" { statement { actions = ["sts:AssumeRole"] principals { type = "Service" identifiers = ["ec2.amazonaws.com"] } } } resource "aws_iam_role" "instance" { name = "instance_role" path = "/system/" assume_role_policy = "${data.aws_iam_policy_document.instance-assume-role-policy.json}" } ` + "`" + `` + "`" + `` + "`" + ` ## Import IAM Roles can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_role.developer developer_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) specifying the role.`,
@@ -19942,7 +19944,7 @@ Provides an IAM role policy.
 				"role",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the role policy. If omitted, Terraform will assign a random, unique name.`,
@@ -19976,7 +19978,7 @@ Provides an IAM role policy.
 					Description: `The name of the role associated with the policy. ## Import IAM Role Policies can be imported using the ` + "`" + `role_name:role_policy_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_role_policy.mypolicy role_of_mypolicy_name:mypolicy_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The role policy ID, in the form of ` + "`" + `role_name:role_policy_name` + "`" + `.`,
@@ -20013,8 +20015,8 @@ Attaches a Managed IAM Policy to an IAM role
 				"policy",
 				"attachment",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -20031,7 +20033,7 @@ Provides an IAM SAML provider.
 				"saml",
 				"provider",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the provider to create.`,
@@ -20049,7 +20051,7 @@ Provides an IAM SAML provider.
 					Description: `The expiration date and time for the SAML provider in RFC1123 format, e.g. ` + "`" + `Mon, 02 Jan 2006 15:04:05 MST` + "`" + `. ## Import IAM SAML Providers can be imported using the ` + "`" + `arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_saml_provider.default arn:aws:iam::123456789012:saml-provider/SAMLADFS ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS for this provider.`,
@@ -20087,7 +20089,7 @@ Certificates][2] in AWS Documentation.
 				"server",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the Server Certificate. Do not include the path in this value. If omitted, Terraform will assign a random, unique name.`,
@@ -20113,7 +20115,7 @@ Certificates][2] in AWS Documentation.
 					Description: `The Amazon Resource Name (ARN) specifying the server certificate. ## Import IAM Server Certificates can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_server_certificate.certificate example.com-certificate-until-2018 ` + "`" + `` + "`" + `` + "`" + ` [1]: https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html [2]: https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingServerCerts.html [lifecycle]: /docs/configuration/resources.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique Server Certificate name`,
@@ -20144,7 +20146,7 @@ Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/Use
 				"linked",
 				"role",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "aws_service_name",
 					Description: `(Required, Forces new resource) The AWS service to which this role is attached. You use a string similar to a URL but without the ` + "`" + `http://` + "`" + ` in front. For example: ` + "`" + `elasticbeanstalk.amazonaws.com` + "`" + `. To find the full list of services that support service-linked roles, check [the docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html).`,
@@ -20182,7 +20184,7 @@ Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/Use
 					Description: `The stable and unique string identifying the role. ## Import IAM service-linked roles can be imported using role ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_service_linked_role.elasticbeanstalk arn:aws:iam::123456789012:role/aws-service-role/elasticbeanstalk.amazonaws.com/AWSServiceRoleForElasticBeanstalk ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) of the role.`,
@@ -20225,7 +20227,7 @@ Provides an IAM user.
 				"iam",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The user's name. The name must consist of upper and lowercase alphanumeric characters with no spaces. You can also include any of the following characters: ` + "`" + `=,.@-_.` + "`" + `. User names are not distinguished by case. For example, you cannot create users named both "TESTUSER" and "testuser".`,
@@ -20259,7 +20261,7 @@ Provides an IAM user.
 					Description: `The [unique ID][1] assigned by AWS. [1]: https://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#GUIDs ## Import IAM Users can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_user.lb loadbalancer ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS for this user.`,
@@ -20295,7 +20297,7 @@ To exclusively manage the users in a group, see the
 				"group",
 				"membership",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `(Required) The name of the [IAM User][2] to add to groups`,
@@ -20313,7 +20315,7 @@ To exclusively manage the users in a group, see the
 					Description: `The list of IAM Groups [1]: /docs/providers/aws/r/iam_group.html [2]: /docs/providers/aws/r/iam_user.html [3]: /docs/providers/aws/r/iam_group_membership.html ## Import IAM user group membership can be imported using the user name and group names separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_user_group_membership.example1 user1/group1/group2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `The name of the IAM User`,
@@ -20342,7 +20344,7 @@ Manages an IAM User Login Profile with limited support for password creation dur
 				"login",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `(Required) The IAM user's name.`,
@@ -20368,7 +20370,7 @@ Manages an IAM User Login Profile with limited support for password creation dur
 					Description: `The encrypted password, base64 encoded. Only available if password was handled on Terraform resource creation, not import. ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_fingerprint",
 					Description: `The fingerprint of the PGP key used to encrypt the password. Only available if password was handled on Terraform resource creation, not import.`,
@@ -20394,7 +20396,7 @@ Provides an IAM policy attached to a user.
 				"user",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy",
 					Description: `(Required) The policy document. This is a JSON formatted string. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](/docs/providers/aws/guides/iam-policy-documents.html).`,
@@ -20420,7 +20422,7 @@ Provides an IAM policy attached to a user.
 					Description: `The name of the policy (always set). ## Import IAM User Policies can be imported using the ` + "`" + `user_name:user_policy_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_user_policy.mypolicy user_of_mypolicy_name:mypolicy_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The user policy ID, in the form of ` + "`" + `user_name:user_policy_name` + "`" + `.`,
@@ -20449,8 +20451,8 @@ Attaches a Managed IAM Policy to an IAM user
 				"policy",
 				"attachment",
 			},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -20468,7 +20470,7 @@ Uploads an SSH public key and associates it with the specified IAM user.
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Required) The name of the IAM user to associate the SSH public key with.`,
@@ -20494,7 +20496,7 @@ Uploads an SSH public key and associates it with the specified IAM user.
 					Description: `The MD5 message digest of the SSH public key. ## Import SSH public keys can be imported using the ` + "`" + `username` + "`" + `, ` + "`" + `ssh_public_key_id` + "`" + `, and ` + "`" + `encoding` + "`" + ` e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iam_user_ssh_key.user user:APKAJNCNNJICVN7CFKCA:SSH ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ssh_public_key_id",
 					Description: `The unique identifier for the SSH public key.`,
@@ -20520,7 +20522,7 @@ Provides a Inspector assessment target
 				"assessment",
 				"target",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the assessment target.`,
@@ -20530,7 +20532,7 @@ Provides a Inspector assessment target
 					Description: `The target assessment ARN. ## Import Inspector Assessment Targets can be imported via their Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_inspector_assessment_target.example arn:aws:inspector:us-east-1:123456789012:target/0-xxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The target assessment ARN. ## Import Inspector Assessment Targets can be imported via their Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_inspector_assessment_target.example arn:aws:inspector:us-east-1:123456789012:target/0-xxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
@@ -20552,7 +20554,7 @@ Provides a Inspector assessment template
 				"assessment",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the assessment template.`,
@@ -20574,7 +20576,7 @@ Provides a Inspector assessment template
 					Description: `The template assessment ARN.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The template assessment ARN.`,
@@ -20596,7 +20598,7 @@ Provides a Inspector resource group
 				"resource",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Required) The tags on your EC2 Instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -20606,7 +20608,7 @@ Provides a Inspector resource group
 					Description: `The resource group ARN.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The resource group ARN.`,
@@ -20628,7 +20630,7 @@ and deleted. Instances also support [provisioning](/docs/provisioners/index.html
 				"ec2",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ami",
 					Description: `(Required) The AMI to use for the instance.`,
@@ -20902,7 +20904,7 @@ and deleted. Instances also support [provisioning](/docs/provisioners/index.html
 					Description: `Credit specification of instance. For any ` + "`" + `root_block_device` + "`" + ` and ` + "`" + `ebs_block_device` + "`" + ` the ` + "`" + `volume_id` + "`" + ` is exported. e.g. ` + "`" + `aws_instance.web.root_block_device.0.volume_id` + "`" + ` ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_instance.web i-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The instance ID.`,
@@ -20984,7 +20986,7 @@ Provides a resource to create a VPC Internet Gateway.
 				"internet",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The VPC ID to create in.`,
@@ -21002,7 +21004,7 @@ Provides a resource to create a VPC Internet Gateway.
 					Description: `The ID of the AWS account that owns the internet gateway. ## Import Internet Gateways can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_internet_gateway.gw igw-c0a643a9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Internet Gateway.`,
@@ -21027,7 +21029,7 @@ Creates and manages an AWS IoT certificate.
 				"iot",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "active",
 					Description: `(Required) Boolean flag to indicate if the certificate should be active`,
@@ -21041,7 +21043,7 @@ Creates and manages an AWS IoT certificate.
 					Description: `The ARN of the created AWS IoT certificate`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the created AWS IoT certificate`,
@@ -21062,7 +21064,7 @@ Provides an IoT policy.
 				"iot",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy.`,
@@ -21088,7 +21090,7 @@ Provides an IoT policy.
 					Description: `The policy document.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS to this policy.`,
@@ -21122,7 +21124,7 @@ Provides an IoT policy attachment.
 				"policy",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy",
 					Description: `(Required) The name of the policy to attach.`,
@@ -21132,7 +21134,7 @@ Provides an IoT policy attachment.
 					Description: `(Required) The identity to which the policy is attached.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -21149,7 +21151,7 @@ Provides an IoT role alias.
 				"role",
 				"alias",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "alias",
 					Description: `(Required) The name of the role alias.`,
@@ -21167,7 +21169,7 @@ Provides an IoT role alias.
 					Description: `The ARN assigned by AWS to this role alias. ## Import IOT Role Alias can be imported via the alias, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_iot_role_alias.example myalias ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS to this role alias. ## Import IOT Role Alias can be imported via the alias, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_iot_role_alias.example myalias ` + "`" + `` + "`" + `` + "`" + ``,
@@ -21188,7 +21190,7 @@ Creates and manages an AWS IoT Thing.
 				"iot",
 				"thing",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the thing.`,
@@ -21214,7 +21216,7 @@ Creates and manages an AWS IoT Thing.
 					Description: `The ARN of the thing. ## Import IOT Things can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iot_thing.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_client_id",
 					Description: `The default client ID.`,
@@ -21245,7 +21247,7 @@ Attaches Principal to AWS IoT Thing.
 				"principal",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "principal",
 					Description: `(Required) The AWS IoT Certificate ARN or Amazon Cognito Identity ID.`,
@@ -21255,7 +21257,7 @@ Attaches Principal to AWS IoT Thing.
 					Description: `(Required) The name of the thing.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -21272,7 +21274,7 @@ Creates and manages an AWS IoT Thing Type.
 				"thing",
 				"type",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, Forces New Resource) The name of the thing type.`,
@@ -21294,7 +21296,7 @@ Creates and manages an AWS IoT Thing Type.
 					Description: `The ARN of the created AWS IoT Thing Type.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the created AWS IoT Thing Type.`,
@@ -21314,7 +21316,7 @@ Creates and manages an AWS IoT Thing Type.
 				"topic",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the rule.`,
@@ -21512,7 +21514,7 @@ Creates and manages an AWS IoT Thing Type.
 					Description: `The ARN of the topic rule ## Import IoT Topic Rules can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_iot_topic_rule.rule <name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the topic rule`,
@@ -21546,7 +21548,7 @@ When importing an existing key pair the public key material may be in any format
 				"key",
 				"pair",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `(Optional) The name for the key pair.`,
@@ -21568,7 +21570,7 @@ When importing an existing key pair the public key material may be in any format
 					Description: `The MD5 public key fingerprint as specified in section 4 of RFC 4716. ## Import Key Pairs can be imported using the ` + "`" + `key_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_key_pair.deployer deployer-key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `The key pair name.`,
@@ -21597,7 +21599,7 @@ For more details, see the [Amazon Kinesis Analytics Documentation][1].
 				"analytics",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the Kinesis Analytics Application.`,
@@ -21819,7 +21821,7 @@ For more details, see the [Amazon Kinesis Analytics Documentation][1].
 					Description: `The Version of the application. [1]: https://docs.aws.amazon.com/kinesisanalytics/latest/dev/what-is.html ## Import Kinesis Analytics Application can be imported by using ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kinesis_analytics_application.example arn:aws:kinesisanalytics:us-west-2:1234567890:application/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the Kinesis Analytics Application.`,
@@ -21864,7 +21866,7 @@ For more details, see the [Amazon Kinesis Firehose Documentation][1].
 				"delivery",
 				"stream",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A name to identify the stream. This is unique to the AWS account and region the Stream is created in.`,
@@ -22250,7 +22252,7 @@ For more details, see the [Amazon Kinesis Firehose Documentation][1].
 					Description: `The Amazon Resource Name (ARN) specifying the Stream [1]: https://aws.amazon.com/documentation/firehose/ ## Import Kinesis Firehose Delivery streams can be imported using the stream ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kinesis_firehose_delivery_stream.foo arn:aws:firehose:us-east-1:XXX:deliverystream/example ` + "`" + `` + "`" + `` + "`" + ` Note: Import does not work for stream destination ` + "`" + `s3` + "`" + `. Consider using ` + "`" + `extended_s3` + "`" + ` since ` + "`" + `s3` + "`" + ` destination is deprecated.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) specifying the Stream [1]: https://aws.amazon.com/documentation/firehose/ ## Import Kinesis Firehose Delivery streams can be imported using the stream ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kinesis_firehose_delivery_stream.foo arn:aws:firehose:us-east-1:XXX:deliverystream/example ` + "`" + `` + "`" + `` + "`" + ` Note: Import does not work for stream destination ` + "`" + `s3` + "`" + `. Consider using ` + "`" + `extended_s3` + "`" + ` since ` + "`" + `s3` + "`" + ` destination is deprecated.`,
@@ -22274,7 +22276,7 @@ For more details, see the [Amazon Kinesis Documentation][1].
 				"kinesis",
 				"stream",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A name to identify the stream. This is unique to the AWS account and region the Stream is created in.`,
@@ -22320,7 +22322,7 @@ For more details, see the [Amazon Kinesis Documentation][1].
 					Description: `The Amazon Resource Name (ARN) specifying the Stream (same as ` + "`" + `id` + "`" + `) ## Timeouts ` + "`" + `aws_kinesis_stream` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for Creating a Kinesis Stream - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Updating a Kinesis Stream - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Destroying a Kinesis Stream ## Import Kinesis Streams can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kinesis_stream.test_stream terraform-kinesis-test ` + "`" + `` + "`" + `` + "`" + ` [1]: https://aws.amazon.com/documentation/kinesis/ [2]: https://docs.aws.amazon.com/kinesis/latest/dev/amazon-kinesis-streams.html [3]: https://docs.aws.amazon.com/streams/latest/dev/monitoring-with-cloudwatch.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique Stream id`,
@@ -22355,7 +22357,7 @@ the [account limits](http://docs.aws.amazon.com/kms/latest/developerguide/limits
 				"kms",
 				"alias",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The display name of the alias. The name must start with the word "alias" followed by a forward slash (alias/)`,
@@ -22377,7 +22379,7 @@ the [account limits](http://docs.aws.amazon.com/kms/latest/developerguide/limits
 					Description: `The Amazon Resource Name (ARN) of the target key identifier. ## Import KMS aliases can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kms_alias.a alias/my-key-alias ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the key alias.`,
@@ -22408,7 +22410,7 @@ the [` + "`" + `aws_kms_ciphertext` + "`" + ` data source](/docs/providers/aws/d
 				"kms",
 				"ciphertext",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "plaintext",
 					Description: `(Required) Data to be encrypted. Note that this may show up in logs, and it will be stored in the state file.`,
@@ -22426,7 +22428,7 @@ the [` + "`" + `aws_kms_ciphertext` + "`" + ` data source](/docs/providers/aws/d
 					Description: `Base64 encoded ciphertext`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ciphertext_blob",
 					Description: `Base64 encoded ciphertext`,
@@ -22450,7 +22452,7 @@ Manages a KMS Customer Master Key that uses external key material. To instead ma
 				"external",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "deletion_window_in_days",
 					Description: `(Optional) Duration in days after which the key is deleted after destruction of the resource. Must be between ` + "`" + `7` + "`" + ` and ` + "`" + `30` + "`" + ` days. Defaults to ` + "`" + `30` + "`" + `.`,
@@ -22500,7 +22502,7 @@ Manages a KMS Customer Master Key that uses external key material. To instead ma
 					Description: `The cryptographic operations for which you can use the CMK. ## Import KMS External Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kms_external_key.a arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the key.`,
@@ -22537,7 +22539,7 @@ Provides a resource-based access control mechanism for a KMS customer master key
 				"kms",
 				"grant",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resources) A friendly name for identifying the grant.`,
@@ -22583,7 +22585,7 @@ Provides a resource-based access control mechanism for a KMS customer master key
 					Description: `The grant token for the created grant. For more information, see [Grant Tokens](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "grant_id",
 					Description: `The unique identifier for the grant.`,
@@ -22608,7 +22610,7 @@ Provides a KMS customer master key.
 				"kms",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) The description of the key as viewed in AWS console.`,
@@ -22646,7 +22648,7 @@ Provides a KMS customer master key.
 					Description: `The globally unique identifier for the key. ## Import KMS Keys can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_kms_key.a 1234abcd-12ab-34cd-56ef-1234567890ab ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the key.`,
@@ -22674,7 +22676,7 @@ For information about function aliases, see [CreateAlias][2] and [AliasRoutingCo
 				"lambda",
 				"alias",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name for the alias you are creating. Pattern: ` + "`" + `(?!^[0-9]+$)([a-zA-Z0-9-_]+)` + "`" + ``,
@@ -22708,7 +22710,7 @@ For information about function aliases, see [CreateAlias][2] and [AliasRoutingCo
 					Description: `The ARN to be used for invoking Lambda Function from API Gateway - to be used in [` + "`" + `aws_api_gateway_integration` + "`" + `](/docs/providers/aws/r/api_gateway_integration.html)'s ` + "`" + `uri` + "`" + ` [1]: http://docs.aws.amazon.com/lambda/latest/dg/welcome.html [2]: http://docs.aws.amazon.com/lambda/latest/dg/API_CreateAlias.html [3]: https://docs.aws.amazon.com/lambda/latest/dg/API_AliasRoutingConfiguration.html ## Import Lambda Function Aliases can be imported using the ` + "`" + `function_name/alias` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lambda_function_alias.test_lambda_alias my_test_lambda_function/my_alias ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) identifying your Lambda function alias.`,
@@ -22738,7 +22740,7 @@ For information about event source mappings, see [CreateEventSourceMapping][2] i
 				"source",
 				"mapping",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "batch_size",
 					Description: `(Optional) The largest number of records that Lambda will retrieve from your event source at the time of invocation. Defaults to ` + "`" + `100` + "`" + ` for DynamoDB and Kinesis, ` + "`" + `10` + "`" + ` for SQS.`,
@@ -22788,7 +22790,7 @@ For information about event source mappings, see [CreateEventSourceMapping][2] i
 					Description: `The UUID of the created event source mapping. [1]: http://docs.aws.amazon.com/lambda/latest/dg/welcome.html [2]: http://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html ## Import Lambda event source mappings can be imported using the ` + "`" + `UUID` + "`" + ` (event source mapping identifier), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lambda_event_source_mapping.event_source_mapping 12345kxodurf3443 ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "function_arn",
 					Description: `The the ARN of the Lambda function the event source mapping is sending events to. (Note: this is a computed value that differs from ` + "`" + `function_name` + "`" + ` above.)`,
@@ -22831,7 +22833,7 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 				"lambda",
 				"function",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filename",
 					Description: `(Optional) The path to the function's deployment package within the local filesystem. If defined, The ` + "`" + `s3_` + "`" + `-prefixed options cannot be used.`,
@@ -22969,7 +22971,7 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for slow uploads or EC2 throttling errors. ## Import Lambda Functions can be imported using the ` + "`" + `function_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lambda_function.test_lambda my_test_lambda_function ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) identifying your Lambda Function.`,
@@ -23025,7 +23027,7 @@ For information about Lambda Layers and how to use them, see [AWS Lambda Layers]
 				"layer",
 				"version",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "s3_bucket",
 					Description: `(Optional) The S3 bucket location containing the function's deployment package. Conflicts with ` + "`" + `filename` + "`" + `. This bucket must reside in the same AWS region where you are creating the Lambda function.`,
@@ -23075,7 +23077,7 @@ For information about Lambda Layers and how to use them, see [AWS Lambda Layers]
 					Description: `This Lamba Layer version. [1]: https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html [2]: https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-CompatibleRuntimes [3]: https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html#SSS-PublishLayerVersion-request-LicenseInfo ## Import Lambda Layers can be imported using ` + "`" + `layer_name` + "`" + ` and ` + "`" + `version` + "`" + ` together. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lambda_layer_version.test_layer layer-name:1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the Lambda Layer with version.`,
@@ -23113,7 +23115,7 @@ Creates a Lambda permission to allow external sources invoking the Lambda functi
 				"lambda",
 				"permission",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "action",
 					Description: `(Required) The AWS Lambda action you want to allow in this statement. (e.g. ` + "`" + `lambda:InvokeFunction` + "`" + `)`,
@@ -23151,7 +23153,7 @@ Creates a Lambda permission to allow external sources invoking the Lambda functi
 					Description: `(Optional) A statement identifier prefix. Terraform will generate a unique suffix. Conflicts with ` + "`" + `statement_id` + "`" + `. [1]: https://developer.amazon.com/docs/custom-skills/host-a-custom-skill-as-an-aws-lambda-function.html#use-aws-cli`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -23168,7 +23170,7 @@ Provides a resource to create a new launch configuration, used for autoscaling g
 				"launch",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the launch configuration. If you leave this blank, Terraform will auto-generate a unique name.`,
@@ -23306,7 +23308,7 @@ Provides a resource to create a new launch configuration, used for autoscaling g
 					Description: `The name of the launch configuration. [1]: /docs/providers/aws/r/autoscaling_group.html [2]: /docs/configuration/resources.html#lifecycle [3]: /docs/providers/aws/r/spot_instance_request.html ## Import Launch configurations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_launch_configuration.as_conf terraform-lg-123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the launch configuration.`,
@@ -23332,7 +23334,7 @@ Provides an EC2 launch template resource. Can be used to create instances or aut
 				"launch",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the launch template. If you leave this blank, Terraform will auto-generate a unique name.`,
@@ -23650,7 +23652,7 @@ Provides an EC2 launch template resource. Can be used to create instances or aut
 					Description: `The latest version of the launch template. ## Import Launch Templates can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_launch_template.web lt-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the launch template.`,
@@ -23689,7 +23691,7 @@ Provides a Load Balancer resource.
 				"albnlb",
 				"lb",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the LB. This name must be unique within your AWS account, can have a maximum of 32 characters, must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen. If not specified, Terraform will autogenerate a name beginning with ` + "`" + `tf-lb` + "`" + `.`,
@@ -23787,7 +23789,7 @@ Provides a Load Balancer resource.
 					Description: `The canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record). ## Timeouts ` + "`" + `aws_lb` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for Creating LB - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for LB modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying LB ## Import LBs can be imported using their ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lb.bar arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/my-load-balancer/50dc6c495c0c9188 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the load balancer (matches ` + "`" + `arn` + "`" + `).`,
@@ -23831,7 +23833,7 @@ Provides a load balancer cookie stickiness policy, which allows an ELB to contro
 				"stickiness",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the stickiness policy.`,
@@ -23869,7 +23871,7 @@ Provides a load balancer cookie stickiness policy, which allows an ELB to contro
 					Description: `The time period after which the session cookie is considered stale, expressed in seconds.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -23913,7 +23915,7 @@ Provides a Load Balancer Listener resource.
 				"lb",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_arn",
 					Description: `(Required, Forces New Resource) The ARN of the load balancer.`,
@@ -24083,7 +24085,7 @@ Provides a Load Balancer Listener resource.
 					Description: `The ARN of the listener (matches ` + "`" + `id` + "`" + `) ## Import Listeners can be imported using their ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lb_listener.front_end arn:aws:elasticloadbalancing:us-west-2:187416307283:listener/app/front-end-alb/8e4497da625e2d8a/9ab28ade35828f96 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the listener (matches ` + "`" + `arn` + "`" + `)`,
@@ -24118,7 +24120,7 @@ This resource is for additional certificates and does not replace the default ce
 				"listener",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_arn",
 					Description: `(Required, Forces New Resource) The ARN of the listener to which to attach the certificate.`,
@@ -24128,7 +24130,7 @@ This resource is for additional certificates and does not replace the default ce
 					Description: `(Required, Forces New Resource) The ARN of the certificate to attach to the listener.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -24152,7 +24154,7 @@ Provides a Load Balancer Listener Rule resource.
 				"listener",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "listener_arn",
 					Description: `(Required, Forces New Resource) The ARN of the listener to which to attach the rule.`,
@@ -24330,7 +24332,7 @@ Provides a Load Balancer Listener Rule resource.
 					Description: `The ARN of the rule (matches ` + "`" + `id` + "`" + `) ## Import Rules can be imported using their ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lb_listener_rule.front_end arn:aws:elasticloadbalancing:us-west-2:187416307283:listener-rule/app/test/8e4497da625e2d8a/9ab28ade35828f96/67b3d2d36dd7c26b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the rule (matches ` + "`" + `arn` + "`" + `)`,
@@ -24362,7 +24364,7 @@ Provides a load balancer SSL negotiation policy, which allows an ELB to control 
 				"negotiation",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SSL negotiation policy.`,
@@ -24408,7 +24410,7 @@ Provides a load balancer SSL negotiation policy, which allows an ELB to control 
 					Description: `The SSL Negotiation policy attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -24453,7 +24455,7 @@ Provides a Target Group resource for use with Load Balancer resources.
 				"target",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the target group. If omitted, Terraform will assign a random, unique name.`,
@@ -24567,7 +24569,7 @@ Provides a Target Group resource for use with Load Balancer resources.
 					Description: `The name of the Target Group ## Import Target Groups can be imported using their ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_lb_target_group.app_front_end arn:aws:elasticloadbalancing:us-west-2:187416307283:targetgroup/app-front-end/20cfe21448b66314 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the Target Group (matches ` + "`" + `arn` + "`" + `)`,
@@ -24609,7 +24611,7 @@ Provides the ability to register instances and containers with an Application Lo
 				"group",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "target_group_arn",
 					Description: `(Required) The ARN of the target group with which to register targets`,
@@ -24627,7 +24629,7 @@ Provides the ability to register instances and containers with an Application Lo
 					Description: `A unique identifier for the attachment ## Import Target Group Attachments cannot be imported.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique identifier for the attachment ## Import Target Group Attachments cannot be imported.`,
@@ -24652,7 +24654,7 @@ Provides a License Manager association.
 				"licensemanager",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "license_configuration_arn",
 					Description: `(Required) ARN of the license configuration.`,
@@ -24666,7 +24668,7 @@ Provides a License Manager association.
 					Description: `The license configuration ARN. ## Import License configurations can be imported in the form ` + "`" + `resource_arn,license_configuration_arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_licensemanager_association.example arn:aws:ec2:eu-west-1:123456789012:image/ami-123456789abcdef01,arn:aws:license-manager:eu-west-1:123456789012:license-configuration:lic-0123456789abcdef0123456789abcdef ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The license configuration ARN. ## Import License configurations can be imported in the form ` + "`" + `resource_arn,license_configuration_arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_licensemanager_association.example arn:aws:ec2:eu-west-1:123456789012:image/ami-123456789abcdef01,arn:aws:license-manager:eu-west-1:123456789012:license-configuration:lic-0123456789abcdef0123456789abcdef ` + "`" + `` + "`" + `` + "`" + ``,
@@ -24691,7 +24693,7 @@ Provides a License Manager license configuration resource.
 				"licensemanager",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the license configuration.`,
@@ -24753,7 +24755,7 @@ Provides a License Manager license configuration resource.
 					Description: `The license configuration ARN. ## Import License configurations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_licensemanager_license_configuration.example arn:aws:license-manager:eu-west-1:123456789012:license-configuration:lic-0123456789abcdef0123456789abcdef ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The license configuration ARN. ## Import License configurations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_licensemanager_license_configuration.example arn:aws:license-manager:eu-west-1:123456789012:license-configuration:lic-0123456789abcdef0123456789abcdef ` + "`" + `` + "`" + `` + "`" + ``,
@@ -24780,7 +24782,7 @@ this parameter to manage the DNS records for that domain.
 				"lightsail",
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) The name of the Lightsail domain to manage ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
@@ -24794,7 +24796,7 @@ this parameter to manage the DNS records for that domain.
 					Description: `The ARN of the Lightsail domain`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name used for this domain`,
@@ -24823,7 +24825,7 @@ for more information.
 				"lightsail",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Lightsail Instance`,
@@ -24861,7 +24863,7 @@ for more information.
 					Description: `The ARN of the Lightsail instance (matches ` + "`" + `id` + "`" + `).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the Lightsail instance (matches ` + "`" + `arn` + "`" + `).`,
@@ -24891,7 +24893,7 @@ Lightsail.
 				"key",
 				"pair",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the Lightsail Key Pair. If omitted, a unique name will be generated by Terraform`,
@@ -24925,7 +24927,7 @@ Lightsail.
 					Description: `The MD5 public key fingerprint for the encrypted private key ## Import Lightsail Key Pairs cannot be imported, because the private and public key are only available on initial creation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name used for this key pair`,
@@ -24969,7 +24971,7 @@ Allocates a static IP address.
 				"static",
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name for the allocated static IP ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
@@ -24987,7 +24989,7 @@ Allocates a static IP address.
 					Description: `The support code.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the Lightsail static IP`,
@@ -25020,7 +25022,7 @@ Provides a static IP address attachment - relationship between a Lightsail stati
 				"ip",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "static_ip_name",
 					Description: `(Required) The name of the allocated static IP`,
@@ -25042,7 +25044,7 @@ Provides a static IP address attachment - relationship between a Lightsail stati
 					Description: `The support code.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the Lightsail static IP`,
@@ -25079,7 +25081,7 @@ Attaches a load balancer policy to an ELB backend server.
 				"server",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_name",
 					Description: `(Required) The load balancer to attach the policy to.`,
@@ -25105,7 +25107,7 @@ Attaches a load balancer policy to an ELB backend server.
 					Description: `The backend port the policies are applied to`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -25141,7 +25143,7 @@ Attaches a load balancer policy to an ELB Listener.
 				"listener",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_name",
 					Description: `(Required) The load balancer to attach the policy to.`,
@@ -25167,7 +25169,7 @@ Attaches a load balancer policy to an ELB Listener.
 					Description: `The load balancer listener port the policies are applied to`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -25201,7 +25203,7 @@ Provides a load balancer policy, which can be attached to an ELB listener or bac
 				"balancer",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_name",
 					Description: `(Required) The load balancer on which the policy is defined.`,
@@ -25235,7 +25237,7 @@ Provides a load balancer policy, which can be attached to an ELB listener or bac
 					Description: `The load balancer on which the policy is defined.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -25272,7 +25274,7 @@ Associates an AWS account with Amazon Macie as a member account.
 				"account",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "member_account_id",
 					Description: `(Required) The ID of the AWS account that you want to associate with Amazon Macie as a member account. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -25282,7 +25284,7 @@ Associates an AWS account with Amazon Macie as a member account.
 					Description: `The ID of the association.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the association.`,
@@ -25307,7 +25309,7 @@ Associates an S3 resource with Amazon Macie for monitoring and data classificati
 				"bucket",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_name",
 					Description: `(Required) The name of the S3 bucket that you want to associate with Amazon Macie.`,
@@ -25337,7 +25339,7 @@ Associates an S3 resource with Amazon Macie for monitoring and data classificati
 					Description: `The ID of the association.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the association.`,
@@ -25361,7 +25363,7 @@ Provides a resource for managing the main routing table of a VPC.
 				"table",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The ID of the VPC whose main route table should be set`,
@@ -25379,7 +25381,7 @@ Provides a resource for managing the main routing table of a VPC.
 					Description: `Used internally, see __Notes__ below ## Notes On VPC creation, the AWS API always creates an initial Main Route Table. This resource records the ID of that Route Table under ` + "`" + `original_route_table_id` + "`" + `. The "Delete" action for a ` + "`" + `main_route_table_association` + "`" + ` consists of resetting this original table as the Main Route Table for the VPC. You'll see this additional Route Table in the AWS console; it must remain intact in order for the ` + "`" + `main_route_table_association` + "`" + ` delete to work properly.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Route Table Association`,
@@ -25406,7 +25408,7 @@ Provides an AWS Elemental MediaPackage Channel.
 				"package",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "channel_id",
 					Description: `(Required) A unique identifier describing the channel`,
@@ -25448,7 +25450,7 @@ Provides an AWS Elemental MediaPackage Channel.
 					Description: `The username ## Import Media Package Channels can be imported via the channel ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_media_package_channel.kittens kittens-channel ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The same as ` + "`" + `channel_id` + "`" + ``,
@@ -25495,7 +25497,7 @@ Provides a MediaStore Container.
 				"store",
 				"container",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the container. Must contain alphanumeric characters or underscores.`,
@@ -25513,7 +25515,7 @@ Provides a MediaStore Container.
 					Description: `The DNS endpoint of the container. ## Import MediaStore Container can be imported using the MediaStore Container Name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_media_store_container.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the container.`,
@@ -25541,7 +25543,7 @@ Provides a MediaStore Container Policy.
 				"container",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "container_name",
 					Description: `(Required) The name of the container.`,
@@ -25551,7 +25553,7 @@ Provides a MediaStore Container Policy.
 					Description: `(Required) The contents of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](/docs/providers/aws/guides/iam-policy-documents.html). ## Import MediaStore Container Policy can be imported using the MediaStore Container Name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_media_store_container_policy.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -25582,7 +25584,7 @@ brief downtime as the broker reboots.
 				"mq",
 				"broker",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "apply_immediately",
 					Description: `(Optional) Specifies whether any broker modifications are applied immediately, or during the next maintenance window. Default is ` + "`" + `false` + "`" + `.`,
@@ -25712,7 +25714,7 @@ brief downtime as the broker reboots.
 					Description: `The broker's wire-level protocol endpoints in the following order & format referenceable e.g. as ` + "`" + `instances.0.endpoints.0` + "`" + ` (SSL):`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID that Amazon MQ generates for the broker.`,
@@ -25755,7 +25757,7 @@ For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aw
 				"mq",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data",
 					Description: `(Required) The broker configuration in XML format. See [official docs](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-broker-configuration-parameters.html) for supported parameters and format of the XML.`,
@@ -25793,7 +25795,7 @@ For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aw
 					Description: `The latest revision of the configuration. ## Import MQ Configurations can be imported using the configuration ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_mq_configuration.example c-0187d1eb-88c8-475a-9b79-16ef5a10c94f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID that Amazon MQ generates for the configuration.`,
@@ -25826,7 +25828,7 @@ Manages AWS Managed Streaming for Kafka cluster
 				"msk",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "broker_node_group_info",
 					Description: `(Required) Configuration block for the broker nodes of the Kafka cluster.`,
@@ -25940,7 +25942,7 @@ Manages AWS Managed Streaming for Kafka cluster
 					Description: `A comma separated list of one or more IP:port pairs to use to connect to the Apache Zookeeper cluster. ## Import MSK clusters can be imported using the cluster ` + "`" + `arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_msk_cluster.example arn:aws:kafka:us-west-2:123456789012:cluster/example/279c0212-d057-4dba-9aa9-1c4e5a25bfc7-3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the MSK cluster.`,
@@ -25987,7 +25989,7 @@ Manages an Amazon Managed Streaming for Kafka configuration. More information ca
 				"msk",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_properties",
 					Description: `(Required) Contents of the server.properties file. Supported properties are documented in the [MSK Developer Guide](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html).`,
@@ -26013,7 +26015,7 @@ Manages an Amazon Managed Streaming for Kafka configuration. More information ca
 					Description: `Latest revision of the configuration. ## Import MSK configurations can be imported using the configuration ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_msk_cluster.example arn:aws:kafka:us-west-2:123456789012:configuration/example/279c0212-d057-4dba-9aa9-1c4e5a25bfc7-3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the configuration.`,
@@ -26039,7 +26041,7 @@ Provides a resource to create a VPC NAT Gateway.
 				"nat",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocation_id",
 					Description: `(Required) The Allocation ID of the Elastic IP address for the gateway.`,
@@ -26077,7 +26079,7 @@ Provides a resource to create a VPC NAT Gateway.
 					Description: `The public IP address of the NAT Gateway. ## Import NAT Gateways can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_nat_gateway.private_gw nat-05dba92075d71c408 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the NAT Gateway.`,
@@ -26126,7 +26128,7 @@ phase because a modification has not yet taken place. You can use the
 				"neptune",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "apply_immediately",
 					Description: `(Optional) Specifies whether any cluster modifications are applied immediately, or during the next maintenance window. Default is ` + "`" + `false` + "`" + `.`,
@@ -26244,7 +26246,7 @@ phase because a modification has not yet taken place. You can use the
 					Description: `The Neptune instance status ## Timeouts ` + "`" + `aws_neptune_cluster` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Cluster creation - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Cluster modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for destroying cluster. This includes any cleanup task during the destroying process. ## Import ` + "`" + `aws_neptune_cluster` + "`" + ` can be imported by using the cluster identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_neptune_cluster.example my-cluster ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Neptune Cluster Amazon Resource Name (ARN)`,
@@ -26294,7 +26296,7 @@ meta-parameter to make multiple instances and join them all to the same Neptune 
 				"cluster",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "apply_immediately",
 					Description: `(Optional) Specifies whether any instance modifications are applied immediately, or during the next maintenance window. Default is` + "`" + `false` + "`" + `.`,
@@ -26392,7 +26394,7 @@ meta-parameter to make multiple instances and join them all to the same Neptune 
 					Description: `Specifies whether the neptune cluster is encrypted.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `The hostname of the instance. See also ` + "`" + `endpoint` + "`" + ` and ` + "`" + `port` + "`" + `.`,
@@ -26439,7 +26441,7 @@ Manages a Neptune Cluster Parameter Group
 				"parameter",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the neptune cluster parameter group. If omitted, Terraform will assign a random, unique name.`,
@@ -26485,7 +26487,7 @@ Manages a Neptune Cluster Parameter Group
 					Description: `The ARN of the neptune cluster parameter group. ## Import Neptune Cluster Parameter Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_neptune_cluster_parameter_group.cluster_pg production-pg-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The neptune cluster parameter group name.`,
@@ -26511,7 +26513,7 @@ Manages a Neptune database cluster snapshot.
 				"cluster",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "db_cluster_identifier",
 					Description: `(Required) The DB Cluster Identifier from which to take the snapshot.`,
@@ -26573,7 +26575,7 @@ Manages a Neptune database cluster snapshot.
 					Description: `(Default ` + "`" + `20m` + "`" + `) How long to wait for the snapshot to be available. ## Import ` + "`" + `aws_neptune_cluster_snapshot` + "`" + ` can be imported by using the cluster snapshot identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_neptune_cluster_snapshot.example my-cluster-snapshot ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allocated_storage",
 					Description: `Specifies the allocated storage size in gigabytes (GB).`,
@@ -26641,7 +26643,7 @@ Manages a Neptune database cluster snapshot.
 				"event",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Optional) A boolean flag to enable/disable the subscription. Defaults to true.`,
@@ -26687,7 +26689,7 @@ Manages a Neptune database cluster snapshot.
 					Description: `The AWS customer account associated with the Neptune event notification subscription. ## Timeouts ` + "`" + `aws_neptune_event_subscription` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for creating event subscription to become available. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for deleting event subscription to become fully deleted. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `40m` + "`" + `) How long to wait for updating event subscription to complete updates. ## Import ` + "`" + `aws_neptune_event_subscription` + "`" + ` can be imported by using the event subscription name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_neptune_event_subscription.example my-event-subscription ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -26704,7 +26706,7 @@ Manages a Neptune Parameter Group
 				"parameter",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, Forces new resource) The name of the Neptune parameter group.`,
@@ -26742,7 +26744,7 @@ Manages a Neptune Parameter Group
 					Description: `The Neptune parameter group Amazon Resource Name (ARN). ## Import Neptune Parameter Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_neptune_parameter_group.some_pg some-pg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Neptune parameter group name.`,
@@ -26768,7 +26770,7 @@ Provides an Neptune subnet group resource.
 				"subnet",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the neptune subnet group. If omitted, Terraform will assign a random, unique name.`,
@@ -26798,7 +26800,7 @@ Provides an Neptune subnet group resource.
 					Description: `The ARN of the neptune subnet group. ## Import Neptune Subnet groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_neptune_subnet_group.default production-subnet-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The neptune subnet group name.`,
@@ -26831,7 +26833,7 @@ a conflict of rule settings and will overwrite rules.
 				"network",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The ID of the associated VPC.`,
@@ -26897,7 +26899,7 @@ a conflict of rule settings and will overwrite rules.
 					Description: `The ID of the AWS account that owns the network ACL. ## Import Network ACLs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_network_acl.main acl-7aaabd18 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the network ACL`,
@@ -26930,7 +26932,7 @@ a conflict of rule settings and will overwrite rules.
 				"acl",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "network_acl_id",
 					Description: `(Required) The ID of the network ACL.`,
@@ -26980,7 +26982,7 @@ a conflict of rule settings and will overwrite rules.
 					Description: `The ID of the network ACL Rule`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the network ACL Rule`,
@@ -27002,7 +27004,7 @@ Provides an Elastic network interface (ENI) resource.
 				"network",
 				"interface",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `(Required) Subnet ID to create the ENI in.`,
@@ -27076,7 +27078,7 @@ Provides an Elastic network interface (ENI) resource.
 					Description: `Tags assigned to the ENI. ## Import Network Interfaces can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_network_interface.test eni-e5aa89a3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the network interface.`,
@@ -27127,7 +27129,7 @@ Attach an Elastic network interface (ENI) resource with EC2 instance.
 				"interface",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required) Instance ID to attach.`,
@@ -27157,7 +27159,7 @@ Attach an Elastic network interface (ENI) resource with EC2 instance.
 					Description: `The status of the Network Interface Attachment.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `Instance ID.`,
@@ -27205,7 +27207,7 @@ one or the other.
 				"sg",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `(Required) The ID of the security group.`,
@@ -27215,7 +27217,7 @@ one or the other.
 					Description: `(Required) The ID of the network interface to attach to. ## Output Reference There are no outputs for this resource.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -27231,7 +27233,7 @@ Provides an OpsWorks application resource.
 				"opsworks",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A human-readable name for the application.`,
@@ -27353,7 +27355,7 @@ Provides an OpsWorks application resource.
 					Description: `The id of the application.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the application.`,
@@ -27375,7 +27377,7 @@ Provides an OpsWorks custom layer resource.
 				"custom",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A human-readable name for the layer.`,
@@ -27469,7 +27471,7 @@ Provides an OpsWorks custom layer resource.
 					Description: `The id of the layer. ## Import OpsWorks Custom Layers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_opsworks_custom_layer.bar 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer. ## Import OpsWorks Custom Layers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_opsworks_custom_layer.bar 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -27491,7 +27493,7 @@ Provides an OpsWorks Ganglia layer resource.
 				"ganglia",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -27593,7 +27595,7 @@ Provides an OpsWorks Ganglia layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -27615,7 +27617,7 @@ Provides an OpsWorks haproxy layer resource.
 				"haproxy",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -27729,7 +27731,7 @@ Provides an OpsWorks haproxy layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -27750,7 +27752,7 @@ Provides an OpsWorks instance resource.
 				"opsworks",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_type",
 					Description: `(Required) The type of instance to start`,
@@ -27932,7 +27934,7 @@ Provides an OpsWorks instance resource.
 					Description: `The associated security groups. ## Timeouts ` + "`" + `aws_opsworks_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used when the instance is created. It should cover the time needed for the instance to start successfully. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used when the instance is deleted. It should cover the time needed for the instance to stop successfully. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used when the instance is changed. It should cover the time needed to either start or stop the instance. ## Import Opsworks Instances can be imported using the ` + "`" + `instance id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_opsworks_instance.my_instance 4d6d1710-ded9-42a1-b08e-b043ad7af1e2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the OpsWorks instance.`,
@@ -27999,7 +28001,7 @@ Provides an OpsWorks Java application layer resource.
 				"app",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -28109,7 +28111,7 @@ Provides an OpsWorks Java application layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -28131,7 +28133,7 @@ Provides an OpsWorks memcached layer resource.
 				"memcached",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -28225,7 +28227,7 @@ Provides an OpsWorks memcached layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -28250,7 +28252,7 @@ Provides an OpsWorks MySQL layer resource.
 				"mysql",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -28348,7 +28350,7 @@ Provides an OpsWorks MySQL layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -28371,7 +28373,7 @@ Provides an OpsWorks NodeJS application layer resource.
 				"app",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -28465,7 +28467,7 @@ Provides an OpsWorks NodeJS application layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -28486,7 +28488,7 @@ Provides an OpsWorks permission resource.
 				"opsworks",
 				"permission",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "allow_ssh",
 					Description: `(Optional) Whether the user is allowed to use SSH to communicate with the instance`,
@@ -28512,7 +28514,7 @@ Provides an OpsWorks permission resource.
 					Description: `The computed id of the permission. Please note that this is only used internally to identify the permission. This value is not used in aws.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The computed id of the permission. Please note that this is only used internally to identify the permission. This value is not used in aws.`,
@@ -28535,7 +28537,7 @@ Provides an OpsWorks PHP application layer resource.
 				"app",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -28625,7 +28627,7 @@ Provides an OpsWorks PHP application layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -28648,7 +28650,7 @@ Provides an OpsWorks Ruby on Rails application layer resource.
 				"app",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -28762,7 +28764,7 @@ Provides an OpsWorks Ruby on Rails application layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -28788,7 +28790,7 @@ Provides an OpsWorks RDS DB Instance resource.
 				"db",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The stack to register a db instance for. Changing this will force a new resource.`,
@@ -28810,7 +28812,7 @@ Provides an OpsWorks RDS DB Instance resource.
 					Description: `The computed id. Please note that this is only used internally to identify the stack <-> instance relation. This value is not used in aws.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The computed id. Please note that this is only used internally to identify the stack <-> instance relation. This value is not used in aws.`,
@@ -28831,7 +28833,7 @@ Provides an OpsWorks stack resource.
 				"opsworks",
 				"stack",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the stack.`,
@@ -28953,7 +28955,7 @@ Provides an OpsWorks stack resource.
 					Description: `The id of the stack. ## Import OpsWorks stacks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_opsworks_stack.bar 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the stack. ## Import OpsWorks stacks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_opsworks_stack.bar 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -28976,7 +28978,7 @@ Provides an OpsWorks static web server layer resource.
 				"web",
 				"layer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "stack_id",
 					Description: `(Required) The id of the stack the layer will belong to.`,
@@ -29062,7 +29064,7 @@ Provides an OpsWorks static web server layer resource.
 					Description: `The id of the layer.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the layer.`,
@@ -29084,7 +29086,7 @@ Provides an OpsWorks User Profile resource.
 				"user",
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user_arn",
 					Description: `(Required) The user's IAM ARN`,
@@ -29106,7 +29108,7 @@ Provides an OpsWorks User Profile resource.
 					Description: `Same value as ` + "`" + `user_arn` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Same value as ` + "`" + `user_arn` + "`" + ``,
@@ -29131,7 +29133,7 @@ Provides a resource to create a member account in the current organization.
 				"organizations",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A friendly name for the member account.`,
@@ -29165,7 +29167,7 @@ Provides a resource to create a member account in the current organization.
 					Description: `The AWS account id ## Import The AWS member account can be imported by using the ` + "`" + `account_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_account.my_org 111111111111 ` + "`" + `` + "`" + `` + "`" + ` Certain resource arguments, like ` + "`" + `role_name` + "`" + `, do not have an Organizations API method for reading the information after account creation. If the argument is set in the Terraform configuration on an imported resource, Terraform will always show a difference. To workaround this behavior, either omit the argument from the Terraform configuration or use [` + "`" + `ignore_changes` + "`" + `](/docs/configuration/resources.html#ignore_changes) to hide the difference, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_organizations_account" "account" { name = "my_new_account" email = "john@doe.org" role_name = "myOrganizationRole" # There is no AWS Organizations API for reading role_name lifecycle { ignore_changes = ["role_name"] } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN for this account.`,
@@ -29190,7 +29192,7 @@ Provides a resource to create an organization.
 				"organizations",
 				"organization",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "aws_service_access_principals",
 					Description: `(Optional) List of AWS service principal names for which you want to enable integration with your organization. This is typically in the form of a URL, such as service-abbreviation.amazonaws.com. Organization must have ` + "`" + `feature_set` + "`" + ` set to ` + "`" + `ALL` + "`" + `. For additional information, see the [AWS Organizations User Guide](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html).`,
@@ -29292,7 +29294,7 @@ Provides a resource to create an organization.
 					Description: `The status of the policy type as it relates to the associated root ## Import The AWS organization can be imported by using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_organization.my_org o-1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accounts",
 					Description: `List of organization accounts including the master account. For a list excluding the master account, see the ` + "`" + `non_master_accounts` + "`" + ` attribute. All elements have these attributes:`,
@@ -29398,7 +29400,7 @@ Provides a resource to create an organizational unit.
 				"organizational",
 				"unit",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name for the organizational unit`,
@@ -29436,7 +29438,7 @@ Provides a resource to create an organizational unit.
 					Description: `Identifier of the organization unit ## Import AWS Organizations Organizational Units can be imported by using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_organizational_unit.example ou-1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accounts",
 					Description: `List of child accounts for this Organizational Unit. Does not return account information for child Organizational Units. All elements have these attributes:`,
@@ -29481,7 +29483,7 @@ Provides a resource to manage an [AWS Organizations policy](https://docs.aws.ama
 				"organizations",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "content",
 					Description: `(Required) The policy content to add to the new policy. For example, if you create a [service control policy (SCP)](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html), this string must be JSON text that specifies the permissions that admins in attached accounts can delegate to their users, groups, and roles. For more information about the SCP syntax, see the [Service Control Policy Syntax documentation](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html).`,
@@ -29507,7 +29509,7 @@ Provides a resource to manage an [AWS Organizations policy](https://docs.aws.ama
 					Description: `Amazon Resource Name (ARN) of the policy. ## Import ` + "`" + `aws_organizations_policy` + "`" + ` can be imported by using the policy ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_policy.example p-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier (ID) of the policy.`,
@@ -29533,7 +29535,7 @@ Provides a resource to attach an AWS Organizations policy to an organization acc
 				"policy",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "policy_id",
 					Description: `(Required) The unique identifier (ID) of the policy that you want to attach to the target.`,
@@ -29543,7 +29545,7 @@ Provides a resource to attach an AWS Organizations policy to an organization acc
 					Description: `(Required) The unique identifier (ID) of the root, organizational unit, or account number that you want to attach the policy to. ## Import ` + "`" + `aws_organizations_policy_attachment` + "`" + ` can be imported by using the target ID and policy ID, e.g. with an account target ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_organizations_policy_attachment.account 123456789012:p-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29564,7 +29566,7 @@ Provides a Pinpoint ADM (Amazon Device Messaging) Channel resource.
 				"adm",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -29582,7 +29584,7 @@ Provides a Pinpoint ADM (Amazon Device Messaging) Channel resource.
 					Description: `(Optional) Specifies whether to enable the channel. Defaults to ` + "`" + `true` + "`" + `. ## Import Pinpoint ADM Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_adm_channel.channel application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29602,7 +29604,7 @@ Provides a Pinpoint APNs Channel resource.
 				"apns",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -29640,7 +29642,7 @@ Provides a Pinpoint APNs Channel resource.
 					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Import Pinpoint APNs Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_channel.apns application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29661,7 +29663,7 @@ Provides a Pinpoint APNs Sandbox Channel resource.
 				"sandbox",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -29699,7 +29701,7 @@ Provides a Pinpoint APNs Sandbox Channel resource.
 					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Import Pinpoint APNs Sandbox Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_sandbox_channel.apns_sandbox application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29720,7 +29722,7 @@ Provides a Pinpoint APNs VoIP Channel resource.
 				"voip",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -29758,7 +29760,7 @@ Provides a Pinpoint APNs VoIP Channel resource.
 					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Import Pinpoint APNs VoIP Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_voip_channel.apns_voip application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29780,7 +29782,7 @@ Provides a Pinpoint APNs VoIP Sandbox Channel resource.
 				"sandbox",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -29818,7 +29820,7 @@ Provides a Pinpoint APNs VoIP Sandbox Channel resource.
 					Description: `(Required) The ID assigned to your signing key. To find this value, choose Certificates, IDs & Profiles, and choose your key in the Keys section. ## Import Pinpoint APNs VoIP Sandbox Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_apns_voip_sandbox_channel.apns_voip_sandbox application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29834,7 +29836,7 @@ Provides a Pinpoint App resource.
 				"pinpoint",
 				"app",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The application name. By default generated by Terraform`,
@@ -29896,7 +29898,7 @@ Provides a Pinpoint App resource.
 					Description: `The Application ID of the Pinpoint App. ## Import Pinpoint App can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_app.name application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `The Application ID of the Pinpoint App. ## Import Pinpoint App can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_app.name application-id ` + "`" + `` + "`" + `` + "`" + ``,
@@ -29922,7 +29924,7 @@ Provides a Pinpoint Baidu Channel resource.
 				"baidu",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -29940,7 +29942,7 @@ Provides a Pinpoint Baidu Channel resource.
 					Description: `(Required) Platform credential Secret key from Baidu. ## Import Pinpoint Baidu Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_baidu_channel.channel application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -29957,7 +29959,7 @@ Provides a Pinpoint SMS Channel resource.
 				"email",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -29983,7 +29985,7 @@ Provides a Pinpoint SMS Channel resource.
 					Description: `Messages per second that can be sent. ## Import Pinpoint Email Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_email_channel.email application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "messages_per_second",
 					Description: `Messages per second that can be sent. ## Import Pinpoint Email Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_email_channel.email application-id ` + "`" + `` + "`" + `` + "`" + ``,
@@ -30005,7 +30007,7 @@ Provides a Pinpoint Event Stream resource.
 				"event",
 				"stream",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -30019,7 +30021,7 @@ Provides a Pinpoint Event Stream resource.
 					Description: `(Required) The IAM role that authorizes Amazon Pinpoint to publish events to the stream in your account. ## Import Pinpoint Event Stream can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_event_stream.stream application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -30039,7 +30041,7 @@ Provides a Pinpoint GCM Channel resource.
 				"gcm",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -30053,7 +30055,7 @@ Provides a Pinpoint GCM Channel resource.
 					Description: `(Optional) Whether the channel is enabled or disabled. Defaults to ` + "`" + `true` + "`" + `. ## Import Pinpoint GCM Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_gcm_channel.gcm application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -30070,7 +30072,7 @@ Provides a Pinpoint SMS Channel resource.
 				"sms",
 				"channel",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The application ID.`,
@@ -30096,7 +30098,7 @@ Provides a Pinpoint SMS Channel resource.
 					Description: `Transactional messages per second that can be sent. ## Import Pinpoint SMS Channel can be imported using the ` + "`" + `application-id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_pinpoint_sms_channel.sms application-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "promotional_messages_per_second",
 					Description: `Promotional messages per second that can be sent.`,
@@ -30123,7 +30125,7 @@ in [AWS Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-grou
 				"placement",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the placement group.`,
@@ -30137,7 +30139,7 @@ in [AWS Docs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-grou
 					Description: `The name of the placement group. ## Import Placement groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_placement_group.prod_pg production-placement-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the placement group. ## Import Placement groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_placement_group.prod_pg production-placement-group ` + "`" + `` + "`" + `` + "`" + ``,
@@ -30164,7 +30166,7 @@ Provides a proxy protocol policy, which allows an ELB to carry a client connecti
 				"protocol",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer",
 					Description: `(Required) The load balancer to which the policy should be attached.`,
@@ -30182,7 +30184,7 @@ Provides a proxy protocol policy, which allows an ELB to carry a client connecti
 					Description: `The load balancer to which the policy is attached.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -30207,7 +30209,7 @@ Resource for managing Quick Sight Group
 				"quicksight",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_name",
 					Description: `(Required) A name for the group.`,
@@ -30229,7 +30231,7 @@ Resource for managing Quick Sight Group
 					Description: `Amazon Resource Name (ARN) of group ## Import Quick Sight Group can be imported using the aws account id, namespace and group name separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_quicksight_group.example 123456789123/default/tf-example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of group ## Import Quick Sight Group can be imported using the aws account id, namespace and group name separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_quicksight_group.example 123456789123/default/tf-example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -30253,7 +30255,7 @@ Provides a Resource Access Manager (RAM) principal association.
 				"principal",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "principal",
 					Description: `(Required) The principal to associate with the resource share. Possible values are an AWS account ID, an AWS Organizations Organization ARN, or an AWS Organizations Organization Unit ARN.`,
@@ -30267,7 +30269,7 @@ Provides a Resource Access Manager (RAM) principal association.
 					Description: `The Amazon Resource Name (ARN) of the Resource Share and the principal, separated by a comma. ## Import RAM Principal Associations can be imported using their Resource Share ARN and the ` + "`" + `principal` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ram_principal_association.example arn:aws:ram:eu-west-1:123456789012:resource-share/73da1ab9-b94a-4ba3-8eb4-45917f7f4b12,123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) of the Resource Share and the principal, separated by a comma. ## Import RAM Principal Associations can be imported using their Resource Share ARN and the ` + "`" + `principal` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ram_principal_association.example arn:aws:ram:eu-west-1:123456789012:resource-share/73da1ab9-b94a-4ba3-8eb4-45917f7f4b12,123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -30291,7 +30293,7 @@ Manages a Resource Access Manager (RAM) Resource Association.
 				"resource",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resource_arn",
 					Description: `(Required) Amazon Resource Name (ARN) of the resource to associate with the RAM Resource Share.`,
@@ -30305,7 +30307,7 @@ Manages a Resource Access Manager (RAM) Resource Association.
 					Description: `The Amazon Resource Name (ARN) of the resource share. ## Import RAM Resource Associations can be imported using their Resource Share ARN and Resource ARN separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ram_resource_association.example arn:aws:ram:eu-west-1:123456789012:resource-share/73da1ab9-b94a-4ba3-8eb4-45917f7f4b12,arn:aws:ec2:eu-west-1:123456789012:subnet/subnet-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) of the resource share. ## Import RAM Resource Associations can be imported using their Resource Share ARN and Resource ARN separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ram_resource_association.example arn:aws:ram:eu-west-1:123456789012:resource-share/73da1ab9-b94a-4ba3-8eb4-45917f7f4b12,arn:aws:ec2:eu-west-1:123456789012:subnet/subnet-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -30327,7 +30329,7 @@ Manages a Resource Access Manager (RAM) Resource Share. To association principal
 				"resource",
 				"share",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the resource share.`,
@@ -30349,7 +30351,7 @@ Manages a Resource Access Manager (RAM) Resource Share. To association principal
 					Description: `The Amazon Resource Name (ARN) of the resource share. ## Import Resource shares can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ram_resource_share.example arn:aws:ram:eu-west-1:123456789012:resource-share/73da1ab9-b94a-4ba3-8eb4-45917f7f4b12 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) of the resource share.`,
@@ -30392,7 +30394,7 @@ for more information.
 				"rds",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_identifier",
 					Description: `(Optional, Forces new resources) The cluster identifier. If omitted, Terraform will assign a random, unique identifier.`,
@@ -30646,7 +30648,7 @@ for more information.
 					Description: `The Route53 Hosted Zone ID of the endpoint [1]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Replication.html [2]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html [3]: /docs/providers/aws/r/rds_cluster_instance.html [4]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html [5]: http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.Constraints ## Timeouts ` + "`" + `aws_rds_cluster` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Cluster creation - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for Cluster modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `120 minutes` + "`" + `) Used for destroying cluster. This includes any cleanup task during the destroying process. ## Import RDS Clusters can be imported using the ` + "`" + `cluster_identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_cluster.aurora_cluster aurora-prod-cluster ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of cluster`,
@@ -30750,7 +30752,7 @@ You can refer to the [User Guide][1].
 				"cluster",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_identifier",
 					Description: `(Required, Forces new resources) The cluster identifier.`,
@@ -30784,7 +30786,7 @@ You can refer to the [User Guide][1].
 					Description: `A custom endpoint for the Aurora cluster ## Import RDS Clusters Endpoint can be imported using the ` + "`" + `cluster_endpoint_identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_cluster_endpoint.custom_reader aurora-prod-cluster-custom-reader ` + "`" + `` + "`" + `` + "`" + ` [1]: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.Endpoints.html#Aurora.Endpoints.Cluster`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of cluster`,
@@ -30827,7 +30829,7 @@ For more information on Amazon Aurora, see [Aurora on Amazon RDS][2] in the Amaz
 				"cluster",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "identifier",
 					Description: `(Optional, Forces new resource) The indentifier for the RDS instance, if omitted, Terraform will assign a random, unique identifier.`,
@@ -30977,7 +30979,7 @@ For more information on Amazon Aurora, see [Aurora on Amazon RDS][2] in the Amaz
 					Description: `The ARN for the KMS encryption key used by Performance Insights. [2]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html [3]: /docs/providers/aws/r/rds_cluster.html [4]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Managing.html [5]: /docs/configuration/resources.html#count [6]: https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBInstance.html [7]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html ## Timeouts ` + "`" + `aws_rds_cluster_instance` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `90 minutes` + "`" + `) Used for Creating Instances, Replicas, and restoring from Snapshots - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `90 minutes` + "`" + `) Used for Database modifications - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `90 minutes` + "`" + `) Used for destroying databases. This includes the time required to take snapshots ## Import RDS Cluster Instances can be imported using the ` + "`" + `identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_cluster_instance.prod_instance_1 aurora-cluster-instance-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of cluster instance`,
@@ -31067,7 +31069,7 @@ Provides an RDS DB cluster parameter group resource. Documentation of the availa
 				"parameter",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the DB cluster parameter group. If omitted, Terraform will assign a random, unique name.`,
@@ -31113,7 +31115,7 @@ Provides an RDS DB cluster parameter group resource. Documentation of the availa
 					Description: `The ARN of the db cluster parameter group. ## Import RDS Cluster Parameter Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_cluster_parameter_group.cluster_pg production-pg-1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The db cluster parameter group name.`,
@@ -31143,7 +31145,7 @@ More information about Aurora global databases can be found in the [Aurora User 
 				"global",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "database_name",
 					Description: `(Optional, Forces new resources) Name for an automatically created database on cluster creation.`,
@@ -31177,7 +31179,7 @@ More information about Aurora global databases can be found in the [Aurora User 
 					Description: `RDS Global Cluster identifier ## Import ` + "`" + `aws_rds_global_cluster` + "`" + ` can be imported by using the RDS Global Cluster identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_rds_global_cluster.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `RDS Global Cluster Amazon Resource Name (ARN)`,
@@ -31209,7 +31211,7 @@ Provides a Redshift Cluster Resource.
 				"redshift",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_identifier",
 					Description: `(Required) The Cluster Identifier. Must be a lower case string.`,
@@ -31439,7 +31441,7 @@ Provides a Redshift Cluster Resource.
 					Description: `The specific revision number of the database in the cluster ## Import Redshift Clusters can be imported using the ` + "`" + `cluster_identifier` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_cluster.myprodcluster tf-redshift-cluster-12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of cluster`,
@@ -31537,7 +31539,7 @@ Provides a Redshift event subscription resource.
 				"event",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Redshift event subscription.`,
@@ -31583,7 +31585,7 @@ Provides a Redshift event subscription resource.
 					Description: `The AWS customer account associated with the Redshift event notification subscription ## Import Redshift Event Subscriptions can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_event_subscription.default redshift-event-sub ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -31600,7 +31602,7 @@ Provides a Redshift Cluster parameter group resource.
 				"parameter",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Redshift parameter group.`,
@@ -31638,7 +31640,7 @@ Provides a Redshift Cluster parameter group resource.
 					Description: `The Redshift parameter group name. ## Import Redshift Parameter Groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_parameter_group.paramgroup1 parameter-group-test-terraform ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of parameter group`,
@@ -31664,7 +31666,7 @@ Creates a new Amazon Redshift security group. You use security groups to control
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Redshift security group.`,
@@ -31694,7 +31696,7 @@ Creates a new Amazon Redshift security group. You use security groups to control
 					Description: `The Redshift security group ID. ## Import Redshift security groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_security_group.testgroup1 redshift_test_group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Redshift security group ID. ## Import Redshift security groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_security_group.testgroup1 redshift_test_group ` + "`" + `` + "`" + `` + "`" + ``,
@@ -31719,7 +31721,7 @@ Note that the grant must exist in the destination region, and not in the region 
 				"copy",
 				"grant",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "snapshot_copy_grant_name",
 					Description: `(Required, Forces new resource) A friendly name for identifying the grant.`,
@@ -31737,7 +31739,7 @@ Note that the grant must exist in the destination region, and not in the region 
 					Description: `Amazon Resource Name (ARN) of snapshot copy grant`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of snapshot copy grant`,
@@ -31759,7 +31761,7 @@ Creates a new Amazon Redshift subnet group. You must provide a list of one or mo
 				"subnet",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Redshift Subnet group.`,
@@ -31785,7 +31787,7 @@ Creates a new Amazon Redshift subnet group. You must provide a list of one or mo
 					Description: `The Redshift Subnet group ID. ## Import Redshift subnet groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_redshift_subnet_group.testgroup1 test-cluster-subnet-group ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the Redshift Subnet group name`,
@@ -31812,7 +31814,7 @@ Provides a Resource Group.
 				"resourcegroups",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The resource group's name. A resource group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with ` + "`" + `AWS` + "`" + ` or ` + "`" + `aws` + "`" + `.`,
@@ -31838,7 +31840,7 @@ Provides a Resource Group.
 					Description: `The ARN assigned by AWS for this resource group. ## Import Resource groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_resourcegroups_group.foo resource-group-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN assigned by AWS for this resource group. ## Import Resource groups can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_resourcegroups_group.foo resource-group-name ` + "`" + `` + "`" + `` + "`" + ``,
@@ -31865,7 +31867,7 @@ a conflict of rule settings and will overwrite rules.
 				"vpc",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_table_id",
 					Description: `(Required) The ID of the routing table. One of the following destination arguments must be supplied:`,
@@ -31911,7 +31913,7 @@ a conflict of rule settings and will overwrite rules.
 					Description: `Route Table identifier and destination ## Timeouts ` + "`" + `aws_route` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `2 minutes` + "`" + `) Used for route creation - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for route deletion ## Import Individual routes can be imported using ` + "`" + `ROUTETABLEID_DESTINATION` + "`" + `. For example, import a route in route table ` + "`" + `rtb-656C65616E6F72` + "`" + ` with an IPv4 destination CIDR of ` + "`" + `10.42.0.0/16` + "`" + ` like this: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_route.my_route rtb-656C65616E6F72_10.42.0.0/16 ` + "`" + `` + "`" + `` + "`" + ` Import a route in route table ` + "`" + `rtb-656C65616E6F72` + "`" + ` with an IPv6 destination CIDR of ` + "`" + `2620:0:2d0:200::8/125` + "`" + ` similarly: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_route.my_route rtb-656C65616E6F72_2620:0:2d0:200::8/125 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Route Table identifier and destination ## Timeouts ` + "`" + `aws_route` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `2 minutes` + "`" + `) Used for route creation - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for route deletion ## Import Individual routes can be imported using ` + "`" + `ROUTETABLEID_DESTINATION` + "`" + `. For example, import a route in route table ` + "`" + `rtb-656C65616E6F72` + "`" + ` with an IPv4 destination CIDR of ` + "`" + `10.42.0.0/16` + "`" + ` like this: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_route.my_route rtb-656C65616E6F72_10.42.0.0/16 ` + "`" + `` + "`" + `` + "`" + ` Import a route in route table ` + "`" + `rtb-656C65616E6F72` + "`" + ` with an IPv6 destination CIDR of ` + "`" + `2620:0:2d0:200::8/125` + "`" + ` similarly: ` + "`" + `` + "`" + `` + "`" + `console $ terraform import aws_route.my_route rtb-656C65616E6F72_2620:0:2d0:200::8/125 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -31933,7 +31935,7 @@ Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/A
 				"delegation",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "reference_name",
 					Description: `(Optional) This is a reference name used in Caller Reference (helpful for identifying single delegation set amongst others) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -31947,7 +31949,7 @@ Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/A
 					Description: `A list of authoritative name servers for the hosted zone (effectively a list of NS records). ## Import Route53 Delegation Sets can be imported using the ` + "`" + `delegation set id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_delegation_set.set1 N1PA6795SAMPLE ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The delegation set ID`,
@@ -31973,7 +31975,7 @@ Provides a Route53 health check.
 				"health",
 				"check",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "reference_name",
 					Description: `(Optional) This is a reference name used in Caller Reference (helpful for identifying single health_check set amongst others)`,
@@ -32055,7 +32057,7 @@ Provides a Route53 health check.
 					Description: `The id of the health check ## Import Route53 Health Checks can be imported using the ` + "`" + `health check id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_health_check.http_check abcdef11-2222-3333-4444-555555fedcba ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The id of the health check ## Import Route53 Health Checks can be imported using the ` + "`" + `health check id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_health_check.http_check abcdef11-2222-3333-4444-555555fedcba ` + "`" + `` + "`" + `` + "`" + ``,
@@ -32083,7 +32085,7 @@ See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/la
 				"query",
 				"log",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloudwatch_log_group_arn",
 					Description: `(Required) CloudWatch log group ARN to send query logs.`,
@@ -32097,7 +32099,7 @@ See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/la
 					Description: `The query logging configuration ID ## Import Route53 query logging configurations can be imported using their ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_query_log.example_com xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The query logging configuration ID ## Import Route53 query logging configurations can be imported using their ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_query_log.example_com xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
@@ -32118,7 +32120,7 @@ Provides a Route53 record resource.
 				"route53",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The ID of the hosted zone to contain this record.`,
@@ -32220,7 +32222,7 @@ Provides a Route53 record resource.
 					Description: `[FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) built using the zone domain and ` + "`" + `name` + "`" + `. ## Import Route53 Records can be imported using ID of the record. The ID is made up as ZONEID_RECORDNAME_TYPE_SET-IDENTIFIER e.g. ` + "`" + `` + "`" + `` + "`" + ` Z4KAPRWWNC7JR_dev.example.com_NS_dev ` + "`" + `` + "`" + `` + "`" + ` In this example, ` + "`" + `Z4KAPRWWNC7JR` + "`" + ` is the ZoneID, ` + "`" + `dev.example.com` + "`" + ` is the Record Name, ` + "`" + `NS` + "`" + ` is the Type and ` + "`" + `dev` + "`" + ` is the Set Identifier. Only the Set Identifier is actually optional in the ID To import the ID above, it would look as follows: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_record.myrecord Z4KAPRWWNC7JR_dev.example.com_NS_dev ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the record.`,
@@ -32246,7 +32248,7 @@ Provides a Route 53 Resolver endpoint resource.
 				"resolver",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "direction",
 					Description: `(Required) The direction of DNS queries to or from the Route 53 Resolver endpoint. Valid values are ` + "`" + `INBOUND` + "`" + ` (resolver forwards DNS queries to the DNS service for a VPC from your network or another VPC) or ` + "`" + `OUTBOUND` + "`" + ` (resolver forwards DNS queries from the DNS service for a VPC to your network or another VPC).`,
@@ -32288,7 +32290,7 @@ Provides a Route 53 Resolver endpoint resource.
 					Description: `The ID of the VPC that you want to create the resolver endpoint in. ## Timeouts ` + "`" + `aws_route53_resolver_endpoint` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating Route 53 Resolver endpoint - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for updating Route 53 Resolver endpoint - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for destroying Route 53 Resolver endpoint ## Import Route 53 Resolver endpoints can be imported using the Route 53 Resolver endpoint ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_resolver_endpoint.foo rslvr-in-abcdef01234567890 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Route 53 Resolver endpoint.`,
@@ -32318,7 +32320,7 @@ Provides a Route53 Resolver rule.
 				"resolver",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) DNS queries for this domain name are forwarded to the IP addresses that are specified using ` + "`" + `target_ip` + "`" + `.`,
@@ -32364,7 +32366,7 @@ Provides a Route53 Resolver rule.
 					Description: `Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account. Values are ` + "`" + `NOT_SHARED` + "`" + `, ` + "`" + `SHARED_BY_ME` + "`" + ` or ` + "`" + `SHARED_WITH_ME` + "`" + ` ## Import Route53 Resolver rules can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_resolver_rule.sys rslvr-rr-0123456789abcdef0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the resolver rule.`,
@@ -32399,7 +32401,7 @@ Provides a Route53 Resolver rule association.
 				"rule",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resolver_rule_id",
 					Description: `(Required) The ID of the resolver rule that you want to associate with the VPC.`,
@@ -32417,7 +32419,7 @@ Provides a Route53 Resolver rule association.
 					Description: `The ID of the resolver rule association. ## Import Route53 Resolver rule associations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_resolver_rule_association.example rslvr-rrassoc-97242eaf88example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the resolver rule association. ## Import Route53 Resolver rule associations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_resolver_rule_association.example rslvr-rrassoc-97242eaf88example ` + "`" + `` + "`" + `` + "`" + ``,
@@ -32438,7 +32440,7 @@ Manages a Route53 Hosted Zone.
 				"route53",
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) This is the name of the hosted zone.`,
@@ -32480,7 +32482,7 @@ Manages a Route53 Hosted Zone.
 					Description: `A list of name servers in associated (or default) delegation set. Find more about delegation sets in [AWS docs](https://docs.aws.amazon.com/Route53/latest/APIReference/actions-on-reusable-delegation-sets.html). ## Import Route53 Zones can be imported using the ` + "`" + `zone id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_zone.myzone Z1D633PJN98FT9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `The Hosted Zone ID. This can be referenced by zone records.`,
@@ -32510,7 +32512,7 @@ Manages a Route53 Hosted Zone VPC association. VPC associations can only be made
 				"zone",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The private hosted zone to associate.`,
@@ -32540,7 +32542,7 @@ Manages a Route53 Hosted Zone VPC association. VPC associations can only be made
 					Description: `The region in which the VPC identified by ` + "`" + `vpc_id` + "`" + ` was created. ## Import Route 53 Hosted Zone Associations can be imported via the Hosted Zone ID and VPC ID, separated by a colon (` + "`" + `:` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route53_zone_association.example Z123456ABCDEFG:vpc-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The calculated unique identifier for the association.`,
@@ -32593,7 +32595,7 @@ the separate resource.
 				"route",
 				"table",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The VPC ID.`,
@@ -32655,7 +32657,7 @@ the separate resource.
 					Description: `The ID of the AWS account that owns the route table ## Import Route Tables can be imported using the route table ` + "`" + `id` + "`" + `. For example, to import route table ` + "`" + `rtb-4e616f6d69` + "`" + `, use this command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_route_table.public_rt rtb-4e616f6d69 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the routing table`,
@@ -32682,7 +32684,7 @@ Provides a resource to create an association between a subnet and routing table.
 				"table",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `(Required) The subnet ID to create an association.`,
@@ -32696,7 +32698,7 @@ Provides a resource to create an association between a subnet and routing table.
 					Description: `The ID of the association`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the association`,
@@ -32724,7 +32726,7 @@ Manages S3 account-level Public Access Block configuration. For more information
 				"access",
 				"block",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_id",
 					Description: `(Optional) AWS account ID to configure. Defaults to automatically determined account ID of the Terraform AWS provider.`,
@@ -32750,7 +32752,7 @@ Manages S3 account-level Public Access Block configuration. For more information
 					Description: `AWS account ID ## Import ` + "`" + `aws_s3_account_public_access_block` + "`" + ` can be imported by using the AWS account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_account_public_access_block.example 123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `AWS account ID ## Import ` + "`" + `aws_s3_account_public_access_block` + "`" + ` can be imported by using the AWS account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_account_public_access_block.example 123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -32771,7 +32773,7 @@ Provides a S3 bucket resource.
 				"s3",
 				"bucket",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Optional, Forces new resource) The name of the bucket. If omitted, Terraform will assign a random, unique name.`,
@@ -33053,7 +33055,7 @@ Provides a S3 bucket resource.
 					Description: `The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records. ## Import S3 bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the bucket.`,
@@ -33103,7 +33105,7 @@ Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/Amazo
 				"bucket",
 				"inventory",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to put inventory configuration.`,
@@ -33181,7 +33183,7 @@ Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/Amazo
 					Description: `(Required) The ARN of the KMS customer master key (CMK) used to encrypt the inventory file. ## Import S3 bucket inventory configurations can be imported using ` + "`" + `bucket:inventory` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_s3_bucket_inventory.my-bucket-entire-bucket my-bucket:EntireBucket ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -33198,7 +33200,7 @@ Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3
 				"bucket",
 				"metric",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to put metric configuration.`,
@@ -33220,7 +33222,7 @@ Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3
 					Description: `(Optional) Object tags for filtering (up to 10). ## Import S3 bucket metric configurations can be imported using ` + "`" + `bucket:metric` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_metric.my-bucket-entire-bucket my-bucket:EntireBucket ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -33239,7 +33241,7 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 				"bucket",
 				"notification",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to put notification configuration.`,
@@ -33317,7 +33319,7 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 					Description: `(Optional) Specifies object key name suffix. ## Import S3 bucket notification can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_notification.bucket_notification bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -33334,7 +33336,7 @@ Provides a S3 bucket object resource.
 				"bucket",
 				"object",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to put the file in.`,
@@ -33416,7 +33418,7 @@ Provides a S3 bucket object resource.
 					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above`,
@@ -33446,7 +33448,7 @@ Attaches a policy to an S3 bucket resource.
 				"bucket",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The name of the bucket to which to apply the policy.`,
@@ -33456,7 +33458,7 @@ Attaches a policy to an S3 bucket resource.
 					Description: `(Required) The text of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](/docs/providers/aws/guides/iam-policy-documents.html). ## Import S3 bucket policies can be imported using the bucket name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_policy.example my-bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -33475,7 +33477,7 @@ Manages S3 bucket-level Public Access Block configuration. For more information 
 				"access",
 				"block",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) S3 Bucket to which this Public Access Block configuration should be applied.`,
@@ -33501,7 +33503,7 @@ Manages S3 bucket-level Public Access Block configuration. For more information 
 					Description: `Name of the S3 bucket the configuration is attached to ## Import ` + "`" + `aws_s3_bucket_public_access_block` + "`" + ` can be imported by using the bucket name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_public_access_block.example my-bucket ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Name of the S3 bucket the configuration is attached to ## Import ` + "`" + `aws_s3_bucket_public_access_block` + "`" + ` can be imported by using the bucket name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_s3_bucket_public_access_block.example my-bucket ` + "`" + `` + "`" + `` + "`" + ``,
@@ -33522,7 +33524,7 @@ Provides a SageMaker Endpoint resource.
 				"sagemaker",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_config_name",
 					Description: `(Required) The name of the endpoint configuration to use.`,
@@ -33544,7 +33546,7 @@ Provides a SageMaker Endpoint resource.
 					Description: `The name of the endpoint. ## Import Endpoints can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sagemaker_endpoint.test_endpoint my-endpoint ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) assigned by AWS to this endpoint.`,
@@ -33570,7 +33572,7 @@ Provides a SageMaker endpoint configuration resource.
 				"endpoint",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "production_variants",
 					Description: `(Required) Fields are documented below.`,
@@ -33608,7 +33610,7 @@ Provides a SageMaker endpoint configuration resource.
 					Description: `The name of the endpoint configuration. ## Import Endpoint configurations can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sagemaker_endpoint_configuration.test_endpoint_config endpoint-config-foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) assigned by AWS to this endpoint configuration.`,
@@ -33633,7 +33635,7 @@ Provides a SageMaker model resource.
 				"sagemaker",
 				"model",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the model (must be unique). If omitted, Terraform will assign a random, unique name.`,
@@ -33675,7 +33677,7 @@ Provides a SageMaker model resource.
 					Description: `The Amazon Resource Name (ARN) assigned by AWS to this model. ## Import Models can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sagemaker_model.test_model model-foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the model.`,
@@ -33701,7 +33703,7 @@ Provides a Sagemaker Notebook Instance resource.
 				"notebook",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the notebook instance (must be unique).`,
@@ -33739,7 +33741,7 @@ Provides a Sagemaker Notebook Instance resource.
 					Description: `The Amazon Resource Name (ARN) assigned by AWS to this notebook instance. ## Import Sagemaker Notebook Instances can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sagemaker_notebook_instance.test_notebook_instance my-notebook-instance ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the notebook instance.`,
@@ -33767,7 +33769,7 @@ Provides a lifecycle configuration for SageMaker Notebook Instances.
 				"lifecycle",
 				"configuration",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the lifecycle configuration (must be unique). If omitted, Terraform will assign a random, unique name.`,
@@ -33785,7 +33787,7 @@ Provides a lifecycle configuration for SageMaker Notebook Instances.
 					Description: `The Amazon Resource Name (ARN) assigned by AWS to this lifecycle configuration. ## Import Models can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sagemaker_notebook_instance_lifecycle_configuration.lc foo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The Amazon Resource Name (ARN) assigned by AWS to this lifecycle configuration. ## Import Models can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sagemaker_notebook_instance_lifecycle_configuration.lc foo ` + "`" + `` + "`" + `` + "`" + ``,
@@ -33808,7 +33810,7 @@ Provides a resource to manage AWS Secrets Manager secret metadata. To manage a s
 				"secretsmanager",
 				"secret",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Specifies the friendly name of the new secret. The secret name can consist of uppercase letters, lowercase letters, digits, and any of the following characters: ` + "`" + `/_+=.@-` + "`" + ` Conflicts with ` + "`" + `name_prefix` + "`" + `.`,
@@ -33862,7 +33864,7 @@ Provides a resource to manage AWS Secrets Manager secret metadata. To manage a s
 					Description: `Specifies whether automatic rotation is enabled for this secret. ## Import ` + "`" + `aws_secretsmanager_secret` + "`" + ` can be imported by using the secret Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_secretsmanager_secret.example arn:aws:secretsmanager:us-east-1:123456789012:secret:example-123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the secret.`,
@@ -33896,7 +33898,7 @@ Provides a resource to manage AWS Secrets Manager secret version including its s
 				"secret",
 				"version",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "secret_id",
 					Description: `(Required) Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist.`,
@@ -33926,7 +33928,7 @@ Provides a resource to manage AWS Secrets Manager secret version including its s
 					Description: `The unique identifier of the version of the secret. ## Import ` + "`" + `aws_secretsmanager_secret_version` + "`" + ` can be imported by using the secret ID and version ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_secretsmanager_secret_version.example arn:aws:secretsmanager:us-east-1:123456789012:secret:example-123456|xxxxx-xxxxxxx-xxxxxxx-xxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the secret.`,
@@ -33965,7 +33967,7 @@ a conflict of rule settings and will overwrite rules.
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the security group. If omitted, Terraform will assign a random, unique name`,
@@ -34103,7 +34105,7 @@ a conflict of rule settings and will overwrite rules.
 					Description: `The egress rules. See above for more. ## Timeouts ` + "`" + `aws_security_group` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) How long to wait for a security group to be created. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) How long to wait for a security group to be deleted. ## Import Security Groups can be imported using the ` + "`" + `security group id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_security_group.elb_sg sg-903004f8 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the security group`,
@@ -34166,7 +34168,7 @@ a conflict of rule settings and will overwrite rules.
 				"group",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of rule being created. Valid options are ` + "`" + `ingress` + "`" + ` (inbound) or ` + "`" + `egress` + "`" + ` (outbound).`,
@@ -34228,7 +34230,7 @@ a conflict of rule settings and will overwrite rules.
 					Description: `The end port (or ICMP code if protocol is "icmp")`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the security group rule`,
@@ -34267,13 +34269,13 @@ Enables Security Hub for this AWS account.
 				"securityhub",
 				"account",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `AWS Account ID. ## Import An existing Security Hub enabled account can be imported using the AWS account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_securityhub_account.example 123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `AWS Account ID. ## Import An existing Security Hub enabled account can be imported using the AWS account ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_securityhub_account.example 123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -34299,7 +34301,7 @@ Subscribes to a Security Hub product.
 				"product",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "product_arn",
 					Description: `(Required) The ARN of the product that generates findings that you want to import into Security Hub - see below. Currently available products (remember to replace ` + "`" + `${var.region}` + "`" + ` as appropriate):`,
@@ -34309,7 +34311,7 @@ Subscribes to a Security Hub product.
 					Description: `The ARN of a resource that represents your subscription to the product that generates the findings that you want to import into Security Hub. ## Import Security Hub product subscriptions can be imported in the form ` + "`" + `product_arn,arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_securityhub_product_subscription.example arn:aws:securityhub:eu-west-1:733251395267:product/alertlogic/althreatmanagement,arn:aws:securityhub:eu-west-1:123456789012:product-subscription/alertlogic/althreatmanagement ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of a resource that represents your subscription to the product that generates the findings that you want to import into Security Hub. ## Import Security Hub product subscriptions can be imported in the form ` + "`" + `product_arn,arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_securityhub_product_subscription.example arn:aws:securityhub:eu-west-1:733251395267:product/alertlogic/althreatmanagement,arn:aws:securityhub:eu-west-1:123456789012:product-subscription/alertlogic/althreatmanagement ` + "`" + `` + "`" + `` + "`" + ``,
@@ -34335,7 +34337,7 @@ Subscribes to a Security Hub standard.
 				"standards",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "standards_arn",
 					Description: `(Required) The ARN of a standard - see below. Currently available standards: | Name | ARN | |---------------------|-----------------------------------------------------------------------| | CIS AWS Foundations | ` + "`" + `arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0` + "`" + ` | ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
@@ -34345,7 +34347,7 @@ Subscribes to a Security Hub standard.
 					Description: `The ARN of a resource that represents your subscription to a supported standard. ## Import Security Hub standards subscriptions can be imported using the standards subscription ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_securityhub_standards_subscription.example arn:aws:securityhub:eu-west-1:123456789012:subscription/cis-aws-foundations-benchmark/v/1.2.0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of a resource that represents your subscription to a supported standard. ## Import Security Hub standards subscriptions can be imported using the standards subscription ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_securityhub_standards_subscription.example arn:aws:securityhub:eu-west-1:123456789012:subscription/cis-aws-foundations-benchmark/v/1.2.0 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -34367,7 +34369,7 @@ Subscribes to a Security Hub standard.
 				"http",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the http namespace.`,
@@ -34385,7 +34387,7 @@ Subscribes to a Security Hub standard.
 					Description: `The ARN that Amazon Route 53 assigns to the namespace when you create it. ## Import Service Discovery HTTP Namespace can be imported using the namespace ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_service_discovery_http_namespace.example ns-1234567890 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of a namespace.`,
@@ -34413,7 +34415,7 @@ Provides a Service Discovery Private DNS Namespace resource.
 				"dns",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the namespace.`,
@@ -34439,7 +34441,7 @@ Provides a Service Discovery Private DNS Namespace resource.
 					Description: `The ID for the hosted zone that Amazon Route 53 creates when you create a namespace.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of a namespace.`,
@@ -34471,7 +34473,7 @@ Provides a Service Discovery Public DNS Namespace resource.
 				"dns",
 				"namespace",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the namespace.`,
@@ -34493,7 +34495,7 @@ Provides a Service Discovery Public DNS Namespace resource.
 					Description: `The ID for the hosted zone that Amazon Route 53 creates when you create a namespace. ## Import Service Discovery Public DNS Namespace can be imported using the namespace ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_service_discovery_public_dns_namespace.example 0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of a namespace.`,
@@ -34522,7 +34524,7 @@ Provides a Service Discovery Service resource.
 				"service",
 				"discovery",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, ForceNew) The name of the service.`,
@@ -34592,7 +34594,7 @@ Provides a Service Discovery Service resource.
 					Description: `The ARN of the service. ## Import Service Discovery Service can be imported using the service ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_service_discovery_service.example 0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the service.`,
@@ -34619,7 +34621,7 @@ Provides a resource to create a Service Catalog Portfolio.
 				"servicecatalog",
 				"portfolio",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the portfolio.`,
@@ -34641,7 +34643,7 @@ Provides a resource to create a Service Catalog Portfolio.
 					Description: `The ID of the Service Catalog Portfolio. ## Import Service Catalog Portfolios can be imported using the ` + "`" + `service catalog portfolio id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_servicecatalog_portfolio.testfolio port-12344321 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Service Catalog Portfolio. ## Import Service Catalog Portfolios can be imported using the ` + "`" + `service catalog portfolio id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_servicecatalog_portfolio.testfolio port-12344321 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -34664,7 +34666,7 @@ Manages an individual Service Quota.
 				"servicequotas",
 				"quota",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "quota_code",
 					Description: `(Required) Code of the service quota to track. For example: ` + "`" + `L-F678F1CE` + "`" + `. Available values can be found with the [AWS CLI service-quotas list-service-quotas command](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/list-service-quotas.html).`,
@@ -34702,7 +34704,7 @@ Manages an individual Service Quota.
 					Description: `Name of the service. ## Import ~>`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "adjustable",
 					Description: `Whether the service quota can be increased.`,
@@ -34746,13 +34748,13 @@ Provides a resource to designate the active SES receipt rule set
 				"rule",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule_set_name",
 					Description: `(Required) The name of the rule set`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -34769,13 +34771,13 @@ Provides an SES configuration set resource
 				"configuration",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the configuration set ## Import SES Configuration Sets can be imported using their ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_configuration_set.test some-configuration-set-test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -34794,7 +34796,7 @@ Domain ownership needs to be confirmed first using [ses_domain_identity Resource
 				"domain",
 				"dkim",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) Verified domain name to generate DKIM tokens for. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -34804,7 +34806,7 @@ Domain ownership needs to be confirmed first using [ses_domain_identity Resource
 					Description: `DKIM tokens generated by SES. These tokens should be used to create CNAME records used to verify SES Easy DKIM. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_ses_domain_dkim" "example" { domain = "${aws_ses_domain_identity.example.domain}" } resource "aws_route53_record" "example_amazonses_dkim_record" { count = 3 zone_id = "ABCDEFGHIJ123" name = "${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}._domainkey.example.com" type = "CNAME" ttl = "600" records = ["${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}.dkim.amazonses.com"] } ` + "`" + `` + "`" + `` + "`" + ` ## Import DKIM tokens can be imported using the ` + "`" + `domain` + "`" + ` attribute, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_dkim.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dkim_tokens",
 					Description: `DKIM tokens generated by SES. These tokens should be used to create CNAME records used to verify SES Easy DKIM. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_ses_domain_dkim" "example" { domain = "${aws_ses_domain_identity.example.domain}" } resource "aws_route53_record" "example_amazonses_dkim_record" { count = 3 zone_id = "ABCDEFGHIJ123" name = "${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}._domainkey.example.com" type = "CNAME" ttl = "600" records = ["${element(aws_ses_domain_dkim.example.dkim_tokens, count.index)}.dkim.amazonses.com"] } ` + "`" + `` + "`" + `` + "`" + ` ## Import DKIM tokens can be imported using the ` + "`" + `domain` + "`" + ` attribute, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_dkim.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
@@ -34826,7 +34828,7 @@ Provides an SES domain identity resource
 				"domain",
 				"identity",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) The domain name to assign to SES ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -34840,7 +34842,7 @@ Provides an SES domain identity resource
 					Description: `A code which when added to the domain as a TXT record will signal to SES that the owner of the domain has authorised SES to act on their behalf. The domain identity will be in state "verification pending" until this is done. See below for an example of how this might be achieved when the domain is hosted in Route 53 and managed by Terraform. Find out more about verifying domains in Amazon SES in the [AWS SES docs](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-domains.html). ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_domain_identity" "example" { domain = "example.com" } resource "aws_route53_record" "example_amazonses_verification_record" { zone_id = "ABCDEFGHIJ123" name = "_amazonses.example.com" type = "TXT" ttl = "600" records = ["${aws_ses_domain_identity.example.verification_token}"] } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES domain identities can be imported using the domain name. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_identity.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the domain identity.`,
@@ -34873,7 +34875,7 @@ deploy the required DNS verification records, and wait for verification to compl
 				"identity",
 				"verification",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) The domain name of the SES domain identity to verify. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -34887,7 +34889,7 @@ deploy the required DNS verification records, and wait for verification to compl
 					Description: `The ARN of the domain identity. ## Timeouts ` + "`" + `acm_ses_domain_identity_verification` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `45m` + "`" + `) How long to wait for a domain identity to be verified.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The domain name of the domain identity.`,
@@ -34916,7 +34918,7 @@ Provides an SES domain MAIL FROM resource.
 				"mail",
 				"from",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) Verified domain name to generate DKIM tokens for.`,
@@ -34934,7 +34936,7 @@ Provides an SES domain MAIL FROM resource.
 					Description: `The domain name. ## Import MAIL FROM domain can be imported using the ` + "`" + `domain` + "`" + ` attribute, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_mail_from.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The domain name. ## Import MAIL FROM domain can be imported using the ` + "`" + `domain` + "`" + ` attribute, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_domain_mail_from.example example.com ` + "`" + `` + "`" + `` + "`" + ``,
@@ -34956,7 +34958,7 @@ Provides an SES email identity resource
 				"email",
 				"identity",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `(Required) The email address to assign to SES ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -34966,7 +34968,7 @@ Provides an SES email identity resource
 					Description: `The ARN of the email identity. ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_email_identity" "example" { email = "email@example.com" } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES email identities can be imported using the email address. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_email_identity.example email@example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the email identity. ## Example Usage ` + "`" + `` + "`" + `` + "`" + `hcl resource "aws_ses_email_identity" "example" { email = "email@example.com" } ` + "`" + `` + "`" + `` + "`" + ` ## Import SES email identities can be imported using the email address. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_email_identity.example email@example.com ` + "`" + `` + "`" + `` + "`" + ``,
@@ -34988,7 +34990,7 @@ Provides an SES event destination
 				"event",
 				"destination",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the event destination`,
@@ -35042,7 +35044,7 @@ Provides an SES event destination
 					Description: `(Required) The ARN of the SNS topic`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -35060,7 +35062,7 @@ Resource for managing SES Identity Notification Topics
 				"notification",
 				"topic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_arn",
 					Description: `(Optional) The Amazon Resource Name (ARN) of the Amazon SNS topic. Can be set to "" (an empty string) to disable publishing.`,
@@ -35078,7 +35080,7 @@ Resource for managing SES Identity Notification Topics
 					Description: `(Optional) Whether SES should include original email headers in SNS notifications of this type.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -35095,7 +35097,7 @@ Manages a SES Identity Policy. More information about SES Sending Authorization 
 				"identity",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "identity",
 					Description: `(Required) Name or Amazon Resource Name (ARN) of the SES Identity.`,
@@ -35109,7 +35111,7 @@ Manages a SES Identity Policy. More information about SES Sending Authorization 
 					Description: `(Required) JSON string of the policy. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](/docs/providers/aws/guides/iam-policy-documents.html). ## Import SES Identity Policies can be imported using the identity and policy name, separated by a pipe character (` + "`" + `|` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_identity_policy.test 'example.com|example' ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -35126,7 +35128,7 @@ Provides an SES receipt filter resource
 				"receipt",
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the filter`,
@@ -35140,7 +35142,7 @@ Provides an SES receipt filter resource
 					Description: `(Required) Block or Allow`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -35157,7 +35159,7 @@ Provides an SES receipt rule resource
 				"receipt",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the rule`,
@@ -35319,7 +35321,7 @@ Provides an SES receipt rule resource
 					Description: `(Required) The position of the action in the receipt rule ## Import SES receipt rules can be imported using the ruleset name and rule name separated by ` + "`" + `:` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_receipt_rule.my_rule my_rule_set:my_rule ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -35337,13 +35339,13 @@ Provides an SES receipt rule set resource
 				"rule",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule_set_name",
 					Description: `(Required) The name of the rule set ## Import SES receipt rule sets can be imported using the rule set name. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_receipt_rule_set.my_rule_set my_rule_set_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -35359,7 +35361,7 @@ Provides a resource to create a SES template.
 				"ses",
 				"template",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email.`,
@@ -35381,7 +35383,7 @@ Provides a resource to create a SES template.
 					Description: `The name of the SES template ## Import SES templates can be imported using the template name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_template.MyTemplate MyTemplate ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the SES template ## Import SES templates can be imported using the template name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ses_template.MyTemplate MyTemplate ` + "`" + `` + "`" + `` + "`" + ``,
@@ -35404,7 +35406,7 @@ Provides a Step Function Activity resource
 				"sfn",
 				"activity",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the activity to create.`,
@@ -35426,7 +35428,7 @@ Provides a Step Function Activity resource
 					Description: `The date the activity was created. ## Import Activities can be imported using the ` + "`" + `arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sfn_activity.foo arn:aws:states:eu-west-1:123456789098:activity:bar ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Amazon Resource Name (ARN) that identifies the created activity.`,
@@ -35458,7 +35460,7 @@ Provides a Step Function State Machine resource
 				"state",
 				"machine",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the state machine.`,
@@ -35488,7 +35490,7 @@ Provides a Step Function State Machine resource
 					Description: `The current status of the state machine. Either "ACTIVE" or "DELETING". ## Import State Machines can be imported using the ` + "`" + `arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sfn_state_machine.foo arn:aws:states:eu-west-1:123456789098:stateMachine:bar ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the state machine.`,
@@ -35518,7 +35520,7 @@ The resource can be an Amazon CloudFront distribution, Elastic Load Balancing lo
 				"shield",
 				"protection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A friendly name for the Protection you are creating.`,
@@ -35532,7 +35534,7 @@ The resource can be an Amazon CloudFront distribution, Elastic Load Balancing lo
 					Description: `The unique identifier (ID) for the Protection object that is created. ## Import Shield protection resources can be imported by specifying their ID e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_shield_protection.foo ff9592dc-22f3-4e88-afa1-7b29fde9669a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique identifier (ID) for the Protection object that is created. ## Import Shield protection resources can be imported by specifying their ID e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_shield_protection.foo ff9592dc-22f3-4e88-afa1-7b29fde9669a ` + "`" + `` + "`" + `` + "`" + ``,
@@ -35553,7 +35555,7 @@ Provides a SimpleDB domain resource
 				"simpledb",
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SimpleDB domain ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
@@ -35563,7 +35565,7 @@ Provides a SimpleDB domain resource
 					Description: `The name of the SimpleDB domain ## Import SimpleDB Domains can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_simpledb_domain.users users ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the SimpleDB domain ## Import SimpleDB Domains can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_simpledb_domain.users users ` + "`" + `` + "`" + `` + "`" + ``,
@@ -35587,7 +35589,7 @@ Adds permission to create volumes off of a given EBS Snapshot.
 				"volume",
 				"permission",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `(required) A snapshot ID`,
@@ -35601,7 +35603,7 @@ Adds permission to create volumes off of a given EBS Snapshot.
 					Description: `A combination of "` + "`" + `snapshot_id` + "`" + `-` + "`" + `account_id` + "`" + `".`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A combination of "` + "`" + `snapshot_id` + "`" + `-` + "`" + `account_id` + "`" + `".`,
@@ -35623,7 +35625,7 @@ Provides an SNS platform application resource
 				"platform",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The friendly name for the SNS platform application`,
@@ -35677,7 +35679,7 @@ Provides an SNS platform application resource
 					Description: `The ARN of the SNS platform application [1]: http://docs.aws.amazon.com/sns/latest/dg/mobile-push-send-register.html [2]: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html ## Import SNS platform applications can be imported using the ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sns_platform_application.gcm_application arn:aws:sns:us-west-2:0123456789012:app/GCM/gcm_application ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the SNS platform application`,
@@ -35703,7 +35705,7 @@ Provides a way to set SNS SMS preferences.
 				"sms",
 				"preferences",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "monthly_spend_limit",
 					Description: `(Optional) The maximum amount in USD that you are willing to spend each month to send SMS messages.`,
@@ -35729,7 +35731,7 @@ Provides a way to set SNS SMS preferences.
 					Description: `(Optional) The name of the Amazon S3 bucket to receive daily SMS usage reports from Amazon SNS.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -35745,7 +35747,7 @@ Provides an SNS topic resource
 				"sns",
 				"topic",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The friendly name for the SNS topic. By default generated by Terraform.`,
@@ -35831,7 +35833,7 @@ Provides an SNS topic resource
 					Description: `The ARN of the SNS topic, as a more obvious property (clone of id) ## Import SNS Topics can be imported using the ` + "`" + `topic arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sns_topic.user_updates arn:aws:sns:us-west-2:0123456789012:my-topic ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the SNS topic`,
@@ -35859,7 +35861,7 @@ Provides an SNS topic policy resource
 				"topic",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `(Required) The ARN of the SNS topic`,
@@ -35869,7 +35871,7 @@ Provides an SNS topic policy resource
 					Description: `(Required) The fully-formed AWS policy as JSON. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](/docs/providers/aws/guides/iam-policy-documents.html).`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -35897,7 +35899,7 @@ probably be SQS queues.
 				"topic",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_arn",
 					Description: `(Required) The ARN of the SNS topic to subscribe to`,
@@ -35951,7 +35953,7 @@ probably be SQS queues.
 					Description: `The ARN of the subscription stored as a more user-friendly property ## Import SNS Topic Subscriptions can be imported using the ` + "`" + `subscription arn` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sns_topic_subscription.user_updates_sqs_target arn:aws:sns:us-west-2:0123456789012:my-topic:8a21d249-4329-4871-acc6-7be709c6ea7f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the subscription`,
@@ -35993,7 +35995,7 @@ This data feed is sent to an Amazon S3 bucket that you specify when you subscrib
 				"datafeed",
 				"subscription",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
 					Description: `(Required) The Amazon S3 bucket in which to store the Spot instance data feed.`,
@@ -36003,7 +36005,7 @@ This data feed is sent to an Amazon S3 bucket that you specify when you subscrib
 					Description: `(Optional) Path of folder inside bucket to place spot pricing data. ## Import A Spot Datafeed Subscription can be imported using the word ` + "`" + `spot-datafeed-subscription` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_spot_datafeed_subscription.mysubscription spot-datafeed-subscription ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -36022,7 +36024,7 @@ instances to be requested on the Spot market.
 				"fleet",
 				"request",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "iam_fleet_role",
 					Description: `(Required) Grants the Spot fleet permission to terminate Spot instances on your behalf when you cancel its Spot fleet request using CancelSpotFleetRequests or when the Spot fleet request expires, if you set terminateInstancesWithExpiration.`,
@@ -36100,7 +36102,7 @@ instances to be requested on the Spot market.
 					Description: `The state of the Spot fleet request.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Spot fleet request ID`,
@@ -36149,7 +36151,7 @@ for more information.
 				"instance",
 				"request",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "spot_price",
 					Description: `(Optional; Default: On-demand price) The maximum price to request on the spot market.`,
@@ -36223,7 +36225,7 @@ for more information.
 					Description: `The private IP address assigned to the instance`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Spot Instance Request ID. These attributes are exported, but they are expected to change over time and so should only be used for informational purposes, not for resource dependencies:`,
@@ -36266,7 +36268,7 @@ for more information.
 				"sqs",
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) This is the human-readable name of the queue. If omitted, Terraform will assign a random name.`,
@@ -36332,7 +36334,7 @@ for more information.
 					Description: `The ARN of the SQS queue ## Import SQS Queues can be imported using the ` + "`" + `queue url` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sqs_queue.public_queue https://queue.amazonaws.com/80398EXAMPLE/MyQueue ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The URL for the created Amazon SQS queue.`,
@@ -36359,7 +36361,7 @@ while referencing ARN of the queue within the policy.
 				"queue",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "queue_url",
 					Description: `(Required) The URL of the SQS Queue to which to attach the policy`,
@@ -36369,7 +36371,7 @@ while referencing ARN of the queue within the policy.
 					Description: `(Required) The JSON policy for the SQS queue. For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](/docs/providers/aws/guides/iam-policy-documents.html). ## Import SQS Queue Policies can be imported using the queue URL, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_sqs_queue_policy.test https://queue.amazonaws.com/0123456789012/myqueue ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -36385,7 +36387,7 @@ Registers an on-premises server or virtual machine with Amazon EC2 so that it ca
 				"ssm",
 				"activation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The default name of the registered managed instance.`,
@@ -36447,7 +36449,7 @@ Registers an on-premises server or virtual machine with Amazon EC2 so that it ca
 					Description: `The number of managed instances that are currently registered using this activation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The activation ID.`,
@@ -36500,7 +36502,7 @@ Associates an SSM Document to an instance or EC2 tag.
 				"ssm",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the SSM document to apply.`,
@@ -36574,7 +36576,7 @@ Associates an SSM Document to an instance or EC2 tag.
 					Description: `Additional parameters passed to the SSM document.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the SSM document to apply.`,
@@ -36607,7 +36609,7 @@ schema version you must recreate the resource.
 				"ssm",
 				"document",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the document.`,
@@ -36685,7 +36687,7 @@ schema version you must recreate the resource.
 					Description: `The AWS user accounts that should have access to the document. The account IDs can either be a group of account IDs or ` + "`" + `All` + "`" + `. ## Import SSM Documents can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_document.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_date",
 					Description: `The date the document was created.`,
@@ -36755,7 +36757,7 @@ Provides an SSM Maintenance Window resource
 				"maintenance",
 				"window",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the maintenance window.`,
@@ -36801,7 +36803,7 @@ Provides an SSM Maintenance Window resource
 					Description: `The ID of the maintenance window. ## Import SSM Maintenance Windows can be imported using the ` + "`" + `maintenance window id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_maintenance_window.imported-window mw-0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the maintenance window. ## Import SSM Maintenance Windows can be imported using the ` + "`" + `maintenance window id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_maintenance_window.imported-window mw-0123456789 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -36824,7 +36826,7 @@ Provides an SSM Maintenance Window Target resource
 				"window",
 				"target",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "window_id",
 					Description: `(Required) The Id of the maintenance window to register the target with.`,
@@ -36854,7 +36856,7 @@ Provides an SSM Maintenance Window Target resource
 					Description: `The ID of the maintenance window target.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the maintenance window target.`,
@@ -36877,7 +36879,7 @@ Provides an SSM Maintenance Window Task resource
 				"window",
 				"task",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "window_id",
 					Description: `(Required) The Id of the maintenance window to register the task with.`,
@@ -37055,7 +37057,7 @@ Provides an SSM Maintenance Window Task resource
 					Description: `The ID of the maintenance window task. ## Import AWS Maintenance Window Task can be imported using the ` + "`" + `window_id` + "`" + ` and ` + "`" + `window_task_id` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_ssm_maintenance_window_task.task <window_id>/<window_task_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the maintenance window task. ## Import AWS Maintenance Window Task can be imported using the ` + "`" + `window_id` + "`" + ` and ` + "`" + `window_task_id` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_ssm_maintenance_window_task.task <window_id>/<window_task_id> ` + "`" + `` + "`" + `` + "`" + ``,
@@ -37076,7 +37078,7 @@ Provides an SSM Parameter resource.
 				"ssm",
 				"parameter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the parameter. If the name contains a path (e.g. any forward slashes (` + "`" + `/` + "`" + `)), it must be fully qualified with a leading forward slash (` + "`" + `/` + "`" + `). For additional requirements and constraints, see the [AWS SSM User Guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html).`,
@@ -37138,7 +37140,7 @@ Provides an SSM Parameter resource.
 					Description: `The version of the parameter. ## Import SSM Parameters can be imported using the ` + "`" + `parameter store name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_parameter.my_param /my_path/my_paramname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `The ARN of the parameter.`,
@@ -37184,7 +37186,7 @@ of them is specified.
 				"patch",
 				"baseline",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the patch baseline.`,
@@ -37242,7 +37244,7 @@ of them is specified.
 					Description: `The ID of the patch baseline. ## Import SSM Patch Baselines can be imported by their baseline ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_patch_baseline.example pb-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the patch baseline. ## Import SSM Patch Baselines can be imported by their baseline ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_ssm_patch_baseline.example pb-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -37264,7 +37266,7 @@ Provides an SSM Patch Group resource
 				"patch",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "baseline_id",
 					Description: `(Required) The ID of the patch baseline to register the patch group with.`,
@@ -37278,7 +37280,7 @@ Provides an SSM Patch Group resource
 					Description: `The ID of the patch baseline.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the patch baseline.`,
@@ -37301,7 +37303,7 @@ Provides a SSM resource data sync.
 				"data",
 				"sync",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name for the configuration.`,
@@ -37331,7 +37333,7 @@ Provides a SSM resource data sync.
 					Description: `(Optional) A supported sync format. Only JsonSerDe is currently supported. Defaults to JsonSerDe. ## Import SSM resource data sync can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_ssm_resource_data_sync.example example-name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -37351,7 +37353,7 @@ Manages an AWS Storage Gateway cache.
 				"storagegateway",
 				"cache",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk_id",
 					Description: `(Required) Local disk identifier. For example, ` + "`" + `pci-0000:03:00.0-scsi-0:0:0:0` + "`" + `.`,
@@ -37365,7 +37367,7 @@ Manages an AWS Storage Gateway cache.
 					Description: `Combined gateway Amazon Resource Name (ARN) and local disk identifier. ## Import ` + "`" + `aws_storagegateway_cache` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN) and local disk identifier separated with a colon (` + "`" + `:` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_cache.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678:pci-0000:03:00.0-scsi-0:0:0:0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Combined gateway Amazon Resource Name (ARN) and local disk identifier. ## Import ` + "`" + `aws_storagegateway_cache` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN) and local disk identifier separated with a colon (` + "`" + `:` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_cache.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678:pci-0000:03:00.0-scsi-0:0:0:0 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -37394,7 +37396,7 @@ Manages an AWS Storage Gateway cached iSCSI volume.
 				"iscsi",
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gateway_arn",
 					Description: `(Required) The Amazon Resource Name (ARN) of the gateway.`,
@@ -37452,7 +37454,7 @@ Manages an AWS Storage Gateway cached iSCSI volume.
 					Description: `Volume ID, e.g. ` + "`" + `vol-12345678` + "`" + `. ## Import ` + "`" + `aws_storagegateway_cached_iscsi_volume` + "`" + ` can be imported by using the volume Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_cache.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Volume Amazon Resource Name (ARN), e.g. ` + "`" + `arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678/volume/vol-12345678` + "`" + `.`,
@@ -37504,7 +37506,7 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 				"gateway",
 				"storagegateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gateway_name",
 					Description: `(Required) Name of the gateway.`,
@@ -37570,7 +37572,7 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for gateway activation and connection to Storage Gateway. ## Import ` + "`" + `aws_storagegateway_gateway` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_gateway.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the gateway.`,
@@ -37607,7 +37609,7 @@ Manages an AWS Storage Gateway NFS File Share.
 				"file",
 				"share",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "client_list",
 					Description: `(Required) The list of clients that are allowed to access the file gateway. The list must contain either valid IP addresses or valid CIDR blocks. Set to ` + "`" + `["0.0.0.0/0"]` + "`" + ` to not limit access. Minimum 1 item. Maximum 100 items.`,
@@ -37705,7 +37707,7 @@ Manages an AWS Storage Gateway NFS File Share.
 					Description: `(Default ` + "`" + `10m` + "`" + `) How long to wait for file share deletion. ## Import ` + "`" + `aws_storagegateway_nfs_file_share` + "`" + ` can be imported by using the NFS File Share Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_nfs_file_share.example arn:aws:storagegateway:us-east-1:123456789012:share/share-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the NFS File Share.`,
@@ -37754,7 +37756,7 @@ Manages an AWS Storage Gateway SMB File Share.
 				"file",
 				"share",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gateway_arn",
 					Description: `(Required) Amazon Resource Name (ARN) of the file gateway.`,
@@ -37856,7 +37858,7 @@ Manages an AWS Storage Gateway SMB File Share.
 					Description: `(Default ` + "`" + `15m` + "`" + `) How long to wait for file share deletion. ## Import ` + "`" + `aws_storagegateway_smb_file_share` + "`" + ` can be imported by using the SMB File Share Amazon Resource Name (ARN), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_smb_file_share.example arn:aws:storagegateway:us-east-1:123456789012:share/share-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Amazon Resource Name (ARN) of the SMB File Share.`,
@@ -37906,7 +37908,7 @@ Manages an AWS Storage Gateway upload buffer.
 				"upload",
 				"buffer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk_id",
 					Description: `(Required) Local disk identifier. For example, ` + "`" + `pci-0000:03:00.0-scsi-0:0:0:0` + "`" + `.`,
@@ -37920,7 +37922,7 @@ Manages an AWS Storage Gateway upload buffer.
 					Description: `Combined gateway Amazon Resource Name (ARN) and local disk identifier. ## Import ` + "`" + `aws_storagegateway_upload_buffer` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN) and local disk identifier separated with a colon (` + "`" + `:` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_upload_buffer.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678:pci-0000:03:00.0-scsi-0:0:0:0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Combined gateway Amazon Resource Name (ARN) and local disk identifier. ## Import ` + "`" + `aws_storagegateway_upload_buffer` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN) and local disk identifier separated with a colon (` + "`" + `:` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_upload_buffer.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678:pci-0000:03:00.0-scsi-0:0:0:0 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -37945,7 +37947,7 @@ Manages an AWS Storage Gateway working storage.
 				"storagegateway",
 				"working",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disk_id",
 					Description: `(Required) Local disk identifier. For example, ` + "`" + `pci-0000:03:00.0-scsi-0:0:0:0` + "`" + `.`,
@@ -37959,7 +37961,7 @@ Manages an AWS Storage Gateway working storage.
 					Description: `Combined gateway Amazon Resource Name (ARN) and local disk identifier. ## Import ` + "`" + `aws_storagegateway_working_storage` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN) and local disk identifier separated with a colon (` + "`" + `:` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_working_storage.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678:pci-0000:03:00.0-scsi-0:0:0:0 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Combined gateway Amazon Resource Name (ARN) and local disk identifier. ## Import ` + "`" + `aws_storagegateway_working_storage` + "`" + ` can be imported by using the gateway Amazon Resource Name (ARN) and local disk identifier separated with a colon (` + "`" + `:` + "`" + `), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_storagegateway_working_storage.example arn:aws:storagegateway:us-east-1:123456789012:gateway/sgw-12345678:pci-0000:03:00.0-scsi-0:0:0:0 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -37980,7 +37982,7 @@ Provides an VPC subnet resource.
 				"vpc",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) The AZ for the subnet.`,
@@ -38030,7 +38032,7 @@ Provides an VPC subnet resource.
 					Description: `The ID of the AWS account that owns the subnet. ## Import Subnets can be imported using the ` + "`" + `subnet id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_subnet.public_subnet subnet-9d4a7b6c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the subnet`,
@@ -38063,7 +38065,7 @@ Provides an SWF Domain resource.
 				"swf",
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional, Forces new resource) The name of the domain. If omitted, Terraform will assign a random, unique name.`,
@@ -38085,7 +38087,7 @@ Provides an SWF Domain resource.
 					Description: `The name of the domain. ## Import SWF Domains can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_swf_domain.foo test-domain ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the domain. ## Import SWF Domains can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_swf_domain.foo test-domain ` + "`" + `` + "`" + `` + "`" + ``,
@@ -38159,7 +38161,7 @@ resource "aws_transfer_server" "foo" {
 				"transfer",
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "endpoint_details",
 					Description: `(Optional) The virtual private cloud (VPC) endpoint settings that you want to configure for your SFTP server. Fields documented below.`,
@@ -38205,7 +38207,7 @@ resource "aws_transfer_server" "foo" {
 					Description: `The endpoint of the Transfer Server (e.g. ` + "`" + `s-12345678.server.transfer.REGION.amazonaws.com` + "`" + `) ## Import Transfer Servers can be imported using the ` + "`" + `server id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_transfer_server.bar s-12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of Transfer Server`,
@@ -38298,7 +38300,7 @@ resource "aws_transfer_ssh_key" "foo" {
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_id",
 					Description: `(Requirement) The Server ID of the Transfer Server (e.g. ` + "`" + `s-12345678` + "`" + `)`,
@@ -38312,7 +38314,7 @@ resource "aws_transfer_ssh_key" "foo" {
 					Description: `(Requirement) The public key portion of an SSH key pair. ## Import Transfer SSH Public Key can be imported using the ` + "`" + `server_id` + "`" + ` and ` + "`" + `user_name` + "`" + ` and ` + "`" + `ssh_public_key_id` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_transfer_ssh_key.bar s-12345678/test-username/key-12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -38385,7 +38387,7 @@ resource "aws_transfer_user" "foo" {
 				"transfer",
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_id",
 					Description: `(Requirement) The Server ID of the Transfer Server (e.g. ` + "`" + `s-12345678` + "`" + `)`,
@@ -38415,7 +38417,7 @@ resource "aws_transfer_user" "foo" {
 					Description: `Amazon Resource Name (ARN) of Transfer User ## Import Transfer Users can be imported using the ` + "`" + `server_id` + "`" + ` and ` + "`" + `user_name` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_transfer_user.bar s-12345678/test-username ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of Transfer User ## Import Transfer Users can be imported using the ` + "`" + `server_id` + "`" + ` and ` + "`" + `user_name` + "`" + ` separated by ` + "`" + `/` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_transfer_user.bar s-12345678/test-username ` + "`" + `` + "`" + `` + "`" + ``,
@@ -38440,7 +38442,7 @@ detach volumes from AWS Instances.
 				"volume",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_name",
 					Description: `(Required) The device name to expose to the instance (for example, ` + "`" + `/dev/sdh` + "`" + ` or ` + "`" + `xvdh` + "`" + `). See [Device Naming on Linux Instances][1] and [Device Naming on Windows Instances][2] for more information.`,
@@ -38474,7 +38476,7 @@ detach volumes from AWS Instances.
 					Description: `ID of the Volume [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html#available-ec2-device-names [2]: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/device_naming.html#available-ec2-device-names [3]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "device_name",
 					Description: `The device name exposed to the instance`,
@@ -38502,7 +38504,7 @@ Provides a VPC resource.
 			Keywords: []string{
 				"vpc",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Required) The CIDR block for the VPC.`,
@@ -38592,7 +38594,7 @@ Provides a VPC resource.
 					Description: `The ID of the AWS account that owns the VPC. [1]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html ## Import VPCs can be imported using the ` + "`" + `vpc id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc.test_vpc vpc-a01106c2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of VPC`,
@@ -38666,7 +38668,7 @@ Provides a VPC DHCP Options resource.
 				"dhcp",
 				"options",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Optional) the suffix domain name to use by default when resolving non Fully Qualified Domain Names. In other words, this is what ends up being the ` + "`" + `search` + "`" + ` value in the ` + "`" + `/etc/resolv.conf` + "`" + ` file.`,
@@ -38700,7 +38702,7 @@ Provides a VPC DHCP Options resource.
 					Description: `The ID of the AWS account that owns the DHCP options set. You can find more technical documentation about DHCP Options Set in the official [AWS User Guide](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html). ## Import VPC DHCP Options can be imported using the ` + "`" + `dhcp options id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc_dhcp_options.my_options dopt-d9070ebb ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the DHCP Options Set.`,
@@ -38727,7 +38729,7 @@ Provides a VPC DHCP Options Association resource.
 				"options",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The ID of the VPC to which we would like to associate a DHCP Options Set.`,
@@ -38741,7 +38743,7 @@ Provides a VPC DHCP Options Association resource.
 					Description: `The ID of the DHCP Options Set Association.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the DHCP Options Set Association.`,
@@ -38769,7 +38771,7 @@ Doing so will cause a conflict of associations and will overwrite the associatio
 				"vpc",
 				"endpoint",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `(Required) The service name, in the form ` + "`" + `com.amazonaws.region.service` + "`" + ` for AWS services.`,
@@ -38851,7 +38853,7 @@ Doing so will cause a conflict of associations and will overwrite the associatio
 					Description: `The ID of the private hosted zone. ## Import VPC Endpoints can be imported using the ` + "`" + `vpc endpoint id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc_endpoint.endpoint1 vpce-3ecf2a57 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC endpoint.`,
@@ -38911,7 +38913,7 @@ Connection notifications notify subscribers of VPC Endpoint events.
 				"connection",
 				"notification",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_endpoint_service_id",
 					Description: `(Optional) The ID of the VPC Endpoint Service to receive notifications for.`,
@@ -38941,7 +38943,7 @@ Connection notifications notify subscribers of VPC Endpoint events.
 					Description: `The type of notification. ## Import VPC Endpoint connection notifications can be imported using the ` + "`" + `VPC endpoint connection notification id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc_endpoint_connection_notification.foo vpce-nfn-09e6ed3b4efba2263 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC connection notification.`,
@@ -38973,7 +38975,7 @@ Manages a VPC Endpoint Route Table Association
 				"table",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_table_id",
 					Description: `(Required) Identifier of the EC2 Route Table to be associated with the VPC Endpoint.`,
@@ -38987,7 +38989,7 @@ Manages a VPC Endpoint Route Table Association
 					Description: `A hash of the EC2 Route Table and VPC Endpoint identifiers.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `A hash of the EC2 Route Table and VPC Endpoint identifiers.`,
@@ -39016,7 +39018,7 @@ and will overwrite the association.
 				"endpoint",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "acceptance_required",
 					Description: `(Required) Whether or not VPC endpoint connection requests to the service must be accepted by the service owner - ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
@@ -39066,7 +39068,7 @@ and will overwrite the association.
 					Description: `The state of the VPC endpoint service. ## Import VPC Endpoint Services can be imported using the ` + "`" + `VPC endpoint service id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc_endpoint_service.foo vpce-svc-0f97a19d3fa8220bc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC endpoint service.`,
@@ -39124,7 +39126,7 @@ and will overwrite the association.
 				"allowed",
 				"principal",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_endpoint_service_id",
 					Description: `(Required) The ID of the VPC endpoint service to allow permission.`,
@@ -39138,7 +39140,7 @@ and will overwrite the association.
 					Description: `The ID of the association.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the association.`,
@@ -39167,7 +39169,7 @@ Association resource. Doing so will cause a conflict of associations and will ov
 				"subnet",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_endpoint_id",
 					Description: `(Required) The ID of the VPC endpoint with which the subnet will be associated.`,
@@ -39181,7 +39183,7 @@ Association resource. Doing so will cause a conflict of associations and will ov
 					Description: `The ID of the association.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the association.`,
@@ -39208,7 +39210,7 @@ The ` + "`" + `aws_vpc_ipv4_cidr_block_association` + "`" + ` resource allows fu
 				"block",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Required) The additional IPv4 CIDR block to associate with the VPC.`,
@@ -39222,7 +39224,7 @@ The ` + "`" + `aws_vpc_ipv4_cidr_block_association` + "`" + ` resource allows fu
 					Description: `The ID of the VPC CIDR association ## Import ` + "`" + `aws_vpc_ipv4_cidr_block_association` + "`" + ` can be imported by using the VPC CIDR Association ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc_ipv4_cidr_block_association.example vpc-cidr-assoc-xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC CIDR association ## Import ` + "`" + `aws_vpc_ipv4_cidr_block_association` + "`" + ` can be imported by using the VPC CIDR Association ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc_ipv4_cidr_block_association.example vpc-cidr-assoc-xxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
@@ -39256,7 +39258,7 @@ connection and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + `
 				"peering",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "peer_owner_id",
 					Description: `(Optional) The AWS account ID of the owner of the peer VPC. Defaults to the account ID the [AWS provider][1] is currently connected to.`,
@@ -39302,7 +39304,7 @@ connection and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + `
 					Description: `The status of the VPC Peering Connection request. ## Notes If both VPCs are not in the same AWS account do not enable the ` + "`" + `auto_accept` + "`" + ` attribute. The accepter can manage its side of the connection using the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + ` resource or accept the connection manually using the AWS Management Console, AWS CLI, through SDKs, etc. ## Import VPC Peering resources can be imported using the ` + "`" + `vpc peering id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import aws_vpc_peering_connection.test_connection pcx-111aaa111 ` + "`" + `` + "`" + `` + "`" + ` [1]: /docs/providers/aws/index.html`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC Peering Connection.`,
@@ -39336,7 +39338,7 @@ connection into management.
 				"connection",
 				"accepter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_peering_connection_id",
 					Description: `(Required) The VPC Peering Connection ID to manage.`,
@@ -39398,7 +39400,7 @@ connection into management.
 					Description: `The ID of the VPC Peering Connection.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC Peering Connection.`,
@@ -39590,7 +39592,7 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 				"connection",
 				"options",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_peering_connection_id",
 					Description: `(Required) The ID of the requester VPC peering connection.`,
@@ -39612,7 +39614,7 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 					Description: `The ID of the VPC Peering Connection Options. ## Import VPC Peering Connection Options can be imported using the ` + "`" + `vpc peering id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc_peering_connection_options.foo pcx-111aaa111 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPC Peering Connection Options. ## Import VPC Peering Connection Options can be imported using the ` + "`" + `vpc peering id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpc_peering_connection_options.foo pcx-111aaa111 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -39640,7 +39642,7 @@ Manages an EC2 VPN connection. These objects can be connected to customer gatewa
 				"vpn",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "customer_gateway_id",
 					Description: `(Required) The ID of the customer gateway.`,
@@ -39762,7 +39764,7 @@ Manages an EC2 VPN connection. These objects can be connected to customer gatewa
 					Description: `The ID of the virtual private gateway to which the connection is attached. ## Import VPN Connections can be imported using the ` + "`" + `vpn connection id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpn_connection.testvpnconnection vpn-40f41529 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The amazon-assigned ID of the VPN connection.`,
@@ -39861,7 +39863,7 @@ Provides a static route between a VPN connection and a customer gateway.
 				"connection",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "destination_cidr_block",
 					Description: `(Required) The CIDR block associated with the local subnet of the customer network.`,
@@ -39879,7 +39881,7 @@ Provides a static route between a VPN connection and a customer gateway.
 					Description: `The ID of the VPN connection.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "destination_cidr_block",
 					Description: `The CIDR block associated with the local subnet of the customer network.`,
@@ -39905,7 +39907,7 @@ Provides a resource to create a VPC VPN Gateway.
 				"vpn",
 				"gateway",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Optional) The VPC ID to create in.`,
@@ -39927,7 +39929,7 @@ Provides a resource to create a VPC VPN Gateway.
 					Description: `The ID of the VPN Gateway. ## Import VPN Gateways can be imported using the ` + "`" + `vpn gateway id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpn_gateway.testvpngateway vgw-9a4cacf3 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the VPN Gateway. ## Import VPN Gateways can be imported using the ` + "`" + `vpn gateway id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_vpn_gateway.testvpngateway vgw-9a4cacf3 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -39955,7 +39957,7 @@ to an existing VPC by setting the [` + "`" + `vpc_id` + "`" + `](vpn_gateway.htm
 				"gateway",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The ID of the VPC.`,
@@ -39973,7 +39975,7 @@ to an existing VPC by setting the [` + "`" + `vpc_id` + "`" + `](vpn_gateway.htm
 					Description: `The ID of the Virtual Private Gateway. ## Import This resource does not support importing.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `The ID of the VPC that Virtual Private Gateway is attached to.`,
@@ -40005,7 +40007,7 @@ propagation not explicitly listed in its value will be removed.
 				"route",
 				"propagation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpn_gateway_id",
 					Description: `The id of the ` + "`" + `aws_vpn_gateway` + "`" + ` to propagate routes from.`,
@@ -40015,7 +40017,7 @@ propagation not explicitly listed in its value will be removed.
 					Description: `The id of the ` + "`" + `aws_route_table` + "`" + ` to propagate routes into. ## Attributes Reference This resource does not export any additional attributes.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -40033,7 +40035,7 @@ Provides a WAF Byte Match Set Resource
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the Byte Match Set.`,
@@ -40071,7 +40073,7 @@ Provides a WAF Byte Match Set Resource
 					Description: `The ID of the WAF Byte Match Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Byte Match Set.`,
@@ -40094,7 +40096,7 @@ Provides a WAF Geo Match Set Resource
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the GeoMatchSet.`,
@@ -40116,7 +40118,7 @@ Provides a WAF Geo Match Set Resource
 					Description: `The ID of the WAF GeoMatchSet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF GeoMatchSet.`,
@@ -40137,7 +40139,7 @@ Provides a WAF IPSet Resource
 				"waf",
 				"ipset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the IPSet.`,
@@ -40163,7 +40165,7 @@ Provides a WAF IPSet Resource
 					Description: `The ARN of the WAF IPSet. ## Import WAF IPSets can be imported using their ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_waf_ipset.example a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF IPSet.`,
@@ -40190,7 +40192,7 @@ Provides a WAF Rate Based Rule Resource
 				"based",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metric_name",
 					Description: `(Required) The name or description for the Amazon CloudWatch metric of this rule.`,
@@ -40228,7 +40230,7 @@ Provides a WAF Rate Based Rule Resource
 					Description: `The ID of the WAF rule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF rule.`,
@@ -40251,7 +40253,7 @@ Provides a WAF Regex Match Set Resource
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the Regex Match Set.`,
@@ -40285,7 +40287,7 @@ Provides a WAF Regex Match Set Resource
 					Description: `The ID of the WAF Regex Match Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regex Match Set.`,
@@ -40308,7 +40310,7 @@ Provides a WAF Regex Pattern Set Resource
 				"pattern",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the Regex Pattern Set.`,
@@ -40322,7 +40324,7 @@ Provides a WAF Regex Pattern Set Resource
 					Description: `The ID of the WAF Regex Pattern Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regex Pattern Set.`,
@@ -40343,7 +40345,7 @@ Provides a WAF Rule Resource
 				"waf",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metric_name",
 					Description: `(Required) The name or description for the Amazon CloudWatch metric of this rule. The name can contain only alphanumeric characters (A-Z, a-z, 0-9); the name can't contain whitespace.`,
@@ -40373,7 +40375,7 @@ Provides a WAF Rule Resource
 					Description: `The ID of the WAF rule. ## Import WAF rules can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_waf_rule.example a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF rule. ## Import WAF rules can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_waf_rule.example a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
@@ -40395,7 +40397,7 @@ Provides a WAF Rule Group Resource
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A friendly name of the rule group`,
@@ -40433,7 +40435,7 @@ Provides a WAF Rule Group Resource
 					Description: `The ID of the WAF rule group. ## Import WAF Rule Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_waf_rule_group.example a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF rule group. ## Import WAF Rule Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_waf_rule_group.example a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
@@ -40456,7 +40458,7 @@ Provides a WAF Size Constraint Set Resource
 				"constraint",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the Size Constraint Set.`,
@@ -40494,7 +40496,7 @@ Provides a WAF Size Constraint Set Resource
 					Description: `The ID of the WAF Size Constraint Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Size Constraint Set.`,
@@ -40518,7 +40520,7 @@ Provides a WAF SQL Injection Match Set Resource
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the SQL Injection Match Set.`,
@@ -40548,7 +40550,7 @@ Provides a WAF SQL Injection Match Set Resource
 					Description: `The ID of the WAF SQL Injection Match Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF SQL Injection Match Set.`,
@@ -40570,7 +40572,7 @@ Provides a WAF Web ACL Resource
 				"web",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_action",
 					Description: `(Required) Configuration block with action that you want AWS WAF to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL. Detailed below.`,
@@ -40648,7 +40650,7 @@ Provides a WAF Web ACL Resource
 					Description: `The ID of the WAF WebACL. ## Import WAF Web ACL can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_waf_web_acl.main 0c8e583e-18f3-4c13-9e2a-67c4805d2f94 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF WebACL. ## Import WAF Web ACL can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_waf_web_acl.main 0c8e583e-18f3-4c13-9e2a-67c4805d2f94 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -40671,7 +40673,7 @@ Provides a WAF XSS Match Set Resource
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the SizeConstraintSet.`,
@@ -40701,7 +40703,7 @@ Provides a WAF XSS Match Set Resource
 					Description: `The ID of the WAF XssMatchSet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF XssMatchSet.`,
@@ -40726,7 +40728,7 @@ Provides a WAF Regional Byte Match Set Resource for use with Application Load Ba
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the ByteMatchSet.`,
@@ -40764,7 +40766,7 @@ Provides a WAF Regional Byte Match Set Resource for use with Application Load Ba
 					Description: `The ID of the WAF ByteMatchSet. ## Import WAF Regional Byte Match Set can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafregional_byte_match_set.byte_set a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF ByteMatchSet. ## Import WAF Regional Byte Match Set can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafregional_byte_match_set.byte_set a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
@@ -40789,7 +40791,7 @@ Provides a WAF Regional Geo Match Set Resource
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the Geo Match Set.`,
@@ -40811,7 +40813,7 @@ Provides a WAF Regional Geo Match Set Resource
 					Description: `The ID of the WAF Regional Geo Match Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional Geo Match Set.`,
@@ -40834,7 +40836,7 @@ Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 				"wafregional",
 				"ipset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the IPSet.`,
@@ -40860,7 +40862,7 @@ Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 					Description: `The ARN of the WAF IPSet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF IPSet.`,
@@ -40889,7 +40891,7 @@ Provides a WAF Rate Based Rule Resource
 				"based",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metric_name",
 					Description: `(Required) The name or description for the Amazon CloudWatch metric of this rule.`,
@@ -40927,7 +40929,7 @@ Provides a WAF Rate Based Rule Resource
 					Description: `The ID of the WAF Regional rate based rule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional rate based rule.`,
@@ -40952,7 +40954,7 @@ Provides a WAF Regional Regex Match Set Resource
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the Regex Match Set.`,
@@ -40986,7 +40988,7 @@ Provides a WAF Regional Regex Match Set Resource
 					Description: `The ID of the WAF Regional Regex Match Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional Regex Match Set.`,
@@ -41011,7 +41013,7 @@ Provides a WAF Regional Regex Pattern Set Resource
 				"pattern",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the Regex Pattern Set.`,
@@ -41025,7 +41027,7 @@ Provides a WAF Regional Regex Pattern Set Resource
 					Description: `The ID of the WAF Regional Regex Pattern Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional Regex Pattern Set.`,
@@ -41048,7 +41050,7 @@ Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 				"wafregional",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the rule.`,
@@ -41078,7 +41080,7 @@ Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 					Description: `The ID of the WAF Regional Rule. ## Import WAF Regional Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafregional_rule.wafrule a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional Rule. ## Import WAF Regional Rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafregional_rule.wafrule a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
@@ -41102,7 +41104,7 @@ Provides a WAF Regional Rule Group Resource
 				"rule",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A friendly name of the rule group`,
@@ -41140,7 +41142,7 @@ Provides a WAF Regional Rule Group Resource
 					Description: `The ID of the WAF Regional Rule Group. ## Import WAF Regional Rule Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafregional_rule_group.example a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Regional Rule Group. ## Import WAF Regional Rule Group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafregional_rule_group.example a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
@@ -41165,7 +41167,7 @@ Provides a WAF Regional Size Constraint Set Resource for use with Application Lo
 				"constraint",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the Size Constraint Set.`,
@@ -41203,7 +41205,7 @@ Provides a WAF Regional Size Constraint Set Resource for use with Application Lo
 					Description: `The ID of the WAF Size Constraint Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF Size Constraint Set.`,
@@ -41229,7 +41231,7 @@ Provides a WAF Regional SQL Injection Match Set Resource for use with Applicatio
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name or description of the SizeConstraintSet.`,
@@ -41259,7 +41261,7 @@ Provides a WAF Regional SQL Injection Match Set Resource for use with Applicatio
 					Description: `The ID of the WAF SqlInjectionMatchSet.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF SqlInjectionMatchSet.`,
@@ -41283,7 +41285,7 @@ Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
 				"web",
 				"acl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "default_action",
 					Description: `(Required) The action that you want AWS WAF Regional to take when a request doesn't match the criteria in any of the rules that are associated with the web ACL.`,
@@ -41361,7 +41363,7 @@ Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
 					Description: `The ID of the WAF Regional WebACL. ## Import WAF Regional Web ACL can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_wafregional_web_acl.wafacl a1b2c3d4-d5f6-7777-8888-9999aaaabbbbcccc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arn",
 					Description: `Amazon Resource Name (ARN) of the WAF Regional WebACL.`,
@@ -41392,7 +41394,7 @@ Manages an association with WAF Regional Web ACL.
 				"acl",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "web_acl_id",
 					Description: `(Required) The ID of the WAF Regional WebACL to create an association.`,
@@ -41406,7 +41408,7 @@ Manages an association with WAF Regional Web ACL.
 					Description: `The ID of the association`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the association`,
@@ -41431,7 +41433,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 				"match",
 				"set",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the set`,
@@ -41461,7 +41463,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 					Description: `The ID of the Regional WAF XSS Match Set.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Regional WAF XSS Match Set.`,
@@ -41480,7 +41482,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 				"worklink",
 				"fleet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A region-unique name for the AMI.`,
@@ -41550,7 +41552,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 					Description: `The time that the fleet was last updated. ## Import WorkLink can be imported using the ARN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_worklink_fleet.test arn:aws:worklink::123456789012:fleet/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ARN of the created WorkLink Fleet.`,
@@ -41588,7 +41590,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 				"authority",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "fleet_arn",
 					Description: `(Required, ForceNew) The ARN of the fleet.`,
@@ -41606,7 +41608,7 @@ Provides a WAF Regional XSS Match Set Resource for use with Application Load Bal
 					Description: `A unique identifier for the Certificate Authority. ## Import WorkLink Website Certificate Authority can be imported using ` + "`" + `FLEET-ARN,WEBSITE-CA-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_worklink_website_certificate_authority_association.example arn:aws:worklink::123456789012:fleet/example,abcdefghijk ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "website_ca_id",
 					Description: `A unique identifier for the Certificate Authority. ## Import WorkLink Website Certificate Authority can be imported using ` + "`" + `FLEET-ARN,WEBSITE-CA-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_worklink_website_certificate_authority_association.example arn:aws:worklink::123456789012:fleet/example,abcdefghijk ` + "`" + `` + "`" + `` + "`" + ``,
@@ -41628,7 +41630,7 @@ Creates and manages an AWS XRay Sampling Rule.
 				"sampling",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule_name",
 					Description: `(Required) The name of the sampling rule.`,
@@ -41686,7 +41688,7 @@ Creates and manages an AWS XRay Sampling Rule.
 					Description: `The ARN of the sampling rule. ## Import XRay Sampling Rules can be imported using the name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import aws_xray_sampling_rule.example example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The name of the sampling rule.`,
@@ -42214,10 +42216,10 @@ Creates and manages an AWS XRay Sampling Rule.
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

@@ -1,11 +1,13 @@
-package aws
+package cobbler
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"distro",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "arch",
 					Description: `(Required) The architecture of the distro. Valid options are: i386, x86_64, ia64, ppc, ppc64, s390, arm.`,
@@ -82,7 +84,7 @@ var (
 					Description: `(Optional) File mappings for built-in config management. ## Attributes Reference All of the above Optional attributes are also exported. ## Notes The path to the ` + "`" + `kernel` + "`" + ` and ` + "`" + `initrd` + "`" + ` files must exist before creating a Distro. Usually this involves running ` + "`" + `cobbler import ...` + "`" + ` prior to creating the Distro.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -94,7 +96,7 @@ var (
 				"kickstart",
 				"file",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "body",
 					Description: `(Required) The body of the kickstart file.`,
@@ -104,7 +106,7 @@ var (
 					Description: `(Required) The name of the kickstart file. This must be the full path, including ` + "`" + `/var/lib/cobbler/kickstarts` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -115,7 +117,7 @@ var (
 			Keywords: []string{
 				"profile",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_files",
 					Description: `(Optional) Files copied into tftpboot beyond the kernel/initrd.`,
@@ -245,7 +247,7 @@ var (
 					Description: `(Optional) The virtual machine disk driver. ## Attributes Reference All of the above Optional attributes are also exported.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -256,7 +258,7 @@ var (
 			Keywords: []string{
 				"repo",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "apt_components",
 					Description: `(Optional) List of Apt components such as main, restricted, universe. Applicable to apt breeds only.`,
@@ -314,7 +316,7 @@ var (
 					Description: `(Optional) List of specific RPMs to mirror. ## Attributes Reference All of the above Optional attributes are also exported.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -325,7 +327,7 @@ var (
 			Keywords: []string{
 				"snippet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "body",
 					Description: `(Required) The body of the snippet.`,
@@ -335,7 +337,7 @@ var (
 					Description: `(Required) The name of the snippet. This must be the full path, including ` + "`" + `/var/lib/cobbler/snippets` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -346,7 +348,7 @@ var (
 			Keywords: []string{
 				"system",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "boot_files",
 					Description: `(Optional) TFTP boot files copied into tftpboot.`,
@@ -600,7 +602,7 @@ var (
 					Description: `(Optional) The virtual bridge to attach to. ## Attribute Reference All optional attributes listed above are also exported.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -615,10 +617,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

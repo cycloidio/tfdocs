@@ -1,11 +1,13 @@
-package aws
+package logicmonitor
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,7 +16,7 @@ var (
 			ShortDescription: `Use this datasource to get the ID of an available collector.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `(Optional) The number of results to display. Max is 1000. Default is 50`,
@@ -44,7 +46,7 @@ var (
 					Description: `(Required if using filters) The value of the filtered property.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -53,7 +55,7 @@ var (
 			ShortDescription: `Use this datasource to get the ID of an available device group.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `(Optional) The number of results to display. Max is 1000. Default is 50`,
@@ -91,21 +93,21 @@ var (
 					Description: `(Required if using filters and custom properties) The value of the filtered custom property.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"logicmonitor_collectors":   0,
 		"logicmonitor_device_group": 1,
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

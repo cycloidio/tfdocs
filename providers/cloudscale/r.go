@@ -1,11 +1,13 @@
-package aws
+package cloudscale
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"floating",
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server",
 					Description: `(Required) Assign the Floating IP to this server (UUID).`,
@@ -51,7 +53,7 @@ var (
 					Description: `The IP address of the server that your Floating IP is currently assigned to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "href",
 					Description: `The cloudscale.ch API URL of the current resource.`,
@@ -75,7 +77,7 @@ var (
 			Keywords: []string{
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the new server. The name has to be a valid host name or a fully qualified domain name (FQDN).`,
@@ -205,7 +207,7 @@ var (
 					Description: `The IP version, either ` + "`" + `4` + "`" + ` or ` + "`" + `6` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The UUID of this server.`,
@@ -294,7 +296,7 @@ var (
 				"server",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the new server group.`,
@@ -308,7 +310,7 @@ var (
 					Description: `The cloudscale.ch API URL of the current resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "href",
 					Description: `The cloudscale.ch API URL of the current resource.`,
@@ -324,7 +326,7 @@ var (
 			Keywords: []string{
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the new volume.`,
@@ -346,7 +348,7 @@ var (
 					Description: `The cloudscale.ch API URL of the current resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "href",
 					Description: `The cloudscale.ch API URL of the current resource.`,
@@ -364,10 +366,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

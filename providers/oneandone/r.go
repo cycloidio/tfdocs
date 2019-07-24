@@ -1,11 +1,13 @@
-package aws
+package oneandone
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"baremetal",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) Location of desired 1and1 datacenter. Can be ` + "`" + `DE` + "`" + `, ` + "`" + `GB` + "`" + `, ` + "`" + `US` + "`" + ` or ` + "`" + `ES` + "`" + ``,
@@ -70,7 +72,7 @@ var (
 					Description: `(Computed) The attached firewall policy`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -82,7 +84,7 @@ var (
 				"block",
 				"storage",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) Location of desired 1and1 datacenter, where the block storage will be created. Can be ` + "`" + `DE` + "`" + `, ` + "`" + `GB` + "`" + `, ` + "`" + `US` + "`" + ` or ` + "`" + `ES` + "`" + ``,
@@ -104,7 +106,7 @@ var (
 					Description: `(Required) Size of the block storage (` + "`" + `min: 20, max: 500, multipleOf: 10` + "`" + `)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -116,7 +118,7 @@ var (
 				"firewall",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description for the VPN`,
@@ -142,7 +144,7 @@ var (
 					Description: `(Optional) Only traffic directed to the respective IP address`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -153,7 +155,7 @@ var (
 			Keywords: []string{
 				"loadbalancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the load balancer.`,
@@ -211,7 +213,7 @@ var (
 					Description: `(Required)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -223,7 +225,7 @@ var (
 				"monitoring",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the VPN.`,
@@ -265,7 +267,7 @@ var (
 					Description: `(Required) Condition for the alert to be issued.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -277,7 +279,7 @@ var (
 				"private",
 				"network",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) Location of desired 1and1 datacenter. Can be ` + "`" + `DE` + "`" + `, ` + "`" + `GB` + "`" + `, ` + "`" + `US` + "`" + ` or ` + "`" + `ES` + "`" + `.`,
@@ -299,7 +301,7 @@ var (
 					Description: `(Optional) Subnet mask for the private network`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -311,7 +313,7 @@ var (
 				"public",
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_type",
 					Description: `(Required) IP type. Can be ` + "`" + `IPV4` + "`" + ` or ` + "`" + `IPV6` + "`" + ``,
@@ -329,7 +331,7 @@ var (
 					Description: `(Computed) The IP address.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -340,7 +342,7 @@ var (
 			Keywords: []string{
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) Location of desired 1and1 datacenter. Can be ` + "`" + `DE` + "`" + `, ` + "`" + `GB` + "`" + `, ` + "`" + `US` + "`" + ` or ` + "`" + `ES` + "`" + ``,
@@ -402,7 +404,7 @@ var (
 					Description: `(Computed) The attached firewall policy`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -414,7 +416,7 @@ var (
 				"shared",
 				"storage",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the storage`,
@@ -440,7 +442,7 @@ var (
 					Description: `(Required) Access rights to be assigned to the server. Can be ` + "`" + `RW` + "`" + ` or ` + "`" + `R` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -452,7 +454,7 @@ var (
 				"ssh",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description for the ssh key`,
@@ -466,7 +468,7 @@ var (
 					Description: `(Optional) Public key to import. If not given, new SSH key pair will be created and the private key is returned in the response`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -477,7 +479,7 @@ var (
 			Keywords: []string{
 				"vpn",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) Location of desired 1and1 datacenter. Can be ` + "`" + `DE` + "`" + `, ` + "`" + `GB` + "`" + `, ` + "`" + `US` + "`" + ` or ` + "`" + `ES` + "`" + `.`,
@@ -499,7 +501,7 @@ var (
 					Description: `(Optional)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -519,10 +521,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

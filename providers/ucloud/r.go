@@ -1,11 +1,13 @@
-package aws
+package ucloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"db",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) Availability zone where database instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
@@ -111,7 +113,7 @@ var (
 					Description: `The modification time of database, formatted by RFC3339 time string. ## Import DB Instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_db_instance.example udbha-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Specifies the status of database, possible values are: ` + "`" + `Init` + "`" + `, ` + "`" + `Fail` + "`" + `, ` + "`" + `Starting` + "`" + `, ` + "`" + `Running` + "`" + `, ` + "`" + `Shutdown` + "`" + `, ` + "`" + `Shutoff` + "`" + `, ` + "`" + `Delete` + "`" + `, ` + "`" + `Upgrading` + "`" + `, ` + "`" + `Promoting` + "`" + `, ` + "`" + `Recovering` + "`" + ` and ` + "`" + `Recover fail` + "`" + `.`,
@@ -144,7 +146,7 @@ var (
 				"uhost",
 				"disk",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) Availability zone where cloud disk is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist).`,
@@ -186,7 +188,7 @@ var (
 					Description: `The status of disk. Possible values are: ` + "`" + `Available` + "`" + `, ` + "`" + `InUse` + "`" + `, ` + "`" + `Detaching` + "`" + `, ` + "`" + `Initializating` + "`" + `, ` + "`" + `Failed` + "`" + `, ` + "`" + `Cloning` + "`" + `, ` + "`" + `Restoring` + "`" + `, ` + "`" + `RestoreFailed` + "`" + `. ## Import Disk can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_disk.example bsm-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation of disk, formatted in RFC3339 time string.`,
@@ -212,7 +214,7 @@ var (
 				"disk",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) The Zone to attach the disk in.`,
@@ -226,7 +228,7 @@ var (
 					Description: `(Required) The ID of disk that needs to be attached`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -238,7 +240,7 @@ var (
 				"unet",
 				"eip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_type",
 					Description: `(Required) Type of Elastic IP routes. Possible values are: ` + "`" + `international` + "`" + ` as internaltional BGP IP and ` + "`" + `bgp` + "`" + ` as china BGP IP.`,
@@ -304,7 +306,7 @@ var (
 					Description: `The type of resource with EIP attached. Possible values are ` + "`" + `instance` + "`" + ` as instance, ` + "`" + `vrouter` + "`" + ` as visual router, ` + "`" + `lb` + "`" + ` as load balancer. ## Import EIP can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_eip.example eip-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for EIP, formatted in RFC3339 time string.`,
@@ -354,7 +356,7 @@ var (
 				"eip",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "eip_id",
 					Description: `(Required) The ID of EIP.`,
@@ -364,7 +366,7 @@ var (
 					Description: `(Required) The ID of resource with EIP attached.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -376,7 +378,7 @@ var (
 				"uhost",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) Availability zone where instance is located. such as: ` + "`" + `cn-bj2-02` + "`" + `. You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
@@ -506,7 +508,7 @@ var (
 					Description: `Elastic IP address. ## Import Instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_instance.example uhost-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auto_renew",
 					Description: `Whether to renew an instance automatically or not.`,
@@ -580,7 +582,7 @@ var (
 				"isolation",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the isolation group information which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.', ',', '[', ']', ':'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-isolation-group` + "`" + `.`,
@@ -590,7 +592,7 @@ var (
 					Description: `(Optional) The remarks of the isolation group. (Default: ` + "`" + `""` + "`" + `). ## Import Isolation Group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_isolation_group.example ig-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -602,7 +604,7 @@ var (
 				"ulb",
 				"lb",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internal",
 					Description: `(Optional) Indicate whether the load balancer is intranet mode.(Default: ` + "`" + `"false"` + "`" + `)`,
@@ -648,7 +650,7 @@ var (
 					Description: `Elastic IP address. ## Import LB can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb.example ulb-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for load balancer, formatted in RFC3339 time string.`,
@@ -682,7 +684,7 @@ var (
 				"lb",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The ID of a load balancer.`,
@@ -708,7 +710,7 @@ var (
 					Description: `The status of backend servers. Possible values are: ` + "`" + `normalRunning` + "`" + `, ` + "`" + `exceptionRunning` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "private_ip",
 					Description: `The private ip address for backend servers.`,
@@ -730,7 +732,7 @@ var (
 				"lb",
 				"listener",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The ID of load balancer instance.`,
@@ -784,7 +786,7 @@ var (
 					Description: `Listener status. Possible values are: ` + "`" + `allNormal` + "`" + ` for all resource functioning well, ` + "`" + `partNormal` + "`" + ` for partial resource functioning well and ` + "`" + `allException` + "`" + ` for all resource functioning exceptional. ## Import LB Listener can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb_listener.example vserver-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Listener status. Possible values are: ` + "`" + `allNormal` + "`" + ` for all resource functioning well, ` + "`" + `partNormal` + "`" + ` for partial resource functioning well and ` + "`" + `allException` + "`" + ` for all resource functioning exceptional. ## Import LB Listener can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_lb_listener.example vserver-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
@@ -802,7 +804,7 @@ var (
 				"lb",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) The ID of a load balancer.`,
@@ -824,7 +826,7 @@ var (
 					Description: `(Optional) The domain of content forward matching fields. ` + "`" + `path` + "`" + ` and ` + "`" + `domain` + "`" + ` cannot coexist. ` + "`" + `path` + "`" + ` and ` + "`" + `domain` + "`" + ` must be filled in one.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -837,7 +839,7 @@ var (
 				"lb",
 				"ssl",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the LB ssl, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-lb-ssl` + "`" + `.`,
@@ -859,7 +861,7 @@ var (
 					Description: `The time of creation for lb ssl, formatted in RFC3339 time string.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for lb ssl, formatted in RFC3339 time string.`,
@@ -878,7 +880,7 @@ var (
 				"ssl",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ssl_id",
 					Description: `(Required) The ID of SSL certificate.`,
@@ -892,7 +894,7 @@ var (
 					Description: `(Required) The ID of listener servers.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -906,7 +908,7 @@ var (
 				"memcache",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) Availability zone where Memcache instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
@@ -964,7 +966,7 @@ var (
 					Description: `The port on which Memcache instance accepts connections, it is 6379 by default.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_set",
 					Description: `ip_set is a nested type. ip_set documented below.`,
@@ -1003,7 +1005,7 @@ var (
 				"redis",
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) Availability zone where Redis instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
@@ -1069,7 +1071,7 @@ var (
 					Description: `The port on which Redis instance accepts connections, it is 6379 by default.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_set",
 					Description: `ip_set is a nested type. ip_set documented below.`,
@@ -1107,7 +1109,7 @@ var (
 				"security",
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rules",
 					Description: `(Required) A list of security group rules. Can be specified multiple times for each rules. Each rules supports fields documented below.`,
@@ -1149,7 +1151,7 @@ var (
 					Description: `The time of creation of security group, formatted in RFC3339 time string. ## Import Security Group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_security_group.example firewall-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation of security group, formatted in RFC3339 time string. ## Import Security Group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_security_group.example firewall-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1166,7 +1168,7 @@ var (
 				"vpc",
 				"subnet",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Required) The cidr block of the desired subnet, format in "0.0.0.0/0", such as: ` + "`" + `192.168.0.0/24` + "`" + `.`,
@@ -1192,7 +1194,7 @@ var (
 					Description: `The time of creation of subnet, formatted in RFC3339 time string. ## Import Subnet can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_subnet.example subnet-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation of subnet, formatted in RFC3339 time string. ## Import Subnet can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_subnet.example subnet-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1208,7 +1210,7 @@ var (
 			Keywords: []string{
 				"vpc",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_blocks",
 					Description: `(Required) The CIDR blocks of VPC.`,
@@ -1242,7 +1244,7 @@ var (
 					Description: `The CIDR block of the VPC. ## Import VPC can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_vpc.example uvnet-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time of creation for VPC, formatted in RFC3339 time string.`,
@@ -1272,7 +1274,7 @@ var (
 				"peering",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) The short of ID of the requester VPC of the specific VPC Peering Connection to retrieve.`,
@@ -1286,7 +1288,7 @@ var (
 					Description: `(Optional) The ID of accepter project of the specific VPC Peering Connection to retrieve.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1314,10 +1316,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

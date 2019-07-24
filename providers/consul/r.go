@@ -1,11 +1,13 @@
-package aws
+package consul
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"acl",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy.`,
@@ -55,7 +57,7 @@ var (
 					Description: `The datacenters of the policy. ## Import ` + "`" + `consul_acl_policy` + "`" + ` can be imported: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_policy.my-policy 1c90ef03-a6dd-6a8c-ac49-042ad3752896 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the policy.`,
@@ -88,7 +90,7 @@ var (
 				"acl",
 				"token",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) The description of the token.`,
@@ -118,7 +120,7 @@ var (
 					Description: `The flag to set the token local to the current datacenter. ## Import ` + "`" + `consul_acl_token` + "`" + ` can be imported. This is especially useful to manage the anonymous and the master token with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token.anonymous 00000000-0000-0000-0000-000000000002 $ terraform import consul_acl_token.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The token accessor ID.`,
@@ -147,7 +149,7 @@ var (
 				"agent",
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `(Optional) The address of the service. Defaults to the address of the agent.`,
@@ -185,7 +187,7 @@ var (
 					Description: `The tags of the service.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `The address of the service.`,
@@ -218,7 +220,7 @@ var (
 				"autopilot",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
@@ -284,7 +286,7 @@ var (
 					Description: `The tag to override the version information used during a migration.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter used.`,
@@ -329,7 +331,7 @@ var (
 				"catalog",
 				"entry",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `(Required) The address of the node being added to, or referenced in the catalog.`,
@@ -379,7 +381,7 @@ var (
 					Description: `The ID of the service, defaults to the value of ` + "`" + `name` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `The address of the service.`,
@@ -399,7 +401,7 @@ var (
 			Keywords: []string{
 				"intention",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_name",
 					Description: `(Required, string) The name of the source service for the intention. This service does not have to exist.`,
@@ -445,7 +447,7 @@ var (
 					Description: `Key/value pairs associated with the intention.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the intention.`,
@@ -478,7 +480,7 @@ var (
 				"key",
 				"prefix",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
@@ -516,7 +518,7 @@ var (
 					Description: `The datacenter the keys are being read/written to. ## Import ` + "`" + `consul_key_prefix` + "`" + ` can be imported. This is useful when the path already and you know all keys in path must be removed. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_key_prefix.myapp_config myapp/config/ ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being read/written to. ## Import ` + "`" + `consul_key_prefix` + "`" + ` can be imported. This is useful when the path already and you know all keys in path must be removed. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_key_prefix.myapp_config myapp/config/ ` + "`" + `` + "`" + `` + "`" + ``,
@@ -532,7 +534,7 @@ var (
 			Keywords: []string{
 				"keys",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
@@ -566,7 +568,7 @@ var (
 					Description: `The datacenter the keys are being written to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `The datacenter the keys are being written to.`,
@@ -582,7 +584,7 @@ var (
 			Keywords: []string{
 				"node",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `(Required) The address of the node being added to, or referenced in the catalog.`,
@@ -612,7 +614,7 @@ var (
 					Description: `(Optional, map) Key/value pairs that are associated with the node.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `The address of the service.`,
@@ -637,7 +639,7 @@ var (
 				"prepared",
 				"query",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "datacenter",
 					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
@@ -711,7 +713,7 @@ var (
 					Description: `The ID of the prepared query, generated by Consul. ## Import ` + "`" + `consul_prepared_query` + "`" + ` can be imported with the query's ID in the Consul HTTP API. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_prepared_query.my_service 71ecfb82-717a-4258-b4b6-2fb75144d856 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the prepared query, generated by Consul. ## Import ` + "`" + `consul_prepared_query` + "`" + ` can be imported with the query's ID in the Consul HTTP API. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_prepared_query.my_service 71ecfb82-717a-4258-b4b6-2fb75144d856 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -727,7 +729,7 @@ var (
 			Keywords: []string{
 				"service",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required, string) The name of the service.`,
@@ -845,7 +847,7 @@ var (
 					Description: `The datacenter of the service.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_id",
 					Description: `The ID of the service.`,
@@ -898,10 +900,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

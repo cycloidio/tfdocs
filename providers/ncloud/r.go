@@ -1,11 +1,13 @@
-package aws
+package ncloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"block",
 				"storage",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) Enter a block storage size to ceate. You can enter by the unit of GB. Up to 1000GB you can enter.`,
@@ -79,7 +81,7 @@ var (
 					Description: `Disk type code`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_no",
 					Description: `Block storage instance no`,
@@ -133,7 +135,7 @@ var (
 				"storage",
 				"snapshot",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "block_storage_instance_no",
 					Description: `(Required) Block storage instance No for creating snapshot.`,
@@ -187,7 +189,7 @@ var (
 					Description: `OS Information`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_no",
 					Description: `Block Storage Snapshot Instance Number`,
@@ -240,7 +242,7 @@ var (
 				"load",
 				"balancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rule_list",
 					Description: `(Required) Load balancer rules.`,
@@ -342,7 +344,7 @@ var (
 					Description: `Load balanced server instance list`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_no",
 					Description: `Load balancer instance No`,
@@ -397,7 +399,7 @@ var (
 				"ssl",
 				"certificate",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "certificate_name",
 					Description: `(Required) Name of a certificate`,
@@ -415,7 +417,7 @@ var (
 					Description: `(Optional) Chainca certificate (Required if the certificate is issued with a chainca)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -427,7 +429,7 @@ var (
 				"login",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
 					Description: `(Required) Key name to generate. If the generated key name exists, an error occurs. ## Attributes Reference`,
@@ -445,7 +447,7 @@ var (
 					Description: `Creation date of the login key`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "private_key",
 					Description: `Generated private key`,
@@ -470,7 +472,7 @@ var (
 				"nas",
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_name_postfix",
 					Description: `(Required) Name of a NAS volume to create. Enter a volume name that can be 3-20 characters in length after the name already entered for user identification.`,
@@ -560,7 +562,7 @@ var (
 					Description: `NAS volume instance custom IP list`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_name",
 					Description: `NAS volume name.`,
@@ -622,7 +624,7 @@ var (
 				"forwarding",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_instance_no",
 					Description: `(Required) Server instance number for which port forwarding is set`,
@@ -648,7 +650,7 @@ var (
 					Description: `Zone code`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "port_forwarding_public_ip",
 					Description: `Port forwarding Public IP`,
@@ -669,7 +671,7 @@ var (
 				"public",
 				"ip",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_instance_no",
 					Description: `(Optional) Server instance No. to assign after creating a public IP. You can get one by calling getPublicIpTargetServerInstanceList.`,
@@ -715,7 +717,7 @@ var (
 					Description: `Public IP kind type`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_no",
 					Description: `Public IP instance No.`,
@@ -755,7 +757,7 @@ var (
 			Keywords: []string{
 				"server",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_image_product_code",
 					Description: `(Optional) Server image product code to determine which server image to create. It can be obtained through ` + "`" + `data ncloud_server_images` + "`" + `. You are required to select one among two parameters: server image product code (server_image_product_code) and member server image number(member_server_image_no).`,
@@ -897,7 +899,7 @@ var (
 					Description: `Base block storage disk detail type code`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The instance ID.`,
@@ -992,10 +994,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

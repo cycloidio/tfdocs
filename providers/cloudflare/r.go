@@ -1,11 +1,13 @@
-package aws
+package cloudflare
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"access",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The DNS zone to which the access rule should be added.`,
@@ -35,7 +37,7 @@ var (
 					Description: `(Optional) How often a user will be forced to re-authorise. Must be one of ` + "`" + `30m` + "`" + `, ` + "`" + `6h` + "`" + `, ` + "`" + `12h` + "`" + `, ` + "`" + `24h` + "`" + `, ` + "`" + `168h` + "`" + `, ` + "`" + `730h` + "`" + `. ## Import Access Applications can be imported using a composite ID formed of zone ID and application ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_application.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -47,7 +49,7 @@ var (
 				"access",
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
 					Description: `(Required) The ID of the application the policy is associated with.`,
@@ -109,7 +111,7 @@ var (
 					Description: `Access Policy ID`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -121,7 +123,7 @@ var (
 				"access",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Optional) The DNS zone to which the access rule should be added. Will be resolved to ` + "`" + `zone_id` + "`" + ` upon creation.`,
@@ -171,7 +173,7 @@ var (
 					Description: `access rule ID as returned by respective API endpoint for the type you are attempting to import.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The access rule ID.`,
@@ -204,7 +206,7 @@ var (
 				"account",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email_address",
 					Description: `(Required) The email address of the user who you wish to manage. Note: Following creation, this field becomes read only via the API and cannot be updated.`,
@@ -222,7 +224,7 @@ var (
 					Description: `account member ID as returned by the [API](https://api.cloudflare.com/#account-members-member-details)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -233,7 +235,7 @@ var (
 			Keywords: []string{
 				"argo",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The DNS zone ID that you wish to manage Argo on.`,
@@ -247,7 +249,7 @@ var (
 					Description: `(Optional) Whether smart routing is enabled. Valid values: ` + "`" + `on` + "`" + ` or ` + "`" + `off` + "`" + `. Defaults to ` + "`" + `off` + "`" + `. ## Import Argo settings can be imported the zone ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_argo.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where ` + "`" + `d41d8cd98f00b204e9800998ecf8427e` + "`" + ` is the zone ID.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -259,7 +261,7 @@ var (
 				"custom",
 				"pages",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Optional) The zone ID where the custom pages should be updated. Either ` + "`" + `zone_id` + "`" + ` or ` + "`" + `account_id` + "`" + ` must be provided.`,
@@ -293,7 +295,7 @@ var (
 					Description: `The value from the ` + "`" + `type` + "`" + ` argument. Example for a zone: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_custom_pages.basic_challenge zone/d41d8cd98f00b204e9800998ecf8427e/basic_challenge ` + "`" + `` + "`" + `` + "`" + ` Example for an account: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_custom_pages.basic_challenge account/e268443e43d93dab7ebef303bbe9642f/basic_challenge ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -304,7 +306,7 @@ var (
 			Keywords: []string{
 				"filter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Optional) The DNS zone to which the Filter should be added. Will be resolved to ` + "`" + `zone_id` + "`" + ` upon creation.`,
@@ -346,7 +348,7 @@ var (
 					Description: `filter ID as returned by [API](https://api.cloudflare.com/#zone-firewall-filters)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Filter identifier.`,
@@ -375,7 +377,7 @@ var (
 				"firewall",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Optional) The DNS zone to which the Firewall Rule should be added. Will be resolved to ` + "`" + `zone_id` + "`" + ` upon creation.`,
@@ -417,7 +419,7 @@ var (
 					Description: `rule ID as returned by [API](https://api.cloudflare.com/#zone-firewall-filter-rules)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Firewall Rule identifier.`,
@@ -446,7 +448,7 @@ var (
 				"load",
 				"balancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The zone to add the load balancer to.`,
@@ -528,7 +530,7 @@ var (
 					Description: `The RFC3339 timestamp of when the load balancer was last modified.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Unique identifier in the API for the load balancer.`,
@@ -558,7 +560,7 @@ var (
 				"balancer",
 				"monitor",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "expected_body",
 					Description: `(Required) A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy.`,
@@ -628,7 +630,7 @@ var (
 					Description: `The RFC3339 timestamp of when the load balancer monitor was last modified.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Load balancer monitor ID.`,
@@ -654,7 +656,7 @@ var (
 				"balancer",
 				"pool",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A short name (tag) for the pool. Only alphanumeric characters, hyphens, and underscores are allowed.`,
@@ -716,7 +718,7 @@ var (
 					Description: `The RFC3339 timestamp of when the load balancer was last modified.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID for this load balancer pool.`,
@@ -741,7 +743,7 @@ var (
 				"logpush",
 				"job",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "desitination_conf",
 					Description: `(Required) Uniquely identifies a resource (such as an s3 bucket) where data will be pushed. Additional configuration parameters supported by the destination may be included.`,
@@ -759,7 +761,7 @@ var (
 					Description: `logpush job ID as returned by the [API](https://api.cloudflare.com/#logpush-jobs-list-logpush-jobs)`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -771,7 +773,7 @@ var (
 				"page",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The DNS zone to which the page rule should be added.`,
@@ -981,7 +983,7 @@ var (
 					Description: `Whether the page rule is active or disabled. ## Import Page rules can be imported using a composite ID formed of zone name and page rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_page_rule.default example.com/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The page rule ID.`,
@@ -1018,7 +1020,7 @@ var (
 				"rate",
 				"limit",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The DNS zone to apply rate limiting to.`,
@@ -1112,7 +1114,7 @@ var (
 					Description: `The DNS zone ID. ## Import Rate limits can be imported using a composite ID formed of zone name and rate limit ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_rate_limit.default example.com/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The Rate limit ID.`,
@@ -1132,7 +1134,7 @@ var (
 			Keywords: []string{
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) The DNS zone to add the record to`,
@@ -1202,7 +1204,7 @@ var (
 					Description: `record ID as returned by [API](https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The record ID`,
@@ -1251,7 +1253,7 @@ var (
 				"spectrum",
 				"application",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dns",
 					Description: `(Required) The name and type of DNS record for the Spectrum application. Fields documented below.`,
@@ -1305,7 +1307,7 @@ var (
 					Description: `Application ID`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Unique identifier in the API for the spectrum application. ## Import Spectrum resource can be imported using a zone ID and Application ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_spectrum_application.example d41d8cd98f00b204e9800998ecf8427e/9a7806061c88ada191ed06f989cc3dac ` + "`" + `` + "`" + `` + "`" + ` where:`,
@@ -1330,7 +1332,7 @@ var (
 				"waf",
 				"rule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The DNS zone to apply to.`,
@@ -1356,7 +1358,7 @@ var (
 					Description: `The ID of the WAF Rule Package that contains the rule. ## Import Rules can be imported using a composite ID formed of zone name and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 example.com/100000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The WAF Rule ID, the same as rule_id.`,
@@ -1381,7 +1383,7 @@ var (
 				"worker",
 				"route",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The zone to add the route to.`,
@@ -1399,7 +1401,7 @@ var (
 					Description: `route ID as returned by [API](https://api.cloudflare.com/#worker-filters-list-filters)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `The zone id of the route ## Import Records can be imported using a composite ID formed of zone name and route ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_route.default example.com/9a7806061c88ada191ed06f989cc3dac ` + "`" + `` + "`" + `` + "`" + ` where:`,
@@ -1420,7 +1422,7 @@ var (
 				"worker",
 				"script",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required for single-script accounts) The zone for the script.`,
@@ -1446,7 +1448,7 @@ var (
 					Description: `the script name`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `The zone id of the script (only for non-multi-script resources) ## Import ### single-script To import a script from a single-script account, use an id like ` + "`" + `zone:example.com` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default zone:example.com ` + "`" + `` + "`" + `` + "`" + ` where:`,
@@ -1470,7 +1472,7 @@ var (
 			Keywords: []string{
 				"zone",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The DNS zone name which will be added.`,
@@ -1524,7 +1526,7 @@ var (
 					Description: `zone ID, as returned from [API](https://api.cloudflare.com/#zone-list-zones)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The zone ID.`,
@@ -1569,7 +1571,7 @@ var (
 				"zone",
 				"lockdown",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `The DNS zone to which the lockdown will be added. Will be resolved to ` + "`" + `zone_id` + "`" + ` upon creation.`,
@@ -1611,7 +1613,7 @@ var (
 					Description: `zone lockdown ID as returned by [API](https://api.cloudflare.com/#zone-lockdown-list-lockdown-rules)`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The access rule ID. ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone_lockdown api.mysite.com/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
@@ -1633,7 +1635,7 @@ var (
 				"settings",
 				"override",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The DNS zone to which apply settings.`,
@@ -1659,7 +1661,7 @@ var (
 					Description: `Which of the current ` + "`" + `settings` + "`" + ` are not able to be set by the user. Which settings these are is determined by plan level and user permissions.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The zone ID.`,
@@ -1707,10 +1709,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

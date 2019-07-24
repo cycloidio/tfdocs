@@ -1,11 +1,13 @@
-package aws
+package heroku
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"account",
 				"feature",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the account feature`,
@@ -39,7 +41,7 @@ var (
 					Description: `State of account feature ## Import Existing account features can be imported using a combination of the account email (the email address tied to the Heroku API key) and the feature name. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_account_feature.example_metrics name@example.com:metrics-request-volume ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Comprised of acount email & feature name`,
@@ -63,7 +65,7 @@ var (
 			Keywords: []string{
 				"addon",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The Heroku app to add to.`,
@@ -97,7 +99,7 @@ var (
 					Description: `The Configuration variables of the add-on ## Import Addons can be imported using the Addon ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_addon.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the add-on`,
@@ -130,7 +132,7 @@ var (
 				"addon",
 				"attachment",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_id",
 					Description: `(Required) The ID of the Heroku App to attach to.`,
@@ -148,7 +150,7 @@ var (
 					Description: `The unique ID of the add-on attachment ## Import Addons can be imported using the unique Addon Attachment ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_addon_attachment.foobar 01234567-89ab-cdef-0123-456789abcdef ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique ID of the add-on attachment ## Import Addons can be imported using the unique Addon Attachment ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_addon_attachment.foobar 01234567-89ab-cdef-0123-456789abcdef ` + "`" + `` + "`" + `` + "`" + ``,
@@ -164,7 +166,7 @@ var (
 			Keywords: []string{
 				"app",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the application. In Heroku, this is also the unique ID, so it must be unique and have a minimum of 3 characters.`,
@@ -242,7 +244,7 @@ var (
 					Description: `The unique UUID of the Heroku app.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the app. This is also the name of the application.`,
@@ -300,7 +302,7 @@ var (
 				"config",
 				"association",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app_id",
 					Description: `(Required) A Heroku app's ` + "`" + `UUID` + "`" + `. Can also be the name of the Heroku app but ` + "`" + `UUID` + "`" + ` is preferred as it is idempotent.`,
@@ -318,7 +320,7 @@ var (
 					Description: `The ID of the app config association. ## Import The ` + "`" + `heroku_app_config_association` + "`" + ` resource's primary attributes are managed only within Terraform state. It does not exist as a native Heroku resource. Therefore, it is not possible to import an existing ` + "`" + `heroku_app_config_association` + "`" + ` resource.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the app config association. ## Import The ` + "`" + `heroku_app_config_association` + "`" + ` resource's primary attributes are managed only within Terraform state. It does not exist as a native Heroku resource. Therefore, it is not possible to import an existing ` + "`" + `heroku_app_config_association` + "`" + ` resource.`,
@@ -335,7 +337,7 @@ var (
 				"app",
 				"feature",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The Heroku app to link to.`,
@@ -349,7 +351,7 @@ var (
 					Description: `(Optional) Whether to enable or disable the App Feature. The default value is true. ## Import App features can be imported using the combination of the application name, a colon, and the feature's name. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_app_feature.log-runtime-metrics foobar:log-runtime-metrics ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -361,7 +363,7 @@ var (
 				"app",
 				"release",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The name of the application`,
@@ -379,7 +381,7 @@ var (
 					Description: `The ID of the app release ## Import Existing app releases can be imported using the combination of the application name, a colon, and the formation's type. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_app_release.foobar-release foobar ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the app release ## Import Existing app releases can be imported using the combination of the application name, a colon, and the formation's type. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_app_release.foobar-release foobar ` + "`" + `` + "`" + `` + "`" + ``,
@@ -395,7 +397,7 @@ var (
 			Keywords: []string{
 				"build",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The ID of the Heroku app`,
@@ -453,7 +455,7 @@ var (
 					Description: `Heroku account that created a build`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "uuid",
 					Description: `The ID of the build`,
@@ -493,7 +495,7 @@ var (
 			Keywords: []string{
 				"cert",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The Heroku app to add to.`,
@@ -519,7 +521,7 @@ var (
 					Description: `The name of the SSL certificate ## Importing When importing a Heroku cert resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a certificate ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + `, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_cert.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the add-on`,
@@ -543,7 +545,7 @@ var (
 			Keywords: []string{
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vars",
 					Description: `Map of vars that are can be outputted in plaintext.`,
@@ -557,7 +559,7 @@ var (
 					Description: `The ID of the config. ## Import The ` + "`" + `heroku_config` + "`" + ` resource is a meta-resource, managed only within Terraform state. It does not exist as a native Heroku resource. Therefore, it is not possible to import an existing ` + "`" + `heroku_config` + "`" + ` configuration.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the config. ## Import The ` + "`" + `heroku_config` + "`" + ` resource is a meta-resource, managed only within Terraform state. It does not exist as a native Heroku resource. Therefore, it is not possible to import an existing ` + "`" + `heroku_config` + "`" + ` configuration.`,
@@ -573,7 +575,7 @@ var (
 			Keywords: []string{
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "hostname",
 					Description: `(Required) The hostname to serve requests from.`,
@@ -595,7 +597,7 @@ var (
 					Description: `The CNAME traffic should route to. ## Importing When importing a Heroku domain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a domain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + `, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_domain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the of the domain record.`,
@@ -619,7 +621,7 @@ var (
 			Keywords: []string{
 				"drain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "url",
 					Description: `(Required) The URL for Heroku to drain your logs to.`,
@@ -633,7 +635,7 @@ var (
 					Description: `The unique token for your created drain. ## Importing When importing a Heroku drain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a drain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + `, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_drain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "token",
 					Description: `The unique token for your created drain. ## Importing When importing a Heroku drain resource, the ID must be built using the app name colon the unique ID from the Heroku API. For an app named ` + "`" + `production-api` + "`" + ` with a drain ID of ` + "`" + `b85d9224-310b-409b-891e-c903f5a40568` + "`" + `, you would import it as: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_drain.production_api production-api:b85d9224-310b-409b-891e-c903f5a40568 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -649,7 +651,7 @@ var (
 			Keywords: []string{
 				"formation",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The name of the application`,
@@ -671,7 +673,7 @@ var (
 					Description: `The ID of the formation ## Import Existing formations can be imported using the combination of the application name, a colon, and the formation's type. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_formation.foobar-web foobar:web ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the formation ## Import Existing formations can be imported using the combination of the application name, a colon, and the formation's type. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_formation.foobar-web foobar:web ` + "`" + `` + "`" + `` + "`" + ``,
@@ -687,7 +689,7 @@ var (
 			Keywords: []string{
 				"pipeline",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the pipeline. ## Attributes Reference The following attributes are exported:`,
@@ -701,7 +703,7 @@ var (
 					Description: `The name of the pipeline. ## Import Pipelines can be imported using the Pipeline ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_pipeline.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The UUID of the pipeline.`,
@@ -722,7 +724,7 @@ var (
 				"pipeline",
 				"coupling",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The name of the app for this coupling.`,
@@ -756,7 +758,7 @@ var (
 					Description: `The stage for this coupling. ## Import Pipeline couplings can be imported using the Pipeline coupling ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_pipeline_coupling.foobar 12345678 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The UUID of this pipeline coupling.`,
@@ -788,7 +790,7 @@ var (
 			Keywords: []string{
 				"slug",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The ID of the Heroku app`,
@@ -878,7 +880,7 @@ var (
 					Description: `[Heroku stack](https://devcenter.heroku.com/articles/stack) ID ## Import Existing slugs can be imported using the combination of the application name, a colon, and the slug ID. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_slug.foobar bazbux:4f1db8ef-ed5c-4c42-a3d6-3c28262d5abc ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the slug`,
@@ -942,7 +944,7 @@ var (
 			Keywords: []string{
 				"space",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the Private Space.`,
@@ -996,7 +998,7 @@ var (
 					Description: `The space's stable outbound [NAT IPs](https://devcenter.heroku.com/articles/platform-api-reference#space-network-address-translation). ## Import Spaces can be imported using the space ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_space.foobar MySpace ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the space.`,
@@ -1038,7 +1040,7 @@ var (
 				"app",
 				"access",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space",
 					Description: `(Required) The name of the Private Space.`,
@@ -1052,7 +1054,7 @@ var (
 					Description: `(Required) The permissions to grant the team member for the Private Space. Currently ` + "`" + `create_apps` + "`" + ` is the only supported permission. If not provided the member will have no permissions to the space. Members with admin role will always have ` + "`" + `create_apps` + "`" + ` permissions, which cannot be removed. ## Importing Existing permissions can be imported using the combination of the Private Space name, a colon, and the member email. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_space_app_access.member1 my-space:member1@foobar.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1065,7 +1067,7 @@ var (
 				"inbound",
 				"ruleset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space",
 					Description: `(Required) The name of the space.`,
@@ -1087,7 +1089,7 @@ var (
 					Description: `The ID of the inbound ruleset.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the inbound ruleset.`,
@@ -1106,7 +1108,7 @@ var (
 				"connection",
 				"accepter",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space",
 					Description: `(Required) The name of the space.`,
@@ -1124,7 +1126,7 @@ var (
 					Description: `The type of the peering connection.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `The status of the peering connection request.`,
@@ -1146,7 +1148,7 @@ var (
 				"vpn",
 				"connection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the VPN connection.`,
@@ -1184,7 +1186,7 @@ var (
 					Description: `The pre-shared IPSec secret for the tunnel.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "space_cidr_block",
 					Description: `The CIDR block for the Heroku Private Space. The network where the VPN will be established should be configured to route traffic destined for this CIDR block over the VPN link.`,
@@ -1217,7 +1219,7 @@ var (
 				"team",
 				"collaborator",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "app",
 					Description: `(Required) The name of the team app that the team collaborator will be added to.`,
@@ -1235,7 +1237,7 @@ var (
 					Description: `The ID of the team collaborator ## Import Team Collaborators can be imported using the combination of the team application name, a colon, and the collaborator's email address For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_team_collaborator.foobar-collaborator foobar_app:collaborator@foobar.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the team collaborator ## Import Team Collaborators can be imported using the combination of the team application name, a colon, and the collaborator's email address For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_team_collaborator.foobar-collaborator foobar_app:collaborator@foobar.com ` + "`" + `` + "`" + `` + "`" + ``,
@@ -1252,7 +1254,7 @@ var (
 				"team",
 				"member",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "team",
 					Description: `(Required) The name of the Heroku Team.`,
@@ -1266,7 +1268,7 @@ var (
 					Description: `(Required) The role to assign the member. See [the API docs](https://devcenter.heroku.com/articles/platform-api-reference#team-member) for available options. ## Import Team members can be imported using the combination of the team application name, a colon, and the member's email address. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import heroku_team_member.foobar-member my-team-foobar:some-user@example.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -1298,10 +1300,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

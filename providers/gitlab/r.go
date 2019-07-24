@@ -1,11 +1,13 @@
-package aws
+package gitlab
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -17,7 +19,7 @@ var (
 				"branch",
 				"protection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The id of the project.`,
@@ -35,7 +37,7 @@ var (
 					Description: `(Required) One of five levels of access to the project.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -47,7 +49,7 @@ var (
 				"deploy",
 				"key",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, string) The name or id of the project to add the deploy key to.`,
@@ -65,7 +67,7 @@ var (
 					Description: `(Optional, boolean) Allow this deploy key to be used to push changes to the project. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -76,7 +78,7 @@ var (
 			Keywords: []string{
 				"group",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of this group.`,
@@ -122,7 +124,7 @@ var (
 					Description: `Web URL of the group. ## Importing groups You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_group.example example [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique id assigned to the group by the GitLab server. Serves as a namespace id where one is needed.`,
@@ -151,7 +153,7 @@ var (
 				"group",
 				"membership",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `(Required) The id of the group.`,
@@ -169,7 +171,7 @@ var (
 					Description: `(Optional) Expiration date for the group membership. Format: ` + "`" + `YYYY-MM-DD` + "`" + ` ## Import GitLab group membership can be imported using an id made up of ` + "`" + `groupid:username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_group_membership.test 12345:1337 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -181,7 +183,7 @@ var (
 				"group",
 				"variable",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group",
 					Description: `(Required, string) The name or id of the group to add the hook to.`,
@@ -199,7 +201,7 @@ var (
 					Description: `(Optional, boolean) If set to ` + "`" + `true` + "`" + `, the variable will be passed only to pipelines running on protected branches and tags. Defaults to ` + "`" + `false` + "`" + `. ## Import GitLab group variables can be imported using an id made up of ` + "`" + `groupid:variablename` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_group_variable.example 12345:group_variable_key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -210,7 +212,7 @@ var (
 			Keywords: []string{
 				"label",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The name or id of the project to add the label to.`,
@@ -232,7 +234,7 @@ var (
 					Description: `The unique id assigned to the label by the GitLab server (the name of the label).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique id assigned to the label by the GitLab server (the name of the label).`,
@@ -249,7 +251,7 @@ var (
 				"pipeline",
 				"schedule",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, string) The name or id of the project to add the schedule to.`,
@@ -275,7 +277,7 @@ var (
 					Description: `(Optional, bool) The activation of pipeline schedule. If false is set, the pipeline schedule will deactivated initially.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -287,7 +289,7 @@ var (
 				"pipeline",
 				"trigger",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, string) The name or id of the project to add the trigger to.`,
@@ -297,7 +299,7 @@ var (
 					Description: `(Required, string) The description of the pipeline trigger.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -308,7 +310,7 @@ var (
 			Keywords: []string{
 				"project",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the project.`,
@@ -422,7 +424,7 @@ var (
 					Description: `Group's name. ## Importing projects You can import a project state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [get single project api][get_single_project] takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_project.example richardc/example [get_single_project]: https://docs.gitlab.com/ee/api/projects.html#get-single-project [group_members_permissions]: https://docs.gitlab.com/ce/user/permissions.html#group-members-permissions`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Integer that uniquely identifies the project within the gitlab install.`,
@@ -463,7 +465,7 @@ var (
 				"project",
 				"cluster",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, string) The id of the project to add the cluster to.`,
@@ -509,7 +511,7 @@ var (
 					Description: `(Optional, string) The associated environment to the cluster. Defaults to ` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -521,7 +523,7 @@ var (
 				"project",
 				"hook",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The name or id of the project to add the hook to.`,
@@ -575,7 +577,7 @@ var (
 					Description: `The unique id assigned to the hook by the GitLab server.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique id assigned to the hook by the GitLab server.`,
@@ -592,7 +594,7 @@ var (
 				"project",
 				"membership",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `(Required) The id of the project.`,
@@ -606,7 +608,7 @@ var (
 					Description: `(Required) One of five levels of access to the project. ## Import GitLab group membership can be imported using an id made up of ` + "`" + `groupid:username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_membership.test 12345:1337`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -618,7 +620,7 @@ var (
 				"project",
 				"variable",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required, string) The name or id of the project to add the hook to.`,
@@ -636,7 +638,7 @@ var (
 					Description: `(Optional, boolean) If set to ` + "`" + `true` + "`" + `, the variable will be passed only to pipelines running on protected branches and tags. Defaults to ` + "`" + `false` + "`" + `. ## Import GitLab project variables can be imported using an id made up of ` + "`" + `projectid:variablename` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_variable.example 12345:project_variable_key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -648,7 +650,7 @@ var (
 				"service",
 				"jira",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) ID of the project you want to activate integration on.`,
@@ -674,7 +676,7 @@ var (
 					Description: `(Optional) The ID of a transition that moves issues to a closed state. You can find this number under the JIRA workflow administration (Administration > Issues > Workflows) by selecting View under Operations of the desired workflow of your project. By default, this ID is set to 2. ## Importing Jira service You can import a service_jira state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import gitlab_service_jira.jira 1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -686,7 +688,7 @@ var (
 				"service",
 				"slack",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) ID of the project you want to activate integration on.`,
@@ -776,7 +778,7 @@ var (
 					Description: `(Optional) The name of the channel to receive wiki page events notifications. ## Importing Slack service You can import a service_slack state using ` + "`" + `terraform import <resource> <project_id>` + "`" + `: ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import gitlab_service_slack.slack 1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -788,7 +790,7 @@ var (
 				"tag",
 				"protection",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project",
 					Description: `(Required) The id of the project.`,
@@ -802,7 +804,7 @@ var (
 					Description: `(Required) One of five levels of access to the project.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -813,7 +815,7 @@ var (
 			Keywords: []string{
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the user.`,
@@ -855,7 +857,7 @@ var (
 					Description: `The unique id assigned to the user by the GitLab server. ## Importing users You can import a user to terraform state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` must be an integer for the id of the user you want to import, for example: terraform import gitlab_user.example 42`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The unique id assigned to the user by the GitLab server. ## Importing users You can import a user to terraform state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` must be an integer for the id of the user you want to import, for example: terraform import gitlab_user.example 42`,
@@ -886,10 +888,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

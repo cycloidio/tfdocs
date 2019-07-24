@@ -1,11 +1,13 @@
-package aws
+package ncloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -19,7 +21,7 @@ When creating a server instance (VM), you can add an access control group (ACG) 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "configuration_no",
 					Description: `(Optional) List of ACG configuration numbers you want to get`,
@@ -37,7 +39,7 @@ When creating a server instance (VM), you can add an access control group (ACG) 
 					Description: `ACG description`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
 					Description: `ACG description`,
@@ -55,7 +57,7 @@ When creating a server instance (VM), you can add an access control group (ACG) 
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "configuration_no_list",
 					Description: `(Optional) List of ACG configuration numbers you want to get`,
@@ -77,7 +79,7 @@ When creating a server instance (VM), you can add an access control group (ACG) 
 					Description: `A List of access control group configuration_no.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_control_groups",
 					Description: `A List of access control group configuration_no.`,
@@ -95,7 +97,7 @@ Access configuration rule you want to get
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_control_group_configuration_no",
 					Description: `(Optional) Access control group number to search`,
@@ -145,7 +147,7 @@ Access configuration rule you want to get
 					Description: `Access control rule description`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source_ip",
 					Description: `Source IP`,
@@ -191,7 +193,7 @@ List of access configuration rules you want to get
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_control_group_configuration_no",
 					Description: `(Required) Access control group configuration number to search`,
@@ -209,7 +211,7 @@ List of access configuration rules you want to get
 					Description: `A list of access control rules configuration no`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_control_rules",
 					Description: `A list of access control rules configuration no`,
@@ -227,7 +229,7 @@ Gets a member server image.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to apply to the member server image list returned by ncloud`,
@@ -313,7 +315,7 @@ Gets a member server image.
 					Description: `Member server image block storage total size`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "no",
 					Description: `Member server image no`,
@@ -395,7 +397,7 @@ Gets a list of member server images.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to apply to the member server image list returned by ncloud`,
@@ -421,7 +423,7 @@ Gets a list of member server images.
 					Description: `A list of Member server image no`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "member_server_images",
 					Description: `A list of Member server image no`,
@@ -439,7 +441,7 @@ Get NAS volume instance
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_allotment_protocol_type_code",
 					Description: `(Optional) Volume allotment protocol type code. All volume instances will be selected if the filter is not specified. (` + "`" + `NFS` + "`" + ` | ` + "`" + `CIFS` + "`" + `)`,
@@ -517,7 +519,7 @@ Get NAS volume instance
 					Description: `NAS volume description`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_no",
 					Description: `NAS volume instance number`,
@@ -583,7 +585,7 @@ Gets a list of NAS volume instances.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "volume_allotment_protocol_type_code",
 					Description: `(Optional) Volume allotment protocol type code. All volume instances will be selected if the filter is not specified. (` + "`" + `NFS` + "`" + ` | ` + "`" + `CIFS` + "`" + `)`,
@@ -617,7 +619,7 @@ Gets a list of NAS volume instances.
 					Description: `A list of NAS Volume Instance no`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nas_volumes",
 					Description: `A list of NAS Volume Instance no`,
@@ -636,7 +638,7 @@ When a server is created for the first time, a public IP address for port forwar
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_line_type_code",
 					Description: `(Optional) Internet line code. PUBLC(Public), GLBL(Global)`,
@@ -670,7 +672,7 @@ When a server is created for the first time, a public IP address for port forwar
 					Description: `Port forwarding public ip`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "port_forwarding_configuration_no",
 					Description: `Port forwarding configuration number`,
@@ -693,7 +695,7 @@ When a server is created for the first time, a public IP address for port forwar
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_line_type_code",
 					Description: `(Optional) Internet line code. PUBLC(Public), GLBL(Global)`,
@@ -739,7 +741,7 @@ When a server is created for the first time, a public IP address for port forwar
 					Description: `Port forwarding internal port.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "port_forwarding_configuration_no",
 					Description: `Port forwarding configuration number`,
@@ -778,7 +780,7 @@ Get public IP instance.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_line_type",
 					Description: `(Optional) Internet line type code. ` + "`" + `PUBLC` + "`" + ` (Public), ` + "`" + `GLBL` + "`" + ` (Global)`,
@@ -872,7 +874,7 @@ Get public IP instance.
 					Description: `Creation date of the server instance`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_no",
 					Description: `Public IP instance number`,
@@ -938,7 +940,7 @@ Gets a list of available regions.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "code",
 					Description: `(Optional) region code for filtering`,
@@ -964,7 +966,7 @@ Gets a list of available regions.
 					Description: `Region name`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "regions",
 					Description: `A List of region`,
@@ -997,7 +999,7 @@ Gets the password of a root account with the server's login key.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_instance_no",
 					Description: `(Required) Server instance number`,
@@ -1011,7 +1013,7 @@ Gets the password of a root account with the server's login key.
 					Description: `password of a root account`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "root_password",
 					Description: `password of a root account`,
@@ -1029,7 +1031,7 @@ To create a server instance (VM), you should select a server image. This data so
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "product_name_regex",
 					Description: `(Optional) A regex string to apply to the server image list returned by ncloud.`,
@@ -1099,7 +1101,7 @@ To create a server instance (VM), you should select a server image. This data so
 					Description: `Additional block storage size`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "product_name",
 					Description: `Product name`,
@@ -1149,7 +1151,7 @@ To create a server instance (VM), you should select a server image. This data so
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "product_name_regex",
 					Description: `(Optional) A regex string to apply to the server image list returned by ncloud.`,
@@ -1187,7 +1189,7 @@ To create a server instance (VM), you should select a server image. This data so
 					Description: `A List of server image product code`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_images",
 					Description: `A List of server image product code`,
@@ -1206,7 +1208,7 @@ To this end, we provide data source by which you can search a server product.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_image_product_code",
 					Description: `(Required) You can get one from ` + "`" + `data ncloud_server_images` + "`" + `. This is a required value, and each available server's specification varies depending on the server image product.`,
@@ -1276,7 +1278,7 @@ To this end, we provide data source by which you can search a server product.
 					Description: `Additional block storage size`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "product_name",
 					Description: `Product name`,
@@ -1331,7 +1333,7 @@ To this end, we provide data source by which you can search a server product.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_image_product_code",
 					Description: `(Required) You can get one from ` + "`" + `data ncloud_server_images` + "`" + `. This is a required value, and each available server's specification varies depending on the server image product.`,
@@ -1365,7 +1367,7 @@ To this end, we provide data source by which you can search a server product.
 					Description: `A List of server product code`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "server_products",
 					Description: `A List of server product code`,
@@ -1383,7 +1385,7 @@ Gets a list of available zones.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Optional) Region code. Get available values using the data source ` + "`" + `ncloud_regions` + "`" + `. Default: KR region.`,
@@ -1417,7 +1419,7 @@ Gets a list of available zones.
 					Description: `Region number`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zones",
 					Description: `A List of region`,
@@ -1446,7 +1448,7 @@ Gets a list of available zones.
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"ncloud_access_control_group":  0,
 		"ncloud_access_control_groups": 1,
@@ -1469,10 +1471,10 @@ Gets a list of available zones.
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

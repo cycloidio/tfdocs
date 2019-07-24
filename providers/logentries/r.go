@@ -1,11 +1,13 @@
-package aws
+package logentries
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"log",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "logset_id",
 					Description: `(Required) The id of the ` + "`" + `logentries_logset` + "`" + ` resource.`,
@@ -46,7 +48,7 @@ var (
 					Description: `If the log ` + "`" + `source` + "`" + ` is ` + "`" + `token` + "`" + `, this value holds the generated log token that is used by logging clients. See the Logentries [token-based input documentation](https://logentries.com/doc/input-token/) for more information.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "token",
 					Description: `If the log ` + "`" + `source` + "`" + ` is ` + "`" + `token` + "`" + `, this value holds the generated log token that is used by logging clients. See the Logentries [token-based input documentation](https://logentries.com/doc/input-token/) for more information.`,
@@ -62,7 +64,7 @@ var (
 			Keywords: []string{
 				"logset",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The log set name, which should be short and descriptive. For example, www, db1.`,
@@ -72,7 +74,7 @@ var (
 					Description: `(Optional, default "nonlocation") A location is for your convenience only. You can specify a DNS entry such as web.example.com, IP address or arbitrary comment.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -83,10 +85,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

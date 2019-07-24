@@ -1,11 +1,13 @@
-package aws
+package alicloud
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -14,8 +16,8 @@ var (
 			ShortDescription: `Provides information about the current Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Account ID (e.g. "1239306421830812"). It can be used to construct an ARN.`,
@@ -29,7 +31,7 @@ var (
 			ShortDescription: `Provides a list of action trail to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results action trail name.`,
@@ -75,7 +77,7 @@ var (
 					Description: `The unique ARN of the Log Service role.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of trail names.`,
@@ -121,7 +123,7 @@ var (
 			ShortDescription: `Provides a list of apis to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_id",
 					Description: `(Deprecated, Optional) (It has been deprecated from version 1.52.2, and use field 'ids' to replace.) ID of the specified API.`,
@@ -179,7 +181,7 @@ var (
 					Description: `The group name that the apis belong to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of api IDs.`,
@@ -225,7 +227,7 @@ var (
 			ShortDescription: `Provides a list of apps to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter apps by name.`,
@@ -271,7 +273,7 @@ var (
 					Description: `Last modification time (Greenwich mean time).`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of app IDs.`,
@@ -313,7 +315,7 @@ var (
 			ShortDescription: `Provides a list of api groups to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter api gateway groups by name.`,
@@ -379,7 +381,7 @@ var (
 					Description: `Locking in invalid state. - NORMAL: The API group is normal. - LOCKED: Locked due to illegality.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of api group IDs.`,
@@ -441,7 +443,7 @@ var (
 			ShortDescription: `Provides a list of certs available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results by the certificate name.`,
@@ -523,7 +525,7 @@ var (
 					Description: `The cert is buy from aliyun or not.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of cert IDs.`,
@@ -601,7 +603,7 @@ var (
 			ShortDescription: `Provides a list of CEN Bandwidth Limits owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_ids",
 					Description: `(Optional) A list of CEN instances IDs.`,
@@ -635,7 +637,7 @@ var (
 					Description: `The bandwidth limit configured for the interconnected regions communication.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "limits",
 					Description: `A list of CEN Bandwidth Limits. Each element contains the following attributes:`,
@@ -669,7 +671,7 @@ var (
 			ShortDescription: `Provides a list of CEN Bandwidth Packages owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Optional) ID of a CEN instance.`,
@@ -735,7 +737,7 @@ var (
 					Description: `Region ID of the interconnected regions.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "packages",
 					Description: `A list of CEN bandwidth package. Each element contains the following attributes:`,
@@ -793,7 +795,7 @@ var (
 			ShortDescription: `Provides a list of CEN(Cloud Enterprise Network) instances owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of CEN instances IDs.`,
@@ -843,7 +845,7 @@ var (
 					Description: `Description of the CEN instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of CEN instances IDs.`,
@@ -889,7 +891,7 @@ var (
 			ShortDescription: `Provides a list of CEN Route Entries from specific region owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required) ID of the CEN instance.`,
@@ -923,7 +925,7 @@ var (
 					Description: `ID of the region where the next hop is located.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "entries",
 					Description: `A list of CEN Route Entries. Each element contains the following attributes:`,
@@ -957,7 +959,7 @@ var (
 			ShortDescription: `Provides a list of CEN Route Entries owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_id",
 					Description: `(Required) ID of the CEN instance.`,
@@ -1031,7 +1033,7 @@ var (
 					Description: `Reasons of exceptions.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "entries",
 					Description: `A list of CEN Route Entries. Each element contains the following attributes:`,
@@ -1097,7 +1099,7 @@ var (
 			ShortDescription: `Provides a list of Common Bandwidth Packages owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Common Bandwidth Packages IDs.`,
@@ -1163,7 +1165,7 @@ var (
 					Description: `The ID of the EIP instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Common Bandwidth Packages IDs.`,
@@ -1225,7 +1227,7 @@ var (
 			ShortDescription: `Provides a list of Container Registry namespaces.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results by namespace name.`,
@@ -1255,7 +1257,7 @@ var (
 					Description: `` + "`" + `PUBLIC` + "`" + ` or ` + "`" + `PRIVATE` + "`" + `, default repository visibility in this namespace.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of matched Container Registry namespaces. Its element is a namespace name.`,
@@ -1285,7 +1287,7 @@ var (
 			ShortDescription: `Provides a list of Container Registry repositories.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "namespace",
 					Description: `(Optional) Name of container registry namespace where the repositories are located in.`,
@@ -1375,7 +1377,7 @@ var (
 					Description: `Create time of this image, unix time in nanoseconds.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of matched Container Registry Repositories. Its element is formatted as ` + "`" + `namespace/repository` + "`" + `.`,
@@ -1457,7 +1459,7 @@ var (
 			ShortDescription: `Provides a list of Container Service Kubernetes Clusters to be used by the alicloud_cs_kubernetes_clusters resource.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) Cluster IDs to filter.`,
@@ -1623,7 +1625,7 @@ var (
 					Description: `Service Access Domain.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of matched Kubernetes clusters' ids.`,
@@ -1781,7 +1783,7 @@ var (
 			ShortDescription: `Provides a list of Container Service Managed Kubernetes Clusters to be used by the alicloud_cs_managed_kubernetes_clusters resource.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) Cluster IDs to filter.`,
@@ -1931,7 +1933,7 @@ var (
 					Description: `Service Access Domain.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of matched Kubernetes clusters' ids.`,
@@ -2073,7 +2075,7 @@ var (
 			ShortDescription: `Provides a list of RDS instacne classes info.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Optional) The Zone to launch the DB instance.`,
@@ -2147,7 +2149,7 @@ var (
 					Description: `DB Instance available storage increase step.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_classes",
 					Description: `A list of Rds available resource. Each element contains the following attributes:`,
@@ -2193,7 +2195,7 @@ var (
 			ShortDescription: `Provides a list of RDS instacne engines resource info.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Optional) The Zone to launch the DB instance.`,
@@ -2247,7 +2249,7 @@ var (
 					Description: `DB Instance category.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_engines",
 					Description: `A list of Rds available resource. Each element contains the following attributes:`,
@@ -2285,7 +2287,7 @@ var (
 			ShortDescription: `Provides a collection of RDS instances according to the specified filters.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results by instance name.`,
@@ -2419,7 +2421,7 @@ var (
 					Description: `ID of the VSwitch the instance belongs to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of RDS instance IDs.`,
@@ -2521,7 +2523,7 @@ var (
 			ShortDescription: `Provides a list of BGP-Line Anti-DDoS Pro instances available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results by the instance name.`,
@@ -2575,7 +2577,7 @@ var (
 					Description: `The instance's count of domain retransmission config.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of instance IDs.`,
@@ -2625,7 +2627,7 @@ var (
 			ShortDescription: `Provides a list of disks to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of disks IDs.`,
@@ -2735,7 +2737,7 @@ var (
 					Description: `A map of tags assigned to the disk.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "disks",
 					Description: `A list of disks. Each element contains the following attributes:`,
@@ -2821,8 +2823,8 @@ var (
 			ShortDescription: `Provides a list of groups available to the domain.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2831,8 +2833,8 @@ var (
 			ShortDescription: `Provides a list of records available to the domain.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2841,7 +2843,7 @@ var (
 			ShortDescription: `Provides a list of domains available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name_regex",
 					Description: `(Optional) A regex string to filter results by the domain name.`,
@@ -2915,7 +2917,7 @@ var (
 					Description: `DNS list of the domain in the analysis system.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of domain IDs.`,
@@ -2973,7 +2975,7 @@ var (
 			ShortDescription: `Provides a list of groups available to the dns.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results by group name.`,
@@ -3007,7 +3009,7 @@ var (
 					Description: `Name of the group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of group IDs.`,
@@ -3037,7 +3039,7 @@ var (
 			ShortDescription: `Provides a list of records available to the dns.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain_name",
 					Description: `(Required) The domain name associated to the records.`,
@@ -3127,7 +3129,7 @@ var (
 					Description: `Indicates whether the record is locked.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of record IDs.`,
@@ -3189,7 +3191,7 @@ var (
 			ShortDescription: `Provides a collection of DRDS instances according to the specified filters.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `A regex string to filter results by instance name.`,
@@ -3251,7 +3253,7 @@ var (
 					Description: `A list of DRDS instance IDs.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of DRDS instance IDs.`,
@@ -3313,7 +3315,7 @@ var (
 			ShortDescription: `Provides a list of EIP owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of EIP IDs.`,
@@ -3375,7 +3377,7 @@ var (
 					Description: `Time of creation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of EIP IDs.`,
@@ -3429,7 +3431,7 @@ var (
 			ShortDescription: `Provides a collection of Elasticsearch instances according to the specified filters.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description_regex",
 					Description: `(Optional) A regex string to apply to the instance description.`,
@@ -3507,7 +3509,7 @@ var (
 					Description: `Status of the instance. It includes ` + "`" + `active` + "`" + `, ` + "`" + `activating` + "`" + `, ` + "`" + `inactive` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of Elasticsearch instance IDs.`,
@@ -3577,7 +3579,7 @@ var (
 			ShortDescription: `Provides a list of scaling configurations available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_id",
 					Description: `(Optional) Scaling group id the scaling configurations belong to.`,
@@ -3683,7 +3685,7 @@ var (
 					Description: `Creation time of the scaling configuration.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of scaling configuration ids.`,
@@ -3781,7 +3783,7 @@ var (
 			ShortDescription: `Provides a list of scaling groups available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter resulting scaling groups by name.`,
@@ -3879,7 +3881,7 @@ var (
 					Description: `Creation time of scaling group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of scaling group ids.`,
@@ -3973,7 +3975,7 @@ var (
 			ShortDescription: `Provides a list of scaling rules available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "scaling_group_id",
 					Description: `(Optional) Scaling group id the scaling rules belong to.`,
@@ -4043,7 +4045,7 @@ var (
 					Description: `Ari of scaling rule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of scaling rule ids.`,
@@ -4101,7 +4103,7 @@ var (
 			ShortDescription: `Provides a list of FC functions to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `Name of the service that contains the functions to find.`,
@@ -4175,7 +4177,7 @@ var (
 					Description: `A map that defines environment variables for the function.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of functions ids.`,
@@ -4245,7 +4247,7 @@ var (
 			ShortDescription: `Provides a list of FC services to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results by FC service name.`,
@@ -4323,7 +4325,7 @@ var (
 					Description: `Associated security group ID.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of FC services ids.`,
@@ -4401,7 +4403,7 @@ var (
 			ShortDescription: `Provides a list of FC triggers to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "service_name",
 					Description: `FC service name.`,
@@ -4463,7 +4465,7 @@ var (
 					Description: `FC trigger last modification time.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of FC triggers ids.`,
@@ -4517,7 +4519,7 @@ var (
 			ShortDescription: `Provides a list of Forward Entries owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Forward Entries IDs.`,
@@ -4587,7 +4589,7 @@ var (
 					Description: `The status of the Forward Entry.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of Forward Entries IDs.`,
@@ -4641,7 +4643,7 @@ var (
 			ShortDescription: `Provides a collection of AnalyticDB for PostgreSQL instances according to the specified filters.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of instance IDs.`,
@@ -4723,7 +4725,7 @@ var (
 					Description: `The number of groups.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `The ids list of AnalyticDB for PostgreSQL instances.`,
@@ -4793,7 +4795,7 @@ var (
 			ShortDescription: `Provides a list of images available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter resulting images by name.`,
@@ -4887,7 +4889,7 @@ var (
 					Description: `Progress of image creation, presented in percentages.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of image IDs.`,
@@ -4973,7 +4975,7 @@ var (
 			ShortDescription: `Provides a list of ECS Instance Types to be used by the alicloud_instance resource.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) The zone where instance types are supported.`,
@@ -5091,7 +5093,7 @@ var (
 					Description: `The category of local storage that an instance has been attached to.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of instance type IDs.`,
@@ -5173,7 +5175,7 @@ var (
 			ShortDescription: `Provides a list of ECS instances to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of ECS instance IDs.`,
@@ -5327,7 +5329,7 @@ var (
 					Description: `A map of tags assigned to the ECS instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of ECS instance IDs.`,
@@ -5453,7 +5455,7 @@ var (
 			ShortDescription: `Provides a list of available key pairs that can be used by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to apply to the resulting key pairs.`,
@@ -5519,7 +5521,7 @@ var (
 					Description: `The private IP address of the ECS instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of key pair names.`,
@@ -5577,7 +5579,7 @@ var (
 			ShortDescription: `Provides a list of available KMS Keys.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of KMS key IDs.`,
@@ -5631,7 +5633,7 @@ var (
 					Description: `The owner of the key.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of KMS key IDs.`,
@@ -5677,7 +5679,7 @@ var (
 			ShortDescription: `Provides a list of KVStore instacne classes info.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The Zone to launch the KVStore instance.`,
@@ -5723,7 +5725,7 @@ var (
 					Description: `A list of KVStore available instance classes.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_classes",
 					Description: `A list of KVStore available instance classes.`,
@@ -5737,7 +5739,7 @@ var (
 			ShortDescription: `Provides a list of KVStore instacne engines info.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The Zone to launch the KVStore instance.`,
@@ -5775,7 +5777,7 @@ var (
 					Description: `KVStore Instance version.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_engines",
 					Description: `A list of KVStore available instance engines. Each element contains the following attributes:`,
@@ -5801,7 +5803,7 @@ var (
 			ShortDescription: `Provides a collection of kvstore instances according to the specified filters.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to apply to the instance name.`,
@@ -5915,7 +5917,7 @@ var (
 					Description: `Connection port of the instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of RKV instance IDs.`,
@@ -6005,7 +6007,7 @@ var (
 			ShortDescription: `Provides a list of mns queues available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_prefix",
 					Description: `(Optional) A string to filter resulting queues by their name prefixs.`,
@@ -6047,7 +6049,7 @@ var (
 					Description: `Long polling is measured in seconds. When this attribute is set to 0, long polling is disabled. When it is not set to 0, long polling is enabled and message dequeue requests will be processed only when valid messages are received or when long polling times out.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "queues",
 					Description: `A list of users. Each element contains the following attributes:`,
@@ -6089,7 +6091,7 @@ var (
 			ShortDescription: `Provides a list of mns topic subscriptions available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topic_name",
 					Description: `(Required) Two topics on a single account in the same region cannot have the same name. A topic name must start with an English letter or a digit, and can contain English letters, digits, and hyphens, with the length not exceeding 256 characters.`,
@@ -6127,7 +6129,7 @@ var (
 					Description: `Describe the terminal address of the message received in this subscription.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "subscriptions",
 					Description: `A list of users. Each element contains the following attributes:`,
@@ -6161,7 +6163,7 @@ var (
 			ShortDescription: `Provides a list of mns topics available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_prefix",
 					Description: `(Optional) A string to filter resulting topics by their name prefixs.`,
@@ -6191,7 +6193,7 @@ var (
 					Description: `Whether to enable logging.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "topics",
 					Description: `A list of users. Each element contains the following attributes:`,
@@ -6221,7 +6223,7 @@ var (
 			ShortDescription: `Provides a collection of MongoDB instances according to the specified filters.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to apply to the instance name.`,
@@ -6359,7 +6361,7 @@ var (
 					Description: `Instance availability zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `The ids list of MongoDB instances`,
@@ -6481,7 +6483,7 @@ var (
 			ShortDescription: `Provides a list of Access Groups owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Required) A regex string to filter AccessGroups by name.`,
@@ -6527,7 +6529,7 @@ var (
 					Description: `Destription of the AccessGroup.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of AccessGroup IDs.`,
@@ -6565,7 +6567,7 @@ var (
 			ShortDescription: `Provides a list of AccessRules owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_group_name",
 					Description: `(Required ForceNew) Filter results by a specific AccessGroupName.`,
@@ -6615,7 +6617,7 @@ var (
 					Description: `RWAccess of the AccessRule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of rule id. Each item formats as ` + "`" + `<access_group_name>:<access rule id>` + "`" + `.`,
@@ -6653,7 +6655,7 @@ var (
 			ShortDescription: `Provides a list of FileSystems owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of FileSystemId.`,
@@ -6711,7 +6713,7 @@ var (
 					Description: `Time of creation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of FileSystem Id.`,
@@ -6757,7 +6759,7 @@ var (
 			ShortDescription: `Provides a list of mns topic subscriptions available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "file_system_id",
 					Description: `(Required ForceNew) The ID of the FileSystem that owns the MountTarget.`,
@@ -6815,7 +6817,7 @@ var (
 					Description: `AccessGroup of The MountTarget.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of MountTargetDomain.`,
@@ -6853,7 +6855,7 @@ var (
 			ShortDescription: `Provides a list of FileType owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The file system type. Valid Values: Performance and Capacity.`,
@@ -6871,7 +6873,7 @@ var (
 					Description: `A list of supported protocol type..`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "protocols",
 					Description: `A list of supported protocol type..`,
@@ -6885,7 +6887,7 @@ var (
 			ShortDescription: `Provides a list of Nat Gateways owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of NAT gateways IDs.`,
@@ -6947,7 +6949,7 @@ var (
 					Description: `The forward table id.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Nat gateways IDs.`,
@@ -7001,8 +7003,8 @@ var (
 			ShortDescription: `Provides a data source to get a list of elastic network interfaces according to the specified filters.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "interfaces",
 					Description: `A list of ENIs. Each element contains the following attributes:`,
@@ -7076,7 +7078,7 @@ var (
 			ShortDescription: `Provides a list of ons instances available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of instance IDs to filter results.`,
@@ -7126,7 +7128,7 @@ var (
 					Description: `The automatic release time of an Enterprise Platinum Edition instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of instance IDs.`,
@@ -7172,7 +7174,7 @@ var (
 			ShortDescription: `Provides a list of bucket objects to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_name",
 					Description: `Name of the bucket that contains the objects to find.`,
@@ -7250,7 +7252,7 @@ var (
 					Description: `Last modification time of the object.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "objects",
 					Description: `A list of bucket objects. Each element contains the following attributes:`,
@@ -7320,7 +7322,7 @@ var (
 			ShortDescription: `Provides a list of OSS buckets to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results by bucket name.`,
@@ -7478,7 +7480,7 @@ var (
 					Description: `A bucket versioning state. Possible values:` + "`" + `Enabled` + "`" + ` and ` + "`" + `Suspended` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of bucket names.`,
@@ -7636,7 +7638,7 @@ var (
 			ShortDescription: `Provides a list of ots instance attachments to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Required) The name of OTS instance.`,
@@ -7690,7 +7692,7 @@ var (
 					Description: `The ID of attaching VPC to instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of vpc names.`,
@@ -7740,7 +7742,7 @@ var (
 			ShortDescription: `Provides a list of ots instances to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of instance IDs.`,
@@ -7818,7 +7820,7 @@ var (
 					Description: `The tags of the instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of instance IDs.`,
@@ -7888,7 +7890,7 @@ var (
 			ShortDescription: `Provides a list of ots tables to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_name",
 					Description: `The name of OTS instance.`,
@@ -7942,7 +7944,7 @@ var (
 					Description: `The maximum number of versions stored in this table.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of table IDs.`,
@@ -7988,7 +7990,7 @@ var (
 			ShortDescription: `Provides a list of Private Zone Records which owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "keyword",
 					Description: `(Optional) Keyword for record rr and value.`,
@@ -8030,7 +8032,7 @@ var (
 					Description: `Priority of the Private Zone Record.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "records",
 					Description: `A list of zone records. Each element contains the following attributes:`,
@@ -8068,7 +8070,7 @@ var (
 			ShortDescription: `Provides a list of Private Zones which owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "keyword",
 					Description: `(Optional) keyword for zone name.`,
@@ -8114,7 +8116,7 @@ var (
 					Description: `List of the VPCs is bound to the Private Zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zones",
 					Description: `A list of zones. Each element contains the following attributes:`,
@@ -8160,7 +8162,7 @@ var (
 			ShortDescription: `Provides an alias of the Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
@@ -8170,7 +8172,7 @@ var (
 					Description: `Alias of the account.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "account_alias",
 					Description: `Alias of the account.`,
@@ -8184,8 +8186,8 @@ var (
 			ShortDescription: `Provides an alias of the Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes:       []resource.Argument{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8194,7 +8196,7 @@ var (
 			ShortDescription: `Provides a list of ram groups available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter the returned groups by their names.`,
@@ -8232,7 +8234,7 @@ var (
 					Description: `Comments of the group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of ram group names.`,
@@ -8258,7 +8260,7 @@ var (
 			ShortDescription: `Provides a list of ram policies available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter resulting policies by name.`,
@@ -8324,7 +8326,7 @@ var (
 					Description: `Policy document of the policy.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
 					Description: `A list of ram group names.`,
@@ -8374,7 +8376,7 @@ var (
 			ShortDescription: `Provides a list of ram roles available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter results by the role name.`,
@@ -8436,7 +8438,7 @@ var (
 					Description: `Update date of the role.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of ram role IDs.`,
@@ -8490,7 +8492,7 @@ var (
 			ShortDescription: `Provides a list of ram users available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter resulting users by their names.`,
@@ -8540,7 +8542,7 @@ var (
 					Description: `Last login date of the user.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of ram user IDs.`,
@@ -8578,7 +8580,7 @@ var (
 			ShortDescription: `Provides a list of regions that can be used by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the region to select, such as ` + "`" + `eu-central-1` + "`" + `.`,
@@ -8608,7 +8610,7 @@ var (
 					Description: `Name of the region in the local language.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of region IDs.`,
@@ -8634,7 +8636,7 @@ var (
 			ShortDescription: `Provides a list of Route Entries owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_table_id",
 					Description: `(Required, ForceNew) The ID of the router table to which the route entry belongs.`,
@@ -8684,7 +8686,7 @@ var (
 					Description: `The destination CIDR block of the route entry.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "entries",
 					Description: `A list of Route Entries. Each element contains the following attributes:`,
@@ -8722,7 +8724,7 @@ var (
 			ShortDescription: `Provides a list of Route Tables owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Route Tables IDs.`,
@@ -8776,7 +8778,7 @@ var (
 					Description: `Time of creation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Route Tables IDs.`,
@@ -8822,7 +8824,7 @@ var (
 			ShortDescription: `Provides a list of router interfaces to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string used to filter by router interface name.`,
@@ -8948,7 +8950,7 @@ var (
 					Description: `Destination IP address used to perform health check on the physical connection.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of router interface IDs.`,
@@ -9042,7 +9044,7 @@ var (
 			ShortDescription: `Provides a collection of Security Group Rules available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `(Required) The ID of the security group that owns the rules.`,
@@ -9136,7 +9138,7 @@ var (
 					Description: `The description of the rule.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rules",
 					Description: `A list of rules. Each element contains the following attributes:`,
@@ -9214,7 +9216,7 @@ var (
 			ShortDescription: `Provides a list of Security Groups available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional, Available 1.52.0+) A list of Security Group IDs.`,
@@ -9276,7 +9278,7 @@ var (
 					Description: `A map of tags assigned to the ECS instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of Security Group IDs.`,
@@ -9326,7 +9328,7 @@ var (
 			ShortDescription: `Provides a list of server load balancer acls (access control lists) to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of acls IDs to filter results.`,
@@ -9380,7 +9382,7 @@ var (
 					Description: `the listener port.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of SLB acls IDs.`,
@@ -9430,7 +9432,7 @@ var (
 			ShortDescription: `Provides a list of server load balancer attachments to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `ID of the SLB with attachments.`,
@@ -9456,7 +9458,7 @@ var (
 					Description: `Weight associated to the ECS instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "slb_attachments",
 					Description: `A list of SLB attachments. Each element contains the following attributes:`,
@@ -9478,7 +9480,7 @@ var (
 			ShortDescription: `Provides a list of slb CA certificates.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of ca certificates IDs to filter results.`,
@@ -9544,7 +9546,7 @@ var (
 					Description: `The region Id of CA certificate.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of SLB ca certificates IDs.`,
@@ -9606,7 +9608,7 @@ var (
 			ShortDescription: `Provides a list of server load balancer listeners to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `(Required) ID of the SLB with listeners.`,
@@ -9776,7 +9778,7 @@ var (
 					Description: `Https listener TLS cipher policy. Valid values are ` + "`" + `tls_cipher_policy_1_0` + "`" + `, ` + "`" + `tls_cipher_policy_1_1` + "`" + `, ` + "`" + `tls_cipher_policy_1_2` + "`" + `, ` + "`" + `tls_cipher_policy_1_2_strict` + "`" + `. Default to ` + "`" + `tls_cipher_policy_1_0` + "`" + `.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "slb_listeners",
 					Description: `A list of SLB listeners. Each element contains the following attributes:`,
@@ -9938,7 +9940,7 @@ var (
 			ShortDescription: `Provides a list of server load balancer rules to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `ID of the SLB with listener rules.`,
@@ -9992,7 +9994,7 @@ var (
 					Description: `ID of the linked VServer group.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of SLB listener rules IDs.`,
@@ -10034,7 +10036,7 @@ var (
 			ShortDescription: `Provides a list of slb server certificates.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of server certificates IDs to filter results.`,
@@ -10100,7 +10102,7 @@ var (
 					Description: `Id of server certificate issued by alibaba cloud.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of SLB server certificates IDs.`,
@@ -10162,7 +10164,7 @@ var (
 			ShortDescription: `Provides a list of VServer groups related to a server load balancer to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
 					Description: `ID of the SLB.`,
@@ -10212,7 +10214,7 @@ var (
 					Description: `Weight associated to the ECS instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of SLB VServer groups IDs.`,
@@ -10254,7 +10256,7 @@ var (
 			ShortDescription: `Provides a list of server load balancers to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of SLBs IDs.`,
@@ -10360,7 +10362,7 @@ var (
 					Description: `A map of tags assigned to the SLB instance.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of slb IDs.`,
@@ -10434,8 +10436,8 @@ var (
 			ShortDescription: `Provides a data source to get a list of snapshot according to the specified filters.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Argument{},
-			Attributes: []resource.Argument{
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of snapshot IDs.`,
@@ -10517,7 +10519,7 @@ var (
 			ShortDescription: `Provides a list of Snat Entries owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Snat Entries IDs.`,
@@ -10563,7 +10565,7 @@ var (
 					Description: `The status of the Snat Entry.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) A list of Snat Entries IDs.`,
@@ -10597,7 +10599,7 @@ var (
 			ShortDescription: `Provides a list of SSL-VPN client certificates which owned by an Alicloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) IDs of the SSL-VPN client certificates.`,
@@ -10651,7 +10653,7 @@ var (
 					Description: `The status of the client certificate. valid value:expiring-soon, normal, expired.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of SSL-VPN client cert IDs.`,
@@ -10697,7 +10699,7 @@ var (
 			ShortDescription: `Provides a list of SSL-VPN servers which owned by an Alicloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) IDs of the SSL-VPN servers.`,
@@ -10775,7 +10777,7 @@ var (
 					Description: `The maximum number of connections.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of SSL-VPN server IDs.`,
@@ -10845,7 +10847,7 @@ var (
 			ShortDescription: `Provides a list of VPCs owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Optional) Filter results by a specific CIDR block. For example: "172.16.0.0/12".`,
@@ -10931,7 +10933,7 @@ var (
 					Description: `Time of creation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of VPC IDs.`,
@@ -10997,7 +10999,7 @@ var (
 			ShortDescription: `Provides a list of VPN connections which owned by an Alicloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) IDs of the VPN connections.`,
@@ -11119,7 +11121,7 @@ var (
 					Description: `The SA lifecycle as the result of phase-two negotiation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) IDs of the VPN connections.`,
@@ -11229,7 +11231,7 @@ var (
 			ShortDescription: `Provides a list of VPN customer gateways which owned by an Alicloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `(Optional) ID of the VPN customer gateways.`,
@@ -11267,7 +11269,7 @@ var (
 					Description: `The creation time of the VPN customer gateway.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "gateways",
 					Description: `A list of VPN customer gateways. Each element contains the following attributes:`,
@@ -11301,7 +11303,7 @@ var (
 			ShortDescription: `Provides a list of VPNs which owned by an Alicloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Optional) Use the VPC ID as the search key.`,
@@ -11395,7 +11397,7 @@ var (
 					Description: `Total count of ssl vpn connections.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `IDs of the VPN.`,
@@ -11473,7 +11475,7 @@ var (
 			ShortDescription: `Provides a list of VSwitch owned by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `(Optional) Filter results by a specific CIDR block. For example: "172.16.0.0/12".`,
@@ -11551,7 +11553,7 @@ var (
 					Description: `Time of creation.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of VSwitch IDs.`,
@@ -11609,7 +11611,7 @@ var (
 			ShortDescription: `Provides a list of availability zones that can be used by an Alibaba Cloud account.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "available_instance_type",
 					Description: `(Optional) Filter the results by a specific instance type.`,
@@ -11691,7 +11693,7 @@ var (
 					Description: `A list of slb slave zone ids in which the slb master zone.`,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of zone IDs.`,
@@ -11732,7 +11734,7 @@ var (
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"alicloud_account":                        0,
 		"alicloud_actiontrails":                   1,
@@ -11831,10 +11833,10 @@ var (
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

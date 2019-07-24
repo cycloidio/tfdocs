@@ -1,11 +1,13 @@
-package aws
+package linode
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"domain",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "domain",
 					Description: `(Required) The domain this Domain represents. These must be unique in our system; you cannot have two Domains representing the same domain.`,
@@ -70,7 +72,7 @@ var (
 					Description: `(Optional) A list of tags applied to this object. Tags are for organizational purposes only. ## Attributes This resource exports no additional attributes, however ` + "`" + `status` + "`" + ` may reflect degraded states. ## Import Linodes Domains can be imported using the Linode Domain ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_domain_record.foobar 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Domains and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -82,7 +84,7 @@ var (
 				"domain",
 				"record",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of this Record. This field's actual usage depends on the type of record this represents. For A and AAAA records, this is the subdomain being associated with an IP address.`,
@@ -128,7 +130,7 @@ var (
 					Description: `(Optional) The relative weight of this Record. Higher values are preferred. ## Attributes This resource exports no additional attributes. ## Import Linodes Domain Records can be imported using the Linode Domain ` + "`" + `id` + "`" + ` followed by the Domain Record ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_domain_record.www-foobar 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Domain Records and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -139,7 +141,7 @@ var (
 			Keywords: []string{
 				"image",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label",
 					Description: `(Required) A short description of the Image. Labels cannot contain special characters.`,
@@ -197,7 +199,7 @@ var (
 					Description: `The upstream distribution vendor. Nil for private Images. ## Import Linodes Images can be imported using the Linode Image ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_image.myimage 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -208,7 +210,7 @@ var (
 			Keywords: []string{
 				"instance",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) This is the location where the Linode is deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc.`,
@@ -470,7 +472,7 @@ var (
 					Description: `The window ('W0'-'W22') in which your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur. For example, 'W10' indicates that your backups should be taken between 10:00 and 12:00. If you do not choose a backup window, one will be selected for you automatically. If not set manually, when backups are initially enabled this may come back as Scheduling until the window is automatically selected. ## Import Linodes Instances can be imported using the Linode ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_instance.mylinode 1234567 ` + "`" + `` + "`" + `` + "`" + ` When importing an instance, all ` + "`" + `disk` + "`" + ` and ` + "`" + `config` + "`" + ` values must be represented. Imported disks must include their ` + "`" + `label` + "`" + ` value.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -481,7 +483,7 @@ var (
 			Keywords: []string{
 				"nodebalancer",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) The region where this NodeBalancer will be deployed. Examples are ` + "`" + `"us-east"` + "`" + `, ` + "`" + `"us-west"` + "`" + `, ` + "`" + `"ap-south"` + "`" + `, etc.`,
@@ -515,7 +517,7 @@ var (
 					Description: `The Public IPv6 Address of this NodeBalancer ## Import Linodes NodeBalancers can be imported using the Linode NodeBalancer ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer.mynodebalancer 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancers and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -527,7 +529,7 @@ var (
 				"nodebalancer",
 				"config",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nodebalancer_id",
 					Description: `(Required) The ID of the NodeBalancer to access.`,
@@ -605,7 +607,7 @@ var (
 					Description: `The number of backends considered to be 'DOWN' and unhealthy. These are not in rotation, and not serving requests. ## Import NodeBalancer Configs can be imported using the NodeBalancer ` + "`" + `nodebalancer_id` + "`" + ` followed by the NodeBalancer Config ` + "`" + `id` + "`" + ` separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer_config.http-foobar 1234567,7654321 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancer Configs and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -617,7 +619,7 @@ var (
 				"nodebalancer",
 				"node",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label",
 					Description: `(Required) The label of the Linode NodeBalancer Node. This is for display purposes only.`,
@@ -655,7 +657,7 @@ var (
 					Description: `The ID of the NodeBalancer this NodeBalancerNode is attached to. ## Import NodeBalancer Nodes can be imported using the NodeBalancer ` + "`" + `nodebalancer_id` + "`" + ` followed by the NodeBalancer Config ` + "`" + `config_id` + "`" + ` followed by the NodeBalancer Node ` + "`" + `id` + "`" + `, separated by a comma, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_nodebalancer_node.https-foobar-1 1234567,7654321,9999999 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for NodeBalancer Nodes and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -666,7 +668,7 @@ var (
 			Keywords: []string{
 				"rdns",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `The Public IPv4 or IPv6 address that will receive the ` + "`" + `PTR` + "`" + ` record. A matching ` + "`" + `A` + "`" + ` or ` + "`" + `AAAA` + "`" + ` record must exist.`,
@@ -676,7 +678,7 @@ var (
 					Description: `The name of the RDNS address. ## Import Linodes RDNS resources can be imported using the address as the ` + "`" + `id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_rdns.foo 123.123.123.123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -687,7 +689,7 @@ var (
 			Keywords: []string{
 				"sshkey",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label",
 					Description: `A label for the SSH Key.`,
@@ -701,7 +703,7 @@ var (
 					Description: `The date this SSH Key was created. ## Import Linodes SSH Keys can be imported using the Linode SSH Key ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_sshkey.mysshkey 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -712,7 +714,7 @@ var (
 			Keywords: []string{
 				"stackscript",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label",
 					Description: `(Required) The StackScript's label is for display purposes only.`,
@@ -790,7 +792,7 @@ var (
 					Description: `The default value. If not specified, this value will be used. ## Import Linodes StackScripts can be imported using the Linode StackScript ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_stackscript.mystackscript 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -801,7 +803,7 @@ var (
 			Keywords: []string{
 				"token",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label",
 					Description: `A label for the Token.`,
@@ -823,7 +825,7 @@ var (
 					Description: `The date this Token was created. ## Import Linodes Tokens can be imported using the Linode Token ` + "`" + `id` + "`" + `, e.g. The secret token will not be imported. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_token.mytoken 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -834,7 +836,7 @@ var (
 			Keywords: []string{
 				"volume",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "label",
 					Description: `(Required) The label of the Linode Volume`,
@@ -876,7 +878,7 @@ var (
 					Description: `The full filesystem path for the Volume based on the Volume's label. The path is "/dev/disk/by-id/scsi-0Linode_Volume_" + the Volume label ## Import Linodes Volumes can be imported using the Linode Volume ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_volume.myvolume 1234567 ` + "`" + `` + "`" + `` + "`" + ` The Linode Guide, [Import Existing Infrastructure to Terraform](https://www.linode.com/docs/applications/configuration-management/import-existing-infrastructure-to-terraform/), offers resource importing examples for Block Storage Volumes and other Linode resource types.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -897,10 +899,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }

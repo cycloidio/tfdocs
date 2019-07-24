@@ -1,11 +1,13 @@
-package aws
+package linode
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	DataSources = []*Resource{
+	DataSources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -20,7 +22,7 @@ This data source should not be used in conjuction with the ` + "`" + `LINODE_DEB
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `The email address for this Account, for account management communications, and may be used for other communications as configured.`,
@@ -70,7 +72,7 @@ This data source should not be used in conjuction with the ` + "`" + `LINODE_DEB
 					Description: `This Account's balance, in US dollars.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -83,7 +85,7 @@ Provides information about a Linode domain.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The unique numeric ID of the Domain record to query.`,
@@ -149,7 +151,7 @@ Provides information about a Linode domain.
 					Description: `An array of tags applied to this object.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -162,7 +164,7 @@ Provides information about a Linode image
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Required) The unique ID of this Image. The ID of private images begin with ` + "`" + `private/` + "`" + ` followed by the numeric identifier of the private image, for example ` + "`" + `private/12345` + "`" + `. ## Attributes The Linode Image resource exports the following attributes:`,
@@ -204,7 +206,7 @@ Provides information about a Linode image
 					Description: `The upstream distribution vendor. ` + "`" + `None` + "`" + ` for private Images.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -217,7 +219,7 @@ Provides information about a Linode instance type
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Required) Label used to identify instance type ## Attributes The Linode Instance Type resource exports the following attributes:`,
@@ -255,7 +257,7 @@ Provides information about a Linode instance type
 					Description: `The cost (in US dollars) per month to add Backups service.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -268,7 +270,7 @@ Provides information about a Linode Networking IP Address
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "address",
 					Description: `(Required) The IP Address to access. The address must be associated with the account and a resource that the user has access to view. ## Attributes The Linode Network IP Address resource exports the following attributes:`,
@@ -310,7 +312,7 @@ Provides information about a Linode Networking IP Address
 					Description: `The Region this IP address resides in.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -323,7 +325,7 @@ Provides information about a Linode profile.
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "email",
 					Description: `The profile email address. This address will be used for communication with Linode as necessary.`,
@@ -389,7 +391,7 @@ Provides information about a Linode profile.
 					Description: `The referral URL.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -402,8 +404,8 @@ Provides information about a Linode profile.
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -416,8 +418,8 @@ Provides information about a Linode profile.
 
 `,
 			Keywords:   []string{},
-			Arguments:  []resource.Argument{},
-			Attributes: []resource.Argument{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -430,7 +432,7 @@ Provides information about a Linode user
 
 `,
 			Keywords: []string{},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "username",
 					Description: `(Required) The unique username of this User. ## Attributes The Linode User resource exports the following attributes:`,
@@ -448,11 +450,11 @@ Provides information about a Linode user
 					Description: `If true, this User must be granted access to perform actions or access entities on this Account.`,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
-	dataSourcesMap = map[string]Resource{
+	dataSourcesMap = map[string]int{
 
 		"linode_account":       0,
 		"linode_domain":        1,
@@ -466,10 +468,10 @@ Provides information about a Linode user
 	}
 )
 
-func GetDataSource(r string) (*resouce.Resource, error) {
+func GetDataSource(r string) (*resource.Resource, error) {
 	rs, ok := dataSourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("datasource %q not found", r)
 	}
-	return DataSources[rs]
+	return DataSources[rs], nil
 }

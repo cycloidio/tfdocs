@@ -1,11 +1,13 @@
-package aws
+package rabbitmq
 
 import (
+	"fmt"
+
 	"github.com/cycloidio/tfdocs/resource"
 )
 
 var (
-	Resources = []*Resource{
+	Resources = []*resource.Resource{
 
 		&resource.Resource{
 			Name:             "",
@@ -16,7 +18,7 @@ var (
 			Keywords: []string{
 				"binding",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "source",
 					Description: `(Required) The source exchange.`,
@@ -46,7 +48,7 @@ var (
 					Description: `A unique key to refer to the binding. ## Import Bindings can be imported using the ` + "`" + `id` + "`" + ` which is composed of ` + "`" + `vhost/source/destination/destination_type/properties_key` + "`" + `. E.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rabbitmq_binding.test test/test/test/queue/%23 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{
+			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "properties_key",
 					Description: `A unique key to refer to the binding. ## Import Bindings can be imported using the ` + "`" + `id` + "`" + ` which is composed of ` + "`" + `vhost/source/destination/destination_type/properties_key` + "`" + `. E.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rabbitmq_binding.test test/test/test/queue/%23 ` + "`" + `` + "`" + `` + "`" + ``,
@@ -62,7 +64,7 @@ var (
 			Keywords: []string{
 				"exchange",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the exchange.`,
@@ -92,7 +94,7 @@ var (
 					Description: `(Optional) Additional key/value settings for the exchange. ## Attributes Reference No further attributes are exported. ## Import Exchanges can be imported using the ` + "`" + `id` + "`" + ` which is composed of ` + "`" + `name@vhost` + "`" + `. E.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import rabbitmq_exchange.test test@vhost ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -103,7 +105,7 @@ var (
 			Keywords: []string{
 				"permissions",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "user",
 					Description: `(Required) The user to apply the permissions to.`,
@@ -129,7 +131,7 @@ var (
 					Description: `(Required) The "read" ACL. ## Attributes Reference No further attributes are exported. ## Import Permissions can be imported using the ` + "`" + `id` + "`" + ` which is composed of ` + "`" + `user@vhost` + "`" + `. E.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import rabbitmq_permissions.test user@vhost ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -140,7 +142,7 @@ var (
 			Keywords: []string{
 				"policy",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the policy.`,
@@ -170,7 +172,7 @@ var (
 					Description: `(Required) Key/value pairs of the policy definition. See the RabbitMQ documentation for definition references and examples. ## Attributes Reference No further attributes are exported. ## Import Policies can be imported using the ` + "`" + `id` + "`" + ` which is composed of ` + "`" + `name@vhost` + "`" + `. E.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import rabbitmq_policy.test name@vhost ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -181,7 +183,7 @@ var (
 			Keywords: []string{
 				"queue",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the queue.`,
@@ -211,7 +213,7 @@ var (
 					Description: `(Optional) A nested JSON string which contains additional settings for the queue. This is useful for when the arguments contain non-string values. ## Attributes Reference No further attributes are exported. ## Import Queues can be imported using the ` + "`" + `id` + "`" + ` which is composed of ` + "`" + `name@vhost` + "`" + `. E.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import rabbitmq_queue.test name@vhost ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -222,7 +224,7 @@ var (
 			Keywords: []string{
 				"user",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the user.`,
@@ -236,7 +238,7 @@ var (
 					Description: `(Optional) Which permission model to apply to the user. Valid options are: management, policymaker, monitoring, and administrator. ## Attributes Reference No further attributes are exported. ## Import Users can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import rabbitmq_user.test mctest ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -247,13 +249,13 @@ var (
 			Keywords: []string{
 				"vhost",
 			},
-			Arguments: []resource.Argument{
+			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the vhost. ## Attributes Reference No further attributes are exported. ## Import Vhosts can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import rabbitmq_vhost.my_vhost my_vhost ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Argument{},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
@@ -269,10 +271,10 @@ var (
 	}
 )
 
-func GetResource(r string) (*resouce.Resource, error) {
+func GetResource(r string) (*resource.Resource, error) {
 	rs, ok := resourcesMap[r]
 	if !ok {
 		return nil, fmt.Errorf("resource %q not found", r)
 	}
-	return Resources[rs]
+	return Resources[rs], nil
 }
