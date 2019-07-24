@@ -20,33 +20,33 @@ const (
 			{{ else }}
 				DataSources = []*Resource{
 			{{ end }}
-				{{ range .Resources }}
+				{{- range .Resources }}
 					&resource.Resource{
 						Name: "{{ .Name }}",
 						Type: "{{ .Type }}",
 						Category: "{{ .Category }}",
-						ShortDescription: "{{ .ShortDescription }}",
+						ShortDescription: ` + "`{{ .ShortDescription }}`" + `,
 						Description: ` + "`{{ .Description }}`" + `,
 						Keywords: []string{
-							{{ range .Keywords }}
+							{{- range .Keywords }}
 							  "{{ . }}",
-							{{ end }}
+							{{- end }}
 						},
 						Arguments: []resource.Argument{
-							{{ range .Arguments }}
+							{{- range .Arguments }}
 								resource.Attribute{
 									Name: "{{ .Name }}",
 									Description: ` + "`{{ .Description }}`" + `,
 								},
-							{{ end }}
+							{{- end }}
 						},
 						Attributes: []resource.Argument{
-							{{ range .Attributes }}
+							{{- range .Attributes }}
 								resource.Attribute{
 									Name: "{{ .Name }}",
 									Description: ` + "`{{ .Description }}`" + `,
 								},
-							{{ end }}
+							{{- end }}
 						},
 					},
 				{{- end }}
@@ -56,7 +56,7 @@ const (
 			{{ else }}
 				dataSourcesMap = map[string]Resource{
 			{{ end }}
-				{{ range $index, $el := .Resources }}
+				{{- range $index, $el := .Resources }}
 					"{{ .Type }}": {{ $index }},
 				{{- end }}
 			}

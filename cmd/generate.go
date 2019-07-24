@@ -14,134 +14,175 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/cycloidio/tfdocs/resource"
+	"github.com/davecgh/go-spew/spew"
+)
+
+var (
+	erbEmbed = regexp.MustCompile("<%=?[^>]*>")
 )
 
 func main() {
-	docsPath := filepath.Join("providers", "aws", "website", "docs")
-	sidebarPath := filepath.Join("providers", "aws", "website", "aws.erb")
-
-	// categories has as key the resource name and as value the category
-	// they belong to
-	// The DataSources are not here
-	categories := make(map[string]string)
-
-	// The type it's hard to guess.
-	// * On the .markdown, the `Resource: ` sometimes has with or without aws_, and some
-	// times it does not match
-	// * The `page_title` the smae
-	// * File name does not match always
-	// The only valid solution is to read the sidebar and get the URL which is the file
-	// and use the Text to set as type
-	fileType := make(map[string]string)
-
-	body, err := ioutil.ReadFile(sidebarPath)
+	providersPath := filepath.Join("terraform-website", "ext", "providers")
+	fileInfos, err := ioutil.ReadDir(providersPath)
 	if err != nil {
 		panic(err)
 	}
+	for _, fi := range fileInfos {
+		if !fi.IsDir() {
+			continue
+		}
+		provider := fi.Name()
+		if provider == "avi" {
+			continue
+		}
+		docsPath := filepath.Join(providersPath, provider, "website", "docs")
+		sidebarPath := filepath.Join(providersPath, provider, "website", fmt.Sprintf("%s.erb", provider))
+		secondSidebarPath := filepath.Join(providersPath, provider, "website", "layout.erb")
 
-	doc, err := goquery.NewDocumentFromReader(bytes.NewBuffer(body))
-	if err != nil {
-		panic(err)
-	}
+		// categories has as key the resource name and as value the category
+		// they belong to
+		// The DataSources are not here
+		categories := make(map[string]string)
 
-	doc.Find(".nav.docs-sidenav > li").Each(func(_ int, s *goquery.Selection) {
-		var cat string
-		s.Find("a").Each(func(i int, s *goquery.Selection) {
-			text := s.Text()
+		// The type it's hard to guess.
+		// * On the .markdown, the `Resource: ` sometimes has with or without aws_, and some
+		// times it does not match
+		// * The `page_title` the smae
+		// * File name does not match always
+		// The only valid solution is to read the sidebar and get the URL which is the file
+		// and use the Text to set as type
+		fileType := make(map[string]string)
 
-			if i == 0 {
-				cat = text
-				return
+		body, err := ioutil.ReadFile(sidebarPath)
+		if err != nil {
+			if strings.Contains(err.Error(), "no such file or directory") {
+				body, err = ioutil.ReadFile(secondSidebarPath)
+				if err != nil {
+					panic(err)
+				}
+			} else {
+				panic(err)
 			}
+		}
 
-			// Set the href of the link with the actual type of it
-			href, _ := s.Attr("href")
-			paths := strings.Split(href, "/")
-			fileName := strings.Split(paths[len(paths)-1], ".")[0]
+		body = erbEmbed.ReplaceAll(body, nil)
 
-			// We want to ignore the 'Data Sources'
-			// as they all are the same category
-			if cat == "Data Sources" {
-				fileType[fmt.Sprintf("d_%s", fileName)] = text
-				return
-			}
+		doc, err := goquery.NewDocumentFromReader(bytes.NewBuffer(body))
+		if err != nil {
+			panic(err)
+		}
 
-			fileType[fmt.Sprintf("r_%s", fileName)] = text
-			if v, ok := categories[text]; ok {
-				log.Fatalf("the resource %q found with category %q and also on %q", text, v, cat)
-			}
-			categories[text] = cat
+		doc.Find(".nav.docs-sidenav > li").Each(func(_ int, s *goquery.Selection) {
+			var cat string
+			s.Find("a").Each(func(i int, s *goquery.Selection) {
+				text := s.Text()
+
+				if i == 0 {
+					cat = text
+					return
+				}
+
+				// Set the href of the link with the actual type of it
+				href, _ := s.Attr("href")
+				paths := strings.Split(href, "/")
+				fileName := strings.Split(paths[len(paths)-1], ".")[0]
+
+				// We want to ignore the 'Data Sources'
+				// as they all are the same category
+				if strings.Contains(cat, "Data Sources") || strings.Contains(cat, "Data Resources") {
+					fileType[fmt.Sprintf("d_%s", fileName)] = text
+					return
+				}
+
+				fileType[fmt.Sprintf("r_%s", fileName)] = text
+				if v, ok := categories[text]; ok {
+					log.Printf("WARNING: the provider %q with resource %q found with category %q and also on %q", provider, text, v, cat)
+					cat += " " + v
+				}
+				categories[text] = cat
+			})
 		})
-	})
 
-	//spew.Dump(fileType)
-	//panic("")
+		for _, t := range []string{"r", "d"} {
+			files, err := ioutil.ReadDir(filepath.Join(docsPath, t))
+			if err != nil {
+				// This means that the provides does not have 'r' or 'd'
+				if strings.Contains(err.Error(), "no such file or directory") {
+					continue
+				}
+				panic(err)
+			}
 
-	for _, t := range []string{"r", "d"} {
-		files, err := ioutil.ReadDir(filepath.Join(docsPath, t))
-		if err != nil {
-			panic(err)
-		}
+			err = os.Mkdir(filepath.Join("providers", provider), os.ModePerm)
+			if err != nil && !os.IsExist(err) {
+				panic(err)
+			}
+			out, err := os.OpenFile(filepath.Join("providers", provider, fmt.Sprintf("%s.go", t)), os.O_APPEND|os.O_TRUNC|os.O_RDWR|os.O_CREATE, 0644)
+			if err != nil {
+				panic(err)
+			}
+			defer out.Close()
 
-		out, err := os.OpenFile(filepath.Join("aws", fmt.Sprintf("%s.go", t)), os.O_APPEND|os.O_TRUNC|os.O_RDWR|os.O_CREATE, 0755)
-		if err != nil {
-			panic(err)
-		}
-		defer out.Close()
+			resources := make([]resource.Resource, 0)
+			for _, f := range files {
+				if f.IsDir() || f.Name() == ".keep" {
+					continue
+				}
+				body, err := ioutil.ReadFile(filepath.Join(docsPath, t, f.Name()))
+				if err != nil {
+					panic(err)
+				}
 
-		resources := make([]resource.Resource, 0)
-		for _, f := range files {
-			body, err := ioutil.ReadFile(filepath.Join(docsPath, t, f.Name()))
+				fileName := fmt.Sprintf("%s_%s", t, strings.Split(f.Name(), ".")[0])
+				rt, ok := fileType[fileName]
+				if !ok {
+					log.Printf("the provider %q file %q of %q has no type, name used was %q", provider, f.Name(), t, fileName)
+					continue
+				}
+
+				r := resource.Resource{
+					Type:             rt,
+					ShortDescription: getShortDescription(body),
+					Description:      getDescription(body),
+					Arguments:        getArguments(body),
+					Attributes:       getAttributes(body),
+				}
+				if t == "d" {
+					r.Category = "Data Sources"
+				} else {
+					c, ok := categories[rt]
+					if !ok {
+						log.Printf("the provider %q the resource %q has no category", provider, rt)
+						continue
+					}
+					r.Category = c
+					r.Keywords = categoryAndTypeToKeywords(provider, c, rt)
+				}
+				resources = append(resources, r)
+			}
+
+			buff := &bytes.Buffer{}
+
+			td := TemplateData{
+				Resources: resources,
+				Type:      t,
+			}
+
+			err = resourceTmpl.Execute(buff, td)
 			if err != nil {
 				panic(err)
 			}
 
-			fileName := fmt.Sprintf("%s_%s", t, strings.Split(f.Name(), ".")[0])
-			rt, ok := fileType[fileName]
-			if !ok {
-				log.Printf("the file %q of %q has no type, name used was %q", f.Name(), t, fileName)
-				continue
+			b, err := format.Source(buff.Bytes())
+			if err != nil {
+				spew.Dump(provider)
+				panic(err)
 			}
 
-			r := resource.Resource{
-				Type:             rt,
-				ShortDescription: getShortDescription(body),
-				Description:      getDescription(body),
-				Arguments:        getArguments(body),
-				Attributes:       getAttributes(body),
-			}
-			if t == "d" {
-				r.Category = "Data Sources"
-			} else {
-				c, ok := categories[rt]
-				if !ok {
-					log.Printf("the resource %q has no category", rt)
-					continue
-				}
-				r.Category = c
-				r.Keywords = categoryAndTypeToKeywords("aws", c, rt)
-			}
-			resources = append(resources, r)
+			io.Copy(out, bytes.NewBuffer(b))
+
+			//io.Copy(out, buff)
 		}
-
-		buff := &bytes.Buffer{}
-
-		td := TemplateData{
-			Resources: resources,
-			Type:      t,
-		}
-
-		err = resourceTmpl.Execute(buff, td)
-		if err != nil {
-			panic(err)
-		}
-
-		b, err := format.Source(buff.Bytes())
-		if err != nil {
-			panic(err)
-		}
-
-		io.Copy(out, bytes.NewBuffer(b))
 	}
 }
 
@@ -188,7 +229,7 @@ func getShortDescription(b []byte) string {
 	if len(res) != 2 {
 		return ""
 	}
-	return standardizeSpaces(string(res[1]))
+	return escapeRawStringQuotes(standardizeSpaces(string(res[1])))
 }
 
 var descriptionRe = regexp.MustCompile(`(?ms)#\s(?:Resource|Data\sSource):\s[\w\d-_]+(.+?)##[^#]+`)
