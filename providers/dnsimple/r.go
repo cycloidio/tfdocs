@@ -1,0 +1,126 @@
+package aws
+
+import (
+	"github.com/cycloidio/tfdocs/resource"
+)
+
+var (
+	Resources = []*Resource{
+
+		&resource.Resource{
+			Name:             "",
+			Type:             "dnsimple_record",
+			Category:         "Resources",
+			ShortDescription: `Provides a DNSimple record resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"record",
+			},
+			Arguments: []resource.Argument{
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Required) The domain to add the record to`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the record`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the record`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the record`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional) The TTL of the record`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) The priority of the record - only useful for some record types ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The record ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the record`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the record`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the record`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The TTL of the record`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The priority of the record`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `The domain ID of the record`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The FQDN of the record ## Import DNSimple resources can be imported using their domain name and numeric ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dnsimple_record.resource_name example.com_1234 ` + "`" + `` + "`" + `` + "`" + ` The numeric ID can be found in the URL when editing a record on the dnsimple web dashboard.`,
+				},
+			},
+			Attributes: []resource.Argument{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The record ID`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the record`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the record`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the record`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The TTL of the record`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The priority of the record`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `The domain ID of the record`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The FQDN of the record ## Import DNSimple resources can be imported using their domain name and numeric ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dnsimple_record.resource_name example.com_1234 ` + "`" + `` + "`" + `` + "`" + ` The numeric ID can be found in the URL when editing a record on the dnsimple web dashboard.`,
+				},
+			},
+		},
+	}
+
+	resourcesMap = map[string]int{
+
+		"dnsimple_record": 0,
+	}
+)
+
+func GetResource(r string) (*resouce.Resource, error) {
+	rs, ok := resourcesMap[r]
+	if !ok {
+		return nil, fmt.Errorf("resource %q not found", r)
+	}
+	return Resources[rs]
+}

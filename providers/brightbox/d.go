@@ -1,0 +1,247 @@
+package aws
+
+import (
+	"github.com/cycloidio/tfdocs/resource"
+)
+
+var (
+	DataSources = []*Resource{
+
+		&resource.Resource{
+			Name:             "",
+			Type:             "brightbox_database_snapshot",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Brightbox Database Snapshot.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Argument{
+				resource.Attribute{
+					Name:        "most_recent",
+					Description: `(Optional) If more than one result is returned, use the most recent image based upon the ` + "`" + `created_at` + "`" + ` time.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A regex string to apply to the Database Snapshot list returned by Brightbox Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A regex string to apply to the Database Snapshot list returned by Brightbox Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of database partition in megabytes`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The state the image is in. Usually ` + "`" + `available` + "`" + `, or ` + "`" + `deleted` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time and date the image was created/registered (UTC)`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `true if image has been set as locked and can not be deleted`,
+				},
+			},
+			Attributes: []resource.Argument{
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of database partition in megabytes`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The state the image is in. Usually ` + "`" + `available` + "`" + `, or ` + "`" + `deleted` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time and date the image was created/registered (UTC)`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `true if image has been set as locked and can not be deleted`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "brightbox_database_type",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Brightbox Database Type.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Argument{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A regex string to apply to the Database Type list returned by Brightbox Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A regex string to apply to the Database Type list returned by Brightbox Cloud. ~>`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `The disk size of the database server for this type`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The memory size of the database server for this type`,
+				},
+			},
+			Attributes: []resource.Argument{
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `The disk size of the database server for this type`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The memory size of the database server for this type`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "brightbox_image",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Brightbox Image.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Argument{
+				resource.Attribute{
+					Name:        "most_recent",
+					Description: `(Optional) If more than one result is returned, use the most recent image based upon the ` + "`" + `created_at` + "`" + ` time.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A regex string to apply to the Image list returned by Brightbox Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A regex string to apply to the Image list returned by Brightbox Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `(Optional) Either ` + "`" + `upload` + "`" + ` or ` + "`" + `snapshot` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Optional) The account id that owns the image. Matches exactly.`,
+				},
+				resource.Attribute{
+					Name:        "arch",
+					Description: `(Optional) The architecture of the image: either ` + "`" + `x86_64` + "`" + ` or ` + "`" + `i686` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `(Optional) Boolean to select a public image.`,
+				},
+				resource.Attribute{
+					Name:        "official",
+					Description: `(Optional) Boolean to select an official image.`,
+				},
+				resource.Attribute{
+					Name:        "compatibility_mode",
+					Description: `(Optional) Boolean to match the compatibility mode flag.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The username used to logon to the image. Matches exactly.`,
+				},
+				resource.Attribute{
+					Name:        "ancestor_id",
+					Description: `(Optional) The image id of the parent of the image you are looking for.`,
+				},
+				resource.Attribute{
+					Name:        "licence_name",
+					Description: `(Optional) The name of the licence for the image. Matches exactly. ~>`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The state the image is in. Usually ` + "`" + `available` + "`" + `, ` + "`" + `deprecated` + "`" + ` or ` + "`" + `deleted` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time and date the image was created/registered (UTC)`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `true if image has been set as locked and can not be deleted`,
+				},
+				resource.Attribute{
+					Name:        "virtual_size",
+					Description: `The virtual size of the disk image "container" in MB`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `The actual size of the data within the Image in MB`,
+				},
+			},
+			Attributes: []resource.Argument{
+				resource.Attribute{
+					Name:        "status",
+					Description: `The state the image is in. Usually ` + "`" + `available` + "`" + `, ` + "`" + `deprecated` + "`" + ` or ` + "`" + `deleted` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time and date the image was created/registered (UTC)`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `true if image has been set as locked and can not be deleted`,
+				},
+				resource.Attribute{
+					Name:        "virtual_size",
+					Description: `The virtual size of the disk image "container" in MB`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `The actual size of the data within the Image in MB`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "brightbox_server_group",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Brightbox Server Group`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Argument{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A regex string to apply to the Server Group list returned by Brightbox Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A regex string to apply to the Server Group list returned by Brightbox Cloud. ~>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Server`,
+				},
+			},
+			Attributes: []resource.Argument{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Server`,
+				},
+			},
+		},
+	}
+
+	dataSourcesMap = map[string]Resource{
+
+		"brightbox_database_snapshot": 0,
+		"brightbox_database_type":     1,
+		"brightbox_image":             2,
+		"brightbox_server_group":      3,
+	}
+)
+
+func GetDataSource(r string) (*resouce.Resource, error) {
+	rs, ok := dataSourcesMap[r]
+	if !ok {
+		return nil, fmt.Errorf("datasource %q not found", r)
+	}
+	return DataSources[rs]
+}
