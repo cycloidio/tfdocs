@@ -14,7 +14,6 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/cycloidio/tfdocs/resource"
-	"github.com/davecgh/go-spew/spew"
 )
 
 var (
@@ -113,7 +112,7 @@ func main() {
 				panic(err)
 			}
 
-			err = os.Mkdir(filepath.Join("providers", provider), os.ModePerm)
+			err = os.MkdirAll(filepath.Join("providers", provider), os.ModePerm)
 			if err != nil && !os.IsExist(err) {
 				panic(err)
 			}
@@ -166,6 +165,7 @@ func main() {
 			td := TemplateData{
 				Resources: resources,
 				Type:      t,
+				Provider:  provider,
 			}
 
 			err = resourceTmpl.Execute(buff, td)
@@ -175,8 +175,17 @@ func main() {
 
 			b, err := format.Source(buff.Bytes())
 			if err != nil {
-				spew.Dump(provider)
-				panic(err)
+				buff = &bytes.Buffer{}
+				log.Printf("ERROR: could not import for provider %q and type %q setting empty", provider, t)
+				td.Resources = nil
+				err = resourceTmpl.Execute(buff, td)
+				if err != nil {
+					panic(err)
+				}
+				b, err = format.Source(buff.Bytes())
+				if err != nil {
+					panic(err)
+				}
 			}
 
 			io.Copy(out, bytes.NewBuffer(b))

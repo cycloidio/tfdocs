@@ -8,17 +8,19 @@ import (
 
 const (
 	rTmpl = `
-		package aws
+		package {{ .Provider }}
 
 		import (
+			"fmt"
+
 			"github.com/cycloidio/tfdocs/resource"
 		)
 
 		var (
 			{{ if eq .Type "r" }}
-				Resources = []*Resource{
+				Resources = []*resource.Resource{
 			{{ else }}
-				DataSources = []*Resource{
+				DataSources = []*resource.Resource{
 			{{ end }}
 				{{- range .Resources }}
 					&resource.Resource{
@@ -32,7 +34,7 @@ const (
 							  "{{ . }}",
 							{{- end }}
 						},
-						Arguments: []resource.Argument{
+						Arguments: []resource.Attribute{
 							{{- range .Arguments }}
 								resource.Attribute{
 									Name: "{{ .Name }}",
@@ -40,7 +42,7 @@ const (
 								},
 							{{- end }}
 						},
-						Attributes: []resource.Argument{
+						Attributes: []resource.Attribute{
 							{{- range .Attributes }}
 								resource.Attribute{
 									Name: "{{ .Name }}",
@@ -54,7 +56,7 @@ const (
 			{{ if eq .Type "r" }}
 				resourcesMap = map[string]int{
 			{{ else }}
-				dataSourcesMap = map[string]Resource{
+				dataSourcesMap = map[string]int{
 			{{ end }}
 				{{- range $index, $el := .Resources }}
 					"{{ .Type }}": {{ $index }},
@@ -63,20 +65,20 @@ const (
 		)
 
 		{{ if eq .Type "r" }}
-			func GetResource(r string) (*resouce.Resource, error) {
+			func GetResource(r string) (*resource.Resource, error) {
 				rs, ok := resourcesMap[r]
 				if !ok {
 					return nil, fmt.Errorf("resource %q not found", r)
 				}
-				return Resources[rs]
+				return Resources[rs], nil
 			}
 		{{ else }}
-			func GetDataSource(r string) (*resouce.Resource, error) {
+			func GetDataSource(r string) (*resource.Resource, error) {
 				rs, ok := dataSourcesMap[r]
 				if !ok {
 					return nil, fmt.Errorf("datasource %q not found", r)
 				}
-				return DataSources[rs]
+				return DataSources[rs], nil
 			}
 		{{ end }}
 	`
@@ -89,6 +91,7 @@ var (
 type TemplateData struct {
 	Resources []resource.Resource
 	Type      string
+	Provider  string
 }
 
 func init() {
