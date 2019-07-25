@@ -4,4 +4,4 @@ sync:
 
 .PHONY: generate
 generate:
-	GO111MODULE=on go run cmd/*.go
+	GO111MODULE=on go run cmd/*.go && go test ./providers/...
