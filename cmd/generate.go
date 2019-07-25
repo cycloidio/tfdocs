@@ -195,10 +195,12 @@ func main() {
 	}
 }
 
-var categoryReplacer = strings.NewReplacer("(", "", ")", "", "/", "")
+//var categoryReplacer = strings.NewReplacer("(", " ", ")", " ", "/", " ")
+var categoryReplacer = regexp.MustCompile(`\W`)
 
 func categoryAndTypeToKeywords(provider, c, rt string) []string {
-	cws := strings.Split(strings.ToLower(c), " ")
+	cws := strings.Split(
+		strings.ToLower(categoryReplacer.ReplaceAllString(c, " ")), " ")
 	tws := strings.Split(rt, "_")
 
 	res := make([]string, 0, len(cws))
@@ -208,10 +210,9 @@ func categoryAndTypeToKeywords(provider, c, rt string) []string {
 		if _, ok := ws[w]; ok {
 			continue
 		}
-		if w == "resources" || w == provider {
+		if w == "resources" || w == provider || w == "" {
 			continue
 		}
-		w = categoryReplacer.Replace(w)
 		res = append(res, w)
 		ws[w] = struct{}{}
 	}
