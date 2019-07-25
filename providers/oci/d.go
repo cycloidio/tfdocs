@@ -646,7 +646,7 @@ Lists autoscaling configurations in the specifed compartment.
 			Description: `
 This data source provides details about a specific Alert Rule resource in Oracle Cloud Infrastructure Budget service.
 
-Gets an Alert Rule for a Budget by identifier
+Gets an Alert Rule for a specified Budget.
 
 `,
 			Keywords: []string{},
@@ -665,7 +665,7 @@ Gets an Alert Rule for a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -677,7 +677,7 @@ Gets an Alert Rule for a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -689,7 +689,7 @@ Gets an Alert Rule for a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "recipients",
-					Description: `The audience that will received the alert when it triggers.`,
+					Description: `Delimited list of email addresses to receive the alert when it triggers. Delimiter character can be comma, space, TAB, or semicolon.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -713,7 +713,7 @@ Gets an Alert Rule for a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `ACTUAL means the alert will trigger based on actual usage. FORECAST means the alert will trigger based on predicted usage.`,
+					Description: `The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or FORECAST (the alert will trigger based on predicted usage).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -727,7 +727,7 @@ Gets an Alert Rule for a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -739,7 +739,7 @@ Gets an Alert Rule for a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -751,7 +751,7 @@ Gets an Alert Rule for a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "recipients",
-					Description: `The audience that will received the alert when it triggers.`,
+					Description: `Delimited list of email addresses to receive the alert when it triggers. Delimiter character can be comma, space, TAB, or semicolon.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -775,7 +775,7 @@ Gets an Alert Rule for a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `ACTUAL means the alert will trigger based on actual usage. FORECAST means the alert will trigger based on predicted usage.`,
+					Description: `The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or FORECAST (the alert will trigger based on predicted usage).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -791,7 +791,7 @@ Gets an Alert Rule for a Budget by identifier
 			Description: `
 This data source provides the list of Alert Rules in Oracle Cloud Infrastructure Budget service.
 
-Returns a list of Alert Rules.
+Returns a list of Alert Rules for a specified Budget.
 
 
 `,
@@ -819,7 +819,7 @@ Returns a list of Alert Rules.
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -831,7 +831,7 @@ Returns a list of Alert Rules.
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -843,7 +843,7 @@ Returns a list of Alert Rules.
 				},
 				resource.Attribute{
 					Name:        "recipients",
-					Description: `The audience that will received the alert when it triggers.`,
+					Description: `Delimited list of email addresses to receive the alert when it triggers. Delimiter character can be comma, space, TAB, or semicolon.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -867,7 +867,7 @@ Returns a list of Alert Rules.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `ACTUAL means the alert will trigger based on actual usage. FORECAST means the alert will trigger based on predicted usage.`,
+					Description: `The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or FORECAST (the alert will trigger based on predicted usage).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -885,7 +885,7 @@ Returns a list of Alert Rules.
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -897,7 +897,7 @@ Returns a list of Alert Rules.
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -909,7 +909,7 @@ Returns a list of Alert Rules.
 				},
 				resource.Attribute{
 					Name:        "recipients",
-					Description: `The audience that will received the alert when it triggers.`,
+					Description: `Delimited list of email addresses to receive the alert when it triggers. Delimiter character can be comma, space, TAB, or semicolon.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -933,7 +933,7 @@ Returns a list of Alert Rules.
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `ACTUAL means the alert will trigger based on actual usage. FORECAST means the alert will trigger based on predicted usage.`,
+					Description: `The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or FORECAST (the alert will trigger based on predicted usage).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -968,7 +968,7 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "amount",
-					Description: `The amount of the budget expressed as a decimal number in the currency of the customer's rate card.`,
+					Description: `The amount of the budget expressed in the currency of the customer's rate card.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -976,7 +976,7 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -992,7 +992,7 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1000,7 +1000,7 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "reset_period",
-					Description: `The reset period for the budget. We will start with MONTHLY and look into QUARTERLY and maybe ANNUAL post-MVP.`,
+					Description: `The reset period for the budget.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -1008,19 +1008,27 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "target_compartment_id",
-					Description: `The OCID of the compartment on which budget is applied`,
+					Description: `This is DEPRECATED. For backwards compatability, the property will be populated when targetType is "COMPARTMENT" AND targets contains EXACT ONE target compartment ocid. For all other scenarios, this property will be left empty.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of target on which the budget is applied.`,
+				},
+				resource.Attribute{
+					Name:        "targets",
+					Description: `The list of targets on which the budget is applied. If targetType is "COMPARTMENT", targets contains list of compartment OCIDs. If targetType is "TAG", targets contains list of tag identifiers in the form of "{tagNamespace}.{tagKey}.{tagValue}".`,
 				},
 				resource.Attribute{
 					Name:        "time_created",
-					Description: `Time when budget was created`,
+					Description: `Time that budget was created`,
 				},
 				resource.Attribute{
 					Name:        "time_spend_computed",
-					Description: `Time when the budget spend was last computed`,
+					Description: `The time that the budget spend was last computed`,
 				},
 				resource.Attribute{
 					Name:        "time_updated",
-					Description: `Time when budget was updated`,
+					Description: `Time that budget was updated`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -1038,7 +1046,7 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "amount",
-					Description: `The amount of the budget expressed as a decimal number in the currency of the customer's rate card.`,
+					Description: `The amount of the budget expressed in the currency of the customer's rate card.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -1046,7 +1054,7 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1062,7 +1070,7 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1070,7 +1078,7 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "reset_period",
-					Description: `The reset period for the budget. We will start with MONTHLY and look into QUARTERLY and maybe ANNUAL post-MVP.`,
+					Description: `The reset period for the budget.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -1078,19 +1086,27 @@ Gets a Budget by identifier
 				},
 				resource.Attribute{
 					Name:        "target_compartment_id",
-					Description: `The OCID of the compartment on which budget is applied`,
+					Description: `This is DEPRECATED. For backwards compatability, the property will be populated when targetType is "COMPARTMENT" AND targets contains EXACT ONE target compartment ocid. For all other scenarios, this property will be left empty.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of target on which the budget is applied.`,
+				},
+				resource.Attribute{
+					Name:        "targets",
+					Description: `The list of targets on which the budget is applied. If targetType is "COMPARTMENT", targets contains list of compartment OCIDs. If targetType is "TAG", targets contains list of tag identifiers in the form of "{tagNamespace}.{tagKey}.{tagValue}".`,
 				},
 				resource.Attribute{
 					Name:        "time_created",
-					Description: `Time when budget was created`,
+					Description: `Time that budget was created`,
 				},
 				resource.Attribute{
 					Name:        "time_spend_computed",
-					Description: `Time when the budget spend was last computed`,
+					Description: `The time that the budget spend was last computed`,
 				},
 				resource.Attribute{
 					Name:        "time_updated",
-					Description: `Time when budget was updated`,
+					Description: `Time that budget was updated`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -1106,7 +1122,16 @@ Gets a Budget by identifier
 			Description: `
 This data source provides the list of Budgets in Oracle Cloud Infrastructure Budget service.
 
-Returns a list of Budgets.
+Gets a list of Budgets in a compartment.
+
+By default, ListBudgets returns budgets of 'COMPARTMENT' target type and the budget records with only ONE target compartment OCID.
+
+To list ALL budgets, set the targetType query parameter to ALL.
+Example:
+  'targetType=ALL'
+
+Additional targetTypes would be available in future releases. Clients should ignore new targetType 
+or upgrade to latest version of client SDK to handle new targetType.
 
 
 `,
@@ -1122,7 +1147,11 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `(Optional) The current state of the resource to filter by. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The current state of the resource to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `(Optional) The type of target to filter by.`,
 				},
 				resource.Attribute{
 					Name:        "budgets",
@@ -1138,7 +1167,7 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "amount",
-					Description: `The amount of the budget expressed as a decimal number in the currency of the customer's rate card.`,
+					Description: `The amount of the budget expressed in the currency of the customer's rate card.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -1146,7 +1175,7 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1162,7 +1191,7 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1170,7 +1199,7 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "reset_period",
-					Description: `The reset period for the budget. We will start with MONTHLY and look into QUARTERLY and maybe ANNUAL post-MVP.`,
+					Description: `The reset period for the budget.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -1178,19 +1207,27 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "target_compartment_id",
-					Description: `The OCID of the compartment on which budget is applied`,
+					Description: `This is DEPRECATED. For backwards compatability, the property will be populated when targetType is "COMPARTMENT" AND targets contains EXACT ONE target compartment ocid. For all other scenarios, this property will be left empty.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of target on which the budget is applied.`,
+				},
+				resource.Attribute{
+					Name:        "targets",
+					Description: `The list of targets on which the budget is applied. If targetType is "COMPARTMENT", targets contains list of compartment OCIDs. If targetType is "TAG", targets contains list of tag identifiers in the form of "{tagNamespace}.{tagKey}.{tagValue}".`,
 				},
 				resource.Attribute{
 					Name:        "time_created",
-					Description: `Time when budget was created`,
+					Description: `Time that budget was created`,
 				},
 				resource.Attribute{
 					Name:        "time_spend_computed",
-					Description: `Time when the budget spend was last computed`,
+					Description: `The time that the budget spend was last computed`,
 				},
 				resource.Attribute{
 					Name:        "time_updated",
-					Description: `Time when budget was updated`,
+					Description: `Time that budget was updated`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -1212,7 +1249,7 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "amount",
-					Description: `The amount of the budget expressed as a decimal number in the currency of the customer's rate card.`,
+					Description: `The amount of the budget expressed in the currency of the customer's rate card.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -1220,7 +1257,7 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1236,7 +1273,7 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1244,7 +1281,7 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "reset_period",
-					Description: `The reset period for the budget. We will start with MONTHLY and look into QUARTERLY and maybe ANNUAL post-MVP.`,
+					Description: `The reset period for the budget.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -1252,19 +1289,27 @@ Returns a list of Budgets.
 				},
 				resource.Attribute{
 					Name:        "target_compartment_id",
-					Description: `The OCID of the compartment on which budget is applied`,
+					Description: `This is DEPRECATED. For backwards compatability, the property will be populated when targetType is "COMPARTMENT" AND targets contains EXACT ONE target compartment ocid. For all other scenarios, this property will be left empty.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of target on which the budget is applied.`,
+				},
+				resource.Attribute{
+					Name:        "targets",
+					Description: `The list of targets on which the budget is applied. If targetType is "COMPARTMENT", targets contains list of compartment OCIDs. If targetType is "TAG", targets contains list of tag identifiers in the form of "{tagNamespace}.{tagKey}.{tagValue}".`,
 				},
 				resource.Attribute{
 					Name:        "time_created",
-					Description: `Time when budget was created`,
+					Description: `Time that budget was created`,
 				},
 				resource.Attribute{
 					Name:        "time_spend_computed",
-					Description: `Time when the budget spend was last computed`,
+					Description: `The time that the budget spend was last computed`,
 				},
 				resource.Attribute{
 					Name:        "time_updated",
-					Description: `Time when budget was updated`,
+					Description: `Time that budget was updated`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -15181,11 +15226,11 @@ Gets the details of the specified Autonomous Database.
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count.`,
+					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `True if it is dedicated database.`,
+					Description: `True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
 				},
 				resource.Attribute{
 					Name:        "is_preview",
@@ -15217,7 +15262,7 @@ Gets the details of the specified Autonomous Database.
 				},
 				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
+					Description: `The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -15303,11 +15348,11 @@ Gets the details of the specified Autonomous Database.
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count.`,
+					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `True if it is dedicated database.`,
+					Description: `True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
 				},
 				resource.Attribute{
 					Name:        "is_preview",
@@ -15339,7 +15384,7 @@ Gets the details of the specified Autonomous Database.
 				},
 				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
+					Description: `The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
 				},
 			},
 		},
@@ -15740,11 +15785,11 @@ Gets a list of Autonomous Databases.
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count.`,
+					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `True if it is dedicated database.`,
+					Description: `True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
 				},
 				resource.Attribute{
 					Name:        "is_preview",
@@ -15776,7 +15821,7 @@ Gets a list of Autonomous Databases.
 				},
 				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
+					Description: `The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -15866,11 +15911,11 @@ Gets a list of Autonomous Databases.
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count.`,
+					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `True if it is dedicated database.`,
+					Description: `True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
 				},
 				resource.Attribute{
 					Name:        "is_preview",
@@ -15902,7 +15947,7 @@ Gets a list of Autonomous Databases.
 				},
 				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
+					Description: `The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet.`,
 				},
 			},
 		},
@@ -15914,7 +15959,7 @@ Gets a list of Autonomous Databases.
 			Description: `
 This data source provides the list of Autonomous Db Preview Versions in Oracle Cloud Infrastructure Database service.
 
-Gets a list of supported Autonomous Database versions.
+Gets a list of supported Autonomous Database versions. Note that preview version software is only available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI).
 
 `,
 			Keywords: []string{},
@@ -16050,7 +16095,7 @@ Gets information about the specified Autonomous Exadata Infrastructure.
 				},
 				resource.Attribute{
 					Name:        "hours_of_day",
-					Description: `The window of hours during the day when maintenance should be performed.`,
+					Description: `The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are`,
 				},
 				resource.Attribute{
 					Name:        "months",
@@ -16148,7 +16193,7 @@ Gets information about the specified Autonomous Exadata Infrastructure.
 				},
 				resource.Attribute{
 					Name:        "hours_of_day",
-					Description: `The window of hours during the day when maintenance should be performed.`,
+					Description: `The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are`,
 				},
 				resource.Attribute{
 					Name:        "months",
@@ -16361,7 +16406,7 @@ Gets a list of the Autonomous Exadata Infrastructures in the specified compartme
 				},
 				resource.Attribute{
 					Name:        "hours_of_day",
-					Description: `The window of hours during the day when maintenance should be performed.`,
+					Description: `The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are`,
 				},
 				resource.Attribute{
 					Name:        "months",
@@ -16463,7 +16508,7 @@ Gets a list of the Autonomous Exadata Infrastructures in the specified compartme
 				},
 				resource.Attribute{
 					Name:        "hours_of_day",
-					Description: `The window of hours during the day when maintenance should be performed.`,
+					Description: `The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are`,
 				},
 				resource.Attribute{
 					Name:        "months",
@@ -18192,7 +18237,7 @@ Gets a list of the DB systems in the specified compartment. You can specify a ba
 				},
 				resource.Attribute{
 					Name:        "backup_id",
-					Description: `(Optional) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the backup. Specify a backupId to list only the DB systems that support creating a database using this backup in this compartment.`,
+					Description: `(Optional) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the backup. Specify a backupId to list only the DB systems or DB homes that support creating a database using this backup in this compartment.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -18216,7 +18261,7 @@ Gets a list of the DB systems in the specified compartment. You can specify a ba
 				},
 				resource.Attribute{
 					Name:        "backup_network_nsg_ids",
-					Description: `The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with the backup network of this DB system. Applicable only to Exadata DB systems. A maximum of 5 allowed.`,
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.`,
 				},
 				resource.Attribute{
 					Name:        "backup_subnet_id",
@@ -18300,7 +18345,7 @@ Gets a list of the DB systems in the specified compartment. You can specify a ba
 				},
 				resource.Attribute{
 					Name:        "nsg_ids",
-					Description: `The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with this DB system. A maximum of 5 allowed.`,
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
 				},
 				resource.Attribute{
 					Name:        "reco_storage_size_in_gb",
@@ -18362,7 +18407,7 @@ Gets a list of the DB systems in the specified compartment. You can specify a ba
 				},
 				resource.Attribute{
 					Name:        "backup_network_nsg_ids",
-					Description: `The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with the backup network of this DB system. Applicable only to Exadata DB systems. A maximum of 5 allowed.`,
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.`,
 				},
 				resource.Attribute{
 					Name:        "backup_subnet_id",
@@ -18446,7 +18491,7 @@ Gets a list of the DB systems in the specified compartment. You can specify a ba
 				},
 				resource.Attribute{
 					Name:        "nsg_ids",
-					Description: `The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with this DB system. A maximum of 5 allowed.`,
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
 				},
 				resource.Attribute{
 					Name:        "reco_storage_size_in_gb",
@@ -21927,7 +21972,7 @@ Gets the configuration for the specified monitor.
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -21935,7 +21980,7 @@ Gets the configuration for the specified monitor.
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe.`,
+					Description: `A list of names of vantage points from which to execute the probe.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -21993,7 +22038,7 @@ Gets the configuration for the specified monitor.
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -22001,7 +22046,7 @@ Gets the configuration for the specified monitor.
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe.`,
+					Description: `A list of names of vantage points from which to execute the probe.`,
 				},
 			},
 		},
@@ -22085,7 +22130,7 @@ Gets a list of HTTP monitors.
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -22093,7 +22138,7 @@ Gets a list of HTTP monitors.
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe.`,
+					Description: `A list of names of vantage points from which to execute the probe.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22155,7 +22200,7 @@ Gets a list of HTTP monitors.
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -22163,7 +22208,7 @@ Gets a list of HTTP monitors.
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe.`,
+					Description: `A list of names of vantage points from which to execute the probe.`,
 				},
 			},
 		},
@@ -22511,7 +22556,7 @@ Gets the configuration for the specified ping monitor.
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -22519,7 +22564,7 @@ Gets the configuration for the specified ping monitor.
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe.`,
+					Description: `A list of names of vantage points from which to execute the probe.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22565,7 +22610,7 @@ Gets the configuration for the specified ping monitor.
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -22573,7 +22618,7 @@ Gets the configuration for the specified ping monitor.
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe.`,
+					Description: `A list of names of vantage points from which to execute the probe.`,
 				},
 			},
 		},
@@ -22648,7 +22693,7 @@ a URL for fetching the next page.
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -22656,7 +22701,7 @@ a URL for fetching the next page.
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe.`,
+					Description: `A list of names of vantage points from which to execute the probe.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22706,7 +22751,7 @@ a URL for fetching the next page.
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -22714,7 +22759,7 @@ a URL for fetching the next page.
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe.`,
+					Description: `A list of names of vantage points from which to execute the probe.`,
 				},
 			},
 		},
@@ -28436,6 +28481,9 @@ Lists all rule sets associated with the specified load balancer.
 This data source provides details about a specific Alarm resource in Oracle Cloud Infrastructure Monitoring service.
 
 Gets the specified alarm.
+For important limits information, see [Limits on Monitoring](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+
+Transactions Per Second (TPS) per-tenancy limit for this operation: 1.
 
 
 `,
@@ -28459,7 +28507,7 @@ Gets the specified alarm.
 				},
 				resource.Attribute{
 					Name:        "destinations",
-					Description: `An array of [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) to which the notifications for this alarm will be delivered. An example destination is an OCID for a topic managed by the Oracle Cloud Infrastructure Notification service.`,
+					Description: `A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -28553,7 +28601,7 @@ Gets the specified alarm.
 				},
 				resource.Attribute{
 					Name:        "destinations",
-					Description: `An array of [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) to which the notifications for this alarm will be delivered. An example destination is an OCID for a topic managed by the Oracle Cloud Infrastructure Notification service.`,
+					Description: `A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -28642,6 +28690,9 @@ Gets the specified alarm.
 This data source provides details about a specific Alarm History Collection resource in Oracle Cloud Infrastructure Monitoring service.
 
 Get the history of the specified alarm.
+For important limits information, see [Limits on Monitoring](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+
+Transactions Per Second (TPS) per-tenancy limit for this operation: 1.
 
 
 `,
@@ -28724,6 +28775,9 @@ Get the history of the specified alarm.
 This data source provides the list of Alarm Statuses in Oracle Cloud Infrastructure Monitoring service.
 
 List the status of each alarm in the specified compartment.
+For important limits information, see [Limits on Monitoring](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+
+Transactions Per Second (TPS) per-tenancy limit for this operation: 1.
 
 
 `,
@@ -28731,7 +28785,7 @@ List the status of each alarm in the specified compartment.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
+					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment. Example: ` + "`" + `ocid1.compartment.oc1..exampleuniqueID` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "compartment_id_in_subtree",
@@ -28834,6 +28888,9 @@ List the status of each alarm in the specified compartment.
 This data source provides the list of Alarms in Oracle Cloud Infrastructure Monitoring service.
 
 Lists the alarms for the specified compartment.
+For important limits information, see [Limits on Monitoring](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+
+Transactions Per Second (TPS) per-tenancy limit for this operation: 1.
 
 
 `,
@@ -28841,7 +28898,7 @@ Lists the alarms for the specified compartment.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
+					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment. Example: ` + "`" + `ocid1.compartment.oc1..exampleuniqueID` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "compartment_id_in_subtree",
@@ -28873,7 +28930,7 @@ Lists the alarms for the specified compartment.
 				},
 				resource.Attribute{
 					Name:        "destinations",
-					Description: `An array of [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) to which the notifications for this alarm will be delivered. An example destination is an OCID for a topic managed by the Oracle Cloud Infrastructure Notification service.`,
+					Description: `A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -28971,7 +29028,7 @@ Lists the alarms for the specified compartment.
 				},
 				resource.Attribute{
 					Name:        "destinations",
-					Description: `An array of [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) to which the notifications for this alarm will be delivered. An example destination is an OCID for a topic managed by the Oracle Cloud Infrastructure Notification service.`,
+					Description: `A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -29061,6 +29118,9 @@ This data source provides the list of Metric Data in Oracle Cloud Infrastructure
 
 Returns aggregated data that match the criteria specified in the request. Compartment OCID required.
 For information on metric queries, see [Building Metric Queries](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/buildingqueries.htm).
+For important limits information, see [Limits on Monitoring](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+
+Transactions Per Second (TPS) per-tenancy limit for this operation: 10.
 
 
 `,
@@ -29068,7 +29128,7 @@ For information on metric queries, see [Building Metric Queries](https://docs.cl
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
+					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment. Example: ` + "`" + `ocid1.compartment.oc1..exampleuniqueID` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "compartment_id_in_subtree",
@@ -29084,7 +29144,7 @@ For information on metric queries, see [Building Metric Queries](https://docs.cl
 				},
 				resource.Attribute{
 					Name:        "query",
-					Description: `(Required) The Monitoring Query Language (MQL) expression to use when searching for metric data points to aggregate. The query must specify a metric, statistic, and interval. Supported values for interval: ` + "`" + `1m` + "`" + `-` + "`" + `60m` + "`" + ` (also ` + "`" + `1h` + "`" + `). You can optionally specify dimensions and grouping functions. Supported grouping functions: ` + "`" + `grouping()` + "`" + `, ` + "`" + `groupBy()` + "`" + `. For details about Monitoring Query Language (MQL), see [Monitoring Query Language (MQL) Reference](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See [Supported Services](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices). Example: ` + "`" + `CpuUtilization[1m].sum()` + "`" + ``,
+					Description: `(Required) The Monitoring Query Language (MQL) expression to use when searching for metric data points to aggregate. The query must specify a metric, statistic, and interval. Supported values for interval: ` + "`" + `1m` + "`" + `-` + "`" + `60m` + "`" + ` (also ` + "`" + `1h` + "`" + `). You can optionally specify dimensions and grouping functions. Supported grouping functions: ` + "`" + `grouping()` + "`" + `, ` + "`" + `groupBy()` + "`" + `. Construct your query to avoid exceeding limits on returned data. See [MetricData Reference](https://docs.cloud.oracle.com/iaas/api/#/en/monitoring/20180401/MetricData). For details about Monitoring Query Language (MQL), see [Monitoring Query Language (MQL) Reference](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Reference/mql.htm). For available dimensions, review the metric definition for the supported service. See [Supported Services](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#SupportedServices). Example: ` + "`" + `CpuUtilization[1m].sum()` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "resolution",
@@ -29100,7 +29160,7 @@ For information on metric queries, see [Building Metric Queries](https://docs.cl
 				},
 				resource.Attribute{
 					Name:        "aggregated_datapoints",
-					Description: `The list of timestamp-value pairs returned for the specified request. Metric values are rolled up to the start time specified in the request.`,
+					Description: `The list of timestamp-value pairs returned for the specified request. Metric values are rolled up to the start time specified in the request. For important limits information related to data points, see MetricData Reference at the top of this page.`,
 				},
 				resource.Attribute{
 					Name:        "timestamp",
@@ -29142,7 +29202,7 @@ For information on metric queries, see [Building Metric Queries](https://docs.cl
 				},
 				resource.Attribute{
 					Name:        "aggregated_datapoints",
-					Description: `The list of timestamp-value pairs returned for the specified request. Metric values are rolled up to the start time specified in the request.`,
+					Description: `The list of timestamp-value pairs returned for the specified request. Metric values are rolled up to the start time specified in the request. For important limits information related to data points, see MetricData Reference at the top of this page.`,
 				},
 				resource.Attribute{
 					Name:        "timestamp",
@@ -29188,6 +29248,9 @@ This data source provides the list of Metrics in Oracle Cloud Infrastructure Mon
 
 Returns metric definitions that match the criteria specified in the request. Compartment OCID required.
 For information about metrics, see [Metrics Overview](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#MetricsOverview).
+For important limits information, see [Limits on Monitoring](https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
+
+Transactions Per Second (TPS) per-tenancy limit for this operation: 1.
 
 
 `,
@@ -29195,7 +29258,7 @@ For information about metrics, see [Metrics Overview](https://docs.cloud.oracle.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment.`,
+					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the resources monitored by the metric that you are searching for. Use tenancyId to search in the root compartment. Example: ` + "`" + `ocid1.compartment.oc1..exampleuniqueID` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "compartment_id_in_subtree",
@@ -29207,7 +29270,7 @@ For information about metrics, see [Metrics Overview](https://docs.cloud.oracle.
 				},
 				resource.Attribute{
 					Name:        "group_by",
-					Description: `(Optional) Group metrics by these fields in the response. For example, to list all metric namespaces available in a compartment, groupBy the "namespace" field. Example - group by namespace and resource: ` + "`" + `[ "namespace", "resourceId" ]` + "`" + ``,
+					Description: `(Optional) Group metrics by these fields in the response. For example, to list all metric namespaces available in a compartment, groupBy the "namespace" field. Example - group by namespace: ` + "`" + `[ "namespace" ]` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "name",

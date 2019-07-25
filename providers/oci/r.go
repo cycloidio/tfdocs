@@ -427,7 +427,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `(Optional) (Updatable) Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -439,7 +439,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `(Optional) (Updatable) Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "message",
@@ -451,7 +451,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "threshold",
-					Description: `(Required) (Updatable) The threshold for triggering the alert. If thresholdType is PERCENTAGE, the maximum value is 10000.`,
+					Description: `(Required) (Updatable) The threshold for triggering the alert expressed as a whole number or decimal value. If thresholdType is ABSOLUTE, threshold can have at most 12 digits before the decimal point and up to 2 digits after the decimal point. If thresholdType is PERCENTAGE, the maximum value is 10000 and can have up to 2 digits after the decimal point.`,
 				},
 				resource.Attribute{
 					Name:        "threshold_type",
@@ -459,7 +459,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) (Updatable) ACTUAL means the alert will trigger based on actual usage. FORECAST means the alert will trigger based on predicted usage.`,
+					Description: `(Required) (Updatable) Type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or FORECAST (the alert will trigger based on predicted usage).`,
 				},
 				resource.Attribute{
 					Name:        "budget_id",
@@ -467,7 +467,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -479,7 +479,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -491,7 +491,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "recipients",
-					Description: `The audience that will received the alert when it triggers.`,
+					Description: `Delimited list of email addresses to receive the alert when it triggers. Delimiter character can be comma, space, TAB, or semicolon.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -515,7 +515,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `ACTUAL means the alert will trigger based on actual usage. FORECAST means the alert will trigger based on predicted usage.`,
+					Description: `The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or FORECAST (the alert will trigger based on predicted usage).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -529,7 +529,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -541,7 +541,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -553,7 +553,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "recipients",
-					Description: `The audience that will received the alert when it triggers.`,
+					Description: `Delimited list of email addresses to receive the alert when it triggers. Delimiter character can be comma, space, TAB, or semicolon.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -577,7 +577,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `ACTUAL means the alert will trigger based on actual usage. FORECAST means the alert will trigger based on predicted usage.`,
+					Description: `The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or FORECAST (the alert will trigger based on predicted usage).`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -597,7 +597,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "amount",
-					Description: `(Required) (Updatable) The amount of the budget expressed as a decimal number in the currency of the customer's rate card.`,
+					Description: `(Required) (Updatable) The amount of the budget expressed as a whole number in the currency of the customer's rate card.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -605,7 +605,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `(Optional) (Updatable) Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -617,15 +617,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `(Optional) (Updatable) Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "reset_period",
-					Description: `(Required) (Updatable) The reset period for the budget. We will start with MONTHLY and look into QUARTERLY and maybe ANNUAL post-MVP.`,
+					Description: `(Required) (Updatable) The reset period for the budget.`,
 				},
 				resource.Attribute{
 					Name:        "target_compartment_id",
-					Description: `(Required) The OCID of the compartment on which budget is applied`,
+					Description: `(Optional) This is DEPRECTAED. Set the target compartment id in targets instead.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `(Optional) The type of target on which the budget is applied.`,
+				},
+				resource.Attribute{
+					Name:        "targets",
+					Description: `(Optional) The list of targets on which the budget is applied. If targetType is "COMPARTMENT", targets contains list of compartment OCIDs. If targetType is "TAG", targets contains list of tag identifiers in the form of "{tagNamespace}.{tagKey}.{tagValue}". Curerntly, the array should contain EXACT ONE item.`,
 				},
 				resource.Attribute{
 					Name:        "actual_spend",
@@ -637,7 +645,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "amount",
-					Description: `The amount of the budget expressed as a decimal number in the currency of the customer's rate card.`,
+					Description: `The amount of the budget expressed in the currency of the customer's rate card.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -645,7 +653,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -661,7 +669,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -669,7 +677,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reset_period",
-					Description: `The reset period for the budget. We will start with MONTHLY and look into QUARTERLY and maybe ANNUAL post-MVP.`,
+					Description: `The reset period for the budget.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -677,19 +685,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_compartment_id",
-					Description: `The OCID of the compartment on which budget is applied`,
+					Description: `This is DEPRECATED. For backwards compatability, the property will be populated when targetType is "COMPARTMENT" AND targets contains EXACT ONE target compartment ocid. For all other scenarios, this property will be left empty.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of target on which the budget is applied.`,
+				},
+				resource.Attribute{
+					Name:        "targets",
+					Description: `The list of targets on which the budget is applied. If targetType is "COMPARTMENT", targets contains list of compartment OCIDs. If targetType is "TAG", targets contains list of tag identifiers in the form of "{tagNamespace}.{tagKey}.{tagValue}".`,
 				},
 				resource.Attribute{
 					Name:        "time_created",
-					Description: `Time when budget was created`,
+					Description: `Time that budget was created`,
 				},
 				resource.Attribute{
 					Name:        "time_spend_computed",
-					Description: `Time when the budget spend was last computed`,
+					Description: `The time that the budget spend was last computed`,
 				},
 				resource.Attribute{
 					Name:        "time_updated",
-					Description: `Time when budget was updated`,
+					Description: `Time that budget was updated`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -707,7 +723,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "amount",
-					Description: `The amount of the budget expressed as a decimal number in the currency of the customer's rate card.`,
+					Description: `The amount of the budget expressed in the currency of the customer's rate card.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -715,7 +731,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -731,7 +747,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "freeform_tags",
-					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -739,7 +755,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "reset_period",
-					Description: `The reset period for the budget. We will start with MONTHLY and look into QUARTERLY and maybe ANNUAL post-MVP.`,
+					Description: `The reset period for the budget.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -747,19 +763,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_compartment_id",
-					Description: `The OCID of the compartment on which budget is applied`,
+					Description: `This is DEPRECATED. For backwards compatability, the property will be populated when targetType is "COMPARTMENT" AND targets contains EXACT ONE target compartment ocid. For all other scenarios, this property will be left empty.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `The type of target on which the budget is applied.`,
+				},
+				resource.Attribute{
+					Name:        "targets",
+					Description: `The list of targets on which the budget is applied. If targetType is "COMPARTMENT", targets contains list of compartment OCIDs. If targetType is "TAG", targets contains list of tag identifiers in the form of "{tagNamespace}.{tagKey}.{tagValue}".`,
 				},
 				resource.Attribute{
 					Name:        "time_created",
-					Description: `Time when budget was created`,
+					Description: `Time that budget was created`,
 				},
 				resource.Attribute{
 					Name:        "time_spend_computed",
-					Description: `Time when the budget spend was last computed`,
+					Description: `The time that the budget spend was last computed`,
 				},
 				resource.Attribute{
 					Name:        "time_updated",
-					Description: `Time when budget was updated`,
+					Description: `Time that budget was updated`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -3663,7 +3687,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_details",
-					Description: `(Required)`,
+					Description: `(Required when source=NONE)`,
 				},
 				resource.Attribute{
 					Name:        "block_volumes",
@@ -3880,6 +3904,14 @@ var (
 				resource.Attribute{
 					Name:        "nic_index",
 					Description: `(Optional) Which physical network interface card (NIC) the VNIC will use. Defaults to 0. Certain bare metal instance shapes have two active physical NICs (0 and 1). If you add a secondary VNIC to one of these instances, you can specify which NIC the VNIC will use. For more information, see [Virtual Network Interface Cards (VNICs)](https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required when source=INSTANCE) The ID of the instance that will be used to create instance configuration.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) The source of the instance configuration: NONE for creating a new instance configuration from the API input. INSTANCE for creating a new instance configuration from an existing instance. The default is NONE.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -9107,7 +9139,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Optional) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the Autonomous Container Database.`,
+					Description: `(Optional) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the Autonomous Container Database.`,
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
@@ -9605,7 +9637,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment of the autonomous database.`,
+					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment of the autonomous database.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_core_count",
@@ -9645,19 +9677,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `(Optional) (Updatable) Indicates if auto scaling is enabled for the Autonomous Database CPU core count. The default value is false. This feature is currently applicable only for shared database.`,
+					Description: `(Optional) (Updatable) Indicates if auto scaling is enabled for the Autonomous Database CPU core count. The default value is false. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `(Optional) True if it is dedicated database.`,
+					Description: `(Optional) True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
 				},
 				resource.Attribute{
 					Name:        "is_preview_version_with_service_terms_accepted",
-					Description: `(Optional) If set to true, indicates that an Autonomous Database preview version is being provisioned, and that the preview version's terms of service have been accepted.`,
+					Description: `(Optional) If set to true, indicates that an Autonomous Database preview version is being provisioned, and that the preview version's terms of service have been accepted. Note that preview version software is only available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI).`,
 				},
 				resource.Attribute{
 					Name:        "license_model",
-					Description: `(Optional) (Updatable) The Oracle license model that applies to the Oracle Autonomous Database. The default is BRING_YOUR_OWN_LICENSE.`,
+					Description: `(Optional) (Updatable) The Oracle license model that applies to the Oracle Autonomous Database. The default is BRING_YOUR_OWN_LICENSE. Note that when provisioning an Autonomous Database using the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option, this attribute must be null.`,
 				},
 				resource.Attribute{
 					Name:        "source",
@@ -9753,11 +9785,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count.`,
+					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `True if it is dedicated database.`,
+					Description: `True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
 				},
 				resource.Attribute{
 					Name:        "is_preview",
@@ -9789,7 +9821,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet. ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet. ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9875,11 +9907,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count.`,
+					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `True if it is dedicated database.`,
+					Description: `True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
 				},
 				resource.Attribute{
 					Name:        "is_preview",
@@ -9911,7 +9943,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `The client IP access control list (ACL). Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet. ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet. ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10046,7 +10078,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment the Autonomous Exadata Infrastructure belongs in.`,
+					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment the Autonomous Exadata Infrastructure belongs in.`,
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
@@ -10082,7 +10114,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hours_of_day",
-					Description: `(Optional) (Updatable) The window of hours during the day when maintenance should be performed.`,
+					Description: `(Optional) (Updatable) The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are`,
 				},
 				resource.Attribute{
 					Name:        "months",
@@ -10166,7 +10198,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hours_of_day",
-					Description: `The window of hours during the day when maintenance should be performed.`,
+					Description: `The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are`,
 				},
 				resource.Attribute{
 					Name:        "months",
@@ -10264,7 +10296,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hours_of_day",
-					Description: `The window of hours during the day when maintenance should be performed.`,
+					Description: `The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are`,
 				},
 				resource.Attribute{
 					Name:        "months",
@@ -10442,7 +10474,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_network_nsg_ids",
-					Description: `(Applicable when creation_type=NewDbSystem) The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with the backup network of this DB system. Applicable only to Exadata DB systems. A maximum of 5 allowed.`,
+					Description: `(Applicable when creation_type=NewDbSystem) A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.`,
 				},
 				resource.Attribute{
 					Name:        "creation_type",
@@ -10470,7 +10502,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nsg_ids",
-					Description: `(Applicable when creation_type=NewDbSystem) The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with this DB system. A maximum of 5 allowed.`,
+					Description: `(Applicable when creation_type=NewDbSystem) A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
 				},
 				resource.Attribute{
 					Name:        "peer_db_system_id",
@@ -10958,7 +10990,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_network_nsg_ids",
-					Description: `(Optional) (Updatable) The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with the backup network of this DB system. Applicable only to Exadata DB systems. A maximum of 5 allowed.`,
+					Description: `(Optional) (Updatable) A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.`,
 				},
 				resource.Attribute{
 					Name:        "backup_subnet_id",
@@ -10970,7 +11002,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment the DB system belongs in.`,
+					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment the DB system belongs in.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_core_count",
@@ -11094,7 +11126,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nsg_ids",
-					Description: `(Optional) (Updatable) The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with this DB system. A maximum of 5 allowed.`,
+					Description: `(Optional) (Updatable) A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
 				},
 				resource.Attribute{
 					Name:        "shape",
@@ -11126,7 +11158,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_network_nsg_ids",
-					Description: `The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with the backup network of this DB system. Applicable only to Exadata DB systems. A maximum of 5 allowed.`,
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.`,
 				},
 				resource.Attribute{
 					Name:        "backup_subnet_id",
@@ -11334,7 +11366,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nsg_ids",
-					Description: `The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with this DB system. A maximum of 5 allowed.`,
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
 				},
 				resource.Attribute{
 					Name:        "reco_storage_size_in_gb",
@@ -11392,7 +11424,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_network_nsg_ids",
-					Description: `The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with the backup network of this DB system. Applicable only to Exadata DB systems. A maximum of 5 allowed.`,
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata DB systems.`,
 				},
 				resource.Attribute{
 					Name:        "backup_subnet_id",
@@ -11600,7 +11632,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nsg_ids",
-					Description: `The list of Network Security Group [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) associated with this DB system. A maximum of 5 allowed.`,
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
 				},
 				resource.Attribute{
 					Name:        "reco_storage_size_in_gb",
@@ -13961,7 +13993,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The OCID of the compartment.`,
+					Description: `(Required) (Updatable) The OCID of the compartment.`,
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
@@ -14005,7 +14037,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `(Required) (Updatable) An array of A target hostname or IP address of the probe.`,
+					Description: `(Required) (Updatable) A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14013,7 +14045,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `(Optional) (Updatable) An array of The name of a vantage point from which to execute the probe.`,
+					Description: `(Optional) (Updatable) A list of names of vantage points from which to execute the probe.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -14069,7 +14101,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14077,7 +14109,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe. ## Import HttpMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_monitor.test_http_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A list of names of vantage points from which to execute the probe. ## Import HttpMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_monitor.test_http_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -14135,7 +14167,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14143,7 +14175,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe. ## Import HttpMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_monitor.test_http_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A list of names of vantage points from which to execute the probe. ## Import HttpMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_monitor.test_http_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14186,7 +14218,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `(Required) An array of A target hostname or IP address of the probe.`,
+					Description: `(Required) A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14194,7 +14226,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `(Optional) An array of The name of a vantage point from which to execute the probe.`,
+					Description: `(Optional) A list of names of vantage points from which to execute the probe.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -14230,7 +14262,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14238,7 +14270,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe. ## Import HttpProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_probe.test_http_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A list of names of vantage points from which to execute the probe. ## Import HttpProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_probe.test_http_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -14276,7 +14308,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14284,7 +14316,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe. ## Import HttpProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_probe.test_http_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A list of names of vantage points from which to execute the probe. ## Import HttpProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_http_probe.test_http_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14303,7 +14335,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "compartment_id",
-					Description: `(Required) The OCID of the compartment.`,
+					Description: `(Required) (Updatable) The OCID of the compartment.`,
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
@@ -14335,7 +14367,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `(Required) (Updatable) An array of A target hostname or IP address of the probe.`,
+					Description: `(Required) (Updatable) A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14343,7 +14375,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `(Optional) (Updatable) An array of The name of a vantage point from which to execute the probe.`,
+					Description: `(Optional) (Updatable) A list of names of vantage points from which to execute the probe.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -14387,7 +14419,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14395,7 +14427,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe. ## Import PingMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_monitor.test_ping_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A list of names of vantage points from which to execute the probe. ## Import PingMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_monitor.test_ping_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -14441,7 +14473,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14449,7 +14481,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe. ## Import PingMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_monitor.test_ping_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A list of names of vantage points from which to execute the probe. ## Import PingMonitors can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_monitor.test_ping_monitor "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14480,7 +14512,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `(Required) An array of A target hostname or IP address of the probe.`,
+					Description: `(Required) A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14488,7 +14520,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `(Optional) An array of The name of a vantage point from which to execute the probe.`,
+					Description: `(Optional) A list of names of vantage points from which to execute the probe.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -14512,7 +14544,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14520,7 +14552,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe. ## Import PingProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_probe.test_ping_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A list of names of vantage points from which to execute the probe. ## Import PingProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_probe.test_ping_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -14546,7 +14578,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "targets",
-					Description: `An array of A target hostname or IP address of the probe.`,
+					Description: `A list of targets (hostnames or IP addresses) of the probe.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_in_seconds",
@@ -14554,7 +14586,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vantage_point_names",
-					Description: `An array of The name of a vantage point from which to execute the probe. ## Import PingProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_probe.test_ping_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A list of names of vantage points from which to execute the probe. ## Import PingProbes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_health_checks_ping_probe.test_ping_probe "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -16761,7 +16793,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_of_deletion",
-					Description: `(Required) (Updatable) An optional property for the deletion time of the key, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2019-04-03T21:10:29.600Z` + "`" + ``,
+					Description: `(Optional) (Updatable) An optional property for the deletion time of the key, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2019-04-03T21:10:29.600Z` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -16965,6 +16997,10 @@ var (
 				resource.Attribute{
 					Name:        "vault_type",
 					Description: `(Required) The type of vault to create. Each type of vault stores the key with different degrees of isolation and has different options and pricing.`,
+				},
+				resource.Attribute{
+					Name:        "time_of_deletion",
+					Description: `(Optional) (Updatable) An optional property for the deletion time of the vault, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2019-04-03T21:10:29.600Z` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -18445,7 +18481,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destinations",
-					Description: `(Required) (Updatable) An array of [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) to which the notifications for this alarm will be delivered. An example destination is an OCID for a topic managed by the Oracle Cloud Infrastructure Notification service.`,
+					Description: `(Required) (Updatable) A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -18521,7 +18557,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destinations",
-					Description: `An array of [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) to which the notifications for this alarm will be delivered. An example destination is an OCID for a topic managed by the Oracle Cloud Infrastructure Notification service.`,
+					Description: `A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -18615,7 +18651,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "destinations",
-					Description: `An array of [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) to which the notifications for this alarm will be delivered. An example destination is an OCID for a topic managed by the Oracle Cloud Infrastructure Notification service.`,
+					Description: `A list of destinations to which the notifications for this alarm will be delivered. Each destination is represented by an [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) related to the supported destination service. For example, a destination using the Notifications service is represented by a topic OCID. Supported destination services: Notifications Service. Limit: One destination per supported destination service.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",

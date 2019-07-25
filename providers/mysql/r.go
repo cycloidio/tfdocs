@@ -227,12 +227,12 @@ var (
 					Description: `(Required) The IAM user to associate with this access key.`,
 				},
 				resource.Attribute{
-					Name:        "host",
-					Description: `(Optional) The source host of the user. Defaults to ` + "`" + `localhost` + "`" + `.`,
+					Name:        "pgp_key",
+					Description: `(Required) Either a base-64 encoded PGP public key, or a keybase username in the form ` + "`" + `keybase:some_person_that_exists` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "pgp_key",
-					Description: `(Optional) Either a base-64 encoded PGP public key, or a keybase username in the form ` + "`" + `keybase:some_person_that_exists` + "`" + `. ## Attributes Reference The following additional attributes are exported:`,
+					Name:        "host",
+					Description: `(Optional) The source host of the user. Defaults to ` + "`" + `localhost` + "`" + `. ## Attributes Reference The following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "key_fingerprint",

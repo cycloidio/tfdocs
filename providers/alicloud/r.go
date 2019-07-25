@@ -3409,8 +3409,10 @@ var (
 			ShortDescription: `Provides a Alicloud BGP-line Anti-DDoS Pro(Ddoscoo) Instance Resource.`,
 			Description:      ``,
 			Keywords: []string{
-				"bgp-line",
-				"anti-ddos",
+				"bgp",
+				"line",
+				"anti",
+				"ddos",
 				"pro",
 				"ddoscoo",
 				"instance",
@@ -6335,7 +6337,6 @@ var (
 			Description:      ``,
 			Keywords: []string{
 				"mns",
-				"",
 				"queue",
 			},
 			Arguments: []resource.Attribute{
@@ -6383,7 +6384,6 @@ var (
 			Description:      ``,
 			Keywords: []string{
 				"mns",
-				"",
 				"topic",
 			},
 			Arguments: []resource.Attribute{
@@ -6419,7 +6419,6 @@ var (
 			Description:      ``,
 			Keywords: []string{
 				"mns",
-				"",
 				"topic",
 				"subscription",
 			},

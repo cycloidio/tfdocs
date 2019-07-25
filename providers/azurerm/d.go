@@ -1866,8 +1866,20 @@ Use this data source to access information about an existing Batch Account.
 					Description: `The account endpoint used to interact with the Batch service.`,
 				},
 				resource.Attribute{
+					Name:        "key_vault_reference",
+					Description: `The ` + "`" + `key_vault_reference` + "`" + ` block that describes the Azure KeyVault reference to use when deploying the Azure Batch account using the ` + "`" + `UserSubscription` + "`" + ` pool allocation mode.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A map of tags assigned to the Batch account. ~>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Azure identifier of the Azure KeyVault reference.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The HTTPS URL of the Azure KeyVault reference. ---`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1904,8 +1916,20 @@ Use this data source to access information about an existing Batch Account.
 					Description: `The account endpoint used to interact with the Batch service.`,
 				},
 				resource.Attribute{
+					Name:        "key_vault_reference",
+					Description: `The ` + "`" + `key_vault_reference` + "`" + ` block that describes the Azure KeyVault reference to use when deploying the Azure Batch account using the ` + "`" + `UserSubscription` + "`" + ` pool allocation mode.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `A map of tags assigned to the Batch account. ~>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Azure identifier of the Azure KeyVault reference.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The HTTPS URL of the Azure KeyVault reference. ---`,
 				},
 			},
 		},
@@ -3978,6 +4002,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `A ` + "`" + `linux_profile` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "windows_profile",
+					Description: `A ` + "`" + `windows_profile` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "network_profile",
 					Description: `A ` + "`" + `network_profile` + "`" + ` block as documented below.`,
 				},
@@ -4018,6 +4046,26 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `The maximum number of pods that can run on each agent.`,
 				},
 				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The availability zones used for the nodes.`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_scaling",
+					Description: `If the auto-scaler is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "min_count",
+					Description: `Minimum number of nodes for auto-scaling`,
+				},
+				resource.Attribute{
+					Name:        "min_count",
+					Description: `Minimum number of nodes for auto-scaling`,
+				},
+				resource.Attribute{
+					Name:        "max_count",
+					Description: `Maximum number of nodes for auto-scaling`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The name assigned to this pool of agents.`,
 				},
@@ -4035,7 +4083,11 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "vnet_subnet_id",
-					Description: `The ID of the Subnet where the Agents in the Pool are provisioned. --- A ` + "`" + `azure_active_directory` + "`" + ` block exports the following:`,
+					Description: `The ID of the Subnet where the Agents in the Pool are provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `The list of Kubernetes taints which are applied to nodes in the agent pool --- A ` + "`" + `azure_active_directory` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "client_app_id",
@@ -4087,7 +4139,11 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "ssh_key",
-					Description: `An ` + "`" + `ssh_key` + "`" + ` block as defined below. --- A ` + "`" + `network_profile` + "`" + ` block exports the following:`,
+					Description: `An ` + "`" + `ssh_key` + "`" + ` block as defined below. --- A ` + "`" + `windows_profile` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_username",
+					Description: `The username associated with the administrator account of the Windows VMs. --- A ` + "`" + `network_profile` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "docker_bridge_cidr",
@@ -4188,6 +4244,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `A ` + "`" + `linux_profile` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "windows_profile",
+					Description: `A ` + "`" + `windows_profile` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "network_profile",
 					Description: `A ` + "`" + `network_profile` + "`" + ` block as documented below.`,
 				},
@@ -4228,6 +4288,26 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `The maximum number of pods that can run on each agent.`,
 				},
 				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The availability zones used for the nodes.`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_scaling",
+					Description: `If the auto-scaler is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "min_count",
+					Description: `Minimum number of nodes for auto-scaling`,
+				},
+				resource.Attribute{
+					Name:        "min_count",
+					Description: `Minimum number of nodes for auto-scaling`,
+				},
+				resource.Attribute{
+					Name:        "max_count",
+					Description: `Maximum number of nodes for auto-scaling`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The name assigned to this pool of agents.`,
 				},
@@ -4245,7 +4325,11 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "vnet_subnet_id",
-					Description: `The ID of the Subnet where the Agents in the Pool are provisioned. --- A ` + "`" + `azure_active_directory` + "`" + ` block exports the following:`,
+					Description: `The ID of the Subnet where the Agents in the Pool are provisioned.`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `The list of Kubernetes taints which are applied to nodes in the agent pool --- A ` + "`" + `azure_active_directory` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "client_app_id",
@@ -4297,7 +4381,11 @@ Use this data source to access information about an existing Managed Kubernetes 
 				},
 				resource.Attribute{
 					Name:        "ssh_key",
-					Description: `An ` + "`" + `ssh_key` + "`" + ` block as defined below. --- A ` + "`" + `network_profile` + "`" + ` block exports the following:`,
+					Description: `An ` + "`" + `ssh_key` + "`" + ` block as defined below. --- A ` + "`" + `windows_profile` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_username",
+					Description: `The username associated with the administrator account of the Windows VMs. --- A ` + "`" + `network_profile` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "docker_bridge_cidr",
@@ -4851,6 +4939,70 @@ Use this data source to access information about an existing Management Group.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_maps_account",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Azure Maps Account.`,
+			Description: `
+
+Use this data source to access information about an existing Azure Maps Account.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Maps Account.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the name of the Resource Group in which the Maps Account is located. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Maps Account.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The sku of the Azure Maps Account.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs. The second key is given to provide seemless key regeneration.`,
+				},
+				resource.Attribute{
+					Name:        "x_ms_client_id",
+					Description: `A unique identifier for the Maps Account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Maps Account.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The sku of the Azure Maps Account.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs. The second key is given to provide seemless key regeneration.`,
+				},
+				resource.Attribute{
+					Name:        "x_ms_client_id",
+					Description: `A unique identifier for the Maps Account.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_monitor_action_group",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about the specified Action Group.`,
@@ -5094,6 +5246,90 @@ Use this data source to access the properties of a Log Profile.
 				resource.Attribute{
 					Name:        "days",
 					Description: `The number of days for the retention policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_mssql_elasticpool",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing SQL elastic pool.`,
+			Description: `
+
+Use this data source to access information about an existing SQL elastic pool.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the elastic pool.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group which contains the elastic pool.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `(Required) The name of the SQL Server which contains the elastic pool. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Specifies the supported Azure location where the resource exists.`,
+				},
+				resource.Attribute{
+					Name:        "max_size_gb",
+					Description: `The max data size of the elastic pool in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "max_size_bytes",
+					Description: `The max data size of the elastic pool in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "per_db_min_capacity",
+					Description: `The minimum capacity all databases are guaranteed.`,
+				},
+				resource.Attribute{
+					Name:        "per_db_max_capacity",
+					Description: `The maximum capacity any one database can consume.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "zone_redundant",
+					Description: `Whether or not this elastic pool is zone redundant.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `Specifies the supported Azure location where the resource exists.`,
+				},
+				resource.Attribute{
+					Name:        "max_size_gb",
+					Description: `The max data size of the elastic pool in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "max_size_bytes",
+					Description: `The max data size of the elastic pool in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "per_db_min_capacity",
+					Description: `The minimum capacity all databases are guaranteed.`,
+				},
+				resource.Attribute{
+					Name:        "per_db_max_capacity",
+					Description: `The maximum capacity any one database can consume.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "zone_redundant",
+					Description: `Whether or not this elastic pool is zone redundant.`,
 				},
 			},
 		},
@@ -7447,6 +7683,10 @@ Use this data source to access information about an existing Subscription.
 					Description: `The subscription display name.`,
 				},
 				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The subscription tenant ID.`,
+				},
+				resource.Attribute{
 					Name:        "state",
 					Description: `The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted.`,
 				},
@@ -7475,6 +7715,10 @@ Use this data source to access information about an existing Subscription.
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The subscription display name.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The subscription tenant ID.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -7519,8 +7763,16 @@ Use this data source to access information about all the Subscriptions currently
 					Description: `One or more ` + "`" + `subscription` + "`" + ` blocks as defined below. The ` + "`" + `subscription` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
+					Name:        "subscription_id",
+					Description: `The subscription GUID.`,
+				},
+				resource.Attribute{
 					Name:        "display_name",
 					Description: `The subscription display name.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The subscription tenant ID.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -7545,8 +7797,16 @@ Use this data source to access information about all the Subscriptions currently
 					Description: `One or more ` + "`" + `subscription` + "`" + ` blocks as defined below. The ` + "`" + `subscription` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
+					Name:        "subscription_id",
+					Description: `The subscription GUID.`,
+				},
+				resource.Attribute{
 					Name:        "display_name",
 					Description: `The subscription display name.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The subscription tenant ID.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -8250,40 +8510,42 @@ Use this data source to access information about an existing Virtual Network Gat
 		"azurerm_logic_app_workflow":                     41,
 		"azurerm_managed_disk":                           42,
 		"azurerm_management_group":                       43,
-		"azurerm_monitor_action_group":                   44,
-		"azurerm_monitor_diagnostic_categories":          45,
-		"azurerm_monitor_log_profile":                    46,
-		"azurerm_network_interface":                      47,
-		"azurerm_network_security_group":                 48,
-		"azurerm_network_watcher":                        49,
-		"azurerm_notification_hub_namespace":             50,
-		"azurerm_platform_image":                         51,
-		"azurerm_policy_definition":                      52,
-		"azurerm_public_ip":                              53,
-		"azurerm_public_ips":                             54,
-		"azurerm_recovery_services_protection_policy_vm": 55,
-		"azurerm_recovery_services_vault":                56,
-		"azurerm_resource_group":                         57,
-		"azurerm_role_definition":                        58,
-		"azurerm_route_table":                            59,
-		"azurerm_scheduler_job_collection":               60,
-		"azurerm_servicebus_namespace":                   61,
-		"azurerm_shared_image":                           62,
-		"azurerm_shared_image_gallery":                   63,
-		"azurerm_shared_image_version":                   64,
-		"azurerm_sql_server":                             65,
-		"azurerm_storage_account":                        66,
-		"azurerm_storage_account_sas":                    67,
-		"azurerm_stream_analytics_job":                   68,
-		"azurerm_subnet":                                 69,
-		"azurerm_subscription":                           70,
-		"azurerm_subscriptions":                          71,
-		"azurerm_traffic_manager_geographical_location":  72,
-		"azurerm_user_assigned_identity":                 73,
-		"azurerm_virtual_machine":                        74,
-		"azurerm_virtual_network":                        75,
-		"azurerm_virtual_network_gateway":                76,
-		"azurerm_virtual_network_gateway_connection":     77,
+		"azurerm_maps_account":                           44,
+		"azurerm_monitor_action_group":                   45,
+		"azurerm_monitor_diagnostic_categories":          46,
+		"azurerm_monitor_log_profile":                    47,
+		"azurerm_mssql_elasticpool":                      48,
+		"azurerm_network_interface":                      49,
+		"azurerm_network_security_group":                 50,
+		"azurerm_network_watcher":                        51,
+		"azurerm_notification_hub_namespace":             52,
+		"azurerm_platform_image":                         53,
+		"azurerm_policy_definition":                      54,
+		"azurerm_public_ip":                              55,
+		"azurerm_public_ips":                             56,
+		"azurerm_recovery_services_protection_policy_vm": 57,
+		"azurerm_recovery_services_vault":                58,
+		"azurerm_resource_group":                         59,
+		"azurerm_role_definition":                        60,
+		"azurerm_route_table":                            61,
+		"azurerm_scheduler_job_collection":               62,
+		"azurerm_servicebus_namespace":                   63,
+		"azurerm_shared_image":                           64,
+		"azurerm_shared_image_gallery":                   65,
+		"azurerm_shared_image_version":                   66,
+		"azurerm_sql_server":                             67,
+		"azurerm_storage_account":                        68,
+		"azurerm_storage_account_sas":                    69,
+		"azurerm_stream_analytics_job":                   70,
+		"azurerm_subnet":                                 71,
+		"azurerm_subscription":                           72,
+		"azurerm_subscriptions":                          73,
+		"azurerm_traffic_manager_geographical_location":  74,
+		"azurerm_user_assigned_identity":                 75,
+		"azurerm_virtual_machine":                        76,
+		"azurerm_virtual_network":                        77,
+		"azurerm_virtual_network_gateway":                78,
+		"azurerm_virtual_network_gateway_connection":     79,
 	}
 )
 

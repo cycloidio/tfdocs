@@ -203,6 +203,38 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "dns_srv_record_set",
+			Category:         "Data Sources",
+			ShortDescription: `Get DNS SRV record set.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Required): Service to look up ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Set to ` + "`" + `service` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "srv",
+					Description: `A list of records. They are sorted to stay consistent across runs.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Set to ` + "`" + `service` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "srv",
+					Description: `A list of records. They are sorted to stay consistent across runs.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "dns_txt_record_set",
 			Category:         "Data Sources",
 			ShortDescription: `Get DNS TXT record set.`,
@@ -251,7 +283,8 @@ var (
 		"dns_mx_record_set":    3,
 		"dns_ns_record_set":    4,
 		"dns_ptr_record_set":   5,
-		"dns_txt_record_set":   6,
+		"dns_srv_record_set":   6,
+		"dns_txt_record_set":   7,
 	}
 )
 

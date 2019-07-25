@@ -11,6 +11,74 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_analysis_services_server",
+			Category:         "Analysis Services Resources",
+			ShortDescription: `Manages an Analysis Services Server.`,
+			Description:      ``,
+			Keywords: []string{
+				"analysis",
+				"services",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Analysis Services Server. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The Azure location where the Analysis Services Server exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group in which the Analysis Services Server should be exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `(Required) SKU for the Analysis Services Server. Possible values are: ` + "`" + `D1` + "`" + `, ` + "`" + `B1` + "`" + `, ` + "`" + `B2` + "`" + `, ` + "`" + `S0` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, ` + "`" + `S4` + "`" + `, ` + "`" + `S8` + "`" + ` and ` + "`" + `S9` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "admin_users",
+					Description: `(Optional) List of email addresses of admin users.`,
+				},
+				resource.Attribute{
+					Name:        "querypool_connection_mode",
+					Description: `(Optional) Controls how the read-write server is used in the query pool. If this values is set to ` + "`" + `All` + "`" + ` then read-write servers are also used for queries. Otherwise with ` + "`" + `ReadOnly` + "`" + ` theses servers do not participate in query operations.`,
+				},
+				resource.Attribute{
+					Name:        "enable_power_bi_service",
+					Description: `(Optional) Indicates if the Power BI service is allowed to access or not.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_firewall_rule",
+					Description: `(Optional) One or more ` + "`" + `ipv4_firewall_rule` + "`" + ` block(s) as defined below. --- A ` + "`" + `ipv4_firwall_rule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the firewall rule.`,
+				},
+				resource.Attribute{
+					Name:        "range_start",
+					Description: `(Required) Start of the firewall rule range as IPv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "range_end",
+					Description: `(Required) End of the firewall rule range as IPv4 address. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Analysis Services Server. ## Import Analysis Services Server can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_analysis_services_server.server /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.AnalysisServices/server/server1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Analysis Services Server. ## Import Analysis Services Server can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_analysis_services_server.server /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.AnalysisServices/server/server1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_api_management",
 			Category:         "API Management Resources",
 			ShortDescription: `Manages an API Management Service.`,
@@ -992,6 +1060,150 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_api_management_backend",
+			Category:         "API Management Resources",
+			ShortDescription: `Manages a backend within an API Management Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"management",
+				"backend",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the API Management backend. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "api_management_name",
+					Description: `(Required) The Name of the API Management Service where this backend should be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The Name of the Resource Group where the API Management Service exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) The protocol used by the backend host. Possible values are ` + "`" + `http` + "`" + ` or ` + "`" + `soap` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL of the backend host. ---`,
+				},
+				resource.Attribute{
+					Name:        "credentials",
+					Description: `(Optional) A ` + "`" + `credentials` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the backend.`,
+				},
+				resource.Attribute{
+					Name:        "proxy",
+					Description: `(Optional) A ` + "`" + `proxy` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Optional) The management URI of the backend host in an external system. This URI can be the ARM Resource ID of Logic Apps, Function Apps or API Apps, or the management endpoint of a Service Fabric cluster.`,
+				},
+				resource.Attribute{
+					Name:        "service_fabric_cluster",
+					Description: `(Optional) A ` + "`" + `service_fabric_cluster` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Optional) The title of the backend.`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional) A ` + "`" + `tls` + "`" + ` block as documented below. --- A ` + "`" + `credentials` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authorization",
+					Description: `(Optional) An ` + "`" + `authorization` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Optional) A list of client certificate thumbprints to present to the backend host. The certificates must exist within the API Management Service.`,
+				},
+				resource.Attribute{
+					Name:        "header",
+					Description: `(Optional) A mapping of header parameters to pass to the backend host. The keys are the header names and the values are a comma separated string of header values. This is converted to a list before being passed to the API.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Optional) A mapping of query parameters to pass to the backend host. The keys are the query names and the values are a comma separated string of query values. This is converted to a list before being passed to the API. --- An ` + "`" + `authorization` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "parameter",
+					Description: `(Optional) The authentication Parameter value.`,
+				},
+				resource.Attribute{
+					Name:        "scheme",
+					Description: `(Optional) The authentication Scheme name. --- A ` + "`" + `proxy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password to connect to the proxy server.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Optional) The URL of the proxy server.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) The username to connect to the proxy server. --- A ` + "`" + `service_fabric_cluster` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_thumbprint",
+					Description: `(Required) The client certificate thumbprint for the management endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "management_endpoints",
+					Description: `(Required) A list of cluster management endpoints.`,
+				},
+				resource.Attribute{
+					Name:        "max_partition_resolution_retries",
+					Description: `(Required) The maximum number of retries when attempting resolve the partition.`,
+				},
+				resource.Attribute{
+					Name:        "server_certificate_thumbprints",
+					Description: `(Optional) A list of thumbprints of the server certificates of the Service Fabric cluster.`,
+				},
+				resource.Attribute{
+					Name:        "server_x509_name",
+					Description: `(Optional) One or more ` + "`" + `server_x509_name` + "`" + ` blocks as documented below. --- A ` + "`" + `server_x509_name` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "issuer_certificate_thumbprint",
+					Description: `(Required) The thumbprint for the issuer of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The common name of the certificate. --- A ` + "`" + `tls` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "validate_certificate_chain",
+					Description: `(Optional) Flag indicating whether SSL certificate chain validation should be done when using self-signed certificates for the backend host.`,
+				},
+				resource.Attribute{
+					Name:        "validate_certificate_name",
+					Description: `(Optional) Flag indicating whether SSL certificate name validation should be done when using self-signed certificates for the backend host. --- ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API Management API. ## Import API Management backends can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_backend.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/backends/backend1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API Management API. ## Import API Management backends can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_backend.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/backends/backend1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_api_management_certificate",
 			Category:         "API Management Resources",
 			ShortDescription: `Manages an Certificate within an API Management Service.`,
@@ -1517,6 +1729,58 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_api_management_subscription",
+			Category:         "API Management Resources",
+			ShortDescription: `Manages a Subscription within a API Management Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"management",
+				"subscription",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_management_name",
+					Description: `(Required) The name of the API Management Service where this Subscription should be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) The display name of this Subscription.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group in which the API Management Service exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `(Required) The ID of the Product which should be assigned to this Subscription. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Required) The ID of the User which should be assigned to this Subscription. Changing this forces a new resource to be created. ---`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) The state of this Subscription. Possible values are ` + "`" + `Active` + "`" + `, ` + "`" + `Cancelled` + "`" + `, ` + "`" + `Expired` + "`" + `, ` + "`" + `Rejected` + "`" + `, ` + "`" + `Submitted` + "`" + ` and ` + "`" + `Suspended` + "`" + `. Defaults to ` + "`" + `Submitted` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subscription_id",
+					Description: `(Optional) An Identifier which should used as the ID of this Subscription. If not specified a new Subscription ID will be generated. Changing this forces a new resource to be created. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API Management Subscription. ## Import API Management Subscriptions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_subscription.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/properties/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API Management Subscription. ## Import API Management Subscriptions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_subscription.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/properties/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_api_management_user",
 			Category:         "API Management Resources",
 			ShortDescription: `Manages an API Management User.`,
@@ -1617,6 +1881,10 @@ var (
 					Description: `(Optional) A ` + "`" + `auth_settings` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "storage_account",
+					Description: `(Optional) One or more ` + "`" + `storage_account` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "connection_string",
 					Description: `(Optional) One or more ` + "`" + `connection_string` + "`" + ` blocks as defined below.`,
 				},
@@ -1650,7 +1918,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "identity",
-					Description: `(Optional) A Managed Service Identity block as defined below. --- A ` + "`" + `connection_string` + "`" + ` block supports the following:`,
+					Description: `(Optional) A Managed Service Identity block as defined below. --- A ` + "`" + `storage_account` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the storage account identifier.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of storage. Possible values are ` + "`" + `AzureBlob` + "`" + ` and ` + "`" + `AzureFiles` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) The name of the storage account.`,
+				},
+				resource.Attribute{
+					Name:        "share_name",
+					Description: `(Required) The name of the file share (container name, for Blob storage).`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Required) The access key for the storage account.`,
+				},
+				resource.Attribute{
+					Name:        "mount_path",
+					Description: `(Optional) The path to mount the storage within the site's runtime environment. --- A ` + "`" + `connection_string` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1666,7 +1958,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the identity type of the App Service. At this time the only allowed value is ` + "`" + `SystemAssigned` + "`" + `. ~> The assigned ` + "`" + `principal_id` + "`" + ` and ` + "`" + `tenant_id` + "`" + ` can be retrieved after the App Service has been created. More details are available below. --- A ` + "`" + `logs` + "`" + ` block supports the following:`,
+					Description: `(Required) Specifies the identity type of the App Service. Possible values are ` + "`" + `SystemAssigned` + "`" + ` (where Azure will generate a Service Principal for you), ` + "`" + `UserAssigned` + "`" + ` where you can specify the Service Principal IDs in the ` + "`" + `identity_ids` + "`" + ` field, and ` + "`" + `SystemAssigned, UserAssigned` + "`" + ` which assigns both a system managed identity as well as the specified user assigned identities. ~>`,
+				},
+				resource.Attribute{
+					Name:        "identity_ids",
+					Description: `(Optional) Specifies a list of user managed identity ids to be assigned. Required if ` + "`" + `type` + "`" + ` is ` + "`" + `UserAssigned` + "`" + `. --- A ` + "`" + `logs` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "application_logs",
@@ -1887,6 +2183,34 @@ var (
 				resource.Attribute{
 					Name:        "client_secret",
 					Description: `(Required) The OAuth 2.0 client secret that was created for the app used for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Is this Backup enabled?`,
+				},
+				resource.Attribute{
+					Name:        "schedule",
+					Description: `(Optional) A ` + "`" + `schedule` + "`" + ` block as defined below. --- A ` + "`" + `schedule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "frequency_interval",
+					Description: `(Required) Sets how often the backup should be executed.`,
+				},
+				resource.Attribute{
+					Name:        "frequency_unit",
+					Description: `(Optional) Sets the unit of time for how often the backup should be executed. Possible values are ` + "`" + `Day` + "`" + ` or ` + "`" + `Hour` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "keep_at_least_one_backup",
+					Description: `(Optional) Should at least one backup always be kept in the Storage Account by the Retention Policy, regardless of how old it is?`,
+				},
+				resource.Attribute{
+					Name:        "retention_period_in_days",
+					Description: `(Optional) Specifies the number of days after which Backups should be deleted.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional) Sets when the schedule should start working. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2191,6 +2515,10 @@ var (
 					Description: `(Optional) A key-value pair of App Settings.`,
 				},
 				resource.Attribute{
+					Name:        "auth_settings",
+					Description: `(Optional) A ` + "`" + `auth_settings` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "connection_string",
 					Description: `(Optional) An ` + "`" + `connection_string` + "`" + ` block as defined below.`,
 				},
@@ -2320,11 +2648,111 @@ var (
 				},
 				resource.Attribute{
 					Name:        "support_credentials",
-					Description: `(Optional) Are credentials supported? --- A ` + "`" + `identity` + "`" + ` block supports the following:`,
+					Description: `(Optional) Are credentials supported? --- A ` + "`" + `auth_settings` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Is Authentication enabled?`,
+				},
+				resource.Attribute{
+					Name:        "active_directory",
+					Description: `(Optional) A ` + "`" + `active_directory` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "additional_login_params",
+					Description: `(Optional) Login parameters to send to the OpenID Connect authorization endpoint when a user logs in. Each parameter must be in the form "key=value".`,
+				},
+				resource.Attribute{
+					Name:        "allowed_external_redirect_urls",
+					Description: `(Optional) External URLs that can be redirected to as part of logging in or logging out of the app.`,
+				},
+				resource.Attribute{
+					Name:        "default_provider",
+					Description: `(Optional) The default provider to use when multiple providers have been set up. Possible values are ` + "`" + `AzureActiveDirectory` + "`" + `, ` + "`" + `Facebook` + "`" + `, ` + "`" + `Google` + "`" + `, ` + "`" + `MicrosoftAccount` + "`" + ` and ` + "`" + `Twitter` + "`" + `. ~>`,
+				},
+				resource.Attribute{
+					Name:        "facebook",
+					Description: `(Optional) A ` + "`" + `facebook` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "google",
+					Description: `(Optional) A ` + "`" + `google` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `(Optional) Issuer URI. When using Azure Active Directory, this value is the URI of the directory tenant, e.g. https://sts.windows.net/{tenant-guid}/.`,
+				},
+				resource.Attribute{
+					Name:        "microsoft",
+					Description: `(Optional) A ` + "`" + `microsoft` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "runtime_version",
+					Description: `(Optional) The runtime version of the Authentication/Authorization module.`,
+				},
+				resource.Attribute{
+					Name:        "token_refresh_extension_hours",
+					Description: `(Optional) The number of hours after session token expiration that a session token can be used to call the token refresh API. Defaults to 72.`,
+				},
+				resource.Attribute{
+					Name:        "token_store_enabled",
+					Description: `(Optional) If enabled the module will durably store platform-specific security tokens that are obtained during login flows. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "twitter",
+					Description: `(Optional) A ` + "`" + `twitter` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "unauthenticated_client_action",
+					Description: `(Optional) The action to take when an unauthenticated client attempts to access the app. Possible values are ` + "`" + `AllowAnonymous` + "`" + ` and ` + "`" + `RedirectToLoginPage` + "`" + `. --- A ` + "`" + `active_directory` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The Client ID of this relying party application. Enables OpenIDConnection authentication with Azure Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) The Client Secret of this relying party application. If no secret is provided, implicit flow will be used.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) The App ID of the Facebook app used for login`,
+				},
+				resource.Attribute{
+					Name:        "app_secret",
+					Description: `(Required) The App Secret of the Facebook app used for Facebook Login.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The OpenID Connect Client ID for the Google web application.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Required) The client secret associated with the Google web application.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) The IP Address used for this IP Restriction.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_mask",
+					Description: `(Optional) The Subnet mask used for this IP Restriction. Defaults to ` + "`" + `255.255.255.255` + "`" + `. --- A ` + "`" + `microsoft` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The OAuth 2.0 client ID that was created for the app used for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Required) The OAuth 2.0 client secret that was created for the app used for authentication.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the identity type of the App Service. At this time the only allowed value is ` + "`" + `SystemAssigned` + "`" + `. ~> The assigned ` + "`" + `principal_id` + "`" + ` and ` + "`" + `tenant_id` + "`" + ` can be retrieved after the App Service Slot has been created. --- Elements of ` + "`" + `ip_restriction` + "`" + ` [block](/docs/configuration/attr-as-blocks.html) support:`,
+					Description: `(Required) Specifies the identity type of the App Service. Possible values are ` + "`" + `SystemAssigned` + "`" + ` (where Azure will generate a Service Principal for you), ` + "`" + `UserAssigned` + "`" + ` where you can specify the Service Principal IDs in the ` + "`" + `identity_ids` + "`" + ` field, and ` + "`" + `SystemAssigned, UserAssigned` + "`" + ` which assigns both a system managed identity as well as the specified user assigned identities. ~>`,
+				},
+				resource.Attribute{
+					Name:        "identity_ids",
+					Description: `(Optional) Specifies a list of user managed identity ids to be assigned. Required if ` + "`" + `type` + "`" + ` is ` + "`" + `UserAssigned` + "`" + `. --- Elements of ` + "`" + `ip_restriction` + "`" + ` [block](/docs/configuration/attr-as-blocks.html) support:`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
@@ -2425,6 +2853,10 @@ var (
 				resource.Attribute{
 					Name:        "http_listener",
 					Description: `(Required) One or more ` + "`" + `http_listener` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `(Optional) A ` + "`" + `identity` + "`" + ` block.`,
 				},
 				resource.Attribute{
 					Name:        "request_routing_rule",
@@ -2632,7 +3064,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_error_configuration",
-					Description: `(Optional) One or more ` + "`" + `custom_error_configuration` + "`" + ` blocks as defined below. --- A ` + "`" + `match` + "`" + ` block supports the following:`,
+					Description: `(Optional) One or more ` + "`" + `custom_error_configuration` + "`" + ` blocks as defined below. --- A ` + "`" + `identity` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The Managed Service Identity Type of this Application Gateway. The only possible value is ` + "`" + `UserAssigned` + "`" + `. Defaults to ` + "`" + `UserAssigned` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "identity_ids",
+					Description: `(Required) Specifies a list with a single user managed identity id to be assigned to the Application Gateway. --- A ` + "`" + `match` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "body",
@@ -3476,14 +3916,15 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "azurerm_application_insights_webtests",
+			Type:             "azurerm_application_insights_web_test",
 			Category:         "Application Insights Resources",
 			ShortDescription: `Manages an Application Insights WebTest.`,
 			Description:      ``,
 			Keywords: []string{
 				"application",
 				"insights",
-				"webtests",
+				"web",
+				"test",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3984,7 +4425,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_variable_bool",
-			Category:         "Automation Resources Automation Resources",
+			Category:         "Automation Resources",
 			ShortDescription: `Manages a boolean variable in Azure Automation.`,
 			Description:      ``,
 			Keywords: []string{
@@ -4079,14 +4520,14 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "azurerm_automation_variable_bool",
-			Category:         "Automation Resources Automation Resources",
+			Type:             "azurerm_automation_variable_int",
+			Category:         "Automation Resources",
 			ShortDescription: `Manages a integer variable in Azure Automation.`,
 			Description:      ``,
 			Keywords: []string{
 				"automation",
 				"variable",
-				"bool",
+				"int",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4128,7 +4569,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_automation_variable_string",
-			Category:         "Automation Resources Automation Resources",
+			Category:         "Automation Resources",
 			ShortDescription: `Manages a string variable in Azure Automation.`,
 			Description:      ``,
 			Keywords: []string{
@@ -4583,7 +5024,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pool_allocation_mode",
-					Description: `(Optional) Specifies the mode to use for pool allocation. Possible values are ` + "`" + `BatchService` + "`" + ` or ` + "`" + `UserSubscription` + "`" + `. Defaults to ` + "`" + `BatchService` + "`" + `.`,
+					Description: `(Optional) Specifies the mode to use for pool allocation. Possible values are ` + "`" + `BatchService` + "`" + ` or ` + "`" + `UserSubscription` + "`" + `. Defaults to ` + "`" + `BatchService` + "`" + `. ~>`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_reference",
+					Description: `(Optional) A ` + "`" + `key_vault_reference` + "`" + ` block that describes the Azure KeyVault reference to use when deploying the Azure Batch account using the ` + "`" + `UserSubscription` + "`" + ` pool allocation mode.`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_id",
@@ -4591,7 +5036,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `key_vault_reference` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The Azure identifier of the Azure KeyVault to use.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The HTTPS URL of the Azure KeyVault to use. --- ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4626,6 +5079,53 @@ var (
 				resource.Attribute{
 					Name:        "account_endpoint",
 					Description: `The account endpoint used to interact with the Batch service. ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_batch_application",
+			Category:         "Batch Resources",
+			ShortDescription: `Manage Azure Batch Application instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"batch",
+				"application",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the application. This must be unique within the account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group that contains the Batch account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) The name of the Batch account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "allow_updates",
+					Description: `(Optional) A value indicating whether packages within the application may be overwritten using the same version string. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "default_version",
+					Description: `(Optional) The package to use if a client requests the application but does not specify a version. This property can only be set to the name of an existing package.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The display name for the application. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource. ## Import Batch Application can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_batch_application.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Batch/batchAccounts/exampleba/applications/example-batch-application ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resource. ## Import Batch Application can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_batch_application.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Batch/batchAccounts/exampleba/applications/example-batch-application ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4754,6 +5254,26 @@ var (
 				resource.Attribute{
 					Name:        "container_configuration",
 					Description: `(Optional) The container configuration used in the pool's VMs. ->`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Required) Specifies the publisher of the image used to create the virtual machines. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "offer",
+					Description: `(Required) Specifies the offer of the image used to create the virtual machines. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `(Required) Specifies the SKU of the image used to create the virtual machines. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the version of the image used to create the virtual machines. Changing this forces a new resource to be created. To provision a Custom Image, the following fields are applicable:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) Specifies the ID of the Custom Image which the virtual machines should be created from. Changing this forces a new resource to be created. See [official documentation](https://docs.microsoft.com/en-us/azure/batch/batch-custom-images) for more details. --- A ` + "`" + `fixed_scale` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "target_dedicated_nodes",
@@ -5055,7 +5575,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kind",
-					Description: `(Required) Specifies the type of Cognitive Service Account that should be created. Possible values are ` + "`" + `Academic` + "`" + `, ` + "`" + `Bing.Autosuggest` + "`" + `, ` + "`" + `Bing.Autosuggest.v7` + "`" + `, ` + "`" + `Bing.CustomSearch` + "`" + `, ` + "`" + `Bing.Search` + "`" + `, ` + "`" + `Bing.Search.v7` + "`" + `, ` + "`" + `Bing.Speech` + "`" + `, ` + "`" + `Bing.SpellCheck` + "`" + `, ` + "`" + `Bing.SpellCheck.v7` + "`" + `, ` + "`" + `ComputerVision` + "`" + `, ` + "`" + `ContentModerator` + "`" + `, ` + "`" + `CustomSpeech` + "`" + `, ` + "`" + `Emotion` + "`" + `, ` + "`" + `Face` + "`" + `, ` + "`" + `LUIS` + "`" + `, ` + "`" + `Recommendations` + "`" + `, ` + "`" + `SpeakerRecognition` + "`" + `, ` + "`" + `Speech` + "`" + `, ` + "`" + `SpeechServices` + "`" + `, ` + "`" + `SpeechTranslation` + "`" + `, ` + "`" + `TextAnalytics` + "`" + `, ` + "`" + `TextTranslation` + "`" + ` and ` + "`" + `WebLM` + "`" + `. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the type of Cognitive Service Account that should be created. Possible values are ` + "`" + `Academic` + "`" + `, ` + "`" + `Bing.Autosuggest` + "`" + `, ` + "`" + `Bing.Autosuggest.v7` + "`" + `, ` + "`" + `Bing.CustomSearch` + "`" + `, ` + "`" + `Bing.Search` + "`" + `, ` + "`" + `Bing.Search.v7` + "`" + `, ` + "`" + `Bing.Speech` + "`" + `, ` + "`" + `Bing.SpellCheck` + "`" + `, ` + "`" + `Bing.SpellCheck.v7` + "`" + `, ` + "`" + `ComputerVision` + "`" + `, ` + "`" + `ContentModerator` + "`" + `, ` + "`" + `CustomSpeech` + "`" + `, ` + "`" + `CustomVision.Prediction` + "`" + `, ` + "`" + `CustomVision.Training` + "`" + `, ` + "`" + `Emotion` + "`" + `, ` + "`" + `Face` + "`" + `, ` + "`" + `LUIS` + "`" + `, ` + "`" + `Recommendations` + "`" + `, ` + "`" + `SpeakerRecognition` + "`" + `, ` + "`" + `Speech` + "`" + `, ` + "`" + `SpeechServices` + "`" + `, ` + "`" + `SpeechTranslation` + "`" + `, ` + "`" + `TextAnalytics` + "`" + `, ` + "`" + `TextTranslation` + "`" + ` and ` + "`" + `WebLM` + "`" + `. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "sku",
@@ -5517,7 +6037,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "georeplication_locations",
-					Description: `(Optional) A list of Azure locations where the container registry should be geo-replicated. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A list of Azure locations where the container registry should be geo-replicated.`,
+				},
+				resource.Attribute{
+					Name:        "network_rule_set",
+					Description: `(Optional) A ` + "`" + `network_rule_set` + "`" + ` block as documented below. ` + "`" + `network_rule_set` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "default_action",
+					Description: `(Optional) The behaviour for requests matching no rules. Either ` + "`" + `Allow` + "`" + ` or ` + "`" + `Deny` + "`" + `. Defaults to ` + "`" + `Allow` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ip_rule",
+					Description: `(Optional) One or more ` + "`" + `ip_rule` + "`" + ` blocks as defined below. ~>`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) The behaviour for requests matching this rule. At this time the only supported value is ` + "`" + `Allow` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ip_range",
+					Description: `(Required) The CIDR block from which requests will match the rule. --- ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9454,6 +9994,10 @@ var (
 					Description: `(Optional) A key-value pair of App Settings.`,
 				},
 				resource.Attribute{
+					Name:        "auth_settings",
+					Description: `(Optional) A ` + "`" + `auth_settings` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "enable_builtin_logging",
 					Description: `(Optional) Should the built-in logging of this Function App be enabled? Defaults to ` + "`" + `true` + "`" + `.`,
 				},
@@ -9519,7 +10063,95 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the identity type of the App Service. At this time the only allowed value is ` + "`" + `SystemAssigned` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Specifies the identity type of the App Service. At this time the only allowed value is ` + "`" + `SystemAssigned` + "`" + `. --- A ` + "`" + `auth_settings` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Is Authentication enabled?`,
+				},
+				resource.Attribute{
+					Name:        "active_directory",
+					Description: `(Optional) A ` + "`" + `active_directory` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "additional_login_params",
+					Description: `(Optional) Login parameters to send to the OpenID Connect authorization endpoint when a user logs in. Each parameter must be in the form "key=value".`,
+				},
+				resource.Attribute{
+					Name:        "allowed_external_redirect_urls",
+					Description: `(Optional) External URLs that can be redirected to as part of logging in or logging out of the app.`,
+				},
+				resource.Attribute{
+					Name:        "default_provider",
+					Description: `(Optional) The default provider to use when multiple providers have been set up. Possible values are ` + "`" + `AzureActiveDirectory` + "`" + `, ` + "`" + `Facebook` + "`" + `, ` + "`" + `Google` + "`" + `, ` + "`" + `MicrosoftAccount` + "`" + ` and ` + "`" + `Twitter` + "`" + `. ~>`,
+				},
+				resource.Attribute{
+					Name:        "facebook",
+					Description: `(Optional) A ` + "`" + `facebook` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "google",
+					Description: `(Optional) A ` + "`" + `google` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `(Optional) Issuer URI. When using Azure Active Directory, this value is the URI of the directory tenant, e.g. https://sts.windows.net/{tenant-guid}/.`,
+				},
+				resource.Attribute{
+					Name:        "microsoft",
+					Description: `(Optional) A ` + "`" + `microsoft` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "runtime_version",
+					Description: `(Optional) The runtime version of the Authentication/Authorization module.`,
+				},
+				resource.Attribute{
+					Name:        "token_refresh_extension_hours",
+					Description: `(Optional) The number of hours after session token expiration that a session token can be used to call the token refresh API. Defaults to 72.`,
+				},
+				resource.Attribute{
+					Name:        "token_store_enabled",
+					Description: `(Optional) If enabled the module will durably store platform-specific security tokens that are obtained during login flows. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "twitter",
+					Description: `(Optional) A ` + "`" + `twitter` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "unauthenticated_client_action",
+					Description: `(Optional) The action to take when an unauthenticated client attempts to access the app. Possible values are ` + "`" + `AllowAnonymous` + "`" + ` and ` + "`" + `RedirectToLoginPage` + "`" + `. --- A ` + "`" + `active_directory` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The Client ID of this relying party application. Enables OpenIDConnection authentication with Azure Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Optional) The Client Secret of this relying party application. If no secret is provided, implicit flow will be used.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) The App ID of the Facebook app used for login`,
+				},
+				resource.Attribute{
+					Name:        "app_secret",
+					Description: `(Required) The App Secret of the Facebook app used for Facebook Login.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The OpenID Connect Client ID for the Google web application.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Required) The client secret associated with the Google web application.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The OAuth 2.0 client ID that was created for the app used for authentication.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Required) The OAuth 2.0 client secret that was created for the app used for authentication.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11523,6 +12155,10 @@ var (
 					Description: `(Optional) A ` + "`" + `fallback_route` + "`" + ` block as defined below. If the fallback route is enabled, messages that don't match any of the supplied routes are automatically sent to this route. Defaults to messages/events.`,
 				},
 				resource.Attribute{
+					Name:        "file_upload",
+					Description: `(Optional) A ` + "`" + `file_upload` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
 				},
@@ -11616,7 +12252,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Used to specify whether the fallback route is enabled. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Used to specify whether the fallback route is enabled. --- A ` + "`" + `file_upload` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `(Required) The connection string for the Azure Storage account to which files are uploaded.`,
+				},
+				resource.Attribute{
+					Name:        "container_name",
+					Description: `(Required) The name of the root container where you upload files. The container need not exist but should be creatable using the connection_string specified.`,
+				},
+				resource.Attribute{
+					Name:        "sas_ttl",
+					Description: `(Optional) The period of time for which the SAS URI generated by IoT Hub for file upload is valid, specified as an [ISO 8601 timespan duration](https://en.wikipedia.org/wiki/ISO_8601#Durations). This value must be between 1 minute and 24 hours, and evaluates to 'PT1H' by default.`,
+				},
+				resource.Attribute{
+					Name:        "notifications",
+					Description: `(Optional) Used to specify whether file notifications are sent to IoT Hub on upload. It evaluates to false by default.`,
+				},
+				resource.Attribute{
+					Name:        "lock_duration",
+					Description: `(Optional) The lock duration for the file upload notifications queue, specified as an [ISO 8601 timespan duration](https://en.wikipedia.org/wiki/ISO_8601#Durations). This value must be between 5 and 300 seconds, and evaluates to 'PT1M' by default.`,
+				},
+				resource.Attribute{
+					Name:        "default_ttl",
+					Description: `(Optional) The period of time for which a file upload notification message is available to consume before it is expired by the IoT hub, specified as an [ISO 8601 timespan duration](https://en.wikipedia.org/wiki/ISO_8601#Durations). This value must be between 1 minute and 48 hours, and evaluates to 'PT1H' by default.`,
+				},
+				resource.Attribute{
+					Name:        "max_delivery_count",
+					Description: `(Optional) The number of times the IoT hub attempts to deliver a file upload notification message. It evaluates to 10 by default. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -12386,11 +13050,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_principal",
-					Description: `(Required) A ` + "`" + `service_principal` + "`" + ` block as documented below. ---`,
+					Description: `(Required) A ` + "`" + `service_principal` + "`" + ` block as documented below. --- A ` + "`" + `aci_connector_linux` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Is the virtual node addon enabled?`,
+				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `(Required) The subnet name for the virtual nodes to run. ->`,
 				},
 				resource.Attribute{
 					Name:        "addon_profile",
 					Description: `(Optional) A ` + "`" + `addon_profile` + "`" + ` block.`,
+				},
+				resource.Attribute{
+					Name:        "api_server_authorized_ip_ranges",
+					Description: `(Optional) The IP ranges to whitelist for incoming traffic to the masters. ->`,
 				},
 				resource.Attribute{
 					Name:        "kubernetes_version",
@@ -12401,6 +13077,10 @@ var (
 					Description: `(Optional) A ` + "`" + `linux_profile` + "`" + ` block.`,
 				},
 				resource.Attribute{
+					Name:        "windows_profile",
+					Description: `(Optional) A ` + "`" + `windows_profile` + "`" + ` block.`,
+				},
+				resource.Attribute{
 					Name:        "network_profile",
 					Description: `(Optional) A ` + "`" + `network_profile` + "`" + ` block. ->`,
 				},
@@ -12409,8 +13089,8 @@ var (
 					Description: `(Optional) A ` + "`" + `role_based_access_control` + "`" + ` block. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
-					Name:        "api_server_authorized_ip_ranges",
-					Description: `(Optional) The IP ranges to whitelist for incoming traffic to the masters. ->`,
+					Name:        "node_resource_group",
+					Description: `(Optional) The name of the Resource Group where the the Kubernetes Nodes should exist. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -12441,6 +13121,22 @@ var (
 					Description: `(Required) The size of each VM in the Agent Pool (e.g. ` + "`" + `Standard_F1` + "`" + `). Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `(Optional) Availability zones for nodes. The property ` + "`" + `type` + "`" + ` of the ` + "`" + `agent_pool_profile` + "`" + ` must be set to ` + "`" + `VirtualMachineScaleSets` + "`" + ` in order to use availability zones.`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_scaling",
+					Description: `(Optional) Whether to enable [auto-scaler](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler). Note that auto scaling feature requires the that the ` + "`" + `type` + "`" + ` is set to ` + "`" + `VirtualMachineScaleSets` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "min_count",
+					Description: `(Optional) Minimum number of nodes for auto-scaling`,
+				},
+				resource.Attribute{
+					Name:        "max_count",
+					Description: `(Optional) Maximum number of nodes for auto-scaling`,
+				},
+				resource.Attribute{
 					Name:        "max_pods",
 					Description: `(Optional) The maximum number of pods that can run on each agent.`,
 				},
@@ -12459,6 +13155,10 @@ var (
 				resource.Attribute{
 					Name:        "vnet_subnet_id",
 					Description: `(Optional) The ID of the Subnet where the Agents in the Pool should be provisioned. Changing this forces a new resource to be created. ~>`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `(Optional) A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g ` + "`" + `key=value:NoSchedule` + "`" + `) --- A ` + "`" + `azure_active_directory` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "client_app_id",
@@ -12482,7 +13182,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_key",
-					Description: `(Required) An ` + "`" + `ssh_key` + "`" + ` block. Only one is currently allowed. Changing this forces a new resource to be created. --- A ` + "`" + `network_profile` + "`" + ` block supports the following:`,
+					Description: `(Required) An ` + "`" + `ssh_key` + "`" + ` block. Only one is currently allowed. Changing this forces a new resource to be created. --- A ` + "`" + `windows_profile` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_username",
+					Description: `(Required) The Admin Username for Windows VMs.`,
+				},
+				resource.Attribute{
+					Name:        "admin_password",
+					Description: `(Required) The Admin Password for Windows VMs. --- A ` + "`" + `network_profile` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "network_plugin",
@@ -12509,20 +13217,16 @@ var (
 					Description: `(Optional) The Network Range used by the Kubernetes service. This is required when ` + "`" + `network_plugin` + "`" + ` is set to ` + "`" + `azure` + "`" + `. Changing this forces a new resource to be created. ~>`,
 				},
 				resource.Attribute{
+					Name:        "load_balancer_sku",
+					Description: `(Optional) Specifies the SKU of the Load Balancer used for this Kubernetes Cluster. Possible values are ` + "`" + `basic` + "`" + ` and ` + "`" + `standard` + "`" + `. Defaults to ` + "`" + `basic` + "`" + `. ~>`,
+				},
+				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Required) Is the OMS Agent Enabled?`,
 				},
 				resource.Attribute{
 					Name:        "log_analytics_workspace_id",
-					Description: `(Required) The ID of the Log Analytics Workspace which the OMS Agent should send data to. --- A ` + "`" + `aci_connector_linux` + "`" + ` block supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Required) Is the virtual node addon enabled?`,
-				},
-				resource.Attribute{
-					Name:        "subnet_name",
-					Description: `(Required) The subnet name for the virtual nodes to run. ->`,
+					Description: `(Required) The ID of the Log Analytics Workspace which the OMS Agent should send data to. --- A ` + "`" + `role_based_access_control` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "azure_active_directory",
@@ -13846,7 +14550,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "azurerm_management_group",
-			Category:         "Management Group Resources",
+			Category:         "Management Resources",
 			ShortDescription: `Manages a Management Group.`,
 			Description:      ``,
 			Keywords: []string{
@@ -13918,6 +14622,69 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Management Lock ## Import Management Locks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_lock.lock1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Authorization/locks/lock1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_maps_account",
+			Category:         "Maps Resources",
+			ShortDescription: `Manages an Azure Maps Account.`,
+			Description:      ``,
+			Keywords: []string{
+				"maps",
+				"account",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Azure Maps Account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group in which the Azure Maps Account should exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `(Required) The sku of the Azure Maps Account. Possible values are ` + "`" + `s0` + "`" + ` and ` + "`" + `s1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the Azure Maps Account. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Azure Maps Account.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The secondary key used to authenticate and authorize access to the Maps REST APIs.`,
+				},
+				resource.Attribute{
+					Name:        "x_ms_client_id",
+					Description: `A unique identifier for the Maps Account. ## Import A Maps Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_maps_account.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Maps/accounts/my-maps-account ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Azure Maps Account.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The secondary key used to authenticate and authorize access to the Maps REST APIs.`,
+				},
+				resource.Attribute{
+					Name:        "x_ms_client_id",
+					Description: `A unique identifier for the Maps Account. ## Import A Maps Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_maps_account.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Maps/accounts/my-maps-account ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -16984,6 +17751,55 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_private_dns_a_record",
+			Category:         "Private DNS Resources",
+			ShortDescription: `Manages a Private DNS A Record.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"dns",
+				"a",
+				"record",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the DNS A Record.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `(Required) Specifies the Private DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "TTL",
+					Description: `(Required) The Time To Live (TTL) of the DNS record in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "records",
+					Description: `(Required) List of IPv4 Addresses.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Private DNS A Record ID. ## Import Private DNS A Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Private DNS A Record ID. ## Import Private DNS A Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_private_dns_zone",
 			Category:         "Private DNS Resources",
 			ShortDescription: `Manages a Private DNS Zone.`,
@@ -17226,7 +18042,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_policy_id",
-					Description: `(Required) Specifies the id of the backup policy to use. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the id of the backup policy to use.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -17443,7 +18259,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_non_ssl_port",
-					Description: `(Optional) Enable the non-SSL port (6789) - disabled by default.`,
+					Description: `(Optional) Enable the non-SSL port (6379) - disabled by default.`,
 				},
 				resource.Attribute{
 					Name:        "minimum_tls_version",
@@ -18356,7 +19172,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "phone",
-					Description: `(Required) The phone number of the Security Center Contact.`,
+					Description: `(Optional) The phone number of the Security Center Contact.`,
 				},
 				resource.Attribute{
 					Name:        "alert_notifications",
@@ -20208,11 +21024,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "account_kind",
-					Description: `(Optional) Defines the Kind of account. Valid options are ` + "`" + `Storage` + "`" + `, ` + "`" + `StorageV2` + "`" + ` and ` + "`" + `BlobStorage` + "`" + `. Changing this forces a new resource to be created. Defaults to ` + "`" + `Storage` + "`" + `.`,
+					Description: `(Optional) Defines the Kind of account. Valid options are ` + "`" + `Storage` + "`" + `, ` + "`" + `StorageV2` + "`" + `, ` + "`" + `BlobStorage` + "`" + `, and ` + "`" + `FileStorage` + "`" + `. Changing this forces a new resource to be created. Defaults to ` + "`" + `Storage` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "account_tier",
-					Description: `(Required) Defines the Tier to use for this storage account. Valid options are ` + "`" + `Standard` + "`" + ` and ` + "`" + `Premium` + "`" + `. Changing this forces a new resource to be created`,
+					Description: `(Required) Defines the Tier to use for this storage account. Valid options are ` + "`" + `Standard` + "`" + ` and ` + "`" + `Premium` + "`" + `. For ` + "`" + `FileStorage` + "`" + ` accounts only ` + "`" + `Premium` + "`" + ` is valid. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "account_replication_type",
@@ -20220,7 +21036,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_tier",
-					Description: `(Optional) Defines the access tier for ` + "`" + `BlobStorage` + "`" + ` and ` + "`" + `StorageV2` + "`" + ` accounts. Valid options are ` + "`" + `Hot` + "`" + ` and ` + "`" + `Cool` + "`" + `, defaults to ` + "`" + `Hot` + "`" + `.`,
+					Description: `(Optional) Defines the access tier for ` + "`" + `BlobStorage` + "`" + `, ` + "`" + `FileStorage` + "`" + ` and ` + "`" + `StorageV2` + "`" + ` accounts. Valid options are ` + "`" + `Hot` + "`" + ` and ` + "`" + `Cool` + "`" + `, defaults to ` + "`" + `Hot` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "enable_blob_encryption",
@@ -20256,7 +21072,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "identity",
-					Description: `(Optional) A Managed Service Identity block as defined below. ---`,
+					Description: `(Optional) A Managed Service Identity block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "queue_properties",
+					Description: `(Optional) A Queue Property block as defined below. ---`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -20284,7 +21104,95 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the identity type of the Storage Account. At this time the only allowed value is ` + "`" + `SystemAssigned` + "`" + `. ~> The assigned ` + "`" + `principal_id` + "`" + ` and ` + "`" + `tenant_id` + "`" + ` can be retrieved after the identity ` + "`" + `type` + "`" + ` has been set to ` + "`" + `SystemAssigned` + "`" + ` and Storage Account has been created. More details are available below. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Required) Specifies the identity type of the Storage Account. At this time the only allowed value is ` + "`" + `SystemAssigned` + "`" + `. ~> The assigned ` + "`" + `principal_id` + "`" + ` and ` + "`" + `tenant_id` + "`" + ` can be retrieved after the identity ` + "`" + `type` + "`" + ` has been set to ` + "`" + `SystemAssigned` + "`" + ` and Storage Account has been created. More details are available below. --- ` + "`" + `queue_properties` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "cors_rule",
+					Description: `(Optional) A ` + "`" + `cors_rule` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) A ` + "`" + `logging` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "minute_metrics",
+					Description: `(Optional) A ` + "`" + `minute_metrics` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "hour_metrics",
+					Description: `(Optional) A ` + "`" + `hour_metrics` + "`" + ` block as defined below. --- ` + "`" + `cors_rule` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allowed_headers",
+					Description: `(Required) A list of headers that are allowed to be a part of the cross-origin request.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_methods",
+					Description: `(Required) A list of http headers that are allowed to be executed by the origin. Valid options are ` + "`" + `DELETE` + "`" + `, ` + "`" + `GET` + "`" + `, ` + "`" + `HEAD` + "`" + `, ` + "`" + `MERGE` + "`" + `, ` + "`" + `POST` + "`" + `, ` + "`" + `OPTIONS` + "`" + ` or ` + "`" + `PUT` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_origins",
+					Description: `(Required) A list of origin domains that will be allowed by CORS.`,
+				},
+				resource.Attribute{
+					Name:        "exposed_headers",
+					Description: `(Required) A list of response headers that are exposed to CORS clients.`,
+				},
+				resource.Attribute{
+					Name:        "max_age_in_seconds",
+					Description: `(Required) The number of seconds the client should cache a preflight response. --- ` + "`" + `logging` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Required) Indicates whether all delete requests should be logged. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Required) Indicates whether all read requests should be logged. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) The version of storage analytics to configure. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "write",
+					Description: `(Required) Indicates whether all write requests should be logged. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "retention_policy_days",
+					Description: `(Optional) Specifies the number of days that logs will be retained. Changing this forces a new resource. ` + "`" + `minute_metrics` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Indicates whether minute metrics are enabled for the Queue service. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) The version of storage analytics to configure. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "include_apis",
+					Description: `(Optional) Indicates whether metrics should generate summary statistics for called API operations.`,
+				},
+				resource.Attribute{
+					Name:        "retention_policy_days",
+					Description: `(Optional) Specifies the number of days that logs will be retained. Changing this forces a new resource. ` + "`" + `hour_metrics` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Indicates whether hour metrics are enabled for the Queue service. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) The version of storage analytics to configure. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "include_apis",
+					Description: `(Optional) Indicates whether metrics should generate summary statistics for called API operations.`,
+				},
+				resource.Attribute{
+					Name:        "retention_policy_days",
+					Description: `(Optional) Specifies the number of days that logs will be retained. Changing this forces a new resource. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -20661,7 +21569,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_storage_container",
 			Category:         "Storage Resources",
-			ShortDescription: `Manages a Azure Storage Container.`,
+			ShortDescription: `Manage a Container within an Azure Storage Account.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -20670,27 +21578,39 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the storage container. Must be unique within the storage service the container is located.`,
-				},
-				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which to create the storage container. Changing this forces a new resource to be created.`,
+					Description: `(Required) The name of the Container which should be created within the Storage Account.`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_name",
-					Description: `(Required) Specifies the storage account in which to create the storage container. Changing this forces a new resource to be created.`,
+					Description: `(Required) The name of the Storage Account where the Container should be created.`,
 				},
 				resource.Attribute{
 					Name:        "container_access_type",
-					Description: `(Optional) The 'interface' for access the container provides. Can be either ` + "`" + `blob` + "`" + `, ` + "`" + `container` + "`" + ` or ` + "`" + `private` + "`" + `. Defaults to ` + "`" + `private` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional) The Access Level configured for this Container. Possible values are ` + "`" + `blob` + "`" + `, ` + "`" + `container` + "`" + ` or ` + "`" + `private` + "`" + `. Defaults to ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) A mapping of MetaData for this Container.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Optional /`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Storage Container.`,
 				},
 				resource.Attribute{
+					Name:        "has_immutability_policy",
+					Description: `Is there an Immutability Policy configured on this Storage Container?`,
+				},
+				resource.Attribute{
+					Name:        "has_legal_hold",
+					Description: `Is there a Legal Hold configured on this Storage Container?`,
+				},
+				resource.Attribute{
 					Name:        "properties",
-					Description: `Key-value definition of additional properties associated to the storage container ## Import Storage Containers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_container.container1 https://example.blob.core.windows.net/container ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -20699,8 +21619,16 @@ var (
 					Description: `The ID of the Storage Container.`,
 				},
 				resource.Attribute{
+					Name:        "has_immutability_policy",
+					Description: `Is there an Immutability Policy configured on this Storage Container?`,
+				},
+				resource.Attribute{
+					Name:        "has_legal_hold",
+					Description: `Is there a Legal Hold configured on this Storage Container?`,
+				},
+				resource.Attribute{
 					Name:        "properties",
-					Description: `Key-value definition of additional properties associated to the storage container ## Import Storage Containers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_container.container1 https://example.blob.core.windows.net/container ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(`,
 				},
 			},
 		},
@@ -20708,7 +21636,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_storage_queue",
 			Category:         "Storage Resources",
-			ShortDescription: `Manages a Azure Storage Queue.`,
+			ShortDescription: `Manages a Queue within an Azure Storage Account.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -20717,15 +21645,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the storage queue. Must be unique within the storage account the queue is located.`,
-				},
-				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which to create the storage queue. Changing this forces a new resource to be created.`,
+					Description: `(Required) The name of the Queue which should be created within the Storage Account. Must be unique within the storage account the queue is located.`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_name",
-					Description: `(Required) Specifies the storage account in which to create the storage queue. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Required) Specifies the Storage Account in which the Storage Queue should exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Optional /`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) A mapping of MetaData which should be assigned to this Storage Queue. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -20743,7 +21675,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_storage_share",
 			Category:         "Storage Resources",
-			ShortDescription: `Manages an Azure Storage Share.`,
+			ShortDescription: `Manages a File Share within Azure Storage.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -20755,34 +21687,102 @@ var (
 					Description: `(Required) The name of the share. Must be unique within the storage account where the share is located.`,
 				},
 				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which to create the share. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
 					Name:        "storage_account_name",
 					Description: `(Required) Specifies the storage account in which to create the share. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) One or more ` + "`" + `acl` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "quota",
-					Description: `(Optional) The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5 TB (5120 GB). Default is 5120. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional) The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5 TB (5120 GB). Default is 5120.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) A mapping of MetaData for this File Share.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Optional /`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The storage share Resource ID.`,
+					Description: `(Required) The ID which should be used for this Shared Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "access_policy",
+					Description: `(Required) An ` + "`" + `access_policy` + "`" + ` block as defined below. --- A ` + "`" + `access_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "expiry",
+					Description: `(Required) The ISO8061 UTC time at which this Access Policy should be valid until.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Required) The permissions which should associated with this Shared Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "start",
+					Description: `(Required) The ISO8061 UTC time at which this Access Policy should be valid from. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the File Share.`,
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The URL of the share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.testShare storageShareName/resourceGroupName/storageAccoutName ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The URL of the File Share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.testShare https://account1.file.core.windows.net/share1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The storage share Resource ID.`,
+					Description: `The ID of the File Share.`,
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The URL of the share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.testShare storageShareName/resourceGroupName/storageAccoutName ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The URL of the File Share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.testShare https://account1.file.core.windows.net/share1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_storage_share_directory",
+			Category:         "Storage Resources",
+			ShortDescription: `Manages a Directory within an Azure Storage File Share.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"share",
+				"directory",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name (or path) of the Directory that should be created within this File Share. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "share_name",
+					Description: `(Required) The name of the File Share where this Directory should be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_name",
+					Description: `(Required) The name of the Storage Account within which the File Share is located. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) A mapping of metadata to assign to this Directory. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Directory within the File Share. ## Import Directories within an Azure Storage File Share can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share_directory.test https://tomdevsa20.file.core.windows.net/share1/directory1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Directory within the File Share. ## Import Directories within an Azure Storage File Share can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share_directory.test https://tomdevsa20.file.core.windows.net/share1/directory1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -20790,7 +21790,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_storage_table",
 			Category:         "Storage Resources",
-			ShortDescription: `Manages a Azure Storage Table.`,
+			ShortDescription: `Manage a Table within an Azure Storage Account.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -20802,22 +21802,90 @@ var (
 					Description: `(Required) The name of the storage table. Must be unique within the storage account the table is located.`,
 				},
 				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which to create the storage table. Changing this forces a new resource to be created.`,
+					Name:        "storage_account_name",
+					Description: `(Required) Specifies the storage account in which to create the storage table. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
-					Name:        "storage_account_name",
-					Description: `(Required) Specifies the storage account in which to create the storage table. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Name:        "resource_group_name",
+					Description: `(Optional /`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) One or more ` + "`" + `acl` + "`" + ` blocks as defined below. --- A ` + "`" + `acl` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Storage Table. ## Import Storage Table's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 https://example.table.core.windows.net/table1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The ID which should be used for this Shared Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "access_policy",
+					Description: `(Required) An ` + "`" + `access_policy` + "`" + ` block as defined below. --- A ` + "`" + `access_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "expiry",
+					Description: `(Required) The ISO8061 UTC time at which this Access Policy should be valid until.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Required) The permissions which should associated with this Shared Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "start",
+					Description: `(Required) The ISO8061 UTC time at which this Access Policy should be valid from. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Table within the Storage Account. ## Import Table's within a Storage Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 https://example.table.core.windows.net/table1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Storage Table. ## Import Storage Table's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 https://example.table.core.windows.net/table1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Table within the Storage Account. ## Import Table's within a Storage Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 https://example.table.core.windows.net/table1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_storage_table_entity",
+			Category:         "Storage Resources",
+			ShortDescription: `Manages an Entity within a Table in an Azure Storage Account.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"table",
+				"entity",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_account_name",
+					Description: `(Required) Specifies the storage account in which to create the storage table entity. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "table_name",
+					Description: `(Required) The name of the storage table in which to create the storage table entity. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "partition_key",
+					Description: `(Required) The key for the partition where the entity will be inserted/merged. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "row_key",
+					Description: `(Required) The key for the row where the entity will be inserted/merged. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "entity",
+					Description: `(Required) A map of key/value pairs that describe the entity to be inserted/merged in to the storage table. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Entity within the Table in the Storage Account. ## Import Entities within a Table in an Azure Storage Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table_entity.entity1 https://example.table.core.windows.net/table1(PartitionKey='samplepartition',RowKey='samplerow') ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Entity within the Table in the Storage Account. ## Import Entities within a Table in an Azure Storage Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table_entity.entity1 https://example.table.core.windows.net/table1(PartitionKey='samplepartition',RowKey='samplerow') ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -21748,7 +22816,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "geo_mappings",
-					Description: `(Optional) A list of Geographic Regions used to distribute traffic, such as ` + "`" + `WORLD` + "`" + `, ` + "`" + `UK` + "`" + ` or ` + "`" + `DE` + "`" + `. The same location can't be specified in two endpoints. [See the Geographic Hierarchies documentation for more information](https://docs.microsoft.com/en-us/rest/api/trafficmanager/geographichierarchies/getdefault). ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A list of Geographic Regions used to distribute traffic, such as ` + "`" + `WORLD` + "`" + `, ` + "`" + `UK` + "`" + ` or ` + "`" + `DE` + "`" + `. The same location can't be specified in two endpoints. [See the Geographic Hierarchies documentation for more information](https://docs.microsoft.com/en-us/rest/api/trafficmanager/geographichierarchies/getdefault).`,
+				},
+				resource.Attribute{
+					Name:        "custom_header",
+					Description: `(Optional) One or more ` + "`" + `custom_header` + "`" + ` blocks as defined below`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `(Optional) One or more ` + "`" + `subnet` + "`" + ` blocks as defined below --- A ` + "`" + `custom_header` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the custom header.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of custom header. Applicable for Http and Https protocol. A ` + "`" + `subnet` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "first",
+					Description: `(Required) The First IP....`,
+				},
+				resource.Attribute{
+					Name:        "last",
+					Description: `(Optional) The Last IP...`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Optional) The Scope... ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -23206,267 +24302,275 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"azurerm_api_management":                                     0,
-		"azurerm_api_management_api":                                 1,
-		"azurerm_api_management_api_operation":                       2,
-		"azurerm_api_management_api_operation_policy":                3,
-		"azurerm_api_management_api_policy":                          4,
-		"azurerm_api_management_api_schema":                          5,
-		"azurerm_api_management_version_set":                         6,
-		"azurerm_api_management_authorization_server":                7,
-		"azurerm_api_management_certificate":                         8,
-		"azurerm_api_management_group":                               9,
-		"azurerm_api_management_group_user":                          10,
-		"azurerm_api_management_logger":                              11,
-		"azurerm_api_management_openid_connect_provider":             12,
-		"azurerm_api_management_product":                             13,
-		"azurerm_api_management_product_api":                         14,
-		"azurerm_api_management_product_group":                       15,
-		"azurerm_api_management_product_policy":                      16,
-		"azurerm_api_management_property":                            17,
-		"azurerm_api_management_user":                                18,
-		"azurerm_app_service":                                        19,
-		"azurerm_app_service_active_slot":                            20,
-		"azurerm_app_service_custom_hostname_binding":                21,
-		"azurerm_app_service_plan":                                   22,
-		"azurerm_app_service_slot":                                   23,
-		"azurerm_application_gateway":                                24,
-		"azurerm_application_insights":                               25,
-		"azurerm_application_insights_api_key":                       26,
-		"azurerm_application_insights_webtests":                      27,
-		"azurerm_application_security_group":                         28,
-		"azurerm_automation_account":                                 29,
-		"azurerm_automation_credential":                              30,
-		"azurerm_automation_dsc_configuration":                       31,
-		"azurerm_automation_dsc_nodeconfiguration":                   32,
-		"azurerm_automation_module":                                  33,
-		"azurerm_automation_runbook":                                 34,
-		"azurerm_automation_schedule":                                35,
-		"azurerm_automation_variable_bool":                           36,
-		"azurerm_automation_variable_datetime":                       37,
-		"azurerm_automation_variable_int":                            38,
-		"azurerm_automation_variable_string":                         39,
-		"azurerm_autoscale_setting":                                  40,
-		"azurerm_availability_set":                                   41,
-		"azurerm_azuread_application":                                42,
-		"azurerm_azuread_service_principal":                          43,
-		"azurerm_azuread_service_principal_password":                 44,
-		"azurerm_batch_account":                                      45,
-		"azurerm_batch_certificate":                                  46,
-		"azurerm_batch_pool":                                         47,
-		"azurerm_cdn_endpoint":                                       48,
-		"azurerm_cdn_profile":                                        49,
-		"azurerm_cognitive_account":                                  50,
-		"azurerm_connection_monitor":                                 51,
-		"azurerm_container_group":                                    52,
-		"azurerm_container_registry":                                 53,
-		"azurerm_container_service":                                  54,
-		"azurerm_cosmosdb_account":                                   55,
-		"azurerm_cosmosdb_cassandra_keyspace":                        56,
-		"azurerm_cosmosdb_mongo_collection":                          57,
-		"azurerm_cosmosdb_mongo_database":                            58,
-		"azurerm_cosmosdb_sql_database":                              59,
-		"azurerm_cosmosdb_table":                                     60,
-		"azurerm_data_factory":                                       61,
-		"azurerm_data_factory_dataset_mysql":                         62,
-		"azurerm_data_factory_dataset_postgresql":                    63,
-		"azurerm_data_factory_dataset_sql_server_table":              64,
-		"azurerm_data_factory_linked_service_data_lake_storage_gen2": 65,
-		"azurerm_data_factory_linked_service_mysql":                  66,
-		"azurerm_data_factory_linked_service_postgresql":             67,
-		"azurerm_data_factory_linked_service_sql_server":             68,
-		"azurerm_data_factory_pipeline":                              69,
-		"azurerm_data_lake_analytics_account":                        70,
-		"azurerm_data_lake_analytics_firewall_rule":                  71,
-		"azurerm_data_lake_store":                                    72,
-		"azurerm_data_lake_store_firewall_rule":                      73,
-		"azurerm_databricks_workspace":                               74,
-		"azurerm_ddos_protection_plan":                               75,
-		"azurerm_dev_test_lab":                                       76,
-		"azurerm_dev_test_linux_virtual_machine":                     77,
-		"azurerm_dev_test_policy":                                    78,
-		"azurerm_dev_test_virtual_network":                           79,
-		"azurerm_dev_test_windows_virtual_machine":                   80,
-		"azurerm_devspace_controller":                                81,
-		"azurerm_dns_a_record":                                       82,
-		"azurerm_dns_aaaa_record":                                    83,
-		"azurerm_dns_caa_record":                                     84,
-		"azurerm_dns_cname_record":                                   85,
-		"azurerm_dns_mx_record":                                      86,
-		"azurerm_dns_ns_record":                                      87,
-		"azurerm_dns_ptr_record":                                     88,
-		"azurerm_dns_srv_record":                                     89,
-		"azurerm_dns_txt_record":                                     90,
-		"azurerm_dns_zone":                                           91,
-		"azurerm_eventgrid_domain":                                   92,
-		"azurerm_eventgrid_event_subscription":                       93,
-		"azurerm_eventgrid_topic":                                    94,
-		"azurerm_eventhub":                                           95,
-		"azurerm_eventhub_authorization_rule":                        96,
-		"azurerm_eventhub_consumer_group":                            97,
-		"azurerm_eventhub_namespace":                                 98,
-		"azurerm_eventhub_namespace_authorization_rule":              99,
-		"azurerm_express_route_circuit":                              100,
-		"azurerm_express_route_circuit_authorization":                101,
-		"azurerm_express_route_circuit_peering":                      102,
-		"azurerm_firewall":                                           103,
-		"azurerm_firewall_application_rule_collection":               104,
-		"azurerm_firewall_nat_rule_collection":                       105,
-		"azurerm_firewall_network_rule_collection":                   106,
-		"azurerm_function_app":                                       107,
-		"azurerm_hdinsight_hadoop_cluster":                           108,
-		"azurerm_hdinsight_hbase_cluster":                            109,
-		"azurerm_hdinsight_interactive_query_cluster":                110,
-		"azurerm_hdinsight_kafka_cluster":                            111,
-		"azurerm_hdinsight_ml_services_cluster":                      112,
-		"azurerm_hdinsight_rserver_cluster":                          113,
-		"azurerm_hdinsight_spark_cluster":                            114,
-		"azurerm_hdinsight_storm_cluster":                            115,
-		"azurerm_image":                                              116,
-		"azurerm_iot_dps":                                            117,
-		"azurerm_iot_dps_certificate":                                118,
-		"azurerm_iothub":                                             119,
-		"azurerm_iothub_consumer_group":                              120,
-		"azurerm_iothub_shared_access_policy":                        121,
-		"azurerm_key_vault":                                          122,
-		"azurerm_key_vault_access_policy":                            123,
-		"azurerm_key_vault_certificate":                              124,
-		"azurerm_key_vault_key":                                      125,
-		"azurerm_key_vault_secret":                                   126,
-		"azurerm_kubernetes_cluster":                                 127,
-		"azurerm_lb":                                                 128,
-		"azurerm_lb_backend_address_pool":                            129,
-		"azurerm_lb_nat_pool":                                        130,
-		"azurerm_lb_nat_rule":                                        131,
-		"azurerm_lb_outbound_rule":                                   132,
-		"azurerm_lb_probe":                                           133,
-		"azurerm_lb_rule":                                            134,
-		"azurerm_local_network_gateway":                              135,
-		"azurerm_log_analytics_linked_service":                       136,
-		"azurerm_log_analytics_solution":                             137,
-		"azurerm_log_analytics_workspace":                            138,
-		"azurerm_log_analytics_workspace_linked_service":             139,
-		"azurerm_logic_app_action_custom":                            140,
-		"azurerm_logic_app_action_http":                              141,
-		"azurerm_logic_app_trigger_custom":                           142,
-		"azurerm_logic_app_trigger_http_request":                     143,
-		"azurerm_logic_app_trigger_recurrence":                       144,
-		"azurerm_logic_app_workflow":                                 145,
-		"azurerm_managed_disk":                                       146,
-		"azurerm_management_group":                                   147,
-		"azurerm_management_lock":                                    148,
-		"azurerm_mariadb_database":                                   149,
-		"azurerm_mariadb_firewall_rule":                              150,
-		"azurerm_mariadb_server":                                     151,
-		"azurerm_media_services_account":                             152,
-		"azurerm_metric_alertrule":                                   153,
-		"azurerm_monitor_action_group":                               154,
-		"azurerm_monitor_activity_log_alert":                         155,
-		"azurerm_monitor_autoscale_setting":                          156,
-		"azurerm_monitor_diagnostic_setting":                         157,
-		"azurerm_monitor_log_profile":                                158,
-		"azurerm_monitor_metric_alert":                               159,
-		"azurerm_monitor_metric_alertrule":                           160,
-		"azurerm_mssql_elasticpool":                                  161,
-		"azurerm_mysql_configuration":                                162,
-		"azurerm_mysql_database":                                     163,
-		"azurerm_mysql_firewall_rule":                                164,
-		"azurerm_mysql_server":                                       165,
-		"azurerm_mysql_virtual_network_rule":                         166,
-		"azurerm_network_connection_monitor":                         167,
-		"azurerm_network_ddos_protection_plan":                       168,
-		"azurerm_network_interface":                                  169,
-		"azurerm_network_interface_application_gateway_backend_address_pool_association": 170,
-		"azurerm_network_interface_application_security_group_association":               171,
-		"azurerm_network_interface_backend_address_pool_association":                     172,
-		"azurerm_network_interface_nat_rule_association":                                 173,
-		"azurerm_network_packet_capture":                                                 174,
-		"azurerm_network_profile":                                                        175,
-		"azurerm_network_security_group":                                                 176,
-		"azurerm_network_security_rule":                                                  177,
-		"azurerm_network_watcher":                                                        178,
-		"azurerm_notification_hub":                                                       179,
-		"azurerm_notification_hub_authorization_rule":                                    180,
-		"azurerm_notification_hub_namespace":                                             181,
-		"azurerm_packet_capture":                                                         182,
-		"azurerm_policy_assignment":                                                      183,
-		"azurerm_policy_definition":                                                      184,
-		"azurerm_policy_set_definition":                                                  185,
-		"azurerm_postgresql_configuration":                                               186,
-		"azurerm_postgresql_database":                                                    187,
-		"azurerm_postgresql_firewall_rule":                                               188,
-		"azurerm_postgresql_server":                                                      189,
-		"azurerm_postgresql_virtual_network_rule":                                        190,
-		"azurerm_private_dns_zone":                                                       191,
-		"azurerm_public_ip":                                                              192,
-		"azurerm_public_ip_prefix":                                                       193,
-		"azurerm_recovery_services_protected_vm":                                         194,
-		"azurerm_recovery_services_protection_policy_vm":                                 195,
-		"azurerm_recovery_services_vault":                                                196,
-		"azurerm_redis_cache":                                                            197,
-		"azurerm_redis_firewall_rule":                                                    198,
-		"azurerm_relay_namespace":                                                        199,
-		"azurerm_resource_group":                                                         200,
-		"azurerm_role_assignment":                                                        201,
-		"azurerm_role_definition":                                                        202,
-		"azurerm_route":                                                                  203,
-		"azurerm_route_table":                                                            204,
-		"azurerm_scheduler_job":                                                          205,
-		"azurerm_scheduler_job_collection":                                               206,
-		"azurerm_search_service":                                                         207,
-		"azurerm_security_center_contact":                                                208,
-		"azurerm_security_center_subscription_pricing":                                   209,
-		"azurerm_security_center_workspace":                                              210,
-		"azurerm_service_fabric_cluster":                                                 211,
-		"azurerm_servicebus_namespace":                                                   212,
-		"azurerm_servicebus_namespace_authorization_rule":                                213,
-		"azurerm_servicebus_queue":                                                       214,
-		"azurerm_servicebus_queue_authorization_rule":                                    215,
-		"azurerm_servicebus_subscription":                                                216,
-		"azurerm_servicebus_subscription_rule":                                           217,
-		"azurerm_servicebus_topic":                                                       218,
-		"azurerm_servicebus_topic_authorization_rule":                                    219,
-		"azurerm_shared_image":                                                           220,
-		"azurerm_shared_image_gallery":                                                   221,
-		"azurerm_shared_image_version":                                                   222,
-		"azurerm_signalr_service":                                                        223,
-		"azurerm_snapshot":                                                               224,
-		"azurerm_sql_active_directory_administrator":                                     225,
-		"azurerm_sql_database":                                                           226,
-		"azurerm_sql_elasticpool":                                                        227,
-		"azurerm_sql_firewall_rule":                                                      228,
-		"azurerm_sql_server":                                                             229,
-		"azurerm_sql_virtual_network_rule":                                               230,
-		"azurerm_storage_account":                                                        231,
-		"azurerm_storage_blob":                                                           232,
-		"azurerm_storage_container":                                                      233,
-		"azurerm_storage_queue":                                                          234,
-		"azurerm_storage_share":                                                          235,
-		"azurerm_storage_table":                                                          236,
-		"azurerm_stream_analytics_function_javascript_udf":                               237,
-		"azurerm_stream_analytics_job":                                                   238,
-		"azurerm_stream_analytics_output_blob":                                           239,
-		"azurerm_stream_analytics_output_eventhub":                                       240,
-		"azurerm_stream_analytics_output_mssql":                                          241,
-		"azurerm_stream_analytics_output_servicebus_queue":                               242,
-		"azurerm_stream_analytics_stream_input_blob":                                     243,
-		"azurerm_stream_analytics_stream_input_eventhub":                                 244,
-		"azurerm_stream_analytics_stream_input_iothub":                                   245,
-		"azurerm_subnet":                                                                 246,
-		"azurerm_subnet_network_security_group_association":                              247,
-		"azurerm_subnet_route_table_association":                                         248,
-		"azurerm_template_deployment":                                                    249,
-		"azurerm_traffic_manager_endpoint":                                               250,
-		"azurerm_traffic_manager_profile":                                                251,
-		"azurerm_user_assigned_identity":                                                 252,
-		"azurerm_virtual_machine":                                                        253,
-		"azurerm_virtual_machine_data_disk_attachment":                                   254,
-		"azurerm_virtual_machine_extension":                                              255,
-		"azurerm_virtual_machine_scale_set":                                              256,
-		"azurerm_virtual_network":                                                        257,
-		"azurerm_virtual_network_gateway":                                                258,
-		"azurerm_virtual_network_gateway_connection":                                     259,
-		"azurerm_virtual_network_peering":                                                260,
+		"azurerm_analysis_services_server":                           0,
+		"azurerm_api_management":                                     1,
+		"azurerm_api_management_api":                                 2,
+		"azurerm_api_management_api_operation":                       3,
+		"azurerm_api_management_api_operation_policy":                4,
+		"azurerm_api_management_api_policy":                          5,
+		"azurerm_api_management_api_schema":                          6,
+		"azurerm_api_management_version_set":                         7,
+		"azurerm_api_management_authorization_server":                8,
+		"azurerm_api_management_backend":                             9,
+		"azurerm_api_management_certificate":                         10,
+		"azurerm_api_management_group":                               11,
+		"azurerm_api_management_group_user":                          12,
+		"azurerm_api_management_logger":                              13,
+		"azurerm_api_management_openid_connect_provider":             14,
+		"azurerm_api_management_product":                             15,
+		"azurerm_api_management_product_api":                         16,
+		"azurerm_api_management_product_group":                       17,
+		"azurerm_api_management_product_policy":                      18,
+		"azurerm_api_management_property":                            19,
+		"azurerm_api_management_subscription":                        20,
+		"azurerm_api_management_user":                                21,
+		"azurerm_app_service":                                        22,
+		"azurerm_app_service_active_slot":                            23,
+		"azurerm_app_service_custom_hostname_binding":                24,
+		"azurerm_app_service_plan":                                   25,
+		"azurerm_app_service_slot":                                   26,
+		"azurerm_application_gateway":                                27,
+		"azurerm_application_insights":                               28,
+		"azurerm_application_insights_api_key":                       29,
+		"azurerm_application_insights_web_test":                      30,
+		"azurerm_application_security_group":                         31,
+		"azurerm_automation_account":                                 32,
+		"azurerm_automation_credential":                              33,
+		"azurerm_automation_dsc_configuration":                       34,
+		"azurerm_automation_dsc_nodeconfiguration":                   35,
+		"azurerm_automation_module":                                  36,
+		"azurerm_automation_runbook":                                 37,
+		"azurerm_automation_schedule":                                38,
+		"azurerm_automation_variable_bool":                           39,
+		"azurerm_automation_variable_datetime":                       40,
+		"azurerm_automation_variable_int":                            41,
+		"azurerm_automation_variable_string":                         42,
+		"azurerm_autoscale_setting":                                  43,
+		"azurerm_availability_set":                                   44,
+		"azurerm_azuread_application":                                45,
+		"azurerm_azuread_service_principal":                          46,
+		"azurerm_azuread_service_principal_password":                 47,
+		"azurerm_batch_account":                                      48,
+		"azurerm_batch_application":                                  49,
+		"azurerm_batch_certificate":                                  50,
+		"azurerm_batch_pool":                                         51,
+		"azurerm_cdn_endpoint":                                       52,
+		"azurerm_cdn_profile":                                        53,
+		"azurerm_cognitive_account":                                  54,
+		"azurerm_connection_monitor":                                 55,
+		"azurerm_container_group":                                    56,
+		"azurerm_container_registry":                                 57,
+		"azurerm_container_service":                                  58,
+		"azurerm_cosmosdb_account":                                   59,
+		"azurerm_cosmosdb_cassandra_keyspace":                        60,
+		"azurerm_cosmosdb_mongo_collection":                          61,
+		"azurerm_cosmosdb_mongo_database":                            62,
+		"azurerm_cosmosdb_sql_database":                              63,
+		"azurerm_cosmosdb_table":                                     64,
+		"azurerm_data_factory":                                       65,
+		"azurerm_data_factory_dataset_mysql":                         66,
+		"azurerm_data_factory_dataset_postgresql":                    67,
+		"azurerm_data_factory_dataset_sql_server_table":              68,
+		"azurerm_data_factory_linked_service_data_lake_storage_gen2": 69,
+		"azurerm_data_factory_linked_service_mysql":                  70,
+		"azurerm_data_factory_linked_service_postgresql":             71,
+		"azurerm_data_factory_linked_service_sql_server":             72,
+		"azurerm_data_factory_pipeline":                              73,
+		"azurerm_data_lake_analytics_account":                        74,
+		"azurerm_data_lake_analytics_firewall_rule":                  75,
+		"azurerm_data_lake_store":                                    76,
+		"azurerm_data_lake_store_firewall_rule":                      77,
+		"azurerm_databricks_workspace":                               78,
+		"azurerm_ddos_protection_plan":                               79,
+		"azurerm_dev_test_lab":                                       80,
+		"azurerm_dev_test_linux_virtual_machine":                     81,
+		"azurerm_dev_test_policy":                                    82,
+		"azurerm_dev_test_virtual_network":                           83,
+		"azurerm_dev_test_windows_virtual_machine":                   84,
+		"azurerm_devspace_controller":                                85,
+		"azurerm_dns_a_record":                                       86,
+		"azurerm_dns_aaaa_record":                                    87,
+		"azurerm_dns_caa_record":                                     88,
+		"azurerm_dns_cname_record":                                   89,
+		"azurerm_dns_mx_record":                                      90,
+		"azurerm_dns_ns_record":                                      91,
+		"azurerm_dns_ptr_record":                                     92,
+		"azurerm_dns_srv_record":                                     93,
+		"azurerm_dns_txt_record":                                     94,
+		"azurerm_dns_zone":                                           95,
+		"azurerm_eventgrid_domain":                                   96,
+		"azurerm_eventgrid_event_subscription":                       97,
+		"azurerm_eventgrid_topic":                                    98,
+		"azurerm_eventhub":                                           99,
+		"azurerm_eventhub_authorization_rule":                        100,
+		"azurerm_eventhub_consumer_group":                            101,
+		"azurerm_eventhub_namespace":                                 102,
+		"azurerm_eventhub_namespace_authorization_rule":              103,
+		"azurerm_express_route_circuit":                              104,
+		"azurerm_express_route_circuit_authorization":                105,
+		"azurerm_express_route_circuit_peering":                      106,
+		"azurerm_firewall":                                           107,
+		"azurerm_firewall_application_rule_collection":               108,
+		"azurerm_firewall_nat_rule_collection":                       109,
+		"azurerm_firewall_network_rule_collection":                   110,
+		"azurerm_function_app":                                       111,
+		"azurerm_hdinsight_hadoop_cluster":                           112,
+		"azurerm_hdinsight_hbase_cluster":                            113,
+		"azurerm_hdinsight_interactive_query_cluster":                114,
+		"azurerm_hdinsight_kafka_cluster":                            115,
+		"azurerm_hdinsight_ml_services_cluster":                      116,
+		"azurerm_hdinsight_rserver_cluster":                          117,
+		"azurerm_hdinsight_spark_cluster":                            118,
+		"azurerm_hdinsight_storm_cluster":                            119,
+		"azurerm_image":                                              120,
+		"azurerm_iot_dps":                                            121,
+		"azurerm_iot_dps_certificate":                                122,
+		"azurerm_iothub":                                             123,
+		"azurerm_iothub_consumer_group":                              124,
+		"azurerm_iothub_shared_access_policy":                        125,
+		"azurerm_key_vault":                                          126,
+		"azurerm_key_vault_access_policy":                            127,
+		"azurerm_key_vault_certificate":                              128,
+		"azurerm_key_vault_key":                                      129,
+		"azurerm_key_vault_secret":                                   130,
+		"azurerm_kubernetes_cluster":                                 131,
+		"azurerm_lb":                                                 132,
+		"azurerm_lb_backend_address_pool":                            133,
+		"azurerm_lb_nat_pool":                                        134,
+		"azurerm_lb_nat_rule":                                        135,
+		"azurerm_lb_outbound_rule":                                   136,
+		"azurerm_lb_probe":                                           137,
+		"azurerm_lb_rule":                                            138,
+		"azurerm_local_network_gateway":                              139,
+		"azurerm_log_analytics_linked_service":                       140,
+		"azurerm_log_analytics_solution":                             141,
+		"azurerm_log_analytics_workspace":                            142,
+		"azurerm_log_analytics_workspace_linked_service":             143,
+		"azurerm_logic_app_action_custom":                            144,
+		"azurerm_logic_app_action_http":                              145,
+		"azurerm_logic_app_trigger_custom":                           146,
+		"azurerm_logic_app_trigger_http_request":                     147,
+		"azurerm_logic_app_trigger_recurrence":                       148,
+		"azurerm_logic_app_workflow":                                 149,
+		"azurerm_managed_disk":                                       150,
+		"azurerm_management_group":                                   151,
+		"azurerm_management_lock":                                    152,
+		"azurerm_maps_account":                                       153,
+		"azurerm_mariadb_database":                                   154,
+		"azurerm_mariadb_firewall_rule":                              155,
+		"azurerm_mariadb_server":                                     156,
+		"azurerm_media_services_account":                             157,
+		"azurerm_metric_alertrule":                                   158,
+		"azurerm_monitor_action_group":                               159,
+		"azurerm_monitor_activity_log_alert":                         160,
+		"azurerm_monitor_autoscale_setting":                          161,
+		"azurerm_monitor_diagnostic_setting":                         162,
+		"azurerm_monitor_log_profile":                                163,
+		"azurerm_monitor_metric_alert":                               164,
+		"azurerm_monitor_metric_alertrule":                           165,
+		"azurerm_mssql_elasticpool":                                  166,
+		"azurerm_mysql_configuration":                                167,
+		"azurerm_mysql_database":                                     168,
+		"azurerm_mysql_firewall_rule":                                169,
+		"azurerm_mysql_server":                                       170,
+		"azurerm_mysql_virtual_network_rule":                         171,
+		"azurerm_network_connection_monitor":                         172,
+		"azurerm_network_ddos_protection_plan":                       173,
+		"azurerm_network_interface":                                  174,
+		"azurerm_network_interface_application_gateway_backend_address_pool_association": 175,
+		"azurerm_network_interface_application_security_group_association":               176,
+		"azurerm_network_interface_backend_address_pool_association":                     177,
+		"azurerm_network_interface_nat_rule_association":                                 178,
+		"azurerm_network_packet_capture":                                                 179,
+		"azurerm_network_profile":                                                        180,
+		"azurerm_network_security_group":                                                 181,
+		"azurerm_network_security_rule":                                                  182,
+		"azurerm_network_watcher":                                                        183,
+		"azurerm_notification_hub":                                                       184,
+		"azurerm_notification_hub_authorization_rule":                                    185,
+		"azurerm_notification_hub_namespace":                                             186,
+		"azurerm_packet_capture":                                                         187,
+		"azurerm_policy_assignment":                                                      188,
+		"azurerm_policy_definition":                                                      189,
+		"azurerm_policy_set_definition":                                                  190,
+		"azurerm_postgresql_configuration":                                               191,
+		"azurerm_postgresql_database":                                                    192,
+		"azurerm_postgresql_firewall_rule":                                               193,
+		"azurerm_postgresql_server":                                                      194,
+		"azurerm_postgresql_virtual_network_rule":                                        195,
+		"azurerm_private_dns_a_record":                                                   196,
+		"azurerm_private_dns_zone":                                                       197,
+		"azurerm_public_ip":                                                              198,
+		"azurerm_public_ip_prefix":                                                       199,
+		"azurerm_recovery_services_protected_vm":                                         200,
+		"azurerm_recovery_services_protection_policy_vm":                                 201,
+		"azurerm_recovery_services_vault":                                                202,
+		"azurerm_redis_cache":                                                            203,
+		"azurerm_redis_firewall_rule":                                                    204,
+		"azurerm_relay_namespace":                                                        205,
+		"azurerm_resource_group":                                                         206,
+		"azurerm_role_assignment":                                                        207,
+		"azurerm_role_definition":                                                        208,
+		"azurerm_route":                                                                  209,
+		"azurerm_route_table":                                                            210,
+		"azurerm_scheduler_job":                                                          211,
+		"azurerm_scheduler_job_collection":                                               212,
+		"azurerm_search_service":                                                         213,
+		"azurerm_security_center_contact":                                                214,
+		"azurerm_security_center_subscription_pricing":                                   215,
+		"azurerm_security_center_workspace":                                              216,
+		"azurerm_service_fabric_cluster":                                                 217,
+		"azurerm_servicebus_namespace":                                                   218,
+		"azurerm_servicebus_namespace_authorization_rule":                                219,
+		"azurerm_servicebus_queue":                                                       220,
+		"azurerm_servicebus_queue_authorization_rule":                                    221,
+		"azurerm_servicebus_subscription":                                                222,
+		"azurerm_servicebus_subscription_rule":                                           223,
+		"azurerm_servicebus_topic":                                                       224,
+		"azurerm_servicebus_topic_authorization_rule":                                    225,
+		"azurerm_shared_image":                                                           226,
+		"azurerm_shared_image_gallery":                                                   227,
+		"azurerm_shared_image_version":                                                   228,
+		"azurerm_signalr_service":                                                        229,
+		"azurerm_snapshot":                                                               230,
+		"azurerm_sql_active_directory_administrator":                                     231,
+		"azurerm_sql_database":                                                           232,
+		"azurerm_sql_elasticpool":                                                        233,
+		"azurerm_sql_firewall_rule":                                                      234,
+		"azurerm_sql_server":                                                             235,
+		"azurerm_sql_virtual_network_rule":                                               236,
+		"azurerm_storage_account":                                                        237,
+		"azurerm_storage_blob":                                                           238,
+		"azurerm_storage_container":                                                      239,
+		"azurerm_storage_queue":                                                          240,
+		"azurerm_storage_share":                                                          241,
+		"azurerm_storage_share_directory":                                                242,
+		"azurerm_storage_table":                                                          243,
+		"azurerm_storage_table_entity":                                                   244,
+		"azurerm_stream_analytics_function_javascript_udf":                               245,
+		"azurerm_stream_analytics_job":                                                   246,
+		"azurerm_stream_analytics_output_blob":                                           247,
+		"azurerm_stream_analytics_output_eventhub":                                       248,
+		"azurerm_stream_analytics_output_mssql":                                          249,
+		"azurerm_stream_analytics_output_servicebus_queue":                               250,
+		"azurerm_stream_analytics_stream_input_blob":                                     251,
+		"azurerm_stream_analytics_stream_input_eventhub":                                 252,
+		"azurerm_stream_analytics_stream_input_iothub":                                   253,
+		"azurerm_subnet":                                                                 254,
+		"azurerm_subnet_network_security_group_association":                              255,
+		"azurerm_subnet_route_table_association":                                         256,
+		"azurerm_template_deployment":                                                    257,
+		"azurerm_traffic_manager_endpoint":                                               258,
+		"azurerm_traffic_manager_profile":                                                259,
+		"azurerm_user_assigned_identity":                                                 260,
+		"azurerm_virtual_machine":                                                        261,
+		"azurerm_virtual_machine_data_disk_attachment":                                   262,
+		"azurerm_virtual_machine_extension":                                              263,
+		"azurerm_virtual_machine_scale_set":                                              264,
+		"azurerm_virtual_network":                                                        265,
+		"azurerm_virtual_network_gateway":                                                266,
+		"azurerm_virtual_network_gateway_connection":                                     267,
+		"azurerm_virtual_network_peering":                                                268,
 	}
 )
 

@@ -76,7 +76,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Optional) Optional plan configuration. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Optional plan configuration.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Globally unique name of the add-on. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -309,7 +313,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vars",
-					Description: `Map of config vars that are can be outputted in plaintext.`,
+					Description: `Map of config vars that are output in plaintext.`,
 				},
 				resource.Attribute{
 					Name:        "sensitive_vars",

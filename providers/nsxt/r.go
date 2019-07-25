@@ -2806,7 +2806,6 @@ var (
 			Keywords: []string{
 				"lb",
 				"source",
-				"",
 				"persistence",
 				"profile",
 			},

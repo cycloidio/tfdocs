@@ -401,6 +401,86 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "dns_srv_record_set",
+			Category:         "Resources",
+			ShortDescription: `Creates an SRV type DNS record set.`,
+			Description:      ``,
+			Keywords: []string{
+				"srv",
+				"record",
+				"set",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the record set. The ` + "`" + `zone` + "`" + ` argument will be appended to this value to create the full record path.`,
+				},
+				resource.Attribute{
+					Name:        "srv",
+					Description: `(Required) Can be specified multiple times for each SRV record. Each block supports fields documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional) The TTL of the record set. Defaults to ` + "`" + `3600` + "`" + `. The ` + "`" + `srv` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) The priority for the record.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Required) The weight for the record.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) The FQDN of the target, include the trailing dot.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The port for the service on the target. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "srv",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dns_srv_record_set.sip _sip._tcp.example.com. ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "srv",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `See Argument Reference above. ## Import Records can be imported using the FQDN, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import dns_srv_record_set.sip _sip._tcp.example.com. ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "dns_txt_record_set",
 			Category:         "Resources",
 			ShortDescription: `Creates a TXT type DNS record set.`,
@@ -473,7 +553,8 @@ var (
 		"dns_mx_record_set":   3,
 		"dns_ns_record_set":   4,
 		"dns_ptr_record":      5,
-		"dns_txt_record_set":  6,
+		"dns_srv_record_set":  6,
+		"dns_txt_record_set":  7,
 	}
 )
 

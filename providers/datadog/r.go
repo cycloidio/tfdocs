@@ -11,6 +11,18 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "datadog_dashboard",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog dashboard resource. This can be used to create and manage dashboards.`,
+			Description:      ``,
+			Keywords: []string{
+				"dashboard",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "datadog_downtime",
 			Category:         "Resources",
 			ShortDescription: `Provides a Datadog downtime resource. This can be used to create and manage downtimes.`,
@@ -216,6 +228,72 @@ var (
 					Description: `Host filters ## Import Google Cloud Platform integrations can be imported using their project ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_integration_gcp.awesome_gcp_project_integration project_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_integration_pagerduty",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog - PagerDuty integration resource. This can be used to create and manage the integration.`,
+			Description:      ``,
+			Keywords: []string{
+				"integration",
+				"pagerduty",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "individual_services",
+					Description: `(Optional) Boolean to specify whether or not individual service objects specified by [datadog_integration_pagerduty_service_object](/docs/providers/datadog/r/integration_pagerduty_service_object.html) resource are to be used. Mutually exclusive with ` + "`" + `services` + "`" + ` key.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Optional) Array of PagerDuty service objects.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) Your Service name in PagerDuty.`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `(Required) Your Service name associated service key in Pagerduty.`,
+				},
+				resource.Attribute{
+					Name:        "schedules",
+					Description: `(Optional) Array of your schedule URLs.`,
+				},
+				resource.Attribute{
+					Name:        "subdomain",
+					Description: `(Required) Your PagerDuty account’s personalized subdomain name.`,
+				},
+				resource.Attribute{
+					Name:        "api_token",
+					Description: `(Optional) Your PagerDuty API token. ### See also`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_integration_pagerduty_service_object",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog - PagerDuty integration resource. This can be used to create and manage the integration.`,
+			Description:      ``,
+			Keywords: []string{
+				"integration",
+				"pagerduty",
+				"service",
+				"object",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) Your Service name in PagerDuty.`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `(Required) Your Service name associated service key in PagerDuty. Note: Since the Datadog API never returns service keys, it is impossible to detect [drifts](https://www.hashicorp.com/blog/detecting-and-managing-drift-with-terraform). The best way to solve a drift is to manually mark the Service Object resource with [terraform taint](https://www.terraform.io/docs/commands/taint.html) to have it destroyed and recreated.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -622,15 +700,18 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"datadog_downtime":        0,
-		"datadog_integration_aws": 1,
-		"datadog_integration_gcp": 2,
-		"datadog_metric_metadata": 3,
-		"datadog_monitor":         4,
-		"datadog_screenboard":     5,
-		"datadog_synthetics":      6,
-		"datadog_timeboard":       7,
-		"datadog_user":            8,
+		"datadog_dashboard":                            0,
+		"datadog_downtime":                             1,
+		"datadog_integration_aws":                      2,
+		"datadog_integration_gcp":                      3,
+		"datadog_integration_pagerduty":                4,
+		"datadog_integration_pagerduty_service_object": 5,
+		"datadog_metric_metadata":                      6,
+		"datadog_monitor":                              7,
+		"datadog_screenboard":                          8,
+		"datadog_synthetics":                           9,
+		"datadog_timeboard":                            10,
+		"datadog_user":                                 11,
 	}
 )
 
