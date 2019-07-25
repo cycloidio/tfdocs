@@ -23,5 +23,8 @@ type Attribute struct {
 
 // AddMetadata adds the key with the value to the Metadata field
 func (r *Resource) AddMetadata(key string, value interface{}) {
+	if r.Metadata == nil {
+		r.Metadata = make(map[string]interface{})
+	}
 	r.Metadata[key] = value
 }
