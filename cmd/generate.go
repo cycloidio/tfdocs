@@ -31,6 +31,8 @@ func main() {
 			continue
 		}
 		provider := fi.Name()
+		// avi has all the Resource names as 'ActionGroupConfig' instead of 'avi_actiongroupconfig'
+		// as any other provider would have
 		if provider == "avi" {
 			continue
 		}
@@ -72,34 +74,35 @@ func main() {
 		}
 
 		doc.Find(".nav.docs-sidenav > li").Each(func(_ int, s *goquery.Selection) {
-			var cat string
-			s.Find("a").Each(func(i int, s *goquery.Selection) {
-				text := s.Text()
+			as := s.Find("a")
+			cat := as.First().Text()
 
-				if i == 0 {
-					cat = text
-					return
-				}
+			// If they have more than one 'ul' it means that it has
+			// the Category as first lvl and then the actual differenciation
+			// between Resource or DataSource in 2nd lvl
+			ulsLen := s.Find("ul").Length()
+			if ulsLen > 1 {
+				s.ChildrenFiltered("ul").ChildrenFiltered("li").Each(func(_ int, s *goquery.Selection) {
+					as = s.Find("a")
+					resourceType := as.First().Text()
 
-				// Set the href of the link with the actual type of it
-				href, _ := s.Attr("href")
-				paths := strings.Split(href, "/")
-				fileName := strings.Split(paths[len(paths)-1], ".")[0]
-
-				// We want to ignore the 'Data Sources'
-				// as they all are the same category
-				if strings.Contains(cat, "Data Sources") || strings.Contains(cat, "Data Resources") {
-					fileType[fmt.Sprintf("d_%s", fileName)] = text
-					return
-				}
-
-				fileType[fmt.Sprintf("r_%s", fileName)] = text
-				if v, ok := categories[text]; ok {
-					log.Printf("WARNING: the provider %q with resource %q found with category %q and also on %q", provider, text, v, cat)
-					cat += " " + v
-				}
-				categories[text] = cat
-			})
+					isResource := true
+					if strings.Contains(resourceType, "Data Sources") || strings.Contains(resourceType, "Data Resources") {
+						isResource = false
+					}
+					as.Slice(1, goquery.ToEnd).Each(func(i int, s *goquery.Selection) {
+						parseATag(s, provider, cat, isResource, fileType, categories)
+					})
+				})
+			} else if ulsLen == 1 {
+				as.Slice(1, goquery.ToEnd).Each(func(i int, s *goquery.Selection) {
+					isResource := true
+					if strings.Contains(cat, "Data Sources") || strings.Contains(cat, "Data Resources") {
+						isResource = false
+					}
+					parseATag(s, provider, cat, isResource, fileType, categories)
+				})
+			}
 		})
 
 		for _, t := range []string{"r", "d"} {
@@ -193,6 +196,29 @@ func main() {
 			//io.Copy(out, buff)
 		}
 	}
+}
+
+// parseATag parses the 'a' tag into a resource and sets it where it should go
+func parseATag(s *goquery.Selection, provider, cat string, isResource bool, fileType, categories map[string]string) {
+	text := s.Text()
+	// Set the href of the link with the actual type of it
+	href, _ := s.Attr("href")
+	paths := strings.Split(href, "/")
+	fileName := strings.Split(paths[len(paths)-1], ".")[0]
+
+	// We want to ignore the 'Data Sources'
+	// as they all are the same category
+	if !isResource {
+		fileType[fmt.Sprintf("d_%s", fileName)] = text
+		return
+	}
+
+	fileType[fmt.Sprintf("r_%s", fileName)] = text
+	if v, ok := categories[text]; ok {
+		log.Printf("WARNING: the provider %q with resource %q found with category %q and also on %q", provider, text, v, cat)
+		cat += " " + v
+	}
+	categories[text] = cat
 }
 
 //var categoryReplacer = strings.NewReplacer("(", " ", ")", " ", "/", " ")
