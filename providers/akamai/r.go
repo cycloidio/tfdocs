@@ -11,19 +11,6 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "akamai_cps_enrollment",
-			Category:         "Resources",
-			ShortDescription: `CPS Enrollment`,
-			Description:      ``,
-			Keywords: []string{
-				"cps",
-				"enrollment",
-			},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "akamai_dns_record",
 			Category:         "Resources",
 			ShortDescription: `DNS Record`,
@@ -58,16 +45,7 @@ var (
 				"edge",
 				"hostname",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "certenrollmentid",
-					Description: `(Optional) The certificate enrollment ID.`,
-				},
-				resource.Attribute{
-					Name:        "slotnumber",
-					Description: `(Optional) The slot number.`,
-				},
-			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
@@ -97,19 +75,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "akamai_property_rules",
-			Category:         "Resources",
-			ShortDescription: `Property Rules`,
-			Description:      ``,
-			Keywords: []string{
-				"property",
-				"rules",
-			},
-			Arguments:  []resource.Attribute{},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "akamai_property_variables",
 			Category:         "Resources",
 			ShortDescription: `Property Variables`,
@@ -125,14 +90,12 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"akamai_cps_enrollment":      0,
-		"akamai_dns_record":          1,
-		"akamai_dns_zone":            2,
-		"akamai_edge_hostname":       3,
-		"akamai_property":            4,
-		"akamai_property_activation": 5,
-		"akamai_property_rules":      6,
-		"akamai_property_variables":  7,
+		"akamai_dns_record":          0,
+		"akamai_dns_zone":            1,
+		"akamai_edge_hostname":       2,
+		"akamai_property":            3,
+		"akamai_property_activation": 4,
+		"akamai_property_variables":  5,
 	}
 )
 

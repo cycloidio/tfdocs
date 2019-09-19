@@ -583,6 +583,10 @@ var (
 					Description: `(Optional) The type of volume to create. Changing this creates a new volume.`,
 				},
 				resource.Attribute{
+					Name:        "device_type",
+					Description: `(Optional) The device type of volume to create. Valid options are VBD and SCSI. Defaults to VBD. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
 					Name:        "cascade",
 					Description: `(Optional, Default:false) Specifies to delete all snapshots associated with the EVS disk. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -623,8 +627,16 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "device_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "attachment",
-					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_blockstorage_volume_v2.volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it.`,
+				},
+				resource.Attribute{
+					Name:        "wwn",
+					Description: `Specifies the unique identifier used for mounting the EVS disk. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_blockstorage_volume_v2.volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -665,8 +677,16 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "device_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "attachment",
-					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_blockstorage_volume_v2.volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it.`,
+				},
+				resource.Attribute{
+					Name:        "wwn",
+					Description: `Specifies the unique identifier used for mounting the EVS disk. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_blockstorage_volume_v2.volume_1 ea257959-eeb1-4c10-8d33-26f0409a755d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -800,7 +820,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "authentication_mode",
-					Description: `(Optional) Authentication mode of the cluster, possible values are x509 and rbac. Defaults to x509. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
+					Description: `(Optional) Authentication mode of the cluster, possible values are x509 and rbac. Defaults to x509. Changing this parameter will create a new cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "multi_az",
+					Description: `(Optional) Enable multiple AZs for the cluster, only when using HA flavors. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -820,7 +844,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_otc",
-					Description: `The endpoint of the cluster to be accessed through API Gateway. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/name",
+					Description: `The cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/server",
+					Description: `The server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/certificate_authority_data",
+					Description: `The certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/name",
+					Description: `The user name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_certificate_data",
+					Description: `The client certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_key_data",
+					Description: `The client key data. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -842,7 +890,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_otc",
-					Description: `The endpoint of the cluster to be accessed through API Gateway. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/name",
+					Description: `The cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/server",
+					Description: `The server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/certificate_authority_data",
+					Description: `The certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/name",
+					Description: `The user name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_certificate_data",
+					Description: `The client certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_key_data",
+					Description: `The client key data. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -985,7 +1057,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_ces_alarmrule",
-			Category:         "Ces Alarm",
+			Category:         "CES Alarm",
 			ShortDescription: `Manages a V2 topic resource within OpenTelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1376,7 +1448,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
-					Description: `(Required) The name of the pool from which to obtain the floating IP. Changing this creates a new floating IP. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The name of the pool from which to obtain the floating IP. Default value is admin_external_net. Changing this creates a new floating IP. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "pool",
@@ -1487,10 +1559,6 @@ var (
 					Description: `(Optional) Provide the Nova scheduler with hints on how the instance should be launched. The available hints are described below.`,
 				},
 				resource.Attribute{
-					Name:        "personality",
-					Description: `(Optional) Customize the personality of an instance by defining one or more files and their contents. The personality structure is described below.`,
-				},
-				resource.Attribute{
 					Name:        "tag",
 					Description: `(Optional) Tags key/value pairs to associate with the instance.`,
 				},
@@ -1588,15 +1656,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deh_id",
-					Description: `(Optional) The ID of DeH. This parameter takes effect only when the value of tenancy is dedicated. The ` + "`" + `personality` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "file",
-					Description: `(Required) The absolute path of the destination file.`,
-				},
-				resource.Attribute{
-					Name:        "contents",
-					Description: `(Required) The contents of the file. Limited to 255 bytes. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The ID of DeH. This parameter takes effect only when the value of tenancy is dedicated. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3381,6 +3441,123 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_ecs_instance_v1",
+			Category:         "Compute Resources",
+			ShortDescription: `Manages a V1 ECS instance resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"ecs",
+				"instance",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the instance.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) The ID of the desired image for the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) The name of the desired flavor for the server. Changing this resizes the existing server.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) The user data to provide when launching the instance. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The administrative password to assign to the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `(Optional) The name of a key pair to put on the server. The key pair must already be created and associated with the tenant's account. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) The ID of the desired VPC for the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "nics",
+					Description: `(Optional) An array of one or more networks to attach to the instance. The nics object structure is documented below. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_type",
+					Description: `(Optional) The system disk type of the server. For HANA, HL1, and HL2 ECSs use co-p1 and uh-l1 disks. Changing this creates a new server. Available options are:`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_size",
+					Description: `(Optional) The system disk size in GB, The value range is 1 to 1024. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "data_disks",
+					Description: `(Optional) An array of one or more data disks to attach to the instance. The data_disks object structure is documented below. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `(Optional) An array of one or more security group names to associate with the server. Changing this results in adding/removing security groups from the existing server.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) The availability zone in which to create the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_recovery",
+					Description: `(Optional) Whether configure automatic recovery of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "delete_disks_on_termination",
+					Description: `(Optional) Delete the data disks upon termination of the instance. Defaults to false. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags key/value pairs to associate with the instance. The ` + "`" + `nics` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) The network UUID to attach to the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Optional) Specifies a fixed IPv4 address to be used on this network. Changing this creates a new server. The ` + "`" + `data_disks` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The data disk type of the server. For HANA, HL1, and HL2 ECSs use co-p1 and uh-l1 disks. Changing this creates a new server. Available options are:`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) The size of the data disk in GB. The value range is 10 to 32768. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional) Specifies the snapshot ID or ID of the original data disk contained in the full-ECS image. Changing this creates a new server. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "nics/mac_address",
+					Description: `The MAC address of the NIC on that network. ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_ecs_instance_v1.instance_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "nics/mac_address",
+					Description: `The MAC address of the NIC on that network. ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_ecs_instance_v1.instance_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_elb_backend",
 			Category:         "Elastic Load Balancer Resources",
 			ShortDescription: `Manages an elastic loadbalancer backend resource within OpentelekomCloud.`,
@@ -4983,7 +5160,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_kms_key_v1",
-			Category:         "Kms Resources",
+			Category:         "KMS Resources",
 			ShortDescription: `Manages a V1 key resource within KMS.`,
 			Description:      ``,
 			Keywords: []string{
@@ -6858,7 +7035,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "pool",
-					Description: `(Required) The name of the pool from which to obtain the floating IP. Changing this creates a new floating IP.`,
+					Description: `(Optional) The name of the pool from which to obtain the floating IP. Default value is admin_external_net. Changing this creates a new floating IP.`,
 				},
 				resource.Attribute{
 					Name:        "port_id",
@@ -8148,7 +8325,19 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) Specifies the VPC ID. Changing this parameter will create a new resource. The ` + "`" + `db` + "`" + ` block supports:`,
+					Description: `(Required) Specifies the VPC ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "ha_replication_mode",
+					Description: `(Optional) Specifies the replication mode for the standby DB instance. For MySQL, the value is async or semisync. For PostgreSQL, the value is async or sync. For Microsoft SQL Server, the value is sync. NOTE: async indicates the asynchronous replication mode. semisync indicates the semi-synchronous replication mode. sync indicates the synchronous replication mode. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "param_group_id",
+					Description: `(Optional) Specifies the parameter group ID. Changing this parameter will create a new resource. The ` + "`" + `db` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -8180,19 +8369,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the volume type. Its value can be any of the following and is case-sensitive: COMMON: indicates the SATA type. ULTRAHIGH: indicates the SSD type. Changing this parameter will create a new resource. - - -`,
-				},
-				resource.Attribute{
-					Name:        "backup_strategy",
-					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below. Changing this parameter will create a new resource.`,
-				},
-				resource.Attribute{
-					Name:        "ha_replication_mode",
-					Description: `(Optional) Specifies the replication mode for the standby DB instance. For MySQL, the value is async or semisync. For PostgreSQL, the value is async or sync. For Microsoft SQL Server, the value is sync. NOTE: async indicates the asynchronous replication mode. semisync indicates the semi-synchronous replication mode. sync indicates the synchronous replication mode. Changing this parameter will create a new resource.`,
-				},
-				resource.Attribute{
-					Name:        "param_group_id",
-					Description: `(Optional) Specifies the parameter group ID. Changing this parameter will create a new resource. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+					Description: `(Required) Specifies the volume type. Its value can be any of the following and is case-sensitive: COMMON: indicates the SATA type. ULTRAHIGH: indicates the SSD type. Changing this parameter will create a new resource. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "keep_days",
@@ -8776,6 +8953,62 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_sdrs_protectiongroup_v1",
+			Category:         "Storage Disaster Recovery Service Resources",
+			ShortDescription: `Manages a V1 SDRS protection group resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"disaster",
+				"recovery",
+				"service",
+				"sdrs",
+				"protectiongroup",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of a protection group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of a protection group. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "source_availability_zone",
+					Description: `(Required) Specifies the source AZ of a protection group. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "target_availability_zone",
+					Description: `(Required) Specifies the target AZ of a protection group. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Required) Specifies the ID of an active-active domain. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "source_vpc_id",
+					Description: `(Required) Specifies the ID of the source VPC. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "dr_type",
+					Description: `(Optional) Specifies the deployment model. The default value is migration indicating migration within a VPC. Changing this creates a new group. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the protection group. ## Import Protection groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_sdrs_protectiongroup_v1.group_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the protection group. ## Import Protection groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_sdrs_protectiongroup_v1.group_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9378,7 +9611,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the VPC. The name must be unique for a tenant. The value is a string of no more than 64 characters and can contain digits, letters, underscores (_), and hyphens (-). Changing this updates the name of the existing VPC. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The name of the VPC. The name must be unique for a tenant. The value is a string of no more than 64 characters and can contain digits, letters, underscores (_), and hyphens (-). Changing this updates the name of the existing VPC.`,
+				},
+				resource.Attribute{
+					Name:        "shared",
+					Description: `(Optional) Specifies whether the shared SNAT should be used or not. Is also required for cross-tenant sharing. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9394,11 +9631,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current status of the desired VPC. Can be either CREATING, OK, DOWN, PENDING_UPDATE, PENDING_DELETE, or ERROR.`,
-				},
-				resource.Attribute{
-					Name:        "shared",
-					Description: `Specifies whether the cross-tenant sharing is supported. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The current status of the desired VPC. Can be either CREATING, OK, DOWN, PENDING_UPDATE, PENDING_DELETE, or ERROR. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9416,11 +9649,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The current status of the desired VPC. Can be either CREATING, OK, DOWN, PENDING_UPDATE, PENDING_DELETE, or ERROR.`,
-				},
-				resource.Attribute{
-					Name:        "shared",
-					Description: `Specifies whether the cross-tenant sharing is supported. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The current status of the desired VPC. Can be either CREATING, OK, DOWN, PENDING_UPDATE, PENDING_DELETE, or ERROR. ## Import VPCs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpc_v1.vpc_v1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10096,74 +10325,76 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		"opentelekomcloud_dms_queue_v1":                       23,
 		"opentelekomcloud_dns_recordset_v2":                   24,
 		"opentelekomcloud_dns_zone_v2":                        25,
-		"opentelekomcloud_elb_backend":                        26,
-		"opentelekomcloud_elb_health":                         27,
-		"opentelekomcloud_elb_listener":                       28,
-		"opentelekomcloud_elb_loadbalancer":                   29,
-		"opentelekomcloud_fw_firewall_group_v2":               30,
-		"opentelekomcloud_fw_policy_v2":                       31,
-		"opentelekomcloud_fw_rule_v2":                         32,
-		"opentelekomcloud_identity_agency_v3":                 33,
-		"opentelekomcloud_identity_group_membership_v3":       34,
-		"opentelekomcloud_identity_group_v3":                  35,
-		"opentelekomcloud_identity_project_v3":                36,
-		"opentelekomcloud_identity_role_assignment_v3":        37,
-		"opentelekomcloud_identity_role_v3":                   38,
-		"opentelekomcloud_identity_user_v3":                   39,
-		"opentelekomcloud_images_image_v2":                    40,
-		"opentelekomcloud_kms_key_v1":                         41,
-		"opentelekomcloud_lb_listener_v2":                     42,
-		"opentelekomcloud_lb_loadbalancer_v2":                 43,
-		"opentelekomcloud_lb_member_v2":                       44,
-		"opentelekomcloud_lb_monitor_v2":                      45,
-		"opentelekomcloud_lb_pool_v2":                         46,
-		"opentelekomcloud_maas_task_v1":                       47,
-		"opentelekomcloud_mrs_cluster_v1":                     48,
-		"opentelekomcloud_mrs_job_v1":                         49,
-		"opentelekomcloud_nat_gateway_v2":                     50,
-		"opentelekomcloud_nat_snat_rule_v2":                   51,
-		"opentelekomcloud_networking_floatingip_associate_v2": 52,
-		"opentelekomcloud_networking_floatingip_v2":           53,
-		"opentelekomcloud_networking_network_v2":              54,
-		"opentelekomcloud_networking_port_v2":                 55,
-		"opentelekomcloud_networking_router_interface_v2":     56,
-		"opentelekomcloud_networking_router_route_v2":         57,
-		"opentelekomcloud_networking_router_v2":               58,
-		"opentelekomcloud_networking_secgroup_rule_v2":        59,
-		"opentelekomcloud_networking_secgroup_v2":             60,
-		"opentelekomcloud_networking_subnet_v2":               61,
-		"opentelekomcloud_networking_vip_associate_v2":        62,
-		"opentelekomcloud_networking_vip_v2":                  63,
-		"opentelekomcloud_rds_instance_v1":                    64,
-		"opentelekomcloud_rds_instance_v3":                    65,
-		"opentelekomcloud_rds_parametergroup_v3":              66,
-		"opentelekomcloud_rts_software_config_v1":             67,
-		"opentelekomcloud_rts_software_deployment_v1":         68,
-		"opentelekomcloud-resource-rts-stack-v1":              69,
-		"opentelekomcloud_s3_bucket":                          70,
-		"opentelekomcloud_s3-bucket-object":                   71,
-		"opentelekomcloud_s3_bucket_policy":                   72,
-		"opentelekomcloud_sfs_file_system_v2":                 73,
-		"opentelekomcloud_smn_subscription_v2":                74,
-		"opentelekomcloud_smn_topic_v2":                       75,
-		"opentelekomcloud-vbs-backup-policy-v2":               76,
-		"opentelekomcloud-vbs-backup-share-v2":                77,
-		"opentelekomcloud-vbs-backup-v2":                      78,
-		"opentelekomcloud_vpc_eip_v1":                         79,
-		"opentelekomcloud_vpc_peering_connection_accepter_v2": 80,
-		"opentelekomcloud_vpc_peering_connection_v2":          81,
-		"opentelekomcloud_vpc_route_v2":                       82,
-		"opentelekomcloud_vpc_subnet_v1":                      83,
-		"opentelekomcloud_vpc_v1":                             84,
-		"opentelekomcloud_waf_ccattackprotection_rule_v1":     85,
-		"opentelekomcloud_waf_certificate_v1":                 86,
-		"opentelekomcloud_waf_datamasking_rule_v1":            87,
-		"opentelekomcloud_waf_domain_v1":                      88,
-		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      89,
-		"opentelekomcloud_waf_policy_v1":                      90,
-		"opentelekomcloud_waf_preciseprotection_rule_v1":      91,
-		"opentelekomcloud_waf_webtamperprotection_rule_v1":    92,
-		"opentelekomcloud_waf_whiteblackip_rule_v1":           93,
+		"opentelekomcloud_ecs_instance_v1":                    26,
+		"opentelekomcloud_elb_backend":                        27,
+		"opentelekomcloud_elb_health":                         28,
+		"opentelekomcloud_elb_listener":                       29,
+		"opentelekomcloud_elb_loadbalancer":                   30,
+		"opentelekomcloud_fw_firewall_group_v2":               31,
+		"opentelekomcloud_fw_policy_v2":                       32,
+		"opentelekomcloud_fw_rule_v2":                         33,
+		"opentelekomcloud_identity_agency_v3":                 34,
+		"opentelekomcloud_identity_group_membership_v3":       35,
+		"opentelekomcloud_identity_group_v3":                  36,
+		"opentelekomcloud_identity_project_v3":                37,
+		"opentelekomcloud_identity_role_assignment_v3":        38,
+		"opentelekomcloud_identity_role_v3":                   39,
+		"opentelekomcloud_identity_user_v3":                   40,
+		"opentelekomcloud_images_image_v2":                    41,
+		"opentelekomcloud_kms_key_v1":                         42,
+		"opentelekomcloud_lb_listener_v2":                     43,
+		"opentelekomcloud_lb_loadbalancer_v2":                 44,
+		"opentelekomcloud_lb_member_v2":                       45,
+		"opentelekomcloud_lb_monitor_v2":                      46,
+		"opentelekomcloud_lb_pool_v2":                         47,
+		"opentelekomcloud_maas_task_v1":                       48,
+		"opentelekomcloud_mrs_cluster_v1":                     49,
+		"opentelekomcloud_mrs_job_v1":                         50,
+		"opentelekomcloud_nat_gateway_v2":                     51,
+		"opentelekomcloud_nat_snat_rule_v2":                   52,
+		"opentelekomcloud_networking_floatingip_associate_v2": 53,
+		"opentelekomcloud_networking_floatingip_v2":           54,
+		"opentelekomcloud_networking_network_v2":              55,
+		"opentelekomcloud_networking_port_v2":                 56,
+		"opentelekomcloud_networking_router_interface_v2":     57,
+		"opentelekomcloud_networking_router_route_v2":         58,
+		"opentelekomcloud_networking_router_v2":               59,
+		"opentelekomcloud_networking_secgroup_rule_v2":        60,
+		"opentelekomcloud_networking_secgroup_v2":             61,
+		"opentelekomcloud_networking_subnet_v2":               62,
+		"opentelekomcloud_networking_vip_associate_v2":        63,
+		"opentelekomcloud_networking_vip_v2":                  64,
+		"opentelekomcloud_rds_instance_v1":                    65,
+		"opentelekomcloud_rds_instance_v3":                    66,
+		"opentelekomcloud_rds_parametergroup_v3":              67,
+		"opentelekomcloud_rts_software_config_v1":             68,
+		"opentelekomcloud_rts_software_deployment_v1":         69,
+		"opentelekomcloud-resource-rts-stack-v1":              70,
+		"opentelekomcloud_s3_bucket":                          71,
+		"opentelekomcloud_s3-bucket-object":                   72,
+		"opentelekomcloud_s3_bucket_policy":                   73,
+		"opentelekomcloud_sdrs_protectiongroup_v1":            74,
+		"opentelekomcloud_sfs_file_system_v2":                 75,
+		"opentelekomcloud_smn_subscription_v2":                76,
+		"opentelekomcloud_smn_topic_v2":                       77,
+		"opentelekomcloud-vbs-backup-policy-v2":               78,
+		"opentelekomcloud-vbs-backup-share-v2":                79,
+		"opentelekomcloud-vbs-backup-v2":                      80,
+		"opentelekomcloud_vpc_eip_v1":                         81,
+		"opentelekomcloud_vpc_peering_connection_accepter_v2": 82,
+		"opentelekomcloud_vpc_peering_connection_v2":          83,
+		"opentelekomcloud_vpc_route_v2":                       84,
+		"opentelekomcloud_vpc_subnet_v1":                      85,
+		"opentelekomcloud_vpc_v1":                             86,
+		"opentelekomcloud_waf_ccattackprotection_rule_v1":     87,
+		"opentelekomcloud_waf_certificate_v1":                 88,
+		"opentelekomcloud_waf_datamasking_rule_v1":            89,
+		"opentelekomcloud_waf_domain_v1":                      90,
+		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      91,
+		"opentelekomcloud_waf_policy_v1":                      92,
+		"opentelekomcloud_waf_preciseprotection_rule_v1":      93,
+		"opentelekomcloud_waf_webtamperprotection_rule_v1":    94,
+		"opentelekomcloud_waf_whiteblackip_rule_v1":           95,
 	}
 )
 

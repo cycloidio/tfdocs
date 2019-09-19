@@ -96,6 +96,19 @@ This resource may be useful to create highly available infrastructure, distribut
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_network",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Hetzner Cloud network.`,
+			Description: `
+Provides details about a Hetzner Cloud network.
+This resource is useful if you want to use a non-terraform managed network.
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_server",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud Server.`,
@@ -144,9 +157,10 @@ This resource is useful if you want to use a non-terraform managed volume.
 		"hcloud_image":       3,
 		"hcloud_location":    4,
 		"hcloud_locations":   5,
-		"hcloud_server":      6,
-		"hcloud_ssh_key":     7,
-		"hcloud_volume":      8,
+		"hcloud_network":     6,
+		"hcloud_server":      7,
+		"hcloud_ssh_key":     8,
+		"hcloud_volume":      9,
 	}
 )
 

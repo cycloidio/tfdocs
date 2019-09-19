@@ -23,6 +23,36 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "datadog_dashboard_list",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog dashboard list resource. This can be used to create and manage dashboard lists and their sub elements.`,
+			Description:      ``,
+			Keywords: []string{
+				"dashboard",
+				"list",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of this Dashbaord List.`,
+				},
+				resource.Attribute{
+					Name:        "dash_item",
+					Description: `(Optional) An individual dashboard object to add to this Dashboard List. If present, must contain the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of this dashboard. Available options are: ` + "`" + `custom_timeboard` + "`" + `, ` + "`" + `custom_screenboard` + "`" + `, ` + "`" + `integration_screenboard` + "`" + `, ` + "`" + `integration_timeboard` + "`" + `, and ` + "`" + `host_timeboard` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "dash_id",
+					Description: `(Required) The ID of this dashboard. ## Import dashboard lists can be imported using their id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_dashboard_list.new_list 123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "datadog_downtime",
 			Category:         "Resources",
 			ShortDescription: `Provides a Datadog downtime resource. This can be used to create and manage downtimes.`,
@@ -391,10 +421,90 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata_json",
-					Description: `(Optional) A JSON blob (preferrably created using [jsonencode](https://www.terraform.io/docs/configuration/functions/jsonencode.html)) representing mapping of query expressions to alias names. Note that the query expressions in ` + "`" + `metadata_json` + "`" + ` will be ignored if they're not present in the query. For example, this is how you define ` + "`" + `metadata_json` + "`" + ` with Terraform >= 0.12: ` + "`" + `` + "`" + `` + "`" + ` metadata_json = jsonencode({ "avg:redis.info.latency_ms{$host}": { "alias": "Redis latency" } }) ` + "`" + `` + "`" + `` + "`" + ` And here's how you define ` + "`" + `metadata_json` + "`" + ` with Terraform < 0.12: ` + "`" + `` + "`" + `` + "`" + ` variable "my_metadata" { default = { "avg:redis.info.latency_ms{$host}" = { "alias": "Redis latency" } } } resource "datadog_screenboard" "SomeScreenboard" { ... metadata_json = "${jsonencode(var.my_metadata)}" } ` + "`" + `` + "`" + `` + "`" + ` Note that this has to be a JSON blob because of [limitations](https://github.com/hashicorp/terraform/issues/6215) of Terraform's handling complex nested structures. This is also why the key is called ` + "`" + `metadata_json` + "`" + ` even though it sets ` + "`" + `metadata` + "`" + ` attribute on the API call. ### Nested ` + "`" + `widget` + "`" + ` ` + "`" + `tile_def` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `style` + "`" + ` block Only for widgets of type "timeseries", "query_value", "toplist", "process". The nested ` + "`" + `style` + "`" + ` blocks has the following structure: - ` + "`" + `palette` + "`" + ` - (Optional) Color of the line drawn. For widgets of type "timeseries", "query_value", "toplist", one of: "classic", "cool", "warm", "purple", "orange" or "gray". For widgets of type "process", one of: "dog_classic_area", "YlOrRd", "GnBu", "Reds", "Oranges", "Greens", "Blues", "Purples". - ` + "`" + `width` + "`" + ` - (Optional) Line width. Possible values: "thin", "normal", "thick". Default: "normal". - ` + "`" + `type` + "`" + ` - (Optional) Type of line drawn. Possible values: "dashed", "solid", "dotted". Default: "solid". ### Nested ` + "`" + `widget` + "`" + ` ` + "`" + `tile_def` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `conditional_format` + "`" + ` block The nested ` + "`" + `conditional_format` + "`" + ` blocks has the following structure: - ` + "`" + `palette` + "`" + ` - (Optional) Color scheme to be used if the condition is met. One of: "red_on_white", "white_on_red", "yellow_on_white", "white_on_yellow", "green_on_white", "white_on_green", "gray_on_white", "white_on_gray", "custom_text", "custom_bg", "custom_image". - ` + "`" + `comparator` + "`" + ` - (Required) Comparison operator. Example: ">", "<". - ` + "`" + `value` + "`" + ` - (Optional) Value that is the threshold for the conditional format. - ` + "`" + `color` + "`" + ` - (Optional) Custom color (e.g., #205081). - ` + "`" + `invert` + "`" + ` - (Optional) Boolean indicating whether to invert color scheme. ### Nested ` + "`" + `template_variable` + "`" + ` blocks Nested ` + "`" + `template_variable` + "`" + ` blocks have the following structure: - ` + "`" + `name` + "`" + ` - (Required) The variable name. Can be referenced as $name in ` + "`" + `graph` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `q` + "`" + ` query strings. - ` + "`" + `prefix` + "`" + ` - (Optional) The tag group. Default: no tag group. - ` + "`" + `default` + "`" + ` - (Optional) The default tag. Default: "\`,
+					Description: `(Optional) A JSON blob (preferrably created using [jsonencode](https://www.terraform.io/docs/configuration/functions/jsonencode.html)) representing mapping of query expressions to alias names. Note that the query expressions in ` + "`" + `metadata_json` + "`" + ` will be ignored if they're not present in the query. For example, this is how you define ` + "`" + `metadata_json` + "`" + ` with Terraform >= 0.12: ` + "`" + `` + "`" + `` + "`" + ` metadata_json = jsonencode({ "avg:redis.info.latency_ms{$host}": { "alias": "Redis latency" } }) ` + "`" + `` + "`" + `` + "`" + ` And here's how you define ` + "`" + `metadata_json` + "`" + ` with Terraform < 0.12: ` + "`" + `` + "`" + `` + "`" + ` variable "my_metadata" { default = { "avg:redis.info.latency_ms{$host}" = { "alias": "Redis latency" } } } resource "datadog_screenboard" "SomeScreenboard" { ... metadata_json = "${jsonencode(var.my_metadata)}" } ` + "`" + `` + "`" + `` + "`" + ` Note that this has to be a JSON blob because of [limitations](https://github.com/hashicorp/terraform/issues/6215) of Terraform's handling complex nested structures. This is also why the key is called ` + "`" + `metadata_json` + "`" + ` even though it sets ` + "`" + `metadata` + "`" + ` attribute on the API call. ### Nested ` + "`" + `widget` + "`" + ` ` + "`" + `tile_def` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `style` + "`" + ` block Only for widgets of type "timeseries", "query_value", "toplist", "process". The nested ` + "`" + `style` + "`" + ` blocks has the following structure: - ` + "`" + `palette` + "`" + ` - (Optional) Color of the line drawn. For widgets of type "timeseries", "query_value", "toplist", one of: "classic", "cool", "warm", "purple", "orange" or "gray". For widgets of type "process", one of: "dog_classic_area", "YlOrRd", "GnBu", "Reds", "Oranges", "Greens", "Blues", "Purples". - ` + "`" + `width` + "`" + ` - (Optional) Line width. Possible values: "thin", "normal", "thick". Default: "normal". - ` + "`" + `type` + "`" + ` - (Optional) Type of line drawn. Possible values: "dashed", "solid", "dotted". Default: "solid". ### Nested ` + "`" + `widget` + "`" + ` ` + "`" + `tile_def` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `apm_query` + "`" + ` and ` + "`" + `log_query` + "`" + ` blocks Nested ` + "`" + `apm_query` + "`" + ` and ` + "`" + `log_query` + "`" + ` blocks have the following structure (Visit the [ Graph Primer](https://docs.datadoghq.com/graphing/) for more information about these values): - ` + "`" + `index` + "`" + ` - (Required) - ` + "`" + `compute` + "`" + ` - (Required). Exactly one nested block is required with the following structure: - ` + "`" + `aggregation` + "`" + ` - (Required) - ` + "`" + `facet` + "`" + ` - (Optional) - ` + "`" + `interval` + "`" + ` - (Optional) - ` + "`" + `search` + "`" + ` - (Optional). One nested block is allowed with the following structure: - ` + "`" + `query` + "`" + ` - (Optional) - ` + "`" + `group_by` + "`" + ` - (Optional). Multiple nested blocks are allowed with the following structure: - ` + "`" + `facet` + "`" + ` - (Optional) - ` + "`" + `limit` + "`" + ` - (Optional) - ` + "`" + `sort` + "`" + ` - (Optional). One nested block is allowed with the following structure: - ` + "`" + `aggregation` + "`" + ` - (Optional) - ` + "`" + `order` + "`" + ` - (Optional) - ` + "`" + `facet` + "`" + ` - (Optional) ### Nested ` + "`" + `widget` + "`" + ` ` + "`" + `tile_def` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `process_query` + "`" + ` blocks Nested ` + "`" + `process_query` + "`" + ` blocks have the following structure (Visit the [ Graph Primer](https://docs.datadoghq.com/graphing/) for more information about these values): - ` + "`" + `metric` + "`" + ` - (Required) - ` + "`" + `search_by` + "`" + ` - (Required) - ` + "`" + `filter_by` + "`" + ` - (Required) - ` + "`" + `limit` + "`" + ` - (Required) ### Nested ` + "`" + `widget` + "`" + ` ` + "`" + `tile_def` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `conditional_format` + "`" + ` block The nested ` + "`" + `conditional_format` + "`" + ` blocks has the following structure: - ` + "`" + `palette` + "`" + ` - (Optional) Color scheme to be used if the condition is met. One of: "red_on_white", "white_on_red", "yellow_on_white", "white_on_yellow", "green_on_white", "white_on_green", "gray_on_white", "white_on_gray", "custom_text", "custom_bg", "custom_image". - ` + "`" + `comparator` + "`" + ` - (Required) Comparison operator. Example: ">", "<". - ` + "`" + `value` + "`" + ` - (Optional) Value that is the threshold for the conditional format. - ` + "`" + `color` + "`" + ` - (Optional) Custom color (e.g., #205081). - ` + "`" + `invert` + "`" + ` - (Optional) Boolean indicating whether to invert color scheme. ### Nested ` + "`" + `template_variable` + "`" + ` blocks Nested ` + "`" + `template_variable` + "`" + ` blocks have the following structure: - ` + "`" + `name` + "`" + ` - (Required) The variable name. Can be referenced as \$name in ` + "`" + `graph` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `q` + "`" + ` query strings. - ` + "`" + `prefix` + "`" + ` - (Optional) The tag group. Default: no tag group. - ` + "`" + `default` + "`" + ` - (Optional) The default tag. Default: "\`,
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_service_level_objective",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog service level objective resource. This can be used to create and manage service level objectives.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"level",
+				"objective",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the service level objective. The mapping from these types to the types found in the Datadog Web UI can be found in the Datadog API [documentation](https://docs.datadoghq.com/api/?lang=python#create-a-service-level-objective) page. Available options to choose from are:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of Datadog service level objective`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of this service level objective.`,
+				},
+				resource.Attribute{
+					Name:        "thresholds",
+					Description: `(Required) - A list of thresholds and targets that define the service level objectives from the provided SLIs.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) the objective's target ` + "`" + `[0,100]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "target_display",
+					Description: `(Optional) the string version to specify additional digits in the case of ` + "`" + `99` + "`" + ` but want 3 digits like ` + "`" + `99.000` + "`" + ` to display.`,
+				},
+				resource.Attribute{
+					Name:        "warning",
+					Description: `(Optional) the objective's warning value ` + "`" + `[0,100]` + "`" + `. This must be ` + "`" + `> target` + "`" + ` value.`,
+				},
+				resource.Attribute{
+					Name:        "warning_display",
+					Description: `(Optional) the string version to specify additional digits in the case of ` + "`" + `99` + "`" + ` but want 3 digits like ` + "`" + `99.000` + "`" + ` to display. The following options are specific to the ` + "`" + `type` + "`" + ` of service level objective:`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Required) The metric query configuration to use for the SLI. This is a dictionary and requires both the ` + "`" + `numerator` + "`" + ` and ` + "`" + `denominator` + "`" + ` fields which should be ` + "`" + `count` + "`" + ` metrics using the ` + "`" + `sum` + "`" + ` aggregator.`,
+				},
+				resource.Attribute{
+					Name:        "numerator",
+					Description: `(Required) the sum of all the ` + "`" + `good` + "`" + ` events`,
+				},
+				resource.Attribute{
+					Name:        "denominator",
+					Description: `(Required) the sum of the ` + "`" + `total` + "`" + ` events`,
+				},
+				resource.Attribute{
+					Name:        "monitor_ids",
+					Description: `(Optional) A list of numeric monitor IDs for which to use as SLIs. Their tags will be auto-imported into ` + "`" + `monitor_tags` + "`" + ` field in the API resource. At least 1 of ` + "`" + `monitor_ids` + "`" + ` or ` + "`" + `monitor_search` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_search",
+					Description: `(Optional) The monitor query search used on the monitor search API to add monitor_ids by searching. Their tags will be auto-imported into ` + "`" + `monitor_tags` + "`" + ` field in the API resource. At least 1 of ` + "`" + `monitor_ids` + "`" + ` or ` + "`" + `monitor_search` + "`" + ` must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `(Optional) A custom set of groups from the monitor(s) for which to use as the SLI instead of all the groups. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the Datadog service level objective ## Import Service Level Objectives can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_service_level_objective.12345678901234567890123456789012 "baz" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the Datadog service level objective ## Import Service Level Objectives can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_service_level_objective.12345678901234567890123456789012 "baz" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -417,218 +527,8 @@ var (
 			Keywords: []string{
 				"timeboard",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "title",
-					Description: `(Required) The name of the dashboard.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Required) A description of the dashboard's content.`,
-				},
-				resource.Attribute{
-					Name:        "read_only",
-					Description: `(Optional) The read-only status of the timeboard. Default is false.`,
-				},
-				resource.Attribute{
-					Name:        "graph",
-					Description: `(Required) Nested block describing a graph definition. The structure of this block is described below. Multiple graph blocks are allowed within a datadog_timeboard resource.`,
-				},
-				resource.Attribute{
-					Name:        "template_variable",
-					Description: `(Optional) Nested block describing a template variable. The structure of this block is described below. Multiple template_variable blocks are allowed within a datadog_timeboard resource. ### Nested ` + "`" + `graph` + "`" + ` blocks Nested ` + "`" + `graph` + "`" + ` blocks have the following structure:`,
-				},
-				resource.Attribute{
-					Name:        "title",
-					Description: `(Required) The name of the graph.`,
-				},
-				resource.Attribute{
-					Name:        "viz",
-					Description: `(Required) The type of visualization to use for the graph. Valid choices are "change", "distribution", "heatmap", "hostmap", "query_value", timeseries", and "toplist".`,
-				},
-				resource.Attribute{
-					Name:        "request",
-					Description: `Nested block describing a graph definition request (a metric query to plot on the graph). The structure of this block is described below. Multiple request blocks are allowed within a graph block.`,
-				},
-				resource.Attribute{
-					Name:        "events",
-					Description: `(Optional) A list of event filter strings. Note that, while supported by the Datadog API, the Datadog UI does not (currently) support multiple event filters very well, so use at your own risk.`,
-				},
-				resource.Attribute{
-					Name:        "autoscale",
-					Description: `(Optional) Boolean that determines whether to autoscale graphs.`,
-				},
-				resource.Attribute{
-					Name:        "precision",
-					Description: `(Optional) Number of digits displayed, use ` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "custom_unit",
-					Description: `(Optional) Display a custom unit on the graph (such as 'hertz')`,
-				},
-				resource.Attribute{
-					Name:        "text_align",
-					Description: `(Optional) How to align text in the graph, can be one of 'left', 'center', or 'right'.`,
-				},
-				resource.Attribute{
-					Name:        "style",
-					Description: `(Optional) Nested block describing hostmaps. The structure of this block is described below.`,
-				},
-				resource.Attribute{
-					Name:        "group",
-					Description: `(Optional) List of groups for hostmaps (shown as 'group by' in the UI).`,
-				},
-				resource.Attribute{
-					Name:        "include_no_metric_hosts",
-					Description: `(Optional) If set to true, will display hosts on hostmap that have no reported metrics.`,
-				},
-				resource.Attribute{
-					Name:        "include_ungrouped_hosts",
-					Description: `(Optional) If set to true, will display hosts without groups on hostmaps.`,
-				},
-				resource.Attribute{
-					Name:        "node_type",
-					Description: `(Optional) What nodes to display in a hostmap. Can be one of 'host' (default) or 'container'.`,
-				},
-				resource.Attribute{
-					Name:        "scope",
-					Description: `(Optional) List of scopes for hostmaps (shown as 'filter by' in the UI).`,
-				},
-				resource.Attribute{
-					Name:        "yaxis",
-					Description: `(Optional) Nested block describing modifications to the yaxis rendering. The structure of this block is described below.`,
-				},
-				resource.Attribute{
-					Name:        "marker",
-					Description: `(Optional) Nested block describing lines / ranges added to graph for formatting. The structure of this block is described below. Multiple marker blocks are allowed within a graph block. ### Nested ` + "`" + `graph` + "`" + ` ` + "`" + `marker` + "`" + ` blocks Nested ` + "`" + `graph` + "`" + ` ` + "`" + `marker` + "`" + ` blocks have the following structure:`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Required) How the marker lines will look. Possible values are {"error", "warning", "info", "ok"} {"dashed", "solid", "bold"}. Example: "error dashed".`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) Mathematical expression describing the marker. Examples: "y > 1", "-5 < y < 0", "y = 19".`,
-				},
-				resource.Attribute{
-					Name:        "label",
-					Description: `(Optional) A label for the line or range.`,
-				},
-				resource.Attribute{
-					Name:        "min",
-					Description: `(Optional) Minimum bound for the graph's yaxis, a string.`,
-				},
-				resource.Attribute{
-					Name:        "max",
-					Description: `(Optional) Maximum bound for the graph's yaxis, a string.`,
-				},
-				resource.Attribute{
-					Name:        "scale",
-					Description: `(Optional) How to scale the yaxis. Possible values are: "linear", "log", "sqrt", "pow##" (eg. pow2, pow0.5, 2 is used if only "pow" was provided). Default: "linear". ### Nested ` + "`" + `graph` + "`" + ` ` + "`" + `request` + "`" + ` blocks Nested ` + "`" + `graph` + "`" + ` ` + "`" + `request` + "`" + ` blocks have the following structure:`,
-				},
-				resource.Attribute{
-					Name:        "q",
-					Description: `(Required) The query of the request. Pro tip: Use the JSON tab inside the Datadog UI to help build you query strings.`,
-				},
-				resource.Attribute{
-					Name:        "aggregator",
-					Description: `(Optional) The aggregation method used when the number of data points outnumbers the max that can be shown.`,
-				},
-				resource.Attribute{
-					Name:        "stacked",
-					Description: `(Optional) Boolean value to determine if this is this a stacked area graph. Default: false (line chart).`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Optional) Choose how to draw the graph. For example: "line", "bars" or "area". Default: "line".`,
-				},
-				resource.Attribute{
-					Name:        "style",
-					Description: `(Optional) Nested block to customize the graph style.`,
-				},
-				resource.Attribute{
-					Name:        "conditional_format",
-					Description: `(Optional) Nested block to customize the graph style if certain conditions are met. Currently only applies to ` + "`" + `Query Value` + "`" + ` and ` + "`" + `Top List` + "`" + ` type graphs.`,
-				},
-				resource.Attribute{
-					Name:        "extra_col",
-					Description: `(Optional, only for graphs of visualization "change") If set to "present", displays current value. Can be left empty otherwise.`,
-				},
-				resource.Attribute{
-					Name:        "metadata_json",
-					Description: `(Optional) A JSON blob (preferrably created using [jsonencode](https://www.terraform.io/docs/configuration/functions/jsonencode.html)) representing mapping of query expressions to alias names. Note that the query expressions in ` + "`" + `metadata_json` + "`" + ` will be ignored if they're not present in the query. For example, this is how you define ` + "`" + `metadata_json` + "`" + ` with Terraform >= 0.12: ` + "`" + `` + "`" + `` + "`" + ` metadata_json = jsonencode({ "avg:redis.info.latency_ms{$host}": { "alias": "Redis latency" } }) ` + "`" + `` + "`" + `` + "`" + ` And here's how you define ` + "`" + `metadata_json` + "`" + ` with Terraform < 0.12: ` + "`" + `` + "`" + `` + "`" + ` variable "my_metadata" { default = { "avg:redis.info.latency_ms{$host}" = { "alias": "Redis latency" } } } resource "datadog_timeboard" "SomeTimeboard" { ... metadata_json = "${jsonencode(var.my_metadata)}" } ` + "`" + `` + "`" + `` + "`" + ` Note that this has to be a JSON blob because of [limitations](https://github.com/hashicorp/terraform/issues/6215) of Terraform's handling complex nested structures. This is also why the key is called ` + "`" + `metadata_json` + "`" + ` even though it sets ` + "`" + `metadata` + "`" + ` attribute on the API call. ### Nested ` + "`" + `graph` + "`" + ` ` + "`" + `style` + "`" + ` block The nested ` + "`" + `style` + "`" + ` block is used specifically for styling ` + "`" + `hostmap` + "`" + ` graphs, and has the following structure:`,
-				},
-				resource.Attribute{
-					Name:        "fill_max",
-					Description: `(Optional) Maximum value for the hostmap fill query.`,
-				},
-				resource.Attribute{
-					Name:        "fill_min",
-					Description: `(Optional) Minimum value for the hostmap fill query.`,
-				},
-				resource.Attribute{
-					Name:        "palette",
-					Description: `(Optional) Spectrum of colors to use when styling a hostmap. For example: "green_to_orange", "yellow_to_green", "YlOrRd", or "hostmap_blues". Default: "green_to_orange".`,
-				},
-				resource.Attribute{
-					Name:        "palette_flip",
-					Description: `(Optional) Flip how the hostmap is rendered. For example, with the default palette, low values are represented as green, with high values as orange. If palette_flip is "true", then low values will be orange, and high values will be green. ### Nested ` + "`" + `graph` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `style` + "`" + ` block The nested ` + "`" + `style` + "`" + ` blocks has the following structure:`,
-				},
-				resource.Attribute{
-					Name:        "palette",
-					Description: `(Optional) Color of the line drawn. For example: "classic", "cool", "warm", "purple", "orange" or "gray". Default: "classic".`,
-				},
-				resource.Attribute{
-					Name:        "width",
-					Description: `(Optional) Line width. Possible values: "thin", "normal", "thick". Default: "normal".`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Optional) Type of line drawn. Possible values: "dashed", "solid", "dotted". Default: "solid". ### Nested ` + "`" + `graph` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `conditional_format` + "`" + ` block The nested ` + "`" + `conditional_format` + "`" + ` blocks has the following structure:`,
-				},
-				resource.Attribute{
-					Name:        "palette",
-					Description: `(Optional) Color scheme to be used if the condition is met. For example: "red_on_white", "white_on_red", "yellow_on_white", "white_on_yellow", "green_on_white", "white_on_green", "gray_on_white", "white_on_gray", "custom_text", "custom_bg", "custom_image".`,
-				},
-				resource.Attribute{
-					Name:        "comparator",
-					Description: `(Required) Comparison operator. Example: ">", "<".`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Optional) Value that is the threshold for the conditional format.`,
-				},
-				resource.Attribute{
-					Name:        "custom_fg_color",
-					Description: `(Optional) Used when ` + "`" + `palette` + "`" + ` is set to ` + "`" + `custom_text` + "`" + `. Set the color of the text to a custom web color, such as "#205081".`,
-				},
-				resource.Attribute{
-					Name:        "custom_bg_color",
-					Description: `(Optional) Used when ` + "`" + `palette` + "`" + ` is set to ` + "`" + `custom_bg` + "`" + `. Set the color of the background to a custom web color, such as "#205081". ### Nested ` + "`" + `template_variable` + "`" + ` blocks Nested ` + "`" + `template_variable` + "`" + ` blocks have the following structure:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The variable name. Can be referenced as $name in ` + "`" + `graph` + "`" + ` ` + "`" + `request` + "`" + ` ` + "`" + `q` + "`" + ` query strings.`,
-				},
-				resource.Attribute{
-					Name:        "prefix",
-					Description: `(Optional) The tag group. Default: no tag group.`,
-				},
-				resource.Attribute{
-					Name:        "default",
-					Description: `(Optional) The default tag. Default: "`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID of this timeboard in your Datadog account. The web interface URL to this timeboard can be generated by appending this ID to ` + "`" + `` + "`" + `https://app.datadoghq.com/dash/` + "`" + `` + "`" + ` ## Import Timeboards can be imported using their numeric ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_timeboard.my_service_timeboard 2081 ` + "`" + `` + "`" + `` + "`" + ` ## Dynamic Timeboards Since Terraform 0.12, it's possible to create timeboard graphs dynamically based on contents of a list/map variable. This can be achieved by using the [dynamic blocks](https://www.terraform.io/docs/configuration/expressions.html#dynamic-blocks) feature. For example: ` + "`" + `` + "`" + `` + "`" + ` variable "my_list" { default = ["First", "Second", "Third"] } variable "my_map" { default = { "First" = "value1" "Second" = "value2" } } # Create a timeboard with "First", "Second" and "Third" timeseries graphs resource "datadog_timeboard" "my_timeboard" { title = "My Timeboard" description = "My Description" read_only = true dynamic "graph" { for_each = var.my_list content { title = "${graph.value}" viz = "timeseries" request { q = "anomalies(sum:mycount{adapter:${graph.value}}.as_count().rollup(sum, 3600), 'robust', 4, direction='below')" } } } } # Create a timeboard with "First" and "Second" timeseries graphs, use map keys as titles and map values as adapter names resource "datadog_timeboard" "my_timeboard_map" { title = "My Timeboard From Map" description = "My Description" read_only = true dynamic "graph" { for_each = var.my_map content { title = "${graph.key}" viz = "timeseries" request { q = "anomalies(sum:mycount{adapter:${graph.value}}.as_count().rollup(sum, 3600), 'robust', 4, direction='below')" } } } } ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The unique ID of this timeboard in your Datadog account. The web interface URL to this timeboard can be generated by appending this ID to ` + "`" + `` + "`" + `https://app.datadoghq.com/dash/` + "`" + `` + "`" + ` ## Import Timeboards can be imported using their numeric ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_timeboard.my_service_timeboard 2081 ` + "`" + `` + "`" + `` + "`" + ` ## Dynamic Timeboards Since Terraform 0.12, it's possible to create timeboard graphs dynamically based on contents of a list/map variable. This can be achieved by using the [dynamic blocks](https://www.terraform.io/docs/configuration/expressions.html#dynamic-blocks) feature. For example: ` + "`" + `` + "`" + `` + "`" + ` variable "my_list" { default = ["First", "Second", "Third"] } variable "my_map" { default = { "First" = "value1" "Second" = "value2" } } # Create a timeboard with "First", "Second" and "Third" timeseries graphs resource "datadog_timeboard" "my_timeboard" { title = "My Timeboard" description = "My Description" read_only = true dynamic "graph" { for_each = var.my_list content { title = "${graph.value}" viz = "timeseries" request { q = "anomalies(sum:mycount{adapter:${graph.value}}.as_count().rollup(sum, 3600), 'robust', 4, direction='below')" } } } } # Create a timeboard with "First" and "Second" timeseries graphs, use map keys as titles and map values as adapter names resource "datadog_timeboard" "my_timeboard_map" { title = "My Timeboard From Map" description = "My Description" read_only = true dynamic "graph" { for_each = var.my_map content { title = "${graph.key}" viz = "timeseries" request { q = "anomalies(sum:mycount{adapter:${graph.value}}.as_count().rollup(sum, 3600), 'robust', 4, direction='below')" } } } } ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -701,17 +601,19 @@ var (
 	resourcesMap = map[string]int{
 
 		"datadog_dashboard":                            0,
-		"datadog_downtime":                             1,
-		"datadog_integration_aws":                      2,
-		"datadog_integration_gcp":                      3,
-		"datadog_integration_pagerduty":                4,
-		"datadog_integration_pagerduty_service_object": 5,
-		"datadog_metric_metadata":                      6,
-		"datadog_monitor":                              7,
-		"datadog_screenboard":                          8,
-		"datadog_synthetics":                           9,
-		"datadog_timeboard":                            10,
-		"datadog_user":                                 11,
+		"datadog_dashboard_list":                       1,
+		"datadog_downtime":                             2,
+		"datadog_integration_aws":                      3,
+		"datadog_integration_gcp":                      4,
+		"datadog_integration_pagerduty":                5,
+		"datadog_integration_pagerduty_service_object": 6,
+		"datadog_metric_metadata":                      7,
+		"datadog_monitor":                              8,
+		"datadog_screenboard":                          9,
+		"datadog_service_level_objective":              10,
+		"datadog_synthetics":                           11,
+		"datadog_timeboard":                            12,
+		"datadog_user":                                 13,
 	}
 )
 

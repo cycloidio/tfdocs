@@ -658,6 +658,14 @@ var (
 					Name:        "created_at",
 					Description: `The instance group creation timestamp.`,
 				},
+				resource.Attribute{
+					Name:        "load_balancer.0.target_group_id",
+					Description: `The ID of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer.0.status_message",
+					Description: `The status message of the target group.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -667,6 +675,14 @@ var (
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `The instance group creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer.0.target_group_id",
+					Description: `The ID of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer.0.status_message",
+					Description: `The status message of the target group.`,
 				},
 			},
 		},
@@ -712,7 +728,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Creation timestamp of the snapshot.`,
+					Description: `Creation timestamp of the snapshot. ## Import A snapshot can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_compute_snapshot.disk-snapshot shapshot_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -726,7 +742,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Creation timestamp of the snapshot.`,
+					Description: `Creation timestamp of the snapshot. ## Import A snapshot can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_compute_snapshot.disk-snapshot shapshot_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -752,7 +768,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `(Optional) ID of the folder that the service account will be created in. Defaults to the provider folder configuration. ## Import Service accounts can be imported using their IDs, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_iam_service_account.my_sa service_account_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) ID of the folder that the service account will be created in. Defaults to the provider folder configuration. ## Import A service account can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_iam_service_account.sa account_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -893,6 +909,213 @@ var (
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `Creation timestamp of the static access key. [Yandex Object Storage]: https://cloud.yandex.com/docs/storage/`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_lb_network_load_balancer",
+			Category:         "Yandex Load Balancer Resources",
+			ShortDescription: `A network load balancer is used to evenly distribute the load across cloud resources.`,
+			Description:      ``,
+			Keywords: []string{
+				"load",
+				"balancer",
+				"lb",
+				"network",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the network load balancer. Provided by the client when the network load balancer is created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the network load balancer. Provide this property when you create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder to which the resource belongs. If omitted, the provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Labels to assign to this network load balancer. A list of key/value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `(Optional) ID of the availability zone where the network load balancer resides. The default is 'ru-central1'.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type of the network load balancer. Only external network load balancers are currently available. The default is 'external'.`,
+				},
+				resource.Attribute{
+					Name:        "attached_target_group",
+					Description: `(Optional) An AttachedTargetGroup resource. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "listener",
+					Description: `(Optional) Listener specification that will be used by a network load balancer. The structure is documented below. --- The ` + "`" + `attached_target_group` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "target_group_id",
+					Description: `(Required) ID of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck",
+					Description: `(Required) A HealthCheck resource. The structure is documented below. --- The ` + "`" + `healthcheck` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the health check. The name must be unique for each target group that attached to a single load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) The interval between health checks. The default is 2 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout for a target to return a response for the health check. The default is 1 second.`,
+				},
+				resource.Attribute{
+					Name:        "unhealthy_threshold",
+					Description: `(Optional) Number of failed health checks before changing the status to ` + "`" + `UNHEALTHY` + "`" + `. The default is 2.`,
+				},
+				resource.Attribute{
+					Name:        "healthy_threshold",
+					Description: `(Optional) Number of successful health checks required in order to set the ` + "`" + `HEALTHY` + "`" + ` status for the target.`,
+				},
+				resource.Attribute{
+					Name:        "http_options",
+					Description: `(Optional) Options for HTTP health check. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_options",
+					Description: `(Optional) Options for TCP health check. The structure is documented below. ~>`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) Port to use for HTTP health checks.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) URL path to set for health checking requests for every target in the target group. For example ` + "`" + `/ping` + "`" + `. The default path is ` + "`" + `/` + "`" + `. --- The ` + "`" + `tcp_options` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) Port to use for TCP health checks. --- The ` + "`" + `listener` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the listener. The name must be unique for each listener on a single load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) Port for incoming traffic.`,
+				},
+				resource.Attribute{
+					Name:        "target_port",
+					Description: `(Optional) Port of a target. The default is the same as listener's port.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Protocol for incoming traffic. Only tcp network load balancers are currently available.`,
+				},
+				resource.Attribute{
+					Name:        "external_address_spec",
+					Description: `(Optional) External IP address specification. The structure is documented below. --- The ` + "`" + `external_address_spec` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Optional) Public IP address for a listener. IP address will be allocated if it wasn't been set.`,
+				},
+				resource.Attribute{
+					Name:        "ip_version",
+					Description: `(Optional) IP version of the addresses that the load balancer works with. Only ipv4 is currently available. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The network load balancer creation timestamp. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 5 minute. - ` + "`" + `update` + "`" + ` - Default is 5 minute. - ` + "`" + `delete` + "`" + ` - Default is 5 minute. ## Import A network load balancer can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_lb_network_load_balancer.default network_load_balancer_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The network load balancer creation timestamp. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 5 minute. - ` + "`" + `update` + "`" + ` - Default is 5 minute. - ` + "`" + `delete` + "`" + ` - Default is 5 minute. ## Import A network load balancer can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_lb_network_load_balancer.default network_load_balancer_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_lb_target_group",
+			Category:         "Yandex Load Balancer Resources",
+			ShortDescription: `A load balancer distributes the load across cloud resources that are combined into a target group.`,
+			Description:      ``,
+			Keywords: []string{
+				"load",
+				"balancer",
+				"lb",
+				"target",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the target group. Provided by the client when the target group is created.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the target group. Provide this property when you create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder to which the resource belongs. If omitted, the provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Labels to assign to this target group. A list of key/value pairs.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `(Optional) ID of the availability zone where the target group resides. The default is 'ru-central1'.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Optional) A Target resource. The structure is documented below. --- The ` + "`" + `target` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) IP address of the target.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) ID of the subnet that targets are connected to. All targets in the target group must be connected to the same subnet within a single availability zone. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The target group creation timestamp. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 5 minute. - ` + "`" + `update` + "`" + ` - Default is 5 minute. - ` + "`" + `delete` + "`" + ` - Default is 5 minute. ## Import A target group can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_lb_target_group.default target_group_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The target group creation timestamp. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 5 minute. - ` + "`" + `update` + "`" + ` - Default is 5 minute. - ` + "`" + `delete` + "`" + ` - Default is 5 minute. ## Import A target group can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_lb_target_group.default target_group_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1178,14 +1401,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
-					Description: `(Optional) The ID of the route table to assign to this subnet. Assigned route table should belong to the same network as this subnet.`,
+					Description: `(Optional) The ID of the route table to assign to this subnet. Assigned route table should belong to the same network as this subnet. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "v6_cidr_blocks",
-					Description: `(Optional) An optional list of blocks of IPv6 addresses that are owned by this subnet. ~>`,
+					Description: `An optional list of blocks of IPv6 addresses that are owned by this subnet. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 3 minute. - ` + "`" + `update` + "`" + ` - Default is 3 minute. - ` + "`" + `delete` + "`" + ` - Default is 3 minute. ## Import A subnet can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_vpc_subnet.default subnet_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "v6_cidr_blocks",
+					Description: `An optional list of blocks of IPv6 addresses that are owned by this subnet. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 3 minute. - ` + "`" + `update` + "`" + ` - Default is 3 minute. - ` + "`" + `delete` + "`" + ` - Default is 3 minute. ## Import A subnet can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_vpc_subnet.default subnet_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 	}
 
@@ -1201,14 +1429,16 @@ var (
 		"yandex_iam_service_account_iam_member":        7,
 		"yandex_iam_service_account_iam_policy":        8,
 		"yandex_iam_service_account_static_access_key": 9,
-		"yandex_resourcemanager_cloud_iam_binding":     10,
-		"yandex_resourcemanager_cloud_iam_member":      11,
-		"yandex_resourcemanager_folder_iam_binding":    12,
-		"yandex_resourcemanager_folder_iam_member":     13,
-		"yandex_resourcemanager_folder_iam_policy":     14,
-		"yandex_vpc_network":                           15,
-		"yandex_vpc_route_table":                       16,
-		"yandex_vpc_subnet":                            17,
+		"yandex_lb_network_load_balancer":              10,
+		"yandex_lb_target_group":                       11,
+		"yandex_resourcemanager_cloud_iam_binding":     12,
+		"yandex_resourcemanager_cloud_iam_member":      13,
+		"yandex_resourcemanager_folder_iam_binding":    14,
+		"yandex_resourcemanager_folder_iam_member":     15,
+		"yandex_resourcemanager_folder_iam_policy":     16,
+		"yandex_vpc_network":                           17,
+		"yandex_vpc_route_table":                       18,
+		"yandex_vpc_subnet":                            19,
 	}
 )
 

@@ -11,6 +11,158 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "signalfx_aws_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx AWS Integrations`,
+			Description: `
+
+SignalFx AWS CloudWatch integrations. For help with this integration see [Monitoring Amazon Web Services](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#monitor-amazon-web-services).
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+
+`,
+			Keywords: []string{
+				"aws",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "auth_method",
+					Description: `(Optional) The mechanism used to authenticate with AWS. The allowed values are "ExternalID" or "SecurityToken".`,
+				},
+				resource.Attribute{
+					Name:        "custom_cloudwatch_namespaces",
+					Description: `(Optional) List of custom AWS CloudWatch namespaces to monitor. Custom namespaces contain custom metrics that you define in AWS; SignalFx imports the metrics so you can monitor them.`,
+				},
+				resource.Attribute{
+					Name:        "custom_namespace_sync_rule",
+					Description: `(Optional) Each element controls the data collected by SignalFx for the specified namespace. Conflicts with the ` + "`" + `custom_cloudwatch_namespaces` + "`" + ` property.`,
+				},
+				resource.Attribute{
+					Name:        "default_action",
+					Description: `(Required) Controls the SignalFx default behavior for processing data from an AWS namespace. If you do specify a filter, use this property to control how SignalFx treats data that doesn't match the filter. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "filter_action",
+					Description: `(Required) Controls how SignalFx processes data from a custom AWS namespace. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "filter_source",
+					Description: `(Required) Expression that selects the data that SignalFx should sync for the custom namespace associated with this sync rule. The expression uses the syntax defined for the SignalFlow ` + "`" + `filter()` + "`" + ` function; it can be any valid SignalFlow filter expression.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) An AWS custom namespace having custom AWS metrics that you want to sync with SignalFx. See the AWS documentation on publishing metrics for more information.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_sync_rule",
+					Description: `(Optional) Each element in the array is an object that contains an AWS namespace name and a filter that controls the data that SignalFx collects for the namespace. Conflicts with the ` + "`" + `services` + "`" + ` property. If you don't specify either property, SignalFx syncs all data in all AWS namespaces.`,
+				},
+				resource.Attribute{
+					Name:        "default_action",
+					Description: `(Required) Controls the SignalFx default behavior for processing data from an AWS namespace. If you do specify a filter, use this property to control how SignalFx treats data that doesn't match the filter. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "filter_action",
+					Description: `(Required) Controls how SignalFx processes data from a custom AWS namespace. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "filter_source",
+					Description: `(Required) Expression that selects the data that SignalFx should sync for the custom namespace associated with this sync rule. The expression uses the syntax defined for the SignalFlow ` + "`" + `filter()` + "`" + ` function; it can be any valid SignalFlow filter expression.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) An AWS custom namespace having custom AWS metrics that you want to sync with SignalFx. See the AWS documentation on publishing metrics for more information.`,
+				},
+				resource.Attribute{
+					Name:        "enable_aws_usage",
+					Description: `(Optional) Flag that controls how SignalFx imports usage metrics from AWS to use with AWS Cost Optimizer. If ` + "`" + `true` + "`" + `, SignalFx imports the metrics.`,
+				},
+				resource.Attribute{
+					Name:        "import_cloud_watch",
+					Description: `(Optional) Flag that controls how SignalFx imports Cloud Watch metrics. If true, SignalFx imports Cloud Watch metrics from AWS.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) If you specify ` + "`" + `auth_method = \"SecurityToken\"` + "`" + ` in your request to create an AWS integration object, use this property to specify the key.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `(Optional) List of AWS regions that SignalFx should monitor.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Optional) Role ARN that you add to an existing AWS integration object.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Optional) List of AWS services that you want SignalFx to monitor. Each element is a string designating an AWS service. Conflicts with ` + "`" + `namespace_sync_rule` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "poll_rate",
+					Description: `(Oprional) AWS poll rate (in seconds). One of ` + "`" + `60` + "`" + ` or ` + "`" + `300` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_azure_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx Azure Integrations`,
+			Description: `
+
+SignalFx Azure integrations. For help with this integration see [Monitoring Microsoft Azure](https://docs.signalfx.com/en/latest/integrations/azure-info.html).
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"azure",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) Azure application ID for the SignalFx app. To learn how to get this ID, see the topic [Connect to Microsoft Azure](https://docs.signalfx.com/en/latest/getting-started/send-data.html#connect-to-microsoft-azure) in the product documentation.`,
+				},
+				resource.Attribute{
+					Name:        "poll_rate",
+					Description: `(Optional) AWS poll rate (in seconds). One of ` + "`" + `60` + "`" + ` or ` + "`" + `300` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Required) Azure secret key that associates the SignalFx app in Azure with the Azure tenant ID. To learn how to get this ID, see the topic [Connect to Microsoft Azure](https://docs.signalfx.com/en/latest/getting-started/send-data.html#connect-to-microsoft-azure) in the product documentation.`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Required) List of Microsoft Azure service names for the Azure services you want SignalFx to monitor.`,
+				},
+				resource.Attribute{
+					Name:        "subscriptions",
+					Description: `(Required) List of Azure subscriptions that SignalFx should monitor.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "signalfx_dashboard",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create and manage SignalFx Dashboards`,
@@ -475,6 +627,46 @@ Displays a listing of events as a widget in a dashboard.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "signalfx_gcp_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx GCP Integrations`,
+			Description: `
+
+SignalFx GCP Integration
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"gcp",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "poll_rate",
+					Description: `(Required) GCP integration poll rate in milliseconds. Can be set to either 60000 or 300000 (1 minute or 5 minutes).`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Optional) GCP service metrics to import. Can be an empty list, or not included, to import 'All services'.`,
+				},
+				resource.Attribute{
+					Name:        "project_service_keys",
+					Description: `(Required) GCP projects to add.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "signalfx_heatmap_chart",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create and manage SignalFx heat map chart`,
@@ -534,7 +726,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "color_range",
-					Description: `(Optional. Conflict with color_scale) Values and color for the color range. Example: ` + "`" + `color_range : { min : 0, max : 100, color : blue }` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
+					Description: `(Optional. Conflicts with color_scale) Values and color for the color range. Example: ` + "`" + `color_range : { min : 0, max : 100, color : "#0000ff" }` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
 				},
 				resource.Attribute{
 					Name:        "min_value",
@@ -546,159 +738,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Required) The color range to use. Must be either gray, blue, navy, orange, yellow, magenta, purple, violet, lilac, green, aquamarine.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "signalfx_integration",
-			Category:         "Resources",
-			ShortDescription: `Allows Terraform to create and manage SignalFx Integrations`,
-			Description: `
-
-SignalFx supports integrations to ingest metrics from other monitoring systems, connect to Single Sign-On providers, and to report notifications for messaging and incident management. Note that your API key must have admin permissions to use the SignalFx integration API.
-
-**Note:** This resource is deprecated.
-
-In a future release ` + "`" + `signalfx_integration` + "`" + ` will be replaced with specific resources for each integration. Please see the specific ` + "`" + `signalfx_integration_*` + "`" + ` resources in the sidebar.
-
-
-`,
-			Keywords: []string{
-				"integration",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the integration.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Required) Whether the integration is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `(Required) Type of the integration. See [the full list here](https://developers.signalfx.com/integrations_reference.html).`,
-				},
-				resource.Attribute{
-					Name:        "api_key",
-					Description: `(Required for ` + "`" + `PagerDuty` + "`" + `) PagerDuty API key.`,
-				},
-				resource.Attribute{
-					Name:        "webhook_url",
-					Description: `(Required for ` + "`" + `Slack` + "`" + `) Slack incoming webhook URL.`,
-				},
-				resource.Attribute{
-					Name:        "poll_rate",
-					Description: `(Required for ` + "`" + `GCP` + "`" + `) GCP integration poll rate in milliseconds. Can be set to either 60000 or 300000 (1 minute or 5 minutes).`,
-				},
-				resource.Attribute{
-					Name:        "services",
-					Description: `(Optional for ` + "`" + `GCP` + "`" + `) GCP service metrics to import. Can be an empty list, or not included, to import 'All services'.`,
-				},
-				resource.Attribute{
-					Name:        "project_service_keys",
-					Description: `(Required for ` + "`" + `GCP` + "`" + `) GCP projects to add.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "signalfx_integration_gcp",
-			Category:         "Resources",
-			ShortDescription: `Allows Terraform to create and manage SignalFx GCP Integrations`,
-			Description: `
-
-SignalFx GCP Integration
-
-`,
-			Keywords: []string{
-				"integration",
-				"gcp",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the integration.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Required) Whether the integration is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "poll_rate",
-					Description: `(Required) GCP integration poll rate in milliseconds. Can be set to either 60000 or 300000 (1 minute or 5 minutes).`,
-				},
-				resource.Attribute{
-					Name:        "services",
-					Description: `(Optional) GCP service metrics to import. Can be an empty list, or not included, to import 'All services'.`,
-				},
-				resource.Attribute{
-					Name:        "project_service_keys",
-					Description: `(Required) GCP projects to add.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "signalfx_integration_pagerduty",
-			Category:         "Resources",
-			ShortDescription: `Allows Terraform to create and manage SignalFx PagerDuty Integrations`,
-			Description: `
-
-SignalFx PagerDuty integrations
-
-`,
-			Keywords: []string{
-				"integration",
-				"pagerduty",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the integration.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Required) Whether the integration is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "api_key",
-					Description: `(Required) PagerDuty API key.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "signalfx_integration_slack",
-			Category:         "Resources",
-			ShortDescription: `Allows Terraform to create and manage SignalFx Slack Integrations`,
-			Description: `
-
-SignalFx Slack integration.
-
-`,
-			Keywords: []string{
-				"integration",
-				"slack",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the integration.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Required) Whether the integration is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "webhook_url",
-					Description: `(Required) Slack incoming webhook URL.`,
+					Description: `(Required) The color range to use. The starting hex color value for data values in a heatmap chart. Specify the value as a 6-character hexadecimal value preceded by the '#' character, for example "#ea1849" (grass green).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -822,6 +862,152 @@ The name of each value in the chart reflects the name of the plot and any associ
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "signalfx_opsgenie_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx Opsgenie Integrations`,
+			Description: `
+
+SignalFx Opsgenie integration.
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"opsgenie",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `(Required) The API key`,
+				},
+				resource.Attribute{
+					Name:        "api_url",
+					Description: `(Optional) Opsgenie API URL. Will default to ` + "`" + `https://api.opsgenie.com` + "`" + `. You might also want ` + "`" + `https://api.eu.opsgenie.com` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_org_token",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx text notes`,
+			Description: `
+
+Manage SignalFx org tokens.
+
+`,
+			Keywords: []string{
+				"org",
+				"token",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the token.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the token.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(Optional) Flag that controls enabling the token. If set to ` + "`" + `true` + "`" + `, the token is disabled, and you can't use it for authentication. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "notifications",
+					Description: `(Optional) Where to send notifications about this token's limits. Please consult the [Notification Format](https://www.terraform.io/docs/providers/signalfx/r/detector.html#notification-format) laid out in detectors.`,
+				},
+				resource.Attribute{
+					Name:        "host_or_usage_limits",
+					Description: `(Optional) Specify Usage-based limits for this token.`,
+				},
+				resource.Attribute{
+					Name:        "host_limit",
+					Description: `(Optional) Max number of hosts that can use this token`,
+				},
+				resource.Attribute{
+					Name:        "host_notification_threshold",
+					Description: `(Optional) Notification threshold for hosts`,
+				},
+				resource.Attribute{
+					Name:        "container_limit",
+					Description: `(Optional) Max number of Docker containers that can use this token`,
+				},
+				resource.Attribute{
+					Name:        "container_notification_threshold",
+					Description: `(Optional) Notification threshold for Docker containers`,
+				},
+				resource.Attribute{
+					Name:        "custom_metrics_limit",
+					Description: `(Optional) Max number of custom metrics that can be sent with this token`,
+				},
+				resource.Attribute{
+					Name:        "custom_metrics_notification_threshold",
+					Description: `(Optional) Notification threshold for custom metrics`,
+				},
+				resource.Attribute{
+					Name:        "high_res_metrics_limit",
+					Description: `(Optional) Max number of hi-res metrics that can be sent with this toke`,
+				},
+				resource.Attribute{
+					Name:        "high_res_metrics_notification_threshold",
+					Description: `(Optional) Notification threshold for hi-res metrics`,
+				},
+				resource.Attribute{
+					Name:        "dpm_notification_threshold",
+					Description: `(Optional) DPM level at which SignalFx sends the notification for this token. If you don't specify a notification, SignalFx sends the generic notification.`,
+				},
+				resource.Attribute{
+					Name:        "dpm_limit",
+					Description: `(Required) The datapoints per minute (dpm) limit for this token. If you exceed this limit, SignalFx sends out an alert.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_pagerduty_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx PagerDuty Integrations`,
+			Description: `
+
+SignalFx PagerDuty integrations
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"pagerduty",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `(Required) PagerDuty API key.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "signalfx_single_value_chart",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create and manage SignalFx single value charts`,
@@ -931,6 +1117,38 @@ If the time period is in the past, the number represents the value of the metric
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "signalfx_slack_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx Slack Integrations`,
+			Description: `
+
+SignalFx Slack integration.
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"slack",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "webhook_url",
+					Description: `(Required) Slack incoming webhook URL.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "signalfx_text_chart",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create and manage SignalFx text notes`,
@@ -1022,7 +1240,7 @@ Time charts display data points over a period of time.
 				},
 				resource.Attribute{
 					Name:        "time_range",
-					Description: `(Optional) From when to display data. SignalFx time syntax (e.g. ` + "`" + `"-5m"` + "`" + `, ` + "`" + `"-1h"` + "`" + `). Conflicts with ` + "`" + `start_time` + "`" + ` and ` + "`" + `end_time` + "`" + `.`,
+					Description: `(Optional) How many seconds ago from which to display data. For example, the last hour would be ` + "`" + `3600` + "`" + `, etc. Conflicts with ` + "`" + `start_time` + "`" + ` and ` + "`" + `end_time` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "start_time",
@@ -1121,6 +1339,22 @@ Time charts display data points over a period of time.
 					Description: `(Optional) A unit to attach to this plot. Units support automatic scaling (eg thousands of bytes will be displayed as kilobytes). Values values are ` + "`" + `Bit, Kilobit, Megabit, Gigabit, Terabit, Petabit, Exabit, Zettabit, Yottabit, Byte, Kibibyte, Mebibyte, Gigibyte, Tebibyte, Pebibyte, Exbibyte, Zebibyte, Yobibyte, Nanosecond, Microsecond, Millisecond, Second, Minute, Hour, Day, Week` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "event_options",
+					Description: `(Optional) Event customization options, associated with a publish statement. You will need to use this to change settings for any ` + "`" + `events(…)` + "`" + ` statements you use.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Label used in the publish statement that displays the event query you want to customize.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Specifies an alternate value for the Plot Name column of the Data Table associated with the chart.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color to use : gray, blue, azure, navy, brown, orange, yellow, iris, magenta, pink, purple, violet, lilac, emerald, green, aquamarine.`,
+				},
+				resource.Attribute{
 					Name:        "histogram_options",
 					Description: `(Optional) Only used when ` + "`" + `plot_type` + "`" + ` is ` + "`" + `"Histogram"` + "`" + `. Histogram specific options.`,
 				},
@@ -1159,23 +1393,60 @@ Time charts display data points over a period of time.
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_victor_ops_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx VictorOps Integrations`,
+			Description: `
+
+SignalFx VictorOps integration.
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"victor",
+				"ops",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "post_url",
+					Description: `(Optional) Victor Ops REST API URL.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"signalfx_dashboard":             0,
-		"signalfx_dashboard_group":       1,
-		"signalfx_detector":              2,
-		"signalfx_event_feed_chart":      3,
-		"signalfx_heatmap_chart":         4,
-		"signalfx_integration":           5,
-		"signalfx_integration_gcp":       6,
-		"signalfx_integration_pagerduty": 7,
-		"signalfx_integration_slack":     8,
-		"signalfx_list_chart":            9,
-		"signalfx_single_value_chart":    10,
-		"signalfx_text_chart":            11,
-		"signalfx_time_chart":            12,
+		"signalfx_aws_integration":        0,
+		"signalfx_azure_integration":      1,
+		"signalfx_dashboard":              2,
+		"signalfx_dashboard_group":        3,
+		"signalfx_detector":               4,
+		"signalfx_event_feed_chart":       5,
+		"signalfx_gcp_integration":        6,
+		"signalfx_heatmap_chart":          7,
+		"signalfx_list_chart":             8,
+		"signalfx_opsgenie_integration":   9,
+		"signalfx_org_token":              10,
+		"signalfx_pagerduty_integration":  11,
+		"signalfx_single_value_chart":     12,
+		"signalfx_slack_integration":      13,
+		"signalfx_text_chart":             14,
+		"signalfx_time_chart":             15,
+		"signalfx_victor_ops_integration": 16,
 	}
 )
 

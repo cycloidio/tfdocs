@@ -522,6 +522,10 @@ var (
 					Description: `(Optional) The type of OS. Possible values are: ` + "`" + `linux` + "`" + ` and ` + "`" + `windows` + "`" + `, all the OS types will be retrieved by default.`,
 				},
 				resource.Attribute{
+					Name:        "most_recent",
+					Description: `(Optional) If more than one result is returned, use the most recent image.`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},

@@ -101,7 +101,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "server_addresses",
-					Description: `(Required) IP addresses of the DHCP relay servers. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Required) IP addresses of the DHCP relay servers. Maximum allowed amount is 2. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -407,7 +407,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "applied_to",
-					Description: `(Optional) List of objects where the rules in this section will be enforced. This will take precedence over rule level applied_to. [Supported target types: "LogicalPort", "LogicalSwitch", "NSGroup"]`,
+					Description: `(Optional) List of objects where the rules in this section will be enforced. This will take precedence over rule level applied_to. [Supported target types: "LogicalPort", "LogicalSwitch", "NSGroup", "LogicalRouter"]`,
 				},
 				resource.Attribute{
 					Name:        "section_type",
@@ -416,6 +416,10 @@ var (
 				resource.Attribute{
 					Name:        "stateful",
 					Description: `(Required) Stateful or Stateless nature of firewall section is enforced on all rules inside the section. Layer3 sections can be stateful or stateless. Layer2 sections can only be stateless.`,
+				},
+				resource.Attribute{
+					Name:        "insert_before",
+					Description: `(Optional) Firewall section id that should come immediately after this one. It is user responsibility to use this attribute in consistent manner (for example, if same value would be set in two separate sections, the outcome would depend on order of creation). Changing this attribute would force recreation of the firewall section.`,
 				},
 				resource.Attribute{
 					Name:        "rule",
@@ -435,7 +439,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "applied_to",
-					Description: `(Optional) List of objects where rule will be enforced. The section level field overrides this one. Null will be treated as any. [Supported target types: "LogicalPort", "LogicalSwitch", "NSGroup"]`,
+					Description: `(Optional) List of objects where rule will be enforced. The section level field overrides this one. Null will be treated as any. [Supported target types: "LogicalPort", "LogicalSwitch", "NSGroup", "LogicalRouterPort"]`,
 				},
 				resource.Attribute{
 					Name:        "destination",
@@ -3684,6 +3688,22 @@ var (
 					Description: `(Optional) Mac Pool ID to be associated with the logical switch.`,
 				},
 				resource.Attribute{
+					Name:        "address_binding",
+					Description: `(Optional) A list address bindings for this logical switch`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) IP Address`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `(Required) MAC Address`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `(Optional) Vlan`,
+				},
+				resource.Attribute{
 					Name:        "vlan",
 					Description: `(Deprecated, Optional) Vlan for vlan logical switch. This attribute is deprecated, please use nsxt_vlan_logical_switch resource to manage vlan logical switches.`,
 				},
@@ -4002,7 +4022,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "translated_ports",
-					Description: `(Optional) port number or port range. Allowed only when action=DNAT. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) port number or port range. Allowed only when action=DNAT.`,
+				},
+				resource.Attribute{
+					Name:        "rule_priority",
+					Description: `The priority of the rule which is ascending, valid range [0-2147483647]. If multiple rules have the same priority, evaluation sequence is undefined. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4010,11 +4034,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
-				},
-				resource.Attribute{
-					Name:        "rule_priority",
-					Description: `The priority of the rule which is ascending, valid range [0-2147483647]. If multiple rules have the same priority, evaluation sequence is undefined. ## Importing An existing NAT rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_nat_rule.rule1 logical-router-uuid/nat-rule-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the NAT rule named ` + "`" + `rule1` + "`" + ` with the number id ` + "`" + `nat-rule-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing NAT rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_nat_rule.rule1 logical-router-uuid/nat-rule-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the NAT rule named ` + "`" + `rule1` + "`" + ` with the number id ` + "`" + `nat-rule-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4024,11 +4044,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "revision",
-					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging.`,
-				},
-				resource.Attribute{
-					Name:        "rule_priority",
-					Description: `The priority of the rule which is ascending, valid range [0-2147483647]. If multiple rules have the same priority, evaluation sequence is undefined. ## Importing An existing NAT rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_nat_rule.rule1 logical-router-uuid/nat-rule-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the NAT rule named ` + "`" + `rule1` + "`" + ` with the number id ` + "`" + `nat-rule-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
+					Description: `Indicates current revision number of the object as seen by NSX-T API server. This attribute can be useful for debugging. ## Importing An existing NAT rule can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_nat_rule.rule1 logical-router-uuid/nat-rule-num ` + "`" + `` + "`" + `` + "`" + ` The above command imports the NAT rule named ` + "`" + `rule1` + "`" + ` with the number id ` + "`" + `nat-rule-num` + "`" + ` that belongs to the tier 1 logical router with the NSX id ` + "`" + `logical-router-uuid` + "`" + `.`,
 				},
 			},
 		},
@@ -4580,7 +4596,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Required) A list of scope + tag pairs to associate with this VM. ## Importing An existing Tags collection can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_vm_tags.vm1_tags id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX virtual machine tags as a resource named ` + "`" + `vm1_tags` + "`" + ` with the NSX id ` + "`" + `id` + "`" + `, where id is external ID (not the BIOS id) of the virtual machine.`,
+					Description: `(Optional) A list of scope + tag pairs to associate with this VM.`,
+				},
+				resource.Attribute{
+					Name:        "logical_port_tag",
+					Description: `(Optional) A list of scope + tag pairs to associate with logical port that is automatically created for this VM. ## Importing An existing Tags collection can be [imported][docs-import] into this resource, via the following command: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import nsxt_vm_tags.vm1_tags id ` + "`" + `` + "`" + `` + "`" + ` The above would import NSX virtual machine tags as a resource named ` + "`" + `vm1_tags` + "`" + ` with the NSX id ` + "`" + `id` + "`" + `, where id is external ID (not the BIOS id) of the virtual machine.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

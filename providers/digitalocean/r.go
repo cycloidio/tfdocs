@@ -170,11 +170,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "engine",
-					Description: `(Required) Database engine used by the cluster (ex. ` + "`" + `pg` + "`" + ` for PostreSQL).`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `(Required) Engine version used by the cluster (ex. ` + "`" + `11` + "`" + ` for PostgreSQL 11).`,
+					Description: `(Required) Database engine used by the cluster (ex. ` + "`" + `pg` + "`" + ` for PostreSQL, ` + "`" + `mysql` + "`" + ` for MySQL, or ` + "`" + `redis` + "`" + ` for Redis).`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -187,6 +183,10 @@ var (
 				resource.Attribute{
 					Name:        "node_count",
 					Description: `(Required) Number of nodes that will be included in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Engine version used by the cluster (ex. ` + "`" + `11` + "`" + ` for PostgreSQL 11).`,
 				},
 				resource.Attribute{
 					Name:        "maintenance_window",
@@ -203,6 +203,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name of the database cluster.`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -233,6 +237,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name of the database cluster.`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -974,7 +982,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "entry_protocol",
-					Description: `(Required) The protocol used for traffic to the Load Balancer. The possible values are: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, or ` + "`" + `tcp` + "`" + `.`,
+					Description: `(Required) The protocol used for traffic to the Load Balancer. The possible values are: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `http2` + "`" + ` or ` + "`" + `tcp` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "entry_port",
@@ -982,7 +990,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_protocol",
-					Description: `(Required) The protocol used for traffic from the Load Balancer to the backend Droplets. The possible values are: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, or ` + "`" + `tcp` + "`" + `.`,
+					Description: `(Required) The protocol used for traffic from the Load Balancer to the backend Droplets. The possible values are: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `http2` + "`" + ` or ` + "`" + `tcp` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "target_port",

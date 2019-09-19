@@ -31,9 +31,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "akamai_cpcode",
+			Type:             "akamai_cp_code",
 			Category:         "Data Sources",
-			ShortDescription: `CPCode`,
+			ShortDescription: `CP Code`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments:        []resource.Attribute{},
@@ -49,14 +49,25 @@ var (
 			Arguments:        []resource.Attribute{},
 			Attributes:       []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "akamai_property_rules",
+			Category:         "Data Sources",
+			ShortDescription: `Property Rules`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
 		"akamai_authorities_set": 0,
 		"akamai_contract":        1,
-		"akamai_cpcode":          2,
+		"akamai_cp_code":         2,
 		"akamai_group":           3,
+		"akamai_property_rules":  4,
 	}
 )
 

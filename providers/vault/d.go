@@ -183,6 +183,390 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_identity_entity",
+			Category:         "Data Sources",
+			ShortDescription: `Lookup an Identity Entity from Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "entity_name",
+					Description: `(Optional) Name of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `(Optional) ID of the entity.`,
+				},
+				resource.Attribute{
+					Name:        "alias_id",
+					Description: `(Optional) ID of the alias.`,
+				},
+				resource.Attribute{
+					Name:        "alias_name",
+					Description: `(Optional) Name of the alias. This should be supplied in conjunction with ` + "`" + `alias_mount_accessor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "alias_mount_accessor",
+					Description: `(Optional) Accessor of the mount to which the alias belongs to. This should be supplied in conjunction with ` + "`" + `alias_name` + "`" + `. The lookup criteria can be ` + "`" + `entity_name` + "`" + `, ` + "`" + `entity_id` + "`" + `, ` + "`" + `alias_id` + "`" + `, or a combination of ` + "`" + `alias_name` + "`" + ` and ` + "`" + `alias_mount_accessor` + "`" + `. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` capability on ` + "`" + `/identity/lookup/entity` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `A string containing the full data payload retrieved from Vault, serialized in JSON format.`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `Creation timestamp of the entity`,
+				},
+				resource.Attribute{
+					Name:        "direct_group_ids",
+					Description: `List of Group IDs of which the entity is directly a member of`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Whether the entity is disabled`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of all Group IDs of which the entity is a member of`,
+				},
+				resource.Attribute{
+					Name:        "inherited_group_ids",
+					Description: `List of all Group IDs of which the entity is a member of transitively`,
+				},
+				resource.Attribute{
+					Name:        "last_update_time",
+					Description: `Last updated time of the entity`,
+				},
+				resource.Attribute{
+					Name:        "merged_entity_ids",
+					Description: `Other entity IDs which is merged with this entity`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Arbitrary metadata`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Namespace of which the entity is part of`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `List of policies attached to the entity`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `A list of entity alias. Structure is documented below. ### Aliases`,
+				},
+				resource.Attribute{
+					Name:        "canonical_id",
+					Description: `Canonical ID of the Alias`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `Creation time of the Alias`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the alias`,
+				},
+				resource.Attribute{
+					Name:        "last_update_time",
+					Description: `Last update time of the alias`,
+				},
+				resource.Attribute{
+					Name:        "merged_from_canonical_ids",
+					Description: `List of canonical IDs merged with this alias`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Arbitrary metadata`,
+				},
+				resource.Attribute{
+					Name:        "mount_accessor",
+					Description: `Authentication mount acccessor which this alias belongs to`,
+				},
+				resource.Attribute{
+					Name:        "mount_path",
+					Description: `Authentication mount path which this alias belongs to`,
+				},
+				resource.Attribute{
+					Name:        "mount_type",
+					Description: `Authentication mount type which this alias belongs to`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the alias`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `A string containing the full data payload retrieved from Vault, serialized in JSON format.`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `Creation timestamp of the entity`,
+				},
+				resource.Attribute{
+					Name:        "direct_group_ids",
+					Description: `List of Group IDs of which the entity is directly a member of`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Whether the entity is disabled`,
+				},
+				resource.Attribute{
+					Name:        "group_ids",
+					Description: `List of all Group IDs of which the entity is a member of`,
+				},
+				resource.Attribute{
+					Name:        "inherited_group_ids",
+					Description: `List of all Group IDs of which the entity is a member of transitively`,
+				},
+				resource.Attribute{
+					Name:        "last_update_time",
+					Description: `Last updated time of the entity`,
+				},
+				resource.Attribute{
+					Name:        "merged_entity_ids",
+					Description: `Other entity IDs which is merged with this entity`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Arbitrary metadata`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Namespace of which the entity is part of`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `List of policies attached to the entity`,
+				},
+				resource.Attribute{
+					Name:        "aliases",
+					Description: `A list of entity alias. Structure is documented below. ### Aliases`,
+				},
+				resource.Attribute{
+					Name:        "canonical_id",
+					Description: `Canonical ID of the Alias`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `Creation time of the Alias`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the alias`,
+				},
+				resource.Attribute{
+					Name:        "last_update_time",
+					Description: `Last update time of the alias`,
+				},
+				resource.Attribute{
+					Name:        "merged_from_canonical_ids",
+					Description: `List of canonical IDs merged with this alias`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Arbitrary metadata`,
+				},
+				resource.Attribute{
+					Name:        "mount_accessor",
+					Description: `Authentication mount acccessor which this alias belongs to`,
+				},
+				resource.Attribute{
+					Name:        "mount_path",
+					Description: `Authentication mount path which this alias belongs to`,
+				},
+				resource.Attribute{
+					Name:        "mount_type",
+					Description: `Authentication mount type which this alias belongs to`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the alias`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_group",
+			Category:         "Data Sources",
+			ShortDescription: `Lookup an Identity Group from Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `(Optional) Name of the group.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Optional) ID of the group.`,
+				},
+				resource.Attribute{
+					Name:        "alias_id",
+					Description: `(Optional) ID of the alias.`,
+				},
+				resource.Attribute{
+					Name:        "alias_name",
+					Description: `(Optional) Name of the alias. This should be supplied in conjunction with ` + "`" + `alias_mount_accessor` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "alias_mount_accessor",
+					Description: `(Optional) Accessor of the mount to which the alias belongs to. This should be supplied in conjunction with ` + "`" + `alias_name` + "`" + `. The lookup criteria can be ` + "`" + `group_name` + "`" + `, ` + "`" + `group_id` + "`" + `, ` + "`" + `alias_id` + "`" + `, or a combination of ` + "`" + `alias_name` + "`" + ` and ` + "`" + `alias_mount_accessor` + "`" + `. ## Required Vault Capabilities Use of this resource requires the ` + "`" + `create` + "`" + ` capability on ` + "`" + `/identity/lookup/group` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `A string containing the full data payload retrieved from Vault, serialized in JSON format.`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `Creation timestamp of the group`,
+				},
+				resource.Attribute{
+					Name:        "last_update_time",
+					Description: `Last updated time of the group`,
+				},
+				resource.Attribute{
+					Name:        "member_entity_ids",
+					Description: `List of Entity IDs which are members of this group`,
+				},
+				resource.Attribute{
+					Name:        "member_group_ids",
+					Description: `List of Group IDs which are members of this group`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Arbitrary metadata`,
+				},
+				resource.Attribute{
+					Name:        "modify_index",
+					Description: `Modify index of the group`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Namespace of which the group is part of`,
+				},
+				resource.Attribute{
+					Name:        "parent_group_ids",
+					Description: `List of Group IDs which are parents of this group.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `List of policies attached to the group`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of group`,
+				},
+				resource.Attribute{
+					Name:        "alias_canonical_id",
+					Description: `Canonical ID of the Alias`,
+				},
+				resource.Attribute{
+					Name:        "alias_creation_time",
+					Description: `Creation time of the Alias`,
+				},
+				resource.Attribute{
+					Name:        "alias_last_update_time",
+					Description: `Last update time of the alias`,
+				},
+				resource.Attribute{
+					Name:        "alias_merged_from_canonical_ids",
+					Description: `List of canonical IDs merged with this alias`,
+				},
+				resource.Attribute{
+					Name:        "alias_metadata",
+					Description: `Arbitrary metadata`,
+				},
+				resource.Attribute{
+					Name:        "alias_mount_path",
+					Description: `Authentication mount path which this alias belongs to`,
+				},
+				resource.Attribute{
+					Name:        "alias_mount_type",
+					Description: `Authentication mount type which this alias belongs to`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "data_json",
+					Description: `A string containing the full data payload retrieved from Vault, serialized in JSON format.`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `Creation timestamp of the group`,
+				},
+				resource.Attribute{
+					Name:        "last_update_time",
+					Description: `Last updated time of the group`,
+				},
+				resource.Attribute{
+					Name:        "member_entity_ids",
+					Description: `List of Entity IDs which are members of this group`,
+				},
+				resource.Attribute{
+					Name:        "member_group_ids",
+					Description: `List of Group IDs which are members of this group`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Arbitrary metadata`,
+				},
+				resource.Attribute{
+					Name:        "modify_index",
+					Description: `Modify index of the group`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `Namespace of which the group is part of`,
+				},
+				resource.Attribute{
+					Name:        "parent_group_ids",
+					Description: `List of Group IDs which are parents of this group.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `List of policies attached to the group`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of group`,
+				},
+				resource.Attribute{
+					Name:        "alias_canonical_id",
+					Description: `Canonical ID of the Alias`,
+				},
+				resource.Attribute{
+					Name:        "alias_creation_time",
+					Description: `Creation time of the Alias`,
+				},
+				resource.Attribute{
+					Name:        "alias_last_update_time",
+					Description: `Last update time of the alias`,
+				},
+				resource.Attribute{
+					Name:        "alias_merged_from_canonical_ids",
+					Description: `List of canonical IDs merged with this alias`,
+				},
+				resource.Attribute{
+					Name:        "alias_metadata",
+					Description: `Arbitrary metadata`,
+				},
+				resource.Attribute{
+					Name:        "alias_mount_path",
+					Description: `Authentication mount path which this alias belongs to`,
+				},
+				resource.Attribute{
+					Name:        "alias_mount_type",
+					Description: `Authentication mount type which this alias belongs to`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_kubernetes_auth_backend_config",
 			Category:         "Data Sources",
 			ShortDescription: `Manages Kubernetes auth backend configs in Vault.`,
@@ -225,7 +609,7 @@ var (
 			Name:             "",
 			Type:             "vault_kubernetes_auth_backend_role",
 			Category:         "Data Sources",
-			ShortDescription: `Manages Kubernetes auth backend roles in Vault.`,
+			ShortDescription: `Reads Kubernetes auth backend roles in Vault.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -238,10 +622,6 @@ var (
 					Description: `(Optional) The unique name for the Kubernetes backend the role to retrieve Role attributes for resides in. Defaults to "kubernetes". ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "bound_cirs",
-					Description: `List of CIDR blocks. If set, specifies the blocks of IP addresses which can perform the login operation.`,
-				},
-				resource.Attribute{
 					Name:        "bound_service_account_names",
 					Description: `List of service account names able to access this role. If set to "`,
 				},
@@ -250,32 +630,40 @@ var (
 					Description: `List of namespaces allowed to access this role. If set to "`,
 				},
 				resource.Attribute{
-					Name:        "ttl",
-					Description: `The TTL period of tokens issued using this role in seconds.`,
+					Name:        "token_ttl",
+					Description: `The incremental lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `The maximum allowed lifetime of tokens issued in seconds using this role.`,
+					Name:        "token_max_ttl",
+					Description: `The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
-					Name:        "num_uses",
-					Description: `Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.`,
+					Name:        "token_policies",
+					Description: `List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
 				resource.Attribute{
-					Name:        "period",
-					Description: `If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.`,
+					Name:        "token_bound_cidrs",
+					Description: `List of CIDR blocks; if set, specifies blocks of IP addresses which can authenticate successfully, and ties the resulting token to these blocks as well.`,
 				},
 				resource.Attribute{
-					Name:        "policies",
-					Description: `Policies to be set on tokens issued using this role.`,
+					Name:        "token_explicit_max_ttl",
+					Description: `If set, will encode an [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls) onto the token in number of seconds. This is a hard cap even if ` + "`" + `token_ttl` + "`" + ` and ` + "`" + `token_max_ttl` + "`" + ` would otherwise allow a renewal.`,
+				},
+				resource.Attribute{
+					Name:        "token_no_default_policy",
+					Description: `If set, the default policy will not be set on generated tokens; otherwise it will be added to the policies set in token_policies.`,
+				},
+				resource.Attribute{
+					Name:        "token_num_uses",
+					Description: `The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+				},
+				resource.Attribute{
+					Name:        "token_type",
+					Description: `The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "bound_cirs",
-					Description: `List of CIDR blocks. If set, specifies the blocks of IP addresses which can perform the login operation.`,
-				},
-				resource.Attribute{
 					Name:        "bound_service_account_names",
 					Description: `List of service account names able to access this role. If set to "`,
 				},
@@ -284,24 +672,36 @@ var (
 					Description: `List of namespaces allowed to access this role. If set to "`,
 				},
 				resource.Attribute{
-					Name:        "ttl",
-					Description: `The TTL period of tokens issued using this role in seconds.`,
+					Name:        "token_ttl",
+					Description: `The incremental lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `The maximum allowed lifetime of tokens issued in seconds using this role.`,
+					Name:        "token_max_ttl",
+					Description: `The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
-					Name:        "num_uses",
-					Description: `Number of times issued tokens can be used. Setting this to 0 or leaving it unset means unlimited uses.`,
+					Name:        "token_policies",
+					Description: `List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
 				resource.Attribute{
-					Name:        "period",
-					Description: `If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.`,
+					Name:        "token_bound_cidrs",
+					Description: `List of CIDR blocks; if set, specifies blocks of IP addresses which can authenticate successfully, and ties the resulting token to these blocks as well.`,
 				},
 				resource.Attribute{
-					Name:        "policies",
-					Description: `Policies to be set on tokens issued using this role.`,
+					Name:        "token_explicit_max_ttl",
+					Description: `If set, will encode an [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls) onto the token in number of seconds. This is a hard cap even if ` + "`" + `token_ttl` + "`" + ` and ` + "`" + `token_max_ttl` + "`" + ` would otherwise allow a renewal.`,
+				},
+				resource.Attribute{
+					Name:        "token_no_default_policy",
+					Description: `If set, the default policy will not be set on generated tokens; otherwise it will be added to the policies set in token_policies.`,
+				},
+				resource.Attribute{
+					Name:        "token_num_uses",
+					Description: `The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+				},
+				resource.Attribute{
+					Name:        "token_type",
+					Description: `The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time.`,
 				},
 			},
 		},
@@ -372,9 +772,11 @@ var (
 		"vault_approle_auth_backend_role_id":   0,
 		"vault_aws_access_credentials":         1,
 		"vault_generic_secret":                 2,
-		"vault_kubernetes_auth_backend_config": 3,
-		"vault_kubernetes_auth_backend_role":   4,
-		"vault_policy_document":                5,
+		"vault_identity_entity":                3,
+		"vault_identity_group":                 4,
+		"vault_kubernetes_auth_backend_config": 5,
+		"vault_kubernetes_auth_backend_role":   6,
+		"vault_policy_document":                7,
 	}
 )
 

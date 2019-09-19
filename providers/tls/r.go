@@ -38,7 +38,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_addresses",
-					Description: `(Optional) List of IP addresses for which a certificate is being requested. The nested ` + "`" + `subject` + "`" + ` block accepts the following arguments, all optional, with their meaning corresponding to the similarly-named attributes defined in [RFC5280](https://tools.ietf.org/html/rfc5280#section-4.1.2.4):`,
+					Description: `(Optional) List of IP addresses for which a certificate is being requested.`,
+				},
+				resource.Attribute{
+					Name:        "uris",
+					Description: `(Optional) List of URIs for which a certificate is being requested. The nested ` + "`" + `subject` + "`" + ` block accepts the following arguments, all optional, with their meaning corresponding to the similarly-named attributes defined in [RFC5280](https://tools.ietf.org/html/rfc5280#section-4.1.2.4):`,
 				},
 				resource.Attribute{
 					Name:        "cert_request_pem",
@@ -94,7 +98,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_ca_certificate",
-					Description: `(Optional) Boolean controlling whether the CA flag will be set in the generated certificate. Defaults to ` + "`" + `false` + "`" + `, meaning that the certificate does not represent a certificate authority. The ` + "`" + `allowed_uses` + "`" + ` list accepts the following keywords, combining the set of flags defined by both [Key Usage](https://tools.ietf.org/html/rfc5280#section-4.2.1.3) and [Extended Key Usage](https://tools.ietf.org/html/rfc5280#section-4.2.1.12) in [RFC5280](https://tools.ietf.org/html/rfc5280):`,
+					Description: `(Optional) Boolean controlling whether the CA flag will be set in the generated certificate. Defaults to ` + "`" + `false` + "`" + `, meaning that the certificate does not represent a certificate authority.`,
+				},
+				resource.Attribute{
+					Name:        "set_subject_key_id",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, the certificate will include the subject key identifier. Defaults to ` + "`" + `false` + "`" + `, in which case the subject key identifier is not set at all. The ` + "`" + `allowed_uses` + "`" + ` list accepts the following keywords, combining the set of flags defined by both [Key Usage](https://tools.ietf.org/html/rfc5280#section-4.2.1.3) and [Extended Key Usage](https://tools.ietf.org/html/rfc5280#section-4.2.1.12) in [RFC5280](https://tools.ietf.org/html/rfc5280):`,
 				},
 				resource.Attribute{
 					Name:        "cert_pem",
@@ -232,12 +240,20 @@ var (
 					Description: `(Optional) List of IP addresses for which a certificate is being requested.`,
 				},
 				resource.Attribute{
+					Name:        "uris",
+					Description: `(Optional) List of URIs for which a certificate is being requested.`,
+				},
+				resource.Attribute{
 					Name:        "early_renewal_hours",
 					Description: `(Optional) If set, the resource will consider the certificate to have expired the given number of hours before its actual expiry time. This can be useful to deploy an updated certificate in advance of the expiration of the current certificate. Note however that the old certificate remains valid until its true expiration time, since this resource does not (and cannot) support certificate revocation. Note also that this advance update can only be performed should the Terraform configuration be applied during the early renewal period.`,
 				},
 				resource.Attribute{
 					Name:        "is_ca_certificate",
-					Description: `(Optional) Boolean controlling whether the CA flag will be set in the generated certificate. Defaults to ` + "`" + `false` + "`" + `, meaning that the certificate does not represent a certificate authority. The ` + "`" + `allowed_uses` + "`" + ` list accepts the following keywords, combining the set of flags defined by both [Key Usage](https://tools.ietf.org/html/rfc5280#section-4.2.1.3) and [Extended Key Usage](https://tools.ietf.org/html/rfc5280#section-4.2.1.12) in [RFC5280](https://tools.ietf.org/html/rfc5280):`,
+					Description: `(Optional) Boolean controlling whether the CA flag will be set in the generated certificate. Defaults to ` + "`" + `false` + "`" + `, meaning that the certificate does not represent a certificate authority.`,
+				},
+				resource.Attribute{
+					Name:        "set_subject_key_id",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, the certificate will include the subject key identifier. Defaults to ` + "`" + `false` + "`" + `, in which case the subject key identifier is not set at all. The ` + "`" + `allowed_uses` + "`" + ` list accepts the following keywords, combining the set of flags defined by both [Key Usage](https://tools.ietf.org/html/rfc5280#section-4.2.1.3) and [Extended Key Usage](https://tools.ietf.org/html/rfc5280#section-4.2.1.12) in [RFC5280](https://tools.ietf.org/html/rfc5280):`,
 				},
 				resource.Attribute{
 					Name:        "cert_pem",

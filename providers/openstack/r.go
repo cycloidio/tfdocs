@@ -11,6 +11,258 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "openstack_blockstorage_quotaset_v2",
+			Category:         "Block Storage Resources",
+			ShortDescription: `Manages a V2 quotaset resource within OpenStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"block",
+				"storage",
+				"blockstorage",
+				"quotaset",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to create the volume. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) ID of the project to manage quotas. Changing this creates a new quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `(Optional) Quota value for volumes. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots",
+					Description: `(Optional) Quota value for snapshots. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "gigabytes",
+					Description: `(Optional) Quota value for gigabytes. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "per_volume_gigabytes",
+					Description: `(Optional) Quota value for gigabytes per volume . Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `(Optional) Quota value for backups. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "backup_gigabytes",
+					Description: `(Optional) Quota value for backup gigabytes. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `(Optional) Quota value for groups. Changing this updates the existing quotaset. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "per_volume_gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `See Argument Reference above. ## Import Quotasets can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_blockstorage_quotaset_v2.quotaset_1 2a0f2240-c5e6-41de-896d-e80d97428d6b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "per_volume_gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `See Argument Reference above. ## Import Quotasets can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_blockstorage_quotaset_v2.quotaset_1 2a0f2240-c5e6-41de-896d-e80d97428d6b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_blockstorage_quotaset_v3",
+			Category:         "Block Storage Resources",
+			ShortDescription: `Manages a V3 quotaset resource within OpenStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"block",
+				"storage",
+				"blockstorage",
+				"quotaset",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to create the volume. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) ID of the project to manage quotas. Changing this creates a new quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `(Optional) Quota value for volumes. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots",
+					Description: `(Optional) Quota value for snapshots. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "gigabytes",
+					Description: `(Optional) Quota value for gigabytes. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "per_volume_gigabytes",
+					Description: `(Optional) Quota value for gigabytes per volume . Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `(Optional) Quota value for backups. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "backup_gigabytes",
+					Description: `(Optional) Quota value for backup gigabytes. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `(Optional) Quota value for groups. Changing this updates the existing quotaset. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "per_volume_gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `See Argument Reference above. ## Import Quotasets can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_blockstorage_quotaset_v3.quotaset_1 2a0f2240-c5e6-41de-896d-e80d97428d6b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volumes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "snapshots",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "per_volume_gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_gigabytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `See Argument Reference above. ## Import Quotasets can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_blockstorage_quotaset_v3.quotaset_1 2a0f2240-c5e6-41de-896d-e80d97428d6b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "openstack_blockstorage_volume_attach_v2",
 			Category:         "Block Storage Resources",
 			ShortDescription: `Creates an attachment connection to a Block Storage volume`,
@@ -1013,7 +1265,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_groups",
-					Description: `(Optional) An array of one or more security group names to associate with the server. Changing this results in adding/removing security groups from the existing server.`,
+					Description: `(Optional) An array of one or more security group names or ids to associate with the server. Changing this results in adding/removing security groups from the existing server.`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -2893,6 +3145,110 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "openstack_identity_endpoint_v3",
+			Category:         "Identity Resources",
+			ShortDescription: `Manages a V3 Endpoint resource within OpenStack Keystone.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"endpoint",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V3 Keystone client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The endpoint name.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_region",
+					Description: `(Required) The endpoint region. The ` + "`" + `region` + "`" + ` and ` + "`" + `endpoint_region` + "`" + ` can be different.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The endpoint url.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `(Optional) The endpoint interface. Valid values are ` + "`" + `public` + "`" + `, ` + "`" + `internal` + "`" + ` and ` + "`" + `admin` + "`" + `. Default value is ` + "`" + `public` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `(Required) The endpoint service ID. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the endpoint. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The service name of the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `The service type of the endpoint. ## Import Endpoints can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_identity_endpoint_v3.endpoint_1 5392472b-106a-4845-90c6-7c8445f18770 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "interface",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The service name of the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `The service type of the endpoint. ## Import Endpoints can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_identity_endpoint_v3.endpoint_1 5392472b-106a-4845-90c6-7c8445f18770 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "openstack_identity_project_v3",
 			Category:         "Identity Resources",
 			ShortDescription: `Manages a V3 Project resource within OpenStack Keystone.`,
@@ -3077,6 +3433,82 @@ var (
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above. ## Import Roles can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_identity_role_v3.role_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_identity_service_v3",
+			Category:         "Identity Resources",
+			ShortDescription: `Manages a V3 Service resource within OpenStack Keystone.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"service",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V3 Keystone client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The service name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The service description.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The service type.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The service status. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found service. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_identity_service_v3.service_1 6688e967-158a-496f-a224-cae3414e6b61 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_identity_service_v3.service_1 6688e967-158a-496f-a224-cae3414e6b61 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3397,6 +3829,342 @@ var (
 				resource.Attribute{
 					Name:        "visibility",
 					Description: `See Argument Reference above. ## Notes ### Properties This resource supports the ability to add properties to a resource during creation as well as add, update, and delete properties during an update of this resource. Newer versions of OpenStack are adding some read-only properties to each image. These properties start with the prefix ` + "`" + `os_` + "`" + `. If these properties are detected, this resource will automatically reconcile these with the user-provided properties. In addition, the ` + "`" + `direct_url` + "`" + ` property is also automatically reconciled if the Image Service set it. ## Import Images can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_images_image_v2.rancheros 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_keymanager_container_v1",
+			Category:         "Key Manager Resources",
+			ShortDescription: `Manages a V1 Barbican container resource within OpenStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"key",
+				"manager",
+				"keymanager",
+				"container",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V1 KeyManager client. A KeyManager client is needed to create a container. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new V1 container.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the Container. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Used to indicate the type of container. Must be one of ` + "`" + `generic` + "`" + `, ` + "`" + `rsa` + "`" + ` or ` + "`" + `certificate` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secret_refs",
+					Description: `(Optional) A set of dictionaries containing references to secrets. The structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the secret reference. The reference names must correspond the container type, more details are available [here](https://docs.openstack.org/barbican/stein/api/reference/containers.html).`,
+				},
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `(Required) The secret reference / where to find the secret, URL. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "container_ref",
+					Description: `The container reference / where to find the container.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_refs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the container.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the container.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the container was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the container was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "consumers",
+					Description: `The list of the container consumers. The structure is described below. The ` + "`" + `consumers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the consumer.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The consumer URL. ## Import Containers can be imported using the container id (the last part of the container reference), e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_keymanager_container_v1.container_1 0c6cd26a-c012-4d7b-8034-057c0f1c2953 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "container_ref",
+					Description: `The container reference / where to find the container.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_refs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the container.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the container.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the container was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the container was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "consumers",
+					Description: `The list of the container consumers. The structure is described below. The ` + "`" + `consumers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the consumer.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The consumer URL. ## Import Containers can be imported using the container id (the last part of the container reference), e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_keymanager_container_v1.container_1 0c6cd26a-c012-4d7b-8034-057c0f1c2953 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_keymanager_secret_v1",
+			Category:         "Key Manager Resources",
+			ShortDescription: `Manages a V1 Barbican secret resource within OpenStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"key",
+				"manager",
+				"keymanager",
+				"secret",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V1 KeyManager client. A KeyManager client is needed to create a secret. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new V1 secret.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the Secret. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "bit_length",
+					Description: `(Optional) Metadata provided by a user or system for informational purposes.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `(Optional) Metadata provided by a user or system for informational purposes.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) Metadata provided by a user or system for informational purposes.`,
+				},
+				resource.Attribute{
+					Name:        "secret_type",
+					Description: `(Optional) Used to indicate the type of secret being stored. For more information see [Secret types](https://docs.openstack.org/barbican/latest/api/reference/secret_types.html).`,
+				},
+				resource.Attribute{
+					Name:        "payload",
+					Description: `(Optional) The secret's data to be stored.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_type",
+					Description: `(Optional) (required if`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_encoding",
+					Description: `(Optional) (required if`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `(Optional) The expiration time of the secret in the RFC3339 timestamp format (e.g. ` + "`" + `2019-03-09T12:58:49Z` + "`" + `). If omitted, a secret will never expire. Changing this creates a new secret.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) Additional Metadata for the secret. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `The secret reference / where to find the secret.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bit_length",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "payload",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_encoding",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "content_types",
+					Description: `The map of the content types, assigned on the secret.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the secret was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "all_metadata",
+					Description: `The map of metadata, assigned on the secret, which has been explicitly and implicitly added. ## Import Secrets can be imported using the secret id (the last part of the secret reference), e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_keymanager_secret_v1.secret_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `The secret reference / where to find the secret.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bit_length",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "payload",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_encoding",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "content_types",
+					Description: `The map of the content types, assigned on the secret.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the secret was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "all_metadata",
+					Description: `The map of metadata, assigned on the secret, which has been explicitly and implicitly added. ## Import Secrets can be imported using the secret id (the last part of the secret reference), e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_keymanager_secret_v1.secret_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4442,7 +5210,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `See Argument Reference above. ## Import Load Balancer Pool Monitor can be imported using the Monitor ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_monitor_v2.monitor_1 47c26fc3-2403-427a-8c79-1589bd0533c2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above. ## Import Load Balancer Pool Monitor can be imported using the Monitor ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_monitor_v2.monitor_1 47c26fc3-2403-427a-8c79-1589bd0533c2 ` + "`" + `` + "`" + `` + "`" + ` In case of using OpenContrail, the import may not work properly. If you face an issue, try to import the monitor providing its parent pool ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_monitor_v2.monitor_1 47c26fc3-2403-427a-8c79-1589bd0533c2/708bc224-0f8c-4981-ac82-97095fe051b6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4484,7 +5252,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `See Argument Reference above. ## Import Load Balancer Pool Monitor can be imported using the Monitor ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_monitor_v2.monitor_1 47c26fc3-2403-427a-8c79-1589bd0533c2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above. ## Import Load Balancer Pool Monitor can be imported using the Monitor ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_monitor_v2.monitor_1 47c26fc3-2403-427a-8c79-1589bd0533c2 ` + "`" + `` + "`" + `` + "`" + ` In case of using OpenContrail, the import may not work properly. If you face an issue, try to import the monitor providing its parent pool ID: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_monitor_v2.monitor_1 47c26fc3-2403-427a-8c79-1589bd0533c2/708bc224-0f8c-4981-ac82-97095fe051b6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6140,6 +6908,91 @@ var (
 				resource.Attribute{
 					Name:        "all_tags",
 					Description: `The collection of tags assigned on the QoS policy, which have been explicitly and implicitly added. ## Import QoS Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_networking_qos_policy_v2.qos_policy_1 d6ae28ce-fcb5-4180-aa62-d260a27e09ae ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_networking_rbac_policy_v2",
+			Category:         "Networking Resources",
+			ShortDescription: `Creates an RBAC policy for an OpenStack V2 resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"networking",
+				"rbac",
+				"policy",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to configure a routing entry on a subnet. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new routing entry.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Action for the RBAC policy. Can either be ` + "`" + `access_as_external` + "`" + ` or ` + "`" + `access_as_shared` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `(Required) The ID of the ` + "`" + `object_type` + "`" + ` resource. An ` + "`" + `object_type` + "`" + ` of ` + "`" + `network` + "`" + ` returns a network ID and an ` + "`" + `object_type` + "`" + ` of ` + "`" + `qos_policy` + "`" + ` returns a QoS ID.`,
+				},
+				resource.Attribute{
+					Name:        "object_type",
+					Description: `(Required) The type of the object that the RBAC policy affects. Can either be ` + "`" + `qos-policy` + "`" + ` or ` + "`" + `network` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "target_tenant",
+					Description: `(Required) The ID of the tenant to which the RBAC policy will be enforced. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "object_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "target_tenant",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The owner of the RBAC policy. ## Notes ## Import RBAC policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_networking_rbac_policy_v2.rbac_policy_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "object_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "object_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "target_tenant",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The owner of the RBAC policy. ## Notes ## Import RBAC policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_networking_rbac_policy_v2.rbac_policy_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7831,7 +8684,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "openstack_sharedfilesystem_securityservice_v2",
-			Category:         "Shared File System",
+			Category:         "Shared File System Resources",
 			ShortDescription: `Configure a Shared File System security service.`,
 			Description:      ``,
 			Keywords: []string{
@@ -7986,7 +8839,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "openstack_sharedfilesystem_share_access_v2",
-			Category:         "Shared File System",
+			Category:         "Shared File System Resources",
 			ShortDescription: `Configure a Shared File System share access list.`,
 			Description:      ``,
 			Keywords: []string{
@@ -8082,7 +8935,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "openstack_sharedfilesystem_share_v2",
-			Category:         "Shared File System",
+			Category:         "Shared File System Resources",
 			ShortDescription: `Configure a Shared File System share.`,
 			Description:      ``,
 			Keywords: []string{
@@ -8208,7 +9061,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "share_server_id",
-					Description: `The UUID of the share server. ## Import This resource can be imported by specifying the ID of the share: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_sharedfilesystem_share_v2.share_1 <id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The UUID of the share server.`,
+				},
+				resource.Attribute{
+					Name:        "all_metadata",
+					Description: `The map of metadata, assigned on the share, which has been explicitly and implicitly added. ## Import This resource can be imported by specifying the ID of the share: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_sharedfilesystem_share_v2.share_1 <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8282,14 +9139,18 @@ var (
 				},
 				resource.Attribute{
 					Name:        "share_server_id",
-					Description: `The UUID of the share server. ## Import This resource can be imported by specifying the ID of the share: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_sharedfilesystem_share_v2.share_1 <id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The UUID of the share server.`,
+				},
+				resource.Attribute{
+					Name:        "all_metadata",
+					Description: `The map of metadata, assigned on the share, which has been explicitly and implicitly added. ## Import This resource can be imported by specifying the ID of the share: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_sharedfilesystem_share_v2.share_1 <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "openstack_sharedfilesystem_sharenetwork_v2",
-			Category:         "Shared File System",
+			Category:         "Shared File System Resources",
 			ShortDescription: `Configure a Shared File System share network.`,
 			Description:      ``,
 			Keywords: []string{
@@ -9201,80 +10062,87 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"openstack_blockstorage_volume_attach_v2":            0,
-		"openstack_blockstorage_volume_attach_v3":            1,
-		"openstack_blockstorage_volume_v1":                   2,
-		"openstack_blockstorage_volume_v2":                   3,
-		"openstack_blockstorage_volume_v3":                   4,
-		"openstack_compute_flavor_access_v2":                 5,
-		"openstack_compute_flavor_v2":                        6,
-		"openstack_compute_floatingip_associate_v2":          7,
-		"openstack_compute_floatingip_v2":                    8,
-		"openstack_compute_instance_v2":                      9,
-		"openstack_compute_interface_attach_v2":              10,
-		"openstack_compute_keypair_v2":                       11,
-		"openstack_compute_secgroup_v2":                      12,
-		"openstack_compute_servergroup_v2":                   13,
-		"openstack_compute_volume_attach_v2":                 14,
-		"openstack_containerinfra_cluster_v1":                15,
-		"openstack_containerinfra_clustertemplate_v1":        16,
-		"openstack_db_configuration_v1":                      17,
-		"openstack_db_database_v1":                           18,
-		"openstack_db_instance_v1":                           19,
-		"openstack_db_user_v1":                               20,
-		"openstack_dns_recordset_v2":                         21,
-		"openstack_dns_zone_v2":                              22,
-		"openstack_fw_firewall_v1":                           23,
-		"openstack_fw_policy_v1":                             24,
-		"openstack_fw_rule_v1":                               25,
-		"openstack_identity_application_credential_v3":       26,
-		"openstack_identity_project_v3":                      27,
-		"openstack_identity_role_assignment_v3":              28,
-		"openstack_identity_role_v3":                         29,
-		"openstack_identity_user_v3":                         30,
-		"openstack_images_image_v2":                          31,
-		"openstack_lb_l7policy_v2":                           32,
-		"openstack_lb_l7rule_v2":                             33,
-		"openstack_lb_listener_v2":                           34,
-		"openstack_lb_loadbalancer_v2":                       35,
-		"openstack_lb_member_v1":                             36,
-		"openstack_lb_member_v2":                             37,
-		"openstack_lb_monitor_v1":                            38,
-		"openstack_lb_monitor_v2":                            39,
-		"openstack_lb_pool_v1":                               40,
-		"openstack_lb_pool_v2":                               41,
-		"openstack_lb_vip_v1":                                42,
-		"openstack_networking_addressscope_v2":               43,
-		"openstack_networking_floatingip_associate_v2":       44,
-		"openstack_networking_floatingip_v2":                 45,
-		"openstack_networking_network_v2":                    46,
-		"openstack_networking_port_secgroup_associate_v2":    47,
-		"openstack_networking_port_v2":                       48,
-		"openstack_networking_qos_bandwidth_limit_rule_v2":   49,
-		"openstack_networking_qos_dscp_marking_rule_v2":      50,
-		"openstack_networking_qos_minimum_bandwidth_rule_v2": 51,
-		"openstack_networking_qos_policy_v2":                 52,
-		"openstack_networking_router_interface_v2":           53,
-		"openstack_networking_router_route_v2":               54,
-		"openstack_networking_router_v2":                     55,
-		"openstack_networking_secgroup_rule_v2":              56,
-		"openstack_networking_secgroup_v2":                   57,
-		"openstack_networking_subnet_route_v2":               58,
-		"openstack_networking_subnet_v2":                     59,
-		"openstack_networking_subnetpool_v2":                 60,
-		"openstack_networking_trunk_v2":                      61,
-		"openstack_objectstorage_container_v1":               62,
-		"openstack_objectstorage_object_v1":                  63,
-		"openstack_objectstorage_tempurl_v1":                 64,
-		"openstack_sharedfilesystem_securityservice_v2":      65,
-		"openstack_sharedfilesystem_share_access_v2":         66,
-		"openstack_sharedfilesystem_share_v2":                67,
-		"openstack_sharedfilesystem_sharenetwork_v2":         68,
-		"openstack_vpnaas_endpoint_group_v2":                 69,
-		"openstack_vpnaas_ike_policy_v2":                     70,
-		"openstack_vpnaas_ipsec_policy_v2":                   71,
-		"openstack_vpnaas_service_v2":                        72,
-		"openstack_vpnaas_site_connection_v2":                73,
+		"openstack_blockstorage_quotaset_v2":                 0,
+		"openstack_blockstorage_quotaset_v3":                 1,
+		"openstack_blockstorage_volume_attach_v2":            2,
+		"openstack_blockstorage_volume_attach_v3":            3,
+		"openstack_blockstorage_volume_v1":                   4,
+		"openstack_blockstorage_volume_v2":                   5,
+		"openstack_blockstorage_volume_v3":                   6,
+		"openstack_compute_flavor_access_v2":                 7,
+		"openstack_compute_flavor_v2":                        8,
+		"openstack_compute_floatingip_associate_v2":          9,
+		"openstack_compute_floatingip_v2":                    10,
+		"openstack_compute_instance_v2":                      11,
+		"openstack_compute_interface_attach_v2":              12,
+		"openstack_compute_keypair_v2":                       13,
+		"openstack_compute_secgroup_v2":                      14,
+		"openstack_compute_servergroup_v2":                   15,
+		"openstack_compute_volume_attach_v2":                 16,
+		"openstack_containerinfra_cluster_v1":                17,
+		"openstack_containerinfra_clustertemplate_v1":        18,
+		"openstack_db_configuration_v1":                      19,
+		"openstack_db_database_v1":                           20,
+		"openstack_db_instance_v1":                           21,
+		"openstack_db_user_v1":                               22,
+		"openstack_dns_recordset_v2":                         23,
+		"openstack_dns_zone_v2":                              24,
+		"openstack_fw_firewall_v1":                           25,
+		"openstack_fw_policy_v1":                             26,
+		"openstack_fw_rule_v1":                               27,
+		"openstack_identity_application_credential_v3":       28,
+		"openstack_identity_endpoint_v3":                     29,
+		"openstack_identity_project_v3":                      30,
+		"openstack_identity_role_assignment_v3":              31,
+		"openstack_identity_role_v3":                         32,
+		"openstack_identity_service_v3":                      33,
+		"openstack_identity_user_v3":                         34,
+		"openstack_images_image_v2":                          35,
+		"openstack_keymanager_container_v1":                  36,
+		"openstack_keymanager_secret_v1":                     37,
+		"openstack_lb_l7policy_v2":                           38,
+		"openstack_lb_l7rule_v2":                             39,
+		"openstack_lb_listener_v2":                           40,
+		"openstack_lb_loadbalancer_v2":                       41,
+		"openstack_lb_member_v1":                             42,
+		"openstack_lb_member_v2":                             43,
+		"openstack_lb_monitor_v1":                            44,
+		"openstack_lb_monitor_v2":                            45,
+		"openstack_lb_pool_v1":                               46,
+		"openstack_lb_pool_v2":                               47,
+		"openstack_lb_vip_v1":                                48,
+		"openstack_networking_addressscope_v2":               49,
+		"openstack_networking_floatingip_associate_v2":       50,
+		"openstack_networking_floatingip_v2":                 51,
+		"openstack_networking_network_v2":                    52,
+		"openstack_networking_port_secgroup_associate_v2":    53,
+		"openstack_networking_port_v2":                       54,
+		"openstack_networking_qos_bandwidth_limit_rule_v2":   55,
+		"openstack_networking_qos_dscp_marking_rule_v2":      56,
+		"openstack_networking_qos_minimum_bandwidth_rule_v2": 57,
+		"openstack_networking_qos_policy_v2":                 58,
+		"openstack_networking_rbac_policy_v2":                59,
+		"openstack_networking_router_interface_v2":           60,
+		"openstack_networking_router_route_v2":               61,
+		"openstack_networking_router_v2":                     62,
+		"openstack_networking_secgroup_rule_v2":              63,
+		"openstack_networking_secgroup_v2":                   64,
+		"openstack_networking_subnet_route_v2":               65,
+		"openstack_networking_subnet_v2":                     66,
+		"openstack_networking_subnetpool_v2":                 67,
+		"openstack_networking_trunk_v2":                      68,
+		"openstack_objectstorage_container_v1":               69,
+		"openstack_objectstorage_object_v1":                  70,
+		"openstack_objectstorage_tempurl_v1":                 71,
+		"openstack_sharedfilesystem_securityservice_v2":      72,
+		"openstack_sharedfilesystem_share_access_v2":         73,
+		"openstack_sharedfilesystem_share_v2":                74,
+		"openstack_sharedfilesystem_sharenetwork_v2":         75,
+		"openstack_vpnaas_endpoint_group_v2":                 76,
+		"openstack_vpnaas_ike_policy_v2":                     77,
+		"openstack_vpnaas_ipsec_policy_v2":                   78,
+		"openstack_vpnaas_service_v2":                        79,
+		"openstack_vpnaas_site_connection_v2":                80,
 	}
 )
 

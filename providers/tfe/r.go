@@ -11,6 +11,57 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "tfe_notification_configuration",
+			Category:         "Resources",
+			ShortDescription: `Manages notifications configurations.`,
+			Description:      ``,
+			Keywords: []string{
+				"notification",
+				"configuration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the notification configuration.`,
+				},
+				resource.Attribute{
+					Name:        "destination_type",
+					Description: `(Required) The type of notification configuration payload to send. Valid values are ` + "`" + `generic` + "`" + ` or ` + "`" + `slack` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether the notification configuration should be enabled or not. Disabled configurations will not send any notifications. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Optional) A write-only secure token for the notification configuration, which can be used by the receiving server to verify request authenticity when configured for notification configurations with a destination type of ` + "`" + `generic` + "`" + `. A token set for notification configurations with a destination type of ` + "`" + `slack` + "`" + ` is not allowed and will result in an error. Defaults to ` + "`" + `null` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "triggers",
+					Description: `(Optional) The array of triggers for which this notification configuration will send notifications. Valid values are ` + "`" + `run:created` + "`" + `, ` + "`" + `run:planning` + "`" + `, ` + "`" + `run:needs_attention` + "`" + `, ` + "`" + `run:applying` + "`" + ` ` + "`" + `run:completed` + "`" + `, ` + "`" + `run:errored` + "`" + `. If omitted, no notification triggers are configured.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The HTTP or HTTPS URL of the notification configuration where notification requests will be made.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_external_id",
+					Description: `(Required) The external id of the workspace that owns the notification configuration. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the notification configuration. ## Import Notification configurations can be imported; use ` + "`" + `<NOTIFICATION CONFIGURATION ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_notification_configuration.test nc-qV9JnKRkmtMa4zcA ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the notification configuration. ## Import Notification configurations can be imported; use ` + "`" + `<NOTIFICATION CONFIGURATION ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_notification_configuration.test nc-qV9JnKRkmtMa4zcA ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tfe_oauth_client",
 			Category:         "Resources",
 			ShortDescription: `Manages OAuth clients.`,
@@ -170,7 +221,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "organization",
-					Description: `(Required) Name of the organization. the policy set is ` + "`" + `global` + "`" + `, this value _must not_ be provided.`,
+					Description: `(Required) Name of the organization.`,
 				},
 				resource.Attribute{
 					Name:        "policies_path",
@@ -178,15 +229,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_ids",
-					Description: `(Optional) A list of Sentinel policy IDs.`,
+					Description: `(Optional) A list of Sentinel policy IDs. This value _must not_ be provided if ` + "`" + `vcs_repo` + "`" + ` is provided.`,
 				},
 				resource.Attribute{
 					Name:        "vcs_repo",
-					Description: `(Optional) Settings for the policy sets VCS repository. Forces a new resource if changed.`,
+					Description: `(Optional) Settings for the policy sets VCS repository. Forces a new resource if changed. This value _must not_ be provided if ` + "`" + `policy_ids` + "`" + ` are provided.`,
 				},
 				resource.Attribute{
 					Name:        "workspace_external_ids",
-					Description: `(Optional) A list of workspace external IDs. If ->`,
+					Description: `(Optional) A list of workspace external IDs. This value _must not_ be provided if ` + "`" + `global` + "`" + ` is provided. ->`,
 				},
 				resource.Attribute{
 					Name:        "identifier",
@@ -560,19 +611,20 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"tfe_oauth_client":       0,
-		"tfe_organization":       1,
-		"tfe_organization_token": 2,
-		"tfe_policy_set":         3,
-		"tfe_sentinel_policy":    4,
-		"tfe_ssh_key":            5,
-		"tfe_team":               6,
-		"tfe_team_access":        7,
-		"tfe_team_member":        8,
-		"tfe_team_members":       9,
-		"tfe_team_token":         10,
-		"tfe_variable":           11,
-		"tfe_workspace":          12,
+		"tfe_notification_configuration": 0,
+		"tfe_oauth_client":               1,
+		"tfe_organization":               2,
+		"tfe_organization_token":         3,
+		"tfe_policy_set":                 4,
+		"tfe_sentinel_policy":            5,
+		"tfe_ssh_key":                    6,
+		"tfe_team":                       7,
+		"tfe_team_access":                8,
+		"tfe_team_member":                9,
+		"tfe_team_members":               10,
+		"tfe_team_token":                 11,
+		"tfe_variable":                   12,
+		"tfe_workspace":                  13,
 	}
 )
 

@@ -11,6 +11,107 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "fastly_service_acl_entries_v1",
+			Category:         "Resources",
+			ShortDescription: `Defines a set of Fastly ACL entries that can be used to populate a service ACL.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"acl",
+				"entries",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `(Required) The ID of the Service that the ACL belongs to`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `(Required) The ID of the ACL that the items belong to`,
+				},
+				resource.Attribute{
+					Name:        "entry",
+					Description: `(Optional) A Set ACL entries that are applied to the service. Defined below The ` + "`" + `entry` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required, string) An IP address that is the focus for the ACL`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `(Optional, string) An optional subnet mask applied to the IP address`,
+				},
+				resource.Attribute{
+					Name:        "negated",
+					Description: `(Optional, boolean) A boolean that will negate the match if true`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `(Optional, string) A personal freeform descriptive note ## Attributes Reference`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fastly_service_dictionary_items_v1",
+			Category:         "Resources",
+			ShortDescription: `Provides a grouping of Fastly dictionary items that can be applied to a service.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"dictionary",
+				"items",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `(Required) The ID of the service that the dictionary belongs to`,
+				},
+				resource.Attribute{
+					Name:        "dictionary_id",
+					Description: `(Required) The ID of the dictionary that the items belong to`,
+				},
+				resource.Attribute{
+					Name:        "items",
+					Description: `(Optional) A map representing an entry in the dictionary, (key/value) ## Attributes Reference`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "fastly_service_dynamic_snippet_content_v1",
+			Category:         "Resources",
+			ShortDescription: `Provides a means to define blocks of VCL logic that is inserted into your service through Fastly dynamic snippets.`,
+			Description:      ``,
+			Keywords: []string{
+				"service",
+				"dynamic",
+				"snippet",
+				"content",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_id",
+					Description: `(Required) The ID of the service that the dynamic snippet belongs to`,
+				},
+				resource.Attribute{
+					Name:        "snippet_id",
+					Description: `(Required) The ID of the dynamic snippet that the content belong to`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) The VCL code that specifies exactly what the snippet does. ## Attributes Reference`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "fastly_service_v1",
 			Category:         "Resources",
 			ShortDescription: `Provides an Fastly Service`,
@@ -66,7 +167,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "healthcheck",
-					Description: `(Optional) Automated healthchecks on the cache that can change how fastly interacts with the cache based on its health.`,
+					Description: `(Optional) Automated healthchecks on the cache that can change how Fastly interacts with the cache based on its health.`,
 				},
 				resource.Attribute{
 					Name:        "default_host",
@@ -129,8 +230,20 @@ var (
 					Description: `(Optional) A set of custom, "regular" (non-dynamic) VCL Snippet configuration blocks. Defined below.`,
 				},
 				resource.Attribute{
+					Name:        "dynamicsnippet",
+					Description: `(Optional) A set of custom, "dynamic" VCL Snippet configuration blocks. Defined below.`,
+				},
+				resource.Attribute{
 					Name:        "vcl",
-					Description: `(Optional) A set of custom VCL configuration blocks. The ability to upload custom VCL code is not enabled by default for new Fastly accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details). The ` + "`" + `domain` + "`" + ` block supports:`,
+					Description: `(Optional) A set of custom VCL configuration blocks. The ability to upload custom VCL code is not enabled by default for new Fastly accounts (see the [Fastly documentation](https://docs.fastly.com/guides/vcl/uploading-custom-vcl) for details).`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) A set of ACL configuration blocks. Defined below.`,
+				},
+				resource.Attribute{
+					Name:        "dictionary",
+					Description: `(Optional) A set of dictionaries that allow the storing of key values pair for use within VCL functions. Defined below. The ` + "`" + `domain` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -854,7 +967,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A unique name for the VCL Snippet configuration block.`,
+					Description: `(Required) A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The location in generated VCL where the snippet should be placed (can be one of ` + "`" + `init` + "`" + `, ` + "`" + `recv` + "`" + `, ` + "`" + `hit` + "`" + `, ` + "`" + `miss` + "`" + `, ` + "`" + `pass` + "`" + `, ` + "`" + `fetch` + "`" + `, ` + "`" + `error` + "`" + `, ` + "`" + `deliver` + "`" + `, ` + "`" + `log` + "`" + ` or ` + "`" + `none` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority determines the ordering for multiple snippets. Lower numbers execute first. Defaults to ` + "`" + `100` + "`" + `. The ` + "`" + `dynamicsnippet` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name that is unique across "regular" and "dynamic" VCL Snippet configuration blocks.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -874,16 +999,52 @@ var (
 				},
 				resource.Attribute{
 					Name:        "main",
-					Description: `(Optional) If ` + "`" + `true` + "`" + `, use this block as the main configuration. If ` + "`" + `false` + "`" + `, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, use this block as the main configuration. If ` + "`" + `false` + "`" + `, use this block as an includable library. Only a single VCL block can be marked as the main block. Default is ` + "`" + `false` + "`" + `. The ` + "`" + `acl` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name to identify this ACL. The ` + "`" + `dictionary` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name to identify this dictionary. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "snippet_id",
+					Description: `The ID of the dynamic snippet. The ` + "`" + `acl` + "`" + ` block exports:`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `The ID of the ACL. The ` + "`" + `dictionary` + "`" + ` block exports:`,
+				},
+				resource.Attribute{
+					Name:        "dictionary_id",
+					Description: `The ID of the dictionary. [fastly-s3]: https://docs.fastly.com/guides/integrations/amazon-s3 [fastly-cname]: https://docs.fastly.com/guides/basic-setup/adding-cname-records [fastly-conditionals]: https://docs.fastly.com/guides/conditions/using-conditions [fastly-sumologic]: https://docs.fastly.com/api/logging#logging_sumologic [fastly-gcs]: https://docs.fastly.com/api/logging#logging_gcs ## Import Fastly Service can be imported using their service ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import fastly_service_v1.demo xxxxxxxxxxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "snippet_id",
+					Description: `The ID of the dynamic snippet. The ` + "`" + `acl` + "`" + ` block exports:`,
+				},
+				resource.Attribute{
+					Name:        "acl_id",
+					Description: `The ID of the ACL. The ` + "`" + `dictionary` + "`" + ` block exports:`,
+				},
+				resource.Attribute{
+					Name:        "dictionary_id",
+					Description: `The ID of the dictionary. [fastly-s3]: https://docs.fastly.com/guides/integrations/amazon-s3 [fastly-cname]: https://docs.fastly.com/guides/basic-setup/adding-cname-records [fastly-conditionals]: https://docs.fastly.com/guides/conditions/using-conditions [fastly-sumologic]: https://docs.fastly.com/api/logging#logging_sumologic [fastly-gcs]: https://docs.fastly.com/api/logging#logging_gcs ## Import Fastly Service can be imported using their service ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import fastly_service_v1.demo xxxxxxxxxxxxxxxxxxxx ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"fastly_service_v1": 0,
+		"fastly_service_acl_entries_v1":             0,
+		"fastly_service_dictionary_items_v1":        1,
+		"fastly_service_dynamic_snippet_content_v1": 2,
+		"fastly_service_v1":                         3,
 	}
 )
 

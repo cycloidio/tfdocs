@@ -105,7 +105,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring_view_jobs",
-					Description: `(Optional) Whether the apikey can view monitoring jobs.`,
+					Description: `(Optional) Whether the apikey can view monitoring jobs. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -130,7 +130,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Optional) The feeds configuration matching the specification in 'feed\_config' from /data/sourcetypes.`,
+					Description: `(Optional) The feeds configuration matching the specification in ` + "`" + `feed_config` + "`" + ` from /data/sourcetypes. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -155,7 +155,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Optional) The data source configuration, determined by its type.`,
+					Description: `(Optional) The data source configuration, determined by its type, matching the specification in ` + "`" + `config` + "`" + ` from /data/sourcetypes. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -176,15 +176,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "job_type",
-					Description: `(Required) The type of monitoring job to be run.`,
+					Description: `(Required) The type of monitoring job to be run. See NS1 API docs for supported values.`,
 				},
 				resource.Attribute{
 					Name:        "active",
-					Description: `(Required) Indicates if the job is active or temporaril.y disabled.`,
+					Description: `(Required) Indicates if the job is active or temporarily disabled.`,
 				},
 				resource.Attribute{
 					Name:        "regions",
-					Description: `(Required) The list of region codes in which to run the monitoring job.`,
+					Description: `(Required) The list of region codes in which to run the monitoring job. See NS1 API docs for supported values.`,
 				},
 				resource.Attribute{
 					Name:        "frequency",
@@ -196,7 +196,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy",
-					Description: `(Required) The policy for determining the monitor's global status based on the status of the job in all regions.`,
+					Description: `(Required) The policy for determining the monitor's global status based on the status of the job in all regions. See NS1 API docs for supported values.`,
 				},
 				resource.Attribute{
 					Name:        "config",
@@ -240,7 +240,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) The value to compare to.`,
+					Description: `(Required) The value to compare to. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -269,7 +269,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Required) Configuration details for the given notifier type.`,
+					Description: `(Required) Configuration details for the given notifier type. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -309,20 +309,28 @@ var (
 					Description: `(Optional) Whether to use EDNS client subnet data when available(in filter chain).`,
 				},
 				resource.Attribute{
+					Name:        "meta",
+					Description: `(Optional) meta is supported at the ` + "`" + `record` + "`" + ` level. [Meta](#meta-3) is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "answers",
-					Description: `(Optional) One or more NS1 answers for the records' specified type. Answers are documented below.`,
+					Description: `(Optional) One or more NS1 answers for the records' specified type. [Answers](#answers-1) are documented below.`,
 				},
 				resource.Attribute{
 					Name:        "filters",
-					Description: `(Optional) One or more NS1 filters for the record(order matters). Filters are documented below. Answers (` + "`" + `answers` + "`" + `) support the following:`,
+					Description: `(Optional) One or more NS1 filters for the record(order matters). [Filters](#filters-1) are documented below. #### Answers ` + "`" + `answers` + "`" + ` support the following:`,
 				},
 				resource.Attribute{
 					Name:        "answer",
 					Description: `(Required) Space delimited string of RDATA fields dependent on the record type. A: answer = "1.2.3.4" CNAME: answer = "www.example.com" MX: answer = "5 mail.example.com" SRV: answer = "10 0 2380 node-1.example.com" SPF: answer = "v=DKIM1; k=rsa; p=XXXXXXXX"`,
 				},
 				resource.Attribute{
-					Name:        "region",
-					Description: `(Optional) The region (or group) name that this answer belongs to. Regions must be sorted alphanumberically by name, otherwise Terraform will detect changes to the record when none actually exist. Filters (` + "`" + `filters` + "`" + `) support the following:`,
+					Name:        "regions",
+					Description: `(Optional) One or more regions (or groups) that this answer belongs to. Regions must be sorted alphanumerically by name, otherwise Terraform will detect changes to the record when none actually exist. [Regions](#regions-1) are documented below.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `(Optional) meta is supported at the ` + "`" + `answer` + "`" + ` level. [Meta](#meta-3) is documented below. #### Filters ` + "`" + `filters` + "`" + ` support the following:`,
 				},
 				resource.Attribute{
 					Name:        "filter",
@@ -334,7 +342,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "config",
-					Description: `(Optional) The filters' configuration. Simple key/value pairs determined by the filter type.`,
+					Description: `(Optional) The filters' configuration. Simple key/value pairs determined by the filter type. #### Regions ` + "`" + `regions` + "`" + ` support the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Region (or group) name.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `(Optional) meta is supported at the ` + "`" + `regions` + "`" + ` level. [Meta](#meta-3) is documented below. #### Meta Metadata (` + "`" + `meta` + "`" + `) is a bit tricky at the moment. For "static" values it works as you would expect, but when a value is a ` + "`" + `datafeed` + "`" + `, it should be represented as "escaped" JSON. See the [Example Usage](#example-usage) above for illustration of this. Note that variables are still supported in the escaped JSON format. Note also that we intend to fix up this "escaped" JSON stuff as soon as possible, so please bear with us and plan accordingly. Since this resource supports [import](#import), you may find it helpful to set up some ` + "`" + `meta` + "`" + ` fields via the web portal or API, and use the results from import to ensure that everything is properly escaped and evaluated. See [NS1 API](https://ns1.com/api#get-available-metadata-fields) for the most up-to-date list of available ` + "`" + `meta` + "`" + ` fields. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## Import ` + "`" + `terraform import ns1_record.<name> <zone>/<domain>/<type>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_record.www terraform.example.io/www.terraform.example.io/CNAME` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -427,7 +443,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring_view_jobs",
-					Description: `(Optional) Whether the team can view monitoring jobs.`,
+					Description: `(Optional) Whether the team can view monitoring jobs. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -456,7 +472,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notify",
-					Description: `(Required) The Whether or not to notify the user of specified events. Only ` + "`" + `billing` + "`" + ` is available currently.`,
+					Description: `(Required) Whether or not to notify the user of specified events. Only ` + "`" + `billing` + "`" + ` is available currently.`,
 				},
 				resource.Attribute{
 					Name:        "teams",
@@ -536,7 +552,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring_view_jobs",
-					Description: `(Optional) Whether the user can view monitoring jobs.`,
+					Description: `(Optional) Whether the user can view monitoring jobs. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -560,31 +576,56 @@ var (
 					Description: `(Optional) The target zone(domain name) to link to.`,
 				},
 				resource.Attribute{
+					Name:        "primary",
+					Description: `(Optional) The primary zones' IP. This makes the zone a secondary.`,
+				},
+				resource.Attribute{
+					Name:        "additional_primaries",
+					Description: `(Optional) List of additional IPs for the primary zone.`,
+				},
+				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional) The SOA TTL.`,
+					Description: `(Optional/Computed) The SOA TTL.`,
 				},
 				resource.Attribute{
 					Name:        "refresh",
-					Description: `(Optional) The SOA Refresh.`,
+					Description: `(Optional/Computed) The SOA Refresh.`,
 				},
 				resource.Attribute{
 					Name:        "retry",
-					Description: `(Optional) The SOA Retry.`,
+					Description: `(Optional/Computed) The SOA Retry.`,
 				},
 				resource.Attribute{
 					Name:        "expiry",
-					Description: `(Optional) The SOA Expiry.`,
+					Description: `(Optional/Computed) The SOA Expiry.`,
 				},
 				resource.Attribute{
 					Name:        "nx_ttl",
-					Description: `(Optional) The SOA NX TTL.`,
+					Description: `(Optional/Computed) The SOA NX TTL.`,
 				},
 				resource.Attribute{
-					Name:        "primary",
-					Description: `(Optional) The primary zones' ip. This makes the zone a secondary.`,
+					Name:        "networks",
+					Description: `(Optional/Computed) List of network IDs for which the zone is available. If no network is provided, the zone will be created in network 0, the primary NS1 Global Network. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `(Computed) Authoritative Name Servers.`,
+				},
+				resource.Attribute{
+					Name:        "hostmaster",
+					Description: `(Computed) The SOA Hostmaster. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `(Computed) Authoritative Name Servers.`,
+				},
+				resource.Attribute{
+					Name:        "hostmaster",
+					Description: `(Computed) The SOA Hostmaster. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ``,
+				},
+			},
 		},
 	}
 

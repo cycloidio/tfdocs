@@ -299,6 +299,48 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_custom_ssl",
+			Category:         "Resources",
+			ShortDescription: `!- Provides a Cloudflare custom ssl resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"custom",
+				"ssl",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone id to the custom ssl cert should be added.`,
+				},
+				resource.Attribute{
+					Name:        "custom_ssl_options",
+					Description: `(Required) The certificate, private key and associated optional parameters, such as bundle_method, geo_restrictions, and type.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required) Certificate certificate and the intermediate(s)`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) Certificate's private key`,
+				},
+				resource.Attribute{
+					Name:        "bundle_method",
+					Description: `(Optional) Method of building intermediate certificate chain. A ubiquitous bundle has the highest probability of being verified everywhere, even by clients using outdated or unusual trust stores. An optimal bundle uses the shortest chain and newest intermediates. And the force bundle verifies the chain, but does not otherwise modify it. Valid values are ` + "`" + `ubiquitous` + "`" + ` (default), ` + "`" + `optimal` + "`" + `, ` + "`" + `force` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "geo_restrictions",
+					Description: `(Optional) Specifies the region where your private key can be held locally. Valid values are ` + "`" + `us` + "`" + `, ` + "`" + `eu` + "`" + `, ` + "`" + `highest_security` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Whether to enable support for legacy clients which do not include SNI in the TLS handshake. Valid values are ` + "`" + `legacy_custom` + "`" + ` (default), ` + "`" + `sni_custom` + "`" + `. ## Import Custom SSL Certs can be imported using a composite ID formed of the zone id and certificate id, separated by a "/" e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_custom_ssl.default 1d5fdc9e88c8a8c4518b068cd94331fe/c671356fb0ef68a9d746e3c9ef84ec3e ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_filter",
 			Category:         "Resources",
 			ShortDescription: `Provides a Cloudflare Filter expression that can be referenced across multiple features.`,
@@ -563,15 +605,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "expected_body",
-					Description: `(Required) A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy.`,
+					Description: `(Optional) A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy. Only valid and required if ` + "`" + `type` + "`" + ` is "http" or "https".`,
 				},
 				resource.Attribute{
 					Name:        "expected_codes",
-					Description: `(Required) The expected HTTP response code or code range of the health check. Eg ` + "`" + `2xx` + "`" + ``,
+					Description: `(Optional) The expected HTTP response code or code range of the health check. Eg ` + "`" + `2xx` + "`" + `. Only valid and required if ` + "`" + `type` + "`" + ` is "http" or "https".`,
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) The HTTP method to use for the health check. Default: "GET".`,
+					Description: `(Optional) The method to use for the health check. Valid values are any valid HTTP verb if ` + "`" + `type` + "`" + ` is "http" or "https", or ` + "`" + `connection_established` + "`" + ` if ` + "`" + `type` + "`" + ` is "tcp". Default: "GET" if ` + "`" + `type` + "`" + ` is "http" or "https", or "connection_established" if ` + "`" + `type` + "`" + ` is "tcp" .`,
 				},
 				resource.Attribute{
 					Name:        "timeout",
@@ -579,7 +621,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) The endpoint path to health check against. Default: "/".`,
+					Description: `(Optional) The endpoint path to health check against. Default: "/". Only valid if ` + "`" + `type` + "`" + ` is "http" or "https".`,
 				},
 				resource.Attribute{
 					Name:        "interval",
@@ -591,11 +633,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "header",
-					Description: `(Optional) The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden. Fields documented below.`,
+					Description: `(Optional) The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden. Fields documented below. Only valid if ` + "`" + `type` + "`" + ` is "http" or "https".`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The protocol to use for the healthcheck. Currently supported protocols are 'HTTP' and 'HTTPS'. Default: "http".`,
+					Description: `(Optional) The protocol to use for the healthcheck. Currently supported protocols are 'HTTP', 'HTTPS' and 'TCP'. Default: "http".`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -603,11 +645,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_insecure",
-					Description: `(Optional) Do not validate the certificate when monitor use HTTPS.`,
+					Description: `(Optional) Do not validate the certificate when monitor use HTTPS. Only valid if ` + "`" + `type` + "`" + ` is "http" or "https".`,
 				},
 				resource.Attribute{
 					Name:        "follow_redirects",
-					Description: `(Optional) Follow redirects if returned by the origin.`,
+					Description: `(Optional) Follow redirects if returned by the origin. Only valid if ` + "`" + `type` + "`" + ` is "http" or "https".`,
 				},
 				resource.Attribute{
 					Name:        "header",
@@ -745,20 +787,28 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "desitination_conf",
-					Description: `(Required) Uniquely identifies a resource (such as an s3 bucket) where data will be pushed. Additional configuration parameters supported by the destination may be included.`,
+					Name:        "name",
+					Description: `(Required) The name of the logpush job to create. Must match the regular expression ` + "`" + `^[a-zA-Z0-9\-\.]`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The zone ID where the logpush job should be created.`,
+				},
+				resource.Attribute{
+					Name:        "destination_conf",
+					Description: `(Required) Uniquely identifies a resource (such as an s3 bucket) where data will be pushed. Additional configuration parameters supported by the destination may be included. See [Logpush destination documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#destination).`,
 				},
 				resource.Attribute{
 					Name:        "ownership_challenge",
-					Description: `(Required) Ownership challenge token to prove destination ownership. See [https://developers.cloudflare.com/logs/tutorials/tutorial-logpush-curl/](https://developers.cloudflare.com/logs/tutorials/tutorial-logpush-curl/) ## Import Logpush jobs can be imported using a composite ID formed of zone ID and logpush job ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_logpush_job.example_job d41d8cd98f00b204e9800998ecf8427e/1 ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `(Required) Ownership challenge token to prove destination ownership. See [Developer documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#usage). - - -`,
 				},
 				resource.Attribute{
-					Name:        "d41d8cd98f00b204e9800998ecf8427e",
-					Description: `zone ID as returned by the API`,
+					Name:        "logpull_options",
+					Description: `(Optional) Configuration string for the Logshare API. It specifies things like requested fields and timestamp formats. See [Logpull options documentation](https://developers.cloudflare.com/logs/logpush/logpush-configuration-api/understanding-logpush-api/#options).`,
 				},
 				resource.Attribute{
-					Name:        "1",
-					Description: `logpush job ID as returned by the [API](https://api.cloudflare.com/#logpush-jobs-list-logpush-jobs)`,
+					Name:        "enable",
+					Description: `(Optional) Whether to enable to job to create or not.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -928,7 +978,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl",
-					Description: `(Optional) Whether to set the SSL mode to ` + "`" + `"off"` + "`" + `, ` + "`" + `"flexible"` + "`" + `, ` + "`" + `"full"` + "`" + `, or ` + "`" + `"strict"` + "`" + `.`,
+					Description: `(Optional) Whether to set the SSL mode to ` + "`" + `"off"` + "`" + `, ` + "`" + `"flexible"` + "`" + `, ` + "`" + `"full"` + "`" + `, ` + "`" + `"strict"` + "`" + `, or ` + "`" + `"origin_pull"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "true_client_ip_header",
@@ -1690,22 +1740,23 @@ var (
 		"cloudflare_account_member":         3,
 		"cloudflare_argo":                   4,
 		"cloudflare_custom_pages":           5,
-		"cloudflare_filter":                 6,
-		"cloudflare_firewall_rule":          7,
-		"cloudflare_load_balancer":          8,
-		"cloudflare_load_balancer_monitor":  9,
-		"cloudflare_load_balancer_pool":     10,
-		"cloudflare_logpush_job":            11,
-		"cloudflare_page_rule":              12,
-		"cloudflare_rate_limit":             13,
-		"cloudflare_record":                 14,
-		"cloudflare_spectrum_application":   15,
-		"cloudflare_waf_rule":               16,
-		"cloudflare_worker_route":           17,
-		"cloudflare_worker_script":          18,
-		"cloudflare_zone":                   19,
-		"cloudflare_zone_lockdown":          20,
-		"cloudflare_zone_settings_override": 21,
+		"cloudflare_custom_ssl":             6,
+		"cloudflare_filter":                 7,
+		"cloudflare_firewall_rule":          8,
+		"cloudflare_load_balancer":          9,
+		"cloudflare_load_balancer_monitor":  10,
+		"cloudflare_load_balancer_pool":     11,
+		"cloudflare_logpush_job":            12,
+		"cloudflare_page_rule":              13,
+		"cloudflare_rate_limit":             14,
+		"cloudflare_record":                 15,
+		"cloudflare_spectrum_application":   16,
+		"cloudflare_waf_rule":               17,
+		"cloudflare_worker_route":           18,
+		"cloudflare_worker_script":          19,
+		"cloudflare_zone":                   20,
+		"cloudflare_zone_lockdown":          21,
+		"cloudflare_zone_settings_override": 22,
 	}
 )
 

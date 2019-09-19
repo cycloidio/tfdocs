@@ -16,18 +16,28 @@ var (
 			ShortDescription: `Provides details about a NS1 Zone.`,
 			Description: `
 
-Provides details about a NS1 Zone.
+Provides details about a NS1 Zone. Use this if you would simply like to read
+information from NS1 into your configurations. For read/write operations, you
+should use a resource.
 
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Required) The domain name of the zone. ## Attributes Reference`,
+					Description: `(Required) The domain name of the zone. ## Attributes Reference In addition to the argument above, the following are exported:`,
 				},
 				resource.Attribute{
 					Name:        "link",
 					Description: `The linked target zone.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `The primary ip.`,
+				},
+				resource.Attribute{
+					Name:        "additional_primaries",
+					Description: `List of additional IPs for the primary zone.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -50,12 +60,16 @@ Provides details about a NS1 Zone.
 					Description: `The SOA NX TTL.`,
 				},
 				resource.Attribute{
-					Name:        "primary",
-					Description: `The primary ip.`,
+					Name:        "networks",
+					Description: `List of network IDs for which the zone is available.`,
 				},
 				resource.Attribute{
 					Name:        "dns_servers",
 					Description: `Authoritative Name Servers.`,
+				},
+				resource.Attribute{
+					Name:        "hostmaster",
+					Description: `The SOA Hostmaster.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -64,6 +78,14 @@ Provides details about a NS1 Zone.
 					Description: `The linked target zone.`,
 				},
 				resource.Attribute{
+					Name:        "primary",
+					Description: `The primary ip.`,
+				},
+				resource.Attribute{
+					Name:        "additional_primaries",
+					Description: `List of additional IPs for the primary zone.`,
+				},
+				resource.Attribute{
 					Name:        "ttl",
 					Description: `The SOA TTL.`,
 				},
@@ -84,12 +106,16 @@ Provides details about a NS1 Zone.
 					Description: `The SOA NX TTL.`,
 				},
 				resource.Attribute{
-					Name:        "primary",
-					Description: `The primary ip.`,
+					Name:        "networks",
+					Description: `List of network IDs for which the zone is available.`,
 				},
 				resource.Attribute{
 					Name:        "dns_servers",
 					Description: `Authoritative Name Servers.`,
+				},
+				resource.Attribute{
+					Name:        "hostmaster",
+					Description: `The SOA Hostmaster.`,
 				},
 			},
 		},

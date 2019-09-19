@@ -94,6 +94,10 @@ var (
 					Description: `(Optional) Keyword deciding which direction the nodes are sorted in terms of the chosen ` + "`" + `rank_attribute` + "`" + `. May be either "ascending" (the default) or "descending".`,
 				},
 				resource.Attribute{
+					Name:        "success_on_empty_node_filter",
+					Description: `(Optional) Boolean determining if an empty node filter yields a successful result.`,
+				},
+				resource.Attribute{
 					Name:        "node_filter_query",
 					Description: `(Optional) A query string using [Rundeck's node filter language](http://rundeck.org/docs/manual/node-filters.html#node-filter-syntax) that defines which subset of the project's nodes will be used to execute this job.`,
 				},

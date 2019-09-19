@@ -83,6 +83,30 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nutanix_network_security_rule",
+			Category:         "Resources",
+			ShortDescription: `Provides a Nutanix Network Security Rule resource to Create a Network Security Rule .`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"security",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "api_version",
+					Description: `The version of the API. ### Metadata The metadata attribute exports the following:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nutanix_subnet",
 			Category:         "Resources",
 			ShortDescription: `This operation submits a request to create a subnet based on the input parameters. A subnet is a block of IP addresses.`,
@@ -184,12 +208,13 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"nutanix_category_key":    0,
-		"nutanix_category_value":  1,
-		"nutanix_image":           2,
-		"nutanix_subnet":          3,
-		"nutanix_virtual_machine": 4,
-		"nutanix_volume_group":    5,
+		"nutanix_category_key":          0,
+		"nutanix_category_value":        1,
+		"nutanix_image":                 2,
+		"nutanix_network_security_rule": 3,
+		"nutanix_subnet":                4,
+		"nutanix_virtual_machine":       5,
+		"nutanix_volume_group":          6,
 	}
 )
 

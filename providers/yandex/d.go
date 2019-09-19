@@ -286,6 +286,10 @@ var (
 					Description: `Baseline performance for a core, set as a percent.`,
 				},
 				resource.Attribute{
+					Name:        "resources.0.gpus",
+					Description: `Number of GPU cores allocated for the instance.`,
+				},
+				resource.Attribute{
 					Name:        "boot_disk",
 					Description: `The boot disk for the instance. Structure is documented below.`,
 				},
@@ -454,6 +458,10 @@ var (
 				resource.Attribute{
 					Name:        "resources.0.core_fraction",
 					Description: `Baseline performance for a core, set as a percent.`,
+				},
+				resource.Attribute{
+					Name:        "resources.0.gpus",
+					Description: `Number of GPU cores allocated for the instance.`,
 				},
 				resource.Attribute{
 					Name:        "boot_disk",
@@ -698,6 +706,10 @@ var (
 					Description: `Baseline core performance as a percent.`,
 				},
 				resource.Attribute{
+					Name:        "resources.0.gpus",
+					Description: `Number of GPU cores allocated to the instance.`,
+				},
+				resource.Attribute{
 					Name:        "scheduling_policy",
 					Description: `The scheduling policy for the instance. The structure is documented below.`,
 				},
@@ -883,7 +895,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_group_labels",
-					Description: `A set of key/value label pairs. --- The ` + "`" + `health_check` + "`" + ` block supports:`,
+					Description: `A set of key/value label pairs.`,
+				},
+				resource.Attribute{
+					Name:        "target_group_id",
+					Description: `The ID of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "status_message",
+					Description: `The status message of the target group. --- The ` + "`" + `health_check` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "interval",
@@ -1028,6 +1048,10 @@ var (
 					Description: `Baseline core performance as a percent.`,
 				},
 				resource.Attribute{
+					Name:        "resources.0.gpus",
+					Description: `Number of GPU cores allocated to the instance.`,
+				},
+				resource.Attribute{
 					Name:        "scheduling_policy",
 					Description: `The scheduling policy for the instance. The structure is documented below.`,
 				},
@@ -1213,7 +1237,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target_group_labels",
-					Description: `A set of key/value label pairs. --- The ` + "`" + `health_check` + "`" + ` block supports:`,
+					Description: `A set of key/value label pairs.`,
+				},
+				resource.Attribute{
+					Name:        "target_group_id",
+					Description: `The ID of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "status_message",
+					Description: `The status message of the target group. --- The ` + "`" + `health_check` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "interval",
@@ -1433,6 +1465,286 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_lb_network_load_balancer",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Load Balancer network load balancer.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) - Name of the betwork load balancer. ~>`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `ID of the folder that the resource belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `ID of the region where the network load balancer resides.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "attached_target_group",
+					Description: `An attached target group is a group of targets that is attached to a load balancer. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "listener",
+					Description: `Listener specification that will be used by a network load balancer. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this network load balancer. --- The ` + "`" + `attached_target_group` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "target_group_id",
+					Description: `ID of the target group that attached to the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.name",
+					Description: `Name of the health check.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.interval",
+					Description: `The interval between health checks.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.timeout",
+					Description: `Timeout for a target to return a response for the health check.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.unhealthy_threshold",
+					Description: `Number of failed health checks before changing the status to ` + "`" + `UNHEALTHY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.healthy_threshold",
+					Description: `Number of successful health checks required in order to set the ` + "`" + `HEALTHY` + "`" + ` status for the target.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.tcp_options.0.port",
+					Description: `Port to use for TCP health checks.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.http_options.0.port",
+					Description: `Port to use for HTTP health checks.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.http_options.0.path",
+					Description: `URL path to use for HTTP health checks. The ` + "`" + `listener` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the listener.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port for incoming traffic.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol for incoming traffic.`,
+				},
+				resource.Attribute{
+					Name:        "target_port",
+					Description: `Port of a target.`,
+				},
+				resource.Attribute{
+					Name:        "external_address_spec.0.address",
+					Description: `Public IP address of a listener.`,
+				},
+				resource.Attribute{
+					Name:        "external_address_spec.0.ip_version",
+					Description: `IP version of the addresses. [Load Balancer Network Load Balancers]: https://cloud.yandex.com/docs/load-balancer/concepts/`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `ID of the folder that the resource belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `ID of the region where the network load balancer resides.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "attached_target_group",
+					Description: `An attached target group is a group of targets that is attached to a load balancer. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "listener",
+					Description: `Listener specification that will be used by a network load balancer. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this network load balancer. --- The ` + "`" + `attached_target_group` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "target_group_id",
+					Description: `ID of the target group that attached to the network load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.name",
+					Description: `Name of the health check.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.interval",
+					Description: `The interval between health checks.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.timeout",
+					Description: `Timeout for a target to return a response for the health check.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.unhealthy_threshold",
+					Description: `Number of failed health checks before changing the status to ` + "`" + `UNHEALTHY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.healthy_threshold",
+					Description: `Number of successful health checks required in order to set the ` + "`" + `HEALTHY` + "`" + ` status for the target.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.tcp_options.0.port",
+					Description: `Port to use for TCP health checks.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.http_options.0.port",
+					Description: `Port to use for HTTP health checks.`,
+				},
+				resource.Attribute{
+					Name:        "healthcheck.0.http_options.0.path",
+					Description: `URL path to use for HTTP health checks. The ` + "`" + `listener` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the listener.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port for incoming traffic.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol for incoming traffic.`,
+				},
+				resource.Attribute{
+					Name:        "target_port",
+					Description: `Port of a target.`,
+				},
+				resource.Attribute{
+					Name:        "external_address_spec.0.address",
+					Description: `Public IP address of a listener.`,
+				},
+				resource.Attribute{
+					Name:        "external_address_spec.0.ip_version",
+					Description: `IP version of the addresses. [Load Balancer Network Load Balancers]: https://cloud.yandex.com/docs/load-balancer/concepts/`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_lb_target_group",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Load Balancer target group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) - Name of the Target Group. ~>`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `ID of the folder that the resource belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this target group.`,
+				},
+				resource.Attribute{
+					Name:        "target.0.address",
+					Description: `IP address of the target.`,
+				},
+				resource.Attribute{
+					Name:        "target.0.subnet_id",
+					Description: `ID of the subnet that targets are connected to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this target group. [Load Balancer Target Groups]: https://cloud.yandex.com/docs/load-balancer/concepts/target-resources`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `ID of the folder that the resource belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this target group.`,
+				},
+				resource.Attribute{
+					Name:        "target.0.address",
+					Description: `IP address of the target.`,
+				},
+				resource.Attribute{
+					Name:        "target.0.subnet_id",
+					Description: `ID of the subnet that targets are connected to.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this target group. [Load Balancer Target Groups]: https://cloud.yandex.com/docs/load-balancer/concepts/target-resources`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_resourcemanager_cloud",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieve Yandex RM Cloud details.`,
@@ -1483,6 +1795,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud_id",
+					Description: `(Optional) Cloud that the resource belongs to. If a value is not provided, the default provider cloud is used. ## Attributes Reference The following attributes are exported:`,
+				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the folder.`,
@@ -1743,20 +2059,22 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"yandex_compute_disk":           0,
-		"yandex_compute_image":          1,
-		"yandex_compute_instance":       2,
-		"yandex_compute_instance_group": 3,
-		"yandex_compute_snapshot":       4,
-		"yandex_iam_policy":             5,
-		"yandex_iam_role":               6,
-		"yandex_iam_service_account":    7,
-		"yandex_iam_user":               8,
-		"yandex_resourcemanager_cloud":  9,
-		"yandex_resourcemanager_folder": 10,
-		"yandex_vpc_network":            11,
-		"yandex_vpc_route_table":        12,
-		"yandex_vpc_subnet":             13,
+		"yandex_compute_disk":             0,
+		"yandex_compute_image":            1,
+		"yandex_compute_instance":         2,
+		"yandex_compute_instance_group":   3,
+		"yandex_compute_snapshot":         4,
+		"yandex_iam_policy":               5,
+		"yandex_iam_role":                 6,
+		"yandex_iam_service_account":      7,
+		"yandex_iam_user":                 8,
+		"yandex_lb_network_load_balancer": 9,
+		"yandex_lb_target_group":          10,
+		"yandex_resourcemanager_cloud":    11,
+		"yandex_resourcemanager_folder":   12,
+		"yandex_vpc_network":              13,
+		"yandex_vpc_route_table":          14,
+		"yandex_vpc_subnet":               15,
 	}
 )
 

@@ -2162,6 +2162,22 @@ Use this data source to access information about an existing certificate in a Ba
 					Name:        "type",
 					Description: `The type of container configuration.`,
 				},
+				resource.Attribute{
+					Name:        "container_registries",
+					Description: `Additional container registries from which container images can be pulled by the pool's VMs. --- A ` + "`" + `container_registries` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "registry_server",
+					Description: `The container registry URL. The default is "docker.io".`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `The user name to log into the registry server.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password to log into the registry server.`,
+				},
 			},
 		},
 		&resource.Resource{
@@ -2861,10 +2877,6 @@ Use this data source to access information about an existing DNS Zone.
 					Description: `A list of values that make up the NS record for the zone.`,
 				},
 				resource.Attribute{
-					Name:        "zone_type",
-					Description: `The type of this DNS zone, such as ` + "`" + `Public` + "`" + ` or ` + "`" + `Private` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "registration_virtual_network_ids",
 					Description: `A list of Virtual Network ID's that register hostnames in this DNS zone.`,
 				},
@@ -2875,6 +2887,10 @@ Use this data source to access information about an existing DNS Zone.
 				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags to assign to the EventHub Namespace.`,
+				},
+				resource.Attribute{
+					Name:        "zone_type",
+					Description: `(`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2895,10 +2911,6 @@ Use this data source to access information about an existing DNS Zone.
 					Description: `A list of values that make up the NS record for the zone.`,
 				},
 				resource.Attribute{
-					Name:        "zone_type",
-					Description: `The type of this DNS zone, such as ` + "`" + `Public` + "`" + ` or ` + "`" + `Private` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "registration_virtual_network_ids",
 					Description: `A list of Virtual Network ID's that register hostnames in this DNS zone.`,
 				},
@@ -2909,6 +2921,10 @@ Use this data source to access information about an existing DNS Zone.
 				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags to assign to the EventHub Namespace.`,
+				},
+				resource.Attribute{
+					Name:        "zone_type",
+					Description: `(`,
 				},
 			},
 		},
@@ -4058,10 +4074,6 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `Minimum number of nodes for auto-scaling`,
 				},
 				resource.Attribute{
-					Name:        "min_count",
-					Description: `Minimum number of nodes for auto-scaling`,
-				},
-				resource.Attribute{
 					Name:        "max_count",
 					Description: `Maximum number of nodes for auto-scaling`,
 				},
@@ -4294,10 +4306,6 @@ Use this data source to access information about an existing Managed Kubernetes 
 				resource.Attribute{
 					Name:        "enable_auto_scaling",
 					Description: `If the auto-scaler is enabled.`,
-				},
-				resource.Attribute{
-					Name:        "min_count",
-					Description: `Minimum number of nodes for auto-scaling`,
 				},
 				resource.Attribute{
 					Name:        "min_count",
@@ -4971,7 +4979,7 @@ Use this data source to access information about an existing Azure Maps Account.
 				},
 				resource.Attribute{
 					Name:        "secondary_access_key",
-					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs. The second key is given to provide seemless key regeneration.`,
+					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs. The second key is given to provide seamless key regeneration.`,
 				},
 				resource.Attribute{
 					Name:        "x_ms_client_id",
@@ -4993,7 +5001,7 @@ Use this data source to access information about an existing Azure Maps Account.
 				},
 				resource.Attribute{
 					Name:        "secondary_access_key",
-					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs. The second key is given to provide seemless key regeneration.`,
+					Description: `The primary key used to authenticate and authorize access to the Maps REST APIs. The second key is given to provide seamless key regeneration.`,
 				},
 				resource.Attribute{
 					Name:        "x_ms_client_id",

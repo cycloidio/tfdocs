@@ -628,7 +628,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cascade",
-					Description: `(Optional, Default:false) Specifies to delete all snapshots associated with the EVS disk. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Default:false) Specifies to delete all snapshots associated with the EVS disk.`,
+				},
+				resource.Attribute{
+					Name:        "multiattach",
+					Description: `(Optional) Specifies whether the EVS disk is shareable. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -668,6 +672,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "multiattach",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -714,6 +722,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "multiattach",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -856,7 +868,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Cluster status information. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Cluster status information.`,
+				},
+				resource.Attribute{
+					Name:        "internal_endpoint",
+					Description: `The internal network address.`,
+				},
+				resource.Attribute{
+					Name:        "external_endpoint",
+					Description: `The external network address.`,
+				},
+				resource.Attribute{
+					Name:        "external_apig_endpoint",
+					Description: `The endpoint of the cluster to be accessed through API Gateway. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -866,7 +890,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Cluster status information. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Cluster status information.`,
+				},
+				resource.Attribute{
+					Name:        "internal_endpoint",
+					Description: `The internal network address.`,
+				},
+				resource.Attribute{
+					Name:        "external_endpoint",
+					Description: `The external network address.`,
+				},
+				resource.Attribute{
+					Name:        "external_apig_endpoint",
+					Description: `The endpoint of the cluster to be accessed through API Gateway. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -990,11 +1026,27 @@ var (
 					Name:        "status",
 					Description: `Node status information.`,
 				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP of the CCE node.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP of the CCE node.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "status",
 					Description: `Node status information.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private IP of the CCE node.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public IP of the CCE node.`,
 				},
 			},
 		},
@@ -1411,7 +1463,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pool",
-					Description: `(Required) The name of the pool from which to obtain the floating IP. Changing this creates a new floating IP. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The name of the pool from which to obtain the floating IP. Default value is admin_external_net. Changing this creates a new floating IP. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1534,10 +1586,6 @@ var (
 					Description: `(Optional) Provide the Nova scheduler with hints on how the instance should be launched. The available hints are described below.`,
 				},
 				resource.Attribute{
-					Name:        "personality",
-					Description: `(Optional) Customize the personality of an instance by defining one or more files and their contents. The personality structure is described below.`,
-				},
-				resource.Attribute{
 					Name:        "stop_before_destroy",
 					Description: `(Optional) Whether to try stop instance gracefully before destroying it, thus giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.`,
 				},
@@ -1591,7 +1639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_index",
-					Description: `(Optional) The boot index of the volume. It defaults to 0. Changing this creates a new server.`,
+					Description: `(Optional) The boot index of the volume. It defaults to 0, which indicates that it's a system disk. Changing this creates a new server.`,
 				},
 				resource.Attribute{
 					Name:        "destination_type",
@@ -1623,15 +1671,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "build_near_host_ip",
-					Description: `(Optional) An IP Address in CIDR form. The instance will be placed on a compute node that is in the same subnet. The ` + "`" + `personality` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "file",
-					Description: `(Required) The absolute path of the destination file.`,
-				},
-				resource.Attribute{
-					Name:        "contents",
-					Description: `(Required) The contents of the file. Limited to 255 bytes. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) An IP Address in CIDR form. The instance will be placed on a compute node that is in the same subnet. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -4756,7 +4796,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_kms_key_v1",
-			Category:         "Kms Resources",
+			Category:         "KMS Resources",
 			ShortDescription: `Manages a V1 key resource within KMS.`,
 			Description:      ``,
 			Keywords: []string{
@@ -6920,7 +6960,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_nat_dnat_rule_v2",
-			Category:         "Nat Resources",
+			Category:         "NAT Resources",
 			ShortDescription: `Manages a V2 dnat rule resource within FlexibleEngine Nat.`,
 			Description:      ``,
 			Keywords: []string{
@@ -6981,7 +7021,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_nat_gateway_v2",
-			Category:         "Nat Resources",
+			Category:         "NAT Resources",
 			ShortDescription: `Manages a V2 nat gateway resource within FlexibleEngine Nat.`,
 			Description:      ``,
 			Keywords: []string{
@@ -7081,7 +7121,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "flexibleengine_nat_snat_rule_v2",
-			Category:         "Nat Resources",
+			Category:         "NAT Resources",
 			ShortDescription: `Manages a V2 snat rule resource within FlexibleEngine Nat.`,
 			Description:      ``,
 			Keywords: []string{
@@ -7214,7 +7254,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pool",
-					Description: `(Required) The name of the pool from which to obtain the floating IP. Changing this creates a new floating IP.`,
+					Description: `(Optional) The name of the pool from which to obtain the floating IP. Default value is admin_external_net. Changing this creates a new floating IP.`,
 				},
 				resource.Attribute{
 					Name:        "port_id",
@@ -8306,8 +8346,8 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "rds_instance_v1",
-			Category:         "Rds Resources",
+			Type:             "flexibleengine_rds_instance_v1",
+			Category:         "RDS Resources",
 			ShortDescription: `Manages rds instance resource within FlexibleEngine`,
 			Description:      ``,
 			Keywords: []string{
@@ -8569,6 +8609,290 @@ var (
 				resource.Attribute{
 					Name:        "backupstrategy",
 					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_rds_instance_v3",
+			Category:         "RDS Resources",
+			ShortDescription: `instance management`,
+			Description:      ``,
+			Keywords: []string{
+				"rds",
+				"instance",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) Specifies the AZ name. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `(Required) Specifies the database information. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the specification code. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type must be unique for the same tenant. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Specifies the security group which the RDS DB instance belongs to. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Specifies the subnet id. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `(Required) Specifies the volume information. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Specifies the VPC ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "ha_replication_mode",
+					Description: `(Optional) Specifies the replication mode for the standby DB instance. For MySQL, the value is async or semisync. For PostgreSQL, the value is async or sync. For Microsoft SQL Server, the value is sync. NOTE: async indicates the asynchronous replication mode. semisync indicates the semi-synchronous replication mode. sync indicates the synchronous replication mode. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "param_group_id",
+					Description: `(Optional) Specifies the parameter group ID. Changing this parameter will create a new resource. The ` + "`" + `db` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the database password. The value cannot be empty and should contain 8 to 32 characters, including uppercase and lowercase letters, digits, and the following special characters: ~!@#%^`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Specifies the database port information. The MySQL database port ranges from 1024 to 65535 (excluding 12017 and 33071, which are occupied by the RDS system and cannot be used). The PostgreSQL database port ranges from 2100 to 9500. The Microsoft SQL Server database port can be 1433 or ranges from 2100 to 9500, excluding 5355 and 5985. If this parameter is not set, the default value is as follows: For MySQL, the default value is 3306. For PostgreSQL, the default value is 5432. For Microsoft SQL Server, the default value is 1433. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7. PostgreSQL databases support PostgreSQL 9.5 and 9.6. Microsoft SQL Server databases support 2014 SE, 2016 SE, and 2016 EE. Changing this parameter will create a new resource. The ` + "`" + `volume` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `(Optional) Specifies the key ID for disk encryption. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) Specifies the volume size. Its value range is from 40 GB to 4000 GB. The value must be a multiple of 10. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the volume type. Its value can be any of the following and is case-sensitive: COMMON: indicates the SATA type. ULTRAHIGH: indicates the SSD type. Changing this parameter will create a new resource. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `(Optional) Specifies the retention days for specific backup files. The value range is from 0 to 732. If this parameter is not specified or set to 0, the automated backup policy is disabled. NOTICE: Primary/standby DB instances of Microsoft SQL Server do not support disabling the automated backup policy. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. It must be a valid value in the &quot;hh:mm-HH:MM&quot; format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to any of the following: 00, 15, 30, or 45. Example value: 08:15-09:15 23:00-00:00. Changing this parameter will create a new resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Indicates the creation time.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the private IP address list. It is a blank string until an ECS is created.`,
+				},
+				resource.Attribute{
+					Name:        "public_ips",
+					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the AZ.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the node ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the node name.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Indicates the node type. The value can be master or slave, indicating the primary node or standby node respectively.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the node status. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. ## Import RDS instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_instance_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ` But due to some attrubutes missing from the API response, it's required to ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_rds_instance_v3" "instance_1" { ... lifecycle { ignore_changes = [ "db", ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created",
+					Description: `Indicates the creation time.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the private IP address list. It is a blank string until an ECS is created.`,
+				},
+				resource.Attribute{
+					Name:        "public_ips",
+					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the AZ.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the node ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the node name.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Indicates the node type. The value can be master or slave, indicating the primary node or standby node respectively.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the node status. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. ## Import RDS instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_instance_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ` But due to some attrubutes missing from the API response, it's required to ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "flexibleengine_rds_instance_v3" "instance_1" { ... lifecycle { ignore_changes = [ "db", ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_rds_parametergroup_v3",
+			Category:         "RDS Resources",
+			ShortDescription: `Manages a V3 RDS parametergroup resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"rds",
+				"parametergroup",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The parameter group name. It contains a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The parameter group description. It contains a maximum of 256 characters and cannot contain the following special characters:>!<"&'= the value is left blank by default.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) Parameter group values key/value pairs defined by users based on the default parameter groups.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `(Required) Database object. The database object structure is documented below. Changing this creates a new parameter group. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The DB engine. Currently, MySQL, PostgreSQL, and Microsoft SQL Server are supported. The value is case-insensitive and can be mysql, postgresql, or sqlserver.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Specifies the database version.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "configuration_parameters",
+					Description: `Indicates the parameter configuration defined by users based on the default parameters groups.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the parameter name.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Indicates the parameter value.`,
+				},
+				resource.Attribute{
+					Name:        "restart_required",
+					Description: `Indicates whether a restart is required.`,
+				},
+				resource.Attribute{
+					Name:        "readonly",
+					Description: `Indicates whether the parameter is read-only.`,
+				},
+				resource.Attribute{
+					Name:        "value_range",
+					Description: `Indicates the parameter value range.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the parameter type.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the parameter description. ## Import Parameter groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_parametergroup_v3.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "configuration_parameters",
+					Description: `Indicates the parameter configuration defined by users based on the default parameters groups.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the parameter name.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Indicates the parameter value.`,
+				},
+				resource.Attribute{
+					Name:        "restart_required",
+					Description: `Indicates whether a restart is required.`,
+				},
+				resource.Attribute{
+					Name:        "readonly",
+					Description: `Indicates whether the parameter is read-only.`,
+				},
+				resource.Attribute{
+					Name:        "value_range",
+					Description: `Indicates the parameter value range.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the parameter type.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the parameter description. ## Import Parameter groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_rds_parametergroup_v3.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -9076,8 +9400,8 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "smn_subscription_v2",
-			Category:         "Smn Resources",
+			Type:             "flexibleengine_smn_subscription_v2",
+			Category:         "SMN Resources",
 			ShortDescription: `Manages a V2 subscription resource within FlexibleEngine.`,
 			Description:      ``,
 			Keywords: []string{
@@ -9176,8 +9500,8 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "smn_topic_v2",
-			Category:         "Smn Resources",
+			Type:             "flexibleengine_smn_topic_v2",
+			Category:         "SMN Resources",
 			ShortDescription: `Manages a V2 topic resource within FlexibleEngine.`,
 			Description:      ``,
 			Keywords: []string{
@@ -9673,23 +9997,25 @@ var (
 		"flexibleengine_networking_subnet_v2":               57,
 		"flexibleengine_networking_vip_associate_v2":        58,
 		"flexibleengine_networking_vip_v2":                  59,
-		"rds_instance_v1":                                   60,
-		"flexibleengine_rts_software_config_v1":             61,
-		"flexibleengine_resource_rts_stack_v1":              62,
-		"flexibleengine_s3_bucket":                          63,
-		"flexibleengine_s3_bucket_object":                   64,
-		"flexibleengine_s3_bucket_policy":                   65,
-		"flexibleengine_sfs_file_system_v2":                 66,
-		"smn_subscription_v2":                               67,
-		"smn_topic_v2":                                      68,
-		"flexibleengine-vbs-backup-policy-v2":               69,
-		"flexibleengine-vbs-backup-v2":                      70,
-		"flexibleengine_vpc_eip_v1":                         71,
-		"flexibleengine_vpc_peering_connection_accepter_v2": 72,
-		"flexibleengine_vpc_peering_connection_v2":          73,
-		"flexibleengine_vpc_route_v2":                       74,
-		"flexibleengine_vpc_subnet_v1":                      75,
-		"flexibleengine_vpc_v1":                             76,
+		"flexibleengine_rds_instance_v1":                    60,
+		"flexibleengine_rds_instance_v3":                    61,
+		"flexibleengine_rds_parametergroup_v3":              62,
+		"flexibleengine_rts_software_config_v1":             63,
+		"flexibleengine_resource_rts_stack_v1":              64,
+		"flexibleengine_s3_bucket":                          65,
+		"flexibleengine_s3_bucket_object":                   66,
+		"flexibleengine_s3_bucket_policy":                   67,
+		"flexibleengine_sfs_file_system_v2":                 68,
+		"flexibleengine_smn_subscription_v2":                69,
+		"flexibleengine_smn_topic_v2":                       70,
+		"flexibleengine-vbs-backup-policy-v2":               71,
+		"flexibleengine-vbs-backup-v2":                      72,
+		"flexibleengine_vpc_eip_v1":                         73,
+		"flexibleengine_vpc_peering_connection_accepter_v2": 74,
+		"flexibleengine_vpc_peering_connection_v2":          75,
+		"flexibleengine_vpc_route_v2":                       76,
+		"flexibleengine_vpc_subnet_v1":                      77,
+		"flexibleengine_vpc_v1":                             78,
 	}
 )
 

@@ -11,6 +11,242 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "packet_device",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Packet device datasource. This can be used to read existing devices.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) The device name`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The id of the project in which the devices exists ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "access_private_ipv4",
+					Description: `The ipv4 private IP assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "access_public_ipv4",
+					Description: `The ipv4 management IP assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "access_public_ipv6",
+					Description: `The ipv6 management IP assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "billing_cycle",
+					Description: `The billing cycle of the device (monthly or hourly)`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `The facility where the device is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description string for the device`,
+				},
+				resource.Attribute{
+					Name:        "hardware_reservation_id",
+					Description: `The id of hardware reservation which this device occupies`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the device`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `IPv4 or IPv6 address string`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `Bit length of the network mask of the address`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `Address of router`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `Whether the address is routable from the Internet`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `IP version - "4" or "6"`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"`,
+				},
+				resource.Attribute{
+					Name:        "operating_system",
+					Description: `The operating system running on the device`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The hardware config of the device`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `Ports assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the port (e.g. ` + "`" + `eth0` + "`" + `, or ` + "`" + `bond0` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the port`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the port (e.g. ` + "`" + `NetworkPort` + "`" + ` or ` + "`" + `NetworkBondPort` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address assigned to the port`,
+				},
+				resource.Attribute{
+					Name:        "bonded",
+					Description: `Whether this port is part of a bond in bonded network setup`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `Root password to the server (if still available)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_key_ids",
+					Description: `List of IDs of SSH keys deployed in the device, can be both user or project SSH keys`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the device`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags attached to the device`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_private_ipv4",
+					Description: `The ipv4 private IP assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "access_public_ipv4",
+					Description: `The ipv4 management IP assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "access_public_ipv6",
+					Description: `The ipv6 management IP assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "billing_cycle",
+					Description: `The billing cycle of the device (monthly or hourly)`,
+				},
+				resource.Attribute{
+					Name:        "facility",
+					Description: `The facility where the device is deployed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description string for the device`,
+				},
+				resource.Attribute{
+					Name:        "hardware_reservation_id",
+					Description: `The id of hardware reservation which this device occupies`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the device`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The device's private and public IP (v4 and v6) network details. When a device is run without any special network configuration, it will have 3 networks:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `IPv4 or IPv6 address string`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `Bit length of the network mask of the address`,
+				},
+				resource.Attribute{
+					Name:        "gateway",
+					Description: `Address of router`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `Whether the address is routable from the Internet`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `IP version - "4" or "6"`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `L2 network type of the device, one of "layer3", "layer2-bonded", "layer2-individual", "hybrid"`,
+				},
+				resource.Attribute{
+					Name:        "operating_system",
+					Description: `The operating system running on the device`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `The hardware config of the device`,
+				},
+				resource.Attribute{
+					Name:        "ports",
+					Description: `Ports assigned to the device`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the port (e.g. ` + "`" + `eth0` + "`" + `, or ` + "`" + `bond0` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the port`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the port (e.g. ` + "`" + `NetworkPort` + "`" + ` or ` + "`" + `NetworkBondPort` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address assigned to the port`,
+				},
+				resource.Attribute{
+					Name:        "bonded",
+					Description: `Whether this port is part of a bond in bonded network setup`,
+				},
+				resource.Attribute{
+					Name:        "root_password",
+					Description: `Root password to the server (if still available)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_key_ids",
+					Description: `List of IDs of SSH keys deployed in the device, can be both user or project SSH keys`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the device`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags attached to the device`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "packet_operating_system",
 			Category:         "Data Sources",
 			ShortDescription: `Get a Packet operating system image`,
@@ -125,9 +361,10 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"packet_operating_system":    0,
-		"packet_precreated_ip_block": 1,
-		"packet_spot_market_price":   2,
+		"packet_device":              0,
+		"packet_operating_system":    1,
+		"packet_precreated_ip_block": 2,
+		"packet_spot_market_price":   3,
 	}
 )
 

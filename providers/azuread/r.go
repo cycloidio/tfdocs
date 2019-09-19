@@ -354,6 +354,10 @@ var (
 					Description: `(Required) The ID of the Azure AD Application for which to create a Service Principal.`,
 				},
 				resource.Attribute{
+					Name:        "app_role_assignment_required",
+					Description: `(Optional) Does this Service Principal require an AppRoleAssignment to a user or group before Azure AD will issue a user or access token to the application? Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A list of tags to apply to the Service Principal. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -372,6 +376,10 @@ var (
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The Display Name of the Azure Active Directory Application associated with this Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "app_role_assignment_required",
+					Description: `Whether this Service Principal requires an AppRoleAssignment to a user or group before Azure AD will issue a user or access token to the application.`,
 				},
 				resource.Attribute{
 					Name:        "oauth2_permissions",
@@ -426,6 +434,10 @@ var (
 				resource.Attribute{
 					Name:        "display_name",
 					Description: `The Display Name of the Azure Active Directory Application associated with this Service Principal.`,
+				},
+				resource.Attribute{
+					Name:        "app_role_assignment_required",
+					Description: `Whether this Service Principal requires an AppRoleAssignment to a user or group before Azure AD will issue a user or access token to the application.`,
 				},
 				resource.Attribute{
 					Name:        "oauth2_permissions",

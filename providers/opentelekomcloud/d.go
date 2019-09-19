@@ -2541,7 +2541,7 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "db_version",
-					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7. PostgreSQL databases support PostgreSQL 9.5 and 9.6. Microsoft SQL Server databases support 2014 SE, 2016 SE, and 2016 EE.`,
+					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7. PostgreSQL databases support PostgreSQL 9.5 and 9.6. Microsoft SQL Server databases support 2014_SE, 2016_SE, and 2016_EE.`,
 				},
 				resource.Attribute{
 					Name:        "instance_mode",
@@ -3028,6 +3028,38 @@ The OpenTelekomCloud RTS Stack data source allows access to stack outputs and ot
 				resource.Attribute{
 					Name:        "website_redirect_location",
 					Description: `If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_sdrs_domain_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Opentelekomcloud SDRS Active-Active Domain.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Specifies the name of an active-active domain. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the active-active domain. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Specifies the description of an active-active domain.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Specifies the description of an active-active domain.`,
 				},
 			},
 		},
@@ -3638,15 +3670,16 @@ VPC that the subnet belongs to.
 		"opentelekomcloud_rts_stack_resource_v1":      29,
 		"opentelekomcloud_rts_stack_v1":               30,
 		"opentelekomcloud_s3_bucket_object":           31,
-		"opentelekomcloud_sfs_file_system_v2":         32,
-		"opentelekomcloud_vbs_backup_policy_v2":       33,
-		"opentelekomcloud_vbs_backup_v2":              34,
-		"opentelekomcloud_vpc_peering_connection_v2":  35,
-		"opentelekomcloud_vpc_route_ids_v2":           36,
-		"opentelekomcloud_vpc_route_v2":               37,
-		"opentelekomcloud_vpc_subnet_ids_v1":          38,
-		"opentelekomcloud_vpc_subnet_v1":              39,
-		"opentelekomcloud_vpc_v1":                     40,
+		"opentelekomcloud_sdrs_domain_v1":             32,
+		"opentelekomcloud_sfs_file_system_v2":         33,
+		"opentelekomcloud_vbs_backup_policy_v2":       34,
+		"opentelekomcloud_vbs_backup_v2":              35,
+		"opentelekomcloud_vpc_peering_connection_v2":  36,
+		"opentelekomcloud_vpc_route_ids_v2":           37,
+		"opentelekomcloud_vpc_route_v2":               38,
+		"opentelekomcloud_vpc_subnet_ids_v1":          39,
+		"opentelekomcloud_vpc_subnet_v1":              40,
+		"opentelekomcloud_vpc_v1":                     41,
 	}
 )
 

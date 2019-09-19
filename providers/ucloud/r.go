@@ -30,7 +30,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) The password for the database instance which should have 8-30 characters. It must contain at least 3 items of Capital letters, small letter, numbers and special characters. The special characters include ` + "`" + `-_` + "`" + `. If not specified, terraform will autogenerate a password.`,
+					Description: `(Optional) The password for the database instance which should have 8-30 characters. It must contain at least 3 items of Capital letters, small letter, numbers and special characters. The special characters include ` + "`" + `-_` + "`" + `. If not specified, terraform will auto-generate a password.`,
 				},
 				resource.Attribute{
 					Name:        "engine",
@@ -42,7 +42,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of database instance, which contains 6-63 characters and only support Chinese, English, numbers, '-', '_', '.', ',', '[', ']', ':'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-db-instance` + "`" + `.`,
+					Description: `(Optional) The name of database instance, which contains 6-63 characters and only support Chinese, English, numbers, '-', '_', '.', ',', '[', ']', ':'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-db-instance` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "instance_storage",
@@ -82,11 +82,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_date",
-					Description: `(Optional) Specifies whether the backup took place from Sunday to Saturday by displaying 7 digits. 0 stands for backup disbaled and 1 stands for backup enabled. The rightmost digit specifies whether the backup took place on Sunday, and the digits from right to left specify whether the backup took place from Monday to Saturday, it's mandatory required to backup twice per week at least. such as: digits "1100000" stands for the backup took place on Saturday and Friday.`,
+					Description: `(Optional) Specifies whether the backup took place from Sunday to Saturday by displaying 7 digits. 0 stands for backup disabled and 1 stands for backup enabled. The rightmost digit specifies whether the backup took place on Sunday, and the digits from right to left specify whether the backup took place from Monday to Saturday, it's mandatory required to backup twice per week at least. such as: digits "1100000" stands for the backup took place on Saturday and Friday.`,
 				},
 				resource.Attribute{
 					Name:        "backup_black_list",
-					Description: `(Optional) The backup for database such as "test.%" or table such as "city.address" specified in the black lists are not supprted.`,
+					Description: `(Optional) The backup for database such as "test.%" or table such as "city.address" specified in the black lists are not supported.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -153,11 +153,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size",
-					Description: `(Required) The size of disk. Purchase the size of disk in GB. 1-8000 for a cloud disk, 1-4000 for SSD cloud disk.`,
+					Description: `(Required) The size of disk. Purchase the size of disk in GB. 1-8000 for a cloud disk, 1-4000 for SSD cloud disk. If the disk have attached to the instance, the instance will reboot automatically to make the change take effect when update the ` + "`" + `disk_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of disk, should have 6-63 characters and only support Chinese, English, numbers, '-', '_'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-disk` + "`" + `.`,
+					Description: `(Optional) The name of disk, should have 6-63 characters and only support Chinese, English, numbers, '-', '_'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-disk` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_type",
@@ -243,15 +243,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_type",
-					Description: `(Required) Type of Elastic IP routes. Possible values are: ` + "`" + `international` + "`" + ` as internaltional BGP IP and ` + "`" + `bgp` + "`" + ` as china BGP IP.`,
+					Description: `(Required) Type of Elastic IP routes. Possible values are: ` + "`" + `international` + "`" + ` as international BGP IP and ` + "`" + `bgp` + "`" + ` as china mainland BGP IP.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `(Optional) Maximum bandwidth to the elastic public network, measured in Mbps (Mega bit per second). the ranges for bandwidth are: 1-200 for pay by traffic, 1-800 for pay by bandwith. (Default: ` + "`" + `1` + "`" + `).`,
+					Description: `(Optional) Maximum bandwidth to the elastic public network, measured in Mbps (Mega bit per second). The ranges for bandwidth are: 1-200 for pay by traffic, 1-800 for pay by bandwidth. (Default: ` + "`" + `1` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "share_bandwidth_package_id",
+					Description: `(Optional) The￿ Id of Share Bandwidth Package. If it is filled in, the ` + "`" + `charge_mode` + "`" + ` can only be set with ` + "`" + `share_bandwidth` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the resource. (Default: ` + "`" + `1` + "`" + `). It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour), the value is ` + "`" + `0` + "`" + ` when ` + "`" + `month` + "`" + `(pay by month) and the instance will be vaild till the last day of that month.`,
+					Description: `(Optional) The duration that you will buy the resource. (Default: ` + "`" + `1` + "`" + `). It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour), the value is ` + "`" + `0` + "`" + ` when ` + "`" + `month` + "`" + `(pay by month) and the instance will be valid till the last day of that month.`,
 				},
 				resource.Attribute{
 					Name:        "charge_type",
@@ -259,7 +263,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the EIP, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-eip` + "`" + `.`,
+					Description: `(Optional) The name of the EIP, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-eip` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
@@ -401,11 +405,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_disk_type",
-					Description: `(Optional) The type of boot disk. Possible values are: ` + "`" + `local_normal` + "`" + ` and ` + "`" + `local_ssd` + "`" + ` for local boot disk, ` + "`" + `cloud_normal` + "`" + ` and ` + "`" + `cloud_ssd` + "`" + ` for cloud boot disk. (Default: ` + "`" + `local_normal` + "`" + `). The ` + "`" + `local_ssd` + "`" + `, ` + "`" + `cloud_normal` + "`" + ` and ` + "`" + `cloud_ssd` + "`" + ` are not fully support by all regions as boot disk type, please proceed to UCloud console for more details.`,
+					Description: `(Optional) The type of boot disk. Possible values are: ` + "`" + `local_normal` + "`" + ` and ` + "`" + `local_ssd` + "`" + ` for local boot disk, ` + "`" + `cloud_ssd` + "`" + ` for cloud SSD boot disk. (Default: ` + "`" + `local_normal` + "`" + `). The ` + "`" + `local_ssd` + "`" + ` and ` + "`" + `cloud_ssd` + "`" + ` are not fully support by all regions as boot disk type, please proceed to UCloud console for more details.`,
 				},
 				resource.Attribute{
 					Name:        "data_disk_type",
-					Description: `(Optional) The type of local data disk. Possible values are: ` + "`" + `local_normal` + "`" + ` and ` + "`" + `local_ssd` + "`" + ` for local data disk. (Default: ` + "`" + `local_normal` + "`" + `). The ` + "`" + `local_ssd` + "`" + ` is not supported in all regions as data disk type, please proceed to UCloud console for more details.`,
+					Description: `(Optional) The type of local data disk. Possible values are: ` + "`" + `local_normal` + "`" + ` and ` + "`" + `local_ssd` + "`" + ` for local data disk. (Default: ` + "`" + `local_normal` + "`" + `). The ` + "`" + `local_ssd` + "`" + ` is not fully support by all regions as data disk type, please proceed to UCloud console for more details. In addition, the ` + "`" + `data_disk_type` + "`" + ` must be same as ` + "`" + `boot_disk_type` + "`" + ` if specified.`,
 				},
 				resource.Attribute{
 					Name:        "data_disk_size",
@@ -417,11 +421,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be vaild till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+					Description: `(Optional) The duration that you will buy the instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of instance, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-instance` + "`" + `.`,
+					Description: `(Optional) The name of instance, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-instance` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
@@ -453,7 +457,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cpu",
-					Description: `The number of cores of virtual CPU, measureed in core.`,
+					Description: `The number of cores of virtual CPU, measured in core.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
@@ -501,7 +505,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_type",
-					Description: `Type of Elastic IP routes. Possible values are: ` + "`" + `International` + "`" + ` as internaltional BGP IP, ` + "`" + `BGP` + "`" + ` as china BGP IP and ` + "`" + `Private` + "`" + ` as private IP.`,
+					Description: `Type of Elastic IP routes. Possible values are: ` + "`" + `International` + "`" + ` as international BGP IP, ` + "`" + `BGP` + "`" + ` as china BGP IP and ` + "`" + `Private` + "`" + ` as private IP.`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -515,7 +519,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cpu",
-					Description: `The number of cores of virtual CPU, measureed in core.`,
+					Description: `The number of cores of virtual CPU, measured in core.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
@@ -563,7 +567,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_type",
-					Description: `Type of Elastic IP routes. Possible values are: ` + "`" + `International` + "`" + ` as internaltional BGP IP, ` + "`" + `BGP` + "`" + ` as china BGP IP and ` + "`" + `Private` + "`" + ` as private IP.`,
+					Description: `Type of Elastic IP routes. Possible values are: ` + "`" + `International` + "`" + ` as international BGP IP, ` + "`" + `BGP` + "`" + ` as china BGP IP and ` + "`" + `Private` + "`" + ` as private IP.`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -585,7 +589,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the isolation group information which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.', ',', '[', ']', ':'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-isolation-group` + "`" + `.`,
+					Description: `(Optional) The name of the isolation group information which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.', ',', '[', ']', ':'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-isolation-group` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
@@ -611,15 +615,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the load balancer. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-lb` + "`" + `.`,
+					Description: `(Optional) The name of the load balancer. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-lb` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) The ID of the VPC linked to the Load Balancers, This argumnet is not required if default VPC.`,
+					Description: `(Optional) The ID of the VPC linked to the Load balancer, This argument is not required if default VPC.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional) The ID of subnet that intrant load balancer belongs to. This argumnet is not required if default subnet.`,
+					Description: `(Optional) The ID of subnet that intranet load balancer belongs to. This argument is not required if default subnet.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -743,11 +747,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the listener. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-lb-listener` + "`" + `.`,
+					Description: `(Optional) The name of the listener. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-lb-listener` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "listen_type",
-					Description: `(Optional) The type of listener. Possible values are ` + "`" + `request_proxy` + "`" + ` and ` + "`" + `packets_transmit` + "`" + `.`,
+					Description: `(Optional) The type of listener. Possible values are ` + "`" + `request_proxy` + "`" + ` and ` + "`" + `packets_transmit` + "`" + `. When ` + "`" + `packets_transmit` + "`" + ` was specified, you need to config the instances by yourself if the instances attach to the load balancer. You may refer to [configuration instruction](https://docs.ucloud.cn/network/ulb/guide/fu-wu-jie-dian-xiang-guan-cao-zuo/editrealserver).`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -759,15 +763,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "method",
-					Description: `(Optional) The load balancer method in which the listener is. Possible values are: ` + "`" + `roundrobin` + "`" + `, ` + "`" + `source` + "`" + `, ` + "`" + `consistent_hash` + "`" + `, ` + "`" + `source_port` + "`" + ` , ` + "`" + `consistent_hash_port` + "`" + `, ` + "`" + `weight_roundrobin` + "`" + ` and ` + "`" + `leastconn` + "`" + `. (Default: ` + "`" + `roundrobin` + "`" + `). - The ` + "`" + `consistent_hash` + "`" + `, ` + "`" + `source_port` + "`" + ` , ` + "`" + `consistent_hash_port` + "`" + `, ` + "`" + `roundrobin` + "`" + `, ` + "`" + `source` + "`" + ` and ` + "`" + `weight_roundrobin` + "`" + ` are valid if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `packets_transmit` + "`" + `. - The ` + "`" + `roundrobin` + "`" + `, ` + "`" + `source` + "`" + ` and ` + "`" + `weight_roundrobin` + "`" + ` and ` + "`" + `leastconn` + "`" + ` are vaild if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `request_proxy` + "`" + `.`,
+					Description: `(Optional) The load balancer method in which the listener is. Possible values are: ` + "`" + `roundrobin` + "`" + `, ` + "`" + `source` + "`" + `, ` + "`" + `consistent_hash` + "`" + `, ` + "`" + `source_port` + "`" + ` , ` + "`" + `consistent_hash_port` + "`" + `, ` + "`" + `weight_roundrobin` + "`" + ` and ` + "`" + `leastconn` + "`" + `. (Default: ` + "`" + `roundrobin` + "`" + `). - The ` + "`" + `consistent_hash` + "`" + `, ` + "`" + `source_port` + "`" + ` , ` + "`" + `consistent_hash_port` + "`" + `, ` + "`" + `roundrobin` + "`" + `, ` + "`" + `source` + "`" + ` and ` + "`" + `weight_roundrobin` + "`" + ` are valid if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `packets_transmit` + "`" + `. - The ` + "`" + `roundrobin` + "`" + `, ` + "`" + `source` + "`" + ` and ` + "`" + `weight_roundrobin` + "`" + ` and ` + "`" + `leastconn` + "`" + ` are valid if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `request_proxy` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "persistence",
-					Description: `(Optional) Indicate whether the persistence session is enabled, it is invaild if ` + "`" + `persistence_type` + "`" + ` is ` + "`" + `none` + "`" + `, an auto-generated string will be exported if ` + "`" + `persistence_type` + "`" + ` is ` + "`" + `server_insert` + "`" + `, a custom string will be exported if ` + "`" + `persistence_type` + "`" + ` is ` + "`" + `user_defined` + "`" + `.`,
+					Description: `(Optional) Indicate whether the persistence session is enabled, it is invalid if ` + "`" + `persistence_type` + "`" + ` is ` + "`" + `none` + "`" + `, an auto-generated string will be exported if ` + "`" + `persistence_type` + "`" + ` is ` + "`" + `server_insert` + "`" + `, a custom string will be exported if ` + "`" + `persistence_type` + "`" + ` is ` + "`" + `user_defined` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "persistence_type",
-					Description: `(Optional) The type of session persistence of listener. Possible values are: ` + "`" + `none` + "`" + ` as disabled, ` + "`" + `server_insert` + "`" + ` as auto-generated string and ` + "`" + `user_defined` + "`" + ` as cutom string. (Default: ` + "`" + `none` + "`" + `).`,
+					Description: `(Optional) The type of session persistence of listener. Possible values are: ` + "`" + `none` + "`" + ` as disabled, ` + "`" + `server_insert` + "`" + ` as auto-generated key and ` + "`" + `user_defined` + "`" + ` as customized key. (Default: ` + "`" + `none` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "health_check_type",
@@ -815,7 +819,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backend_ids",
-					Description: `(Required) The IDs of the backend servers where rule applies, this argument is populated base on the ` + "`" + `backend_id` + "`" + ` responed from ` + "`" + `lb_attachment` + "`" + ` create.`,
+					Description: `(Required) The IDs of the backend servers where rule applies, this argument is populated base on the ` + "`" + `backend_id` + "`" + ` responded from ` + "`" + `lb_attachment` + "`" + ` create.`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -842,7 +846,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the LB ssl, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-lb-ssl` + "`" + `.`,
+					Description: `(Optional) The name of the LB ssl, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-lb-ssl` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "private_key",
@@ -899,7 +903,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_memcache_instance",
-			Category:         "UMem Resources DB Resources DB Resources",
+			Category:         "UMem Resources DB Resources",
 			ShortDescription: `Provides a Memcache instance resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -915,7 +919,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of Memcache instance, which contains 6-63 characters and only support English, numbers, '-', '_'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-memcache-instance` + "`" + `.`,
+					Description: `(Optional) The name of Memcache instance, which contains 6-63 characters and only support English, numbers, '-', '_'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-memcache-instance` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -927,7 +931,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the Memcache instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be vaild till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+					Description: `(Optional) The duration that you will buy the Memcache instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -1012,7 +1016,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of Redis instance, which contains 6-63 characters and only support English, numbers, '-', '_'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-redis-instance` + "`" + `.`,
+					Description: `(Optional) The name of Redis instance, which contains 6-63 characters and only support English, numbers, '-', '_'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-redis-instance` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -1024,7 +1028,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Optional) The duration that you will buy the Redis instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be vaild till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+					Description: `(Optional) The duration that you will buy the Redis instance (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -1116,7 +1120,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the security group which contains 1-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-security-group` + "`" + `.`,
+					Description: `(Optional) The name of the security group which contains 1-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-security-group` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
@@ -1179,7 +1183,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the desired subnet. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-subnet` + "`" + `.`,
+					Description: `(Optional) The name of the desired subnet. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-subnet` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
@@ -1217,7 +1221,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of VPC. If not specified, terraform will autogenerate a name beginning with ` + "`" + `tf-vpc` + "`" + `.`,
+					Description: `(Optional) The name of VPC. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpc` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tag",

@@ -42,6 +42,10 @@ var (
 					Description: `(Optional) Specifies the number of fault domains that are used. Defaults to 3. ~>`,
 				},
 				resource.Attribute{
+					Name:        "managed",
+					Description: `(Optional) Specifies whether the availability set is managed or not. Possible values are ` + "`" + `true` + "`" + ` (to specify aligned) or ` + "`" + `false` + "`" + ` (to specify classic). Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
 				},

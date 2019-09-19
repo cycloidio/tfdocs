@@ -41,6 +41,10 @@ var (
 					Description: `The ID of the database cluster.`,
 				},
 				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name of the database cluster.`,
+				},
+				resource.Attribute{
 					Name:        "engine",
 					Description: `Database engine used by the cluster (ex. ` + "`" + `pg` + "`" + ` for PostreSQL).`,
 				},
@@ -97,6 +101,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "urn",
+					Description: `The uniform resource name of the database cluster.`,
 				},
 				resource.Attribute{
 					Name:        "engine",

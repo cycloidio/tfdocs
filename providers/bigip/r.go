@@ -11,6 +11,35 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "bigip_as3",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip as3 resource`,
+			Description:      ``,
+			Keywords: []string{
+				"as3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "as3_json",
+					Description: `(Required) Name of the of the Declarative AS3 JSON file`,
+				},
+				resource.Attribute{
+					Name:        "tenant_name",
+					Description: `(Required) This is the partition name where the application services will be configured.`,
+				},
+				resource.Attribute{
+					Name:        "example.json",
+					Description: `Example of AS3 Declarative JSON ` + "`" + `` + "`" + `` + "`" + `hcl { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.0.0", "id": "urn:uuid:33045210-3ab8-4636-9b2a-c98d22ab915d", "label": "Sample 1", "remark": "Simple HTTP application with RR pool", "as3": { "class": "Tenant", "A1": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.0.1.10" ], "pool": "web_pool" }, "web_pool": { "class": "Pool", "monitors": [ "http" ], "members": [{ "servicePort": 80, "serverAddresses": [ "192.0.1.10", "192.0.1.11" ] }] } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "AS3 documentation",
+					Description: `https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/userguide/composing-a-declaration.html`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bigip_cm_device",
 			Category:         "Resources",
 			ShortDescription: `Provides details about bigip device`,
@@ -202,6 +231,10 @@ var (
 					Description: `(Required) IP or hostname of the node`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) User-defined description give ltm_node`,
+				},
+				resource.Attribute{
 					Name:        "connection_limit",
 					Description: `(Optional) Specifies the maximum number of connections allowed for the node or node address.`,
 				},
@@ -348,6 +381,10 @@ var (
 				resource.Attribute{
 					Name:        "monitors",
 					Description: `(Optional) List of monitor names to associate with the pool`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Userdefined value to describe the pool`,
 				},
 				resource.Attribute{
 					Name:        "allow_nat",
@@ -832,6 +869,10 @@ var (
 					Description: `(Required) Destination IP`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of Virtual server`,
+				},
+				resource.Attribute{
 					Name:        "pool",
 					Description: `(Optional) Default pool name`,
 				},
@@ -990,12 +1031,12 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "bigip_ltm_dns",
+			Type:             "bigip_sys_dns",
 			Category:         "Resources",
 			ShortDescription: `Provides details about bigip_sys_dns resource`,
 			Description:      ``,
 			Keywords: []string{
-				"ltm",
+				"sys",
 				"dns",
 			},
 			Arguments: []resource.Attribute{
@@ -1225,39 +1266,40 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"bigip_cm_device":                       0,
-		"bigip_cm_devicegroup":                  1,
-		"bigip_ltm_datagroup":                   2,
-		"bigip_ltm_irule":                       3,
-		"bigip_ltm_monitor":                     4,
-		"bigip_ltm_node":                        5,
-		"bigip_ltm_persistence_profile_cookie":  6,
-		"bigip_ltm_persistence_profile_dstaddr": 7,
-		"bigip_ltm_persistence_profile_srcaddr": 8,
-		"bigip_ltm_persistence_profile_ssl":     9,
-		"bigip_ltm_policy":                      10,
-		"bigip_ltm_pool":                        11,
-		"bigip_ltm_pool_attachment":             12,
-		"bigip_ltm_profile_fasthttp":            13,
-		"bigip_ltm_profile_fastl4":              14,
-		"bigip_ltm_profile_http":                15,
-		"bigip_ltm_profile_http2":               16,
-		"bigip_ltm_profile_httpcompress":        17,
-		"bigip_ltm_profile_oneconnect":          18,
-		"bigip_ltm_profile_tcp":                 19,
-		"bigip_ltm_snat":                        20,
-		"bigip_ltm_snatpool":                    21,
-		"bigip_ltm_virtual_address":             22,
-		"bigip_ltm_virtual_server":              23,
-		"bigip_net_route":                       24,
-		"bigip_net_selfip":                      25,
-		"bigip_net_vlan":                        26,
-		"bigip_ltm_dns":                         27,
-		"bigip_sys_iapp":                        28,
-		"bigip_sys_ntp":                         29,
-		"bigip_sys_provision":                   30,
-		"bigip_sys_snmp":                        31,
-		"bigip_sys_snmp_traps":                  32,
+		"bigip_as3":                             0,
+		"bigip_cm_device":                       1,
+		"bigip_cm_devicegroup":                  2,
+		"bigip_ltm_datagroup":                   3,
+		"bigip_ltm_irule":                       4,
+		"bigip_ltm_monitor":                     5,
+		"bigip_ltm_node":                        6,
+		"bigip_ltm_persistence_profile_cookie":  7,
+		"bigip_ltm_persistence_profile_dstaddr": 8,
+		"bigip_ltm_persistence_profile_srcaddr": 9,
+		"bigip_ltm_persistence_profile_ssl":     10,
+		"bigip_ltm_policy":                      11,
+		"bigip_ltm_pool":                        12,
+		"bigip_ltm_pool_attachment":             13,
+		"bigip_ltm_profile_fasthttp":            14,
+		"bigip_ltm_profile_fastl4":              15,
+		"bigip_ltm_profile_http":                16,
+		"bigip_ltm_profile_http2":               17,
+		"bigip_ltm_profile_httpcompress":        18,
+		"bigip_ltm_profile_oneconnect":          19,
+		"bigip_ltm_profile_tcp":                 20,
+		"bigip_ltm_snat":                        21,
+		"bigip_ltm_snatpool":                    22,
+		"bigip_ltm_virtual_address":             23,
+		"bigip_ltm_virtual_server":              24,
+		"bigip_net_route":                       25,
+		"bigip_net_selfip":                      26,
+		"bigip_net_vlan":                        27,
+		"bigip_sys_dns":                         28,
+		"bigip_sys_iapp":                        29,
+		"bigip_sys_ntp":                         30,
+		"bigip_sys_provision":                   31,
+		"bigip_sys_snmp":                        32,
+		"bigip_sys_snmp_traps":                  33,
 	}
 )
 

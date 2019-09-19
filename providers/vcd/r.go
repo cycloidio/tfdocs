@@ -161,12 +161,89 @@ var (
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
+					Name:        "network_type",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "vdc",
 					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional;`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_edgegateway",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director edge gateway. This can be used to create and delete edge gateways connected to one or more external networks.`,
+			Description:      ``,
+			Keywords: []string{
+				"edgegateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the VDC belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC that owns the edge gateway. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the edge gateway.`,
+				},
+				resource.Attribute{
+					Name:        "external_networks",
+					Description: `(Required) An array of external network names.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Required) Configuration of the vShield edge VM for this gateway. One of: ` + "`" + `compact` + "`" + `, ` + "`" + `full` + "`" + ` ("Large"), ` + "`" + `x-large` + "`" + `, ` + "`" + `full4` + "`" + ` ("Quad Large").`,
+				},
+				resource.Attribute{
+					Name:        "default_gateway_network",
+					Description: `(Optional) Name of the external network to be used as default gateway. It must be included in the list of ` + "`" + `external_networks` + "`" + `. Providing an empty string or omitting the argument will create the edge gateway without a default gateway.`,
+				},
+				resource.Attribute{
+					Name:        "advanced",
+					Description: `(Optional) True if the gateway uses advanced networking. Default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ha_enabled",
+					Description: `(Optional) Enable high availability on this edge gateway. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "distributed_routing",
+					Description: `(Optional) If advanced networking enabled, also enable distributed routing. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lb_enabled",
+					Description: `(Optional) Enable load balancing. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lb_acceleration_enabled",
+					Description: `(Optional) Enable to configure the load balancer to use the faster L4 engine rather than L7 engine. The L4 TCP VIP is processed before the edge gateway firewall so no ` + "`" + `allow` + "`" + ` firewall rule is required. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lb_logging_enabled",
+					Description: `(Optional) Enables the edge gateway load balancer to collect traffic logs. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lb_loglevel",
+					Description: `(Optional) Choose the severity of events to be logged. One of ` + "`" + `emergency` + "`" + `, ` + "`" + `alert` + "`" + `, ` + "`" + `critical` + "`" + `, ` + "`" + `error` + "`" + `, ` + "`" + `warning` + "`" + `, ` + "`" + `notice` + "`" + `, ` + "`" + `info` + "`" + `, ` + "`" + `debug` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -487,6 +564,386 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_lb_app_profile",
+			Category:         "Resources",
+			ShortDescription: `Provides an NSX edge gateway load balancer application profile resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"lb",
+				"app",
+				"profile",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which the application profile is to be created`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Application profile name`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Protocol type used to send requests to the server. One of ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `http` + "`" + `, or ` + "`" + `https` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "enable_ssl_passthrough",
+					Description: `(Optional) Enable SSL authentication to be passed through to the virtual server. Otherwise SSL authentication takes place at the destination address`,
+				},
+				resource.Attribute{
+					Name:        "http_redirect_url",
+					Description: `(Optional) The URL to which traffic that arrives at the destination address should be redirected. Only applies for types ` + "`" + `http` + "`" + ` and ` + "`" + `https` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "persistence_mechanism",
+					Description: `(Optional) Persistence mechanism for the profile. One of 'cookie', 'ssl-sessionid', 'sourceip'`,
+				},
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `(Optional) Used to uniquely identify the session the first time a client accesses the site. The load balancer refers to this cookie when connecting subsequent requests in the session, so that they all go to the same virtual server. Only applies for ` + "`" + `persistence_mechanism` + "`" + ` 'cookie'`,
+				},
+				resource.Attribute{
+					Name:        "cookie_mode",
+					Description: `(Optional) The mode by which the cookie should be inserted. One of 'insert', 'prefix', or 'appsession'`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `(Optional) Length of time in seconds that persistence stays in effect`,
+				},
+				resource.Attribute{
+					Name:        "insert_x_forwarded_http_header",
+					Description: `(Optional) Enables 'X-Forwarded-For' header for identifying the originating IP address of a client connecting to a Web server through the load balancer. Only applies for types ` + "`" + `http` + "`" + ` and ` + "`" + `https` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "enable_pool_side_ssl",
+					Description: `(Optional) Enable to define the certificate, CAs, or CRLs used to authenticate the load balancer from the server side.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer application profile ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer application profile ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_lb_app_rule",
+			Category:         "Resources",
+			ShortDescription: `Provides an NSX edge gateway load balancer application rule resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"lb",
+				"app",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which the application rule is to be created`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Application rule name`,
+				},
+				resource.Attribute{
+					Name:        "script",
+					Description: `(Required) A multiline application rule script. Terraform's [HEREDOC syntax](https://www.terraform.io/docs/configuration/expressions.html#string-literals) may be useful for multiline scripts.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer application rule ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer application rule ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_lb_server_pool",
+			Category:         "Resources",
+			ShortDescription: `Provides an NSX edge gateway load balancer server pool resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"lb",
+				"server",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which the server pool is to be created`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Server Pool name`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Server Pool description`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `(Required) Server Pool load balancing method. Can be one of ` + "`" + `ip-hash` + "`" + `, ` + "`" + `round-robin` + "`" + `, ` + "`" + `uri` + "`" + `, ` + "`" + `leastconn` + "`" + `, ` + "`" + `url` + "`" + `, or ` + "`" + `httpheader` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "algorithm_parameters",
+					Description: `(Optional) Valid only when ` + "`" + `algorithm` + "`" + ` is ` + "`" + `httpheader` + "`" + ` or ` + "`" + `url` + "`" + `. The ` + "`" + `httpheader` + "`" + ` algorithm parameter has one option ` + "`" + `headerName=<name>` + "`" + ` while the ` + "`" + `url` + "`" + ` algorithm parameter has option ` + "`" + `urlParam=<url>` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enable_transparency",
+					Description: `(Optional) When transparency is ` + "`" + `false` + "`" + ` (default) backend servers see the IP address of the traffic source as the internal IP address of the load balancer. When it is ` + "`" + `true` + "`" + ` the source IP address is the actual IP address of the client and the edge gateway must be set as the default gateway to ensure that return packets go through the edge gateway.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_id",
+					Description: `(Optional) ` + "`" + `vcd_lb_service_monitor` + "`" + ` resource ` + "`" + `id` + "`" + ` to attach to server pool for health check parameters`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `(Optional) A block to define server pool members. Multiple can be used. See [Member](#member) and example for usage details. <a id="member"></a> ## Member`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Required) State of member in a pool. One of ` + "`" + `enabled` + "`" + `, ` + "`" + `disabled` + "`" + `, or ` + "`" + `drain` + "`" + `. When member condition is set to ` + "`" + `drain` + "`" + ` it stops taking new connections and calls, while it allows its sessions on existing connections to continue until they naturally end. This allows to gracefully remove member node from load balancing rotation.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Member name`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) Member IP address`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The port at which the member is to receive traffic from the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "monitor_port",
+					Description: `(Required) Monitor Port at which the member is to receive health monitor requests.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Required) The proportion of traffic this member is to handle. Must be an integer in the range 1-256.`,
+				},
+				resource.Attribute{
+					Name:        "min_connections",
+					Description: `(Optional) The maximum number of concurrent connections the member can handle.`,
+				},
+				resource.Attribute{
+					Name:        "max_connections",
+					Description: `(Optional) The minimum number of concurrent connections a member must always accept. ## Attribute Reference The following attributes are exported on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer server pool Additionally each of members defined in blocks expose their own ` + "`" + `id` + "`" + ` fields as well ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer server pool Additionally each of members defined in blocks expose their own ` + "`" + `id` + "`" + ` fields as well ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_lb_service_monitor",
+			Category:         "Resources",
+			ShortDescription: `Provides an NSX edge gateway load balancer service monitor resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"lb",
+				"service",
+				"monitor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which the service monitor is to be created`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Service Monitor name`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Interval in seconds at which a server is to be monitored using the specified Method. Defaults to 10`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Maximum time in seconds within which a response from the server must be received. Defaults to 15`,
+				},
+				resource.Attribute{
+					Name:        "max_retries",
+					Description: `(Optional) Number of times the specified monitoring Method must fail sequentially before the server is declared down. Defaults to 3`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Select the way in which you want to send the health check request to the server — ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp` + "`" + `, ` + "`" + `icmp` + "`" + `, or ` + "`" + `udp` + "`" + `. Depending on the type selected, the remaining attributes are allowed or not`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Optional) For types ` + "`" + `http` + "`" + ` and ` + "`" + `https` + "`" + `. Select http method to be used to detect server status. One of OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, or CONNECT`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Optional) For types ` + "`" + `http` + "`" + ` and ` + "`" + `https` + "`" + `. URL to be used in the server status request`,
+				},
+				resource.Attribute{
+					Name:        "send",
+					Description: `(Optional) For types ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, and ` + "`" + `udp` + "`" + `. The data to be sent.`,
+				},
+				resource.Attribute{
+					Name:        "expected",
+					Description: `(Optional) For types ` + "`" + `http` + "`" + ` and ` + "`" + `https` + "`" + `. String that the monitor expects to match in the status line of the HTTP or HTTPS response (for example, ` + "`" + `HTTP/1.1` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "receive",
+					Description: `(Optional) For types ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, and ` + "`" + `udp` + "`" + `. The string to be matched in the response content.`,
+				},
+				resource.Attribute{
+					Name:        "extension",
+					Description: `(Optional) A map of advanced monitor parameters as key=value pairs (i.e. ` + "`" + `max-age=SECONDS` + "`" + `, ` + "`" + `invert-regex` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer service monitor ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer service monitor ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_lb_virtual_server",
+			Category:         "Resources",
+			ShortDescription: `Provides an NSX edge gateway load balancer virtual server resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"lb",
+				"virtual",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which the virtual server is to be created`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Virtual server name`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Virtual server description`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the virtual server is enabled. Default ` + "`" + `true` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "enable_acceleration",
+					Description: `(Optional) Defines if the virtual server uses acceleration. Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) Set the IP address that the load balancer listens on`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) Select the protocol that the virtual server accepts. One of ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `http` + "`" + `, or ` + "`" + `https` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The port number that the load balancer listens on`,
+				},
+				resource.Attribute{
+					Name:        "connection_limit",
+					Description: `(Optional) Maximum concurrent connections that the virtual server can process`,
+				},
+				resource.Attribute{
+					Name:        "connection_rate_limit",
+					Description: `(Optional) Maximum incoming new connection requests per second`,
+				},
+				resource.Attribute{
+					Name:        "server_pool_id",
+					Description: `(Optional) The server pool that the load balancer will use`,
+				},
+				resource.Attribute{
+					Name:        "app_profile_id",
+					Description: `(Optional) Application profile ID to be associated with the virtual server`,
+				},
+				resource.Attribute{
+					Name:        "app_rule_ids",
+					Description: `(Optional) List of attached application rule IDs ## Attribute Reference The following attributes are exported on the base level of this resource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer virtual server ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The NSX ID of the load balancer virtual server ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_network",
 			Category:         "Resources",
 			ShortDescription: `Provides a vCloud Director Org VDC Network. This can be used to create, modify, and delete internal networks for vApps to connect.`,
@@ -783,6 +1240,93 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_org_user",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director Organization user. This can be used to create, update, and delete organization users.`,
+			Description:      ``,
+			Keywords: []string{
+				"org",
+				"user",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to which the VDC belongs. Optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional, but required if ` + "`" + `password_file` + "`" + ` was not given) The user password. This value is never returned on read. It is inspected on create and modify. To modify, fill with a different value. Note that if you remove the password`,
+				},
+				resource.Attribute{
+					Name:        "provider_type",
+					Description: `(Optional) Identity provider type for this this user. One of: ` + "`" + `INTEGRATED` + "`" + `, ` + "`" + `SAML` + "`" + `, ` + "`" + `OAUTH` + "`" + `. The default is ` + "`" + `INTEGRATED` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role of the user. Role names can be retrieved from the organization. Both built-in roles and custom built can be used. The roles normally available are:`,
+				},
+				resource.Attribute{
+					Name:        "full_name",
+					Description: `(Optional) The full name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the user.`,
+				},
+				resource.Attribute{
+					Name:        "telephone",
+					Description: `(Optional) The Org User telephone number.`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `(Optional) The Org User email address. Needs to be a properly formatted email address.`,
+				},
+				resource.Attribute{
+					Name:        "instant_messaging",
+					Description: `(Optional) The Org User instant messaging.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) True if the user is enabled and can log in. The default is ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_group_role",
+					Description: `(Optional) True if this user has a group role.. The default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_locked",
+					Description: `(Optional)aIf the user account has been locked due to too many invalid login attempts, the value will change to true (only the system can lock the user). To unlock the user re-set this flag to false.`,
+				},
+				resource.Attribute{
+					Name:        "take_ownership",
+					Description: `(Optional) Take ownership of user's objects on deletion.`,
+				},
+				resource.Attribute{
+					Name:        "deployed_vm_quota",
+					Description: `(Optional) Quota of vApps that this user can deploy. A value of 0 specifies an unlimited quota. The default is 10.`,
+				},
+				resource.Attribute{
+					Name:        "stored_vm_quota",
+					Description: `(Optional) Quota of vApps that this user can store. A value of 0 specifies an unlimited quota. The default is 10. ## Attribute Reference The following attributes are exported on this resource:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Organization user ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Organization user ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_org_vdc",
 			Category:         "Resources",
 			ShortDescription: `Provides a vCloud Director Organization VDC resource. This can be used to create and delete a Organization VDC.`,
@@ -838,7 +1382,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory_guaranteed",
-					Description: `(Optional) Percentage of allocated memory resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. If left empty, vCD sets a value.`,
+					Description: `(Optional) Percentage of allocated memory resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. When Allocation model is AllocationPool minimum value is 0.2. If left empty, vCD sets a value.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_guaranteed",
@@ -847,6 +1391,10 @@ var (
 				resource.Attribute{
 					Name:        "cpu_speed",
 					Description: `(Optional) Specifies the clock frequency, in Megahertz, for any virtual CPU that is allocated to a VM. A VM with 2 vCPUs will consume twice as much of this value. Ignored for ReservationPool. Required when AllocationModel is AllocationVApp or AllocationPool, and may not be less than 256 MHz. Defaults to 1000 MHz if value isn't provided.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "enable_thin_provisioning",
@@ -926,11 +1474,23 @@ var (
 					Description: `(Required) The IP or IP Range of the VM(s) to map from`,
 				},
 				resource.Attribute{
+					Name:        "network_type",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
 					Name:        "org",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "vdc",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "description",
 					Description: `(Optional;`,
 				},
 			},
@@ -1201,25 +1761,32 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"vcd_catalog":          0,
-		"vcd_catalog_item":     1,
-		"vcd_catalog_media":    2,
-		"vcd_dnat":             3,
-		"vcd_edgegateway_vpn":  4,
-		"vcd_external_network": 5,
-		"vcd_firewall_rules":   6,
-		"vcd_independent_disk": 7,
-		"vcd_inserted_media":   8,
-		"vcd_network":          9,
-		"vcd_network_direct":   10,
-		"vcd_network_isolated": 11,
-		"vcd_network_routed":   12,
-		"vcd_org":              13,
-		"vcd_org_vdc":          14,
-		"vcd_snat":             15,
-		"vcd_vapp":             16,
-		"vcd_vapp_network":     17,
-		"vcd_vapp_vm":          18,
+		"vcd_catalog":            0,
+		"vcd_catalog_item":       1,
+		"vcd_catalog_media":      2,
+		"vcd_dnat":               3,
+		"vcd_edgegateway":        4,
+		"vcd_edgegateway_vpn":    5,
+		"vcd_external_network":   6,
+		"vcd_firewall_rules":     7,
+		"vcd_independent_disk":   8,
+		"vcd_inserted_media":     9,
+		"vcd_lb_app_profile":     10,
+		"vcd_lb_app_rule":        11,
+		"vcd_lb_server_pool":     12,
+		"vcd_lb_service_monitor": 13,
+		"vcd_lb_virtual_server":  14,
+		"vcd_network":            15,
+		"vcd_network_direct":     16,
+		"vcd_network_isolated":   17,
+		"vcd_network_routed":     18,
+		"vcd_org":                19,
+		"vcd_org_user":           20,
+		"vcd_org_vdc":            21,
+		"vcd_snat":               22,
+		"vcd_vapp":               23,
+		"vcd_vapp_network":       24,
+		"vcd_vapp_vm":            25,
 	}
 )
 

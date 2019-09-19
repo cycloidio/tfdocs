@@ -1,4 +1,4 @@
-package rancher
+package exoscale
 
 import (
 	"fmt"

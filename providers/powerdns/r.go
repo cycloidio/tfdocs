@@ -42,11 +42,37 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "powerdns_zone",
+			Category:         "Resources",
+			ShortDescription: `Provides a PowerDNS zone.`,
+			Description:      ``,
+			Keywords: []string{
+				"zone",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of zone.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Required) The kind of the zone.`,
+				},
+				resource.Attribute{
+					Name:        "nameservers",
+					Description: `(Required) The zone nameservers.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
 		"powerdns_record": 0,
+		"powerdns_zone":   1,
 	}
 )
 

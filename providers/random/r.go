@@ -99,7 +99,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result",
-					Description: `(int) The random Integer result. ## Import Random integers can be imported using the ` + "`" + `result` + "`" + `, ` + "`" + `min` + "`" + `, and ` + "`" + `max` + "`" + `, with an optional ` + "`" + `seed` + "`" + `. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ` + "`" + `,` + "`" + `): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_integer.priority 15390,1,99999 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(int) The random Integer result. ## Import Random integers can be imported using the ` + "`" + `result` + "`" + `, ` + "`" + `min` + "`" + `, and ` + "`" + `max` + "`" + `, with an optional ` + "`" + `seed` + "`" + `. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ` + "`" + `,` + "`" + `): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_integer.priority 15390,1,50000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -109,9 +109,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result",
-					Description: `(int) The random Integer result. ## Import Random integers can be imported using the ` + "`" + `result` + "`" + `, ` + "`" + `min` + "`" + `, and ` + "`" + `max` + "`" + `, with an optional ` + "`" + `seed` + "`" + `. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ` + "`" + `,` + "`" + `): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_integer.priority 15390,1,99999 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(int) The random Integer result. ## Import Random integers can be imported using the ` + "`" + `result` + "`" + `, ` + "`" + `min` + "`" + `, and ` + "`" + `max` + "`" + `, with an optional ` + "`" + `seed` + "`" + `. This can be used to replace a config value with a value interpolated from the random provider without experiencing diffs. Example (values are separated by a ` + "`" + `,` + "`" + `): ` + "`" + `` + "`" + `` + "`" + ` $ terraform import random_integer.priority 15390,1,50000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "random_password",
+			Category:         "Resources",
+			ShortDescription: `Produces a random string of a length using alphanumeric characters and optionally special characters. The result will be displayed to console or in any logs.`,
+			Description:      ``,
+			Keywords: []string{
+				"password",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -285,12 +297,13 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"random_id":      0,
-		"random_integer": 1,
-		"random_pet":     2,
-		"random_shuffle": 3,
-		"random_string":  4,
-		"random_uuid":    5,
+		"random_id":       0,
+		"random_integer":  1,
+		"random_password": 2,
+		"random_pet":      3,
+		"random_shuffle":  4,
+		"random_string":   5,
+		"random_uuid":     6,
 	}
 )
 

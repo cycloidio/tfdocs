@@ -11,6 +11,96 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "kubernetes_api_service",
+			Category:         "Resources",
+			ShortDescription: `An API Service is an abstraction which defines for locating and communicating with servers.`,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Required) Standard API service's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `(Required) Spec contains information for locating and communicating with a server. [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional) An unstructured key value map stored with the API service that may be used to store arbitrary metadata.`,
+				},
+				resource.Attribute{
+					Name:        "generate_name",
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the API service.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the API service, must be unique. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "generation",
+					Description: `A sequence number representing a specific generation of the desired state.`,
+				},
+				resource.Attribute{
+					Name:        "resource_version",
+					Description: `An opaque value that represents the internal version of this API service that can be used by clients to determine when API service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `A URL representing this API service.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `The unique in time and space value for this API service. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "ca_bundle",
+					Description: `(Optional) CABundle is a PEM encoded CA bundle which will be used to validate an API server's serving certificate. If unspecified, system trust roots on the apiserver are used.`,
+				},
+				resource.Attribute{
+					Name:        "group",
+					Description: `(Required) Group is the API group name this server hosts.`,
+				},
+				resource.Attribute{
+					Name:        "group_priority_minimum",
+					Description: `(Required) GroupPriorityMininum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMininum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object. (v1.bar before v1.foo) We'd recommend something like:`,
+				},
+				resource.Attribute{
+					Name:        "insecure_skip_tls_verify",
+					Description: `(Required) InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged. You should use the CABundle instead.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Optional) Service is a reference to the service for this API server. It must communicate on port 443. If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled. See ` + "`" + `service` + "`" + ` block attributes below.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Version is the API version this server hosts. For example, ` + "`" + `v1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "version_priority",
+					Description: `(Required) VersionPriority controls the ordering of this API version inside of its group. Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is ` + "`" + `kube-like` + "`" + `, it will sort above non ` + "`" + `kube-like` + "`" + ` version strings, which are ordered lexicographically. ` + "`" + `Kube-like` + "`" + ` versions start with a ` + "`" + `v` + "`" + `, then are followed by a number (the major version), then optionally the string ` + "`" + `alpha` + "`" + ` or ` + "`" + `beta` + "`" + ` and another number (the minor version). These are sorted first by GA > ` + "`" + `beta` + "`" + ` > ` + "`" + `alpha` + "`" + ` (where GA is a version with no suffix such as ` + "`" + `beta` + "`" + ` or ` + "`" + `alpha` + "`" + `), and then by comparing major version, then minor version. An example sorted list of versions: ` + "`" + `v10` + "`" + `, ` + "`" + `v2` + "`" + `, ` + "`" + `v1` + "`" + `, ` + "`" + `v11beta2` + "`" + `, ` + "`" + `v10beta3` + "`" + `, ` + "`" + `v3beta1` + "`" + `, ` + "`" + `v12alpha1` + "`" + `, ` + "`" + `v11alpha2` + "`" + `, ` + "`" + `foo1` + "`" + `, ` + "`" + `foo10` + "`" + `.. ### ` + "`" + `service` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name is the name of the service.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) Namespace is the namespace of the service. ## Import API service can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_api_service.example v1.terraform-name.k8s.io ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "kubernetes_cluster_role",
 			Category:         "Resources",
 			ShortDescription: `A ClusterRole creates a role at the cluster level and in all namespaces.`,
@@ -953,7 +1043,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) Path of the directory on the host. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#hostpath) ### ` + "`" + `http_get` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path of the directory on the host. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#hostpath)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type for HostPath volume. Defaults to "". For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes#hostpath) ### ` + "`" + `http_get` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -2214,7 +2308,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) Path of the directory on the host. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#hostpath) ### ` + "`" + `http_get` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path of the directory on the host. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#hostpath)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type for HostPath volume. Defaults to "". For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes#hostpath) ### ` + "`" + `http_get` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -3315,7 +3413,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard namespace's [metadata](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata). ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Standard namespace's [metadata](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata). ### Timeouts ` + "`" + `kubernetes_namespace` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `delete` + "`" + ` - Default ` + "`" + `5 minutes` + "`" + ` ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -3795,7 +3893,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) Path of the directory on the host. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#hostpath) ### ` + "`" + `iscsi` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path of the directory on the host. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#hostpath)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type for HostPath volume. Defaults to "". For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes#hostpath) ### ` + "`" + `iscsi` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -4663,7 +4765,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) Path of the directory on the host. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#hostpath) ### ` + "`" + `http_get` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path of the directory on the host. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/volumes#hostpath)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type for HostPath volume. Defaults to "". For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes#hostpath) ### ` + "`" + `http_get` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -6044,31 +6150,32 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"kubernetes_cluster_role":              0,
-		"kubernetes_cluster_role_binding":      1,
-		"kubernetes_config_map":                2,
-		"kubernetes_cron_job":                  3,
-		"kubernetes_daemonset":                 4,
-		"kubernetes_deployment":                5,
-		"kubernetes_endpoints":                 6,
-		"kubernetes_horizontal_pod_autoscaler": 7,
-		"kubernetes_ingress":                   8,
-		"kubernetes_job":                       9,
-		"kubernetes_limit_range":               10,
-		"kubernetes_namespace":                 11,
-		"kubernetes_network_policy":            12,
-		"kubernetes_persistent_volume":         13,
-		"kubernetes_persistent_volume_claim":   14,
-		"kubernetes_pod":                       15,
-		"kubernetes_replication_controller":    16,
-		"kubernetes_resource_quota":            17,
-		"kubernetes_role":                      18,
-		"kubernetes_role_binding":              19,
-		"kubernetes_secret":                    20,
-		"kubernetes_service":                   21,
-		"kubernetes_service_account":           22,
-		"kubernetes_stateful_set":              23,
-		"kubernetes_storage_class":             24,
+		"kubernetes_api_service":               0,
+		"kubernetes_cluster_role":              1,
+		"kubernetes_cluster_role_binding":      2,
+		"kubernetes_config_map":                3,
+		"kubernetes_cron_job":                  4,
+		"kubernetes_daemonset":                 5,
+		"kubernetes_deployment":                6,
+		"kubernetes_endpoints":                 7,
+		"kubernetes_horizontal_pod_autoscaler": 8,
+		"kubernetes_ingress":                   9,
+		"kubernetes_job":                       10,
+		"kubernetes_limit_range":               11,
+		"kubernetes_namespace":                 12,
+		"kubernetes_network_policy":            13,
+		"kubernetes_persistent_volume":         14,
+		"kubernetes_persistent_volume_claim":   15,
+		"kubernetes_pod":                       16,
+		"kubernetes_replication_controller":    17,
+		"kubernetes_resource_quota":            18,
+		"kubernetes_role":                      19,
+		"kubernetes_role_binding":              20,
+		"kubernetes_secret":                    21,
+		"kubernetes_service":                   22,
+		"kubernetes_service_account":           23,
+		"kubernetes_stateful_set":              24,
+		"kubernetes_storage_class":             25,
 	}
 )
 

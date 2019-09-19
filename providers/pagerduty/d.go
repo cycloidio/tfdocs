@@ -115,6 +115,38 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "pagerduty_service",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a service that you have created.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The service name to use to find a service in the PagerDuty API. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the found service.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The short name of the found service. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the found service.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The short name of the found service. [1]: https://api-reference.pagerduty.com/#!/Services/get_services`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "pagerduty_team",
 			Category:         "Data Sources",
 			ShortDescription: `Get information about a team that you can use with escalation_policies, schedules etc.`,
@@ -232,9 +264,10 @@ var (
 		"pagerduty_escalation_policy": 0,
 		"pagerduty_extension_schema":  1,
 		"pagerduty_schedule":          2,
-		"pagerduty_team":              3,
-		"pagerduty_user":              4,
-		"pagerduty_vendor":            5,
+		"pagerduty_service":           3,
+		"pagerduty_team":              4,
+		"pagerduty_user":              5,
+		"pagerduty_vendor":            6,
 	}
 )
 

@@ -3513,6 +3513,10 @@ cluster within an AWS ECS service.
 					Name:        "registered_container_instances_count",
 					Description: `The number of registered container instances for the ECS Cluster`,
 				},
+				resource.Attribute{
+					Name:        "setting",
+					Description: `The settings associated with the ECS Cluster.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -3534,6 +3538,10 @@ cluster within an AWS ECS service.
 				resource.Attribute{
 					Name:        "registered_container_instances_count",
 					Description: `The number of registered container instances for the ECS Cluster`,
+				},
+				resource.Attribute{
+					Name:        "setting",
+					Description: `The settings associated with the ECS Cluster.`,
 				},
 			},
 		},
@@ -4074,12 +4082,28 @@ Retrieve information about an EKS Cluster.
 					Description: `The endpoint for your Kubernetes API server.`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `Nested attribute containing identity provider information for your cluster. Only available on Kubernetes version 1.13 and 1.14 clusters created or upgraded on or after September 3, 2019. For an example using this information to enable IAM Roles for Service Accounts, see the [` + "`" + `aws_eks_cluster` + "`" + ` resource documentation](/docs/providers/aws/r/eks_cluster.html).`,
+				},
+				resource.Attribute{
+					Name:        "oidc",
+					Description: `Nested attribute containing [OpenID Connect](https://openid.net/connect/) identity provider information for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `Issuer URL for the OpenID Connect identity provider.`,
+				},
+				resource.Attribute{
 					Name:        "platform_version",
 					Description: `The platform version for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "role_arn",
 					Description: `The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the EKS cluster. One of ` + "`" + `CREATING` + "`" + `, ` + "`" + `ACTIVE` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `FAILED` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -4128,12 +4152,28 @@ Retrieve information about an EKS Cluster.
 					Description: `The endpoint for your Kubernetes API server.`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `Nested attribute containing identity provider information for your cluster. Only available on Kubernetes version 1.13 and 1.14 clusters created or upgraded on or after September 3, 2019. For an example using this information to enable IAM Roles for Service Accounts, see the [` + "`" + `aws_eks_cluster` + "`" + ` resource documentation](/docs/providers/aws/r/eks_cluster.html).`,
+				},
+				resource.Attribute{
+					Name:        "oidc",
+					Description: `Nested attribute containing [OpenID Connect](https://openid.net/connect/) identity provider information for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `Issuer URL for the OpenID Connect identity provider.`,
+				},
+				resource.Attribute{
 					Name:        "platform_version",
 					Description: `The platform version for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "role_arn",
 					Description: `The Amazon Resource Name (ARN) of the IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the EKS cluster. One of ` + "`" + `CREATING` + "`" + `, ` + "`" + `ACTIVE` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `FAILED` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "version",
@@ -4495,6 +4535,318 @@ Use this data source to get information about an Elasticache Replication Group.
 				resource.Attribute{
 					Name:        "primary_endpoint_address",
 					Description: `The endpoint of the primary node in this node group (shard).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_elasticsearch_domain",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an ElasticSearch Domain resource.`,
+			Description: `
+
+Use this data source to get information about an Elasticsearch Domain
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "advanced_options",
+					Description: `Key-value string pairs to specify advanced configuration options.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `Cluster configuration of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Instance type of data nodes in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "instance_count",
+					Description: `Number of instances in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_master_enabled",
+					Description: `Indicates whether dedicated master nodes are enabled for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_master_type",
+					Description: `Instance type of the dedicated master nodes in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_master_count",
+					Description: `Number of dedicated master nodes in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "zone_awareness_enabled",
+					Description: `Indicates whether zone awareness is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "zone_awareness_config",
+					Description: `Configuration block containing zone awareness settings.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone_count",
+					Description: `Number of availability zones used.`,
+				},
+				resource.Attribute{
+					Name:        "cognito_options",
+					Description: `Domain Amazon Cognito Authentication options for Kibana.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether Amazon Cognito Authentication is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "user_pool_id",
+					Description: `The Cognito User pool used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "identity_pool_id",
+					Description: `The Cognito Identity pool used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The IAM Role with the AmazonESCognitoAccess policy attached.`,
+				},
+				resource.Attribute{
+					Name:        "ebs_options",
+					Description: `EBS Options for the instances in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "ebs_enabled",
+					Description: `Whether EBS volumes are attached to data nodes in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `The type of EBS volumes attached to data nodes.`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `The size of EBS volumes attached to data nodes (in GB).`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `The baseline input/output (I/O) performance of EBS volumes attached to data nodes.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_at_rest",
+					Description: `Domain encryption at rest related options.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether encryption at rest is enabled in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `The KMS key id used to encrypt data at rest.`,
+				},
+				resource.Attribute{
+					Name:        "kibana_endpoint",
+					Description: `Domain-specific endpoint used to access the Kibana application.`,
+				},
+				resource.Attribute{
+					Name:        "log_publishing_options",
+					Description: `Domain log publishing related options.`,
+				},
+				resource.Attribute{
+					Name:        "log_type",
+					Description: `The type of Elasticsearch log being published.`,
+				},
+				resource.Attribute{
+					Name:        "cloudwatch_log_group_arn",
+					Description: `The CloudWatch Log Group where the logs are published.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether log publishing is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "node_to_node_encryption",
+					Description: `Domain in transit encryption related options.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether node to node encryption is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "automated_snapshot_start_hour",
+					Description: `Hour during which the service takes an automated daily snapshot of the indices in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags assigned to the domain.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_options",
+					Description: `VPC Options for private Elasticsearch domains.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The availability zones used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `The security groups used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `The subnets used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC used by the domain.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "advanced_options",
+					Description: `Key-value string pairs to specify advanced configuration options.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `Cluster configuration of the domain.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Instance type of data nodes in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "instance_count",
+					Description: `Number of instances in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_master_enabled",
+					Description: `Indicates whether dedicated master nodes are enabled for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_master_type",
+					Description: `Instance type of the dedicated master nodes in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_master_count",
+					Description: `Number of dedicated master nodes in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "zone_awareness_enabled",
+					Description: `Indicates whether zone awareness is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "zone_awareness_config",
+					Description: `Configuration block containing zone awareness settings.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone_count",
+					Description: `Number of availability zones used.`,
+				},
+				resource.Attribute{
+					Name:        "cognito_options",
+					Description: `Domain Amazon Cognito Authentication options for Kibana.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether Amazon Cognito Authentication is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "user_pool_id",
+					Description: `The Cognito User pool used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "identity_pool_id",
+					Description: `The Cognito Identity pool used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `The IAM Role with the AmazonESCognitoAccess policy attached.`,
+				},
+				resource.Attribute{
+					Name:        "ebs_options",
+					Description: `EBS Options for the instances in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "ebs_enabled",
+					Description: `Whether EBS volumes are attached to data nodes in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `The type of EBS volumes attached to data nodes.`,
+				},
+				resource.Attribute{
+					Name:        "volume_size",
+					Description: `The size of EBS volumes attached to data nodes (in GB).`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `The baseline input/output (I/O) performance of EBS volumes attached to data nodes.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_at_rest",
+					Description: `Domain encryption at rest related options.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether encryption at rest is enabled in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `The KMS key id used to encrypt data at rest.`,
+				},
+				resource.Attribute{
+					Name:        "kibana_endpoint",
+					Description: `Domain-specific endpoint used to access the Kibana application.`,
+				},
+				resource.Attribute{
+					Name:        "log_publishing_options",
+					Description: `Domain log publishing related options.`,
+				},
+				resource.Attribute{
+					Name:        "log_type",
+					Description: `The type of Elasticsearch log being published.`,
+				},
+				resource.Attribute{
+					Name:        "cloudwatch_log_group_arn",
+					Description: `The CloudWatch Log Group where the logs are published.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether log publishing is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "node_to_node_encryption",
+					Description: `Domain in transit encryption related options.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether node to node encryption is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "automated_snapshot_start_hour",
+					Description: `Hour during which the service takes an automated daily snapshot of the indices in the domain.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags assigned to the domain.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_options",
+					Description: `VPC Options for private Elasticsearch domains.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `The availability zones used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `The security groups used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `The subnets used by the domain.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC used by the domain.`,
 				},
 			},
 		},
@@ -5227,6 +5579,10 @@ resources.
 					Description: `` + "`" + `0` + "`" + ` If the EBS volume is not a provisioned IOPS image, otherwise the supported IOPS count.`,
 				},
 				resource.Attribute{
+					Name:        "kms_key_arn",
+					Description: `Amazon Resource Name (ARN) of KMS Key, if EBS volume is encrypted.`,
+				},
+				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `The ID of the snapshot.`,
 				},
@@ -5265,6 +5621,10 @@ resources.
 				resource.Attribute{
 					Name:        "ipv6_addresses",
 					Description: `The IPv6 addresses associated to the Instance, if applicable.`,
+				},
+				resource.Attribute{
+					Name:        "instance_state",
+					Description: `The state of the instance. One of: ` + "`" + `pending` + "`" + `, ` + "`" + `running` + "`" + `, ` + "`" + `shutting-down` + "`" + `, ` + "`" + `terminated` + "`" + `, ` + "`" + `stopping` + "`" + `, ` + "`" + `stopped` + "`" + `. See [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -5315,8 +5675,16 @@ resources.
 					Description: `If the root block device will be deleted on termination.`,
 				},
 				resource.Attribute{
+					Name:        "encrypted",
+					Description: `If the EBS volume is encrypted.`,
+				},
+				resource.Attribute{
 					Name:        "iops",
 					Description: `` + "`" + `0` + "`" + ` If the volume is not a provisioned IOPS image, otherwise the supported IOPS count.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_arn",
+					Description: `Amazon Resource Name (ARN) of KMS Key, if EBS volume is encrypted.`,
 				},
 				resource.Attribute{
 					Name:        "volume_size",
@@ -5405,6 +5773,10 @@ resources.
 					Description: `` + "`" + `0` + "`" + ` If the EBS volume is not a provisioned IOPS image, otherwise the supported IOPS count.`,
 				},
 				resource.Attribute{
+					Name:        "kms_key_arn",
+					Description: `Amazon Resource Name (ARN) of KMS Key, if EBS volume is encrypted.`,
+				},
+				resource.Attribute{
 					Name:        "snapshot_id",
 					Description: `The ID of the snapshot.`,
 				},
@@ -5443,6 +5815,10 @@ resources.
 				resource.Attribute{
 					Name:        "ipv6_addresses",
 					Description: `The IPv6 addresses associated to the Instance, if applicable.`,
+				},
+				resource.Attribute{
+					Name:        "instance_state",
+					Description: `The state of the instance. One of: ` + "`" + `pending` + "`" + `, ` + "`" + `running` + "`" + `, ` + "`" + `shutting-down` + "`" + `, ` + "`" + `terminated` + "`" + `, ` + "`" + `stopping` + "`" + `, ` + "`" + `stopped` + "`" + `. See [Instance Lifecycle](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -5493,8 +5869,16 @@ resources.
 					Description: `If the root block device will be deleted on termination.`,
 				},
 				resource.Attribute{
+					Name:        "encrypted",
+					Description: `If the EBS volume is encrypted.`,
+				},
+				resource.Attribute{
 					Name:        "iops",
 					Description: `` + "`" + `0` + "`" + ` If the volume is not a provisioned IOPS image, otherwise the supported IOPS count.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_arn",
+					Description: `Amazon Resource Name (ARN) of KMS Key, if EBS volume is encrypted.`,
 				},
 				resource.Attribute{
 					Name:        "volume_size",
@@ -6412,6 +6796,10 @@ Provides information about a Launch Configuration.
 					Description: `Whether the EBS Volume will be deleted on instance termination.`,
 				},
 				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Whether the volume is Encrypted.`,
+				},
+				resource.Attribute{
 					Name:        "iops",
 					Description: `The provisioned IOPs of the volume.`,
 				},
@@ -6536,6 +6924,10 @@ Provides information about a Launch Configuration.
 				resource.Attribute{
 					Name:        "delete_on_termination",
 					Description: `Whether the EBS Volume will be deleted on instance termination.`,
+				},
+				resource.Attribute{
+					Name:        "encrypted",
+					Description: `Whether the volume is Encrypted.`,
 				},
 				resource.Attribute{
 					Name:        "iops",
@@ -7399,12 +7791,229 @@ Provides details about a specific Nat Gateway.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_organizations_organization",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about the organization that the user's account belongs to`,
+			Description: `
+
+Get information about the organization that the user's account belongs to
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "feature_set",
+					Description: `The FeatureSet of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_arn",
+					Description: `The Amazon Resource Name (ARN) of the account that is designated as the master account for the organization.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_email",
+					Description: `The email address that is associated with the AWS account that is designated as the master account for the organization.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_id",
+					Description: `The unique identifier (ID) of the master account of an organization. ### Master Account Attributes Reference If the account is the master account for the organization, the following attributes are also exported:`,
+				},
+				resource.Attribute{
+					Name:        "accounts",
+					Description: `List of organization accounts including the master account. For a list excluding the master account, see the ` + "`" + `non_master_accounts` + "`" + ` attribute. All elements have these attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the account`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email of the account`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Identifier of the account`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the account`,
+				},
+				resource.Attribute{
+					Name:        "aws_service_access_principals",
+					Description: `A list of AWS service principal names that have integration enabled with your organization. Organization must have ` + "`" + `feature_set` + "`" + ` set to ` + "`" + `ALL` + "`" + `. For additional information, see the [AWS Organizations User Guide](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html).`,
+				},
+				resource.Attribute{
+					Name:        "enabled_policy_types",
+					Description: `A list of Organizations policy types that are enabled in the Organization Root. Organization must have ` + "`" + `feature_set` + "`" + ` set to ` + "`" + `ALL` + "`" + `. For additional information about valid policy types (e.g. ` + "`" + `SERVICE_CONTROL_POLICY` + "`" + `), see the [AWS Organizations API Reference](https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html).`,
+				},
+				resource.Attribute{
+					Name:        "non_master_accounts",
+					Description: `List of organization accounts excluding the master account. For a list including the master account, see the ` + "`" + `accounts` + "`" + ` attribute. All elements have these attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the account`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email of the account`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Identifier of the account`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the account`,
+				},
+				resource.Attribute{
+					Name:        "roots",
+					Description: `List of organization roots. All elements have these attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the root`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Identifier of the root`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the root`,
+				},
+				resource.Attribute{
+					Name:        "policy_types",
+					Description: `List of policy types enabled for this root. All elements have these attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the policy type`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the policy type as it relates to the associated root`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "feature_set",
+					Description: `The FeatureSet of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the organization.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_arn",
+					Description: `The Amazon Resource Name (ARN) of the account that is designated as the master account for the organization.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_email",
+					Description: `The email address that is associated with the AWS account that is designated as the master account for the organization.`,
+				},
+				resource.Attribute{
+					Name:        "master_account_id",
+					Description: `The unique identifier (ID) of the master account of an organization. ### Master Account Attributes Reference If the account is the master account for the organization, the following attributes are also exported:`,
+				},
+				resource.Attribute{
+					Name:        "accounts",
+					Description: `List of organization accounts including the master account. For a list excluding the master account, see the ` + "`" + `non_master_accounts` + "`" + ` attribute. All elements have these attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the account`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email of the account`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Identifier of the account`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the account`,
+				},
+				resource.Attribute{
+					Name:        "aws_service_access_principals",
+					Description: `A list of AWS service principal names that have integration enabled with your organization. Organization must have ` + "`" + `feature_set` + "`" + ` set to ` + "`" + `ALL` + "`" + `. For additional information, see the [AWS Organizations User Guide](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html).`,
+				},
+				resource.Attribute{
+					Name:        "enabled_policy_types",
+					Description: `A list of Organizations policy types that are enabled in the Organization Root. Organization must have ` + "`" + `feature_set` + "`" + ` set to ` + "`" + `ALL` + "`" + `. For additional information about valid policy types (e.g. ` + "`" + `SERVICE_CONTROL_POLICY` + "`" + `), see the [AWS Organizations API Reference](https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnablePolicyType.html).`,
+				},
+				resource.Attribute{
+					Name:        "non_master_accounts",
+					Description: `List of organization accounts excluding the master account. For a list including the master account, see the ` + "`" + `accounts` + "`" + ` attribute. All elements have these attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the account`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email of the account`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Identifier of the account`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the account`,
+				},
+				resource.Attribute{
+					Name:        "roots",
+					Description: `List of organization roots. All elements have these attributes:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `ARN of the root`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Identifier of the root`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the root`,
+				},
+				resource.Attribute{
+					Name:        "policy_types",
+					Description: `List of policy types enabled for this root. All elements have these attributes:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the policy type`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the policy type as it relates to the associated root`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_partition",
 			Category:         "Data Sources",
 			ShortDescription: `Get AWS partition identifier`,
 			Description: `
 
-Use this data source to lookup current AWS partition in which Terraform is working
+Use this data source to lookup information about the current AWS partition in
+which Terraform is working.
 
 `,
 			Keywords:   []string{},
@@ -8013,6 +8622,98 @@ This data source allows to find a list of name servers associated with a specifi
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_route53_resolver_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a specific Route53 Resolver rule`,
+			Description: `
+
+` + "`" + `aws_route53_resolver_rule` + "`" + ` provides details about a specific Route53 Resolver rule.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `(Optional) The domain name the desired resolver rule forwards DNS queries for. Conflicts with ` + "`" + `resolver_rule_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The friendly name of the desired resolver rule. Conflicts with ` + "`" + `resolver_rule_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `(Optional) The rule type of the desired resolver rule. Valid values are ` + "`" + `FORWARD` + "`" + `, ` + "`" + `SYSTEM` + "`" + ` and ` + "`" + `RECURSIVE` + "`" + `. Conflicts with ` + "`" + `resolver_rule_id` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resolver rule.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The ARN (Amazon Resource Name) for the resolver rule.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `When a rule is shared with another AWS account, the account ID of the account that the rule is shared with.`,
+				},
+				resource.Attribute{
+					Name:        "share_status",
+					Description: `Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account. Values are ` + "`" + `NOT_SHARED` + "`" + `, ` + "`" + `SHARED_BY_ME` + "`" + ` or ` + "`" + `SHARED_WITH_ME` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resolver rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the resolver rule.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The ARN (Amazon Resource Name) for the resolver rule.`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `When a rule is shared with another AWS account, the account ID of the account that the rule is shared with.`,
+				},
+				resource.Attribute{
+					Name:        "share_status",
+					Description: `Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account. Values are ` + "`" + `NOT_SHARED` + "`" + `, ` + "`" + `SHARED_BY_ME` + "`" + ` or ` + "`" + `SHARED_WITH_ME` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resolver rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_route53_resolver_rules",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a set of Route53 Resolver rules`,
+			Description: `
+
+` + "`" + `aws_route53_resolver_rules` + "`" + ` provides details about a set of Route53 Resolver rules.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resolver_rule_ids",
+					Description: `The IDs of the matched resolver rules.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resolver_rule_ids",
+					Description: `The IDs of the matched resolver rules.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_route53_zone",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Route 53 Hosted Zone`,
@@ -8552,6 +9253,76 @@ _optionally_ (see below) content of an object stored inside S3 bucket.
 				resource.Attribute{
 					Name:        "website_redirect_location",
 					Description: `If the bucket is configured as a website, redirects requests for this object to another object in the same bucket or to an external URL. Amazon S3 stores the value of this header in the object metadata.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_s3_bucket_objects",
+			Category:         "Data Sources",
+			ShortDescription: `Returns keys and metadata of S3 objects`,
+			Description: `
+
+~> **NOTE on ` + "`" + `max_keys` + "`" + `:** Retrieving very large numbers of keys can adversely affect Terraform's performance.
+
+The bucket-objects data source returns keys (i.e., file names) and other metadata about objects in an S3 bucket.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Lists object keys in this S3 bucket`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional) Limits results to object keys with this prefix (Default: none)`,
+				},
+				resource.Attribute{
+					Name:        "delimiter",
+					Description: `(Optional) A character used to group keys (Default: none)`,
+				},
+				resource.Attribute{
+					Name:        "encoding_type",
+					Description: `(Optional) Encodes keys using this method (Default: none; besides none, only "url" can be used)`,
+				},
+				resource.Attribute{
+					Name:        "max_keys",
+					Description: `(Optional) Maximum object keys to return (Default: 1000)`,
+				},
+				resource.Attribute{
+					Name:        "start_after",
+					Description: `(Optional) Returns key names lexicographically after a specific object key in your bucket (Default: none; S3 lists object keys in UTF-8 character encoding in lexicographical order)`,
+				},
+				resource.Attribute{
+					Name:        "fetch_owner",
+					Description: `(Optional) Boolean specifying whether to populate the owner list (Default: false) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "keys",
+					Description: `List of strings representing object keys`,
+				},
+				resource.Attribute{
+					Name:        "common_prefixes",
+					Description: `List of any keys between ` + "`" + `prefix` + "`" + ` and the next occurrence of ` + "`" + `delimiter` + "`" + ` (i.e., similar to subdirectories of the ` + "`" + `prefix` + "`" + ` "directory"); the list is only returned when you specify ` + "`" + `delimiter` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "owners",
+					Description: `List of strings representing object owner IDs (see ` + "`" + `fetch_owner` + "`" + ` above)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "keys",
+					Description: `List of strings representing object keys`,
+				},
+				resource.Attribute{
+					Name:        "common_prefixes",
+					Description: `List of any keys between ` + "`" + `prefix` + "`" + ` and the next occurrence of ` + "`" + `delimiter` + "`" + ` (i.e., similar to subdirectories of the ` + "`" + `prefix` + "`" + ` "directory"); the list is only returned when you specify ` + "`" + `delimiter` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "owners",
+					Description: `List of strings representing object owner IDs (see ` + "`" + `fetch_owner` + "`" + ` above)`,
 				},
 			},
 		},
@@ -9271,13 +10042,13 @@ This resource can be useful for getting back a list of subnet ids for a vpc.
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
+					Description: `A set of all the subnet ids found. This data source will fail if none are found.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of all the subnet ids found. This data source will fail if none are found.`,
+					Description: `A set of all the subnet ids found. This data source will fail if none are found.`,
 				},
 			},
 		},
@@ -10065,6 +10836,34 @@ a specific VPN gateway.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_waf_ipset",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieves an AWS WAF IP set id.`,
+			Description: `
+
+` + "`" + `aws_waf_ipset` + "`" + ` Retrieves a WAF IP Set Resource Id.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the WAF IP set. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF IP set.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF IP set.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_waf_rule",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieves an AWS WAF rule id.`,
@@ -10116,6 +10915,34 @@ a specific VPN gateway.
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the WAF WebACL.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_wafregional_ipset",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieves an AWS WAF Regional IP set id.`,
+			Description: `
+
+` + "`" + `aws_wafregional_ipset` + "`" + ` Retrieves a WAF Regional IP Set Resource Id.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the WAF Regional IP set. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF Regional IP set.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF Regional IP set.`,
 				},
 			},
 		},
@@ -10278,85 +11105,92 @@ Use this data source to get information about a Workspaces Bundle.
 		"aws_elastic_beanstalk_solution_stack":          56,
 		"aws_elasticache_cluster":                       57,
 		"aws_elasticache_replication_group":             58,
-		"aws_elb":                                       59,
-		"aws_elb_hosted_zone_id":                        60,
-		"aws_elb_service_account":                       61,
-		"aws_glue_script":                               62,
-		"aws_iam_account_alias":                         63,
-		"aws_iam_group":                                 64,
-		"aws_iam_instance_profile":                      65,
-		"aws_iam_policy":                                66,
-		"aws_iam_policy_document":                       67,
-		"aws_iam_role":                                  68,
-		"aws_iam_server_certificate":                    69,
-		"aws_iam_user":                                  70,
-		"aws_inspector_rules_packages":                  71,
-		"aws_instance":                                  72,
-		"aws_instances":                                 73,
-		"aws_internet_gateway":                          74,
-		"aws_iot_endpoint":                              75,
-		"aws_ip_ranges":                                 76,
-		"aws_kinesis_stream":                            77,
-		"aws_kms_alias":                                 78,
-		"aws_kms_ciphertext":                            79,
-		"aws_kms_key":                                   80,
-		"aws_kms_secrets":                               81,
-		"aws_lambda_function":                           82,
-		"aws_lambda_invocation":                         83,
-		"aws_lambda_layer_version":                      84,
-		"aws_launch_configuration":                      85,
-		"aws_launch_template":                           86,
-		"aws_lb":                                        87,
-		"aws_lb_listener":                               88,
-		"aws_lb_target_group":                           89,
-		"aws_mq_broker":                                 90,
-		"aws_msk_cluster":                               91,
-		"aws_msk_configuration":                         92,
-		"aws_nat_gateway":                               93,
-		"aws_network_acls":                              94,
-		"aws_network_interface":                         95,
-		"aws_network_interfaces":                        96,
-		"aws_partition":                                 97,
-		"aws_prefix_list":                               98,
-		"aws_pricing_product":                           99,
-		"aws_ram_resource_share":                        100,
-		"aws_rds_cluster":                               101,
-		"aws_redshift_cluster":                          102,
-		"aws_redshift_service_account":                  103,
-		"aws_region":                                    104,
-		"aws_route":                                     105,
-		"aws_route53_delegation_set":                    106,
-		"aws_route53_zone":                              107,
-		"aws_route_table":                               108,
-		"aws_route_tables":                              109,
-		"aws_s3_bucket":                                 110,
-		"aws_s3_bucket_object":                          111,
-		"aws_secretsmanager_secret":                     112,
-		"aws_secretsmanager_secret_version":             113,
-		"aws_security_group":                            114,
-		"aws_security_groups":                           115,
-		"aws_servicequotas_service":                     116,
-		"aws_servicequotas_service_quota":               117,
-		"aws_sns_topic":                                 118,
-		"aws_sqs_queue":                                 119,
-		"aws_ssm_document":                              120,
-		"aws_ssm_parameter":                             121,
-		"aws_storagegateway_local_disk":                 122,
-		"aws_subnet":                                    123,
-		"aws_subnet_ids":                                124,
-		"aws_transfer_server":                           125,
-		"aws_vpc":                                       126,
-		"aws_vpc_dhcp_options":                          127,
-		"aws_vpc_endpoint":                              128,
-		"aws_vpc_endpoint_service":                      129,
-		"aws_vpc_peering_connection":                    130,
-		"aws_vpcs":                                      131,
-		"aws_vpn_gateway":                               132,
-		"aws_waf_rule":                                  133,
-		"aws_waf_web_acl":                               134,
-		"aws_wafregional_rule":                          135,
-		"aws_wafregional_web_acl":                       136,
-		"aws_workspaces_bundle":                         137,
+		"aws_elasticsearch_domain":                      59,
+		"aws_elb":                                       60,
+		"aws_elb_hosted_zone_id":                        61,
+		"aws_elb_service_account":                       62,
+		"aws_glue_script":                               63,
+		"aws_iam_account_alias":                         64,
+		"aws_iam_group":                                 65,
+		"aws_iam_instance_profile":                      66,
+		"aws_iam_policy":                                67,
+		"aws_iam_policy_document":                       68,
+		"aws_iam_role":                                  69,
+		"aws_iam_server_certificate":                    70,
+		"aws_iam_user":                                  71,
+		"aws_inspector_rules_packages":                  72,
+		"aws_instance":                                  73,
+		"aws_instances":                                 74,
+		"aws_internet_gateway":                          75,
+		"aws_iot_endpoint":                              76,
+		"aws_ip_ranges":                                 77,
+		"aws_kinesis_stream":                            78,
+		"aws_kms_alias":                                 79,
+		"aws_kms_ciphertext":                            80,
+		"aws_kms_key":                                   81,
+		"aws_kms_secrets":                               82,
+		"aws_lambda_function":                           83,
+		"aws_lambda_invocation":                         84,
+		"aws_lambda_layer_version":                      85,
+		"aws_launch_configuration":                      86,
+		"aws_launch_template":                           87,
+		"aws_lb":                                        88,
+		"aws_lb_listener":                               89,
+		"aws_lb_target_group":                           90,
+		"aws_mq_broker":                                 91,
+		"aws_msk_cluster":                               92,
+		"aws_msk_configuration":                         93,
+		"aws_nat_gateway":                               94,
+		"aws_network_acls":                              95,
+		"aws_network_interface":                         96,
+		"aws_network_interfaces":                        97,
+		"aws_organizations_organization":                98,
+		"aws_partition":                                 99,
+		"aws_prefix_list":                               100,
+		"aws_pricing_product":                           101,
+		"aws_ram_resource_share":                        102,
+		"aws_rds_cluster":                               103,
+		"aws_redshift_cluster":                          104,
+		"aws_redshift_service_account":                  105,
+		"aws_region":                                    106,
+		"aws_route":                                     107,
+		"aws_route53_delegation_set":                    108,
+		"aws_route53_resolver_rule":                     109,
+		"aws_route53_resolver_rules":                    110,
+		"aws_route53_zone":                              111,
+		"aws_route_table":                               112,
+		"aws_route_tables":                              113,
+		"aws_s3_bucket":                                 114,
+		"aws_s3_bucket_object":                          115,
+		"aws_s3_bucket_objects":                         116,
+		"aws_secretsmanager_secret":                     117,
+		"aws_secretsmanager_secret_version":             118,
+		"aws_security_group":                            119,
+		"aws_security_groups":                           120,
+		"aws_servicequotas_service":                     121,
+		"aws_servicequotas_service_quota":               122,
+		"aws_sns_topic":                                 123,
+		"aws_sqs_queue":                                 124,
+		"aws_ssm_document":                              125,
+		"aws_ssm_parameter":                             126,
+		"aws_storagegateway_local_disk":                 127,
+		"aws_subnet":                                    128,
+		"aws_subnet_ids":                                129,
+		"aws_transfer_server":                           130,
+		"aws_vpc":                                       131,
+		"aws_vpc_dhcp_options":                          132,
+		"aws_vpc_endpoint":                              133,
+		"aws_vpc_endpoint_service":                      134,
+		"aws_vpc_peering_connection":                    135,
+		"aws_vpcs":                                      136,
+		"aws_vpn_gateway":                               137,
+		"aws_waf_ipset":                                 138,
+		"aws_waf_rule":                                  139,
+		"aws_waf_web_acl":                               140,
+		"aws_wafregional_ipset":                         141,
+		"aws_wafregional_rule":                          142,
+		"aws_wafregional_web_acl":                       143,
+		"aws_workspaces_bundle":                         144,
 	}
 )
 

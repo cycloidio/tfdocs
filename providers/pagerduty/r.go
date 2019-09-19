@@ -100,6 +100,45 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "pagerduty_event_rule",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages an event rule in PagerDuty.`,
+			Description:      ``,
+			Keywords: []string{
+				"event",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "action_json",
+					Description: `(Required) A list of one or more actions for each rule. Each action within the list is itself a list.`,
+				},
+				resource.Attribute{
+					Name:        "condition_json",
+					Description: `(Required) Contains a list of conditions. The first field in the list is ` + "`" + `and` + "`" + ` or ` + "`" + `or` + "`" + `, followed by a list of operators and values.`,
+				},
+				resource.Attribute{
+					Name:        "advanced_condition_json",
+					Description: `(Required) Contains a list of specific conditions including ` + "`" + `active-between` + "`" + `,` + "`" + `scheduled-weekly` + "`" + `, and ` + "`" + `frequency-over` + "`" + `. The first element in the list is the label for the condition, followed by a list of values for the specific condition. For more details on these conditions see [Advanced Condition](https://v2.developer.pagerduty.com/docs/global-event-rules-api#section-advanced-condition) in the PagerDuty API documentation.`,
+				},
+				resource.Attribute{
+					Name:        "catch_all",
+					Description: `(Optional) A boolean that indicates whether the rule is a catch all for the account. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the event rule. ## Import Escalation policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the event rule. ## Import Escalation policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "pagerduty_extension",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages a service extension in PagerDuty.`,
@@ -293,7 +332,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alert_creation",
-					Description: `(Optional) Must be one of two values. PagerDuty receives events from your monitoring systems and can then create incidents in different ways. Value "create_incidents" is default: events will create an incident that cannot be merged. Value "create_alerts_and_incidents" is the alternative: events will create an alert and then add it to a new incident, these incidents can be merged. You may specify one optional ` + "`" + `incident_urgency_rule` + "`" + ` block configuring what urgencies to use. Your PagerDuty account must have the ` + "`" + `urgencies` + "`" + ` ability to assign an incident urgency rule. The block contains the following arguments:`,
+					Description: `(Optional) Must be one of two values. PagerDuty receives events from your monitoring systems and can then create incidents in different ways. Value "create_incidents" is default: events will create an incident that cannot be merged. Value "create_alerts_and_incidents" is the alternative: events will create an alert and then add it to a new incident, these incidents can be merged.`,
+				},
+				resource.Attribute{
+					Name:        "alert_grouping",
+					Description: `(Optional) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident; If value is set to ` + "`" + `time` + "`" + `: All alerts within a specified duration will be grouped into the same incident. This duration is set in the ` + "`" + `alert_grouping_timeout` + "`" + ` setting (described below). Available on Standard, Enterprise, and Event Intelligence plans; If value is set to "intelligent" - Alerts will be intelligently grouped based on a machine learning model that looks at the alert summary, timing, and the history of grouped alerts. Available on Enterprise and Event Intelligence plan.`,
+				},
+				resource.Attribute{
+					Name:        "alert_grouping_timeout",
+					Description: `(Optional) The duration in minutes within which to automatically group incoming alerts. This setting applies only when ` + "`" + `alert_grouping` + "`" + ` is set to ` + "`" + `time` + "`" + `. To continue grouping alerts until the incident is resolved, set this value to ` + "`" + `0` + "`" + `. You may specify one optional ` + "`" + `incident_urgency_rule` + "`" + ` block configuring what urgencies to use. Your PagerDuty account must have the ` + "`" + `urgencies` + "`" + ` ability to assign an incident urgency rule. The block contains the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -301,7 +348,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "urgency",
-					Description: `The urgency: ` + "`" + `low` + "`" + ` (does not escalate), or ` + "`" + `high` + "`" + ` (follows escalation rules).`,
+					Description: `The urgency: ` + "`" + `low` + "`" + ` Notify responders (does not escalate), ` + "`" + `high` + "`" + ` (follows escalation rules) or ` + "`" + `severity_based` + "`" + ` Set's the urgency of the incident based on the severity set by the triggering monitoring tool.`,
 				},
 				resource.Attribute{
 					Name:        "during_support_hours",
@@ -535,7 +582,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "teams",
-					Description: `(Optional) A list of teams the user should belong to.`,
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -655,15 +702,16 @@ var (
 
 		"pagerduty_addon":               0,
 		"pagerduty_escalation_policy":   1,
-		"pagerduty_extension":           2,
-		"pagerduty_maintenance_window":  3,
-		"pagerduty_schedule":            4,
-		"pagerduty_service":             5,
-		"pagerduty_service_integration": 6,
-		"pagerduty_team":                7,
-		"pagerduty_team_membership":     8,
-		"pagerduty_user":                9,
-		"pagerduty_user_contact_method": 10,
+		"pagerduty_event_rule":          2,
+		"pagerduty_extension":           3,
+		"pagerduty_maintenance_window":  4,
+		"pagerduty_schedule":            5,
+		"pagerduty_service":             6,
+		"pagerduty_service_integration": 7,
+		"pagerduty_team":                8,
+		"pagerduty_team_membership":     9,
+		"pagerduty_user":                10,
+		"pagerduty_user_contact_method": 11,
 	}
 )
 

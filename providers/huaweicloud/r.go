@@ -522,7 +522,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) The size of the volume to create (in gigabytes). Changing this creates a new volume.`,
+					Description: `(Required) The size of the volume to create (in gigabytes).`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -790,7 +790,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "authentication_mode",
-					Description: `(Optional) Authentication mode of the cluster, possible values are x509 and rbac. Defaults to x509. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
+					Description: `(Optional) Authentication mode of the cluster, possible values are x509 and rbac. Defaults to x509. Changing this parameter will create a new cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "multi_az",
+					Description: `(Optional) Enable multiple AZs for the cluster, only when using HA flavors. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -798,7 +802,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Cluster status information. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Cluster status information.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/name",
+					Description: `The cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/server",
+					Description: `The server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/certificate_authority_data",
+					Description: `The certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/name",
+					Description: `The user name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_certificate_data",
+					Description: `The client certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_key_data",
+					Description: `The client key data. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -808,7 +836,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Cluster status information. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Cluster status information.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/name",
+					Description: `The cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/server",
+					Description: `The server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/certificate_authority_data",
+					Description: `The certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/name",
+					Description: `The user name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_certificate_data",
+					Description: `The client certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_key_data",
+					Description: `The client key data. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -858,7 +910,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_pair",
-					Description: `(Required) Key pair name when logging in to select the key pair mode. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Key pair name when logging in to select the key pair mode. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) root password when logging in to select the password mode. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "eip_ids",
@@ -1319,10 +1375,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cloudtable_cluster_v2",
-			Category:         "CloudTable Resources",
+			Category:         "Cloud Table Resources",
 			ShortDescription: `cloud table cluster management`,
 			Description:      ``,
 			Keywords: []string{
+				"cloud",
+				"table",
 				"cloudtable",
 				"cluster",
 				"v2",
@@ -1531,7 +1589,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pool",
-					Description: `(Required) The name of the pool from which to obtain the floating IP. Changing this creates a new floating IP. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The name of the pool from which to obtain the floating IP. Only admin_external_net is valid. Changing this creates a new floating IP. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1654,10 +1712,6 @@ var (
 					Description: `(Optional) Provide the Nova scheduler with hints on how the instance should be launched. The available hints are described below.`,
 				},
 				resource.Attribute{
-					Name:        "personality",
-					Description: `(Optional) Customize the personality of an instance by defining one or more files and their contents. The personality structure is described below.`,
-				},
-				resource.Attribute{
 					Name:        "stop_before_destroy",
 					Description: `(Optional) Whether to try stop instance gracefully before destroying it, thus giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway. The ` + "`" + `network` + "`" + ` block supports:`,
 				},
@@ -1731,15 +1785,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "build_near_host_ip",
-					Description: `(Optional) An IP Address in CIDR form. The instance will be placed on a compute node that is in the same subnet. The ` + "`" + `personality` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "file",
-					Description: `(Required) The absolute path of the destination file.`,
-				},
-				resource.Attribute{
-					Name:        "contents",
-					Description: `(Required) The contents of the file. Limited to 255 bytes. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) An IP Address in CIDR form. The instance will be placed on a compute node that is in the same subnet. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1862,6 +1908,75 @@ var (
 				resource.Attribute{
 					Name:        "all_metadata",
 					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + ` resource "huaweicloud_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_compute_interface_attach_v2",
+			Category:         "Compute Resources",
+			ShortDescription: `Attaches a Network Interface to an Instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"interface",
+				"attach",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to create the interface attachment. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new attachment.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) The ID of the Instance to attach the Port or Network to.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `(Optional) The ID of the Port to attach to an Instance. _NOTE_: This option and ` + "`" + `network_id` + "`" + ` are mutually exclusive.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional) The ID of the Network to attach to an Instance. A port will be created automatically. _NOTE_: This option and ` + "`" + `port_id` + "`" + ` are mutually exclusive.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ip",
+					Description: `(Optional) An IP address to assosciate with the port. _NOTE_: This option cannot be used with port_id. You must specifiy a network_id. The IP address must lie in a range on the supplied network. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `See Argument Reference above.`,
 				},
 			},
 		},
@@ -2145,6 +2260,139 @@ var (
 					Description: `See Argument Reference above. _NOTE_: The correctness of this information is dependent upon the hypervisor in use. In some cases, this should not be used as an authoritative piece of information. ## Import Volume Attachments can be imported using the Instance ID and Volume ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_cs_cluster_v1",
+			Category:         "Cloud Stream Resources",
+			ShortDescription: `Cloud Stream Service cluster management`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"stream",
+				"cs",
+				"cluster",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) cluster description.`,
+				},
+				resource.Attribute{
+					Name:        "max_spu_num",
+					Description: `(Optional) Cluster maximum SPU number.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `(Optional) Cluster sub segment. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_gateway",
+					Description: `(Optional) Cluster subnet gateway. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_cidr",
+					Description: `(Optional) Cluster VPC network segment. Changing this parameter will create a new resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Cluster creation time.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node_spu_num",
+					Description: `Cluster management node SPU number.`,
+				},
+				resource.Attribute{
+					Name:        "used_spu_num",
+					Description: `The used SPU number of Cluster. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `delete` + "`" + ` - Default is 30 minute.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Cluster creation time.`,
+				},
+				resource.Attribute{
+					Name:        "manager_node_spu_num",
+					Description: `Cluster management node SPU number.`,
+				},
+				resource.Attribute{
+					Name:        "used_spu_num",
+					Description: `The used SPU number of Cluster. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `delete` + "`" + ` - Default is 30 minute.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_cs_peering_connect_v1",
+			Category:         "Cloud Stream Resources",
+			ShortDescription: `Cloud Stream Service cluster peering connect management`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"stream",
+				"cs",
+				"peering",
+				"connect",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The id of cloud stream cluster. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of peering connection. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "target_vpc_info",
+					Description: `(Optional) The information of target vpc. Structure is documented below. Changing this parameter will create a new resource. The ` + "`" + `target_vpc_info` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) The project ID to which target vpc belongs. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) The VPC ID. Changing this parameter will create a new resource. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_cs_route_v1",
+			Category:         "Cloud Stream Resources",
+			ShortDescription: `Cloud Stream Service cluster peering connect route management`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"stream",
+				"cs",
+				"route",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The id of cloud stream cluster. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `(Required) Routing destination CIDR. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "peering_id",
+					Description: `(Required) The peering connection id of cloud stream cluster. Changing this parameter will create a new resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3097,6 +3345,609 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloud_dli_queue_v1",
+			Category:         "Data Lake Insight Resources",
+			ShortDescription: `queue management`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"lake",
+				"insight",
+				"dli",
+				"queue",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cu_count",
+					Description: `(Required) Minimum number of CUs that are bound to a queue. The value can be 4, 16, or 64. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of a queue. The name can contain only digits, letters, and underscores (_), but cannot contain only digits or start with an underscore (_). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of a queue. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "management_subnet_cidr",
+					Description: `(Optional) CIDR of the management subnet. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `(Optional) Subnet CIDR. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_cidr",
+					Description: `(Optional) VPC CIDR. Changing this parameter will create a new resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Time when a queue is created.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Time when a queue is created.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_dms_group_v1",
+			Category:         "DMS Resources",
+			ShortDescription: `Manages a DMS group in the huaweicloud DMS Service`,
+			Description:      ``,
+			Keywords: []string{
+				"dms",
+				"group",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Indicates the unique name of a group. A string of 1 to 64 characters that contain a-z, A-Z, 0-9, hyphens (-), and underscores (_). The name cannot be modified once specified.`,
+				},
+				resource.Attribute{
+					Name:        "queue_id",
+					Description: `(Required) Indicates the ID of a specified queue. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "queue_id",
+					Description: `Indicates the ID of a queue.`,
+				},
+				resource.Attribute{
+					Name:        "redrive_policy",
+					Description: `Indicates whether to enable dead letter messages.`,
+				},
+				resource.Attribute{
+					Name:        "produced_messages",
+					Description: `Indicates the total number of messages (not including the messages that have expired and been deleted) in a queue.`,
+				},
+				resource.Attribute{
+					Name:        "consumed_messages",
+					Description: `Indicates the total number of messages that are successfully consumed.`,
+				},
+				resource.Attribute{
+					Name:        "available_messages",
+					Description: `Indicates the accumulated number of messages that can be consumed.`,
+				},
+				resource.Attribute{
+					Name:        "produced_deadletters",
+					Description: `Indicates the total number of dead letter messages generated by the consumer group.`,
+				},
+				resource.Attribute{
+					Name:        "available_deadletters",
+					Description: `Indicates the accumulated number of dead letter messages that have not been consumed.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "queue_id",
+					Description: `Indicates the ID of a queue.`,
+				},
+				resource.Attribute{
+					Name:        "redrive_policy",
+					Description: `Indicates whether to enable dead letter messages.`,
+				},
+				resource.Attribute{
+					Name:        "produced_messages",
+					Description: `Indicates the total number of messages (not including the messages that have expired and been deleted) in a queue.`,
+				},
+				resource.Attribute{
+					Name:        "consumed_messages",
+					Description: `Indicates the total number of messages that are successfully consumed.`,
+				},
+				resource.Attribute{
+					Name:        "available_messages",
+					Description: `Indicates the accumulated number of messages that can be consumed.`,
+				},
+				resource.Attribute{
+					Name:        "produced_deadletters",
+					Description: `Indicates the total number of dead letter messages generated by the consumer group.`,
+				},
+				resource.Attribute{
+					Name:        "available_deadletters",
+					Description: `Indicates the accumulated number of dead letter messages that have not been consumed.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_dms_instance_v1",
+			Category:         "DMS Resources",
+			ShortDescription: `Manages a DMS instance in the huaweicloud DMS Service`,
+			Description:      ``,
+			Keywords: []string{
+				"dms",
+				"instance",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Indicates the name of an instance. An instance name starts with a letter, consists of 4 to 64 characters, and supports only letters, digits, and hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Indicates the description of an instance. It is a character string containing not more than 1024 characters.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Optional) Indicates a message engine. Options: rabbitmq and kafka.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `(Optional) Indicates the version of a message engine.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `(Optional) This parameter is mandatory if the engine is kafka. Indicates the baseline bandwidth of a Kafka instance, that is, the maximum amount of data transferred per unit time. Unit: byte/s. Options: 300 MB, 600 MB, 1200 MB.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `(Required) Indicates the message storage space. Value range: Single-node RabbitMQ instance: 100–90000 GB Cluster RabbitMQ instance: 100 GB x Number of nodes to 90000 GB, 200 GB x Number of nodes to 90000 GB, 300 GB x Number of nodes to 90000 GB Kafka instance with specification being 300 MB: 1200–90000 GB Kafka instance with specification being 600 MB: 2400–90000 GB Kafka instance with specification being 1200 MB: 4800–90000 GB`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `(Optional) This parameter is mandatory when a Kafka instance is created. Indicates the maximum number of topics in a Kafka instance. When specification is 300 MB: 900 When specification is 600 MB: 1800 When specification is 1200 MB: 1800`,
+				},
+				resource.Attribute{
+					Name:        "access_user",
+					Description: `(Optional) Indicates a username. If the engine is rabbitmq, this parameter is mandatory. If the engine is kafka, this parameter is optional. A username consists of 4 to 64 characters and supports only letters, digits, and hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) If the engine is rabbitmq, this parameter is mandatory. If the engine is kafka, this parameter is mandatory when ssl_enable is true and is invalid when ssl_enable is false. Indicates the password of an instance. An instance password must meet the following complexity requirements: Must be 8 to 32 characters long. Must contain at least 2 of the following character types: lowercase letters, uppercase letters, digits, and special characters (` + "`" + `~!@#$%^&`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Indicates the ID of a VPC.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Indicates the ID of a security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Indicates the ID of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "available_zones",
+					Description: `(Required) Indicates the ID of an AZ. The parameter value can not be left blank or an empty array. For details, see section Querying AZ Information.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `(Required) Indicates a product ID.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `(Optional) Indicates the time at which a maintenance time window starts. Format: HH:mm:ss. The start time and end time of a maintenance time window must indicate the time segment of a supported maintenance time window. For details, see section Querying Maintenance Time Windows. The start time must be set to 22:00, 02:00, 06:00, 10:00, 14:00, or 18:00. Parameters maintain_begin and maintain_end must be set in pairs. If parameter maintain_begin is left blank, parameter maintain_end is also blank. In this case, the system automatically allocates the default start time 02:00.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `(Optional) Indicates the time at which a maintenance time window ends. Format: HH:mm:ss. The start time and end time of a maintenance time window must indicate the time segment of a supported maintenance time window. For details, see section Querying Maintenance Time Windows. The end time is four hours later than the start time. For example, if the start time is 22:00, the end time is 02:00. Parameters maintain_begin and maintain_end must be set in pairs. If parameter maintain_end is left blank, parameter maintain_begin is also blank. In this case, the system automatically allocates the default end time 06:00.`,
+				},
+				resource.Attribute{
+					Name:        "enable_publicip",
+					Description: `(Optional) Indicates whether to enable public access to a RabbitMQ instance. true: enable, false: disable`,
+				},
+				resource.Attribute{
+					Name:        "publicip_id",
+					Description: `(Optional) Indicates the ID of the elastic IP address (EIP) bound to a RabbitMQ instance. This parameter is mandatory if public access is enabled (that is, enable_publicip is set to true).`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `(Optional) Indicates the storage I/O specification. For details on how to select a disk type, see Disk Types and Disk Performance. Options for a RabbitMQ instance: dms.physical.storage.normal dms.physical.storage.high dms.physical.storage.ultra Options for a Kafka instance: When specification is 300 MB: dms.physical.storage.high or dms.physical.storage.ultra When specification is 600 MB: dms.physical.storage.ultra When specification is 1200 MB: dms.physical.storage.ultra ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `Indicates the time when a instance is created.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "access_user",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_name",
+					Description: `Indicates the name of a security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `Indicates the name of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `Indicates a subnet segment.`,
+				},
+				resource.Attribute{
+					Name:        "available_zones",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_publicip",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "publicip_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "used_storage_space",
+					Description: `Indicates the used message storage space. Unit: GB`,
+				},
+				resource.Attribute{
+					Name:        "connect_address",
+					Description: `Indicates the IP address of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the port number of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of an instance. For details, see section Instance Status.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Indicates the ID of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "resource_spec_code",
+					Description: `Indicates a resource specifications identifier.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates an instance type. Options: "single" and "cluster"`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Indicates the time when an instance is created. The time is in the format of timestamp, that is, the offset milliseconds from 1970-01-01 00:00:00 UTC to the specified time.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Indicates a user ID.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates a username.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "specification",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_space",
+					Description: `Indicates the time when a instance is created.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "access_user",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_name",
+					Description: `Indicates the name of a security group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `Indicates the name of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_cidr",
+					Description: `Indicates a subnet segment.`,
+				},
+				resource.Attribute{
+					Name:        "available_zones",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "product_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_begin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_end",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_publicip",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "publicip_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "used_storage_space",
+					Description: `Indicates the used message storage space. Unit: GB`,
+				},
+				resource.Attribute{
+					Name:        "connect_address",
+					Description: `Indicates the IP address of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Indicates the port number of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the status of an instance. For details, see section Instance Status.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Indicates the ID of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "resource_spec_code",
+					Description: `Indicates a resource specifications identifier.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates an instance type. Options: "single" and "cluster"`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Indicates the time when an instance is created. The time is in the format of timestamp, that is, the offset milliseconds from 1970-01-01 00:00:00 UTC to the specified time.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Indicates a user ID.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates a username.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_dms_queue_v1",
+			Category:         "DMS Resources",
+			ShortDescription: `Manages a DMS queue in the huaweicloud DMS Service`,
+			Description:      ``,
+			Keywords: []string{
+				"dms",
+				"queue",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Indicates the unique name of a queue. A string of 1 to 64 characters that contain a-z, A-Z, 0-9, hyphens (-), and underscores (_). The name cannot be modified once specified.`,
+				},
+				resource.Attribute{
+					Name:        "queue_mode",
+					Description: `(Optional) Indicates the queue type. It only support 'NORMAL' and 'FIFO'. NORMAL: Standard queue. Best-effort ordering. Messages might be retrieved in an order different from which they were sent. Select standard queues when throughput is important. FIFO: First-ln-First-out (FIFO) queue. FIFO delivery. Messages are retrieved in the order they were sent. Select FIFO queues when the order of messages is important. Default value: NORMAL.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Indicates the basic information about a queue. The queue description must be 0 to 160 characters in length, and does not contain angle brackets (<) and (>).`,
+				},
+				resource.Attribute{
+					Name:        "redrive_policy",
+					Description: `(Optional) Indicates whether to enable dead letter messages. Dead letter messages indicate messages that cannot be normally consumed. The redrive_policy should be set to 'enable' or 'disable'. The default value is 'disable'.`,
+				},
+				resource.Attribute{
+					Name:        "max_consume_count",
+					Description: `(Optional) This parameter is mandatory only when redrive_policy is set to enable. This parameter indicates the maximum number of allowed message consumption failures. When a message fails to be consumed after the number of consumption attempts of this message reaches this value, DMS stores this message into the dead letter queue. The max_consume_count value range is 1–100. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "queue_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redrive_policy",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_consume_count",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Indicates the time when a queue is created.`,
+				},
+				resource.Attribute{
+					Name:        "reservation",
+					Description: `Indicates the retention period (unit: min) of a message in a queue.`,
+				},
+				resource.Attribute{
+					Name:        "max_msg_size_byte",
+					Description: `Indicates the maximum message size (unit: byte) that is allowed in queue.`,
+				},
+				resource.Attribute{
+					Name:        "produced_messages",
+					Description: `Indicates the total number of messages (not including the messages that have expired and been deleted) in a queue.`,
+				},
+				resource.Attribute{
+					Name:        "group_count",
+					Description: `Indicates the total number of consumer groups in a queue.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "queue_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redrive_policy",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_consume_count",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Indicates the time when a queue is created.`,
+				},
+				resource.Attribute{
+					Name:        "reservation",
+					Description: `Indicates the retention period (unit: min) of a message in a queue.`,
+				},
+				resource.Attribute{
+					Name:        "max_msg_size_byte",
+					Description: `Indicates the maximum message size (unit: byte) that is allowed in queue.`,
+				},
+				resource.Attribute{
+					Name:        "produced_messages",
+					Description: `Indicates the total number of messages (not including the messages that have expired and been deleted) in a queue.`,
+				},
+				resource.Attribute{
+					Name:        "group_count",
+					Description: `Indicates the total number of consumer groups in a queue.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloud_dns_recordset_v2",
 			Category:         "DNS Resources",
 			ShortDescription: `Manages a DNS record set in the HuaweiCloud DNS Service`,
@@ -3503,6 +4354,139 @@ var (
 				resource.Attribute{
 					Name:        "public_connect_info",
 					Description: `(Optional) Public network connection information ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minute. - ` + "`" + `delete` + "`" + ` - Default is 10 minute. ## Import Cluster can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_dws_cluster.default {{ resource id}} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_ecs_instance_v1",
+			Category:         "Compute Resources",
+			ShortDescription: `Manages a V1 ECS instance resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"ecs",
+				"instance",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the instance.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) The ID of the desired image for the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) The name of the desired flavor for the server. Changing this resizes the existing server.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) The user data to provide when launching the instance. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The administrative password to assign to the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `(Optional) The name of a key pair to put on the server. The key pair must already be created and associated with the tenant's account. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) The ID of the desired VPC for the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "nics",
+					Description: `(Optional) An array of one or more networks to attach to the instance. The nics object structure is documented below. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_type",
+					Description: `(Optional) The system disk type of the server. For HANA, HL1, and HL2 ECSs use co-p1 and uh-l1 disks. Changing this creates a new server. Available options are:`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_size",
+					Description: `(Optional) The system disk size in GB, The value range is 1 to 1024. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "data_disks",
+					Description: `(Optional) An array of one or more data disks to attach to the instance. The data_disks object structure is documented below. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `(Optional) An array of one or more security group names to associate with the server. Changing this results in adding/removing security groups from the existing server.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) The availability zone in which to create the server. Please refer to https://developer.huaweicloud.com/endpoint for the values. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "charging_mode",
+					Description: `(Optional) The charging mode of the instance. Valid options are: prePaid and postPaid, defaults to postPaid. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "period_unit",
+					Description: `(Optional) The charging period unit of the instance. Valid options are: month and year, defaults to month. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) The charging period of the instance. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "auto_recovery",
+					Description: `(Optional) Whether configure automatic recovery of an instance.`,
+				},
+				resource.Attribute{
+					Name:        "delete_disks_on_termination",
+					Description: `(Optional) Delete the data disks upon termination of the instance. Defaults to false. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "enterprise_project_id",
+					Description: `(Optional) The enterprise project id. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags key/value pairs to associate with the instance. The ` + "`" + `nics` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) The network UUID to attach to the server. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Optional) Specifies a fixed IPv4 address to be used on this network. Changing this creates a new server. The ` + "`" + `data_disks` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The data disk type of the server. For HANA, HL1, and HL2 ECSs use co-p1 and uh-l1 disks. Changing this creates a new server. Available options are:`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) The size of the data disk in GB. The value range is 10 to 32768. Changing this creates a new server.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional) Specifies the snapshot ID or ID of the original data disk contained in the full-ECS image. Changing this creates a new server. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "nics/mac_address",
+					Description: `The MAC address of the NIC on that network. ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_ecs_instance_v1.instance_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the server.`,
+				},
+				resource.Attribute{
+					Name:        "nics/mac_address",
+					Description: `The MAC address of the NIC on that network. ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_ecs_instance_v1.instance_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9`,
 				},
 			},
 		},
@@ -4788,7 +5772,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_iam_agency_v3",
-			Category:         "IAM Resources",
+			Category:         "IAM Agency Resources",
 			ShortDescription: `Manages an agency resource within huawei cloud.`,
 			Description:      ``,
 			Keywords: []string{
@@ -5370,7 +6354,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_kms_key_v1",
-			Category:         "Kms Resources",
+			Category:         "KMS Resources",
 			ShortDescription: `Manages a V1 key resource within KMS.`,
 			Description:      ``,
 			Keywords: []string{
@@ -6628,7 +7612,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_mls_instance",
-			Category:         "MLS Resources Resources",
+			Category:         "MLS Resources",
 			ShortDescription: `mls instance`,
 			Description:      ``,
 			Keywords: []string{
@@ -7676,7 +8660,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "pool",
-					Description: `(Required) The name of the pool from which to obtain the floating IP. Changing this creates a new floating IP.`,
+					Description: `(Optional) The name of the pool from which to obtain the floating IP. Only admin_external_net is valid. Changing this creates a new floating IP.`,
 				},
 				resource.Attribute{
 					Name:        "port_id",
@@ -9255,14 +10239,15 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "huaweicloud_s3-bucket-object",
+			Type:             "huaweicloud_s3_bucket_object",
 			Category:         "S3 Resource",
 			ShortDescription: `Provides a S3 bucket object resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"s3",
 				"resource",
-				"s3-bucket-object",
+				"bucket",
+				"object",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9713,12 +10698,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpc_eip_v1",
-			Category:         "EIP Resources",
+			Category:         "Networking Resources",
 			ShortDescription: `Manages a V1 EIP resource within Huawei Cloud VPC.`,
 			Description:      ``,
 			Keywords: []string{
-				"eip",
+				"networking",
 				"vpc",
+				"eip",
 				"v1",
 			},
 			Arguments: []resource.Attribute{
@@ -10047,6 +11033,778 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_vpnaas_endpoint_group_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 Endpoint Group resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"endpoint",
+				"group",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an endpoint group. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the group. Changing this updates the name of the existing group.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the group. Required if admin wants to create an endpoint group for another project. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the group. Changing this updates the description of the existing group.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the endpoints in the group. A valid value is subnet, cidr, network, router, or vlan. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `List of endpoints of the same type, for the endpoint group. The values will depend on the type. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_endpoint_group_v2.group_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_endpoint_group_v2.group_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_vpnaas_ike_policy_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 IKE policy resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"ike",
+				"policy",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a VPN service. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new service.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the policy. Changing this updates the name of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the policy. Required if admin wants to create a service for another policy. Changing this creates a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the policy. Changing this updates the description of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `(Optional) The authentication hash algorithm. Valid values are md5, sha1, sha2-256, sha2-384, sha2-512. Default is sha1. Changing this updates the algorithm of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `(Optional) The encryption algorithm. Valid values are 3des, aes-128, aes-192 and so on. The default value is aes-128. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `(Optional) The perfect forward secrecy mode. Valid values are Group2, Group5 and Group14. Default is Group5. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "phase1_negotiation_mode",
+					Description: `(Optional) The IKE mode. A valid value is main, which is the default. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `(Optional) The IKE mode. A valid value is v1 or v2. Default is v1. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `(Optional) The lifetime of the security association. Consists of Unit and Value. - ` + "`" + `unit` + "`" + ` - (Optional) The units for the lifetime of the security association. Can be either seconds or kilobytes. Default is seconds. - ` + "`" + `value` + "`" + ` - (Optional) The value for the lifetime of the security association. Must be a positive integer. Default is 3600.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `See Argument Reference above. - ` + "`" + `unit` + "`" + ` - See Argument Reference above. - ` + "`" + `value` + "`" + ` - See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_ike_policy_v2.policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `See Argument Reference above. - ` + "`" + `unit` + "`" + ` - See Argument Reference above. - ` + "`" + `value` + "`" + ` - See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_ike_policy_v2.policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_vpnaas_ipsec_policy_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 IPSec policy resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"ipsec",
+				"policy",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an IPSec policy. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the policy. Changing this updates the name of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the policy. Required if admin wants to create a policy for another project. Changing this creates a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the policy. Changing this updates the description of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `(Optional) The authentication hash algorithm. Valid values are md5, sha1, sha2-256, sha2-384, sha2-512. Default is sha1. Changing this updates the algorithm of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `(Optional) The encapsulation mode. Valid values are tunnel and transport. Default is tunnel. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `(Optional) The encryption algorithm. Valid values are 3des, aes-128, aes-192 and so on. The default value is aes-128. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `(Optional) The perfect forward secrecy mode. Valid values are Group2, Group5 and Group14. Default is Group5. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `(Optional) The transform protocol. Valid values are ESP, AH and AH-ESP. Changing this updates the existing policy. Default is ESP.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `(Optional) The lifetime of the security association. Consists of Unit and Value. - ` + "`" + `unit` + "`" + ` - (Optional) The units for the lifetime of the security association. Can be either seconds or kilobytes. Default is seconds. - ` + "`" + `value` + "`" + ` - (Optional) The value for the lifetime of the security association. Must be a positive integer. Default is 3600.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `See Argument Reference above. - ` + "`" + `unit` + "`" + ` - See Argument Reference above. - ` + "`" + `value` + "`" + ` - See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_ipsec_policy_v2.policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `See Argument Reference above. - ` + "`" + `unit` + "`" + ` - See Argument Reference above. - ` + "`" + `value` + "`" + ` - See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_ipsec_policy_v2.policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_vpnaas_service_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 VPN service resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"service",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a VPN service. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new service.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the service. Changing this updates the name of the existing service.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the service. Required if admin wants to create a service for another project. Changing this creates a new service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the service. Changing this updates the description of the existing service.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the resource. Can either be up(true) or down(false). Changing this updates the administrative state of the existing service.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) SubnetID is the ID of the subnet. Default is null.`,
+				},
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `(Required) The ID of the router. Changing this creates a new service.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates whether IPsec VPN service is currently operational. Values are ACTIVE, DOWN, BUILD, ERROR, PENDING_CREATE, PENDING_UPDATE, or PENDING_DELETE.`,
+				},
+				resource.Attribute{
+					Name:        "external_v6_ip",
+					Description: `The read-only external (public) IPv6 address that is used for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "external_v4_ip",
+					Description: `The read-only external (public) IPv4 address that is used for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_service_v2.service_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates whether IPsec VPN service is currently operational. Values are ACTIVE, DOWN, BUILD, ERROR, PENDING_CREATE, PENDING_UPDATE, or PENDING_DELETE.`,
+				},
+				resource.Attribute{
+					Name:        "external_v6_ip",
+					Description: `The read-only external (public) IPv6 address that is used for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "external_v4_ip",
+					Description: `The read-only external (public) IPv4 address that is used for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_service_v2.service_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_vpnaas_site_connection_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 IPSec site connection resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"site",
+				"connection",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an IPSec site connection. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new site connection.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the connection. Changing this updates the name of the existing connection.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the connection. Required if admin wants to create a connection for another project. Changing this creates a new connection.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the connection. Changing this updates the description of the existing connection.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the resource. Can either be up(true) or down(false). Changing this updates the administrative state of the existing connection.`,
+				},
+				resource.Attribute{
+					Name:        "ikepolicy_id",
+					Description: `(Required) The ID of the IKE policy. Changing this creates a new connection.`,
+				},
+				resource.Attribute{
+					Name:        "vpnservice_id",
+					Description: `(Required) The ID of the VPN service. Changing this creates a new connection.`,
+				},
+				resource.Attribute{
+					Name:        "local_ep_group_id",
+					Description: `(Optional) The ID for the endpoint group that contains private subnets for the local side of the connection. You must specify this parameter with the peer_ep_group_id parameter unless in backward- compatible mode where peer_cidrs is provided with a subnet_id for the VPN service. Changing this updates the existing connection.`,
+				},
+				resource.Attribute{
+					Name:        "ipsecpolicy_id",
+					Description: `(Required) The ID of the IPsec policy. Changing this creates a new connection.`,
+				},
+				resource.Attribute{
+					Name:        "peer_id",
+					Description: `(Required) The peer router identity for authentication. A valid value is an IPv4 address, IPv6 address, e-mail address, key ID, or FQDN. Typically, this value matches the peer_address value. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "peer_ep_group_id",
+					Description: `(Optional) The ID for the endpoint group that contains private CIDRs in the form < net_address > / < prefix > for the peer side of the connection. You must specify this parameter with the local_ep_group_id parameter unless in backward-compatible mode where peer_cidrs is provided with a subnet_id for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `(Optional) An ID to be used instead of the external IP address for a virtual router used in traffic between instances on different networks in east-west traffic. Most often, local ID would be domain name, email address, etc. If this is not configured then the external IP address will be used as the ID.`,
+				},
+				resource.Attribute{
+					Name:        "peer_address",
+					Description: `(Required) The peer gateway public IPv4 or IPv6 address or FQDN.`,
+				},
+				resource.Attribute{
+					Name:        "psk",
+					Description: `(Required) The pre-shared key. A valid value is any string.`,
+				},
+				resource.Attribute{
+					Name:        "initiator",
+					Description: `(Optional) A valid value is response-only or bi-directional. Default is bi-directional.`,
+				},
+				resource.Attribute{
+					Name:        "peer_cidrs",
+					Description: `(Optional) Unique list of valid peer private CIDRs in the form < net_address > / < prefix > .`,
+				},
+				resource.Attribute{
+					Name:        "dpd",
+					Description: `(Optional) A dictionary with dead peer detection (DPD) protocol controls. - ` + "`" + `action` + "`" + ` - (Optional) The dead peer detection (DPD) action. A valid value is clear, hold, restart, disabled, or restart-by-peer. Default value is hold. - ` + "`" + `timeout` + "`" + ` - (Optional) The dead peer detection (DPD) timeout in seconds. A valid value is a positive integer that is greater than the DPD interval value. Default is 120. - ` + "`" + `interval` + "`" + ` - (Optional) The dead peer detection (DPD) interval, in seconds. A valid value is a positive integer. Default is 30.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) The maximum transmission unit (MTU) value to address fragmentation. Minimum value is 68 for IPv4, and 1280 for IPv6.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dpd",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "psk",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "initiator",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_cidrs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_ep_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ipsecpolicy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpnservice_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ikepolicy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Site Connections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_site_connection_v2.conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dpd",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "psk",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "initiator",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_cidrs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_ep_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ipsecpolicy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpnservice_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ikepolicy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Site Connections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_vpnaas_site_connection_v2.conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -10063,75 +11821,89 @@ var (
 		"huaweicloud_compute_floatingip_associate_v2":    9,
 		"huaweicloud_compute_floatingip_v2":              10,
 		"huaweicloud_compute_instance_v2":                11,
-		"huaweicloud_compute_keypair_v2":                 12,
-		"huaweicloud_compute_secgroup_v2":                13,
-		"huaweicloud_compute_servergroup_v2":             14,
-		"huaweicloud_compute_volume_attach_v2":           15,
-		"huaweicloud_csbs_backup_policy_v1":              16,
-		"huaweicloud_csbs_backup_v1":                     17,
-		"huaweicloud_css_cluster_v1":                     18,
-		"huaweicloud_cts_tracker_v1":                     19,
-		"huaweicloud_dcs_instance_v1":                    20,
-		"huaweicloud_dis_stream_v2":                      21,
-		"huaweicloud_dns_recordset_v2":                   22,
-		"huaweicloud_dns_zone_v2":                        23,
-		"huaweicloud_dws_cluster":                        24,
-		"huaweicloud_elb_backendecs":                     25,
-		"huaweicloud_elb_healthcheck":                    26,
-		"huaweicloud_elb_listener":                       27,
-		"huaweicloud_elb_loadbalancer":                   28,
-		"huaweicloud_fw_firewall_group_v2":               29,
-		"huaweicloud_fw_policy_v2":                       30,
-		"huaweicloud_fw_rule_v2":                         31,
-		"huaweicloud_ges_graph_v1":                       32,
-		"huaweicloud_iam_agency_v3":                      33,
-		"huaweicloud_identity_group_membership_v3":       34,
-		"huaweicloud_identity_group_v3":                  35,
-		"huaweicloud_identity_project_v3":                36,
-		"huaweicloud_identity_role_assignment_v3":        37,
-		"huaweicloud_identity_user_v3":                   38,
-		"huaweicloud_images_image_v2":                    39,
-		"huaweicloud_kms_key_v1":                         40,
-		"huaweicloud_lb_l7policy_v2":                     41,
-		"huaweicloud_lb_l7rule_v2":                       42,
-		"huaweicloud_lb_listener_v2":                     43,
-		"huaweicloud_lb_loadbalancer_v2":                 44,
-		"huaweicloud_lb_member_v2":                       45,
-		"huaweicloud_lb_monitor_v2":                      46,
-		"huaweicloud_lb_pool_v2":                         47,
-		"huaweicloud_maas_task_v1":                       48,
-		"huaweicloud_mls_instance":                       49,
-		"huaweicloud_mrs_cluster_v1":                     50,
-		"huaweicloud_mrs_job_v1":                         51,
-		"huaweicloud_nat_gateway_v2":                     52,
-		"huaweicloud_nat_snat_rule_v2":                   53,
-		"huaweicloud_networking_floatingip_associate_v2": 54,
-		"huaweicloud_networking_floatingip_v2":           55,
-		"huaweicloud_networking_network_v2":              56,
-		"huaweicloud_networking_port_v2":                 57,
-		"huaweicloud_networking_router_interface_v2":     58,
-		"huaweicloud_networking_router_route_v2":         59,
-		"huaweicloud_networking_router_v2":               60,
-		"huaweicloud_networking_secgroup_rule_v2":        61,
-		"huaweicloud_networking_secgroup_v2":             62,
-		"huaweicloud_networking_subnet_v2":               63,
-		"huaweicloud_rds_instance_v1":                    64,
-		"huaweicloud_rts_software_config_v1":             65,
-		"huaweicloud_rts_stack_v1":                       66,
-		"huaweicloud_s3_bucket":                          67,
-		"huaweicloud_s3-bucket-object":                   68,
-		"huaweicloud_s3_object_policy":                   69,
-		"huaweicloud_sfs_file_system_v2":                 70,
-		"huaweicloud_smn_subscription_v2":                71,
-		"huaweicloud_smn_topic_v2":                       72,
-		"huaweicloud-vbs-backup-policy-v2":               73,
-		"huaweicloud-vbs-backup-v2":                      74,
-		"huaweicloud_vpc_eip_v1":                         75,
-		"huaweicloud_vpc_peering_connection_accepter_v2": 76,
-		"huaweicloud_vpc_peering_connection_v2":          77,
-		"huaweicloud_vpc_route_v2":                       78,
-		"huaweicloud_vpc_subnet_v1":                      79,
-		"huaweicloud_vpc_v1":                             80,
+		"huaweicloud_compute_interface_attach_v2":        12,
+		"huaweicloud_compute_keypair_v2":                 13,
+		"huaweicloud_compute_secgroup_v2":                14,
+		"huaweicloud_compute_servergroup_v2":             15,
+		"huaweicloud_compute_volume_attach_v2":           16,
+		"huaweicloud_cs_cluster_v1":                      17,
+		"huaweicloud_cs_peering_connect_v1":              18,
+		"huaweicloud_cs_route_v1":                        19,
+		"huaweicloud_csbs_backup_policy_v1":              20,
+		"huaweicloud_csbs_backup_v1":                     21,
+		"huaweicloud_css_cluster_v1":                     22,
+		"huaweicloud_cts_tracker_v1":                     23,
+		"huaweicloud_dcs_instance_v1":                    24,
+		"huaweicloud_dis_stream_v2":                      25,
+		"huaweicloud_dli_queue_v1":                       26,
+		"huaweicloud_dms_group_v1":                       27,
+		"huaweicloud_dms_instance_v1":                    28,
+		"huaweicloud_dms_queue_v1":                       29,
+		"huaweicloud_dns_recordset_v2":                   30,
+		"huaweicloud_dns_zone_v2":                        31,
+		"huaweicloud_dws_cluster":                        32,
+		"huaweicloud_ecs_instance_v1":                    33,
+		"huaweicloud_elb_backendecs":                     34,
+		"huaweicloud_elb_healthcheck":                    35,
+		"huaweicloud_elb_listener":                       36,
+		"huaweicloud_elb_loadbalancer":                   37,
+		"huaweicloud_fw_firewall_group_v2":               38,
+		"huaweicloud_fw_policy_v2":                       39,
+		"huaweicloud_fw_rule_v2":                         40,
+		"huaweicloud_ges_graph_v1":                       41,
+		"huaweicloud_iam_agency_v3":                      42,
+		"huaweicloud_identity_group_membership_v3":       43,
+		"huaweicloud_identity_group_v3":                  44,
+		"huaweicloud_identity_project_v3":                45,
+		"huaweicloud_identity_role_assignment_v3":        46,
+		"huaweicloud_identity_user_v3":                   47,
+		"huaweicloud_images_image_v2":                    48,
+		"huaweicloud_kms_key_v1":                         49,
+		"huaweicloud_lb_l7policy_v2":                     50,
+		"huaweicloud_lb_l7rule_v2":                       51,
+		"huaweicloud_lb_listener_v2":                     52,
+		"huaweicloud_lb_loadbalancer_v2":                 53,
+		"huaweicloud_lb_member_v2":                       54,
+		"huaweicloud_lb_monitor_v2":                      55,
+		"huaweicloud_lb_pool_v2":                         56,
+		"huaweicloud_maas_task_v1":                       57,
+		"huaweicloud_mls_instance":                       58,
+		"huaweicloud_mrs_cluster_v1":                     59,
+		"huaweicloud_mrs_job_v1":                         60,
+		"huaweicloud_nat_gateway_v2":                     61,
+		"huaweicloud_nat_snat_rule_v2":                   62,
+		"huaweicloud_networking_floatingip_associate_v2": 63,
+		"huaweicloud_networking_floatingip_v2":           64,
+		"huaweicloud_networking_network_v2":              65,
+		"huaweicloud_networking_port_v2":                 66,
+		"huaweicloud_networking_router_interface_v2":     67,
+		"huaweicloud_networking_router_route_v2":         68,
+		"huaweicloud_networking_router_v2":               69,
+		"huaweicloud_networking_secgroup_rule_v2":        70,
+		"huaweicloud_networking_secgroup_v2":             71,
+		"huaweicloud_networking_subnet_v2":               72,
+		"huaweicloud_rds_instance_v1":                    73,
+		"huaweicloud_rts_software_config_v1":             74,
+		"huaweicloud_rts_stack_v1":                       75,
+		"huaweicloud_s3_bucket":                          76,
+		"huaweicloud_s3_bucket_object":                   77,
+		"huaweicloud_s3_object_policy":                   78,
+		"huaweicloud_sfs_file_system_v2":                 79,
+		"huaweicloud_smn_subscription_v2":                80,
+		"huaweicloud_smn_topic_v2":                       81,
+		"huaweicloud-vbs-backup-policy-v2":               82,
+		"huaweicloud-vbs-backup-v2":                      83,
+		"huaweicloud_vpc_eip_v1":                         84,
+		"huaweicloud_vpc_peering_connection_accepter_v2": 85,
+		"huaweicloud_vpc_peering_connection_v2":          86,
+		"huaweicloud_vpc_route_v2":                       87,
+		"huaweicloud_vpc_subnet_v1":                      88,
+		"huaweicloud_vpc_v1":                             89,
+		"huaweicloud_vpnaas_endpoint_group_v2":           90,
+		"huaweicloud_vpnaas_ike_policy_v2":               91,
+		"huaweicloud_vpnaas_ipsec_policy_v2":             92,
+		"huaweicloud_vpnaas_service_v2":                  93,
+		"huaweicloud_vpnaas_site_connection_v2":          94,
 	}
 )
 

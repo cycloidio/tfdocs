@@ -275,7 +275,7 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "huaweicloud_rts_cce_nodes_v3",
+			Type:             "huaweicloud_cce_nodes_v3",
 			Category:         "Data Sources",
 			ShortDescription: `To get the specified node in a cluster.`,
 			Description:      ``,
@@ -1242,6 +1242,230 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloud_dms_az_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an HuaweiCloud dms az.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Indicates the name of an AZ.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `(Optional) Indicates the code of an AZ.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) Indicates the port number of an AZ. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found az. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_dms_maintainwindow_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an HuaweiCloud dms maintainwindow.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "seq",
+					Description: `(Required) Indicates the sequential number of a maintenance time window.`,
+				},
+				resource.Attribute{
+					Name:        "begin",
+					Description: `(Optional) Indicates the time at which a maintenance time window starts.`,
+				},
+				resource.Attribute{
+					Name:        "end",
+					Description: `(Required) Indicates the time at which a maintenance time window ends.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Required) Indicates whether a maintenance time window is set to the default time segment. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found maintainwindow. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "begin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "end",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "begin",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "end",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_dms_product_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an HuaweiCloud dms product.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine",
+					Description: `(Required) Indicates the name of a message engine.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Indicates the version of a message engine.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Required) Indicates an instance type. Options: "single" and "cluster"`,
+				},
+				resource.Attribute{
+					Name:        "vm_specification",
+					Description: `(Optional) Indicates VM specifications.`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Optional) Indicates the message storage space.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional) Indicates the baseline bandwidth of a Kafka instance.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `(Optional) Indicates the maximum number of topics that can be created for a Kafka instance.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `(Optional) Indicates an I/O specification.`,
+				},
+				resource.Attribute{
+					Name:        "io_type",
+					Description: `(Optional) Indicates an I/O type.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `(Optional) Indicates the number of nodes in a cluster. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vm_specification",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "io_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "engine",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vm_specification",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "partition_num",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "storage_spec_code",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "io_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "node_num",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloud_identity_role_v3",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an HuaweiCloud Role.`,
@@ -1673,6 +1897,154 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "availability_zone_hints",
 					Description: `(Optional) The availability zone candidates for the network.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_networking_port_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information of an HuaweiCloud Port.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Neutron client. A Neutron client is needed to retrieve port ids. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) The owner of the port.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `(Optional) The ID of the port.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the port.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the port.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional) The ID of the network the port belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "device_owner",
+					Description: `(Optional) The device owner of the port.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `(Optional) The MAC address of the port.`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `(Optional) The ID of the device the port belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ip",
+					Description: `(Optional) The port IP address filter.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the port.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional) The list of port security group IDs to filter. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found port. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "device_owner",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "all_fixed_ips",
+					Description: `The collection of Fixed IP addresses on the port in the order returned by the Network v2 API.`,
+				},
+				resource.Attribute{
+					Name:        "all_security_group_ids",
+					Description: `The set of security group IDs applied on the port.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "device_owner",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mac_address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "device_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "all_fixed_ips",
+					Description: `The collection of Fixed IP addresses on the port in the order returned by the Network v2 API.`,
+				},
+				resource.Attribute{
+					Name:        "all_security_group_ids",
+					Description: `The set of security group IDs applied on the port.`,
 				},
 			},
 		},
@@ -2845,7 +3217,7 @@ VPC that the subnet belongs to.
 
 		"huaweicloud_antiddos_v1":               0,
 		"huaweicloud_cce_cluster_v3":            1,
-		"huaweicloud_rts_cce_nodes_v3":          2,
+		"huaweicloud_cce_nodes_v3":              2,
 		"huaweicloud_cdm_flavors_v1":            3,
 		"huaweicloud_csbs_backup_policy_v1":     4,
 		"huaweicloud_csbs_backup_v1":            5,
@@ -2854,27 +3226,31 @@ VPC that the subnet belongs to.
 		"huaweicloud_dcs_maintainwindow_v1":     8,
 		"huaweicloud_dcs_product_v1":            9,
 		"huaweicloud_dis_partition_v2":          10,
-		"huaweicloud_identity_role_v3":          11,
-		"huaweicloud_images_image_v2":           12,
-		"huaweicloud_kms_data_key_v1":           13,
-		"huaweicloud_kms_key_v1":                14,
-		"huaweicloud_networking_network_v2":     15,
-		"huaweicloud_networking_secgroup_v2":    16,
-		"huaweicloud_networking_subnet_v2":      17,
-		"huaweicloud_rds_flavors_v1":            18,
-		"huaweicloud_rts_software_config_v1":    19,
-		"huaweicloud_rts_stack_resource_v1":     20,
-		"huaweicloud_rts_stack_v1":              21,
-		"huaweicloud_s3_bucket_object":          22,
-		"huaweicloud_sfs_file_sharing_v2":       23,
-		"huaweicloud_vbs_backup_policy_v2":      24,
-		"huaweicloud_vbs_backup_v2":             25,
-		"huaweicloud_vpc_peering_connection_v2": 26,
-		"huaweicloud_vpc_route_ids_v2":          27,
-		"huaweicloud_vpc_route_v2":              28,
-		"huaweicloud_vpc_subnet_ids_v1":         29,
-		"huaweicloud_vpc_subnet_v1":             30,
-		"huaweicloud_vpc_v1":                    31,
+		"huaweicloud_dms_az_v1":                 11,
+		"huaweicloud_dms_maintainwindow_v1":     12,
+		"huaweicloud_dms_product_v1":            13,
+		"huaweicloud_identity_role_v3":          14,
+		"huaweicloud_images_image_v2":           15,
+		"huaweicloud_kms_data_key_v1":           16,
+		"huaweicloud_kms_key_v1":                17,
+		"huaweicloud_networking_network_v2":     18,
+		"huaweicloud_networking_port_v2":        19,
+		"huaweicloud_networking_secgroup_v2":    20,
+		"huaweicloud_networking_subnet_v2":      21,
+		"huaweicloud_rds_flavors_v1":            22,
+		"huaweicloud_rts_software_config_v1":    23,
+		"huaweicloud_rts_stack_resource_v1":     24,
+		"huaweicloud_rts_stack_v1":              25,
+		"huaweicloud_s3_bucket_object":          26,
+		"huaweicloud_sfs_file_sharing_v2":       27,
+		"huaweicloud_vbs_backup_policy_v2":      28,
+		"huaweicloud_vbs_backup_v2":             29,
+		"huaweicloud_vpc_peering_connection_v2": 30,
+		"huaweicloud_vpc_route_ids_v2":          31,
+		"huaweicloud_vpc_route_v2":              32,
+		"huaweicloud_vpc_subnet_ids_v1":         33,
+		"huaweicloud_vpc_subnet_v1":             34,
+		"huaweicloud_vpc_v1":                    35,
 	}
 )
 

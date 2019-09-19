@@ -1218,6 +1218,18 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V3 Keystone client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_region",
+					Description: `(Optional) The region the endpoint is assigned to. The ` + "`" + `region` + "`" + ` and ` + "`" + `endpoint_region` + "`" + ` can be different.`,
+				},
+				resource.Attribute{
 					Name:        "service_id",
 					Description: `(Optional) The service id this endpoint belongs to.`,
 				},
@@ -1226,12 +1238,24 @@ var (
 					Description: `(Optional) The service name of the endpoint.`,
 				},
 				resource.Attribute{
+					Name:        "service_type",
+					Description: `(Optional) The service type of the endpoint.`,
+				},
+				resource.Attribute{
 					Name:        "interface",
-					Description: `(Optional) The endpoint interface. Valid values are ` + "`" + `public` + "`" + `, ` + "`" + `internal` + "`" + `, and ` + "`" + `admin` + "`" + `. Default value is ` + "`" + `public` + "`" + ``,
+					Description: `(Optional) The endpoint interface. Valid values are ` + "`" + `public` + "`" + `, ` + "`" + `internal` + "`" + `, and ` + "`" + `admin` + "`" + `. Default value is ` + "`" + `public` + "`" + ` ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found endpoint. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region the endpoint is located in. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found endpoint. In addition, the following attributes are exported:`,
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_region",
+					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "service_id",
@@ -1242,20 +1266,32 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "service_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "interface",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The endpoint URL`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `The region the endpoint is located in.`,
+					Description: `The endpoint URL.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "service_id",
 					Description: `See Argument Reference above.`,
 				},
@@ -1264,16 +1300,16 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "service_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "interface",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The endpoint URL`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `The region the endpoint is located in.`,
+					Description: `The endpoint URL.`,
 				},
 			},
 		},
@@ -1458,6 +1494,74 @@ var (
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_identity_service_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an OpenStack Service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V3 Keystone client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The service name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The service type.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The service status. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found service. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The service description.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The service description.`,
 				},
 			},
 		},
@@ -1734,6 +1838,358 @@ var (
 				resource.Attribute{
 					Name:        "updated_at",
 					Description: `The date the image was last updated.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_keymanager_container_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a V1 Barbican container resource within OpenStack.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V1 KeyManager client. A KeyManager client is needed to fetch a container. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The Container name. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "container_ref",
+					Description: `The container reference / where to find the container.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The container type.`,
+				},
+				resource.Attribute{
+					Name:        "secret_refs",
+					Description: `A set of dictionaries containing references to secrets. The structure is described below.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the container.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the container.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the container was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the container was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "consumers",
+					Description: `The list of the container consumers. The structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the secret reference. The reference names must correspond the container type, more details are available [here](https://docs.openstack.org/barbican/stein/api/reference/containers.html).`,
+				},
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `The secret reference / where to find the secret, URL. The ` + "`" + `consumers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the consumer.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The consumer URL.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "container_ref",
+					Description: `The container reference / where to find the container.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The container type.`,
+				},
+				resource.Attribute{
+					Name:        "secret_refs",
+					Description: `A set of dictionaries containing references to secrets. The structure is described below.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the container.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the container.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the container was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the container was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "consumers",
+					Description: `The list of the container consumers. The structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the secret reference. The reference names must correspond the container type, more details are available [here](https://docs.openstack.org/barbican/stein/api/reference/containers.html).`,
+				},
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `The secret reference / where to find the secret, URL. The ` + "`" + `consumers` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the consumer.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `The consumer URL.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_keymanager_secret_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a V1 Barbican secret resource within OpenStack.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V1 KeyManager client. A KeyManager client is needed to fetch a secret. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The Secret name.`,
+				},
+				resource.Attribute{
+					Name:        "bit_length",
+					Description: `(Optional) The Secret bit length.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `(Optional) The Secret algorithm.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) The Secret mode.`,
+				},
+				resource.Attribute{
+					Name:        "secret_type",
+					Description: `(Optional) The Secret type. For more information see [Secret types](https://docs.openstack.org/barbican/latest/api/reference/secret_types.html).`,
+				},
+				resource.Attribute{
+					Name:        "acl_only",
+					Description: `(Optional) Select the Secret with an ACL that contains the user. Project scope is ignored. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_filter",
+					Description: `(Optional) Date filter to select the Secret with expiration matching the specified criteria. See Date Filters below for more detail.`,
+				},
+				resource.Attribute{
+					Name:        "created_at_filter",
+					Description: `(Optional) Date filter to select the Secret with created matching the specified criteria. See Date Filters below for more detail.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at_filter",
+					Description: `(Optional) Date filter to select the Secret with updated matching the specified criteria. See Date Filters below for more detail. ## Date Filters The values for the ` + "`" + `expiration_filter` + "`" + `, ` + "`" + `created_at_filter` + "`" + `, and ` + "`" + `updated_at_filter` + "`" + ` parameters are comma-separated lists of time stamps in RFC3339 format. The time stamps can be prefixed with any of these comparison operators:`,
+				},
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `The secret reference / where to find the secret.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bit_length",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "acl_only",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_filter",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "created_at_filter",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at_filter",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "payload",
+					Description: `The secret payload.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_type",
+					Description: `The Secret content type.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_encoding",
+					Description: `The Secret encoding.`,
+				},
+				resource.Attribute{
+					Name:        "content_types",
+					Description: `The map of the content types, assigned on the secret.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `The date the secret will expire.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the secret was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The map of metadata, assigned on the secret, which has been explicitly and implicitly added.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `The secret reference / where to find the secret.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "bit_length",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "acl_only",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_filter",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "created_at_filter",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at_filter",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "payload",
+					Description: `The secret payload.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_type",
+					Description: `The Secret content type.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_encoding",
+					Description: `The Secret encoding.`,
+				},
+				resource.Attribute{
+					Name:        "content_types",
+					Description: `The map of the content types, assigned on the secret.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the secret.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `The date the secret will expire.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the secret was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The map of metadata, assigned on the secret, which has been explicitly and implicitly added.`,
 				},
 			},
 		},
@@ -3687,26 +4143,29 @@ var (
 		"openstack_identity_group_v3":                        12,
 		"openstack_identity_project_v3":                      13,
 		"openstack_identity_role_v3":                         14,
-		"openstack_identity_user_v3":                         15,
-		"openstack_images_image_v2":                          16,
-		"openstack_networking_addressscope_v2":               17,
-		"openstack_networking_floatingip_v2":                 18,
-		"openstack_networking_network_v2":                    19,
-		"openstack_networking_port_ids_v2":                   20,
-		"openstack_networking_port_v2":                       21,
-		"openstack_networking_qos_bandwidth_limit_rule_v2":   22,
-		"openstack_networking_qos_dscp_marking_rule_v2":      23,
-		"openstack_networking_qos_minimum_bandwidth_rule_v2": 24,
-		"openstack_networking_qos_policy_v2":                 25,
-		"openstack_networking_router_v2":                     26,
-		"openstack_networking_secgroup_v2":                   27,
-		"openstack_networking_subnet_v2":                     28,
-		"openstack_networking_subnetpool_v2":                 29,
-		"openstack_networking_trunk_v2":                      30,
-		"openstack_sharedfilesystem_availability_zones_v2":   31,
-		"openstack_sharedfilesystem_share_v2":                32,
-		"openstack_sharedfilesystem_sharenetwork_v2":         33,
-		"openstack_sharedfilesystem_snapshot_v2":             34,
+		"openstack_identity_service_v3":                      15,
+		"openstack_identity_user_v3":                         16,
+		"openstack_images_image_v2":                          17,
+		"openstack_keymanager_container_v1":                  18,
+		"openstack_keymanager_secret_v1":                     19,
+		"openstack_networking_addressscope_v2":               20,
+		"openstack_networking_floatingip_v2":                 21,
+		"openstack_networking_network_v2":                    22,
+		"openstack_networking_port_ids_v2":                   23,
+		"openstack_networking_port_v2":                       24,
+		"openstack_networking_qos_bandwidth_limit_rule_v2":   25,
+		"openstack_networking_qos_dscp_marking_rule_v2":      26,
+		"openstack_networking_qos_minimum_bandwidth_rule_v2": 27,
+		"openstack_networking_qos_policy_v2":                 28,
+		"openstack_networking_router_v2":                     29,
+		"openstack_networking_secgroup_v2":                   30,
+		"openstack_networking_subnet_v2":                     31,
+		"openstack_networking_subnetpool_v2":                 32,
+		"openstack_networking_trunk_v2":                      33,
+		"openstack_sharedfilesystem_availability_zones_v2":   34,
+		"openstack_sharedfilesystem_share_v2":                35,
+		"openstack_sharedfilesystem_sharenetwork_v2":         36,
+		"openstack_sharedfilesystem_snapshot_v2":             37,
 	}
 )
 

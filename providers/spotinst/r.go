@@ -222,7 +222,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "balancer_id",
-					Description: `(Required) ID of Multai Load Balancer. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl elastic_load_balancers = ["bal5", "bal2"] target_group_arns = ["tg-arn"] multai_target_sets = [{ target_set_id = "ts-123", balancer_id = "bal-123" }, { target_set_id = "ts-234", balancer_id = "bal-234" }] ` + "`" + `` + "`" + `` + "`" + ` <a id="signal"></a> ## Signals Each ` + "`" + `signal` + "`" + ` supports the following:`,
+					Description: `(Required) ID of Multai Load Balancer. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl elastic_load_balancers = ["bal5", "bal2"] target_group_arns = ["tg-arn"] multai_target_sets { target_set_id = "ts-123", balancer_id = "bal-123" } multai_target_sets { target_set_id = "ts-234", balancer_id = "bal-234" } ` + "`" + `` + "`" + `` + "`" + ` <a id="signal"></a> ## Signals Each ` + "`" + `signal` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -230,7 +230,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "timeout",
-					Description: `(Optional) The signals defined timeout- default is 40 minutes (1800 seconds). Usage: ` + "`" + `` + "`" + `` + "`" + `hcl signal = { name = "INSTANCE_READY_TO_SHUTDOWN" timeout = 100 } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## Scheduled Tasks Each ` + "`" + `scheduled_task` + "`" + ` supports the following:`,
+					Description: `(Optional) The signals defined timeout- default is 40 minutes (1800 seconds). Usage: ` + "`" + `` + "`" + `` + "`" + `hcl signal { name = "INSTANCE_READY_TO_SHUTDOWN" timeout = 100 } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## Scheduled Tasks Each ` + "`" + `scheduled_task` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "task_type",
@@ -290,7 +290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "adjustment_percentage",
-					Description: `(Optional; Min 1) The percentage of instances to add or remove. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task = [{ task_type = "backup_ami" cron_expression = "" start_time = "1970-01-01T01:00:00Z" frequency = "hourly" scale_target_capacity = 5 scale_min_capacity = 0 scale_max_capacity = 10 is_enabled = false target_capacity = 5 min_capacity = 0 max_capacity = 10 batch_size_percentage = 33 grace_period = 300 }] ` + "`" + `` + "`" + `` + "`" + ` <a id="scaling-policy"></a> ## Scaling Policies Each ` + "`" + `scaling_`,
+					Description: `(Optional; Min 1) The percentage of instances to add or remove. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { task_type = "backup_ami" cron_expression = "" start_time = "1970-01-01T01:00:00Z" frequency = "hourly" scale_target_capacity = 5 scale_min_capacity = 0 scale_max_capacity = 10 is_enabled = false target_capacity = 5 min_capacity = 0 max_capacity = 10 batch_size_percentage = 33 grace_period = 300 } ` + "`" + `` + "`" + `` + "`" + ` <a id="scaling-policy"></a> ## Scaling Policies Each ` + "`" + `scaling_`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -382,7 +382,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "predictive_mode",
-					Description: `(Optional) Start a metric prediction process to determine the expected target metric value within the next two days. See [Predictive Autoscaling](https://api.spotinst.com/elastigroup-for-aws/concepts/scaling-concepts/predictive-autoscaling/) documentation for more info. Valid values: ` + "`" + `FORECAST_AND_SCALE` + "`" + `, ` + "`" + `FORECAST_ONLY` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scaling_up_policy = [{ policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "AWS/EC2" source = "" statistic = "average" unit = "" cooldown = 60 is_enabled = false dimensions = { name = "name-1" value = "value-1" } threshold = 10 operator = "gt" evaluation_periods = 10 period = 60 // === MIN TARGET =================== action_type = "setMinTarget" min_target_capacity = 1 // ================================== // === ADJUSTMENT =================== # action_type = "adjustment" # action_type = "percentageAdjustment" # adjustment = "MAX(5,10)" // ================================== // === UPDATE CAPACITY ============== # action_type = "updateCapacity" # minimum = 0 # maximum = 10 # target = 5 // ================================== }] ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl scaling_target_policy = [{ policy_name = "" metric_name = "" namespace = "" source = "" statistic = "" unit = "" cooldown = 10 target = 1 predictive_mode = "" dimensions = [{ name = "" value = "" }] }] ` + "`" + `` + "`" + `` + "`" + ` <a id="network-interface"></a> ## Network Interfaces Each of the ` + "`" + `network_interface` + "`" + ` attributes controls a portion of the AWS Instance's "Elastic Network Interfaces". It's a good idea to familiarize yourself with [AWS's Elastic Network Interfaces docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) to understand the implications of using these attributes.`,
+					Description: `(Optional) Start a metric prediction process to determine the expected target metric value within the next two days. See [Predictive Autoscaling](https://api.spotinst.com/elastigroup-for-aws/concepts/scaling-concepts/predictive-autoscaling/) documentation for more info. Valid values: ` + "`" + `FORECAST_AND_SCALE` + "`" + `, ` + "`" + `FORECAST_ONLY` + "`" + `. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scaling_up_policy { policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "AWS/EC2" source = "" statistic = "average" unit = "" cooldown = 60 is_enabled = false dimensions { name = "name-1" value = "value-1" } threshold = 10 operator = "gt" evaluation_periods = 10 period = 60 // === MIN TARGET =================== action_type = "setMinTarget" min_target_capacity = 1 // ================================== // === ADJUSTMENT =================== # action_type = "adjustment" # action_type = "percentageAdjustment" # adjustment = "MAX(5,10)" // ================================== // === UPDATE CAPACITY ============== # action_type = "updateCapacity" # minimum = 0 # maximum = 10 # target = 5 // ================================== } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl scaling_target_policy { policy_name = "" metric_name = "" namespace = "" source = "" statistic = "" unit = "" cooldown = 10 target = 1 predictive_mode = "" dimensions { name = "" value = "" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="network-interface"></a> ## Network Interfaces Each of the ` + "`" + `network_interface` + "`" + ` attributes controls a portion of the AWS Instance's "Elastic Network Interfaces". It's a good idea to familiarize yourself with [AWS's Elastic Network Interfaces docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html) to understand the implications of using these attributes.`,
 				},
 				resource.Attribute{
 					Name:        "network_interface_id",
@@ -414,7 +414,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "associate_ipv6_address",
-					Description: `(Optional) Indicates whether to assign IPV6 addresses to your instance. Requires a subnet with IPV6 CIDR block ranges. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl network_interface = [{ network_interface_id = "" device_index = 1 description = "nic description in here" private_ip_address = "1.1.1.1" delete_on_termination = false secondary_private_ip_address_count = 1 associate_public_ip_address = true }] ` + "`" + `` + "`" + `` + "`" + ` <a id="block-devices"></a> ## Block Devices Each of the ` + "`" + ``,
+					Description: `(Optional) Indicates whether to assign IPV6 addresses to your instance. Requires a subnet with IPV6 CIDR block ranges. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl network_interface { network_interface_id = "" device_index = 1 description = "nic description in here" private_ip_address = "1.1.1.1" delete_on_termination = false secondary_private_ip_address_count = 1 associate_public_ip_address = true } ` + "`" + `` + "`" + `` + "`" + ` <a id="block-devices"></a> ## Block Devices Each of the ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -446,7 +446,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kms_key_id",
-					Description: `(Optional) ID for a user managed CMK under which the EBS Volume is encrypted Modifying any ` + "`" + `ebs_block_device` + "`" + ` currently requires resource replacement. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl ebs_block_device = [{ device_name = "/dev/sdb" snapshot_id = "" volume_type = "gp2" volume_size = 8 iops = 1 delete_on_termination = true encrypted = false kms_key_id = "kms-key-01" }, { device_name = "/dev/sdc" snapshot_id = "" volume_type = "gp2" volume_size = 8 iops = 1 delete_on_termination = true encrypted = true kms_key_id = "kms-key-02" }] ` + "`" + `` + "`" + `` + "`" + ` Each ` + "`" + `ephemeral_block_device` + "`" + ` supports the following:`,
+					Description: `(Optional) ID for a user managed CMK under which the EBS Volume is encrypted Modifying any ` + "`" + `ebs_block_device` + "`" + ` currently requires resource replacement. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl ebs_block_device { device_name = "/dev/sdb" snapshot_id = "" volume_type = "gp2" volume_size = 8 iops = 1 delete_on_termination = true encrypted = false kms_key_id = "kms-key-01" } ebs_block_device { device_name = "/dev/sdc" snapshot_id = "" volume_type = "gp2" volume_size = 8 iops = 1 delete_on_termination = true encrypted = true kms_key_id = "kms-key-02" } ` + "`" + `` + "`" + `` + "`" + ` Each ` + "`" + `ephemeral_block_device` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -454,7 +454,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_name",
-					Description: `(Required) The [Instance Store Device Name](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStoreDeviceNames) (e.g. ` + "`" + `"ephemeral0"` + "`" + `). Usage: ` + "`" + `` + "`" + `` + "`" + `hcl ephemeral_block_device = [{ device_name = "/dev/xvdc" virtual_name = "ephemeral0" }] ` + "`" + `` + "`" + `` + "`" + ` <a id="stateful"></a> ## Stateful We support instance persistence via the following configurations. all values are boolean. For more information on instance persistence please see: [Stateful configuration](https://api.spotinst.com/integration-docs/elastigroup/concepts/stateful-concepts/introduction/)`,
+					Description: `(Required) The [Instance Store Device Name](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#InstanceStoreDeviceNames) (e.g. ` + "`" + `"ephemeral0"` + "`" + `). Usage: ` + "`" + `` + "`" + `` + "`" + `hcl ephemeral_block_device { device_name = "/dev/xvdc" virtual_name = "ephemeral0" } ` + "`" + `` + "`" + `` + "`" + ` <a id="stateful"></a> ## Stateful We support instance persistence via the following configurations. all values are boolean. For more information on instance persistence please see: [Stateful configuration](https://api.spotinst.com/integration-docs/elastigroup/concepts/stateful-concepts/introduction/)`,
 				},
 				resource.Attribute{
 					Name:        "persist_root_device",
@@ -494,7 +494,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "should_delete_snapshots",
-					Description: `(Optional) For stateful groups: remove snapshots. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl stateful_deallocation = { should_delete_images = false should_delete_network_interfaces = false should_delete_volumes = false should_delete_snapshots = false } ` + "`" + `` + "`" + `` + "`" + ` <a id="health-check"></a> ## Health Check`,
+					Description: `(Optional) For stateful groups: remove snapshots. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl stateful_deallocation { should_delete_images = false should_delete_network_interfaces = false should_delete_volumes = false should_delete_snapshots = false } ` + "`" + `` + "`" + `` + "`" + ` <a id="health-check"></a> ## Health Check`,
 				},
 				resource.Attribute{
 					Name:        "health_check_type",
@@ -526,7 +526,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Optional) The Rancher version. Must be ` + "`" + `"1"` + "`" + ` or ` + "`" + `"2"` + "`" + `. If this field is omitted, it’s assumed that the Rancher cluster is version 1. Note that Kubernetes is required when using Rancher version 2^. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_rancher = { master_host = "master_host" access_key = "access_key" secret_key = "secret_key" version = "2" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The Rancher version. Must be ` + "`" + `"1"` + "`" + ` or ` + "`" + `"2"` + "`" + `. If this field is omitted, it’s assumed that the Rancher cluster is version 1. Note that Kubernetes is required when using Rancher version 2^. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_rancher { master_host = "master_host" access_key = "access_key" secret_key = "secret_key" version = "2" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_ecs",
@@ -582,7 +582,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "autoscale_attributes",
-					Description: `(Optional) A key/value mapping of tags to assign to the resource. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_ecs = { cluster_name = "ecs-cluster" autoscale_is_enabled = false autoscale_cooldown = 300 autoscale_scale_down_non_service_tasks = false autoscale_headroom = { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down = { evaluation_periods = 300 max_scale_down_percentage = 70 } autoscale_attributes = [{ key = "test.ecs.key" value = "test.ecs.value" }] } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A key/value mapping of tags to assign to the resource. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_ecs { cluster_name = "ecs-cluster" autoscale_is_enabled = false autoscale_cooldown = 300 autoscale_scale_down_non_service_tasks = false autoscale_headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 max_scale_down_percentage = 70 } autoscale_attributes { key = "test.ecs.key" value = "test.ecs.value" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_codedeploy",
@@ -606,7 +606,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployment_group_name",
-					Description: `(Optional) The deployment group name. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_codedeploy = { cleanup_on_failure = false terminate_instance_on_failure = false deployment_groups = { application_name = "my-app" deployment_group_name = "my-group" } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The deployment group name. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_codedeploy { cleanup_on_failure = false terminate_instance_on_failure = false deployment_groups { application_name = "my-app" deployment_group_name = "my-group" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_route53",
@@ -634,7 +634,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "use_public_ip",
-					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) - Designates if the IP address should be exposed to connections outside the VPC. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_route53 = { domains = { hosted_zone_id = "zone-id" spotinst_acct_id = "act-123456" record_sets = { name = "foo.example.com" use_public_ip = true } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) - Designates if the IP address should be exposed to connections outside the VPC. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_route53 { domains { hosted_zone_id = "zone-id" spotinst_acct_id = "act-123456" record_sets { name = "foo.example.com" use_public_ip = true } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_docker_swarm",
@@ -678,7 +678,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "evaluation_periods",
-					Description: `(Optional, Default: ` + "`" + `5` + "`" + `) Number of periods over which data is compared. Minimum 3, Measured in consecutive minutes. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_docker_swarm = { master_host = "10.10.10.10" master_port = 2376 autoscale_is_enabled = true autoscale_cooldown = 180 autoscale_headroom = { cpu_per_unit = 2048 memory_per_unit = 2048 num_of_units = 1 } autoscale_down = { evaluation_periods = 3 } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `5` + "`" + `) Number of periods over which data is compared. Minimum 3, Measured in consecutive minutes. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_docker_swarm { master_host = "10.10.10.10" master_port = 2376 autoscale_is_enabled = true autoscale_cooldown = 180 autoscale_headroom { cpu_per_unit = 2048 memory_per_unit = 2048 num_of_units = 1 } autoscale_down { evaluation_periods = 3 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_kubernetes",
@@ -738,7 +738,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "autoscale_labels",
-					Description: `(Optional) A key/value mapping of tags to assign to the resource. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_kubernetes = { integration_mode = "pod" cluster_identifier = "my-identifier.ek8s.com" // === SAAS =================== # integration_mode = "saas" # api_server = "https://api.my-identifier.ek8s.com/api/v1/namespaces/kube-system/services/..." # token = "top-secret" // ============================ autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom = { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 1 } autoscale_down = { evaluation_periods = 300 } autoscale_labels = [{ key = "test.k8s.key" value = "test.k8s.value" }] } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A key/value mapping of tags to assign to the resource. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_kubernetes { integration_mode = "pod" cluster_identifier = "my-identifier.ek8s.com" // === SAAS =================== # integration_mode = "saas" # api_server = "https://api.my-identifier.ek8s.com/api/v1/namespaces/kube-system/services/..." # token = "top-secret" // ============================ autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 1 } autoscale_down { evaluation_periods = 300 } autoscale_labels { key = "test.k8s.key" value = "test.k8s.value" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_nomad",
@@ -790,7 +790,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "autoscale_constraints",
-					Description: `(Optional) A key/value mapping of tags to assign to the resource. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_nomad = { master_host = "my-nomad-host" master_port = 9000 acl_token = "top-secret" autoscale_is_enabled = false autoscale_cooldown = 300 autoscale_headroom = { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down = { evaluation_periods = 300 } autoscale_constraints = [{ key = "test.nomad.key" value = "test.nomad.value" }] } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) A key/value mapping of tags to assign to the resource. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_nomad { master_host = "my-nomad-host" master_port = 9000 acl_token = "top-secret" autoscale_is_enabled = false autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 } autoscale_constraints { key = "test.nomad.key" value = "test.nomad.value" } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_mesosphere",
@@ -798,7 +798,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_server",
-					Description: `(Optional) The public IP of the DC/OS Master. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_mesosphere = { api_server = "" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The public IP of the DC/OS Master. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_mesosphere { api_server = "" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_multai_runtime",
@@ -806,7 +806,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployment_id",
-					Description: `(Optional) The deployment id you want to get Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_multai_runtime = { deployment_id = "" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The deployment id you want to get Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_multai_runtime { deployment_id = "" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_gitlab",
@@ -818,7 +818,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_enabled",
-					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Specifies whether the integration is enabled. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_gitlab = { runner = { is_enabled = true } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Specifies whether the integration is enabled. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_gitlab { runner { is_enabled = true } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_beanstalk",
@@ -870,7 +870,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "update_level",
-					Description: `(Required) - Level to update Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_beanstalk = { environment_id = "e-3tkmbj7hzc" deployment_preferences = { automatic_roll = true batch_size_percentage = 100 grace_period = 90 strategy = { action = "REPLACE_SERVER" should_drain_instance = true } } managed_actions = { platform_update = { perform_at = "timeWindow" field_name = "Mon:23:50-Tue:00:20" update_level = "minorAndPatch" } } } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Required) - Level to update Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_beanstalk { environment_id = "e-3tkmbj7hzc" deployment_preferences { automatic_roll = true batch_size_percentage = 100 grace_period = 90 strategy { action = "REPLACE_SERVER" should_drain_instance = true } } managed_actions { platform_update { perform_at = "timeWindow" field_name = "Mon:23:50-Tue:00:20" update_level = "minorAndPatch" } } } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -926,7 +926,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_min_healthy_percentage",
-					Description: `(Optional, Default ` + "`" + `50` + "`" + `) Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the deployment will fail. Range ` + "`" + `1` + "`" + ` - ` + "`" + `100` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy = { should_resume_stateful = false should_roll = false auto_apply_tags = false roll_config = { batch_size_percentage = 33 health_check_type = "ELB" grace_period = 300 wait_for_roll_percentage = 10 wait_for_roll_timeout = 1500 strategy = { action = "REPLACE_SERVER" should_drain_instances = false batch_min_healthy_percentage = 10 } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Default ` + "`" + `50` + "`" + `) Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the deployment will fail. Range ` + "`" + `1` + "`" + ` - ` + "`" + `100` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_resume_stateful = false should_roll = false auto_apply_tags = false roll_config { batch_size_percentage = 33 health_check_type = "ELB" grace_period = 300 wait_for_roll_percentage = 10 wait_for_roll_timeout = 1500 strategy { action = "REPLACE_SERVER" should_drain_instances = false batch_min_healthy_percentage = 10 } } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1144,7 +1144,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_weight",
-					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) ` + "`" + `` + "`" + `` + "`" + `hcl load_balancers = [{ type = "MULTAI_TARGET_SET" balancer_id = "lb-1ee2e3q" target_set_id = "ts-3eq" auto_weight = true }] ` + "`" + `` + "`" + `` + "`" + ` <a id="image"></a> ## Image`,
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) ` + "`" + `` + "`" + `` + "`" + `hcl load_balancers { type = "MULTAI_TARGET_SET" balancer_id = "lb-1ee2e3q" target_set_id = "ts-3eq" auto_weight = true } ` + "`" + `` + "`" + `` + "`" + ` <a id="image"></a> ## Image`,
 				},
 				resource.Attribute{
 					Name:        "image",
@@ -1168,7 +1168,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image_name",
-					Description: `(Optional) Name of the custom image. Required if resource_group_name is specified. ` + "`" + `` + "`" + `` + "`" + `hcl // market image image = { marketplace = { publisher = "Canonical" offer = "UbuntuServer" sku = "16.04-LTS" } } // custom image image = { custom = { image_name = "customImage" resource_group_name = "resourceGroup" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="health-check"></a> ## Health Check`,
+					Description: `(Optional) Name of the custom image. Required if resource_group_name is specified. ` + "`" + `` + "`" + `` + "`" + `hcl // market image image { marketplace { publisher = "Canonical" offer = "UbuntuServer" sku = "16.04-LTS" } } // custom image image { custom { image_name = "customImage" resource_group_name = "resourceGroup" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="health-check"></a> ## Health Check`,
 				},
 				resource.Attribute{
 					Name:        "health_check",
@@ -1184,7 +1184,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_healing",
-					Description: `(Optional) Enable auto-healing of unhealthy VMs. ` + "`" + `` + "`" + `` + "`" + `hcl health_check = { health_check_type = "INSTANCE_STATE" grace_period = 120 auto_healing = true } ` + "`" + `` + "`" + `` + "`" + ` <a id="network"></a> ## Network`,
+					Description: `(Optional) Enable auto-healing of unhealthy VMs. ` + "`" + `` + "`" + `` + "`" + `hcl health_check { health_check_type = "INSTANCE_STATE" grace_period = 120 auto_healing = true } ` + "`" + `` + "`" + `` + "`" + ` <a id="network"></a> ## Network`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -1216,7 +1216,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_version",
-					Description: `(Optional) Available from Azure Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Valid values: ` + "`" + `IPv4` + "`" + `, ` + "`" + `IPv6` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl network = { virtual_network_name = "vname" subnet_name = "my-subnet-name" resource_group_name = "subnetResourceGroup" assign_public_ip = true additional_ip_configs = [{ name = "test" private_ip_version = "IPv4" }] } ` + "`" + `` + "`" + `` + "`" + ` <a id="login"></a> ## Login ` + "`" + `` + "`" + `` + "`" + `hcl network = { virtual_network_name = "vname" subnet_name = "my-subnet-name" resource_group_name = "subnetResourceGroup" assign_public_ip = true } ` + "`" + `` + "`" + `` + "`" + ` <a id="login"></a> ## Login`,
+					Description: `(Optional) Available from Azure Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Valid values: ` + "`" + `IPv4` + "`" + `, ` + "`" + `IPv6` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl network { virtual_network_name = "vname" subnet_name = "my-subnet-name" resource_group_name = "subnetResourceGroup" assign_public_ip = true additional_ip_configs { name = "test" private_ip_version = "IPv4" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="login"></a> ## Login ` + "`" + `` + "`" + `` + "`" + `hcl network { virtual_network_name = "vname" subnet_name = "my-subnet-name" resource_group_name = "subnetResourceGroup" assign_public_ip = true } ` + "`" + `` + "`" + `` + "`" + ` <a id="login"></a> ## Login`,
 				},
 				resource.Attribute{
 					Name:        "login",
@@ -1232,7 +1232,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) Password for admin access to Windows VMs. Required for Windows product types. ` + "`" + `` + "`" + `` + "`" + `hcl login = { user_name = "admin" ssh_public_key = "33a2s1f3g5a1df5g1ad21651sag56dfg==" } ` + "`" + `` + "`" + `` + "`" + ` <a id="scaling-policy"></a> ## Scaling Policies Each ` + "`" + `scaling_`,
+					Description: `(Optional) Password for admin access to Windows VMs. Required for Windows product types. ` + "`" + `` + "`" + `` + "`" + `hcl login { user_name = "admin" ssh_public_key = "33a2s1f3g5a1df5g1ad21651sag56dfg==" } ` + "`" + `` + "`" + `` + "`" + ` <a id="scaling-policy"></a> ## Scaling Policies Each ` + "`" + `scaling_`,
 				},
 				resource.Attribute{
 					Name:        "policy_name",
@@ -1284,7 +1284,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) The dimension value. When ` + "`" + `namespace` + "`" + ` is defined and is not ` + "`" + `"Microsoft.Compute"` + "`" + ` the list of dimensions must contain the following: ` + "`" + `` + "`" + `` + "`" + `hcl dimensions = [ { name = "resourceName" value = "example-resource-name" }, { name = "resourceGroupName" value = "example-resource-group-name" }, ] ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The dimension value. When ` + "`" + `namespace` + "`" + ` is defined and is not ` + "`" + `"Microsoft.Compute"` + "`" + ` the list of dimensions must contain the following: ` + "`" + `` + "`" + `` + "`" + `hcl dimensions { name = "resourceName" value = "example-resource-name" } dimensions { name = "resourceGroupName" value = "example-resource-group-name" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "action_type",
@@ -1312,7 +1312,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The target number of instances to have in the group. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl // --- SCALE DOWN POLICY ------------------ scaling_down_policy = [{ policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "Microsoft.Compute" statistic = "average" threshold = 10 unit = "percent" cooldown = 60 dimensions = { name = "name-1" value = "value-1" } operator = "gt" evaluation_periods = "10" period = "60" // === MIN TARGET =================== # action_type = "setMinTarget" # min_target_capacity = 1 // ================================== // === ADJUSTMENT =================== action_type = "adjustment" # action_type = "percentageAdjustment" adjustment = "MIN(5,10)" // ================================== // === UPDATE CAPACITY ============== # action_type = "updateCapacity" # minimum = 0 # maximum = 10 # target = 5 // ================================== }] // ---------------------------------------- // --- SCALE DOWN POLICY ------------------ scaling_down_policy = [{ policy_name = "policy-name-update" metric_name = "CPUUtilization" namespace = "Microsoft.Compute" statistic = "sum" threshold = 5 unit = "bytes" cooldown = 120 dimensions = { name = "name-1-update" value = "value-1-update" } operator = "lt" evaluation_periods = 5 period = 120 //// === MIN TARGET =================== # action_type = "setMinTarget" # min_target_capacity = 1 //// ================================== // === ADJUSTMENT =================== # action_type = "percentageAdjustment" # action_type = "adjustment" # adjustment = "MAX(5,10)" // ================================== // === UPDATE CAPACITY ============== action_type = "updateCapacity" minimum = 0 maximum = 10 target = 5 // ================================== }] // ---------------------------------------- ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduling"></a> ## Scheduling`,
+					Description: `(Optional; if using ` + "`" + `updateCapacity` + "`" + `) The target number of instances to have in the group. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl // --- SCALE DOWN POLICY ------------------ scaling_down_policy { policy_name = "policy-name" metric_name = "CPUUtilization" namespace = "Microsoft.Compute" statistic = "average" threshold = 10 unit = "percent" cooldown = 60 dimensions { name = "name-1" value = "value-1" } operator = "gt" evaluation_periods = "10" period = "60" // === MIN TARGET =================== # action_type = "setMinTarget" # min_target_capacity = 1 // ================================== // === ADJUSTMENT =================== action_type = "adjustment" # action_type = "percentageAdjustment" adjustment = "MIN(5,10)" // ================================== // === UPDATE CAPACITY ============== # action_type = "updateCapacity" # minimum = 0 # maximum = 10 # target = 5 // ================================== } // ---------------------------------------- // --- SCALE DOWN POLICY ------------------ scaling_down_policy { policy_name = "policy-name-update" metric_name = "CPUUtilization" namespace = "Microsoft.Compute" statistic = "sum" threshold = 5 unit = "bytes" cooldown = 120 dimensions { name = "name-1-update" value = "value-1-update" } operator = "lt" evaluation_periods = 5 period = 120 //// === MIN TARGET =================== # action_type = "setMinTarget" # min_target_capacity = 1 //// ================================== // === ADJUSTMENT =================== # action_type = "percentageAdjustment" # action_type = "adjustment" # adjustment = "MAX(5,10)" // ================================== // === UPDATE CAPACITY ============== action_type = "updateCapacity" minimum = 0 maximum = 10 target = 5 // ================================== } // ---------------------------------------- ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduling"></a> ## Scheduling`,
 				},
 				resource.Attribute{
 					Name:        "scheduled_task",
@@ -1356,7 +1356,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "grace_period",
-					Description: `(Optional) The time to allow instances to become healthy. ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task = [{ is_enabled = true cron_expression = "`,
+					Description: `(Optional) The time to allow instances to become healthy. ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { is_enabled = true cron_expression = "`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -1380,7 +1380,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "grace_period",
-					Description: `(Optional) Sets the grace period for new instances to become healthy. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy = { should_roll = false roll_config = { batch_size_percentage = 33 health_check_type = "INSTANCE_STATE" grace_period = 300 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="third-party-integrations"></a> ## Third-Party Integrations`,
+					Description: `(Optional) Sets the grace period for new instances to become healthy. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 health_check_type = "INSTANCE_STATE" grace_period = 300 } } ` + "`" + `` + "`" + `` + "`" + ` <a id="third-party-integrations"></a> ## Third-Party Integrations`,
 				},
 				resource.Attribute{
 					Name:        "integration_kubernetes",
@@ -1388,7 +1388,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_identifier",
-					Description: `(Required) The cluster ID. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_kubernetes = { cluster_identifier = "k8s-cluster-id" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The cluster ID. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_kubernetes { cluster_identifier = "k8s-cluster-id" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "integration_multai_runtime",
@@ -1396,7 +1396,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployment_id",
-					Description: `(Optional) The deployment id you want to get Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_multai_runtime = { deployment_id = "" } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The deployment id you want to get Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_multai_runtime { deployment_id = "" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1832,7 +1832,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) The label value. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_gke = { location = "us-central1-a" cluster_id = "terraform-acc-test-cluster" autoscale_is_enabled = true autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom = { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down = { evaluation_periods = 300 } autoscale_labels = { key = "label_key" value = "label_value" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="diff-suppressed-parameters"></a> ## Diff-suppressed Parameters The following parameters are created remotely and imported. The diffs have been suppressed in order to maintain plan legibility. You may update the values of these imported parameters by defining them in your template with your desired new value (including null values).`,
+					Description: `(Optional) The label value. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_gke { location = "us-central1-a" cluster_id = "terraform-acc-test-cluster" autoscale_is_enabled = true autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 } autoscale_labels { key = "label_key" value = "label_value" } } ` + "`" + `` + "`" + `` + "`" + ` <a id="diff-suppressed-parameters"></a> ## Diff-suppressed Parameters The following parameters are created remotely and imported. The diffs have been suppressed in order to maintain plan legibility. You may update the values of these imported parameters by defining them in your template with your desired new value (including null values).`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2639,7 +2639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Can be set to CLASSIC or TARGET_GROUP ` + "`" + `` + "`" + `` + "`" + `hcl image_id = "ami-79826301" security_groups = ["sg-042d658b3ee907848"] key_name = "fake key" user_data = "echo hello world" iam_instance_profile = "iam-profile" root_volume_size = 20 monitoring = true ebs_optimized = true associate_public_ip_address = true load_balancers = [ { arn = "arn:aws:elasticloadbalancing:us-west-2:fake-arn" type = "TARGET_GROUP" }, { name = "AntonK" type = "CLASSIC" } ] ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Can be set to CLASSIC or TARGET_GROUP ` + "`" + `` + "`" + `` + "`" + `hcl image_id = "ami-79826301" security_groups = ["sg-042d658b3ee907848"] key_name = "fake key" user_data = "echo hello world" iam_instance_profile = "iam-profile" root_volume_size = 20 monitoring = true ebs_optimized = true associate_public_ip_address = true load_balancers { arn = "arn:aws:elasticloadbalancing:us-west-2:fake-arn" type = "TARGET_GROUP" } load_balancers { name = "balancer-name" type = "CLASSIC" } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "fallback_to_ondemand",
@@ -2651,7 +2651,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "utilize_reserved_instances",
-					Description: `(Optional, Default ` + "`" + `false` + "`" + `) If Reserved instances exist, OCean will utilize them before launching Spot instances. ` + "`" + `` + "`" + `` + "`" + `hcl fallback_to_ondemand = true spot_percentage = 100 utilize_reserved_instances = false ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, Default ` + "`" + `false` + "`" + `) If Reserved instances exist, OCean will utilize them before launching Spot instances.`,
+				},
+				resource.Attribute{
+					Name:        "draining_timeout",
+					Description: `(Optional) The time in seconds, the instance is allowed to run while detached from the ELB. This is to allow the instance time to be drained from incoming TCP connections before terminating it, during a scale down operation. ` + "`" + `` + "`" + `` + "`" + `hcl fallback_to_ondemand = true spot_percentage = 100 utilize_reserved_instances = false draining_timeout = 120 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "autoscaler",
@@ -2707,7 +2711,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_memory_gib",
-					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler = { autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom = { cpu_per_unit = 1024 gpu_per_unit = 1 memory_per_unit = 512 num_of_units = 2 } autoscale_down = { evaluation_periods = 300 } resource_limits = { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 gpu_per_unit = 1 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2719,7 +2723,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) The tag value. ` + "`" + `` + "`" + `` + "`" + `hcl tags = [{ key = "fakeKey" value = "fakeValue" }] ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Optional) The tag value. ` + "`" + `` + "`" + `` + "`" + `hcl tags { key = "fakeKey" value = "fakeValue" } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -2735,7 +2739,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "batch_size_percentage",
-					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy = { should_roll = false roll_config = { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2802,42 +2806,23 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "ocean_gke",
+			Type:             "ocean_gke_import",
 			Category:         "Spotinst Resources",
 			ShortDescription: `Provides a Spotinst Ocean resource using gke.`,
 			Description:      ``,
 			Keywords: []string{
 				"ocean",
 				"gke",
+				"import",
 			},
 			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The cluster name.`,
-				},
-				resource.Attribute{
-					Name:        "controller_id",
-					Description: `(Required) The ocean cluster identifier. Example: ` + "`" + `ocean.k8s` + "`" + ``,
-				},
 				resource.Attribute{
 					Name:        "cluster_name",
 					Description: `(Required) The GKE cluster name.`,
 				},
 				resource.Attribute{
-					Name:        "master_location",
+					Name:        "location",
 					Description: `(Required) The zone the master cluster is located in.`,
-				},
-				resource.Attribute{
-					Name:        "subnet_name",
-					Description: `(Required) Subnet identifier for the Ocean cluster.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zones",
-					Description: `(Required) List of availability zones available to the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "whitelist",
-					Description: `(Optional) Instance types allowed in the Ocean cluster.`,
 				},
 				resource.Attribute{
 					Name:        "max_size",
@@ -2849,51 +2834,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "desired_capacity",
-					Description: `(Optional) The number of instances to launch and maintain in the cluster. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl name = "example-ocean-cluster-name" controller_id = "example-cluster-id" cluster_name = "example-cluster-name" master_location = "us-central1-a" subnet_name = "example-subnet-1" availability_zones = ["us-central1-a"] whitelist = ["n1-standard-1", "n1-standard-2"] max_size = 1000 min_size = 0 desired_capacity = 500 ` + "`" + `` + "`" + `` + "`" + ` <a id="launch-configuration"></a> ## Launch Configuration Note: label, metadata, and tag keys are required, and depend on your GKE cluster. Please modify the values to match your configuration. You may also add additional key/value pairs. This resource is intended to be used as part of a Module.`,
-				},
-				resource.Attribute{
-					Name:        "source_image",
-					Description: `(Optional) A source image used to create the disk. You can provide a private (custom) image, and Compute Engine will use the corresponding image from your project.`,
-				},
-				resource.Attribute{
-					Name:        "service_account",
-					Description: `(Optional) The email of the service account in which the group instances will be launched.`,
-				},
-				resource.Attribute{
-					Name:        "root_volume_size_in_gb",
-					Description: `(Optional) The size (in Gb) to allocate for the root volume. Minimum ` + "`" + `100` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "ip_forwarding",
-					Description: `(Optional) Enables the transfer IP packets from one network to another.`,
-				},
-				resource.Attribute{
-					Name:        "labels",
-					Description: `(Optional) Array of objects with key-value pairs.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Optional) Labels key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Optional) Labels value.`,
-				},
-				resource.Attribute{
-					Name:        "metadata",
-					Description: `(Optional) Array of objects with key-value pairs.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Optional) Metadata key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Optional) Metadata value.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) Tags to mark created instances. Minimum 1. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl source_image = "https://www.googleapis.com/compute/v1/projects/my-project/global/examples/example-image-1" service_account = "example-account@my-account.iam.gserviceaccount.com" root_volume_size_in_gb = 100 ip_forwarding = true labels = [{ key = "spotinst-gke-original-node-pool", value = "example-cluster-name__default-pool" }] metadata = [{ key = "cluster-name" value = "example-cluster" }] tags = ["gke-example-vpc-1234567-node"] ` + "`" + `` + "`" + `` + "`" + ` <a id="backend-services"></a> ## Backend Services`,
+					Description: `(Optional) The number of instances to launch and maintain in the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "backend_services",
@@ -2909,7 +2850,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheme",
-					Description: `(Optional) Use when ` + "`" + `location_type` + "`" + ` is "regional". Set the traffic for the backend service to either between the instances in the vpc or to traffic from the internet. Valid values: ` + "`" + `INTERNAL` + "`" + `, ` + "`" + `EXTERNAL` + "`" + `.`,
+					Description: `(Optional) Use when ` + "`" + `location_type` + "`" + ` is ` + "`" + `regional` + "`" + `. Set the traffic for the backend service to either between the instances in the vpc or to traffic from the internet. Valid values: ` + "`" + `INTERNAL` + "`" + `, ` + "`" + `EXTERNAL` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "named_port",
@@ -2921,63 +2862,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `(Required) A list of ports. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl backend_services = [{ service_name = "example-backend-service" location_type = "global" scheme = "INTERNAL" named_ports = { name = "http" ports = [80, 8080] } }] ` + "`" + `` + "`" + `` + "`" + ` <a id="autoscaler"></a> ## Autoscaler`,
+					Description: `(Required) A list of ports.`,
 				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ocean_gke_launch_spec",
+			Category:         "Spotinst Resources",
+			ShortDescription: `Provides a Spotinst Ocean Launch Spec resource using GKE.`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"gke",
+				"launch",
+				"spec",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ocean_gke_launch_spec_import",
+			Category:         "Spotinst Resources",
+			ShortDescription: `Provides a Spotinst Ocean Launch Spec Import resource using GKE.`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"gke",
+				"launch",
+				"spec",
+				"import",
+			},
+			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "autoscaler",
-					Description: `(Optional) Describes the Ocean Kubernetes autoscaler.`,
-				},
-				resource.Attribute{
-					Name:        "autoscale_is_enabled",
-					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Enable the Ocean Kubernetes autoscaler.`,
-				},
-				resource.Attribute{
-					Name:        "autoscale_is_auto_config",
-					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Automatically configure and optimize headroom resources.`,
-				},
-				resource.Attribute{
-					Name:        "autoscale_cooldown",
-					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) Cooldown period between scaling actions.`,
-				},
-				resource.Attribute{
-					Name:        "autoscale_headroom",
-					Description: `(Optional) Spare resource capacity management enabling fast assignment of Pods without waiting for new resources to launch.`,
-				},
-				resource.Attribute{
-					Name:        "cpu_per_unit",
-					Description: `(Optional) Optionally configure the number of CPUs to allocate the headroom. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
-				},
-				resource.Attribute{
-					Name:        "gpu_per_unit",
-					Description: `(Optional) Optionally configure the number of GPUS to allocate the headroom.`,
-				},
-				resource.Attribute{
-					Name:        "memory_per_unit",
-					Description: `(Optional) Optionally configure the amount of memory (MB) to allocate the headroom.`,
-				},
-				resource.Attribute{
-					Name:        "num_of_units",
-					Description: `(Optional) The number of units to retain as headroom, where each unit has the defined headroom CPU and memory.`,
-				},
-				resource.Attribute{
-					Name:        "autoscale_down",
-					Description: `(Optional) Auto Scaling scale down operations.`,
-				},
-				resource.Attribute{
-					Name:        "evaluation_periods",
-					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) The number of evaluation periods that should accumulate before a scale down action takes place.`,
-				},
-				resource.Attribute{
-					Name:        "resource_limits",
-					Description: `(Optional) Optionally set upper and lower bounds on the resource usage of the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "max_vcpu",
-					Description: `(Optional) The maximum cpu in vCPU units that can be allocated to the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "max_memory_gib",
-					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler = { autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom = { cpu_per_unit = 1024 gpu_per_unit = 1 memory_per_unit = 512 num_of_units = 2 } autoscale_down = { evaluation_periods = 300 } resource_limits = { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "node_pool_name",
+					Description: `(Required) The node pool you wish to use in your launchSpec.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -3028,22 +2949,24 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"elastigroup_aws":           0,
-		"elastigroup_aws_beanstalk": 1,
-		"elastigroup_azure":         2,
-		"elastigroup_gcp":           3,
-		"elastigroup_gke":           4,
-		"mrscaler_aws":              5,
-		"multai_balancer":           6,
-		"multai_deployment":         7,
-		"multai_listener":           8,
-		"multai_routing_rule":       9,
-		"multai_target":             10,
-		"multai_target_set":         11,
-		"ocean_aws":                 12,
-		"ocean_aws_launch_spec":     13,
-		"ocean_gke":                 14,
-		"subscription":              15,
+		"elastigroup_aws":              0,
+		"elastigroup_aws_beanstalk":    1,
+		"elastigroup_azure":            2,
+		"elastigroup_gcp":              3,
+		"elastigroup_gke":              4,
+		"mrscaler_aws":                 5,
+		"multai_balancer":              6,
+		"multai_deployment":            7,
+		"multai_listener":              8,
+		"multai_routing_rule":          9,
+		"multai_target":                10,
+		"multai_target_set":            11,
+		"ocean_aws":                    12,
+		"ocean_aws_launch_spec":        13,
+		"ocean_gke_import":             14,
+		"ocean_gke_launch_spec":        15,
+		"ocean_gke_launch_spec_import": 16,
+		"subscription":                 17,
 	}
 )
 

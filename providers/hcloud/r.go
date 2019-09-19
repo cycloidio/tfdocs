@@ -88,9 +88,21 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "hcloud_server_network",
+			Type:             "hcloud_server",
 			Category:         "Resources",
 			ShortDescription: `Provides an Hetzner Cloud server resource. This can be used to create, modify, and delete servers. Servers also support provisioning.`,
+			Description:      ``,
+			Keywords: []string{
+				"server",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "hcloud_server_network",
+			Category:         "Resources",
+			ShortDescription: `Provides a Hetzner Cloud Server Network to represent a private network on a server in the Hetzner Cloud.`,
 			Description:      ``,
 			Keywords: []string{
 				"server",
@@ -147,10 +159,11 @@ var (
 		"hcloud_network_route":          3,
 		"hcloud_network_subnet":         4,
 		"hcloud_rdns":                   5,
-		"hcloud_server_network":         6,
-		"hcloud_ssh_key":                7,
-		"hcloud_volume":                 8,
-		"hcloud_volume_attachment":      9,
+		"hcloud_server":                 6,
+		"hcloud_server_network":         7,
+		"hcloud_ssh_key":                8,
+		"hcloud_volume":                 9,
+		"hcloud_volume_attachment":      10,
 	}
 )
 

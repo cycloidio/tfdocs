@@ -123,11 +123,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "capabilities",
-					Description: `(Optional, block) See [Capabilities](#capabilities) below for details.`,
+					Description: `(Optional, block) See [Capabilities](#capabilities-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "mounts",
-					Description: `(Optional, set of blocks) See [Mounts](#mounts) below for details.`,
+					Description: `(Optional, set of blocks) See [Mounts](#mounts-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "tmpfs",
@@ -135,11 +135,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `(Optional, block) See [Ports](#ports) below for details.`,
+					Description: `(Optional, block) See [Ports](#ports-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "host",
-					Description: `(Optional, block) See [Extra Hosts](#extra_hosts) below for details.`,
+					Description: `(Optional, block) See [Extra Hosts](#extra_hosts-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "privileged",
@@ -147,7 +147,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "devices",
-					Description: `(Optional, bool) See [Devices](#devices) below for details.`,
+					Description: `(Optional, bool) See [Devices](#devices-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "publish_all_ports",
@@ -155,7 +155,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volumes",
-					Description: `(Optional, block) See [Volumes](#volumes) below for details.`,
+					Description: `(Optional, block) See [Volumes](#volumes-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "memory",
@@ -195,7 +195,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "networks_advanced",
-					Description: `(Optional, block) See [Networks Advanced](#networks_advanced) below for details. If this block has priority to the deprecated ` + "`" + `network_alias` + "`" + ` and ` + "`" + `network` + "`" + ` properties.`,
+					Description: `(Optional, block) See [Networks Advanced](#networks_advanced-1) below for details. If this block has priority to the deprecated ` + "`" + `network_alias` + "`" + ` and ` + "`" + `network` + "`" + ` properties.`,
 				},
 				resource.Attribute{
 					Name:        "destroy_grace_seconds",
@@ -203,11 +203,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "upload",
-					Description: `(Optional, block) See [File Upload](#upload) below for details.`,
+					Description: `(Optional, block) See [File Upload](#upload-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "ulimit",
-					Description: `(Optional, block) See [Ulimits](#ulimits) below for details.`,
+					Description: `(Optional, block) See [Ulimits](#ulimits-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "pid_mode",
@@ -219,7 +219,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "healthcheck",
-					Description: `(Optional, block) See [Healthcheck](#healthcheck) below for details. <a id="capabilities"></a> ### Capabilities ` + "`" + `capabilities` + "`" + ` is a block within the configuration that allows you to add or drop linux capabilities. For more information about what capabilities you can add and drop please visit the docker run documentation.`,
+					Description: `(Optional, block) See [Healthcheck](#healthcheck-1) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "sysctls",
+					Description: `(Optional, map) A map of kernel parameters (sysctls) to set in the container. <a id="capabilities-1"></a> ### Capabilities ` + "`" + `capabilities` + "`" + ` is a block within the configuration that allows you to add or drop linux capabilities. For more information about what capabilities you can add and drop please visit the docker run documentation.`,
 				},
 				resource.Attribute{
 					Name:        "add",
@@ -227,7 +231,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "drop",
-					Description: `(Optional, set of strings) list of linux capabilities to drop. Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "docker_container" "ubuntu" { name = "foo" image = "${docker_image.ubuntu.latest}" capabilities { add = ["ALL"] drop = ["SYS_ADMIN"] } } ` + "`" + `` + "`" + `` + "`" + ` <a id="mounts"></a> ### Mounts ` + "`" + `mounts` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `mounts` + "`" + ` block is the Specification for mounts to be added to container and supports the following:`,
+					Description: `(Optional, set of strings) list of linux capabilities to drop. Example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "docker_container" "ubuntu" { name = "foo" image = "${docker_image.ubuntu.latest}" capabilities { add = ["ALL"] drop = ["SYS_ADMIN"] } } ` + "`" + `` + "`" + `` + "`" + ` <a id="mounts-1"></a> ### Mounts ` + "`" + `mounts` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `mounts` + "`" + ` block is the Specification for mounts to be added to container and supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "target",
@@ -279,7 +283,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional, int) The permission mode for the tmpfs mount in an integer. <a id="ports"></a> ### Ports ` + "`" + `ports` + "`" + ` is a block within the configuration that can be repeated to specify the port mappings of the container. Each ` + "`" + `ports` + "`" + ` block supports the following:`,
+					Description: `(Optional, int) The permission mode for the tmpfs mount in an integer. <a id="ports-1"></a> ### Ports ` + "`" + `ports` + "`" + ` is a block within the configuration that can be repeated to specify the port mappings of the container. Each ` + "`" + `ports` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "internal",
@@ -303,7 +307,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip",
-					Description: `(Required, string) IP address this hostname should resolve to. This is equivalent to using the ` + "`" + `--add-host` + "`" + ` option when using the ` + "`" + `run` + "`" + ` command of the Docker CLI. <a id="volumes"></a> ### Volumes ` + "`" + `volumes` + "`" + ` is a block within the configuration that can be repeated to specify the volumes attached to a container. Each ` + "`" + `volumes` + "`" + ` block supports the following:`,
+					Description: `(Required, string) IP address this hostname should resolve to. This is equivalent to using the ` + "`" + `--add-host` + "`" + ` option when using the ` + "`" + `run` + "`" + ` command of the Docker CLI. <a id="volumes-1"></a> ### Volumes ` + "`" + `volumes` + "`" + ` is a block within the configuration that can be repeated to specify the volumes attached to a container. Each ` + "`" + `volumes` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "from_container",
@@ -323,7 +327,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional, bool) If true, this volume will be readonly. Defaults to false. One of ` + "`" + `from_container` + "`" + `, ` + "`" + `host_path` + "`" + ` or ` + "`" + `volume_name` + "`" + ` must be set. <a id="upload"></a> ### File Upload ` + "`" + `upload` + "`" + ` is a block within the configuration that can be repeated to specify files to upload to the container before starting it. Each ` + "`" + `upload` + "`" + ` supports the following`,
+					Description: `(Optional, bool) If true, this volume will be readonly. Defaults to false. One of ` + "`" + `from_container` + "`" + `, ` + "`" + `host_path` + "`" + ` or ` + "`" + `volume_name` + "`" + ` must be set. <a id="upload-1"></a> ### File Upload ` + "`" + `upload` + "`" + ` is a block within the configuration that can be repeated to specify files to upload to the container before starting it. Each ` + "`" + `upload` + "`" + ` supports the following`,
 				},
 				resource.Attribute{
 					Name:        "content",
@@ -351,7 +355,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv6_address",
-					Description: `(Optional, string) The IPV6 address of the container in the specific network. <a id="devices"></a> ### Devices ` + "`" + `devices` + "`" + ` is a block within the configuration that can be repeated to specify the devices exposed to a container. Each ` + "`" + `devices` + "`" + ` block supports the following:`,
+					Description: `(Optional, string) The IPV6 address of the container in the specific network. <a id="devices-1"></a> ### Devices ` + "`" + `devices` + "`" + ` is a block within the configuration that can be repeated to specify the devices exposed to a container. Each ` + "`" + `devices` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "host_path",
@@ -363,7 +367,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permissions",
-					Description: `(Optional, string) The cgroup permissions given to the container to access the device. Defaults to ` + "`" + `rwm` + "`" + `. <a id="ulimits"></a> ### Ulimits ` + "`" + `ulimit` + "`" + ` is a block within the configuration that can be repeated to specify the extra ulimits for the container. Each ` + "`" + `ulimit` + "`" + ` block supports the following:`,
+					Description: `(Optional, string) The cgroup permissions given to the container to access the device. Defaults to ` + "`" + `rwm` + "`" + `. <a id="ulimits-1"></a> ### Ulimits ` + "`" + `ulimit` + "`" + ` is a block within the configuration that can be repeated to specify the extra ulimits for the container. Each ` + "`" + `ulimit` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -375,7 +379,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hard",
-					Description: `(Required, int) <a id="healthcheck"></a> ### Healthcheck ` + "`" + `healthcheck` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Required, int) <a id="healthcheck-1"></a> ### Healthcheck ` + "`" + `healthcheck` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "test",
@@ -534,7 +538,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipam_config",
-					Description: `(Optional, block) See [IPAM config](#ipam_config) below for details. <a id="ipam_config"></a> ### IPAM config Configuration of the custom IP scheme of the network. The ` + "`" + `ipam_config` + "`" + ` block supports:`,
+					Description: `(Optional, block) See [IPAM config](#ipam_config-1) below for details. <a id="ipam_config-1"></a> ### IPAM config Configuration of the custom IP scheme of the network. The ` + "`" + `ipam_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -594,7 +598,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "auth",
-					Description: `(Optional, block) See [Auth](#auth) below for details.`,
+					Description: `(Optional, block) See [Auth](#auth-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -602,27 +606,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "task_spec",
-					Description: `(Required, block) See [TaskSpec](#task-spec) below for details.`,
+					Description: `(Required, block) See [TaskSpec](#task-spec-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional, block) See [Mode](#mode) below for details.`,
+					Description: `(Optional, block) See [Mode](#mode-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "update_config",
-					Description: `(Optional, block) See [UpdateConfig](#update-rollback-config) below for details.`,
+					Description: `(Optional, block) See [UpdateConfig](#update-rollback-config-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "rollback_config",
-					Description: `(Optional, block) See [RollbackConfig](#update-rollback-config) below for details.`,
+					Description: `(Optional, block) See [RollbackConfig](#update-rollback-config-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "endpoint_spec",
-					Description: `(Optional, block) See [EndpointSpec](#endpoint-spec) below for details.`,
+					Description: `(Optional, block) See [EndpointSpec](#endpoint-spec-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "converge_config",
-					Description: `(Optional, block) See [Converge Config](#converge-config) below for details. <a id="auth"></a> ### Auth ` + "`" + `auth` + "`" + ` can be used additionally to the ` + "`" + `registry_auth` + "`" + `. If both properties are given the ` + "`" + `auth` + "`" + ` wins and overwrites the auth of the provider.`,
+					Description: `(Optional, block) See [Converge Config](#converge-config-1) below for details. <a id="auth-1"></a> ### Auth ` + "`" + `auth` + "`" + ` can be used additionally to the ` + "`" + `registry_auth` + "`" + `. If both properties are given the ` + "`" + `auth` + "`" + ` wins and overwrites the auth of the provider.`,
 				},
 				resource.Attribute{
 					Name:        "server_address",
@@ -634,7 +638,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional, string) The password to use for authenticating to the registry. If this is blank, the ` + "`" + `DOCKER_REGISTRY_PASS` + "`" + ` is also be checked. <!-- start task-spec --> <a id="task-spec"></a> ### TaskSpec ` + "`" + `task_spec` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, string) The password to use for authenticating to the registry. If this is blank, the ` + "`" + `DOCKER_REGISTRY_PASS` + "`" + ` is also be checked. <!-- start task-spec --> <a id="task-spec-1"></a> ### TaskSpec ` + "`" + `task_spec` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "networks",
@@ -642,7 +646,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "log_driver",
-					Description: `(Optional, block) See [Log Driver](#log-driver) below for details. <!-- start task-container-spec --> <a id="container-spec"></a> #### ContainerSpec ` + "`" + `container_spec` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, block) See [Log Driver](#log-driver-1) below for details. <!-- start task-container-spec --> <a id="container-spec-1"></a> #### ContainerSpec ` + "`" + `container_spec` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "image",
@@ -686,7 +690,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mounts",
-					Description: `(Optional, set of blocks) See [Mounts](#mounts) below for details.`,
+					Description: `(Optional, set of blocks) See [Mounts](#mounts-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "stop_signal",
@@ -698,7 +702,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "healthcheck",
-					Description: `(Optional, block) See [Healthcheck](#healthcheck) below for details.`,
+					Description: `(Optional, block) See [Healthcheck](#healthcheck-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -714,19 +718,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns_config",
-					Description: `(Optional, block) See [DNS Config](#dnsconfig) below for details.`,
+					Description: `(Optional, block) See [DNS Config](#dnsconfig-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "secrets",
-					Description: `(Optional, set of blocks) See [Secrets](#secrets) below for details.`,
+					Description: `(Optional, set of blocks) See [Secrets](#secrets-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "configs",
-					Description: `(Optional, set of blocks) See [Configs](#configs) below for details.`,
+					Description: `(Optional, set of blocks) See [Configs](#configs-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "isolation",
-					Description: `(Optional, string) Isolation technology of the containers running the service. (Windows only). Valid values are: ` + "`" + `default|process|hyperv` + "`" + ` <a id="privileges"></a> #### Privileges ` + "`" + `privileges` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, string) Isolation technology of the containers running the service. (Windows only). Valid values are: ` + "`" + `default|process|hyperv` + "`" + ` <a id="privileges-1"></a> #### Privileges ` + "`" + `privileges` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "credential_spec",
@@ -762,7 +766,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "level",
-					Description: `(Optional, string) SELinux level label <a id="mounts"></a> #### Mounts ` + "`" + `mount` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `mount` + "`" + ` block is the Specification for mounts to be added to containers created as part of the service and supports the following:`,
+					Description: `(Optional, string) SELinux level label <a id="mounts-1"></a> #### Mounts ` + "`" + `mount` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `mount` + "`" + ` block is the Specification for mounts to be added to containers created as part of the service and supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "target",
@@ -822,7 +826,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional, int) The permission mode for the tmpfs mount in an integer. <a id="healthcheck"></a> #### Healthcheck ` + "`" + `healthcheck` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, int) The permission mode for the tmpfs mount in an integer. <a id="healthcheck-1"></a> #### Healthcheck ` + "`" + `healthcheck` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "test",
@@ -846,7 +850,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retries",
-					Description: `(Optional, int) Consecutive failures needed to report unhealthy. Default: ` + "`" + `0` + "`" + `. <a id="dnsconfig"></a> ### DNS Config ` + "`" + `dns_config` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, int) Consecutive failures needed to report unhealthy. Default: ` + "`" + `0` + "`" + `. <a id="dnsconfig-1"></a> ### DNS Config ` + "`" + `dns_config` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "nameservers",
@@ -858,7 +862,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "options",
-					Description: `(Optional, list of strings) A list of internal resolver variables to be modified, for example, ` + "`" + `debug` + "`" + `, ` + "`" + `ndots:3` + "`" + ` <a id="secrets"></a> ### Secrets ` + "`" + `secrets` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `secrets` + "`" + ` block is a reference to a secret that will be exposed to the service and supports the following:`,
+					Description: `(Optional, list of strings) A list of internal resolver variables to be modified, for example, ` + "`" + `debug` + "`" + `, ` + "`" + `ndots:3` + "`" + ` <a id="secrets-1"></a> ### Secrets ` + "`" + `secrets` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `secrets` + "`" + ` block is a reference to a secret that will be exposed to the service and supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "secret_id",
@@ -870,7 +874,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_name",
-					Description: `(Required, string) Represents the final filename in the filesystem. The specific target file that the secret data is written within the docker container, e.g. ` + "`" + `/root/secret/secret.json` + "`" + ` <a id="configs"></a> ### Configs ` + "`" + `configs` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `configs` + "`" + ` is a reference to a secret that is exposed to the service and supports the following:`,
+					Description: `(Required, string) Represents the final filename in the filesystem. The specific target file that the secret data is written within the docker container, e.g. ` + "`" + `/root/secret/secret.json` + "`" + ` <a id="configs-1"></a> ### Configs ` + "`" + `configs` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `configs` + "`" + ` is a reference to a secret that is exposed to the service and supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "config_id",
@@ -882,7 +886,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_name",
-					Description: `(Required, string) Represents the final filename in the filesystem. The specific target file that the config data is written within the docker container, e.g. ` + "`" + `/root/config/config.json` + "`" + ` <!-- end task-container-spec --> <!-- start task-resources-spec --> <a id="resources"></a> #### Resources ` + "`" + `resources` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Required, string) Represents the final filename in the filesystem. The specific target file that the config data is written within the docker container, e.g. ` + "`" + `/root/config/config.json` + "`" + ` <!-- end task-container-spec --> <!-- start task-resources-spec --> <a id="resources-1"></a> #### Resources ` + "`" + `resources` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "limits",
@@ -898,7 +902,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "options",
-					Description: `(Optional, a map of strings and strings) The options for the logging driver, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl options { awslogs-region = "us-west-2" awslogs-group = "dev/foo-service" } ` + "`" + `` + "`" + `` + "`" + ` <!-- end log-driver-spec --> <!-- end task-spec --> <a id="mode"></a> ### Mode ` + "`" + `mode` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, a map of strings and strings) The options for the logging driver, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl options { awslogs-region = "us-west-2" awslogs-group = "dev/foo-service" } ` + "`" + `` + "`" + `` + "`" + ` <!-- end log-driver-spec --> <!-- end task-spec --> <a id="mode-1"></a> ### Mode ` + "`" + `mode` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "global",
@@ -930,7 +934,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "order",
-					Description: `(Optional, int) Update order either 'stop-first' or 'start-first'. <a id="endpoint-spec"></a> ### EndpointSpec ` + "`" + `endpoint_spec` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, int) Update order either 'stop-first' or 'start-first'. <a id="endpoint-spec-1"></a> ### EndpointSpec ` + "`" + `endpoint_spec` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "mode",
@@ -938,7 +942,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ports",
-					Description: `(Optional, block) See [Ports](#ports) below for details. <a id="ports"></a> #### Ports ` + "`" + `ports` + "`" + ` is a block within the configuration that can be repeated to specify the port mappings of the container. Each ` + "`" + `ports` + "`" + ` block supports the following:`,
+					Description: `(Optional, block) See [Ports](#ports-1) below for details. <a id="ports-1"></a> #### Ports ` + "`" + `ports` + "`" + ` is a block within the configuration that can be repeated to specify the port mappings of the container. Each ` + "`" + `ports` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -958,7 +962,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "publish_mode",
-					Description: `(Optional, string) Represents the mode in which the port is to be published: ` + "`" + `ingress|host` + "`" + ` <a id="converge-config"></a> ### Converge Config ` + "`" + `converge_config` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, string) Represents the mode in which the port is to be published: ` + "`" + `ingress|host` + "`" + ` <a id="converge-config-1"></a> ### Converge Config ` + "`" + `converge_config` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "delay",

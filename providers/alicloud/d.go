@@ -237,6 +237,10 @@ var (
 					Description: `(Optional, Available in 1.52.2+) A list of app IDs.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.55.3+) A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
@@ -1241,6 +1245,10 @@ var (
 					Description: `A list of matched Container Registry namespaces. Its element is a namespace name.`,
 				},
 				resource.Attribute{
+					Name:        "names",
+					Description: `A list of namespace names.`,
+				},
+				resource.Attribute{
 					Name:        "namespaces",
 					Description: `A list of matched Container Registry namespaces. Each element contains the following attributes:`,
 				},
@@ -1261,6 +1269,10 @@ var (
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of matched Container Registry namespaces. Its element is a namespace name.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of namespace names.`,
 				},
 				resource.Attribute{
 					Name:        "namespaces",
@@ -1306,7 +1318,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of matched Container Registry Repositories. Its element is formatted as ` + "`" + `namespace/repository` + "`" + `.`,
+					Description: `A list of matched Container Registry Repositories. Its element is set to ` + "`" + `names` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of repository names.`,
 				},
 				resource.Attribute{
 					Name:        "repos",
@@ -1380,7 +1396,11 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of matched Container Registry Repositories. Its element is formatted as ` + "`" + `namespace/repository` + "`" + `.`,
+					Description: `A list of matched Container Registry Repositories. Its element is set to ` + "`" + `names` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of repository names.`,
 				},
 				resource.Attribute{
 					Name:        "repos",
@@ -1841,40 +1861,12 @@ var (
 					Description: `The ID of VPC where the current cluster is located.`,
 				},
 				resource.Attribute{
-					Name:        "slb_internet_enabled",
-					Description: `Whether internet load balancer for API Server is created`,
-				},
-				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `The ID of security group where the current cluster worker node is located.`,
 				},
 				resource.Attribute{
-					Name:        "image_id",
-					Description: `The ID of node image.`,
-				},
-				resource.Attribute{
 					Name:        "nat_gateway_id",
 					Description: `The ID of nat gateway used to launch kubernetes cluster.`,
-				},
-				resource.Attribute{
-					Name:        "worker_instance_types",
-					Description: `The instance type of worker node.`,
-				},
-				resource.Attribute{
-					Name:        "worker_disk_category",
-					Description: `The system disk category of worker node.`,
-				},
-				resource.Attribute{
-					Name:        "worker_disk_size",
-					Description: `The system disk size of worker node.`,
-				},
-				resource.Attribute{
-					Name:        "worker_data_disk_category",
-					Description: `The data disk size of worker node.`,
-				},
-				resource.Attribute{
-					Name:        "worker_data_disk_size",
-					Description: `The data disk category of worker node.`,
 				},
 				resource.Attribute{
 					Name:        "worker_nodes",
@@ -1882,23 +1874,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connections",
-					Description: `Map of kubernetes cluster connection information. It contains several attributes to ` + "`" + `Block Connections` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "node_cidr_mask",
-					Description: `The network mask used on pods for each node.`,
-				},
-				resource.Attribute{
-					Name:        "log_config",
-					Description: `A list of one element containing information about the associated log store. It contains the following attributes:`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Type of collecting logs.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `Log Service project name. ### Block Nodes`,
+					Description: `Map of kubernetes cluster connection information. It contains several attributes to ` + "`" + `Block Connections` + "`" + `. ### Block Nodes`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1975,40 +1951,12 @@ var (
 					Description: `The ID of VPC where the current cluster is located.`,
 				},
 				resource.Attribute{
-					Name:        "slb_internet_enabled",
-					Description: `Whether internet load balancer for API Server is created`,
-				},
-				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `The ID of security group where the current cluster worker node is located.`,
 				},
 				resource.Attribute{
-					Name:        "image_id",
-					Description: `The ID of node image.`,
-				},
-				resource.Attribute{
 					Name:        "nat_gateway_id",
 					Description: `The ID of nat gateway used to launch kubernetes cluster.`,
-				},
-				resource.Attribute{
-					Name:        "worker_instance_types",
-					Description: `The instance type of worker node.`,
-				},
-				resource.Attribute{
-					Name:        "worker_disk_category",
-					Description: `The system disk category of worker node.`,
-				},
-				resource.Attribute{
-					Name:        "worker_disk_size",
-					Description: `The system disk size of worker node.`,
-				},
-				resource.Attribute{
-					Name:        "worker_data_disk_category",
-					Description: `The data disk size of worker node.`,
-				},
-				resource.Attribute{
-					Name:        "worker_data_disk_size",
-					Description: `The data disk category of worker node.`,
 				},
 				resource.Attribute{
 					Name:        "worker_nodes",
@@ -2016,23 +1964,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connections",
-					Description: `Map of kubernetes cluster connection information. It contains several attributes to ` + "`" + `Block Connections` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "node_cidr_mask",
-					Description: `The network mask used on pods for each node.`,
-				},
-				resource.Attribute{
-					Name:        "log_config",
-					Description: `A list of one element containing information about the associated log store. It contains the following attributes:`,
-				},
-				resource.Attribute{
-					Name:        "type",
-					Description: `Type of collecting logs.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `Log Service project name. ### Block Nodes`,
+					Description: `Map of kubernetes cluster connection information. It contains several attributes to ` + "`" + `Block Connections` + "`" + `. ### Block Nodes`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3323,6 +3255,10 @@ var (
 				resource.Attribute{
 					Name:        "ip_addresses",
 					Description: `(Optional) A list of EIP public IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.55.3+) A mapping of tags to assign to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "in_use",
@@ -4659,6 +4595,10 @@ var (
 				resource.Attribute{
 					Name:        "vswitch_id",
 					Description: `(Optional) Used to retrieve instances belong to specified ` + "`" + `vswitch` + "`" + ` resources.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.55.3+) A mapping of tags to assign to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
@@ -6017,12 +5957,16 @@ var (
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
+					Name:        "names",
+					Description: `A list of queue names.`,
+				},
+				resource.Attribute{
 					Name:        "queues",
-					Description: `A list of users. Each element contains the following attributes:`,
+					Description: `A list of queues. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the queue`,
+					Description: `The id of the queue, The value is set to ` + "`" + `name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6051,12 +5995,16 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "names",
+					Description: `A list of queue names.`,
+				},
+				resource.Attribute{
 					Name:        "queues",
-					Description: `A list of users. Each element contains the following attributes:`,
+					Description: `A list of queues. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the queue`,
+					Description: `The id of the queue, The value is set to ` + "`" + `name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6105,12 +6053,16 @@ var (
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
+					Name:        "names",
+					Description: `A list of subscription names.`,
+				},
+				resource.Attribute{
 					Name:        "subscriptions",
-					Description: `A list of users. Each element contains the following attributes:`,
+					Description: `A list of subscriptions. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the topic subscription. Format to ` + "`" + `<topic_name>:<name>` + "`" + `.`,
+					Description: `The ID of the topic subscription. The value is set to ` + "`" + `name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6131,12 +6083,16 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "names",
+					Description: `A list of subscription names.`,
+				},
+				resource.Attribute{
 					Name:        "subscriptions",
-					Description: `A list of users. Each element contains the following attributes:`,
+					Description: `A list of subscriptions. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the topic subscription. Format to ` + "`" + `<topic_name>:<name>` + "`" + `.`,
+					Description: `The ID of the topic subscription. The value is set to ` + "`" + `name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6173,12 +6129,16 @@ var (
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
+					Name:        "names",
+					Description: `A list of topic names.`,
+				},
+				resource.Attribute{
 					Name:        "topics",
-					Description: `A list of users. Each element contains the following attributes:`,
+					Description: `A list of topics. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the topic.`,
+					Description: `The id of the topic. The value is set to ` + "`" + `name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6195,12 +6155,16 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "names",
+					Description: `A list of topic names.`,
+				},
+				resource.Attribute{
 					Name:        "topics",
-					Description: `A list of users. Each element contains the following attributes:`,
+					Description: `A list of topics. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the topic.`,
+					Description: `The id of the topic. The value is set to ` + "`" + `name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6502,7 +6466,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of AccessGroup IDs.`,
+					Description: `A list of AccessGroup IDs, the value is set to ` + "`" + `names` + "`" + ` .`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of AccessGroup names.`,
 				},
 				resource.Attribute{
 					Name:        "groups",
@@ -6532,7 +6500,11 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of AccessGroup IDs.`,
+					Description: `A list of AccessGroup IDs, the value is set to ` + "`" + `names` + "`" + ` .`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of AccessGroup names.`,
 				},
 				resource.Attribute{
 					Name:        "groups",
@@ -6573,6 +6545,10 @@ var (
 					Description: `(Required ForceNew) Filter results by a specific AccessGroupName.`,
 				},
 				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional, Available in 1.53.0+) A list of rule IDs.`,
+				},
+				resource.Attribute{
 					Name:        "source_cidr_ip",
 					Description: `(Optional) Filter results by a specific SourceCidrIp.`,
 				},
@@ -6590,7 +6566,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of rule id. Each item formats as ` + "`" + `<access_group_name>:<access rule id>` + "`" + `.`,
+					Description: `A list of rule IDs, Each element set to ` + "`" + `access_rule_id` + "`" + ` (Each element formats as ` + "`" + `<access_group_name>:<access rule id>` + "`" + ` before 1.53.0).`,
 				},
 				resource.Attribute{
 					Name:        "rules",
@@ -6620,7 +6596,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `A list of rule id. Each item formats as ` + "`" + `<access_group_name>:<access rule id>` + "`" + `.`,
+					Description: `A list of rule IDs, Each element set to ` + "`" + `access_rule_id` + "`" + ` (Each element formats as ` + "`" + `<access_group_name>:<access rule id>` + "`" + ` before 1.53.0).`,
 				},
 				resource.Attribute{
 					Name:        "rules",
@@ -6681,6 +6657,10 @@ var (
 					Description: `A list of FileSystem Id.`,
 				},
 				resource.Attribute{
+					Name:        "descriptions",
+					Description: `A list of FileSystem descriptions.`,
+				},
+				resource.Attribute{
 					Name:        "systems",
 					Description: `A list of VPCs. Each element contains the following attributes:`,
 				},
@@ -6717,6 +6697,10 @@ var (
 				resource.Attribute{
 					Name:        "ids",
 					Description: `A list of FileSystem Id.`,
+				},
+				resource.Attribute{
+					Name:        "descriptions",
+					Description: `A list of FileSystem descriptions.`,
 				},
 				resource.Attribute{
 					Name:        "systems",
@@ -6774,7 +6758,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mount_target_domain",
-					Description: `(Optional) Filter results by a specific MountTargetDomain.`,
+					Description: `(Deprecated, Optional) Filter results by a specific MountTargetDomain.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -6783,6 +6767,10 @@ var (
 				resource.Attribute{
 					Name:        "vswitch_id",
 					Description: `(Optional) Filter results by a specific VSwitchId.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional, Available 1.53.0+) A list of MountTargetDomain.`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
@@ -7073,6 +7061,78 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_ons_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of ons groups available to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) ID of the ONS Instance that owns the groups.`,
+				},
+				resource.Attribute{
+					Name:        "group_id_regex",
+					Description: `(Optional) A regex string to filter results by the group name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of group names.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `A list of groups. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the group.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `The ID of the group owner, which is the Alibaba Cloud UID.`,
+				},
+				resource.Attribute{
+					Name:        "independent_naming",
+					Description: `Indicates whether namespaces are available. Read [Fields in SubscribeInfoDo](https://www.alibabacloud.com/help/doc-detail/29619.html) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `Remark of the group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of group names.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `A list of groups. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the group.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `The ID of the group owner, which is the Alibaba Cloud UID.`,
+				},
+				resource.Attribute{
+					Name:        "independent_naming",
+					Description: `Indicates whether namespaces are available. Read [Fields in SubscribeInfoDo](https://www.alibabacloud.com/help/doc-detail/29619.html) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `Remark of the group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_ons_instances",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of ons instances available to the user.`,
@@ -7164,6 +7224,110 @@ var (
 				resource.Attribute{
 					Name:        "release_time",
 					Description: `The automatic release time of an Enterprise Platinum Edition instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_ons_topics",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of ons topics available to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) ID of the ONS Instance that owns the topics.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by the topic name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of topic names.`,
+				},
+				resource.Attribute{
+					Name:        "topics",
+					Description: `A list of topics. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "topic",
+					Description: `The name of the topic.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `The ID of the topic owner, which is the Alibaba Cloud UID.`,
+				},
+				resource.Attribute{
+					Name:        "relation",
+					Description: `The relation ID. Read [Fields in PublishInfoDo](https://www.alibabacloud.com/help/doc-detail/29590.html) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "relation_name",
+					Description: `The name of the relation, for example, owner, publishable, subscribable, and publishable and subscribable.`,
+				},
+				resource.Attribute{
+					Name:        "message_type",
+					Description: `The type of the message. Read [Fields in PublishInfoDo](https://www.alibabacloud.com/help/doc-detail/29590.html) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "independent_naming",
+					Description: `Indicates whether namespaces are available. Read [Fields in PublishInfoDo](https://www.alibabacloud.com/help/doc-detail/29590.html) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Time of creation.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `Remark of the topic.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of topic names.`,
+				},
+				resource.Attribute{
+					Name:        "topics",
+					Description: `A list of topics. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "topic",
+					Description: `The name of the topic.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `The ID of the topic owner, which is the Alibaba Cloud UID.`,
+				},
+				resource.Attribute{
+					Name:        "relation",
+					Description: `The relation ID. Read [Fields in PublishInfoDo](https://www.alibabacloud.com/help/doc-detail/29590.html) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "relation_name",
+					Description: `The name of the relation, for example, owner, publishable, subscribable, and publishable and subscribable.`,
+				},
+				resource.Attribute{
+					Name:        "message_type",
+					Description: `The type of the message. Read [Fields in PublishInfoDo](https://www.alibabacloud.com/help/doc-detail/29590.html) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "independent_naming",
+					Description: `Indicates whether namespaces are available. Read [Fields in PublishInfoDo](https://www.alibabacloud.com/help/doc-detail/29590.html) for further details.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Time of creation.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `Remark of the topic.`,
 				},
 			},
 		},
@@ -8000,8 +8164,16 @@ var (
 					Description: `(Required) ID of the Private Zone.`,
 				},
 				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional, Available in 1.53.0+) A list of Private Zone Record IDs.`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of Private Zone Record IDs.`,
 				},
 				resource.Attribute{
 					Name:        "records",
@@ -8033,6 +8205,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of Private Zone Record IDs.`,
+				},
 				resource.Attribute{
 					Name:        "records",
 					Description: `A list of zone records. Each element contains the following attributes:`,
@@ -8076,8 +8252,20 @@ var (
 					Description: `(Optional) keyword for zone name.`,
 				},
 				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional, Available 1.53.0+) A list of zone IDs.`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of zone names.`,
 				},
 				resource.Attribute{
 					Name:        "zones",
@@ -8117,6 +8305,14 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of zone IDs.`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of zone names.`,
+				},
 				resource.Attribute{
 					Name:        "zones",
 					Description: `A list of zones. Each element contains the following attributes:`,
@@ -8736,6 +8932,10 @@ var (
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Optional) Vpc id of the route table.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.55.3+) A mapping of tags to assign to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
@@ -10869,6 +11069,10 @@ var (
 					Description: `(Optional) Filter results by the specified VSwitch.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.55.3+) A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
 				},
@@ -11497,6 +11701,10 @@ var (
 					Description: `(Optional) ID of the VPC that owns the VSwitch.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.55.3+) A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
 					Name:        "output_file",
 					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
 				},
@@ -11792,44 +12000,46 @@ var (
 		"alicloud_nas_protocols":                  53,
 		"alicloud_nat_gateways":                   54,
 		"alicloud_network_interfaces":             55,
-		"alicloud_ons_instances":                  56,
-		"alicloud_oss_bucket_objects":             57,
-		"alicloud_oss_buckets":                    58,
-		"alicloud_ots_instance_attachments":       59,
-		"alicloud_ots_instances":                  60,
-		"alicloud_ots_tables":                     61,
-		"alicloud_pvtz_zone_records":              62,
-		"alicloud_pvtz_zones":                     63,
-		"alicloud_ram_account_aliases":            64,
-		"alicloud_ram_account_alias":              65,
-		"alicloud_ram_groups":                     66,
-		"alicloud_ram_policies":                   67,
-		"alicloud_ram_roles":                      68,
-		"alicloud_ram_users":                      69,
-		"alicloud_regions":                        70,
-		"alicloud_route_entries":                  71,
-		"alicloud_route_tables":                   72,
-		"alicloud_router_interfaces":              73,
-		"alicloud_security_group_rules":           74,
-		"alicloud_security_groups":                75,
-		"alicloud_slb_acls":                       76,
-		"alicloud_slb_attachments":                77,
-		"alicloud_slb_ca_certificates":            78,
-		"alicloud_slb_listeners":                  79,
-		"alicloud_slb_rules":                      80,
-		"alicloud_slb_server_certificates":        81,
-		"alicloud_slb_server_groups":              82,
-		"alicloud_slbs":                           83,
-		"alicloud_snapshots":                      84,
-		"alicloud_snat_entries":                   85,
-		"alicloud_ssl_vpn_client_certs":           86,
-		"alicloud_ssl_vpn_servers":                87,
-		"alicloud_vpcs":                           88,
-		"alicloud_vpn_connections":                89,
-		"alicloud_vpn_customer_gateways":          90,
-		"alicloud_vpn_gateways":                   91,
-		"alicloud_vswitches":                      92,
-		"alicloud_zones":                          93,
+		"alicloud_ons_groups":                     56,
+		"alicloud_ons_instances":                  57,
+		"alicloud_ons_topics":                     58,
+		"alicloud_oss_bucket_objects":             59,
+		"alicloud_oss_buckets":                    60,
+		"alicloud_ots_instance_attachments":       61,
+		"alicloud_ots_instances":                  62,
+		"alicloud_ots_tables":                     63,
+		"alicloud_pvtz_zone_records":              64,
+		"alicloud_pvtz_zones":                     65,
+		"alicloud_ram_account_aliases":            66,
+		"alicloud_ram_account_alias":              67,
+		"alicloud_ram_groups":                     68,
+		"alicloud_ram_policies":                   69,
+		"alicloud_ram_roles":                      70,
+		"alicloud_ram_users":                      71,
+		"alicloud_regions":                        72,
+		"alicloud_route_entries":                  73,
+		"alicloud_route_tables":                   74,
+		"alicloud_router_interfaces":              75,
+		"alicloud_security_group_rules":           76,
+		"alicloud_security_groups":                77,
+		"alicloud_slb_acls":                       78,
+		"alicloud_slb_attachments":                79,
+		"alicloud_slb_ca_certificates":            80,
+		"alicloud_slb_listeners":                  81,
+		"alicloud_slb_rules":                      82,
+		"alicloud_slb_server_certificates":        83,
+		"alicloud_slb_server_groups":              84,
+		"alicloud_slbs":                           85,
+		"alicloud_snapshots":                      86,
+		"alicloud_snat_entries":                   87,
+		"alicloud_ssl_vpn_client_certs":           88,
+		"alicloud_ssl_vpn_servers":                89,
+		"alicloud_vpcs":                           90,
+		"alicloud_vpn_connections":                91,
+		"alicloud_vpn_customer_gateways":          92,
+		"alicloud_vpn_gateways":                   93,
+		"alicloud_vswitches":                      94,
+		"alicloud_zones":                          95,
 	}
 )
 

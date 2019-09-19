@@ -119,7 +119,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `A map of labels applied to this function. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
+					Description: `A map of labels applied to this function.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email",
+					Description: `The service account email to be assumed by the cloud function. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "event_type",
@@ -185,7 +189,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `A map of labels applied to this function. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
+					Description: `A map of labels applied to this function.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_email",
+					Description: `The service account email to be assumed by the cloud function. The ` + "`" + `event_trigger` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "event_type",
@@ -1550,7 +1558,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "session_affinity",
-					Description: `The Backend Service session stickyness configuration.`,
+					Description: `The Backend Service session stickiness configuration.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_sec",
@@ -1596,7 +1604,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "session_affinity",
-					Description: `The Backend Service session stickyness configuration.`,
+					Description: `The Backend Service session stickiness configuration.`,
 				},
 				resource.Attribute{
 					Name:        "timeout_sec",
@@ -1609,6 +1617,82 @@ var (
 				resource.Attribute{
 					Name:        "health_checks",
 					Description: `The set of HTTP/HTTPS health checks used by the Backend Service.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_network_endpoint_group",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve Network Endpoint Group's details.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project to list versions in. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The Network Endpoint Group name. Provide either this or a ` + "`" + `self_link` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) The Network Endpoint Group availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `(Optional) The Network Endpoint Group self\_link. ## Attributes Reference In addition the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `The network to which all network endpoints in the NEG belong.`,
+				},
+				resource.Attribute{
+					Name:        "subnetwork",
+					Description: `subnetwork to which all network endpoints in the NEG belong.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The NEG description.`,
+				},
+				resource.Attribute{
+					Name:        "network_endpoint_type",
+					Description: `Type of network endpoints in this network endpoint group.`,
+				},
+				resource.Attribute{
+					Name:        "default_port",
+					Description: `The NEG default port.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Number of network endpoints in the network endpoint group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network",
+					Description: `The network to which all network endpoints in the NEG belong.`,
+				},
+				resource.Attribute{
+					Name:        "subnetwork",
+					Description: `subnetwork to which all network endpoints in the NEG belong.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The NEG description.`,
+				},
+				resource.Attribute{
+					Name:        "network_endpoint_type",
+					Description: `Type of network endpoints in this network endpoint group.`,
+				},
+				resource.Attribute{
+					Name:        "default_port",
+					Description: `The NEG default port.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `Number of network endpoints in the network endpoint group.`,
 				},
 			},
 		},
@@ -1671,10 +1755,51 @@ var (
 			Name:             "",
 			Type:             "google_netblock_ip_ranges",
 			Category:         "Data Sources",
-			ShortDescription: `Use this data source to get the IP ranges from the sender policy framework (SPF) record of \_cloud-netblocks.googleusercontent.com`,
+			ShortDescription: `Use this data source to get the IP addresses from different special IP ranges on Google Cloud Platform.`,
 			Description:      ``,
 			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloud-netblocks",
+					Description: `Corresponds to the IP addresses used for resources on Google Cloud Platform. [More details.](https://cloud.google.com/compute/docs/faq#where_can_i_find_product_name_short_ip_ranges)`,
+				},
+				resource.Attribute{
+					Name:        "google-netblocks",
+					Description: `Corresponds to IP addresses used for Google services. [More details.](https://support.google.com/a/answer/33786?hl=en)`,
+				},
+				resource.Attribute{
+					Name:        "restricted-googleapis",
+					Description: `Corresponds to the IP addresses used for Private Google Access and/or VPC Service Controls API access. [More details.](https://cloud.google.com/vpc/docs/configure-private-google-access-hybrid)`,
+				},
+				resource.Attribute{
+					Name:        "dns-forwarders",
+					Description: `Corresponds to the IP addresses used to originate Cloud DNS outbound forwarding. [More details.](https://cloud.google.com/dns/zones/#creating-forwarding-zones)`,
+				},
+				resource.Attribute{
+					Name:        "iap-forwarders",
+					Description: `Corresponds to the IP addresses used for Cloud IAP for TCP forwarding. [More details.](https://cloud.google.com/iap/docs/using-tcp-forwarding)`,
+				},
+				resource.Attribute{
+					Name:        "health-checkers",
+					Description: `Corresponds to the IP addresses used for health checking in Cloud Load Balancing. [More details.](https://cloud.google.com/load-balancing/docs/health-checks)`,
+				},
+				resource.Attribute{
+					Name:        "legacy-health-checkers",
+					Description: `Corresponds to the IP addresses used for legacy style health checkers (used by Network Load Balancing). [ More details.](https://cloud.google.com/load-balancing/docs/health-checks) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "cidr_blocks",
+					Description: `Retrieve list of all CIDR blocks.`,
+				},
+				resource.Attribute{
+					Name:        "cidr_blocks_ipv4",
+					Description: `Retrieve list of the IPv4 CIDR blocks`,
+				},
+				resource.Attribute{
+					Name:        "cidr_blocks_ipv6",
+					Description: `Retrieve list of the IPv6 CIDR blocks, if available.`,
+				},
+			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_blocks",
@@ -1682,11 +1807,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr_blocks_ipv4",
-					Description: `Retrieve list of the IP4 CIDR blocks`,
+					Description: `Retrieve list of the IPv4 CIDR blocks`,
 				},
 				resource.Attribute{
 					Name:        "cidr_blocks_ipv6",
-					Description: `Retrieve list of the IP6 CIDR blocks.`,
+					Description: `Retrieve list of the IPv6 CIDR blocks, if available.`,
 				},
 			},
 		},
@@ -1704,7 +1829,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "constraint",
-					Description: `(Required) (Required) The name of the Constraint the Policy is configuring, for example, ` + "`" + `serviceuser.services` + "`" + `. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints). ## Attributes Reference See [google_project_organization_policy](https://www.terraform.io/docs/providers/google/r/google_project.html) resource for details of the available attributes.`,
+					Description: `(Required) (Required) The name of the Constraint the Policy is configuring, for example, ` + "`" + `serviceuser.services` + "`" + `. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints). ## Attributes Reference See [google_project_organization_policy](https://www.terraform.io/docs/providers/google/r/google_project_organization_policy.html) resource for details of the available attributes.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2322,6 +2447,74 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_kms_crypto_key_version",
+			Category:         "Data Sources",
+			ShortDescription: `Provides access to KMS key version data with Google Cloud KMS.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "crypto_key",
+					Description: `(Required) The ` + "`" + `self_link` + "`" + ` of the Google Cloud Platform CryptoKey to which the key version belongs.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) The version number for this CryptoKeyVersion. Defaults to ` + "`" + `1` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the CryptoKeyVersion. See the [state reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions#CryptoKeyVersion.CryptoKeyVersionState) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "protection_level",
+					Description: `The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion. See the [protection_level reference](https://cloud.google.com/kms/docs/reference/rest/v1/ProtectionLevel) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports. See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below. The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
+				},
+				resource.Attribute{
+					Name:        "pem",
+					Description: `The public key, encoded in PEM format. For more information, see the RFC 7468 sections for General Considerations and Textual Encoding of Subject Public Key Info.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the CryptoKeyVersion. See the [state reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions#CryptoKeyVersion.CryptoKeyVersionState) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "protection_level",
+					Description: `The ProtectionLevel describing how crypto operations are performed with this CryptoKeyVersion. See the [protection_level reference](https://cloud.google.com/kms/docs/reference/rest/v1/ProtectionLevel) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports. See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible outputs.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `If the enclosing CryptoKey has purpose ` + "`" + `ASYMMETRIC_SIGN` + "`" + ` or ` + "`" + `ASYMMETRIC_DECRYPT` + "`" + `, this block contains details about the public key associated to this CryptoKeyVersion. Structure is documented below. The ` + "`" + `public_key` + "`" + ` block, if present, contains:`,
+				},
+				resource.Attribute{
+					Name:        "pem",
+					Description: `The public key, encoded in PEM format. For more information, see the RFC 7468 sections for General Considerations and Textual Encoding of Subject Public Key Info.`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_kms_key_ring",
 			Category:         "Data Sources",
 			ShortDescription: `Provides access to KMS key ring data with Google Cloud KMS.`,
@@ -2369,6 +2562,26 @@ var (
 				resource.Attribute{
 					Name:        "plaintext",
 					Description: `Contains the result of decrypting the provided ciphertext.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_kms_secret_ciphertext",
+			Category:         "Data Sources",
+			ShortDescription: `Encrypts secret data with Google Cloud KMS and provides access to the ciphertext`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ciphertext",
+					Description: `Contains the result of encrypting the provided plaintext, encoded in base64.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ciphertext",
+					Description: `Contains the result of encrypting the provided plaintext, encoded in base64.`,
 				},
 			},
 		},
@@ -2703,38 +2916,41 @@ var (
 		"google_client_openid_userinfo":                   14,
 		"google_composer_image_versions":                  15,
 		"google_compute_backend_service":                  16,
-		"google_folder_organization_policy":               17,
-		"google_iam_role":                                 18,
-		"google_netblock_ip_ranges":                       19,
-		"google_project_organization_policy":              20,
-		"google_service_account":                          21,
-		"google_service_account_access_token":             22,
-		"google_service_account_key":                      23,
-		"google_dns_managed_zone":                         24,
-		"google_active_folder":                            25,
-		"google_billing_account":                          26,
-		"google_compute_default_service_account":          27,
-		"google_compute_instance_group":                   28,
-		"google_compute_node_types":                       29,
-		"google_compute_regions":                          30,
-		"google_compute_zones":                            31,
-		"google_container_cluster":                        32,
-		"google_container_engine_versions":                33,
-		"google_container_registry_image":                 34,
-		"google_container_registry_repository":            35,
-		"google_folder":                                   36,
-		"google_iam_policy":                               37,
-		"google_kms_crypto_key":                           38,
-		"google_kms_key_ring":                             39,
-		"google_kms_secret":                               40,
-		"google_organization":                             41,
-		"google_project":                                  42,
-		"google_project_services":                         43,
-		"google_projects":                                 44,
-		"google_storage_project_service_account":          45,
-		"google_storage_transfer_project_service_account": 46,
-		"google_storage_object_signed_url":                47,
-		"google_storage_bucket_object":                    48,
+		"google_compute_network_endpoint_group":           17,
+		"google_folder_organization_policy":               18,
+		"google_iam_role":                                 19,
+		"google_netblock_ip_ranges":                       20,
+		"google_project_organization_policy":              21,
+		"google_service_account":                          22,
+		"google_service_account_access_token":             23,
+		"google_service_account_key":                      24,
+		"google_dns_managed_zone":                         25,
+		"google_active_folder":                            26,
+		"google_billing_account":                          27,
+		"google_compute_default_service_account":          28,
+		"google_compute_instance_group":                   29,
+		"google_compute_node_types":                       30,
+		"google_compute_regions":                          31,
+		"google_compute_zones":                            32,
+		"google_container_cluster":                        33,
+		"google_container_engine_versions":                34,
+		"google_container_registry_image":                 35,
+		"google_container_registry_repository":            36,
+		"google_folder":                                   37,
+		"google_iam_policy":                               38,
+		"google_kms_crypto_key":                           39,
+		"google_kms_crypto_key_version":                   40,
+		"google_kms_key_ring":                             41,
+		"google_kms_secret":                               42,
+		"google_kms_secret_ciphertext":                    43,
+		"google_organization":                             44,
+		"google_project":                                  45,
+		"google_project_services":                         46,
+		"google_projects":                                 47,
+		"google_storage_project_service_account":          48,
+		"google_storage_transfer_project_service_account": 49,
+		"google_storage_object_signed_url":                50,
+		"google_storage_bucket_object":                    51,
 	}
 )
 

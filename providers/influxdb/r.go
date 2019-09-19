@@ -59,11 +59,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Required) The duration for retention policy, format of duration can be found at InfluxDB Documentation`,
+					Description: `(Required) The duration for retention policy, format of duration can be found at InfluxDB Documentation.`,
 				},
 				resource.Attribute{
 					Name:        "replication",
 					Description: `(Optional) Determines how many copies of data points are stored in a cluster. Not applicable for single node / Open Source version of InfluxDB. Default value of 1.`,
+				},
+				resource.Attribute{
+					Name:        "shardgroupduration",
+					Description: `(Optional) Determines how much time each shard group spans. How and why to modify can be found at InfluxDB Documentation.`,
 				},
 				resource.Attribute{
 					Name:        "default",

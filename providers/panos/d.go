@@ -90,6 +90,65 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "panos_panorama_plugin",
+			Category:         "Data Sources",
+			ShortDescription: `Gets Panorama plugin info.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "installed",
+					Description: `A list of installed plugins.`,
+				},
+				resource.Attribute{
+					Name:        "total",
+					Description: `(int) Total number of plugins, installed or not.`,
+				},
+				resource.Attribute{
+					Name:        "details",
+					Description: `A list of maps (see below). The following attributes are present in each ` + "`" + `details` + "`" + ` entry:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The version number.`,
+				},
+				resource.Attribute{
+					Name:        "release_date",
+					Description: `Release date.`,
+				},
+				resource.Attribute{
+					Name:        "release_note_url",
+					Description: `Release note URL.`,
+				},
+				resource.Attribute{
+					Name:        "package_file",
+					Description: `The package file.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `Platform.`,
+				},
+				resource.Attribute{
+					Name:        "installed",
+					Description: `If the package is installed or not.`,
+				},
+				resource.Attribute{
+					Name:        "downloaded",
+					Description: `If the package is downloaded or not.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "panos_system_info",
 			Category:         "Data Sources",
 			ShortDescription: `Gets system info from the firewall.`,
@@ -120,7 +179,8 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"panos_dhcp_interface_info": 0,
-		"panos_system_info":         1,
+		"panos_panorama_plugin":     1,
+		"panos_system_info":         2,
 	}
 )
 

@@ -11,6 +11,38 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_blockstorage_volume_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an FlexibleEngine Volume.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Volume client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the volume. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the volume.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the volume.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_cce_cluster_v3",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on Cloud Container Engine Cluster (CCE).`,
@@ -73,6 +105,18 @@ var (
 					Name:        "highway_subnet_id",
 					Description: `The ID of the high speed network used to create bare metal nodes.`,
 				},
+				resource.Attribute{
+					Name:        "internal_endpoint",
+					Description: `The internal network address.`,
+				},
+				resource.Attribute{
+					Name:        "external_endpoint",
+					Description: `The external network address.`,
+				},
+				resource.Attribute{
+					Name:        "external_apig_endpoint",
+					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -115,11 +159,23 @@ var (
 					Name:        "highway_subnet_id",
 					Description: `The ID of the high speed network used to create bare metal nodes.`,
 				},
+				resource.Attribute{
+					Name:        "internal_endpoint",
+					Description: `The internal network address.`,
+				},
+				resource.Attribute{
+					Name:        "external_endpoint",
+					Description: `The external network address.`,
+				},
+				resource.Attribute{
+					Name:        "external_apig_endpoint",
+					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
+				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "flexibleengine_cce_nodes_v3",
+			Type:             "flexibleengine_cce_node_v3",
 			Category:         "Data Sources",
 			ShortDescription: `To get the specified node in a cluster.`,
 			Description:      ``,
@@ -1868,6 +1924,70 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_rds_flavors_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get the flavor information on an FlexibleEngine rds service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "db_type",
+					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer.`,
+				},
+				resource.Attribute{
+					Name:        "db_version",
+					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7. PostgreSQL databases support PostgreSQL 9.5 and 9.6. Microsoft SQL Server databases support 2014_SE, 2016_SE, and 2016_EE.`,
+				},
+				resource.Attribute{
+					Name:        "instance_mode",
+					Description: `(Required) The mode of instance. Value: ha(indicates primary/standby instance), single(indicates single instance) ## Attributes Reference In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the rds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `Indicates the CPU size.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Indicates the memory size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See 'instance_mode' above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the rds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `Indicates the CPU size.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Indicates the memory size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See 'instance_mode' above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_rts_software_config_v1",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific RTS Software Config.`,
@@ -2797,38 +2917,40 @@ VPC that the subnet belongs to.
 
 	dataSourcesMap = map[string]int{
 
-		"flexibleengine_cce_cluster_v3":            0,
-		"flexibleengine_cce_nodes_v3":              1,
-		"flexibleengine_compute_bms_flavors_v2":    2,
-		"flexibleengine_compute_bms_keypairs_v2":   3,
-		"flexibleengine_compute_bms_nic_v2":        4,
-		"flexibleengine_compute_bms_server_v2":     5,
-		"flexibleengine_csbs_backup_policy_v1":     6,
-		"flexibleengine_csbs_backup_v1":            7,
-		"flexibleengine_cts_tracker_v1":            8,
-		"flexibleengine_dcs_az_v1":                 9,
-		"flexibleengine_dcs_maintainwindow_v1":     10,
-		"flexibleengine_dcs_product_v1":            11,
-		"flexibleengine_dns_zone_v2":               12,
-		"flexibleengine_images_image_v2":           13,
-		"flexibleengine_kms_data_key_v1":           14,
-		"flexibleengine_kms_key_v1":                15,
-		"flexibleengine_networking_network_v2":     16,
-		"flexibleengine_networking_secgroup_v2":    17,
-		"flexibleengine_rds_flavors_v1":            18,
-		"flexibleengine_rts_software_config_v1":    19,
-		"flexibleengine_rts_stack_resource_v1":     20,
-		"flexibleengine_rts_stack_v1":              21,
-		"flexibleengine_s3_bucket_object":          22,
-		"flexibleengine_sfs_file_system_v2":        23,
-		"flexibleengine_vbs_backup_policy_v2":      24,
-		"flexibleengine_vbs_backup_v2":             25,
-		"flexibleengine_vpc_peering_connection_v2": 26,
-		"flexibleengine_vpc_route_ids_v2":          27,
-		"flexibleengine_vpc_route_v2":              28,
-		"flexibleengine_vpc_subnet_ids_v1":         29,
-		"flexibleengine_vpc_subnet_v1":             30,
-		"flexibleengine_vpc_v1":                    31,
+		"flexibleengine_blockstorage_volume_v2":    0,
+		"flexibleengine_cce_cluster_v3":            1,
+		"flexibleengine_cce_node_v3":               2,
+		"flexibleengine_compute_bms_flavors_v2":    3,
+		"flexibleengine_compute_bms_keypairs_v2":   4,
+		"flexibleengine_compute_bms_nic_v2":        5,
+		"flexibleengine_compute_bms_server_v2":     6,
+		"flexibleengine_csbs_backup_policy_v1":     7,
+		"flexibleengine_csbs_backup_v1":            8,
+		"flexibleengine_cts_tracker_v1":            9,
+		"flexibleengine_dcs_az_v1":                 10,
+		"flexibleengine_dcs_maintainwindow_v1":     11,
+		"flexibleengine_dcs_product_v1":            12,
+		"flexibleengine_dns_zone_v2":               13,
+		"flexibleengine_images_image_v2":           14,
+		"flexibleengine_kms_data_key_v1":           15,
+		"flexibleengine_kms_key_v1":                16,
+		"flexibleengine_networking_network_v2":     17,
+		"flexibleengine_networking_secgroup_v2":    18,
+		"flexibleengine_rds_flavors_v1":            19,
+		"flexibleengine_rds_flavors_v3":            20,
+		"flexibleengine_rts_software_config_v1":    21,
+		"flexibleengine_rts_stack_resource_v1":     22,
+		"flexibleengine_rts_stack_v1":              23,
+		"flexibleengine_s3_bucket_object":          24,
+		"flexibleengine_sfs_file_system_v2":        25,
+		"flexibleengine_vbs_backup_policy_v2":      26,
+		"flexibleengine_vbs_backup_v2":             27,
+		"flexibleengine_vpc_peering_connection_v2": 28,
+		"flexibleengine_vpc_route_ids_v2":          29,
+		"flexibleengine_vpc_route_v2":              30,
+		"flexibleengine_vpc_subnet_ids_v1":         31,
+		"flexibleengine_vpc_subnet_v1":             32,
+		"flexibleengine_vpc_v1":                    33,
 	}
 )
 
