@@ -29,6 +29,9 @@ const (
 						Category: "{{ .Category }}",
 						ShortDescription: ` + "`{{ .ShortDescription }}`" + `,
 						Description: ` + "`{{ .Description }}`" + `,
+						{{- if ne .Icon "" }}
+							Icon: "{{ .Icon }}",
+						{{- end }}
 						Keywords: []string{
 							{{- range .Keywords }}
 							  "{{ . }}",
