@@ -21,6 +21,7 @@ Manager (ACM), you can reference
 it by domain without having to hard code the ARNs as input.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Certificate-Manager.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -65,6 +66,7 @@ it by domain without having to hard code the ARNs as input.
 Get information on a AWS Certificate Manager Private Certificate Authority (ACM PCA Certificate Authority).
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Certificate-Manager.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -214,6 +216,7 @@ Use this data source to get the ID of a registered AMI for use in other
 resources.
 
 `,
+			Icon:     "Compute/Amazon-EC2_AMI_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -594,6 +597,7 @@ Use this data source to get the name and value of a pre-existing API Key, for
 example to supply credentials for a dependency microservice.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -639,6 +643,7 @@ Use this data source to get the id of a Resource in API Gateway.
 To fetch the Resource, you must provide the REST API id as well as the full path.  
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -690,6 +695,7 @@ As there is no unique name constraint on REST APIs this data source will
 error if there is more than one match.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -729,6 +735,7 @@ As there is no unique name constraint on API Gateway VPC Links this data source 
 error if there is more than one match.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -817,6 +824,7 @@ Parses an Amazon Resource Name (ARN) into its constituent parts.
 Use this data source to get information on an existing autoscaling group.
 
 `,
+			Icon:     "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1146,6 +1154,7 @@ The Batch Compute Environment data source allows access to details of a specific
 compute environment within AWS Batch.
 
 `,
+			Icon:     "Compute/AWS-Batch.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1223,6 +1232,7 @@ The Batch Job Queue data source allows access to details of a specific
 job queue within AWS Batch.
 
 `,
+			Icon:     "Compute/AWS-Batch.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1444,6 +1454,7 @@ The CloudFormation Stack data source allows access to stack
 outputs and other useful data including the template body.
 
 `,
+			Icon:     "Management_Governance/AWS-CloudFormation.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1677,6 +1688,7 @@ in a given region for the purpose of allowing CloudTrail to store trail data in 
 Use this data source to get information about an AWS Cloudwatch Log Group
 
 `,
+			Icon:     "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1713,6 +1725,7 @@ Use this data source to get information about an AWS Cloudwatch Log Group
 The CodeCommit Repository data source allows the ARN, Repository ID, Repository URL for HTTP and Repository URL for SSH to be retrieved for an CodeCommit repository.
 
 `,
+			Icon:     "Developer_Tools/AWS-CodeCommit.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1881,6 +1894,7 @@ Use this data source to get information on an AWS Cost and Usage Report Definiti
 Get an existing AWS Customer Gateway.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_Customer-Gateway_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2126,6 +2140,7 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 Use this data source to get information about an RDS instance
 
 `,
+			Icon:     "Database/Amazon-RDS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2621,6 +2636,7 @@ See the [` + "`" + `aws_db_cluster_snapshot` + "`" + ` data source](/docs/provid
 Retrieve information about a Direct Connect Gateway.
 
 `,
+			Icon:     "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2665,6 +2681,7 @@ Retrieve information about a Direct Connect Gateway.
 Provides information about a DynamoDB table.
 
 `,
+			Icon:     "Database/Amazon-DynamoDB_Table_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2721,6 +2738,7 @@ Provides a way to check whether default EBS encryption is enabled for your AWS a
 Use this data source to get information about an EBS Snapshot for use when provisioning EBS Volumes
 
 `,
+			Icon:     "Compute/Amazon-Elastic-Block-Store-EBS_Snapshot_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2882,6 +2900,7 @@ Use this data source to get information about an EBS volume for use in other
 resources.
 
 `,
+			Icon:     "Compute/Amazon-Elastic-Block-Store-EBS_Volume_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3434,6 +3453,7 @@ The ECR Image data source allows the details of an image with a particular tag o
 The ECR Repository data source allows the ARN, Repository URI and Registry ID to be retrieved for an ECR repository.
 
 `,
+			Icon:     "Compute/Amazon-EC2-Container-Registry.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3487,6 +3507,7 @@ The ECS Cluster data source allows access to details of a specific
 cluster within an AWS ECS service.
 
 `,
+			Icon:     "Compute/Amazon-Elastic-Container-Service.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3645,6 +3666,7 @@ The ECS Service data source allows access to details of a specific
 Service within a AWS ECS Cluster.
 
 `,
+			Icon:     "Compute/Amazon-Elastic-Container-Service_Service_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3711,6 +3733,7 @@ a specific AWS ECS task definition.
 
 
 `,
+			Icon:     "Compute/Amazon-Elastic-Container-Service_Task_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3771,6 +3794,7 @@ a specific AWS ECS task definition.
 Provides information about an Elastic File System (EFS).
 
 `,
+			Icon:     "Storage/Amazon-Elastic-File-System_EFS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3843,6 +3867,7 @@ Provides information about an Elastic File System (EFS).
 Provides information about an Elastic File System Mount Target (EFS).
 
 `,
+			Icon:     "Storage/Amazon-Elastic-File-System_EFS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3919,6 +3944,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 ` + "`" + `aws_eip` + "`" + ` provides details about a specific Elastic IP.
 
 `,
+			Icon:     "Compute/Amazon-EC2_Elastic-IP-Address_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4047,6 +4073,7 @@ Provides information about an Elastic File System Mount Target (EFS).
 Retrieve information about an EKS Cluster.
 
 `,
+			Icon:     "Compute/Amazon-Elastic-Container-Service-for-Kubernetes.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4236,6 +4263,7 @@ server configured.
 Retrieve information about an Elastic Beanstalk Application.
 
 `,
+			Icon:     "Compute/AWS-Elastic-Beanstalk.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4380,6 +4408,7 @@ Use this data source to get the name of a elastic beanstalk solution stack.
 Use this data source to get information about an Elasticache Cluster
 
 `,
+			Icon:     "Database/Amazon-ElastiCache.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4460,6 +4489,7 @@ Use this data source to get information about an Elasticache Cluster
 Use this data source to get information about an Elasticache Replication Group.
 
 `,
+			Icon:     "Database/Amazon-ElastiCache.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4548,6 +4578,7 @@ Use this data source to get information about an Elasticache Replication Group.
 Use this data source to get information about an Elasticsearch Domain
 
 `,
+			Icon:     "Analytics/Amazon-Elasticsearch-Service.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -4856,6 +4887,7 @@ Use this data source to get information about an Elasticsearch Domain
 			Category:         "Data Sources",
 			ShortDescription: `Provides a classic Elastic Load Balancer data source.`,
 			Description:      ``,
+			Icon:             "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5026,6 +5058,7 @@ The IAM Account Alias data source allows access to the account alias
 for the effective account in which Terraform is working.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5052,6 +5085,7 @@ IAM group. By using this data source, you can reference IAM group
 properties without having to hard code ARNs as input.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5098,6 +5132,7 @@ IAM instance profile. By using this data source, you can reference IAM
 instance profile properties without having to hard code ARNs as input.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5162,6 +5197,7 @@ instance profile properties without having to hard code ARNs as input.
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Amazon IAM policy`,
 			Description:      ``,
+			Icon:             "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5313,6 +5349,7 @@ IAM role. By using this data source, you can reference IAM role
 properties without having to hard code ARNs as input.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Role_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5405,6 +5442,7 @@ properties without having to hard code ARNs as input.
 Use this data source to lookup information about IAM Server Certificates.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5438,6 +5476,7 @@ IAM user. By using this data source, you can reference IAM user
 properties without having to hard code ARNs or unique IDs as input.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -5520,6 +5559,7 @@ Use this data source to get the ID of an Amazon EC2 Instance for use in other
 resources.
 
 `,
+			Icon:     "Compute/Amazon-EC2.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6003,6 +6043,7 @@ and you'd need to re-run ` + "`" + `apply` + "`" + ` every time an instance come
 ` + "`" + `aws_internet_gateway` + "`" + ` provides details about a specific Internet Gateway.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_Internet-Gateway_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6154,6 +6195,7 @@ resources.
 For more details, see the [Amazon Kinesis Documentation][1].
 
 `,
+			Icon:     "Analytics/Amazon-Kinesis-Data-Streams.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6248,6 +6290,7 @@ By using this data source, you can reference key alias
 without having to hard code the ARN as input.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Key-Management-Service.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6330,6 +6373,7 @@ resource](/docs/providers/aws/r/kms_ciphertext.html).
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a AWS Key Management Service (KMS) Key`,
 			Description:      ``,
+			Icon:             "Security_Identity_and_Compliance/AWS-Key-Management-Service.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6391,6 +6435,7 @@ Decrypt multiple secrets from data encrypted with the AWS KMS service.
 			Category:         "Data Sources",
 			ShortDescription: `Provides a Lambda Function data source.`,
 			Description:      ``,
+			Icon:             "Compute/AWS-Lambda_Lambda-Function_light-bg.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6713,6 +6758,7 @@ invocation type.
 Provides information about a Launch Configuration.
 
 `,
+			Icon:     "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -6989,6 +7035,7 @@ Provides information about a Launch Configuration.
 Provides information about a Launch Template.
 
 `,
+			Icon:     "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -7223,6 +7270,7 @@ variable and needs to, for example, determine the security groups associated
 with it, etc.
 
 `,
+			Icon:     "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -7308,6 +7356,7 @@ an LB Target Group for use in other resources, given LB Target Group name.
 Provides information about a MQ Broker.
 
 `,
+			Icon:     "Application_Integration/Amazon-MQ.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -7467,6 +7516,7 @@ Get information on an Amazon MSK Configuration.
 Provides details about a specific Nat Gateway.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_NAT-Gateway_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -7585,6 +7635,7 @@ Provides details about a specific Nat Gateway.
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Network Interface resource.`,
 			Description:      ``,
+			Icon:             "Networking_Content_Delivery/Amazon-VPC_Elastic-Network-Interface_light-bg.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -7799,6 +7850,7 @@ Provides details about a specific Nat Gateway.
 Get information about the organization that the user's account belongs to
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Organizations.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8181,6 +8233,7 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 Provides information about a RDS cluster.
 
 `,
+			Icon:     "Database/Amazon-RDS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8200,6 +8253,7 @@ Provides information about a RDS cluster.
 Provides details about a specific redshift cluster.
 
 `,
+			Icon:     "Database/Amazon-Redshift.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8546,6 +8600,7 @@ associated with a CIDR. For example, finding the peering
 connection associated with a CIDR value.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8603,6 +8658,7 @@ connection associated with a CIDR value.
 This data source allows to find a list of name servers associated with a specific delegation set.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-Route-53.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8724,6 +8780,7 @@ This data source allows to find a list of name servers associated with a specifi
 This data source allows to find a Hosted Zone ID given Hosted Zone name and certain search criteria.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-Route-53_Hosted-Zone_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -8812,6 +8869,7 @@ an input variable and needs to, for example, add a route in
 the Route Table.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9015,6 +9073,7 @@ This resource may prove useful when setting up a Route53 record, or an origin fo
 Distribution.
 
 `,
+			Icon:     "Storage/Amazon-Simple-Storage-Service-S3.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9102,6 +9161,7 @@ _optionally_ (see below) content of an object stored inside S3 bucket.
 ~> **Note:** The content of an object (` + "`" + `body` + "`" + ` field) is available only for objects which have a human-readable ` + "`" + `Content-Type` + "`" + ` (` + "`" + `text/*` + "`" + ` and ` + "`" + `application/json` + "`" + `). This is to prevent printing unsafe characters and potentially downloading large amount of data which would be thrown away in favour of metadata.
 
 `,
+			Icon:     "Storage/Amazon-Simple-Storage-Service-S3_Object_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9336,6 +9396,7 @@ The bucket-objects data source returns keys (i.e., file names) and other metadat
 Retrieve metadata information about a Secrets Manager secret. To retrieve a secret value, see the [` + "`" + `aws_secretsmanager_secret_version` + "`" + ` data source](/docs/providers/aws/d/secretsmanager_secret_version.html).
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Secrets-Manager.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9432,6 +9493,7 @@ Retrieve metadata information about a Secrets Manager secret. To retrieve a secr
 Retrieve information about a Secrets Manager secret version, including its secret value. To retrieve secret metadata, see the [` + "`" + `aws_secretsmanager_secret` + "`" + ` data source](/docs/providers/aws/d/secretsmanager_secret.html).
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-Secrets-Manager.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9727,6 +9789,7 @@ Service (SNS). By using this data source, you can reference SNS topics
 without having to hard code the ARNs as input.
 
 `,
+			Icon:     "Application_Integration/Amazon-Simple-Notification-Service-SNS_Topic_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9757,6 +9820,7 @@ By using this data source, you can reference SQS queues without having to hardco
 the ARNs as input.
 
 `,
+			Icon:     "Application_Integration/Amazon-Simple-Queue-Service-SQS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9793,6 +9857,7 @@ the ARNs as input.
 Gets the contents of the specified Systems Manager document.
 
 `,
+			Icon:     "Management_Governance/AWS-Systems-Manager_Documents_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9845,6 +9910,7 @@ Gets the contents of the specified Systems Manager document.
 Provides an SSM Parameter data source.
 
 `,
+			Icon:     "Management_Governance/AWS-Systems-Manager_Parameter-Store_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -9936,6 +10002,7 @@ an input variable and needs to, for example, determine the id of the
 VPC that the subnet belongs to.
 
 `,
+			Icon:     "_Group_Icons/VPC-subnet-public_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10135,6 +10202,7 @@ an input variable and needs to, for example, determine the CIDR block of that
 VPC.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10380,6 +10448,7 @@ The VPC Endpoint data source provides details about
 a specific VPC endpoint.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10533,6 +10602,7 @@ The VPC Endpoint Service data source details about a specific service that
 can be specified when creating a VPC endpoint within the region configured in the provider.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10638,6 +10708,7 @@ The VPC Peering Connection data source provides details about
 a specific VPC peering connection.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_Peering_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10793,6 +10864,7 @@ The VPN Gateway data source provides details about
 a specific VPN gateway.
 
 `,
+			Icon:     "Networking_Content_Delivery/Amazon-VPC_VPN-Gateway_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10844,6 +10916,7 @@ a specific VPN gateway.
 ` + "`" + `aws_waf_ipset` + "`" + ` Retrieves a WAF IP Set Resource Id.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10872,6 +10945,7 @@ a specific VPN gateway.
 ` + "`" + `aws_waf_rule` + "`" + ` Retrieves a WAF Rule Resource Id.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-WAF_Filtering-rule_light-bg.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10900,6 +10974,7 @@ a specific VPN gateway.
 ` + "`" + `aws_waf_rule` + "`" + ` Retrieves a WAF Web ACL Resource Id.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10928,6 +11003,7 @@ a specific VPN gateway.
 ` + "`" + `aws_wafregional_ipset` + "`" + ` Retrieves a WAF Regional IP Set Resource Id.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10956,6 +11032,7 @@ a specific VPN gateway.
 ` + "`" + `aws_wafregional_rule` + "`" + ` Retrieves a WAF Regional Rule Resource Id.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -10984,6 +11061,7 @@ a specific VPN gateway.
 ` + "`" + `aws_wafregional_web_acl` + "`" + ` Retrieves a WAF Regional Web ACL Resource Id.
 
 `,
+			Icon:     "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{

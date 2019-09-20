@@ -35,6 +35,7 @@ It's recommended to specify ` + "`" + `create_before_destroy = true` + "`" + ` i
 which is currently in use (eg, by [` + "`" + `aws_lb_listener` + "`" + `](lb_listener.html)).
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Certificate-Manager.svg",
 			Keywords: []string{
 				"acm",
 				"certificate",
@@ -182,6 +183,7 @@ deploy the required validation records and wait for validation to complete.
 
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Certificate-Manager.svg",
 			Keywords: []string{
 				"acm",
 				"certificate",
@@ -220,6 +222,7 @@ Provides a resource to manage AWS Certificate Manager Private Certificate Author
 ~> **NOTE:** Creating this resource will leave the certificate authority in a ` + "`" + `PENDING_CERTIFICATE` + "`" + ` status, which means it cannot yet issue certificates. To complete this setup, you must fully sign the certificate authority CSR available in the ` + "`" + `certificate_signing_request` + "`" + ` attribute and import the signed certificate outside of Terraform. Terraform can support another resource to manage that workflow automatically in the future.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Certificate-Manager.svg",
 			Keywords: []string{
 				"acm",
 				"pca",
@@ -437,6 +440,7 @@ If you just want to share an existing AMI with another AWS account,
 it's better to use ` + "`" + `aws_ami_launch_permission` + "`" + ` instead.
 
 `,
+			Icon: "Compute/Amazon-EC2_AMI_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"ami",
@@ -586,6 +590,7 @@ Copying an AMI can take several minutes. The creation of this resource will
 block until the new AMI is available for use on new instances.
 
 `,
+			Icon: "Compute/Amazon-EC2_AMI_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"ami",
@@ -666,6 +671,7 @@ the generated AMI. Users may taint or otherwise recreate the resource in order
 to produce a fresh snapshot.
 
 `,
+			Icon: "Compute/Amazon-EC2_AMI_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"ami",
@@ -723,6 +729,7 @@ to produce a fresh snapshot.
 Adds launch permission to Amazon Machine Image (AMI) from another AWS account.
 
 `,
+			Icon: "Compute/Amazon-EC2_AMI_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"ami",
@@ -762,6 +769,7 @@ Provides a settings of an API Gateway Account. Settings is applied region-wide p
 -> **Note:** As there is no API method for deleting account settings or resetting it to defaults, destroying this resource will keep your account settings intact
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -812,6 +820,7 @@ Provides an API Gateway API Key.
 ~> **NOTE:** Since the API Gateway usage plans feature was launched on August 11, 2016, usage plans are now **required** to associate an API key with an API stage.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -880,6 +889,7 @@ Provides an API Gateway API Key.
 Provides an API Gateway Authorizer.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -937,6 +947,7 @@ with a deployed API so that its methods can be called via the
 custom domain name.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -974,6 +985,7 @@ custom domain name.
 Provides an API Gateway Client Certificate.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1034,6 +1046,7 @@ Provides an API Gateway Deployment.
 you might need to add an explicit ` + "`" + `depends_on = ["aws_api_gateway_integration.name"]` + "`" + `.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1106,6 +1119,7 @@ you might need to add an explicit ` + "`" + `depends_on = ["aws_api_gateway_inte
 Provides a settings of an API Gateway Documentation Part.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1167,6 +1181,7 @@ Provides a settings of an API Gateway Documentation Part.
 Provides a resource to manage an API Gateway Documentation Version.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1221,6 +1236,7 @@ the ` + "`" + `regional_domain_name` + "`" + ` attribute.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1334,6 +1350,7 @@ the ` + "`" + `regional_domain_name` + "`" + ` attribute.
 Provides an API Gateway Gateway Response for a REST API Gateway.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1373,6 +1390,7 @@ Provides an API Gateway Gateway Response for a REST API Gateway.
 Provides an HTTP Method Integration for an API Gateway Integration.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1459,6 +1477,7 @@ Provides an HTTP Method Integration Response for an API Gateway Resource.
 you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean runs.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1511,6 +1530,7 @@ you might need to add an explicit ` + "`" + `depends_on` + "`" + ` for clean run
 Provides a HTTP Method for an API Gateway Resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1570,6 +1590,7 @@ Provides a HTTP Method for an API Gateway Resource.
 Provides an HTTP Method Response for an API Gateway Resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1614,6 +1635,7 @@ Provides an HTTP Method Response for an API Gateway Resource.
 Provides an API Gateway Method Settings, e.g. logging or monitoring.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1690,6 +1712,7 @@ Provides an API Gateway Method Settings, e.g. logging or monitoring.
 Provides a Model for a API Gateway.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1738,6 +1761,7 @@ Provides a Model for a API Gateway.
 Manages an API Gateway Request Validator.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1783,6 +1807,7 @@ Manages an API Gateway Request Validator.
 Provides an API Gateway Resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1831,6 +1856,7 @@ Provides an API Gateway Resource.
 Provides an API Gateway REST API.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -1919,6 +1945,7 @@ Provides an API Gateway REST API.
 Provides an API Gateway Stage.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -2019,6 +2046,7 @@ Provides an API Gateway Stage.
 Provides an API Gateway Usage Plan.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -2120,6 +2148,7 @@ Provides an API Gateway Usage Plan.
 Provides an API Gateway Usage Plan Key.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -2202,6 +2231,7 @@ Provides an API Gateway Usage Plan Key.
 Provides an API Gateway VPC Link.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-API-Gateway.svg",
 			Keywords: []string{
 				"api",
 				"gateway",
@@ -2325,6 +2355,7 @@ Provides an application cookie stickiness policy, which allows an ELB to wed its
 Provides an Application AutoScaling Policy resource.
 
 `,
+			Icon: "Management_Governance/AWS-Auto-Scaling.svg",
 			Keywords: []string{
 				"application",
 				"autoscaling",
@@ -2482,6 +2513,7 @@ Provides an Application AutoScaling Policy resource.
 Provides an Application AutoScaling ScheduledAction resource.
 
 `,
+			Icon: "Management_Governance/AWS-Auto-Scaling.svg",
 			Keywords: []string{
 				"application",
 				"autoscaling",
@@ -2552,6 +2584,7 @@ Provides an Application AutoScaling ScheduledAction resource.
 Provides an Application AutoScaling ScalableTarget resource. To manage policies which get attached to the target, see the [` + "`" + `aws_appautoscaling_policy` + "`" + ` resource](/docs/providers/aws/r/appautoscaling_policy.html).
 
 `,
+			Icon: "Management_Governance/AWS-Auto-Scaling.svg",
 			Keywords: []string{
 				"application",
 				"autoscaling",
@@ -3106,6 +3139,7 @@ Provides an AWS App Mesh virtual service resource.
 Provides an AppSync API Key.
 
 `,
+			Icon: "Application_Integration/AWS-AppSync.svg",
 			Keywords: []string{
 				"appsync",
 				"api",
@@ -3154,6 +3188,7 @@ Provides an AppSync API Key.
 Provides an AppSync DataSource.
 
 `,
+			Icon: "Application_Integration/AWS-AppSync.svg",
 			Keywords: []string{
 				"appsync",
 				"datasource",
@@ -3316,6 +3351,7 @@ Provides an AppSync Function.
 Provides an AppSync GraphQL API.
 
 `,
+			Icon: "Application_Integration/AWS-AppSync.svg",
 			Keywords: []string{
 				"appsync",
 				"graphql",
@@ -3487,6 +3523,7 @@ Provides an AppSync Resolver.
 Provides an Athena database.
 
 `,
+			Icon: "Analytics/Amazon-Athena.svg",
 			Keywords: []string{
 				"athena",
 				"database",
@@ -3538,6 +3575,7 @@ Provides an Athena database.
 Provides an Athena Named Query resource.
 
 `,
+			Icon: "Analytics/Amazon-Athena.svg",
 			Keywords: []string{
 				"athena",
 				"named",
@@ -3680,6 +3718,7 @@ load balancers in conjunction with an ASG Attachment resource. Doing so will cau
 conflict and will overwrite attachments.
 
 `,
+			Icon: "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{
 				"autoscaling",
 				"attachment",
@@ -3712,6 +3751,7 @@ Provides an AutoScaling Group resource.
 -> **Note:** You must specify either ` + "`" + `launch_configuration` + "`" + `, ` + "`" + `launch_template` + "`" + `, or ` + "`" + `mixed_instances_policy` + "`" + `.
 
 `,
+			Icon: "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{
 				"autoscaling",
 				"group",
@@ -3975,6 +4015,7 @@ behavior. If you need hooks to run on all instances, add them with
 but take care to not duplicate those hooks with this resource.
 
 `,
+			Icon: "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{
 				"autoscaling",
 				"lifecycle",
@@ -4028,6 +4069,7 @@ the ` + "`" + `notifications` + "`" + ` map to a [Notification Configuration][2]
 Services, and are applied to each AutoScaling Group you supply.
 
 `,
+			Icon: "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{
 				"autoscaling",
 				"notification",
@@ -4064,6 +4106,7 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 (policy-based) scaling.
 
 `,
+			Icon: "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{
 				"autoscaling",
 				"policy",
@@ -4227,6 +4270,7 @@ or [dynamic](https://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-sc
 Provides an AutoScaling Schedule resource.
 
 `,
+			Icon: "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{
 				"autoscaling",
 				"schedule",
@@ -4461,6 +4505,7 @@ For information about compute environment, see [Compute Environments][2] .
    otherwise, the policy may be destroyed too soon and the compute environment will then get stuck in the ` + "`" + `DELETING` + "`" + ` state, see [Troubleshooting AWS Batch][3] .
 
 `,
+			Icon: "Compute/AWS-Batch.svg",
 			Keywords: []string{
 				"batch",
 				"compute",
@@ -4601,6 +4646,7 @@ For information about compute environment, see [Compute Environments][2] .
 Provides a Batch Job Definition resource.
 
 `,
+			Icon: "Compute/AWS-Batch.svg",
 			Keywords: []string{
 				"batch",
 				"job",
@@ -4669,6 +4715,7 @@ Provides a Batch Job Definition resource.
 Provides a Batch Job Queue resource.
 
 `,
+			Icon: "Compute/AWS-Batch.svg",
 			Keywords: []string{
 				"batch",
 				"job",
@@ -4713,6 +4760,7 @@ Provides a Batch Job Queue resource.
 Provides a budgets budget resource. Budgets use the cost visualisation provided by Cost Explorer to show you the status of your budgets, to provide forecasts of your estimated costs, and to track your AWS usage, including your free tier usage.
 
 `,
+			Icon: "AWS_Cost_Management/AWS-Budgets.svg",
 			Keywords: []string{
 				"budgets",
 				"budget",
@@ -4924,6 +4972,7 @@ Provides a budgets budget resource. Budgets use the cost visualisation provided 
 Provides a Cloud9 EC2 Development Environment.
 
 `,
+			Icon: "Developer_Tools/AWS-Cloud9.svg",
 			Keywords: []string{
 				"cloud9",
 				"environment",
@@ -4992,6 +5041,7 @@ Provides a Cloud9 EC2 Development Environment.
 Provides a CloudFormation Stack resource.
 
 `,
+			Icon: "Management_Governance/AWS-CloudFormation.svg",
 			Keywords: []string{
 				"cloudformation",
 				"stack",
@@ -5258,6 +5308,7 @@ blocked. If you need to delete a distribution that is enabled and you do not
 want to wait, you need to use the ` + "`" + `retain_on_delete` + "`" + ` flag.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-CloudFront.svg",
 			Keywords: []string{
 				"cloudfront",
 				"distribution",
@@ -5398,6 +5449,7 @@ origin access identities, see
 [Using an Origin Access Identity to Restrict Access to Your Amazon S3 Content][2].
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-CloudFront.svg",
 			Keywords: []string{
 				"cloudfront",
 				"origin",
@@ -5714,6 +5766,7 @@ Provides a CloudTrail resource.
 ~> *NOTE:* For an organization trail, this resource must be in the master account of the organization.
 
 `,
+			Icon: "Management_Governance/AWS-CloudTrail.svg",
 			Keywords: []string{
 				"cloudtrail",
 			},
@@ -5812,6 +5865,7 @@ Provides a CloudTrail resource.
 Provides a CloudWatch Dashboard resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"dashboard",
@@ -5847,6 +5901,7 @@ Provides a CloudWatch Dashboard resource.
 Provides a resource to create a CloudWatch Events permission to support cross-account events in the current account default event bus.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"event",
@@ -5903,6 +5958,7 @@ Provides a resource to create a CloudWatch Events permission to support cross-ac
 Provides a CloudWatch Event Rule resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch_Rule_light-bg.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"event",
@@ -5963,6 +6019,7 @@ Provides a CloudWatch Event Rule resource.
 Provides a CloudWatch Event Target resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch_Event-Event-Based_light-bg.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"event",
@@ -6106,6 +6163,7 @@ Provides a CloudWatch Event Target resource.
 Provides a CloudWatch Logs destination resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"log",
@@ -6146,6 +6204,7 @@ Provides a CloudWatch Logs destination resource.
 Provides a CloudWatch Logs destination policy resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"log",
@@ -6174,6 +6233,7 @@ Provides a CloudWatch Logs destination policy resource.
 Provides a CloudWatch Log Group resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"log",
@@ -6222,6 +6282,7 @@ Provides a CloudWatch Log Group resource.
 Provides a CloudWatch Log Metric Filter resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"log",
@@ -6283,6 +6344,7 @@ Provides a CloudWatch Log Metric Filter resource.
 Provides a resource to manage a CloudWatch log resource policy.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"log",
@@ -6320,6 +6382,7 @@ Provides a resource to manage a CloudWatch log resource policy.
 Provides a CloudWatch Log Stream resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"log",
@@ -6356,6 +6419,7 @@ Provides a CloudWatch Log Stream resource.
 Provides a CloudWatch Logs subscription filter resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"log",
@@ -6400,6 +6464,7 @@ Provides a CloudWatch Logs subscription filter resource.
 Provides a CloudWatch Metric Alarm resource.
 
 `,
+			Icon: "Management_Governance/Amazon-CloudWatch_Alarm_light-bg.svg",
 			Keywords: []string{
 				"cloudwatch",
 				"metric",
@@ -6552,6 +6617,7 @@ Provides a CloudWatch Metric Alarm resource.
 Provides a CodeBuild Project resource. See also the [` + "`" + `aws_codebuild_webhook` + "`" + ` resource](/docs/providers/aws/r/codebuild_webhook.html), which manages the webhook to the source (e.g. the "rebuild every time a code change is pushed" option in the CodeBuild web console).
 
 `,
+			Icon: "Developer_Tools/AWS-CodeBuild.svg",
 			Keywords: []string{
 				"codebuild",
 				"project",
@@ -6947,6 +7013,7 @@ Provides a CodeBuild Source Credentials Resource.
 Manages a CodeBuild webhook, which is an endpoint accepted by the CodeBuild service to trigger builds from source code repositories. Depending on the source type of the CodeBuild project, the CodeBuild service may also automatically create and delete the actual repository webhook as well.
 
 `,
+			Icon: "Developer_Tools/AWS-CodeBuild.svg",
 			Keywords: []string{
 				"codebuild",
 				"webhook",
@@ -7030,6 +7097,7 @@ in all regions - available regions are listed
 [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#codecommit_region).
 
 `,
+			Icon: "Developer_Tools/AWS-CodeCommit.svg",
 			Keywords: []string{
 				"codecommit",
 				"repository",
@@ -7101,6 +7169,7 @@ in all regions - available regions are listed
 [the AWS Docs](https://docs.aws.amazon.com/general/latest/gr/rande.html#codecommit_region).
 
 `,
+			Icon: "Developer_Tools/AWS-CodeCommit.svg",
 			Keywords: []string{
 				"codecommit",
 				"trigger",
@@ -7143,6 +7212,7 @@ in all regions - available regions are listed
 Provides a CodeDeploy application to be used as a basis for deployments
 
 `,
+			Icon: "Developer_Tools/AWS-CodeDeploy.svg",
 			Keywords: []string{
 				"codedeploy",
 				"app",
@@ -7186,6 +7256,7 @@ Provides a CodeDeploy application to be used as a basis for deployments
 Provides a CodeDeploy deployment config for an application
 
 `,
+			Icon: "Developer_Tools/AWS-CodeDeploy.svg",
 			Keywords: []string{
 				"codedeploy",
 				"deployment",
@@ -7276,6 +7347,7 @@ Provides a CodeDeploy Deployment Group for a CodeDeploy Application
 ~> **NOTE on blue/green deployments:** When using ` + "`" + `green_fleet_provisioning_option` + "`" + ` with the ` + "`" + `COPY_AUTO_SCALING_GROUP` + "`" + ` action, CodeDeploy will create a new ASG with a different name. This ASG is _not_ managed by terraform and will conflict with existing configuration and state. You may want to use a different approach to managing deployments that involve multiple ASG, such as ` + "`" + `DISCOVER_EXISTING` + "`" + ` with separate blue and green ASG.
 
 `,
+			Icon: "Developer_Tools/AWS-CodeDeploy.svg",
 			Keywords: []string{
 				"codedeploy",
 				"deployment",
@@ -7514,6 +7586,7 @@ Provides a CodePipeline.
 ~> **NOTE on ` + "`" + `aws_codepipeline` + "`" + `:** - the ` + "`" + `GITHUB_TOKEN` + "`" + ` environment variable must be set if the GitHub provider is specified.
 
 `,
+			Icon: "Developer_Tools/AWS-CodePipeline.svg",
 			Keywords: []string{
 				"codepipeline",
 			},
@@ -7703,6 +7776,7 @@ Provides a CodePipeline Webhook.
 Provides an AWS Cognito Identity Pool.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Cognito.svg",
 			Keywords: []string{
 				"cognito",
 				"identity",
@@ -7743,6 +7817,7 @@ Provides an AWS Cognito Identity Pool.
 Provides an AWS Cognito Identity Pool Roles Attachment.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Cognito.svg",
 			Keywords: []string{
 				"cognito",
 				"identity",
@@ -7773,6 +7848,7 @@ Provides an AWS Cognito Identity Pool Roles Attachment.
 Provides a Cognito User Identity Provider resource.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Cognito.svg",
 			Keywords: []string{
 				"cognito",
 				"identity",
@@ -7791,6 +7867,7 @@ Provides a Cognito User Identity Provider resource.
 Provides a Cognito Resource Server.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Cognito.svg",
 			Keywords: []string{
 				"cognito",
 				"resource",
@@ -7839,6 +7916,7 @@ Provides a Cognito Resource Server.
 Provides a Cognito User Group resource.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Cognito.svg",
 			Keywords: []string{
 				"cognito",
 				"user",
@@ -7878,6 +7956,7 @@ Provides a Cognito User Group resource.
 Provides a Cognito User Pool resource.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Cognito.svg",
 			Keywords: []string{
 				"cognito",
 				"user",
@@ -7982,6 +8061,7 @@ Provides a Cognito User Pool resource.
 Provides a Cognito User Pool Client resource.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Cognito.svg",
 			Keywords: []string{
 				"cognito",
 				"user",
@@ -8075,6 +8155,7 @@ Provides a Cognito User Pool Client resource.
 Provides a Cognito User Pool Domain resource.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Cognito.svg",
 			Keywords: []string{
 				"cognito",
 				"user",
@@ -8140,6 +8221,7 @@ Provides a Cognito User Pool Domain resource.
 Manages an AWS Config Aggregate Authorization
 
 `,
+			Icon: "Management_Governance/AWS-Config.svg",
 			Keywords: []string{
 				"config",
 				"aggregate",
@@ -8182,6 +8264,7 @@ Provides an AWS Config Rule.
 ~> **Note:** Config Rule requires an existing [Configuration Recorder](/docs/providers/aws/r/config_configuration_recorder.html) to be present. Use of ` + "`" + `depends_on` + "`" + ` is recommended (as shown below) to avoid race conditions.
 
 `,
+			Icon: "Management_Governance/AWS-Config.svg",
 			Keywords: []string{
 				"config",
 				"rule",
@@ -8301,6 +8384,7 @@ Provides an AWS Config Rule.
 Manages an AWS Config Configuration Aggregator
 
 `,
+			Icon: "Management_Governance/AWS-Config.svg",
 			Keywords: []string{
 				"config",
 				"configuration",
@@ -8371,6 +8455,7 @@ Provides an AWS Config Configuration Recorder. Please note that this resource **
 ~> **Note:** _Starting_ the Configuration Recorder requires a [delivery channel](/docs/providers/aws/r/config_delivery_channel.html) (while delivery channel creation requires Configuration Recorder). This is why [` + "`" + `aws_config_configuration_recorder_status` + "`" + `](/docs/providers/aws/r/config_configuration_recorder_status.html) is a separate resource.
 
 `,
+			Icon: "Management_Governance/AWS-Config.svg",
 			Keywords: []string{
 				"config",
 				"configuration",
@@ -8425,6 +8510,7 @@ Manages status (recording / stopped) of an AWS Config Configuration Recorder.
 ~> **Note:** Starting Configuration Recorder requires a [Delivery Channel](/docs/providers/aws/r/config_delivery_channel.html) to be present. Use of ` + "`" + `depends_on` + "`" + ` (as shown below) is recommended to avoid race conditions.
 
 `,
+			Icon: "Management_Governance/AWS-Config.svg",
 			Keywords: []string{
 				"config",
 				"configuration",
@@ -8455,6 +8541,7 @@ Provides an AWS Config Delivery Channel.
 ~> **Note:** Delivery Channel requires a [Configuration Recorder](/docs/providers/aws/r/config_configuration_recorder.html) to be present. Use of ` + "`" + `depends_on` + "`" + ` (as shown below) is recommended to avoid race conditions.
 
 `,
+			Icon: "Management_Governance/AWS-Config.svg",
 			Keywords: []string{
 				"config",
 				"delivery",
@@ -8767,6 +8854,7 @@ Manages Cost and Usage Report Definitions.
 Provides a customer gateway inside a VPC. These objects can be connected to VPN gateways via VPN connections, and allow you to establish tunnels between your network and the VPC.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Customer-Gateway_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"customer",
@@ -9222,6 +9310,7 @@ Manages an AWS DataSync Task, which represents a configuration for synchronizati
 Provides a DAX Cluster resource.
 
 `,
+			Icon: "Database/Amazon-DynamoDB.svg",
 			Keywords: []string{
 				"dynamodb",
 				"accelerator",
@@ -9595,6 +9684,7 @@ the raw state as plain-text. [Read more about sensitive data in
 state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Database/Amazon-RDS.svg",
 			Keywords: []string{
 				"rds",
 				"db",
@@ -10541,6 +10631,7 @@ For more information about Network ACLs, see the AWS Documentation on
 [Network ACLs][aws-network-acls].
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Network-Access-Control-List_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"default",
@@ -10688,6 +10779,7 @@ a conflict of rule settings and will overwrite routes.
 
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"default",
@@ -10899,6 +10991,7 @@ Terraform does not _create_ this resource, but instead "adopts" it
 into management.
 
 `,
+			Icon: "_Group_Icons/VPC-subnet-public_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"default",
@@ -10984,6 +11077,7 @@ Terraform does not _create_ this resource, but instead "adopts" it
 into management.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC.svg",
 			Keywords: []string{
 				"vpc",
 				"default",
@@ -11202,6 +11296,7 @@ For more information about Device Farm Projects, see the AWS Documentation on
 [Device Farm Projects][aws-get-project].
 
 `,
+			Icon: "Mobile/AWS-Device-Farm.svg",
 			Keywords: []string{
 				"device",
 				"farm",
@@ -11235,6 +11330,7 @@ For more information about Device Farm Projects, see the AWS Documentation on
 Provides a conditional forwarder for managed Microsoft AD in AWS Directory Service.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Directory-Service.svg",
 			Keywords: []string{
 				"directory",
 				"service",
@@ -11270,6 +11366,7 @@ Provides a Simple or Managed Microsoft directory in AWS Directory Service.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Directory-Service.svg",
 			Keywords: []string{
 				"directory",
 				"service",
@@ -11501,6 +11598,7 @@ Provides a DMS (Data Migration Service) certificate resource. DMS certificates c
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Database/AWS-Database-Migration-Service.svg",
 			Keywords: []string{
 				"database",
 				"migration",
@@ -11546,6 +11644,7 @@ Provides a DMS (Data Migration Service) endpoint resource. DMS endpoints can be 
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Database/AWS-Database-Migration-Service.svg",
 			Keywords: []string{
 				"database",
 				"migration",
@@ -11640,6 +11739,7 @@ Provides a DMS (Data Migration Service) endpoint resource. DMS endpoints can be 
 Provides a DMS (Data Migration Service) replication instance resource. DMS replication instances can be created, updated, deleted, and imported.
 
 `,
+			Icon: "Database/AWS-Database-Migration-Service.svg",
 			Keywords: []string{
 				"database",
 				"migration",
@@ -11743,6 +11843,7 @@ Provides a DMS (Data Migration Service) replication instance resource. DMS repli
 Provides a DMS (Data Migration Service) replication subnet group resource. DMS replication subnet groups can be created, updated, deleted, and imported.
 
 `,
+			Icon: "Database/AWS-Database-Migration-Service.svg",
 			Keywords: []string{
 				"database",
 				"migration",
@@ -11791,6 +11892,7 @@ Provides a DMS (Data Migration Service) replication subnet group resource. DMS r
 Provides a DMS (Data Migration Service) replication task resource. DMS replication tasks can be created, updated, deleted, and imported.
 
 `,
+			Icon: "Database/AWS-Database-Migration-Service.svg",
 			Keywords: []string{
 				"database",
 				"migration",
@@ -12499,6 +12601,7 @@ Provides a Direct Connect BGP peer resource.
 Provides a Connection of Direct Connect.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -12576,6 +12679,7 @@ Provides a Connection of Direct Connect.
 Associates a Direct Connect Connection with a LAG.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -12605,6 +12709,7 @@ Associates a Direct Connect Connection with a LAG.
 Provides a Direct Connect Gateway.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -12654,6 +12759,7 @@ in the AWS account that owns the VGW or transit gateway and then accept the prop
 by creating an ` + "`" + `aws_dx_gateway_association` + "`" + ` resource with the ` + "`" + `proposal_id` + "`" + ` and ` + "`" + `associated_gateway_owner_account_id` + "`" + ` attributes set.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -12800,6 +12906,7 @@ Provides a Direct Connect hosted private virtual interface resource. This resour
 A hosted virtual interface is a virtual interface that is owned by another AWS account.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -12897,6 +13004,7 @@ Provides a resource to manage the accepter's side of a Direct Connect hosted pri
 This resource accepts ownership of a private virtual interface created by another AWS account.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -12955,6 +13063,7 @@ Provides a Direct Connect hosted public virtual interface resource. This resourc
 A hosted virtual interface is a virtual interface that is owned by another AWS account.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -13044,6 +13153,7 @@ Provides a resource to manage the accepter's side of a Direct Connect hosted pub
 This resource accepts ownership of a public virtual interface created by another AWS account.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -13095,6 +13205,7 @@ Provides a Direct Connect LAG. Connections can be added to the LAG via the [` + 
 ~> *NOTE:* When creating a LAG, Direct Connect requires creating a Connection. Terraform will remove this unmanaged connection during resource creation.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -13160,6 +13271,7 @@ Provides a Direct Connect LAG. Connections can be added to the LAG via the [` + 
 Provides a Direct Connect private virtual interface resource.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -13263,6 +13375,7 @@ Provides a Direct Connect private virtual interface resource.
 Provides a Direct Connect public virtual interface resource.
 
 `,
+			Icon: "Networking_Content_Delivery/AWS-Direct-Connect.svg",
 			Keywords: []string{
 				"direct",
 				"connect",
@@ -13452,6 +13565,7 @@ Provides a resource to manage a DynamoDB Global Table. These are layered on top 
 ~> Note: There are many restrictions before you can properly create DynamoDB Global Tables in multiple regions. See the [AWS DynamoDB Global Table Requirements](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables_reqs_bestpractices.html) for more information.
 
 `,
+			Icon: "Database/Amazon-DynamoDB_Table_light-bg.svg",
 			Keywords: []string{
 				"dynamodb",
 				"global",
@@ -13502,6 +13616,7 @@ Provides a DynamoDB table resource
 ~> **Note:** It is recommended to use ` + "`" + `lifecycle` + "`" + ` [` + "`" + `ignore_changes` + "`" + `](/docs/configuration/resources.html#ignore_changes) for ` + "`" + `read_capacity` + "`" + ` and/or ` + "`" + `write_capacity` + "`" + ` if there's [autoscaling policy](/docs/providers/aws/r/appautoscaling_policy.html) attached to the table.
 
 `,
+			Icon: "Database/Amazon-DynamoDB_Table_light-bg.svg",
 			Keywords: []string{
 				"dynamodb",
 				"table",
@@ -13696,6 +13811,7 @@ Provides a DynamoDB table item resource
   You should perform **regular backups** of all data in the table, see [AWS docs for more](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html).
 
 `,
+			Icon: "Database/Amazon-DynamoDB_Item_light-bg.svg",
 			Keywords: []string{
 				"dynamodb",
 				"table",
@@ -13790,6 +13906,7 @@ Provides a resource to manage whether default EBS encryption is enabled for your
 Creates a Snapshot of an EBS Volume.
 
 `,
+			Icon: "Compute/Amazon-Elastic-Block-Store-EBS_Snapshot_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"ebs",
@@ -13987,6 +14104,7 @@ Creates a Snapshot of a snapshot.
 Manages a single EBS volume.
 
 `,
+			Icon: "Compute/Amazon-Elastic-Block-Store-EBS_Volume_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"ebs",
@@ -14935,6 +15053,7 @@ Manages an ECR repository lifecycle policy.
 ~> **NOTE:** The AWS ECR API seems to reorder rules based on ` + "`" + `rulePriority` + "`" + `. If you define multiple rules that are not sorted in ascending ` + "`" + `rulePriority` + "`" + ` order in the Terraform code, the resource will be flagged for recreation every ` + "`" + `terraform plan` + "`" + `.
 
 `,
+			Icon: "Compute/Amazon-EC2-Container-Registry.svg",
 			Keywords: []string{
 				"ecr",
 				"lifecycle",
@@ -14979,6 +15098,7 @@ Manages an ECR repository lifecycle policy.
 Provides an Elastic Container Registry Repository.
 
 `,
+			Icon: "Compute/Amazon-EC2-Container-Registry.svg",
 			Keywords: []string{
 				"ecr",
 				"repository",
@@ -15044,6 +15164,7 @@ Provides an Elastic Container Registry Repository Policy.
 Note that currently only one policy may be applied to a repository.
 
 `,
+			Icon: "Compute/Amazon-EC2-Container-Registry.svg",
 			Keywords: []string{
 				"ecr",
 				"repository",
@@ -15088,6 +15209,7 @@ Note that currently only one policy may be applied to a repository.
 Provides an ECS cluster.
 
 `,
+			Icon: "Compute/Amazon-Elastic-Container-Service.svg",
 			Keywords: []string{
 				"ecs",
 				"cluster",
@@ -15147,6 +15269,7 @@ Provides an ECS service - effectively a task that is expected to run until an er
 See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_services.html).
 
 `,
+			Icon: "Compute/Amazon-Elastic-Container-Service_Service_light-bg.svg",
 			Keywords: []string{
 				"ecs",
 				"service",
@@ -15350,6 +15473,7 @@ See [ECS Services section in AWS developer guide](https://docs.aws.amazon.com/Am
 Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_service` + "`" + `.
 
 `,
+			Icon: "Compute/Amazon-Elastic-Container-Service_Task_light-bg.svg",
 			Keywords: []string{
 				"ecs",
 				"task",
@@ -15502,6 +15626,7 @@ Manages a revision of an ECS task definition to be used in ` + "`" + `aws_ecs_se
 Provides an Elastic File System (EFS) resource.
 
 `,
+			Icon: "Storage/Amazon-Elastic-File-System_EFS.svg",
 			Keywords: []string{
 				"efs",
 				"file",
@@ -15582,6 +15707,7 @@ Provides an Elastic File System (EFS) resource.
 Provides an Elastic File System (EFS) mount target.
 
 `,
+			Icon: "Storage/Amazon-Elastic-File-System_EFS.svg",
 			Keywords: []string{
 				"efs",
 				"mount",
@@ -15691,6 +15817,7 @@ Provides an Elastic IP resource.
 ~> **Note:** Do not use ` + "`" + `network_interface` + "`" + ` to associate the EIP to ` + "`" + `aws_lb` + "`" + ` or ` + "`" + `aws_nat_gateway` + "`" + ` resources. Instead use the ` + "`" + `allocation_id` + "`" + ` available in those resources to allow AWS to manage the association, otherwise you will see ` + "`" + `AuthFailure` + "`" + ` errors.
 
 `,
+			Icon: "Compute/Amazon-EC2_Elastic-IP-Address_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"eip",
@@ -15812,6 +15939,7 @@ disassociate Elastic IPs from AWS Instances and Network Interfaces.
 pre-existing or distributed to customers or users and therefore cannot be changed.
 
 `,
+			Icon: "Compute/Amazon-EC2_Elastic-IP-Address_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"eip",
@@ -15904,6 +16032,7 @@ pre-existing or distributed to customers or users and therefore cannot be change
 Manages an EKS Cluster.
 
 `,
+			Icon: "Compute/Amazon-Elastic-Container-Service-for-Kubernetes.svg",
 			Keywords: []string{
 				"eks",
 				"cluster",
@@ -16076,6 +16205,7 @@ This resource creates an application that has one configuration template named
 ` + "`" + `default` + "`" + `, and no application versions
 
 `,
+			Icon: "Compute/AWS-Elastic-Beanstalk.svg",
 			Keywords: []string{
 				"elastic",
 				"beanstalk",
@@ -16147,6 +16277,7 @@ Elastic Beanstalk Application. For example &lt;revision&gt;-&lt;environment&gt;.
 </ol>
 
 `,
+			Icon: "Compute/AWS-Elastic-Beanstalk.svg",
 			Keywords: []string{
 				"elastic",
 				"beanstalk",
@@ -16206,6 +16337,7 @@ a specific application and are used to deploy different versions of the
 application with the same configuration settings.
 
 `,
+			Icon: "Compute/AWS-Elastic-Beanstalk.svg",
 			Keywords: []string{
 				"elastic",
 				"beanstalk",
@@ -16255,6 +16387,7 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 ` + "`" + `production` + "`" + `.
 
 `,
+			Icon: "Compute/AWS-Elastic-Beanstalk.svg",
 			Keywords: []string{
 				"elastic",
 				"beanstalk",
@@ -16403,6 +16536,7 @@ Environments are often things such as ` + "`" + `development` + "`" + `, ` + "`"
 Provides an Elastic Transcoder pipeline resource.
 
 `,
+			Icon: "Media_Services/Amazon-Elastic-Transcoder.svg",
 			Keywords: []string{
 				"elastic",
 				"transcoder",
@@ -16519,6 +16653,7 @@ Provides an Elastic Transcoder pipeline resource.
 Provides an Elastic Transcoder preset resource.
 
 `,
+			Icon: "Media_Services/Amazon-Elastic-Transcoder.svg",
 			Keywords: []string{
 				"elastic",
 				"transcoder",
@@ -16776,6 +16911,7 @@ change immediately. Using ` + "`" + `apply_immediately` + "`" + ` can result in 
 See the AWS Docs on [Modifying an ElastiCache Cache Cluster][2] for more information.
 
 `,
+			Icon: "Database/Amazon-ElastiCache.svg",
 			Keywords: []string{
 				"elasticache",
 				"cluster",
@@ -16857,6 +16993,7 @@ Provides an ElastiCache parameter group resource.
 ~> **NOTE:** Attempting to remove the ` + "`" + `reserved-memory` + "`" + ` parameter when ` + "`" + `family` + "`" + ` is set to ` + "`" + `redis2.6` + "`" + ` or ` + "`" + `redis2.8` + "`" + ` may show a perpetual difference in Terraform due to an Elasticache API limitation. Leave that parameter configured with any value to workaround the issue.
 
 `,
+			Icon: "Database/Amazon-ElastiCache.svg",
 			Keywords: []string{
 				"elasticache",
 				"parameter",
@@ -16919,6 +17056,7 @@ immediately. Using ` + "`" + `apply_immediately` + "`" + ` can result in a brief
 servers reboots.
 
 `,
+			Icon: "Database/Amazon-ElastiCache.svg",
 			Keywords: []string{
 				"elasticache",
 				"replication",
@@ -17088,6 +17226,7 @@ ElastiCache cluster **outside** of a VPC. If you are using a VPC, see the
 [ElastiCache Subnet Group resource](elasticache_subnet_group.html).
 
 `,
+			Icon: "Database/Amazon-ElastiCache.svg",
 			Keywords: []string{
 				"elasticache",
 				"security",
@@ -17110,6 +17249,7 @@ ElastiCache cluster **inside** of a VPC. If you are on EC2 Classic, see the
 [ElastiCache Security Group resource](elasticache_security_group.html).
 
 `,
+			Icon: "Database/Amazon-ElastiCache.svg",
 			Keywords: []string{
 				"elasticache",
 				"subnet",
@@ -17128,6 +17268,7 @@ ElastiCache cluster **inside** of a VPC. If you are on EC2 Classic, see the
 Manages an AWS Elasticsearch Domain.
 
 `,
+			Icon: "Analytics/Amazon-Elasticsearch-Service.svg",
 			Keywords: []string{
 				"elasticsearch",
 				"domain",
@@ -17351,6 +17492,7 @@ Manages an AWS Elasticsearch Domain.
 Allows setting policy to an Elasticsearch domain while referencing domain attributes (e.g. ARN)
 
 `,
+			Icon: "Analytics/Amazon-Elasticsearch-Service.svg",
 			Keywords: []string{
 				"elasticsearch",
 				"domain",
@@ -17387,6 +17529,7 @@ instances in conjunction with a ELB Attachment resources. Doing so will cause a
 conflict and will overwrite attachments.
 
 `,
+			Icon: "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -17596,6 +17739,7 @@ instances in conjunction with an ELB Attachment resource. Doing so will cause a
 conflict and will overwrite attachments.
 
 `,
+			Icon: "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -17632,6 +17776,7 @@ To configure [Instance Groups](https://docs.aws.amazon.com/emr/latest/Management
 -> Support for [Instance Fleets](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-instance-group-configuration.html#emr-plan-instance-fleets) will be made available in an upcoming release.
 
 `,
+			Icon: "Analytics/Amazon-EMR.svg",
 			Keywords: []string{
 				"elastic",
 				"map",
@@ -18059,6 +18204,7 @@ web interface. Instance Groups are destroyed when the EMR Cluster is destroyed.
 Terraform will resize any Instance Group to zero when destroying the resource.
 
 `,
+			Icon: "Analytics/Amazon-EMR.svg",
 			Keywords: []string{
 				"elastic",
 				"map",
@@ -18114,6 +18260,7 @@ Terraform will resize any Instance Group to zero when destroying the resource.
 Provides a resource to manage AWS EMR Security Configurations
 
 `,
+			Icon: "Analytics/Amazon-EMR.svg",
 			Keywords: []string{
 				"elastic",
 				"map",
@@ -18182,6 +18329,7 @@ Provides a VPC/Subnet/ENI Flow Log to capture IP traffic for a specific network
 interface, subnet, or VPC. Logs are sent to a CloudWatch Log Group or a S3 Bucket.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Flow-Logs_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"flow",
@@ -18556,6 +18704,7 @@ Manages a FSx Windows File System. See the [FSx Windows Guide](https://docs.aws.
 Provides a Gamelift Alias resource.
 
 `,
+			Icon: "Game_Tech/Amazon-GameLift.svg",
 			Keywords: []string{
 				"gamelift",
 				"alias",
@@ -18615,6 +18764,7 @@ Provides a Gamelift Alias resource.
 Provides an Gamelift Build resource.
 
 `,
+			Icon: "Game_Tech/Amazon-GameLift.svg",
 			Keywords: []string{
 				"gamelift",
 				"build",
@@ -18670,6 +18820,7 @@ Provides an Gamelift Build resource.
 Provides a Gamelift Fleet resource.
 
 `,
+			Icon: "Game_Tech/Amazon-GameLift.svg",
 			Keywords: []string{
 				"gamelift",
 				"fleet",
@@ -18852,6 +19003,7 @@ Provides a Glacier Vault Resource. You can refer to the [Glacier Developer Guide
 ~> **NOTE:** When removing a Glacier Vault, the Vault must be empty.
 
 `,
+			Icon: "Storage/Amazon-S3-Glacier.svg",
 			Keywords: []string{
 				"glacier",
 				"vault",
@@ -19162,6 +19314,7 @@ Provides a Global Accelerator listener.
 Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality
 
 `,
+			Icon: "Analytics/AWS-Glue_Data-Catalog_light-bg.svg",
 			Keywords: []string{
 				"glue",
 				"catalog",
@@ -19201,6 +19354,7 @@ Provides a Glue Catalog Database Resource. You can refer to the [Glue Developer 
 Provides a Glue Catalog Table Resource. You can refer to the [Glue Developer Guide](http://docs.aws.amazon.com/glue/latest/dg/populate-data-catalog.html) for a full explanation of the Glue Data Catalog functionality.
 
 `,
+			Icon: "Analytics/AWS-Glue_Data-Catalog_light-bg.svg",
 			Keywords: []string{
 				"glue",
 				"catalog",
@@ -19362,6 +19516,7 @@ Provides a Glue Classifier resource.
 ~> **NOTE:** It is only valid to create one type of classifier (grok, JSON, or XML). Changing classifier types will recreate the classifier.
 
 `,
+			Icon: "Analytics/AWS-Glue.svg",
 			Keywords: []string{
 				"glue",
 				"classifier",
@@ -19413,6 +19568,7 @@ Provides a Glue Classifier resource.
 Provides a Glue Connection resource.
 
 `,
+			Icon: "Analytics/AWS-Glue.svg",
 			Keywords: []string{
 				"glue",
 				"connection",
@@ -19456,6 +19612,7 @@ Provides a Glue Connection resource.
 Manages a Glue Crawler. More information can be found in the [AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html)
 
 `,
+			Icon: "Analytics/AWS-Glue_Crawlers_light-bg.svg",
 			Keywords: []string{
 				"glue",
 				"crawler",
@@ -19531,6 +19688,7 @@ Manages a Glue Crawler. More information can be found in the [AWS Glue Developer
 Provides a Glue Job resource.
 
 `,
+			Icon: "Analytics/AWS-Glue.svg",
 			Keywords: []string{
 				"glue",
 				"job",
@@ -19638,6 +19796,7 @@ Manages a Glue Security Configuration.
 Manages a Glue Trigger resource.
 
 `,
+			Icon: "Analytics/AWS-Glue.svg",
 			Keywords: []string{
 				"glue",
 				"trigger",
@@ -19699,6 +19858,7 @@ Provides a resource to manage a GuardDuty detector.
 ~> **NOTE:** Deleting this resource is equivalent to "disabling" GuardDuty for an AWS region, which removes all existing findings. You can set the ` + "`" + `enable` + "`" + ` attribute to ` + "`" + `false` + "`" + ` to instead "suspend" monitoring and feedback reporting while keeping existing data. See the [Suspending or Disabling Amazon GuardDuty documentation](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_suspend-disable.html) for more information.
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-GuardDuty.svg",
 			Keywords: []string{
 				"guardduty",
 				"detector",
@@ -19780,6 +19940,7 @@ Provides a resource to manage a GuardDuty IPSet.
 ~> **Note:** Currently in GuardDuty, users from member accounts cannot upload and further manage IPSets. IPSets that are uploaded by the master account are imposed on GuardDuty functionality in its member accounts. See the [GuardDuty API Documentation](https://docs.aws.amazon.com/guardduty/latest/ug/create-ip-set.html)
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-GuardDuty.svg",
 			Keywords: []string{
 				"guardduty",
 				"ipset",
@@ -19827,6 +19988,7 @@ Provides a resource to manage a GuardDuty IPSet.
 Provides a resource to manage a GuardDuty member. To accept invitations in member accounts, see the [` + "`" + `aws_guardduty_invite_accepter` + "`" + ` resource](/docs/providers/aws/r/guardduty_invite_accepter.html).
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-GuardDuty.svg",
 			Keywords: []string{
 				"guardduty",
 				"member",
@@ -19888,6 +20050,7 @@ Provides a resource to manage a GuardDuty ThreatIntelSet.
 ~> **Note:** Currently in GuardDuty, users from member accounts cannot upload and further manage ThreatIntelSets. ThreatIntelSets that are uploaded by the master account are imposed on GuardDuty functionality in its member accounts. See the [GuardDuty API Documentation](https://docs.aws.amazon.com/guardduty/latest/ug/create-threat-intel-set.html)
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-GuardDuty.svg",
 			Keywords: []string{
 				"guardduty",
 				"threatintelset",
@@ -19935,6 +20098,7 @@ Provides a resource to manage a GuardDuty ThreatIntelSet.
 Provides an IAM access key. This is a set of credentials that allow API requests to be made as an IAM user.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"access",
@@ -20017,6 +20181,7 @@ Provides an IAM access key. This is a set of credentials that allow API requests
 Manages the account alias for the AWS Account.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"account",
@@ -20044,6 +20209,7 @@ See more about [Account Password Policy](http://docs.aws.amazon.com/IAM/latest/U
 in the official AWS docs.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"account",
@@ -20109,6 +20275,7 @@ in the official AWS docs.
 Provides an IAM group.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"group",
@@ -20183,6 +20350,7 @@ more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
 [` + "`" + `aws_iam_user_group_membership` + "`" + ` resource][3].
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"group",
@@ -20227,6 +20395,7 @@ more information on managing IAM Groups or IAM Users, see [IAM Groups][1] or
 Provides an IAM policy attached to a group.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"group",
@@ -20297,6 +20466,7 @@ Attaches a Managed IAM Policy to an IAM group
 ~> **NOTE:** The usage of this resource conflicts with the ` + "`" + `aws_iam_policy_attachment` + "`" + ` resource and will permanently show a difference if both are defined.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"group",
@@ -20318,6 +20488,7 @@ Provides an IAM instance profile.
 ~> **NOTE:** Either ` + "`" + `role` + "`" + ` or ` + "`" + `roles` + "`" + ` (**deprecated**) must be specified.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"instance",
@@ -20422,6 +20593,7 @@ Provides an IAM instance profile.
 Provides an IAM OpenID Connect provider.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"openid",
@@ -20463,6 +20635,7 @@ Provides an IAM OpenID Connect provider.
 Provides an IAM policy.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg.svg",
 			Keywords: []string{
 				"iam",
 				"policy",
@@ -20554,6 +20727,7 @@ Attaches a Managed IAM Policy to user(s), role(s), and/or group(s)
 ~> **NOTE:** The usage of this resource conflicts with the ` + "`" + `aws_iam_group_policy_attachment` + "`" + `, ` + "`" + `aws_iam_role_policy_attachment` + "`" + `, and ` + "`" + `aws_iam_user_policy_attachment` + "`" + ` resources and will permanently show a difference if both are defined.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg.svg",
 			Keywords: []string{
 				"iam",
 				"policy",
@@ -20592,6 +20766,7 @@ Provides an IAM role.
 ~> *NOTE:* If policies are attached to the role via the [` + "`" + `aws_iam_policy_attachment` + "`" + ` resource](/docs/providers/aws/r/iam_policy_attachment.html) and you are modifying the role ` + "`" + `name` + "`" + ` or ` + "`" + `path` + "`" + `, the ` + "`" + `force_detach_policies` + "`" + ` argument must be set to ` + "`" + `true` + "`" + ` and applied before attempting the operation otherwise you will encounter a ` + "`" + `DeleteConflict` + "`" + ` error. The [` + "`" + `aws_iam_role_policy_attachment` + "`" + ` resource (recommended)](/docs/providers/aws/r/iam_role_policy_attachment.html) does not have this requirement.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Role_light-bg.svg",
 			Keywords: []string{
 				"iam",
 				"role",
@@ -20695,6 +20870,7 @@ Provides an IAM role.
 Provides an IAM role policy.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Role_light-bg.svg",
 			Keywords: []string{
 				"iam",
 				"role",
@@ -20765,6 +20941,7 @@ Attaches a Managed IAM Policy to an IAM role
 ~> **NOTE:** The usage of this resource conflicts with the ` + "`" + `aws_iam_policy_attachment` + "`" + ` resource and will permanently show a difference if both are defined.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Role_light-bg.svg",
 			Keywords: []string{
 				"iam",
 				"role",
@@ -20784,6 +20961,7 @@ Attaches a Managed IAM Policy to an IAM role
 Provides an IAM SAML provider.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"saml",
@@ -20840,6 +21018,7 @@ Certificates][2] in AWS Documentation.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"server",
@@ -20896,6 +21075,7 @@ Certificates][2] in AWS Documentation.
 Provides an [IAM service-linked role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html).
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"service",
@@ -20979,6 +21159,7 @@ Provides an IAM user.
 ~> *NOTE:* If policies are attached to the user via the [` + "`" + `aws_iam_policy_attachment` + "`" + ` resource](/docs/providers/aws/r/iam_policy_attachment.html) and you are modifying the user ` + "`" + `name` + "`" + ` or ` + "`" + `path` + "`" + `, the ` + "`" + `force_destroy` + "`" + ` argument must be set to ` + "`" + `true` + "`" + ` and applied before attempting the operation otherwise you will encounter a ` + "`" + `DeleteConflict` + "`" + ` error. The [` + "`" + `aws_iam_user_policy_attachment` + "`" + ` resource (recommended)](/docs/providers/aws/r/iam_user_policy_attachment.html) does not have this requirement.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"user",
@@ -21047,6 +21228,7 @@ To exclusively manage the users in a group, see the
 [` + "`" + `aws_iam_group_membership` + "`" + ` resource][3].
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"user",
@@ -21094,6 +21276,7 @@ Manages an IAM User Login Profile with limited support for password creation dur
 -> To reset an IAM User login password via Terraform, you can use the [` + "`" + `terraform taint` + "`" + ` command](https://www.terraform.io/docs/commands/taint.html) or change any of the arguments.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"user",
@@ -21147,6 +21330,7 @@ Manages an IAM User Login Profile with limited support for password creation dur
 Provides an IAM policy attached to a user.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Permissions_light-bg.svg",
 			Keywords: []string{
 				"iam",
 				"user",
@@ -21201,6 +21385,7 @@ Attaches a Managed IAM Policy to an IAM user
 ~> **NOTE:** The usage of this resource conflicts with the ` + "`" + `aws_iam_policy_attachment` + "`" + ` resource and will permanently show a difference if both are defined.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management_IAM.svg",
 			Keywords: []string{
 				"iam",
 				"user",
@@ -21220,6 +21405,7 @@ Attaches a Managed IAM Policy to an IAM user
 Uploads an SSH public key and associates it with the specified IAM user.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Data-Encryption-Key_light-bg.svg",
 			Keywords: []string{
 				"iam",
 				"user",
@@ -21273,6 +21459,7 @@ Uploads an SSH public key and associates it with the specified IAM user.
 Provides a Inspector assessment target
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Inspector.svg",
 			Keywords: []string{
 				"inspector",
 				"assessment",
@@ -21305,6 +21492,7 @@ Provides a Inspector assessment target
 Provides a Inspector assessment template
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Inspector.svg",
 			Keywords: []string{
 				"inspector",
 				"assessment",
@@ -21349,6 +21537,7 @@ Provides a Inspector assessment template
 Provides a Inspector resource group
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Inspector.svg",
 			Keywords: []string{
 				"inspector",
 				"resource",
@@ -21382,6 +21571,7 @@ Provides an EC2 instance resource. This allows instances to be created, updated,
 and deleted. Instances also support [provisioning](/docs/provisioners/index.html).
 
 `,
+			Icon: "Compute/Amazon-EC2.svg",
 			Keywords: []string{
 				"ec2",
 				"instance",
@@ -21757,6 +21947,7 @@ and deleted. Instances also support [provisioning](/docs/provisioners/index.html
 Provides a resource to create a VPC Internet Gateway.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Internet-Gateway_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"internet",
@@ -21801,6 +21992,7 @@ Provides a resource to create a VPC Internet Gateway.
 Creates and manages an AWS IoT certificate.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Internet-Gateway_light-bg.svg",
 			Keywords: []string{
 				"iot",
 				"certificate",
@@ -21868,6 +22060,7 @@ Creates and manages an AWS IoT certificate.
 Provides an IoT policy.
 
 `,
+			Icon: "Internet_of_Things/Internet-of-Things.svg",
 			Keywords: []string{
 				"iot",
 				"policy",
@@ -21994,6 +22187,7 @@ Provides an IoT role alias.
 Creates and manages an AWS IoT Thing.
 
 `,
+			Icon: "Internet_of_Things/Internet-of-Things.svg",
 			Keywords: []string{
 				"iot",
 				"thing",
@@ -22077,6 +22271,7 @@ Attaches Principal to AWS IoT Thing.
 Creates and manages an AWS IoT Thing Type.
 
 `,
+			Icon: "Internet_of_Things/Internet-of-Things.svg",
 			Keywords: []string{
 				"iot",
 				"thing",
@@ -22119,6 +22314,7 @@ Creates and manages an AWS IoT Thing Type.
 			Description: `
 
 `,
+			Icon: "Internet_of_Things/Internet-of-Things.svg",
 			Keywords: []string{
 				"iot",
 				"topic",
@@ -22351,6 +22547,7 @@ When importing an existing key pair the public key material may be in any format
 * SSH public key file format as specified in RFC4716
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Identity-and-Access-Management-IAM_Data-Encryption-Key_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"key",
@@ -22668,6 +22865,7 @@ Provides a Kinesis Firehose Delivery Stream resource. Amazon Kinesis Firehose is
 For more details, see the [Amazon Kinesis Firehose Documentation][1].
 
 `,
+			Icon: "Analytics/Amazon-Kinesis-Data-Firehose_light-bg.svg",
 			Keywords: []string{
 				"kinesis",
 				"firehose",
@@ -23088,6 +23286,7 @@ scales elastically for real-time processing of streaming big data.
 For more details, see the [Amazon Kinesis Documentation][1].
 
 `,
+			Icon: "Analytics/Amazon-Kinesis-Data-Streams.svg",
 			Keywords: []string{
 				"kinesis",
 				"stream",
@@ -23169,6 +23368,7 @@ but API (hence Terraform too) allows you to create as many aliases as
 the [account limits](http://docs.aws.amazon.com/kms/latest/developerguide/limits.html) allow you.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Key-Management-Service.svg",
 			Keywords: []string{
 				"kms",
 				"alias",
@@ -23351,6 +23551,7 @@ Manages a KMS Customer Master Key that uses external key material. To instead ma
 Provides a resource-based access control mechanism for a KMS customer master key.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Key-Management-Service.svg",
 			Keywords: []string{
 				"kms",
 				"grant",
@@ -23422,6 +23623,7 @@ Provides a resource-based access control mechanism for a KMS customer master key
 Provides a KMS customer master key.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Key-Management-Service.svg",
 			Keywords: []string{
 				"kms",
 				"key",
@@ -23488,6 +23690,7 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 For information about function aliases, see [CreateAlias][2] and [AliasRoutingConfiguration][3] in the API docs.
 
 `,
+			Icon: "Compute/AWS-Lambda.svg",
 			Keywords: []string{
 				"lambda",
 				"alias",
@@ -23550,6 +23753,7 @@ For information about Lambda and how to use it, see [What is AWS Lambda?][1].
 For information about event source mappings, see [CreateEventSourceMapping][2] in the API docs.
 
 `,
+			Icon: "Compute/AWS-Lambda.svg",
 			Keywords: []string{
 				"lambda",
 				"event",
@@ -23645,6 +23849,7 @@ Provides a Lambda Function resource. Lambda allows you to trigger execution of c
 For information about Lambda and how to use it, see [What is AWS Lambda?][1]
 
 `,
+			Icon: "Compute/AWS-Lambda_Lambda-Function_light-bg.svg",
 			Keywords: []string{
 				"lambda",
 				"function",
@@ -23927,6 +24132,7 @@ Creates a Lambda permission to allow external sources invoking the Lambda functi
 (e.g. CloudWatch Event Rule, SNS or S3).
 
 `,
+			Icon: "Compute/AWS-Lambda.svg",
 			Keywords: []string{
 				"lambda",
 				"permission",
@@ -23981,6 +24187,7 @@ Creates a Lambda permission to allow external sources invoking the Lambda functi
 Provides a resource to create a new launch configuration, used for autoscaling groups.
 
 `,
+			Icon: "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{
 				"ec2",
 				"launch",
@@ -24149,6 +24356,7 @@ Provides a resource to create a new launch configuration, used for autoscaling g
 Provides an EC2 launch template resource. Can be used to create instances or auto scaling groups.
 
 `,
+			Icon: "Compute/Amazon-EC2-Auto-Scaling.svg",
 			Keywords: []string{
 				"ec2",
 				"launch",
@@ -24503,6 +24711,7 @@ Provides a Load Balancer resource.
 ~> **Note:** ` + "`" + `aws_alb` + "`" + ` is known as ` + "`" + `aws_lb` + "`" + `. The functionality is identical.
 
 `,
+			Icon: "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -24643,6 +24852,7 @@ Provides a Load Balancer resource.
 Provides a load balancer cookie stickiness policy, which allows an ELB to control the sticky session lifetime of the browser.
 
 `,
+			Icon: "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -25177,6 +25387,7 @@ Provides a Load Balancer Listener Rule resource.
 Provides a load balancer SSL negotiation policy, which allows an ELB to control the ciphers and protocols that are supported during SSL negotiations between a client and a load balancer.
 
 `,
+			Icon: "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -25604,6 +25815,7 @@ this parameter to manage the DNS records for that domain.
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Icon: "Compute/Amazon-Lightsail.svg",
 			Keywords: []string{
 				"lightsail",
 				"domain",
@@ -25647,6 +25859,7 @@ for more information.
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Icon: "Compute/Amazon-Lightsail.svg",
 			Keywords: []string{
 				"lightsail",
 				"instance",
@@ -25722,6 +25935,7 @@ Lightsail.
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Icon: "Compute/Amazon-Lightsail.svg",
 			Keywords: []string{
 				"lightsail",
 				"key",
@@ -25800,6 +26014,7 @@ Allocates a static IP address.
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Icon: "Compute/Amazon-Lightsail.svg",
 			Keywords: []string{
 				"lightsail",
 				"static",
@@ -25850,6 +26065,7 @@ Provides a static IP address attachment - relationship between a Lightsail stati
 ~> **Note:** Lightsail is currently only supported in a limited number of AWS Regions, please see ["Regions and Availability Zones in Amazon Lightsail"](https://lightsail.aws.amazon.com/ls/docs/overview/article/understanding-regions-and-availability-zones-in-amazon-lightsail) for more details
 
 `,
+			Icon: "Compute/Amazon-Lightsail.svg",
 			Keywords: []string{
 				"lightsail",
 				"static",
@@ -25904,6 +26120,7 @@ Attaches a load balancer policy to an ELB backend server.
 
 
 `,
+			Icon: "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -25967,6 +26184,7 @@ Attaches a load balancer policy to an ELB Listener.
 
 
 `,
+			Icon: "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -26028,6 +26246,7 @@ Attaches a load balancer policy to an ELB Listener.
 Provides a load balancer policy, which can be attached to an ELB listener or backend server.
 
 `,
+			Icon: "Compute/Elastic-Load-Balancing-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -26137,6 +26356,7 @@ Associates an S3 resource with Amazon Macie for monitoring and data classificati
 ~> **NOTE:** Before using Amazon Macie for the first time it must be enabled manually. Instructions are [here](https://docs.aws.amazon.com/macie/latest/userguide/macie-setting-up.html#macie-setting-up-enable).
 
 `,
+			Icon: "Security_Identity_and_Compliance/Amazon-Macie.svg",
 			Keywords: []string{
 				"macie",
 				"s3",
@@ -26190,6 +26410,7 @@ Associates an S3 resource with Amazon Macie for monitoring and data classificati
 Provides a resource for managing the main routing table of a VPC.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"main",
@@ -26325,6 +26546,7 @@ Provides an AWS Elemental MediaPackage Channel.
 Provides a MediaStore Container.
 
 `,
+			Icon: "Media_Services/AWS-Elemental-MediaStore.svg",
 			Keywords: []string{
 				"mediastore",
 				"media",
@@ -26370,6 +26592,7 @@ Provides a MediaStore Container.
 Provides a MediaStore Container Policy.
 
 `,
+			Icon: "Media_Services/AWS-Elemental-MediaStore.svg",
 			Keywords: []string{
 				"mediastore",
 				"media",
@@ -26414,6 +26637,7 @@ brief downtime as the broker reboots.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Application_Integration/Amazon-MQ.svg",
 			Keywords: []string{
 				"mq",
 				"broker",
@@ -26587,6 +26811,7 @@ Provides an MQ Configuration Resource.
 For more information on Amazon MQ, see [Amazon MQ documentation](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/welcome.html).
 
 `,
+			Icon: "Application_Integration/Amazon-MQ.svg",
 			Keywords: []string{
 				"mq",
 				"configuration",
@@ -26870,6 +27095,7 @@ Manages an Amazon Managed Streaming for Kafka configuration. More information ca
 Provides a resource to create a VPC NAT Gateway.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_NAT-Gateway_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"nat",
@@ -26958,6 +27184,7 @@ phase because a modification has not yet taken place. You can use the
 (see documentation below).
 
 `,
+			Icon: "Database/Amazon-Neptune.svg",
 			Keywords: []string{
 				"neptune",
 				"cluster",
@@ -27269,6 +27496,7 @@ meta-parameter to make multiple instances and join them all to the same Neptune 
 Manages a Neptune Cluster Parameter Group
 
 `,
+			Icon: "Database/Amazon-Neptune.svg",
 			Keywords: []string{
 				"neptune",
 				"cluster",
@@ -27535,6 +27763,7 @@ Manages a Neptune database cluster snapshot.
 Manages a Neptune Parameter Group
 
 `,
+			Icon: "Database/Amazon-Neptune.svg",
 			Keywords: []string{
 				"neptune",
 				"parameter",
@@ -27599,6 +27828,7 @@ Manages a Neptune Parameter Group
 Provides an Neptune subnet group resource.
 
 `,
+			Icon: "Database/Amazon-Neptune.svg",
 			Keywords: []string{
 				"neptune",
 				"subnet",
@@ -27662,6 +27892,7 @@ in conjunction with any Network ACL Rule resources. Doing so will cause
 a conflict of rule settings and will overwrite rules.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Network-Access-Control-List_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"network",
@@ -27760,6 +27991,7 @@ in conjunction with any Network ACL Rule resources. Doing so will cause
 a conflict of rule settings and will overwrite rules.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Network-Access-Control-List_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"network",
@@ -27833,6 +28065,7 @@ a conflict of rule settings and will overwrite rules.
 Provides an Elastic network interface (ENI) resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Elastic-Network-Interface_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"network",
@@ -27957,6 +28190,7 @@ Provides an Elastic network interface (ENI) resource.
 Attach an Elastic network interface (ENI) resource with EC2 instance.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Elastic-Network-Interface_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"network",
@@ -28034,6 +28268,7 @@ one or the other.
 [2]: /docs/providers/aws/r/network_interface.html
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Elastic-Network-Interface_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"network",
@@ -28063,6 +28298,7 @@ one or the other.
 Provides an OpsWorks application resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Apps_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"application",
@@ -28206,6 +28442,7 @@ Provides an OpsWorks application resource.
 Provides an OpsWorks custom layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"custom",
@@ -28322,6 +28559,7 @@ Provides an OpsWorks custom layer resource.
 Provides an OpsWorks Ganglia layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"ganglia",
@@ -28446,6 +28684,7 @@ Provides an OpsWorks Ganglia layer resource.
 Provides an OpsWorks haproxy layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"haproxy",
@@ -28582,6 +28821,7 @@ Provides an OpsWorks haproxy layer resource.
 Provides an OpsWorks instance resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Instances_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"instance",
@@ -28829,6 +29069,7 @@ Provides an OpsWorks instance resource.
 Provides an OpsWorks Java application layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"java",
@@ -28962,6 +29203,7 @@ Provides an OpsWorks Java application layer resource.
 Provides an OpsWorks memcached layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"memcached",
@@ -29081,6 +29323,7 @@ Provides an OpsWorks MySQL layer resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"mysql",
@@ -29201,6 +29444,7 @@ Provides an OpsWorks MySQL layer resource.
 Provides an OpsWorks NodeJS application layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"nodejs",
@@ -29318,6 +29562,7 @@ Provides an OpsWorks NodeJS application layer resource.
 Provides an OpsWorks permission resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Permissions_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"permission",
@@ -29365,6 +29610,7 @@ Provides an OpsWorks permission resource.
 Provides an OpsWorks PHP application layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"php",
@@ -29478,6 +29724,7 @@ Provides an OpsWorks PHP application layer resource.
 Provides an OpsWorks Ruby on Rails application layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"rails",
@@ -29618,6 +29865,7 @@ Provides an OpsWorks RDS DB Instance resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Instances_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"rds",
@@ -29663,6 +29911,7 @@ Provides an OpsWorks RDS DB Instance resource.
 Provides an OpsWorks stack resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks.svg",
 			Keywords: []string{
 				"opsworks",
 				"stack",
@@ -29806,6 +30055,7 @@ Provides an OpsWorks stack resource.
 Provides an OpsWorks static web server layer resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks_Layers_light-bg.svg",
 			Keywords: []string{
 				"opsworks",
 				"static",
@@ -29915,6 +30165,7 @@ Provides an OpsWorks static web server layer resource.
 Provides an OpsWorks User Profile resource.
 
 `,
+			Icon: "Management_Governance/AWS-OpsWorks.svg",
 			Keywords: []string{
 				"opsworks",
 				"user",
@@ -29963,6 +30214,7 @@ Provides a resource to create a member account in the current organization.
 !> **WARNING:** Deleting this Terraform resource will only remove an AWS account from an organization. Terraform will not close the account. The member account must be prepared to be a standalone account beforehand. See the [AWS Organizations documentation](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html) for more information.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Organizations_Account_light-bg.svg",
 			Keywords: []string{
 				"organizations",
 				"account",
@@ -30022,6 +30274,7 @@ Provides a resource to create a member account in the current organization.
 Provides a resource to create an organization.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Organizations.svg",
 			Keywords: []string{
 				"organizations",
 				"organization",
@@ -30313,6 +30566,7 @@ Provides a resource to create an organizational unit.
 Provides a resource to manage an [AWS Organizations policy](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html).
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Organizations.svg",
 			Keywords: []string{
 				"organizations",
 				"policy",
@@ -30364,6 +30618,7 @@ Provides a resource to manage an [AWS Organizations policy](https://docs.aws.ama
 Provides a resource to attach an AWS Organizations policy to an organization account, root, or unit.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Organizations.svg",
 			Keywords: []string{
 				"organizations",
 				"policy",
@@ -31327,6 +31582,7 @@ for more information.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Database/Amazon-RDS.svg",
 			Keywords: []string{
 				"rds",
 				"cluster",
@@ -31761,6 +32017,7 @@ For more information on Amazon Aurora, see [Aurora on Amazon RDS][2] in the Amaz
 ~> **NOTE:** Deletion Protection from the RDS service can only be enabled at the cluster level, not for individual cluster instances. You can still add the [` + "`" + `prevent_destroy` + "`" + ` lifecycle behavior](https://www.terraform.io/docs/configuration/resources.html#prevent_destroy) to your Terraform resource configuration if you desire protection from accidental deletion.
 
 `,
+			Icon: "Database/Amazon-RDS.svg",
 			Keywords: []string{
 				"rds",
 				"cluster",
@@ -32144,6 +32401,7 @@ Provides a Redshift Cluster Resource.
 [Read more about sensitive data in state](/docs/state/sensitive-data.html).
 
 `,
+			Icon: "Database/Amazon-Redshift.svg",
 			Keywords: []string{
 				"redshift",
 				"cluster",
@@ -32534,6 +32792,7 @@ Provides a Redshift event subscription resource.
 Provides a Redshift Cluster parameter group resource.
 
 `,
+			Icon: "Database/Amazon-Redshift.svg",
 			Keywords: []string{
 				"redshift",
 				"parameter",
@@ -32598,6 +32857,7 @@ Provides a Redshift Cluster parameter group resource.
 Creates a new Amazon Redshift security group. You use security groups to control access to non-VPC clusters
 
 `,
+			Icon: "Database/Amazon-Redshift.svg",
 			Keywords: []string{
 				"redshift",
 				"security",
@@ -32760,6 +33020,7 @@ Note that the grant must exist in the destination region, and not in the region 
 Creates a new Amazon Redshift subnet group. You must provide a list of one or more subnets in your existing Amazon Virtual Private Cloud (Amazon VPC) when creating Amazon Redshift subnet group.
 
 `,
+			Icon: "Database/Amazon-Redshift.svg",
 			Keywords: []string{
 				"redshift",
 				"subnet",
@@ -32867,6 +33128,7 @@ in conjunction with any Route resources. Doing so will cause
 a conflict of rule settings and will overwrite rules.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"route",
@@ -32934,6 +33196,7 @@ a conflict of rule settings and will overwrite rules.
 Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/APIReference/API-actions-by-function.html#actions-by-function-reusable-delegation-sets) resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-Route-53.svg",
 			Keywords: []string{
 				"route53",
 				"delegation",
@@ -32974,6 +33237,7 @@ Provides a [Route53 Delegation Set](https://docs.aws.amazon.com/Route53/latest/A
 Provides a Route53 health check.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-Route-53.svg",
 			Keywords: []string{
 				"route53",
 				"health",
@@ -33084,6 +33348,7 @@ the Route53 hosted zone must be public.
 See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html?console_help=true#query-logs-configuring) for additional details.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-Route-53.svg",
 			Keywords: []string{
 				"route53",
 				"query",
@@ -33120,6 +33385,7 @@ See [Configuring Logging for DNS Queries](https://docs.aws.amazon.com/Route53/la
 Provides a Route53 record resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-Route-53.svg",
 			Keywords: []string{
 				"route53",
 				"record",
@@ -33440,6 +33706,7 @@ Provides a Route53 Resolver rule association.
 Manages a Route53 Hosted Zone.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-Route-53_Hosted-Zone_light-bg.svg",
 			Keywords: []string{
 				"route53",
 				"zone",
@@ -33511,6 +33778,7 @@ Manages a Route53 Hosted Zone VPC association. VPC associations can only be made
 ~> **NOTE:** Terraform provides both this standalone Zone VPC Association resource and exclusive VPC associations defined in-line in the [` + "`" + `aws_route53_zone` + "`" + ` resource](/docs/providers/aws/r/route53_zone.html) via ` + "`" + `vpc` + "`" + ` configuration blocks. At this time, you cannot use those in-line VPC associations in conjunction with this resource and the same zone ID otherwise it will cause a perpetual difference in plan output. You can optionally use the generic Terraform resource [lifecycle configuration block](/docs/configuration/resources.html#lifecycle) with ` + "`" + `ignore_changes` + "`" + ` in the ` + "`" + `aws_route53_zone` + "`" + ` resource to manage additional associations via this resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-Route-53.svg",
 			Keywords: []string{
 				"route53",
 				"zone",
@@ -33594,6 +33862,7 @@ this resource will delete any propagating gateways not explicitly listed in
 the separate resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"route",
@@ -33682,6 +33951,7 @@ the separate resource.
 Provides a resource to create an association between a subnet and routing table.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Router_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"route",
@@ -33773,6 +34043,7 @@ Manages S3 account-level Public Access Block configuration. For more information
 Provides a S3 bucket resource.
 
 `,
+			Icon: "Storage/Amazon-Simple-Storage-Service-S3.svg",
 			Keywords: []string{
 				"s3",
 				"bucket",
@@ -34104,6 +34375,7 @@ Provides a S3 bucket resource.
 Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html) resource.
 
 `,
+			Icon: "Storage/Amazon-Simple-Storage-Service-S3.svg",
 			Keywords: []string{
 				"s3",
 				"bucket",
@@ -34199,6 +34471,7 @@ Provides a S3 bucket [inventory configuration](https://docs.aws.amazon.com/Amazo
 Provides a S3 bucket [metrics configuration](http://docs.aws.amazon.com/AmazonS3/latest/dev/metrics-configurations.html) resource.
 
 `,
+			Icon: "Storage/Amazon-Simple-Storage-Service-S3.svg",
 			Keywords: []string{
 				"s3",
 				"bucket",
@@ -34240,6 +34513,7 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 ~> **NOTE:** S3 Buckets only support a single notification configuration. Declaring multiple ` + "`" + `aws_s3_bucket_notification` + "`" + ` resources to the same S3 Bucket will cause a perpetual difference in configuration.
 
 `,
+			Icon: "Storage/Amazon-Simple-Storage-Service-S3.svg",
 			Keywords: []string{
 				"s3",
 				"bucket",
@@ -34335,6 +34609,7 @@ Manages a S3 Bucket Notification Configuration. For additional information, see 
 Provides a S3 bucket object resource.
 
 `,
+			Icon: "Storage/Amazon-Simple-Storage-Service-S3_Object_light-bg.svg",
 			Keywords: []string{
 				"s3",
 				"bucket",
@@ -34451,6 +34726,7 @@ Provides a S3 bucket object resource.
 Attaches a policy to an S3 bucket resource.
 
 `,
+			Icon: "Storage/Amazon-Simple-Storage-Service-S3.svg",
 			Keywords: []string{
 				"s3",
 				"bucket",
@@ -34812,6 +35088,7 @@ Provides a lifecycle configuration for SageMaker Notebook Instances.
 Provides a resource to manage AWS Secrets Manager secret metadata. To manage a secret value, see the [` + "`" + `aws_secretsmanager_secret_version` + "`" + ` resource](/docs/providers/aws/r/secretsmanager_secret_version.html).
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Secrets-Manager.svg",
 			Keywords: []string{
 				"secrets",
 				"manager",
@@ -34899,6 +35176,7 @@ Provides a resource to manage AWS Secrets Manager secret version including its s
 ~> **NOTE:** If the ` + "`" + `AWSCURRENT` + "`" + ` staging label is present on this version during resource deletion, that label cannot be removed and will be skipped to prevent errors when fully deleting the secret. That label will leave this secret version active even after the resource is deleted from Terraform unless the secret itself is deleted. Move the ` + "`" + `AWSCURRENT` + "`" + ` staging label before or after deleting this resource from Terraform to fully trigger version deprecation if necessary.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-Secrets-Manager.svg",
 			Keywords: []string{
 				"secrets",
 				"manager",
@@ -35416,6 +35694,7 @@ Subscribes to a Security Hub standard.
 Provides a Service Discovery Private DNS Namespace resource.
 
 `,
+			Icon: "Migration_Transfer/AWS-Application-Discovery-Service.svg",
 			Keywords: []string{
 				"service",
 				"discovery",
@@ -35474,6 +35753,7 @@ Provides a Service Discovery Private DNS Namespace resource.
 Provides a Service Discovery Public DNS Namespace resource.
 
 `,
+			Icon: "Migration_Transfer/AWS-Application-Discovery-Service.svg",
 			Keywords: []string{
 				"service",
 				"discovery",
@@ -35528,6 +35808,7 @@ Provides a Service Discovery Public DNS Namespace resource.
 Provides a Service Discovery Service resource.
 
 `,
+			Icon: "Migration_Transfer/AWS-Application-Discovery-Service.svg",
 			Keywords: []string{
 				"service",
 				"discovery",
@@ -35623,6 +35904,7 @@ Provides a Service Discovery Service resource.
 Provides a resource to create a Service Catalog Portfolio.
 
 `,
+			Icon: "Management_Governance/AWS-Service-Catalog.svg",
 			Keywords: []string{
 				"service",
 				"catalog",
@@ -35749,6 +36031,7 @@ Manages an individual Service Quota.
 Provides a resource to designate the active SES receipt rule set
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"active",
@@ -35774,6 +36057,7 @@ Provides a resource to designate the active SES receipt rule set
 Provides an SES configuration set resource
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"configuration",
@@ -35799,6 +36083,7 @@ Provides an SES domain DKIM generation resource.
 Domain ownership needs to be confirmed first using [ses_domain_identity Resource](/docs/providers/aws/r/ses_domain_identity.html)
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"domain",
@@ -35831,6 +36116,7 @@ Domain ownership needs to be confirmed first using [ses_domain_identity Resource
 Provides an SES domain identity resource
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"domain",
@@ -35877,6 +36163,7 @@ deploy the required DNS verification records, and wait for verification to compl
 ~> **WARNING:** This resource implements a part of the verification workflow. It does not represent a real-world entity in AWS, therefore changing or deleting this resource on its own has no immediate effect.
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"domain",
@@ -35920,6 +36207,7 @@ Provides an SES domain MAIL FROM resource.
 ~> **NOTE:** For the MAIL FROM domain to be fully usable, this resource should be paired with the [aws_ses_domain_identity resource](/docs/providers/aws/r/ses_domain_identity.html). To validate the MAIL FROM domain, a DNS MX record is required. To pass SPF checks, a DNS TXT record may also be required. See the [Amazon SES MAIL FROM documentation](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html) for more information.
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"domain",
@@ -35993,6 +36281,7 @@ Provides an SES email identity resource
 Provides an SES event destination
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"event",
@@ -36064,6 +36353,7 @@ Provides an SES event destination
 Resource for managing SES Identity Notification Topics
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"identity",
@@ -36131,6 +36421,7 @@ Manages a SES Identity Policy. More information about SES Sending Authorization 
 Provides an SES receipt filter resource
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"receipt",
@@ -36162,6 +36453,7 @@ Provides an SES receipt filter resource
 Provides an SES receipt rule resource
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"receipt",
@@ -36341,6 +36633,7 @@ Provides an SES receipt rule resource
 Provides an SES receipt rule set resource
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"receipt",
@@ -36365,6 +36658,7 @@ Provides an SES receipt rule set resource
 Provides a resource to create a SES template.
 
 `,
+			Icon: "Customer_Engagement/Amazon-Simple-Email-Service-SES.svg",
 			Keywords: []string{
 				"ses",
 				"template",
@@ -36408,6 +36702,7 @@ Provides a resource to create a SES template.
 Provides a Step Function Activity resource
 
 `,
+			Icon: "Application_Integration/AWS-Step-Functions.svg",
 			Keywords: []string{
 				"step",
 				"function",
@@ -36461,6 +36756,7 @@ Provides a Step Function Activity resource
 Provides a Step Function State Machine resource
 
 `,
+			Icon: "Application_Integration/AWS-Step-Functions.svg",
 			Keywords: []string{
 				"step",
 				"function",
@@ -36628,6 +36924,7 @@ Adds permission to create volumes off of a given EBS Snapshot.
 Provides an SNS platform application resource
 
 `,
+			Icon: "Application_Integration/Amazon-Simple-Notification-Service-SNS.svg",
 			Keywords: []string{
 				"sns",
 				"platform",
@@ -36708,6 +37005,7 @@ Provides an SNS platform application resource
 Provides a way to set SNS SMS preferences.
 
 `,
+			Icon: "Application_Integration/Amazon-Simple-Notification-Service-SNS.svg",
 			Keywords: []string{
 				"sns",
 				"sms",
@@ -36751,6 +37049,7 @@ Provides a way to set SNS SMS preferences.
 Provides an SNS topic resource
 
 `,
+			Icon: "Application_Integration/Amazon-Simple-Notification-Service-SNS_Topic_light-bg.svg",
 			Keywords: []string{
 				"sns",
 				"topic",
@@ -36864,6 +37163,7 @@ Provides an SNS topic policy resource
 ~> **NOTE:** If a Principal is specified as just an AWS account ID rather than an ARN, AWS silently converts it to the ARN for the root user, causing future terraform plans to differ. To avoid this problem, just specify the full ARN, e.g. ` + "`" + `arn:aws:iam::123456789012:root` + "`" + `
 
 `,
+			Icon: "Application_Integration/Amazon-Simple-Notification-Service-SNS_Topic_light-bg.svg",
 			Keywords: []string{
 				"sns",
 				"topic",
@@ -36902,6 +37202,7 @@ probably be SQS queues.
 ~> **NOTE:** If SNS topic and SQS queue are in different AWS accounts and different AWS regions it is important to recognize that the subscription needs to be initiated from the account with the SQS queue but in the region of the SNS topic.
 
 `,
+			Icon: "Application_Integration/Amazon-Simple-Notification-Service-SNS_Topic_light-bg.svg",
 			Keywords: []string{
 				"sns",
 				"topic",
@@ -37026,6 +37327,7 @@ Provides an EC2 Spot Fleet Request resource. This allows a fleet of Spot
 instances to be requested on the Spot market.
 
 `,
+			Icon: "_Group_Icons/Spot-Fleet_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"spot",
@@ -37153,6 +37455,7 @@ for more information.
 
 
 `,
+			Icon: "Compute/_EC2_Instance_Types/Amazon-EC2_Spot-Instance_light-bg.svg",
 			Keywords: []string{
 				"ec2",
 				"spot",
@@ -37272,6 +37575,7 @@ for more information.
 			Description: `
 
 `,
+			Icon: "Application_Integration/Amazon-Simple-Queue-Service-SQS.svg",
 			Keywords: []string{
 				"sqs",
 				"queue",
@@ -37364,6 +37668,7 @@ Allows you to set a policy of an SQS Queue
 while referencing ARN of the queue within the policy.
 
 `,
+			Icon: "Application_Integration/Amazon-Simple-Queue-Service-SQS.svg",
 			Keywords: []string{
 				"sqs",
 				"queue",
@@ -37391,6 +37696,7 @@ while referencing ARN of the queue within the policy.
 Registers an on-premises server or virtual machine with Amazon EC2 so that it can be managed using Run Command.
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager.svg",
 			Keywords: []string{
 				"ssm",
 				"activation",
@@ -37506,6 +37812,7 @@ Registers an on-premises server or virtual machine with Amazon EC2 so that it ca
 Associates an SSM Document to an instance or EC2 tag.
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager.svg",
 			Keywords: []string{
 				"ssm",
 				"association",
@@ -37613,6 +37920,7 @@ or greater can update their content once created, see [SSM Schema Features][1]. 
 schema version you must recreate the resource.
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager_Documents_light-bg.svg",
 			Keywords: []string{
 				"ssm",
 				"document",
@@ -37760,6 +38068,7 @@ schema version you must recreate the resource.
 Provides an SSM Maintenance Window resource
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager_Maintenance-Windows_light-bg.svg",
 			Keywords: []string{
 				"ssm",
 				"maintenance",
@@ -37828,6 +38137,7 @@ Provides an SSM Maintenance Window resource
 Provides an SSM Maintenance Window Target resource
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager_Maintenance-Windows_light-bg.svg",
 			Keywords: []string{
 				"ssm",
 				"maintenance",
@@ -37881,6 +38191,7 @@ Provides an SSM Maintenance Window Target resource
 Provides an SSM Maintenance Window Task resource
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager_Maintenance-Windows_light-bg.svg",
 			Keywords: []string{
 				"ssm",
 				"maintenance",
@@ -38082,6 +38393,7 @@ Provides an SSM Maintenance Window Task resource
 Provides an SSM Parameter resource.
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager_Parameter-Store_light-bg.svg",
 			Keywords: []string{
 				"ssm",
 				"parameter",
@@ -38189,6 +38501,7 @@ both marked as optional fields, but the Patch Baseline requires that at least on
 of them is specified.
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager_Patch-Manager_light-bg.svg",
 			Keywords: []string{
 				"ssm",
 				"patch",
@@ -38269,6 +38582,7 @@ of them is specified.
 Provides an SSM Patch Group resource
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager_Patch-Manager_light-bg.svg",
 			Keywords: []string{
 				"ssm",
 				"patch",
@@ -38305,6 +38619,7 @@ Provides an SSM Patch Group resource
 Provides a SSM resource data sync.
 
 `,
+			Icon: "Management_Governance/AWS-Systems-Manager.svg",
 			Keywords: []string{
 				"ssm",
 				"resource",
@@ -38355,6 +38670,7 @@ Manages an AWS Storage Gateway cache.
 ~> **NOTE:** The Storage Gateway API provides no method to remove a cache disk. Destroying this Terraform resource does not perform any Storage Gateway actions.
 
 `,
+			Icon: "Storage/AWS-Storage-Gateway_Cached-Volume_light-bg.svg",
 			Keywords: []string{
 				"storage",
 				"gateway",
@@ -38396,6 +38712,7 @@ Manages an AWS Storage Gateway cached iSCSI volume.
 ~> **NOTE:** The gateway must have an upload buffer added (e.g. via the [` + "`" + `aws_storagegateway_upload_buffer` + "`" + `](/docs/providers/aws/r/storagegateway_upload_buffer.html) resource) before the volume is operational to clients, however the Storage Gateway API will allow volume creation without error in that case and return volume status as ` + "`" + `UPLOAD BUFFER NOT CONFIGURED` + "`" + `.
 
 `,
+			Icon: "Storage/AWS-Storage-Gateway_Cached-Volume_light-bg.svg",
 			Keywords: []string{
 				"storage",
 				"gateway",
@@ -38509,6 +38826,7 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 ~> NOTE: The Storage Gateway API requires the gateway to be connected to properly return information after activation. If you are receiving ` + "`" + `The specified gateway is not connected` + "`" + ` errors during resource creation (gateway activation), ensure your gateway instance meets the [Storage Gateway requirements](https://docs.aws.amazon.com/storagegateway/latest/userguide/Requirements.html).
 
 `,
+			Icon: "Storage/AWS-Storage-Gateway.svg",
 			Keywords: []string{
 				"storage",
 				"gateway",
@@ -38609,6 +38927,7 @@ Manages an AWS Storage Gateway file, tape, or volume gateway in the provider reg
 Manages an AWS Storage Gateway NFS File Share.
 
 `,
+			Icon: "Storage/AWS-Storage-Gateway.svg",
 			Keywords: []string{
 				"storage",
 				"gateway",
@@ -38756,6 +39075,7 @@ Manages an AWS Storage Gateway NFS File Share.
 Manages an AWS Storage Gateway SMB File Share.
 
 `,
+			Icon: "Storage/AWS-Storage-Gateway.svg",
 			Keywords: []string{
 				"storage",
 				"gateway",
@@ -38909,6 +39229,7 @@ Manages an AWS Storage Gateway upload buffer.
 ~> **NOTE:** The Storage Gateway API provides no method to remove an upload buffer disk. Destroying this Terraform resource does not perform any Storage Gateway actions.
 
 `,
+			Icon: "Storage/AWS-Storage-Gateway.svg",
 			Keywords: []string{
 				"storage",
 				"gateway",
@@ -38949,6 +39270,7 @@ Manages an AWS Storage Gateway working storage.
 ~> **NOTE:** The Storage Gateway API provides no method to remove a working storage disk. Destroying this Terraform resource does not perform any Storage Gateway actions.
 
 `,
+			Icon: "Storage/AWS-Storage-Gateway.svg",
 			Keywords: []string{
 				"storage",
 				"gateway",
@@ -38986,6 +39308,7 @@ Manages an AWS Storage Gateway working storage.
 Provides an VPC subnet resource.
 
 `,
+			Icon: "_Group_Icons/VPC-subnet-public_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"subnet",
@@ -39509,6 +39832,7 @@ detach volumes from AWS Instances.
 Provides a VPC resource.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC.svg",
 			Keywords: []string{
 				"vpc",
 			},
@@ -39775,6 +40099,7 @@ Do not use the same resource ID in both a VPC Endpoint resource and a VPC Endpoi
 Doing so will cause a conflict of associations and will overwrite the association.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"endpoint",
@@ -39915,6 +40240,7 @@ Provides a VPC Endpoint connection notification resource.
 Connection notifications notify subscribers of VPC Endpoint events.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"endpoint",
@@ -39976,6 +40302,7 @@ Connection notifications notify subscribers of VPC Endpoint events.
 Manages a VPC Endpoint Route Table Association
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"endpoint",
@@ -40021,6 +40348,7 @@ a VPC Endpoint Service resource and a VPC Endpoint Service Allowed Principal res
 and will overwrite the association.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"endpoint",
@@ -40127,6 +40455,7 @@ a VPC Endpoint Service resource and a VPC Endpoint Service Allowed Principal res
 and will overwrite the association.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"endpoint",
@@ -40171,6 +40500,7 @@ attribute. Do not use the same subnet ID in both a VPC Endpoint resource and a V
 Association resource. Doing so will cause a conflict of associations and will overwrite the association.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Endpoints_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"endpoint",
@@ -40261,6 +40591,7 @@ VPC Peering Connections use the ` + "`" + `aws_vpc_peering_connection` + "`" + `
 connection and use the ` + "`" + `aws_vpc_peering_connection_accepter` + "`" + ` resource to manage the accepter's side of the connection.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Peering_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"peering",
@@ -40340,6 +40671,7 @@ and the accepter can use the ` + "`" + `aws_vpc_peering_connection_accepter` + "
 connection into management.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Peering_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"peering",
@@ -40594,6 +40926,7 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 ` + "`" + `` + "`" + `` + "`" + `
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_Peering_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"peering",
@@ -40645,6 +40978,7 @@ Manages an EC2 VPN connection. These objects can be connected to customer gatewa
 [Read more about this in the AWS documentation](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_VpnTunnelOptionsSpecification.html).
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_VPN-Connection_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"vpn",
@@ -40865,6 +41199,7 @@ Manages an EC2 VPN connection. These objects can be connected to customer gatewa
 Provides a static route between a VPN connection and a customer gateway.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_VPN-Connection_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"vpn",
@@ -40910,6 +41245,7 @@ Provides a static route between a VPN connection and a customer gateway.
 Provides a resource to create a VPC VPN Gateway.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_VPN-Gateway_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"vpn",
@@ -40959,6 +41295,7 @@ resource can also automatically attach the Virtual Private Gateway it creates
 to an existing VPC by setting the [` + "`" + `vpc_id` + "`" + `](vpn_gateway.html#vpc_id) attribute accordingly.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_VPN-Gateway_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"vpn",
@@ -41008,6 +41345,7 @@ the ` + "`" + `propagating_vgws` + "`" + ` argument set. If that argument is set
 propagation not explicitly listed in its value will be removed.
 
 `,
+			Icon: "Networking_Content_Delivery/Amazon-VPC_VPN-Gateway_light-bg.svg",
 			Keywords: []string{
 				"vpc",
 				"vpn",
@@ -41037,6 +41375,7 @@ propagation not explicitly listed in its value will be removed.
 Provides a WAF Byte Match Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"byte",
@@ -41098,6 +41437,7 @@ Provides a WAF Byte Match Set Resource
 Provides a WAF Geo Match Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"geo",
@@ -41143,6 +41483,7 @@ Provides a WAF Geo Match Set Resource
 Provides a WAF IPSet Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"ipset",
@@ -41194,6 +41535,7 @@ Provides a WAF IPSet Resource
 Provides a WAF Rate Based Rule Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"rate",
@@ -41255,6 +41597,7 @@ Provides a WAF Rate Based Rule Resource
 Provides a WAF Regex Match Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regex",
@@ -41312,6 +41655,7 @@ Provides a WAF Regex Match Set Resource
 Provides a WAF Regex Pattern Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regex",
@@ -41349,6 +41693,7 @@ Provides a WAF Regex Pattern Set Resource
 Provides a WAF Rule Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF_Filtering-rule_light-bg.svg",
 			Keywords: []string{
 				"waf",
 				"rule",
@@ -41400,6 +41745,7 @@ Provides a WAF Rule Resource
 Provides a WAF Rule Group Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF_Filtering-rule_light-bg.svg",
 			Keywords: []string{
 				"waf",
 				"rule",
@@ -41460,6 +41806,7 @@ Provides a WAF Rule Group Resource
 Provides a WAF Size Constraint Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"size",
@@ -41521,6 +41868,7 @@ Provides a WAF Size Constraint Set Resource
 Provides a WAF SQL Injection Match Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"sql",
@@ -41575,6 +41923,7 @@ Provides a WAF SQL Injection Match Set Resource
 Provides a WAF Web ACL Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"web",
@@ -41675,6 +42024,7 @@ Provides a WAF Web ACL Resource
 Provides a WAF XSS Match Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"xss",
@@ -41728,6 +42078,7 @@ Provides a WAF XSS Match Set Resource
 Provides a WAF Regional Byte Match Set Resource for use with Application Load Balancer.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -41791,6 +42142,7 @@ Provides a WAF Regional Byte Match Set Resource for use with Application Load Ba
 Provides a WAF Regional Geo Match Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -41838,6 +42190,7 @@ Provides a WAF Regional Geo Match Set Resource
 Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -41891,6 +42244,7 @@ Provides a WAF Regional IPSet Resource for use with Application Load Balancer.
 Provides a WAF Rate Based Rule Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -41954,6 +42308,7 @@ Provides a WAF Rate Based Rule Resource
 Provides a WAF Regional Regex Match Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -42013,6 +42368,7 @@ Provides a WAF Regional Regex Match Set Resource
 Provides a WAF Regional Regex Pattern Set Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -42052,6 +42408,7 @@ Provides a WAF Regional Regex Pattern Set Resource
 Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -42105,6 +42462,7 @@ Provides an WAF Regional Rule Resource for use with Application Load Balancer.
 Provides a WAF Regional Rule Group Resource
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -42167,6 +42525,7 @@ Provides a WAF Regional Rule Group Resource
 Provides a WAF Regional Size Constraint Set Resource for use with Application Load Balancer.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -42230,6 +42589,7 @@ Provides a WAF Regional Size Constraint Set Resource for use with Application Lo
 Provides a WAF Regional SQL Injection Match Set Resource for use with Application Load Balancer.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -42286,6 +42646,7 @@ Provides a WAF Regional SQL Injection Match Set Resource for use with Applicatio
 Provides a WAF Regional Web ACL Resource for use with Application Load Balancer.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -42394,6 +42755,7 @@ Manages an association with WAF Regional Web ACL.
 -> **Note:** An Application Load Balancer can only be associated with one WAF Regional WebACL.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
@@ -42433,6 +42795,7 @@ Manages an association with WAF Regional Web ACL.
 Provides a WAF Regional XSS Match Set Resource for use with Application Load Balancer.
 
 `,
+			Icon: "Security_Identity_and_Compliance/AWS-WAF.svg",
 			Keywords: []string{
 				"waf",
 				"regional",
