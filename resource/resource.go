@@ -9,6 +9,7 @@ type Resource struct {
 	Arguments        []Attribute
 	Attributes       []Attribute
 	Keywords         []string
+	Icon             string
 	// Metadata is used to fill any random data that's needed
 	// on this resource
 	Metadata map[string]interface{}

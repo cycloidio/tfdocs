@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"go/format"
 	"io"
@@ -16,12 +17,17 @@ import (
 	"github.com/cycloidio/tfdocs/resource"
 )
 
+const (
+	iconFile = "icons.json"
+)
+
 var (
 	erbEmbed = regexp.MustCompile("<%=?[^>]*>")
 )
 
 func main() {
 	providersPath := filepath.Join("terraform-website", "ext", "providers")
+	assetsPath := filepath.Join("assets")
 	fileInfos, err := ioutil.ReadDir(providersPath)
 	if err != nil {
 		panic(err)
@@ -35,6 +41,14 @@ func main() {
 		// as any other provider would have
 		if provider == "avi" {
 			continue
+		}
+		var icons = make(map[string]string)
+		b, err := ioutil.ReadFile(filepath.Join(assetsPath, provider, iconFile))
+		if !os.IsNotExist(err) {
+			err = json.Unmarshal(b, &icons)
+			if err != nil {
+				panic(err)
+			}
 		}
 		docsPath := filepath.Join(providersPath, provider, "website", "docs")
 		sidebarPath := filepath.Join(providersPath, provider, "website", fmt.Sprintf("%s.erb", provider))
@@ -159,6 +173,9 @@ func main() {
 					}
 					r.Category = c
 					r.Keywords = categoryAndTypeToKeywords(provider, c, rt)
+				}
+				if ic, ok := icons[rt]; ok {
+					r.Icon = ic
 				}
 				resources = append(resources, r)
 			}
