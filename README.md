@@ -30,7 +30,7 @@ Returns the specific DataSource for the resource type, example: `aws_vpcs`
 
 ## Icons (`assets/`)
 
-To add icons we need a JSON that connects the resource name (`aws_lb`) to the actual path (`Compute/Elastic-Load-Balancing-ELB.svg`). This is done inside the `assets/` directory, there we have a folder for each Provider that may have icons. The path to the actual JSON has to be `assets/{{ ProviderName }}/icons.json` and for the format it's a simple KV where K == resource name and V == path.
+To add icons we need a JSON that connects the resource name (`aws_lb`) to the actual path (`Compute/Elastic-Load-Balancing-ELB.svg`). This is done inside the `assets/` directory, there we have a folder for each Provider that may have icons. The path to the actual JSON has to be `assets/{{ ProviderName }}/icons.json` and for the format is a simple KV where K == resource name and V == path.
 
 The path has to be the one from the official Provider source after download:
 * aws: https://aws.amazon.com/architecture/icons/
