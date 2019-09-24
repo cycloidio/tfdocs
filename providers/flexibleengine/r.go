@@ -15,6 +15,7 @@ var (
 			Category:         "Antiddos Resources",
 			ShortDescription: `Defends resources on the public cloud against network and monitors the service traffic from the Internet to ECSs, ELB instances, and BMSs to detect attack traffic in real time.`,
 			Description:      ``,
+			Icon:             "Security-Anti-DDoS.svg",
 			Keywords: []string{
 				"antiddos",
 				"v1",
@@ -53,6 +54,7 @@ var (
 			Category:         "Auto Scaling Resources",
 			ShortDescription: `Manages a V1 AS Configuration resource within flexibleengine.`,
 			Description:      ``,
+			Icon:             "Computing-AS.svg",
 			Keywords: []string{
 				"auto",
 				"scaling",
@@ -162,6 +164,7 @@ var (
 			Category:         "Auto Scaling Resources",
 			ShortDescription: `Manages a V1 Autoscaling Group resource within flexibleengine.`,
 			Description:      ``,
+			Icon:             "Computing-AS.svg",
 			Keywords: []string{
 				"auto",
 				"scaling",
@@ -388,6 +391,7 @@ var (
 			Category:         "Auto Scaling Resources",
 			ShortDescription: `Manages a V1 AS Policy resource within flexibleengine.`,
 			Description:      ``,
+			Icon:             "Computing-AS.svg",
 			Keywords: []string{
 				"auto",
 				"scaling",
@@ -562,6 +566,7 @@ var (
 			Category:         "Block Storage Resources",
 			ShortDescription: `Manages a V2 volume resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Storage.svg",
 			Keywords: []string{
 				"block",
 				"storage",
@@ -740,6 +745,7 @@ var (
 			Category:         "CCE Resources",
 			ShortDescription: `Provides Cloud Container Engine(CCE) resource.`,
 			Description:      ``,
+			Icon:             "Computing-CCE.svg",
 			Keywords: []string{
 				"cce",
 				"cluster",
@@ -912,6 +918,7 @@ var (
 			Category:         "CCE Resources",
 			ShortDescription: `Add a node to a container cluster.`,
 			Description:      ``,
+			Icon:             "Computing-CCE.svg",
 			Keywords: []string{
 				"cce",
 				"nodes",
@@ -1056,6 +1063,7 @@ var (
 			Category:         "CES Resources",
 			ShortDescription: `Manages a V2 topic resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Management&Deployment-CES.svg",
 			Keywords: []string{
 				"ces",
 				"ces-alarmrule",
@@ -1271,6 +1279,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a BMS server resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Computing-ECS.svg",
 			Keywords: []string{
 				"compute",
 				"server",
@@ -1515,6 +1524,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 VM instance resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Computing-ECS.svg",
 			Keywords: []string{
 				"compute",
 				"instance",
@@ -1880,6 +1890,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 keypair resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "key-pair.svg",
 			Keywords: []string{
 				"compute",
 				"keypair",
@@ -1936,6 +1947,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 Server Group resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "cloud-server-group.svg",
 			Keywords: []string{
 				"compute",
 				"servergroup",
@@ -2073,6 +2085,7 @@ var (
 			Category:         "CSBS Resources",
 			ShortDescription: `Provides an FlexibleEngine Backup Policy of Resource.`,
 			Description:      ``,
+			Icon:             "Storage-CSBS.svg",
 			Keywords: []string{
 				"csbs",
 				"backup",
@@ -2198,6 +2211,7 @@ var (
 			Category:         "CSBS Resources",
 			ShortDescription: `Provides an FlexibleEngine Backup of Resources.`,
 			Description:      ``,
+			Icon:             "Storage-CSBS.svg",
 			Keywords: []string{
 				"csbs",
 				"backup",
@@ -2414,6 +2428,7 @@ var (
 			Category:         "CTS Resources",
 			ShortDescription: `CTS tracker allows you to collect, store, and query cloud resource operation records and use these records for security analysis, compliance auditing, resource tracking, and fault locating.`,
 			Description:      ``,
+			Icon:             "Management&Deployment-CTS.svg",
 			Keywords: []string{
 				"cts",
 				"tracker",
@@ -2450,6 +2465,7 @@ var (
 			Category:         "DCS Resources",
 			ShortDescription: `Manages a DCS instance in the flexibleengine DCS Service`,
 			Description:      ``,
+			Icon:             "Database-DCS.svg",
 			Keywords: []string{
 				"dcs",
 				"instance",
@@ -2782,6 +2798,7 @@ var (
 			Category:         "DNS Resources",
 			ShortDescription: `Manages a DNS record set in the FlexibleEngine DNS Service`,
 			Description:      ``,
+			Icon:             "Network-DNS.svg",
 			Keywords: []string{
 				"dns",
 				"recordset",
@@ -2894,6 +2911,7 @@ var (
 			Category:         "DNS Resources",
 			ShortDescription: `Manages a DNS zone in the FlexibleEngine DNS Service`,
 			Description:      ``,
+			Icon:             "zone.svg",
 			Keywords: []string{
 				"dns",
 				"zone",
@@ -3014,6 +3032,7 @@ var (
 			Category:         "DRS Resources",
 			ShortDescription: `Manages a V2 replication resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "drs.svg",
 			Keywords: []string{
 				"drs",
 				"replication",
@@ -3162,6 +3181,7 @@ var (
 			Category:         "DRS Resources",
 			ShortDescription: `Manages a V2 replicationconsistencygroup resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "drs.svg",
 			Keywords: []string{
 				"drs",
 				"replicationconsistencygroup",
@@ -3286,6 +3306,7 @@ var (
 			Category:         "Data Warehouse Resources",
 			ShortDescription: `Manages a DWS cluster resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Data Analysis&AI-DWS.svg",
 			Keywords: []string{
 				"data",
 				"warehouse",
@@ -3540,6 +3561,7 @@ var (
 			Category:         "Elastic Load Balancer Resources",
 			ShortDescription: `Manages an elastic loadbalancer backend resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Network-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -3658,6 +3680,7 @@ var (
 			Category:         "Elastic Load Balancer Resources",
 			ShortDescription: `Manages an elastic loadbalancer health resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Network-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -3792,6 +3815,7 @@ var (
 			Category:         "Elastic Load Balancer Resources",
 			ShortDescription: `Manages an elastic loadbalancer listener resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Network-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -4054,6 +4078,7 @@ var (
 			Category:         "Elastic Load Balancer Resources",
 			ShortDescription: `Manages an elastic loadbalancer resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Network-ELB.svg",
 			Keywords: []string{
 				"elastic",
 				"load",
@@ -4224,6 +4249,7 @@ var (
 			Category:         "Firewall Resources",
 			ShortDescription: `Manages a v2 firewall group resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "firewall.svg",
 			Keywords: []string{
 				"firewall",
 				"fw",
@@ -4333,6 +4359,7 @@ var (
 			Category:         "Firewall Resources",
 			ShortDescription: `Manages a v2 firewall policy resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "firewall.svg",
 			Keywords: []string{
 				"firewall",
 				"fw",
@@ -4418,6 +4445,7 @@ var (
 			Category:         "Firewall Resources",
 			ShortDescription: `Manages a v2 firewall group rule resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "firewall.svg",
 			Keywords: []string{
 				"firewall",
 				"fw",
@@ -4799,6 +4827,7 @@ var (
 			Category:         "KMS Resources",
 			ShortDescription: `Manages a V1 key resource within KMS.`,
 			Description:      ``,
+			Icon:             "Security-KMS.svg",
 			Keywords: []string{
 				"kms",
 				"key",
@@ -5471,6 +5500,7 @@ var (
 			Category:         "Enhanced Load Balancer Resources",
 			ShortDescription: `Manages a V2 loadbalancer resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Network-ELB.svg",
 			Keywords: []string{
 				"enhanced",
 				"load",
@@ -6027,6 +6057,7 @@ var (
 			Category:         "MLS Resources",
 			ShortDescription: `Manages mls instance resource within FlexibleEngine`,
 			Description:      ``,
+			Icon:             "Data Analysis&AI-MLS.svg",
 			Keywords: []string{
 				"mls",
 				"instance",
@@ -6243,6 +6274,7 @@ var (
 			Category:         "MRS Resources",
 			ShortDescription: `Manages resource cluster within FlexibleEngine MRS.`,
 			Description:      ``,
+			Icon:             "Data Analysis&AI-MRS.svg",
 			Keywords: []string{
 				"mrs",
 				"cluster",
@@ -6815,6 +6847,7 @@ var (
 			Category:         "MRS Resources",
 			ShortDescription: `Manages resource job within FlexibleEngine MRS.`,
 			Description:      ``,
+			Icon:             "Data Analysis&AI-MRS.svg",
 			Keywords: []string{
 				"mrs",
 				"job",
@@ -6963,6 +6996,7 @@ var (
 			Category:         "NAT Resources",
 			ShortDescription: `Manages a V2 dnat rule resource within FlexibleEngine Nat.`,
 			Description:      ``,
+			Icon:             "nat-gateway.svg",
 			Keywords: []string{
 				"nat",
 				"dnat",
@@ -7024,6 +7058,7 @@ var (
 			Category:         "NAT Resources",
 			ShortDescription: `Manages a V2 nat gateway resource within FlexibleEngine Nat.`,
 			Description:      ``,
+			Icon:             "nat-gateway.svg",
 			Keywords: []string{
 				"nat",
 				"gateway",
@@ -7124,6 +7159,7 @@ var (
 			Category:         "NAT Resources",
 			ShortDescription: `Manages a V2 snat rule resource within FlexibleEngine Nat.`,
 			Description:      ``,
+			Icon:             "nat-gateway.svg",
 			Keywords: []string{
 				"nat",
 				"snat",
@@ -7330,6 +7366,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 Neutron network resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Network.svg",
 			Keywords: []string{
 				"networking",
 				"network",
@@ -7820,6 +7857,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 Neutron security group rule resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "security-group.svg",
 			Keywords: []string{
 				"networking",
 				"secgroup",
@@ -7957,6 +7995,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 Neutron security group resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "security-group.svg",
 			Keywords: []string{
 				"networking",
 				"secgroup",
@@ -8025,6 +8064,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 Neutron subnet resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "subnet.svg",
 			Keywords: []string{
 				"networking",
 				"subnet",
@@ -8350,6 +8390,7 @@ var (
 			Category:         "RDS Resources",
 			ShortDescription: `Manages rds instance resource within FlexibleEngine`,
 			Description:      ``,
+			Icon:             "Database-RDS .svg",
 			Keywords: []string{
 				"rds",
 				"instance",
@@ -8618,6 +8659,7 @@ var (
 			Category:         "RDS Resources",
 			ShortDescription: `instance management`,
 			Description:      ``,
+			Icon:             "Database-RDS .svg",
 			Keywords: []string{
 				"rds",
 				"instance",
@@ -8902,6 +8944,7 @@ var (
 			Category:         "RTS Resources",
 			ShortDescription: `Provides an RTS software config resource.`,
 			Description:      ``,
+			Icon:             "Management&Deployment-RTS.svg",
 			Keywords: []string{
 				"rts",
 				"software",
@@ -8917,6 +8960,7 @@ var (
 			Category:         "RTS Resources",
 			ShortDescription: `Provides an FlexibleEngine RTS Stack.`,
 			Description:      ``,
+			Icon:             "Management&Deployment-RTS.svg",
 			Keywords: []string{
 				"rts",
 				"resource",
@@ -8998,6 +9042,7 @@ var (
 			Category:         "S3 Resource",
 			ShortDescription: `Provides a S3 bucket resource.`,
 			Description:      ``,
+			Icon:             "bucket.svg",
 			Keywords: []string{
 				"s3",
 				"resource",
@@ -9166,6 +9211,7 @@ var (
 			Category:         "S3 Resource",
 			ShortDescription: `Provides a S3 bucket object resource.`,
 			Description:      ``,
+			Icon:             "bucket.svg",
 			Keywords: []string{
 				"s3",
 				"resource",
@@ -9259,6 +9305,7 @@ var (
 			Category:         "S3 Resource",
 			ShortDescription: `Attaches a policy to an S3 bucket resource.`,
 			Description:      ``,
+			Icon:             "bucket.svg",
 			Keywords: []string{
 				"s3",
 				"resource",
@@ -9283,6 +9330,7 @@ var (
 			Category:         "SFS Resources",
 			ShortDescription: `Provides an Scalable File Resource (SFS) resource.`,
 			Description:      ``,
+			Icon:             "Storage-SFS.svg",
 			Keywords: []string{
 				"sfs",
 				"file",
@@ -9404,6 +9452,7 @@ var (
 			Category:         "SMN Resources",
 			ShortDescription: `Manages a V2 subscription resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Application-SMN.svg",
 			Keywords: []string{
 				"smn",
 				"subscription",
@@ -9504,6 +9553,7 @@ var (
 			Category:         "SMN Resources",
 			ShortDescription: `Manages a V2 topic resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Application-SMN.svg",
 			Keywords: []string{
 				"smn",
 				"topic",
@@ -9576,6 +9626,7 @@ var (
 			Category:         "VBS Resources",
 			ShortDescription: `Provides an VBS Backup Policy resource.`,
 			Description:      ``,
+			Icon:             "Storage-VBS.svg",
 			Keywords: []string{
 				"vbs",
 				"flexibleengine-vbs-backup-policy-v2",
@@ -9589,6 +9640,7 @@ var (
 			Category:         "VBS Resources",
 			ShortDescription: `Provides an VBS Backup resource.`,
 			Description:      ``,
+			Icon:             "Storage-VBS.svg",
 			Keywords: []string{
 				"vbs",
 				"flexibleengine-vbs-backup-v2",
@@ -9602,6 +9654,7 @@ var (
 			Category:         "EIP Resources",
 			ShortDescription: `Manages a V1 EIP resource within FlexibleEngine VPC.`,
 			Description:      ``,
+			Icon:             "Network-EIP.svg",
 			Keywords: []string{
 				"eip",
 				"vpc",
@@ -9722,6 +9775,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manage the accepter's side of a VPC Peering Connection.`,
 			Description:      ``,
+			Icon:             "peer link.svg",
 			Keywords: []string{
 				"networking",
 				"vpc",
@@ -9789,6 +9843,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manage a VPC Peering Connection resource.`,
 			Description:      ``,
+			Icon:             "peer link.svg",
 			Keywords: []string{
 				"networking",
 				"vpc",
@@ -9823,6 +9878,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Provides an VPC route resource.`,
 			Description:      ``,
+			Icon:             "Network-VPC.svg",
 			Keywords: []string{
 				"networking",
 				"vpc",
@@ -9848,6 +9904,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Provides an VPC subnet resource.`,
 			Description:      ``,
+			Icon:             "subnet.svg",
 			Keywords: []string{
 				"networking",
 				"vpc",
@@ -9863,6 +9920,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V1 VPC resource within FlexibleEngine.`,
 			Description:      ``,
+			Icon:             "Network-VPC.svg",
 			Keywords: []string{
 				"networking",
 				"vpc",
