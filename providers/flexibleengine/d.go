@@ -15,6 +15,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine Volume.`,
 			Description:      ``,
+			Icon:             "Storage.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -47,6 +48,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on Cloud Container Engine Cluster (CCE).`,
 			Description:      ``,
+			Icon:             "Computing-CCE.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -637,6 +639,7 @@ var (
 The FlexibleEngine CSBS Backup Policy data source allows access of backup Policy resources.
 
 `,
+			Icon:     "Storage-CSBS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -809,6 +812,7 @@ The FlexibleEngine CSBS Backup Policy data source allows access of backup Policy
 The FlexibleEngine CSBS Backup data source allows access of backup resources.
 
 `,
+			Icon:     "Storage-CSBS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1069,6 +1073,7 @@ The FlexibleEngine CSBS Backup data source allows access of backup resources.
 CTS Tracker data source allows access of Cloud Tracker.
 
 `,
+			Icon:     "Management&Deployment-CTS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1320,6 +1325,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine DNS Zone.`,
 			Description:      ``,
+			Icon:             "zone.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1612,6 +1618,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine KMS Key.`,
 			Description:      ``,
+			Icon:             "Security-KMS.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1744,6 +1751,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine Network.`,
 			Description:      ``,
+			Icon:             "Network.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1808,6 +1816,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine Security Group.`,
 			Description:      ``,
+			Icon:             "security-group.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1996,6 +2005,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 The RTS Software Config data source provides details about a specific RTS Software Config.
 
 `,
+			Icon:     "Management&Deployment-RTS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2212,6 +2222,7 @@ The FlexibleEngine RTS Stack data source allows access to stack outputs and othe
 			Category:         "Data Sources",
 			ShortDescription: `Provides metadata and optionally content of an S3 object`,
 			Description:      ``,
+			Icon:             "bucket.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2364,6 +2375,7 @@ The FlexibleEngine RTS Stack data source allows access to stack outputs and othe
 Provides information about an Shared File System (SFS).
 
 `,
+			Icon:     "Storage-SFS.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2710,6 +2722,7 @@ The VPC Peering Connection data source provides details about a specific VPC pee
 
 
 `,
+			Icon:       "peer link.svg",
 			Keywords:   []string{},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -2750,6 +2763,7 @@ This resource can be useful for getting back a list of route ids for a vpc.
 ` + "`" + `flexibleengine_vpc_route_v2` + "`" + ` provides details about a specific VPC route.
 
 `,
+			Icon:     "Network-VPC.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2804,6 +2818,7 @@ an input variable and needs to, for example, determine the id of the
 VPC that the subnet belongs to.
 
 `,
+			Icon:     "subnet.svg",
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2831,6 +2846,7 @@ VPC that the subnet belongs to.
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine VPC.`,
 			Description:      ``,
+			Icon:             "Network-VPC.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
