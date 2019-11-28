@@ -106,6 +106,10 @@ var (
 					Description: `(Optional, bool) If true, then the container will be automatically removed after his execution. Terraform won't check this container after creation.`,
 				},
 				resource.Attribute{
+					Name:        "read_only",
+					Description: `(Optional, bool) If true, the container will be started as readonly.`,
+				},
+				resource.Attribute{
 					Name:        "start",
 					Description: `(Optional, bool) If true, then the Docker container will be started after creation. If false, then the container is only created.`,
 				},
@@ -166,6 +170,10 @@ var (
 					Description: `(Optional, int) The total memory limit (memory + swap) for the container in MBs. This setting may compute to ` + "`" + `-1` + "`" + ` after ` + "`" + `terraform apply` + "`" + ` if the target host doesn't support memory swap, when that is the case docker will use a soft limitation.`,
 				},
 				resource.Attribute{
+					Name:        "shm_size",
+					Description: `(Optional, int) Size of ` + "`" + `/dev/shm` + "`" + ` in MBs.`,
+				},
+				resource.Attribute{
 					Name:        "cpu_shares",
 					Description: `(Optional, int) CPU shares (relative weight) for the container.`,
 				},
@@ -223,7 +231,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sysctls",
-					Description: `(Optional, map) A map of kernel parameters (sysctls) to set in the container. <a id="capabilities-1"></a> ### Capabilities ` + "`" + `capabilities` + "`" + ` is a block within the configuration that allows you to add or drop linux capabilities. For more information about what capabilities you can add and drop please visit the docker run documentation.`,
+					Description: `(Optional, map) A map of kernel parameters (sysctls) to set in the container.`,
+				},
+				resource.Attribute{
+					Name:        "ipc_mode",
+					Description: `(Optional, string) IPC sharing mode for the container. Possible values are: ` + "`" + `none` + "`" + `, ` + "`" + `private` + "`" + `, ` + "`" + `shareable` + "`" + `, ` + "`" + `container:<name|id>` + "`" + ` or ` + "`" + `host` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "group_add",
+					Description: `(Optional, set of strings) Add additional groups to run as. <a id="capabilities-1"></a> ### Capabilities ` + "`" + `capabilities` + "`" + ` is a block within the configuration that allows you to add or drop linux capabilities. For more information about what capabilities you can add and drop please visit the docker run documentation.`,
 				},
 				resource.Attribute{
 					Name:        "add",
@@ -327,11 +343,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional, bool) If true, this volume will be readonly. Defaults to false. One of ` + "`" + `from_container` + "`" + `, ` + "`" + `host_path` + "`" + ` or ` + "`" + `volume_name` + "`" + ` must be set. <a id="upload-1"></a> ### File Upload ` + "`" + `upload` + "`" + ` is a block within the configuration that can be repeated to specify files to upload to the container before starting it. Each ` + "`" + `upload` + "`" + ` supports the following`,
+					Description: `(Optional, bool) If true, this volume will be readonly. Defaults to false. One of ` + "`" + `from_container` + "`" + `, ` + "`" + `host_path` + "`" + ` or ` + "`" + `volume_name` + "`" + ` must be set. <a id="upload-1"></a> ### File Upload ` + "`" + `upload` + "`" + ` is a block within the configuration that can be repeated to specify files to upload to the container before starting it. Only one of ` + "`" + `content` + "`" + ` or ` + "`" + `content_base64` + "`" + ` can be set and at least one of them hast to be set. Each ` + "`" + `upload` + "`" + ` supports the following`,
 				},
 				resource.Attribute{
 					Name:        "content",
-					Description: `(Required, string) A content of a file to upload.`,
+					Description: `(Optional, string, conflicts with ` + "`" + `content_base64` + "`" + `) Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.`,
+				},
+				resource.Attribute{
+					Name:        "content_base64",
+					Description: `(Optional, string, conflicts with ` + "`" + `content` + "`" + `) Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for larger binary content such as the result of the ` + "`" + `base64encode` + "`" + ` interpolation function. See [here](https://github.com/terraform-providers/terraform-provider-docker/issues/48#issuecomment-374174588) for the reason.`,
 				},
 				resource.Attribute{
 					Name:        "file",
@@ -766,7 +786,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "level",
-					Description: `(Optional, string) SELinux level label <a id="mounts-1"></a> #### Mounts ` + "`" + `mount` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `mount` + "`" + ` block is the Specification for mounts to be added to containers created as part of the service and supports the following:`,
+					Description: `(Optional, string) SELinux level label <a id="mounts-1"></a> #### Mounts ` + "`" + `mounts` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `mounts` + "`" + ` block is the Specification for mounts to be added to containers created as part of the service and supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "target",
@@ -843,10 +863,6 @@ var (
 				resource.Attribute{
 					Name:        "start_period",
 					Description: `(Optional, string) Start period for the container to initialize before counting retries towards unstable ` + "`" + `(ms|s|m|h)` + "`" + `. Default: ` + "`" + `0s` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "start_period",
-					Description: `Start period for the container to initialize before counting retries towards unstable ` + "`" + `(ms|s|m|h)` + "`" + `. Default: ` + "`" + `0s` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "retries",

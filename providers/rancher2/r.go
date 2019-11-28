@@ -13,7 +13,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_app",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 app resource. This can be used to deploy apps within rancher v2 projects.`,
+			ShortDescription: `Provides a Rancher v2 app resource. This can be used to deploy apps within Rancher v2 projects.`,
 			Description:      ``,
 			Keywords: []string{
 				"app",
@@ -21,11 +21,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "catalog_name",
-					Description: `(Required) Catalog name of the app. For use scoped catalogs:`,
-				},
-				resource.Attribute{
-					Name:        "external_id",
-					Description: `(Required) The url of the app template on a catalog. If modified, app will be upgraded (string)`,
+					Description: `(Required) Catalog name of the app. If modified, app will be upgraded. For use scoped catalogs:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -41,11 +37,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_name",
-					Description: `(Required) Template name of the app (string)`,
+					Description: `(Required) Template name of the app. If modified, app will be upgraded (string)`,
 				},
 				resource.Attribute{
 					Name:        "answers",
-					Description: `(Optional/Computed) Answers for the app template. If modified, app will be upgraded (map)`,
+					Description: `(Optional) Answers for the app template. If modified, app will be upgraded (map)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -61,11 +57,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_version",
-					Description: `(Optional/Computed) Template version of the app. Default: ` + "`" + `latest` + "`" + ` (string)`,
+					Description: `(Optional/Computed) Template version of the app. If modified, app will be upgraded. Default: ` + "`" + `latest` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "values_yaml",
-					Description: `(Optional/Computed) values.yaml file content for the app template. If modified, app will be upgraded (string)`,
+					Description: `(Optional) values.yaml base64 encoded file content for the app template. If modified, app will be upgraded (string)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -77,13 +73,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_app` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating apps. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for app modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting apps. ## Import Apps can be imported using the app ID in the format ` + "`" + `<project_id>:<app_name>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_app.foo <project_id>:<app_name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Computed) The url of the app template on a catalog (string) ## Timeouts ` + "`" + `rancher2_app` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating apps. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for app modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting apps. ## Import Apps can be imported using the app ID in the format ` + "`" + `<project_id>:<app_name>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_app.foo <project_id>:<app_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_app` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating apps. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for app modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting apps. ## Import Apps can be imported using the app ID in the format ` + "`" + `<project_id>:<app_name>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_app.foo <project_id>:<app_name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Computed) The url of the app template on a catalog (string) ## Timeouts ` + "`" + `rancher2_app` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating apps. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for app modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting apps. ## Import Apps can be imported using the app ID in the format ` + "`" + `<project_id>:<app_name>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_app.foo <project_id>:<app_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -91,7 +95,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_auth_config_adfs",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Auth Config ADFS resource. This can be used to configure and enable Auth Config ADFS for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Auth Config ADFS resource. This can be used to configure and enable Auth Config ADFS for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"auth",
@@ -183,7 +187,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_auth_config_activedirectory",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Auth Config ActiveDirectory resource. This can be used to configure and enable Auth Config ActiveDirectory for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Auth Config ActiveDirectory resource. This can be used to configure and enable Auth Config ActiveDirectory for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"auth",
@@ -343,7 +347,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_auth_config_azuread",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Auth Config AzureAD resource. This can be used to configure and enable Auth Config AzureAD for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Auth Config AzureAD resource. This can be used to configure and enable Auth Config AzureAD for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"auth",
@@ -369,7 +373,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rancher_url",
-					Description: `(Required) Rancher URL (string)`,
+					Description: `(Required) Rancher URL (string). "<rancher_url>/verify-auth-azure"`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
@@ -439,7 +443,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_auth_config_freeipa",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Auth Config FreeIpa resource. This can be used to configure and enable Auth Config FreeIpa for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Auth Config FreeIpa resource. This can be used to configure and enable Auth Config FreeIpa for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"auth",
@@ -473,7 +477,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate",
-					Description: `(Optional/Sensitive) Base64 encoded CA certificate for TLS if selfsigned. Use filebase64(<FILE>) for encoding file (string)`,
+					Description: `(Optional/Sensitive) Base64 encoded CA certificate for TLS if self-signed. Use filebase64(<FILE>) for encoding file (string)`,
 				},
 				resource.Attribute{
 					Name:        "connection_timeout",
@@ -591,7 +595,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_auth_config_github",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Auth Config Github resource. This can be used to configure and enable Auth Config Github for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Auth Config Github resource. This can be used to configure and enable Auth Config Github for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"auth",
@@ -609,7 +613,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `(Optional) Gtihub hostname to connect. Defaulf ` + "`" + `github.com` + "`" + ` (string)`,
+					Description: `(Optional) Github hostname to connect. Default ` + "`" + `github.com` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "access_mode",
@@ -617,7 +621,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allowed_principal_ids",
-					Description: `(Optional) Allowed principal ids for auth. Required if ` + "`" + `access_mode` + "`" + ` is ` + "`" + `required` + "`" + ` or ` + "`" + `restricted` + "`" + `. Ex: ` + "`" + `github_user://<USER_ID>` + "`" + ` ` + "`" + `github_group://<GROUP_ID>` + "`" + ` (list)`,
+					Description: `(Optional) Allowed principal ids for auth. Required if ` + "`" + `access_mode` + "`" + ` is ` + "`" + `required` + "`" + ` or ` + "`" + `restricted` + "`" + `. Ex: ` + "`" + `github_user://<USER_ID>` + "`" + ` ` + "`" + `github_team://<GROUP_ID>` + "`" + ` ` + "`" + `github_org://<ORG_ID>` + "`" + ` (list)`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -665,9 +669,193 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rancher2_auth_config_keycloak",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Auth Config KeyCloak resource. This can be used to configure and enable Auth Config KeyCloak for Rancher v2 RKE clusters and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"auth",
+				"config",
+				"keycloak",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name_field",
+					Description: `(Required) KeyCloak display name field (string)`,
+				},
+				resource.Attribute{
+					Name:        "groups_field",
+					Description: `(Required) KeyCloak group field (string)`,
+				},
+				resource.Attribute{
+					Name:        "idp_metadata_content",
+					Description: `(Required/Sensitive) KeyCloak IDP metadata content (string)`,
+				},
+				resource.Attribute{
+					Name:        "rancher_api_host",
+					Description: `(Required) Rancher url. Schema needs to be specified, ` + "`" + `https://<RANCHER_API_HOST>` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "sp_cert",
+					Description: `(Required/Sensitive) KeyCloak SP cert (string)`,
+				},
+				resource.Attribute{
+					Name:        "sp_key",
+					Description: `(Required/Sensitive) KeyCloak SP key (string)`,
+				},
+				resource.Attribute{
+					Name:        "uid_field",
+					Description: `(Required) KeyCloak UID field (string)`,
+				},
+				resource.Attribute{
+					Name:        "user_name_field",
+					Description: `(Required) KeyCloak user name field (string)`,
+				},
+				resource.Attribute{
+					Name:        "access_mode",
+					Description: `(Optional) Access mode for auth. ` + "`" + `required` + "`" + `, ` + "`" + `restricted` + "`" + `, ` + "`" + `unrestricted` + "`" + ` are supported. Default ` + "`" + `unrestricted` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "allowed_principal_ids",
+					Description: `(Optional) Allowed principal ids for auth. Required if ` + "`" + `access_mode` + "`" + ` is ` + "`" + `required` + "`" + ` or ` + "`" + `restricted` + "`" + `. Ex: ` + "`" + `keycloak_user://<USER_ID>` + "`" + ` ` + "`" + `keycloak_group://<GROUP_ID>` + "`" + ` (list)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable auth config provider. Default ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) Annotations of the resource (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) Labels of the resource (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Computed) The name of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Computed) The type of the resource (string)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Computed) The name of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Computed) The type of the resource (string)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_auth_config_okta",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Auth Config OKTA resource. This can be used to configure and enable Auth Config OKTA for Rancher v2 RKE clusters and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"auth",
+				"config",
+				"okta",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name_field",
+					Description: `(Required) OKTA display name field (string)`,
+				},
+				resource.Attribute{
+					Name:        "groups_field",
+					Description: `(Required) OKTA group field (string)`,
+				},
+				resource.Attribute{
+					Name:        "idp_metadata_content",
+					Description: `(Required/Sensitive) OKTA IDP metadata content (string)`,
+				},
+				resource.Attribute{
+					Name:        "rancher_api_host",
+					Description: `(Required) Rancher url. Schema needs to be specified, ` + "`" + `https://<RANCHER_API_HOST>` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "sp_cert",
+					Description: `(Required/Sensitive) OKTA SP cert (string)`,
+				},
+				resource.Attribute{
+					Name:        "sp_key",
+					Description: `(Required/Sensitive) OKTA SP key (string)`,
+				},
+				resource.Attribute{
+					Name:        "uid_field",
+					Description: `(Required) OKTA UID field (string)`,
+				},
+				resource.Attribute{
+					Name:        "user_name_field",
+					Description: `(Required) OKTA user name field (string)`,
+				},
+				resource.Attribute{
+					Name:        "access_mode",
+					Description: `(Optional) Access mode for auth. ` + "`" + `required` + "`" + `, ` + "`" + `restricted` + "`" + `, ` + "`" + `unrestricted` + "`" + ` are supported. Default ` + "`" + `unrestricted` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "allowed_principal_ids",
+					Description: `(Optional) Allowed principal ids for auth. Required if ` + "`" + `access_mode` + "`" + ` is ` + "`" + `required` + "`" + ` or ` + "`" + `restricted` + "`" + `. Ex: ` + "`" + `okta_user://<USER_ID>` + "`" + ` ` + "`" + `okta_group://<GROUP_ID>` + "`" + ` (list)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable auth config provider. Default ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) Annotations of the resource (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) Labels of the resource (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Computed) The name of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Computed) The type of the resource (string)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Computed) The name of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Computed) The type of the resource (string)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rancher2_auth_config_openldap",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Auth Config OpenLdap resource. This can be used to configure and enable Auth Config OpenLdap for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Auth Config OpenLdap resource. This can be used to configure and enable Auth Config OpenLdap for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"auth",
@@ -677,15 +865,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "servers",
-					Description: `(Required) Openldap servers list (list)`,
+					Description: `(Required) OpenLdap servers list (list)`,
 				},
 				resource.Attribute{
 					Name:        "service_account_distinguished_name",
-					Description: `(Required/Sensitive) Service account DN for access openldap service (string)`,
+					Description: `(Required/Sensitive) Service account DN for access OpenLdap service (string)`,
 				},
 				resource.Attribute{
 					Name:        "service_account_password",
-					Description: `(Required/Sensitive) Service account password for access openldap service (string)`,
+					Description: `(Required/Sensitive) Service account password for access OpenLdap service (string)`,
 				},
 				resource.Attribute{
 					Name:        "user_search_base",
@@ -701,11 +889,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate",
-					Description: `(Optional/Sensitive) Base64 encoded CA certificate for TLS if selfsigned. Use filebase64(<FILE>) for encoding file (string)`,
+					Description: `(Optional/Sensitive) Base64 encoded CA certificate for TLS if self-signed. Use filebase64(<FILE>) for encoding file (string)`,
 				},
 				resource.Attribute{
 					Name:        "connection_timeout",
-					Description: `(Optional) Openldap connection timeout. Default ` + "`" + `5000` + "`" + ` (int)`,
+					Description: `(Optional) OpenLdap connection timeout. Default ` + "`" + `5000` + "`" + ` (int)`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -745,7 +933,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional) Openldap port. Default ` + "`" + `389` + "`" + ` (int)`,
+					Description: `(Optional) OpenLdap port. Default ` + "`" + `389` + "`" + ` (int)`,
 				},
 				resource.Attribute{
 					Name:        "user_disabled_bit_mask",
@@ -819,7 +1007,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_auth_config_ping",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Auth Config Ping resource. This can be used to configure and enable Auth Config Ping for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Auth Config Ping resource. This can be used to configure and enable Auth Config Ping for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"auth",
@@ -911,7 +1099,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_bootstrap",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 bootstrap resource. This can be used to bootstrap rancher v2 environments and output information.`,
+			ShortDescription: `Provides a Rancher v2 bootstrap resource. This can be used to bootstrap Rancher v2 environments and output information.`,
 			Description:      ``,
 			Keywords: []string{
 				"bootstrap",
@@ -1001,7 +1189,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_catalog",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Catalog resource. This can be used to create cluster, global and/or project catalogs for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Catalog resource. This can be used to create cluster, global and/or project catalogs for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"catalog",
@@ -1057,13 +1245,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_catalog` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating catalogs. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for catalog modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting catalogs. ## Import Catalogs can be imported using the rancher Catalog ID and its scope. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_catalog.foo <scope>.<catalog_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_catalog` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating catalogs. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for catalog modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting catalogs. ## Import Catalogs can be imported using the Rancher Catalog ID and its scope. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_catalog.foo <scope>.<catalog_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_catalog` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating catalogs. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for catalog modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting catalogs. ## Import Catalogs can be imported using the rancher Catalog ID and its scope. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_catalog.foo <scope>.<catalog_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_catalog` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating catalogs. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for catalog modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting catalogs. ## Import Catalogs can be imported using the Rancher Catalog ID and its scope. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_catalog.foo <scope>.<catalog_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1071,7 +1259,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_certificate",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 certificate resource. This can be used to create certificates for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 certificate resource. This can be used to create certificates for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"certificate",
@@ -1083,11 +1271,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Required) Base64 encoded private key (string)`,
+					Description: `(Required/Sensitive) Base64 encoded private key (string)`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required/ForceNew) The project id where to assign the certificate (string)`,
+					Description: `(Required/ForceNew) The project id where the certificate should be created (string)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1099,7 +1287,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace_id",
-					Description: `(Optional/ForceNew) The namespace id where to assign the namespaced certificate (string)`,
+					Description: `(Optional/ForceNew) The namespace id where the namespaced certificate should be created (string)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -1125,7 +1313,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_cloud_credential",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2.2.x Cloud Credential resource. This can be used to create Cloud Credential for rancher v2.2 node templates and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2.2.x Cloud Credential resource. This can be used to create Cloud Credential for Rancher v2.2 node templates and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
@@ -1150,11 +1338,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "digitalocean_credential_config",
-					Description: `(Optional) Digitalocean config for the Cloud Credential (list maxitems:1)`,
+					Description: `(Optional) DigitalOcean config for the Cloud Credential (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "openstack_credential_config",
-					Description: `(Optional) Openstack config for the Cloud Credential (list maxitems:1)`,
+					Description: `(Optional) OpenStack config for the Cloud Credential (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "vsphere_credential_config",
@@ -1198,11 +1386,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_token",
-					Description: `(Required/Sensitive) Digital Ocean access token (string) ### ` + "`" + `openstack_credential_config` + "`" + ` #### Arguments`,
+					Description: `(Required/Sensitive) DigitalOcean access token (string) ### ` + "`" + `openstack_credential_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required/Sensitive) Openstack password (string) ### ` + "`" + `vsphere_credential_config` + "`" + ` #### Arguments`,
+					Description: `(Required/Sensitive) OpenStack password (string) ### ` + "`" + `vsphere_credential_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -1252,11 +1440,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_token",
-					Description: `(Required/Sensitive) Digital Ocean access token (string) ### ` + "`" + `openstack_credential_config` + "`" + ` #### Arguments`,
+					Description: `(Required/Sensitive) DigitalOcean access token (string) ### ` + "`" + `openstack_credential_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required/Sensitive) Openstack password (string) ### ` + "`" + `vsphere_credential_config` + "`" + ` #### Arguments`,
+					Description: `(Required/Sensitive) OpenStack password (string) ### ` + "`" + `vsphere_credential_config` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -1280,7 +1468,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_cluster",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Cluster resource. This can be used to create Clusters for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Cluster resource. This can be used to create Clusters for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"cluster",
@@ -1292,19 +1480,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rke_config",
-					Description: `(Optional) The rke configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional/Computed) The RKE configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "aks_config",
-					Description: `(Optional) The Azure aks configuration for ` + "`" + `aks` + "`" + ` Clusters. Conflicts with ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The Azure AKS configuration for ` + "`" + `aks` + "`" + ` Clusters. Conflicts with ` + "`" + `eks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "eks_config",
-					Description: `(Optional) The Amazon eks configuration for ` + "`" + `eks` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The Amazon EKS configuration for ` + "`" + `eks` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `gke_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "gke_config",
-					Description: `(Optional) The Google gke configuration for ` + "`" + `gke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Optional) The Google GKE configuration for ` + "`" + `gke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `rke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1315,12 +1503,52 @@ var (
 					Description: `(Optional/Computed) Enabling the [local cluster authorized endpoint](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#local-cluster-auth-endpoint) allows direct communication with the cluster, bypassing the Rancher API proxy. (list maxitems:1)`,
 				},
 				resource.Attribute{
+					Name:        "cluster_monitoring_input",
+					Description: `(Optional/Computed) Cluster monitoring config. Any parameter defined in [rancher-monitoring charts](https://github.com/rancher/system-charts/tree/dev/charts/rancher-monitoring) could be configured (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_answers",
+					Description: `(Optional) Cluster template answers. Just for Rancher v2.3.x and above (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_id",
+					Description: `(Optional) Cluster template ID. Just for Rancher v2.3.x and above (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_questions",
+					Description: `(Optional) Cluster template questions. Just for Rancher v2.3.x and above (list)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_revision_id",
+					Description: `(Optional) Cluster template revision ID. Just for Rancher v2.3.x and above (string)`,
+				},
+				resource.Attribute{
 					Name:        "default_pod_security_policy_template_id",
-					Description: `(Optional/Computed) [Default pod security policy template id](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#pod-security-policy-support). ` + "`" + `restricted` + "`" + ` and ` + "`" + `unrestricted` + "`" + ` are supported (string)`,
+					Description: `(Optional/Computed) [Default pod security policy template id](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#pod-security-policy-support) (string)`,
+				},
+				resource.Attribute{
+					Name:        "desired_agent_image",
+					Description: `(Optional/Computed) Desired agent image. Just for Rancher v2.3.x and above (string)`,
+				},
+				resource.Attribute{
+					Name:        "desired_auth_image",
+					Description: `(Optional/Computed) Desired auth image. Just for Rancher v2.3.x and above (string)`,
+				},
+				resource.Attribute{
+					Name:        "docker_root_dir",
+					Description: `(Optional/Computed) Desired auth image. Just for Rancher v2.3.x and above (string)`,
+				},
+				resource.Attribute{
+					Name:        "enable_cluster_alerting",
+					Description: `(Optional) Enable built-in cluster alerting. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_cluster_monitoring",
 					Description: `(Optional) Enable built-in cluster monitoring. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "enable_cluster_istio",
+					Description: `(Optional) Enable built-in cluster istio. Default ` + "`" + `false` + "`" + `. Just for Rancher v2.3.x and above (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_network_policy",
@@ -1364,11 +1592,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "addons",
-					Description: `(Optional) Addons descripton to deploy on rke cluster.`,
+					Description: `(Optional) Addons descripton to deploy on RKE cluster.`,
 				},
 				resource.Attribute{
 					Name:        "addons_include",
-					Description: `(Optional) Addons yaml manisfests to deploy on rke cluster (list)`,
+					Description: `(Optional) Addons yaml manifests to deploy on RKE cluster (list)`,
 				},
 				resource.Attribute{
 					Name:        "authentication",
@@ -1388,7 +1616,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns",
-					Description: `(Optional/Computed) RKE dns add-on. Just for rancher v2.2.x (list maxitems:1)`,
+					Description: `(Optional/Computed) RKE dns add-on. Just for Rancher v2.2.x (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "ignore_docker_version",
@@ -1416,7 +1644,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prefix_path",
-					Description: `(Optional/Computed) Prefix to customize kubernetes path (string)`,
+					Description: `(Optional/Computed) Prefix to customize Kubernetes path (string)`,
 				},
 				resource.Attribute{
 					Name:        "private_registries",
@@ -1912,7 +2140,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider",
-					Description: `(Optional) DNS add-on provider. ` + "`" + `kube-dns` + "`" + ` (default), ` + "`" + `coredns` + "`" + ` and ` + "`" + `none` + "`" + ` are supported (string)`,
+					Description: `(Optional) DNS add-on provider. ` + "`" + `kube-dns` + "`" + `, ` + "`" + `coredns` + "`" + ` (default), and ` + "`" + `none` + "`" + ` are supported (string)`,
 				},
 				resource.Attribute{
 					Name:        "reverse_cidrs",
@@ -2000,7 +2228,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "docker_socket",
-					Description: `(Optional/Computed) Docker scojer for node (string)`,
+					Description: `(Optional/Computed) Docker socket for node (string)`,
 				},
 				resource.Attribute{
 					Name:        "hostname_override",
@@ -2076,15 +2304,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_config",
-					Description: `(Optional/Computed) Backup options for etcd service. Just for rancher v2.2.x (list maxitems:1)`,
+					Description: `(Optional/Computed) Backup options for etcd service. Just for Rancher v2.2.x (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "ca_cert",
-					Description: `(Optional/Computed) Tls CA certificate for etcd service (string)`,
+					Description: `(Optional/Computed) TLS CA certificate for etcd service (string)`,
 				},
 				resource.Attribute{
 					Name:        "cert",
-					Description: `(Optional/Computed/Sensitive) Tls certificate for etcd service (string)`,
+					Description: `(Optional/Computed/Sensitive) TLS certificate for etcd service (string)`,
 				},
 				resource.Attribute{
 					Name:        "creation",
@@ -2107,12 +2335,16 @@ var (
 					Description: `(Optional) Extra environment for etcd service (list)`,
 				},
 				resource.Attribute{
+					Name:        "gid",
+					Description: `(Optional) Etcd service GID. Default: ` + "`" + `0` + "`" + `. For Rancher v2.3.x or above (int)`,
+				},
+				resource.Attribute{
 					Name:        "image",
 					Description: `(Optional/Computed) Docker image for etcd service (string)`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Optional/Computed/Sensitive) Tls key for etcd service (string)`,
+					Description: `(Optional/Computed/Sensitive) TLS key for etcd service (string)`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -2124,7 +2356,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snapshot",
-					Description: `(Optional/Computed) Snapshot option for etcd service (bool) ###### ` + "`" + `backup_config` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Snapshot option for etcd service (bool)`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Etcd service UID. Default: ` + "`" + `0` + "`" + `. For Rancher v2.3.x or above (int) ###### ` + "`" + `backup_config` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -2152,7 +2388,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_ca",
-					Description: `(Optional) Base64 encoded custom CA for S3 service. Use filebase64(<FILE>) for encoding file. Available from rancher v2.2.5 (string)`,
+					Description: `(Optional) Base64 encoded custom CA for S3 service. Use filebase64(<FILE>) for encoding file. Available from Rancher v2.2.5 (string)`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -2160,7 +2396,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder",
-					Description: `(Optional) Folder for S3 service. Available from rancher v2.2.7 (string)`,
+					Description: `(Optional) Folder for S3 service. Available from Rancher v2.2.7 (string)`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -2169,6 +2405,10 @@ var (
 				resource.Attribute{
 					Name:        "secret_key",
 					Description: `(Optional/Sensitive) Secret key for S3 service (string) ##### ` + "`" + `kube_api` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "always_pull_images",
+					Description: `(Optional) Enable [AlwaysPullImages](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#alwayspullimages) Admission controller plugin. [Rancher docs](https://rancher.com/docs/rke/latest/en/config-options/services/#kubernetes-api-server-options) Default: ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "extra_args",
@@ -2252,7 +2492,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "infra_container_image",
-					Description: `(Optional/Computed) Infre container image for kubelet service (string) ##### ` + "`" + `kubeproxy` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Infra container image for kubelet service (string) ##### ` + "`" + `kubeproxy` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "extra_args",
@@ -2440,7 +2680,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kubernetes_version",
-					Description: `(Required) The kubernetes master version (string)`,
+					Description: `(Required) The Kubernetes master version (string)`,
 				},
 				resource.Attribute{
 					Name:        "secret_key",
@@ -2455,12 +2695,16 @@ var (
 					Description: `(Optional) Associate public ip EKS worker nodes. Default ` + "`" + `true` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
+					Name:        "desired_nodes",
+					Description: `(Optional) The desired number of worker nodes. Just for Rancher v2.3.x and above. Default ` + "`" + `3` + "`" + ` (int)`,
+				},
+				resource.Attribute{
 					Name:        "instance_type",
 					Description: `(Optional) The type of machine to use for worker nodes. Default ` + "`" + `t2.medium` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "key_pair_name",
-					Description: `(Optional) Allow user to specify key name to use. Just for rancher v2.2.7 and above (string)`,
+					Description: `(Optional) Allow user to specify key name to use. Just for Rancher v2.2.7 and above (string)`,
 				},
 				resource.Attribute{
 					Name:        "maximum_nodes",
@@ -2476,7 +2720,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The AWS Region to create the EKS cluster in. Default ` + "`" + `us-west-2` + "`" + ` (string) ` + "`" + `security_groups` + "`" + ` - (Optional) List of security groups to use for the cluster. If it's not specified Rancher will create a new security group (list)`,
+					Description: `(Optional) The AWS Region to create the EKS cluster in. Default ` + "`" + `us-west-2` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `(Optional) List of security groups to use for the cluster. If it's not specified Rancher will create a new security group (list)`,
 				},
 				resource.Attribute{
 					Name:        "service_role",
@@ -2596,7 +2844,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_alpha_feature",
-					Description: `(Optional) To enable kubernetes alpha feature. Default ` + "`" + `true` + "`" + ` (bool)`,
+					Description: `(Optional) To enable Kubernetes alpha feature. Default ` + "`" + `true` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_auto_repair",
@@ -2616,7 +2864,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_kubernetes_dashboard",
-					Description: `(Optional) Whether to enable the kubernetes dashboard. Default ` + "`" + `false` + "`" + ` (bool)`,
+					Description: `(Optional) Whether to enable the Kubernetes dashboard. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_legacy_abac",
@@ -2656,7 +2904,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kubernetes_dashboard",
-					Description: `(Optional) Enable the kubernetes dashboard. Default ` + "`" + `false` + "`" + ` (bool)`,
+					Description: `(Optional) Enable the Kubernetes dashboard. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2696,7 +2944,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "taints",
-					Description: `(Required) List of kubernetes taints to be applied to each node (list)`,
+					Description: `(Required) List of Kubernetes taints to be applied to each node (list)`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -2712,7 +2960,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `(Optional) FQDN for the authorized cluster endpoint (string) ### ` + "`" + `cluster_registration_token` + "`" + ` #### Attributes`,
+					Description: `(Optional) FQDN for the authorized cluster endpoint (string) ### ` + "`" + `cluster_monitoring_input` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "answers",
+					Description: `(Optional/Computed) Key/value answers for monitor input (map) ======= ### ` + "`" + `cluster_template_answers` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) Cluster ID to apply answer (string)`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Project ID to apply answer (string)`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) Key/values for answer (map) ### ` + "`" + `cluster_template_questions` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Required) Default variable value (string)`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `(Optional) Required variable. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Variable type. ` + "`" + `boolean` + "`" + `, ` + "`" + `int` + "`" + ` and ` + "`" + `string` + "`" + ` are allowed. Default ` + "`" + `string` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "variable",
+					Description: `(Optional) Variable name (string) >>>>>>> c6a2cbc... Feat: added rancher2_cluster_template datasource and resource. For rancher V2.3.x. Doc files ### ` + "`" + `cluster_registration_token` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -2732,7 +3012,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "manifest_url",
-					Description: `(Computed) K8s mnifest url to execute kubectl in a imported k8s cluster (string)`,
+					Description: `(Computed) K8s manifest url to execute with ` + "`" + `kubectl` + "`" + ` to import an existing k8s cluster (string)`,
 				},
 				resource.Attribute{
 					Name:        "node_command",
@@ -2752,7 +3032,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Computed) Labels for cluster registration token object (map) ## Timeouts ` + "`" + `rancher2_cluster` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating clusters. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting clusters. ## Import Clusters can be imported using the rancher Cluster ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster.foo <cluster> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) Labels for cluster registration token object (map) ## Timeouts ` + "`" + `rancher2_cluster` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating clusters. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting clusters. ## Import Clusters can be imported using the Rancher Cluster ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster.foo <cluster> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2786,11 +3066,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "addons",
-					Description: `(Optional) Addons descripton to deploy on rke cluster.`,
+					Description: `(Optional) Addons descripton to deploy on RKE cluster.`,
 				},
 				resource.Attribute{
 					Name:        "addons_include",
-					Description: `(Optional) Addons yaml manisfests to deploy on rke cluster (list)`,
+					Description: `(Optional) Addons yaml manifests to deploy on RKE cluster (list)`,
 				},
 				resource.Attribute{
 					Name:        "authentication",
@@ -2810,7 +3090,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dns",
-					Description: `(Optional/Computed) RKE dns add-on. Just for rancher v2.2.x (list maxitems:1)`,
+					Description: `(Optional/Computed) RKE dns add-on. Just for Rancher v2.2.x (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "ignore_docker_version",
@@ -2838,7 +3118,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "prefix_path",
-					Description: `(Optional/Computed) Prefix to customize kubernetes path (string)`,
+					Description: `(Optional/Computed) Prefix to customize Kubernetes path (string)`,
 				},
 				resource.Attribute{
 					Name:        "private_registries",
@@ -3334,7 +3614,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider",
-					Description: `(Optional) DNS add-on provider. ` + "`" + `kube-dns` + "`" + ` (default), ` + "`" + `coredns` + "`" + ` and ` + "`" + `none` + "`" + ` are supported (string)`,
+					Description: `(Optional) DNS add-on provider. ` + "`" + `kube-dns` + "`" + `, ` + "`" + `coredns` + "`" + ` (default), and ` + "`" + `none` + "`" + ` are supported (string)`,
 				},
 				resource.Attribute{
 					Name:        "reverse_cidrs",
@@ -3422,7 +3702,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "docker_socket",
-					Description: `(Optional/Computed) Docker scojer for node (string)`,
+					Description: `(Optional/Computed) Docker socket for node (string)`,
 				},
 				resource.Attribute{
 					Name:        "hostname_override",
@@ -3498,15 +3778,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_config",
-					Description: `(Optional/Computed) Backup options for etcd service. Just for rancher v2.2.x (list maxitems:1)`,
+					Description: `(Optional/Computed) Backup options for etcd service. Just for Rancher v2.2.x (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "ca_cert",
-					Description: `(Optional/Computed) Tls CA certificate for etcd service (string)`,
+					Description: `(Optional/Computed) TLS CA certificate for etcd service (string)`,
 				},
 				resource.Attribute{
 					Name:        "cert",
-					Description: `(Optional/Computed/Sensitive) Tls certificate for etcd service (string)`,
+					Description: `(Optional/Computed/Sensitive) TLS certificate for etcd service (string)`,
 				},
 				resource.Attribute{
 					Name:        "creation",
@@ -3529,12 +3809,16 @@ var (
 					Description: `(Optional) Extra environment for etcd service (list)`,
 				},
 				resource.Attribute{
+					Name:        "gid",
+					Description: `(Optional) Etcd service GID. Default: ` + "`" + `0` + "`" + `. For Rancher v2.3.x or above (int)`,
+				},
+				resource.Attribute{
 					Name:        "image",
 					Description: `(Optional/Computed) Docker image for etcd service (string)`,
 				},
 				resource.Attribute{
 					Name:        "key",
-					Description: `(Optional/Computed/Sensitive) Tls key for etcd service (string)`,
+					Description: `(Optional/Computed/Sensitive) TLS key for etcd service (string)`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -3546,7 +3830,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "snapshot",
-					Description: `(Optional/Computed) Snapshot option for etcd service (bool) ###### ` + "`" + `backup_config` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Snapshot option for etcd service (bool)`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Etcd service UID. Default: ` + "`" + `0` + "`" + `. For Rancher v2.3.x or above (int) ###### ` + "`" + `backup_config` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -3574,7 +3862,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_ca",
-					Description: `(Optional) Base64 encoded custom CA for S3 service. Use filebase64(<FILE>) for encoding file. Available from rancher v2.2.5 (string)`,
+					Description: `(Optional) Base64 encoded custom CA for S3 service. Use filebase64(<FILE>) for encoding file. Available from Rancher v2.2.5 (string)`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -3582,7 +3870,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder",
-					Description: `(Optional) Folder for S3 service. Available from rancher v2.2.7 (string)`,
+					Description: `(Optional) Folder for S3 service. Available from Rancher v2.2.7 (string)`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -3591,6 +3879,10 @@ var (
 				resource.Attribute{
 					Name:        "secret_key",
 					Description: `(Optional/Sensitive) Secret key for S3 service (string) ##### ` + "`" + `kube_api` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "always_pull_images",
+					Description: `(Optional) Enable [AlwaysPullImages](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#alwayspullimages) Admission controller plugin. [Rancher docs](https://rancher.com/docs/rke/latest/en/config-options/services/#kubernetes-api-server-options) Default: ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "extra_args",
@@ -3674,7 +3966,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "infra_container_image",
-					Description: `(Optional/Computed) Infre container image for kubelet service (string) ##### ` + "`" + `kubeproxy` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Infra container image for kubelet service (string) ##### ` + "`" + `kubeproxy` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "extra_args",
@@ -3862,7 +4154,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kubernetes_version",
-					Description: `(Required) The kubernetes master version (string)`,
+					Description: `(Required) The Kubernetes master version (string)`,
 				},
 				resource.Attribute{
 					Name:        "secret_key",
@@ -3877,12 +4169,16 @@ var (
 					Description: `(Optional) Associate public ip EKS worker nodes. Default ` + "`" + `true` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
+					Name:        "desired_nodes",
+					Description: `(Optional) The desired number of worker nodes. Just for Rancher v2.3.x and above. Default ` + "`" + `3` + "`" + ` (int)`,
+				},
+				resource.Attribute{
 					Name:        "instance_type",
 					Description: `(Optional) The type of machine to use for worker nodes. Default ` + "`" + `t2.medium` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "key_pair_name",
-					Description: `(Optional) Allow user to specify key name to use. Just for rancher v2.2.7 and above (string)`,
+					Description: `(Optional) Allow user to specify key name to use. Just for Rancher v2.2.7 and above (string)`,
 				},
 				resource.Attribute{
 					Name:        "maximum_nodes",
@@ -3898,7 +4194,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The AWS Region to create the EKS cluster in. Default ` + "`" + `us-west-2` + "`" + ` (string) ` + "`" + `security_groups` + "`" + ` - (Optional) List of security groups to use for the cluster. If it's not specified Rancher will create a new security group (list)`,
+					Description: `(Optional) The AWS Region to create the EKS cluster in. Default ` + "`" + `us-west-2` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `(Optional) List of security groups to use for the cluster. If it's not specified Rancher will create a new security group (list)`,
 				},
 				resource.Attribute{
 					Name:        "service_role",
@@ -4018,7 +4318,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_alpha_feature",
-					Description: `(Optional) To enable kubernetes alpha feature. Default ` + "`" + `true` + "`" + ` (bool)`,
+					Description: `(Optional) To enable Kubernetes alpha feature. Default ` + "`" + `true` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_auto_repair",
@@ -4038,7 +4338,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_kubernetes_dashboard",
-					Description: `(Optional) Whether to enable the kubernetes dashboard. Default ` + "`" + `false` + "`" + ` (bool)`,
+					Description: `(Optional) Whether to enable the Kubernetes dashboard. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "enable_legacy_abac",
@@ -4078,7 +4378,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kubernetes_dashboard",
-					Description: `(Optional) Enable the kubernetes dashboard. Default ` + "`" + `false` + "`" + ` (bool)`,
+					Description: `(Optional) Enable the Kubernetes dashboard. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -4118,7 +4418,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "taints",
-					Description: `(Required) List of kubernetes taints to be applied to each node (list)`,
+					Description: `(Required) List of Kubernetes taints to be applied to each node (list)`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -4134,7 +4434,39 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `(Optional) FQDN for the authorized cluster endpoint (string) ### ` + "`" + `cluster_registration_token` + "`" + ` #### Attributes`,
+					Description: `(Optional) FQDN for the authorized cluster endpoint (string) ### ` + "`" + `cluster_monitoring_input` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "answers",
+					Description: `(Optional/Computed) Key/value answers for monitor input (map) ======= ### ` + "`" + `cluster_template_answers` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) Cluster ID to apply answer (string)`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Project ID to apply answer (string)`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) Key/values for answer (map) ### ` + "`" + `cluster_template_questions` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Required) Default variable value (string)`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `(Optional) Required variable. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Variable type. ` + "`" + `boolean` + "`" + `, ` + "`" + `int` + "`" + ` and ` + "`" + `string` + "`" + ` are allowed. Default ` + "`" + `string` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "variable",
+					Description: `(Optional) Variable name (string) >>>>>>> c6a2cbc... Feat: added rancher2_cluster_template datasource and resource. For rancher V2.3.x. Doc files ### ` + "`" + `cluster_registration_token` + "`" + ` #### Attributes`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -4154,7 +4486,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "manifest_url",
-					Description: `(Computed) K8s mnifest url to execute kubectl in a imported k8s cluster (string)`,
+					Description: `(Computed) K8s manifest url to execute with ` + "`" + `kubectl` + "`" + ` to import an existing k8s cluster (string)`,
 				},
 				resource.Attribute{
 					Name:        "node_command",
@@ -4174,7 +4506,275 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Computed) Labels for cluster registration token object (map) ## Timeouts ` + "`" + `rancher2_cluster` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating clusters. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting clusters. ## Import Clusters can be imported using the rancher Cluster ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster.foo <cluster> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) Labels for cluster registration token object (map) ## Timeouts ` + "`" + `rancher2_cluster` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating clusters. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting clusters. ## Import Clusters can be imported using the Rancher Cluster ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster.foo <cluster> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_cluster_alert_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Cluster Alert Group resource. This can be used to create Cluster Alert Group for Rancher v2 environments and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"cluster",
+				"alert",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The cluster id where create cluster alert group (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The cluster alert group name (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The cluster alert group description (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Optional) The cluster alert group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Optional) The cluster alert group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Optional) The cluster alert group recipients (list)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Optional) The cluster alert group wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) The cluster alert group annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) The cluster alert group labels (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `recipients` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "notifier_id",
+					Description: `(Required) Recipient notifier ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "recipient",
+					Description: `(Optional/Computed) Recipient (string) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "notifier_type",
+					Description: `(Computed) Recipient notifier ID. Supported values : ` + "`" + `"pagerduty" | "slack" | "email" | "webhook" | "wechat"` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_cluster_alert_group` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster alert groups. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster alert group modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster alert groups. ## Import Cluster Alert Group can be imported using the Rancher cluster alert group ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_alert_group.foo <rancher2_cluster_alert_group_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `recipients` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "notifier_id",
+					Description: `(Required) Recipient notifier ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "recipient",
+					Description: `(Optional/Computed) Recipient (string) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "notifier_type",
+					Description: `(Computed) Recipient notifier ID. Supported values : ` + "`" + `"pagerduty" | "slack" | "email" | "webhook" | "wechat"` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_cluster_alert_group` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster alert groups. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster alert group modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster alert groups. ## Import Cluster Alert Group can be imported using the Rancher cluster alert group ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_alert_group.foo <rancher2_cluster_alert_group_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_cluster_alert_rule",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Cluster Alert Rule resource. This can be used to create Cluster Alert Rule for Rancher v2 environments and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"cluster",
+				"alert",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The cluster id where create cluster alert rule (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) The cluster alert rule alert group ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The cluster alert rule name (string)`,
+				},
+				resource.Attribute{
+					Name:        "event_rule",
+					Description: `(Optional) The cluster alert rule event rule. ConflictsWith: ` + "`" + `"metric_rule", "node_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Optional) The cluster alert rule group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Optional) The cluster alert rule group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "inherited",
+					Description: `(Optional) The cluster alert rule inherited. Default: ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "metric_rule",
+					Description: `(Optional) The cluster alert rule metric rule. ConflictsWith: ` + "`" + `"event_rule", "node_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "node_rule",
+					Description: `(Optional) The cluster alert rule node rule. ConflictsWith: ` + "`" + `"event_rule", "metric_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Optional) The cluster alert rule wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `(Optional) The cluster alert rule severity. Supported values : ` + "`" + `"critical" | "info" | "warning"` + "`" + `. Default: ` + "`" + `critical` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "system_service_rule",
+					Description: `(Optional) The cluster alert rule system service rule. ConflictsWith: ` + "`" + `"event_rule", "metric_rule", "node_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) The cluster alert rule annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) The cluster alert rule labels (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `event_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "resource_kind",
+					Description: `(Required) Resource kind. Supported values : ` + "`" + `"DaemonSet" | "Deployment" | "Node" | "Pod" | "StatefulSet"` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "event_type",
+					Description: `(Optional) Event type. Supported values : ` + "`" + `"Warning" | "Normal"` + "`" + `. Default: ` + "`" + `Warning` + "`" + ` (string) ### ` + "`" + `metric_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Metric rule duration (string)`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) Metric rule expression (string)`,
+				},
+				resource.Attribute{
+					Name:        "threshold_value",
+					Description: `(Required) Metric rule threshold value (float64)`,
+				},
+				resource.Attribute{
+					Name:        "comparison",
+					Description: `(Optional) Metric rule comparison. Supported values : ` + "`" + `"equal" | "greater-or-equal" | "greater-than" | "less-or-equal" | "less-than" | "not-equal"` + "`" + `. Default: ` + "`" + `equal` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Metric rule description (string) ### ` + "`" + `node_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cpu_threshold",
+					Description: `(Optional) Node rule cpu threshold. Default: ` + "`" + `70` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) Node rule condition. Supported values : ` + "`" + `"cpu" | "mem" | "notready"` + "`" + `. Default: ` + "`" + `notready` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "mem_threshold",
+					Description: `(Optional) Node rule mem threshold. Default: ` + "`" + `70` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `(Optional) Node ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) Node rule selector (map) ### ` + "`" + `system_service_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) System service rule condition. Supported values : ` + "`" + `"controller-manager" | "etcd" | "scheduler"` + "`" + `. Default: ` + "`" + `scheduler` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_cluster_alert_rule` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster alert rules. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster alert rule modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster alert rules. ## Import Cluster Alert Rule can be imported using the Rancher cluster alert rule ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_alert_rule.foo <rancher2_cluster_alert_rule_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `event_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "resource_kind",
+					Description: `(Required) Resource kind. Supported values : ` + "`" + `"DaemonSet" | "Deployment" | "Node" | "Pod" | "StatefulSet"` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "event_type",
+					Description: `(Optional) Event type. Supported values : ` + "`" + `"Warning" | "Normal"` + "`" + `. Default: ` + "`" + `Warning` + "`" + ` (string) ### ` + "`" + `metric_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Metric rule duration (string)`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) Metric rule expression (string)`,
+				},
+				resource.Attribute{
+					Name:        "threshold_value",
+					Description: `(Required) Metric rule threshold value (float64)`,
+				},
+				resource.Attribute{
+					Name:        "comparison",
+					Description: `(Optional) Metric rule comparison. Supported values : ` + "`" + `"equal" | "greater-or-equal" | "greater-than" | "less-or-equal" | "less-than" | "not-equal"` + "`" + `. Default: ` + "`" + `equal` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Metric rule description (string) ### ` + "`" + `node_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cpu_threshold",
+					Description: `(Optional) Node rule cpu threshold. Default: ` + "`" + `70` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) Node rule condition. Supported values : ` + "`" + `"cpu" | "mem" | "notready"` + "`" + `. Default: ` + "`" + `notready` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "mem_threshold",
+					Description: `(Optional) Node rule mem threshold. Default: ` + "`" + `70` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "node_id",
+					Description: `(Optional) Node ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) Node rule selector (map) ### ` + "`" + `system_service_rule` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional) System service rule condition. Supported values : ` + "`" + `"controller-manager" | "etcd" | "scheduler"` + "`" + `. Default: ` + "`" + `scheduler` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_cluster_alert_rule` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster alert rules. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster alert rule modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster alert rules. ## Import Cluster Alert Rule can be imported using the Rancher cluster alert rule ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_alert_rule.foo <rancher2_cluster_alert_rule_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4182,7 +4782,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_cluster_driver",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Cluster Driver resource. This can be used to create Cluster Driver for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Cluster Driver resource. This can be used to create Cluster Driver for Rancher v2 Kontainer Engine clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"cluster",
@@ -4191,11 +4791,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "active",
-					Description: `(Required) Specify if the cluster driver state (bool)`,
+					Description: `(Required) Specify the cluster driver state (bool)`,
 				},
 				resource.Attribute{
 					Name:        "builtin",
-					Description: `(Required) Specify wheter the cluster driver is an internal cluster driver or not (bool)`,
+					Description: `(Required) Specify whether the cluster driver is an internal cluster driver or not (bool)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4231,13 +4831,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_cluster_driver` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster drivers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster driver modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster drivers. ## Import Cluster Driver can be imported using the rancher Cluster Driver ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_driver.foo <cluster_driver_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_cluster_driver` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster drivers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster driver modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster drivers. ## Import Cluster Driver can be imported using the Rancher Cluster Driver ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_driver.foo <cluster_driver_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_cluster_driver` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster drivers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster driver modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster drivers. ## Import Cluster Driver can be imported using the rancher Cluster Driver ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_driver.foo <cluster_driver_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_cluster_driver` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster drivers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster driver modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster drivers. ## Import Cluster Driver can be imported using the Rancher Cluster Driver ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_driver.foo <cluster_driver_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4245,7 +4845,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_cluster_logging",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Cluster Logging resource. This can be used to create Cluster Logging for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Cluster Logging resource. This can be used to configure Cluster Logging for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"cluster",
@@ -4490,7 +5090,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Optional/Sensitive) Token for the syslog service (string) ## Timeouts ` + "`" + `rancher2_cluster_logging` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster logging configurations. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster logging configuration modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster logging configurations. ## Import Cluster Logging can be imported using the rancher Cluster Logging ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_logging.foo <cluster_logging_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) Token for the syslog service (string) ## Timeouts ` + "`" + `rancher2_cluster_logging` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster logging configurations. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster logging configuration modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster logging configurations. ## Import Cluster Logging can be imported using the Rancher Cluster Logging ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_logging.foo <cluster_logging_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4680,7 +5280,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Optional/Sensitive) Token for the syslog service (string) ## Timeouts ` + "`" + `rancher2_cluster_logging` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster logging configurations. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster logging configuration modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster logging configurations. ## Import Cluster Logging can be imported using the rancher Cluster Logging ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_logging.foo <cluster_logging_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) Token for the syslog service (string) ## Timeouts ` + "`" + `rancher2_cluster_logging` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster logging configurations. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster logging configuration modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster logging configurations. ## Import Cluster Logging can be imported using the Rancher Cluster Logging ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_logging.foo <cluster_logging_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4688,7 +5288,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_cluster_role_template_binding",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Cluster Role Template Binding resource. This can be used to create Cluster Role Template Bindings for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Cluster Role Template Binding resource. This can be used to create Cluster Role Template Bindings for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"cluster",
@@ -4735,13 +5335,284 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_cluster_role_template_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster role template bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster role template binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster role template bindings. ## Import Cluster Role Template Bindings can be imported using the rancher cluster Role Template Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_role_template_binding.foo <cluster_role_template_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_cluster_role_template_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster role template bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster role template binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster role template bindings. ## Import Cluster Role Template Bindings can be imported using the Rancher cluster Role Template Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_role_template_binding.foo <cluster_role_template_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_cluster_role_template_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster role template bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster role template binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster role template bindings. ## Import Cluster Role Template Bindings can be imported using the rancher cluster Role Template Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_role_template_binding.foo <cluster_role_template_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_cluster_role_template_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster role template bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster role template binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster role template bindings. ## Import Cluster Role Template Bindings can be imported using the Rancher cluster Role Template Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_role_template_binding.foo <cluster_role_template_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_cluster_template",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Cluster Template resource. This can be used to create Cluster Templates for Rancher v2 RKE clusters and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"cluster",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The cluster template name (string)`,
+				},
+				resource.Attribute{
+					Name:        "decription",
+					Description: `(Optional) The cluster template description (string)`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `(Optional) Cluster template members (list)`,
+				},
+				resource.Attribute{
+					Name:        "template_revisions",
+					Description: `(Optional/Computed) Cluster template revisions (list)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) Annotations for the cluster template (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) Labels for the cluster template (map) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_revision_id",
+					Description: `(Computed) Default cluster template revision ID (string) ## Nested blocks ### ` + "`" + `members` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Optional) Member access type. Valid values: ` + "`" + `["read-only" | "owner"]` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_principal_id",
+					Description: `(Optional) Member group principal id (string)`,
+				},
+				resource.Attribute{
+					Name:        "user_principal_id",
+					Description: `(Optional) Member user principal id (string) ### ` + "`" + `template_revisions` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The cluster template revision name (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `(Optional) Cluster configuration (list maxitem: 1)`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Optional) Default cluster template revision. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable cluster template revision. Default ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "questions",
+					Description: `(Optional) Cluster template questions (list)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) Annotations for the cluster template revision (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) Labels for the cluster template revision (map) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The cluster template revision ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_id",
+					Description: `(Computed) Cluster template ID (string) #### ` + "`" + `cluster_config` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cluster_auth_endpoint",
+					Description: `(Optional/Computed) Local cluster auth endpoint (list maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "default_cluster_role_for_project_members",
+					Description: `(Optional/Computed) Default cluster role for project members (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_pod_security_policy_template_id",
+					Description: `(Optional/Computed) Default pod security policy template ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "desired_agent_image",
+					Description: `(Optional/Computed) Desired agent image (string)`,
+				},
+				resource.Attribute{
+					Name:        "desired_auth_image",
+					Description: `(Optional/Computed) Desired auth image (string)`,
+				},
+				resource.Attribute{
+					Name:        "docker_root_dir",
+					Description: `(Optional/Computed) Desired auth image (string)`,
+				},
+				resource.Attribute{
+					Name:        "enable_cluster_alerting",
+					Description: `(Optional) Enable built-in cluster alerting. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "enable_cluster_monitoring",
+					Description: `(Optional) Enable built-in cluster monitoring. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "enable_network_policy",
+					Description: `(Optional) Enable project network isolation. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "rke_config",
+					Description: `(Optional/Computed) Rancher Kubernetes Engine Config (list maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "windows_prefered_cluster",
+					Description: `(Optional) Windows prefered cluster. Default: ` + "`" + `false` + "`" + ` (bool) #### ` + "`" + `questions` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Required) Default variable value (string)`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `(Optional) Required variable. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Variable type. ` + "`" + `boolean` + "`" + `, ` + "`" + `int` + "`" + ` and ` + "`" + `string` + "`" + ` are allowed. Default ` + "`" + `string` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "variable",
+					Description: `(Optional) Variable name (string) ## Timeouts ` + "`" + `rancher2_cluster_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster templates. ## Import Cluster Template can be imported using the rancher Cluster Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_template.foo <cluster_template_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_revision_id",
+					Description: `(Computed) Default cluster template revision ID (string) ## Nested blocks ### ` + "`" + `members` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Optional) Member access type. Valid values: ` + "`" + `["read-only" | "owner"]` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_principal_id",
+					Description: `(Optional) Member group principal id (string)`,
+				},
+				resource.Attribute{
+					Name:        "user_principal_id",
+					Description: `(Optional) Member user principal id (string) ### ` + "`" + `template_revisions` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The cluster template revision name (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `(Optional) Cluster configuration (list maxitem: 1)`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Optional) Default cluster template revision. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable cluster template revision. Default ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "questions",
+					Description: `(Optional) Cluster template questions (list)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) Annotations for the cluster template revision (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) Labels for the cluster template revision (map) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The cluster template revision ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_id",
+					Description: `(Computed) Cluster template ID (string) #### ` + "`" + `cluster_config` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cluster_auth_endpoint",
+					Description: `(Optional/Computed) Local cluster auth endpoint (list maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "default_cluster_role_for_project_members",
+					Description: `(Optional/Computed) Default cluster role for project members (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_pod_security_policy_template_id",
+					Description: `(Optional/Computed) Default pod security policy template ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "desired_agent_image",
+					Description: `(Optional/Computed) Desired agent image (string)`,
+				},
+				resource.Attribute{
+					Name:        "desired_auth_image",
+					Description: `(Optional/Computed) Desired auth image (string)`,
+				},
+				resource.Attribute{
+					Name:        "docker_root_dir",
+					Description: `(Optional/Computed) Desired auth image (string)`,
+				},
+				resource.Attribute{
+					Name:        "enable_cluster_alerting",
+					Description: `(Optional) Enable built-in cluster alerting. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "enable_cluster_monitoring",
+					Description: `(Optional) Enable built-in cluster monitoring. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "enable_network_policy",
+					Description: `(Optional) Enable project network isolation. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "rke_config",
+					Description: `(Optional/Computed) Rancher Kubernetes Engine Config (list maxitems: 1)`,
+				},
+				resource.Attribute{
+					Name:        "windows_prefered_cluster",
+					Description: `(Optional) Windows prefered cluster. Default: ` + "`" + `false` + "`" + ` (bool) #### ` + "`" + `questions` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Required) Default variable value (string)`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `(Optional) Required variable. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Variable type. ` + "`" + `boolean` + "`" + `, ` + "`" + `int` + "`" + ` and ` + "`" + `string` + "`" + ` are allowed. Default ` + "`" + `string` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "variable",
+					Description: `(Optional) Variable name (string) ## Timeouts ` + "`" + `rancher2_cluster_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cluster templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cluster template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cluster templates. ## Import Cluster Template can be imported using the rancher Cluster Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_cluster_template.foo <cluster_template_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4749,7 +5620,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_etcd_backup",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2.2.x Etcd Backup resource. This can be used to create Etcd Backup for rancher v2.2 node templates and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2.2.x Etcd Backup resource. This can be used to create Etcd Backup for Rancher v2.2 node templates and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"etcd",
@@ -4818,7 +5689,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_ca",
-					Description: `(Optional) Base64 encoded custom CA for S3 service. Use filebase64(<FILE>) for encoding file. Available from rancher v2.2.5 (string)`,
+					Description: `(Optional) Base64 encoded custom CA for S3 service. Use filebase64(<FILE>) for encoding file. Available from Rancher v2.2.5 (string)`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -4826,7 +5697,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder",
-					Description: `(Optional) Folder for S3 service. Available from rancher v2.2.7 (string)`,
+					Description: `(Optional) Folder for S3 service. Available from Rancher v2.2.7 (string)`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -4834,7 +5705,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `(Optional/Sensitive) Secret key for S3 service (string) ## Timeouts ` + "`" + `rancher2_etcd_backup` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cloud credentials. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cloud credential modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cloud credentials. ## Import Etcd Backup can be imported using the rancher etcd backup ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_etcd_backup.foo <etcd_backup_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) Secret key for S3 service (string) ## Timeouts ` + "`" + `rancher2_etcd_backup` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cloud credentials. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cloud credential modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cloud credentials. ## Import Etcd Backup can be imported using the Rancher etcd backup ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_etcd_backup.foo <etcd_backup_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4868,7 +5739,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "custom_ca",
-					Description: `(Optional) Base64 encoded custom CA for S3 service. Use filebase64(<FILE>) for encoding file. Available from rancher v2.2.5 (string)`,
+					Description: `(Optional) Base64 encoded custom CA for S3 service. Use filebase64(<FILE>) for encoding file. Available from Rancher v2.2.5 (string)`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -4876,7 +5747,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder",
-					Description: `(Optional) Folder for S3 service. Available from rancher v2.2.7 (string)`,
+					Description: `(Optional) Folder for S3 service. Available from Rancher v2.2.7 (string)`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -4884,7 +5755,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `(Optional/Sensitive) Secret key for S3 service (string) ## Timeouts ` + "`" + `rancher2_etcd_backup` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cloud credentials. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cloud credential modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cloud credentials. ## Import Etcd Backup can be imported using the rancher etcd backup ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_etcd_backup.foo <etcd_backup_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) Secret key for S3 service (string) ## Timeouts ` + "`" + `rancher2_etcd_backup` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating cloud credentials. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for cloud credential modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting cloud credentials. ## Import Etcd Backup can be imported using the Rancher etcd backup ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_etcd_backup.foo <etcd_backup_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4892,7 +5763,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_global_role_binding",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Global Role Binding resource. This can be used to create Global Role Bindings for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Global Role Binding resource. This can be used to create Global Role Bindings for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"global",
@@ -4922,13 +5793,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_global_role_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating global role bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for global role binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting global role bindings. ## Import Global Role Bindings can be imported using the rancher Global Role Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_global_role_binding.foo <global_role_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_global_role_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating global role bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for global role binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting global role bindings. ## Import Global Role Bindings can be imported using the Rancher Global Role Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_global_role_binding.foo <global_role_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_global_role_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating global role bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for global role binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting global role bindings. ## Import Global Role Bindings can be imported using the rancher Global Role Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_global_role_binding.foo <global_role_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_global_role_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating global role bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for global role binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting global role bindings. ## Import Global Role Bindings can be imported using the Rancher Global Role Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_global_role_binding.foo <global_role_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4936,7 +5807,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_multi_cluster_app",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 multi_cluster_app resource. This can be used to deploy multi cluster apps on rancher v2.`,
+			ShortDescription: `Provides a Rancher v2 multi_cluster_app resource. This can be used to deploy multi cluster apps on Rancher v2.`,
 			Description:      ``,
 			Keywords: []string{
 				"multi",
@@ -4998,7 +5869,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional/Computed) Labels for multi cluster app object (map) ## Nested blocks ### ` + "`" + `targets` + "`" + ` #### Arguments`,
+					Description: `(Optional/Computed) Labels for multi cluster app object (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "template_version_id",
+					Description: `(Computed) The multi cluster app template version ID (string) ## Nested blocks ### ` + "`" + `targets` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -5030,7 +5909,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_type",
-					Description: `(Optional) Member access type. Valida values: ` + "`" + `["member" | "owner" | "read-only"]` + "`" + ` (string)`,
+					Description: `(Optional) Member access type. Valid values: ` + "`" + `["member" | "owner" | "read-only"]` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "group_principal_id",
@@ -5050,15 +5929,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "interval",
-					Description: `(Optional) Rolling update interval. Default ` + "`" + `1` + "`" + ` (int) ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `(Computed) The ID of the resource (string)`,
-				},
-				resource.Attribute{
-					Name:        "template_version_id",
-					Description: `(Computed) The multi cluster app template version ID (string) ## Timeouts ` + "`" + `rancher2_app` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating apps. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for app modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting apps. ## Import Multi cluster app can be imported using the multi cluster app ID in the format ` + "`" + `<multi_cluster_app_name>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_multi_cluster_app.foo <multi_cluster_app_name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Rolling update interval. Default ` + "`" + `1` + "`" + ` (int) ## Timeouts ` + "`" + `rancher2_app` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating apps. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for app modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting apps. ## Import Multi cluster app can be imported using the multi cluster app ID in the format ` + "`" + `<multi_cluster_app_name>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_multi_cluster_app.foo <multi_cluster_app_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5068,7 +5939,59 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_version_id",
-					Description: `(Computed) The multi cluster app template version ID (string) ## Timeouts ` + "`" + `rancher2_app` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating apps. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for app modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting apps. ## Import Multi cluster app can be imported using the multi cluster app ID in the format ` + "`" + `<multi_cluster_app_name>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_multi_cluster_app.foo <multi_cluster_app_name> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The multi cluster app template version ID (string) ## Nested blocks ### ` + "`" + `targets` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Project ID for target (string)`,
+				},
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Computed) App ID for target (string)`,
+				},
+				resource.Attribute{
+					Name:        "health_state",
+					Description: `(Computed) App health state for target (string)`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Computed) App state for target (string) ### ` + "`" + `answers` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) Cluster ID for answer (string)`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Project ID for target (string)`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) Key/values for answer (map) ### ` + "`" + `members` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "access_type",
+					Description: `(Optional) Member access type. Valid values: ` + "`" + `["member" | "owner" | "read-only"]` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_principal_id",
+					Description: `(Optional) Member group principal id (string)`,
+				},
+				resource.Attribute{
+					Name:        "user_principal_id",
+					Description: `(Optional) Member user principal id (string) ### ` + "`" + `upgrade_strategy` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "rolling_update",
+					Description: `(Optional) Upgrade strategy rolling update (list MaxItems:1) #### ` + "`" + `rolling_update` + "`" + ` ##### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "batch_size",
+					Description: `(Optional) Rolling update batch size. Default ` + "`" + `1` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) Rolling update interval. Default ` + "`" + `1` + "`" + ` (int) ## Timeouts ` + "`" + `rancher2_app` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating apps. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for app modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting apps. ## Import Multi cluster app can be imported using the multi cluster app ID in the format ` + "`" + `<multi_cluster_app_name>` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_multi_cluster_app.foo <multi_cluster_app_name> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5076,7 +5999,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_namespace",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Namespace resource. This can be used to create namespaces for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Namespace resource. This can be used to create namespaces for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"namespace",
@@ -5092,7 +6015,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "container_resource_limit",
-					Description: `(Optional/Computed) Default containers resource limits on namespace (List maxitem:1)`,
+					Description: `(Optional) Default containers resource limits on namespace (List maxitem:1)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -5100,7 +6023,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_quota",
-					Description: `(Optional/Computed) Resource quota for namespace. Rancher v2.1.x or higher (list maxitems:1)`,
+					Description: `(Optional) Resource quota for namespace. Rancher v2.1.x or higher (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "wait_for_cluster",
@@ -5266,7 +6189,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_node_driver",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Node Driver resource. This can be used to create Node Driver for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Node Driver resource. This can be used to create Node Driver for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"node",
@@ -5319,13 +6242,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_node_driver` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node drivers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node driver modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node drivers. ## Import Node Driver can be imported using the rancher Node Driver ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_driver.foo <node_driver_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_node_driver` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node drivers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node driver modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node drivers. ## Import Node Driver can be imported using the Rancher Node Driver ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_driver.foo <node_driver_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_node_driver` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node drivers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node driver modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node drivers. ## Import Node Driver can be imported using the rancher Node Driver ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_driver.foo <node_driver_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_node_driver` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node drivers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node driver modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node drivers. ## Import Node Driver can be imported using the Rancher Node Driver ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_driver.foo <node_driver_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5333,7 +6256,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_node_pool",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Node Pool resource. This can be used to create Node pool, using Node template for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Node Pool resource. This can be used to create Node pool, using Node template for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"node",
@@ -5342,7 +6265,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
-					Description: `(Required) The rke cluster id to use Node Pool (string)`,
+					Description: `(Required) The RKE cluster id to use Node Pool (string)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5382,13 +6305,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_node_pool` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node pools. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node pool modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node pools. ## Import Node Pool can be imported using the rancher Node Pool ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_pool.foo <node_pool_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_node_pool` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node pools. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node pool modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node pools. ## Import Node Pool can be imported using the Rancher Node Pool ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_pool.foo <node_pool_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_node_pool` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node pools. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node pool modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node pools. ## Import Node Pool can be imported using the rancher Node Pool ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_pool.foo <node_pool_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_node_pool` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node pools. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node pool modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node pools. ## Import Node Pool can be imported using the Rancher Node Pool ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_pool.foo <node_pool_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5396,7 +6319,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_node_template",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Node Template resource. This can be used to create Node template for rancher v2 rke clusters and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Node Template resource. This can be used to create Node template for Rancher v2 RKE clusters and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"node",
@@ -5425,7 +6348,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_credential_id",
-					Description: `(Optional) Cloud credential ID for the Node Template. Required from rancher v2.2.x (string)`,
+					Description: `(Optional) Cloud credential ID for the Node Template. Required from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -5517,7 +6440,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_key",
-					Description: `(Optional/Sensitive) AWS access key. Required on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) AWS access key. Required on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "block_duration_minutes",
@@ -5573,7 +6496,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `(Optional/Sensitive) AWS secret key. Required on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) AWS secret key. Required on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "security_group_readonly",
@@ -5617,15 +6540,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_id",
-					Description: `(Optional/Sensitive) Azure Service Principal Account ID. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) Azure Service Principal Account ID. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "client_secret",
-					Description: `(Optional/Sensitive) Azure Service Principal Account password. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) Azure Service Principal Account password. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "subscription_id",
-					Description: `(Optional/Sensitive) Azure Subscription ID. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) Azure Subscription ID. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "availability_set",
@@ -5634,6 +6557,10 @@ var (
 				resource.Attribute{
 					Name:        "custom_data",
 					Description: `(Optional) Path to file with custom-data (string)`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Optional) Disk size if using managed disk. Just for Rancher v2.3.x and above. Default ` + "`" + `30` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "dns",
@@ -5645,7 +6572,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "environment",
-					Description: `(Optional) Azure environment (e.g. AzurePublicCloud, AzureChinaCloud). Default ` + "`" + `AzurePublicCloud` + "`" + ` (string)`,
+					Description: `(Optional) Azure environment (e.g. AzurePublicCloud, AzureChinaCloud). Default ` + "`" + `AzurePublicCloud` + "`" + ` (string) ` + "`" + `fault_domain_count` + "`" + ` - (Optional) Fault domain count to use for availability set. Default ` + "`" + `3` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "image",
@@ -5654,6 +6581,10 @@ var (
 				resource.Attribute{
 					Name:        "location",
 					Description: `(Optional) Azure region to create the virtual machine. Default ` + "`" + `westus` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "managed_disks",
+					Description: `(Optional) Configures VM and availability set for managed disks. Just for Rancher v2.3.x and above. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "no_public_ip",
@@ -5696,8 +6627,12 @@ var (
 					Description: `(Optional) Private CIDR block to be used for the new subnet, should comply RFC 1918. Default ` + "`" + `192.168.0.0/16` + "`" + ` (string)`,
 				},
 				resource.Attribute{
+					Name:        "update_domain_count",
+					Description: `(Optional) Update domain count to use for availability set. Default ` + "`" + `5` + "`" + ` (string)`,
+				},
+				resource.Attribute{
 					Name:        "use_private_ip",
-					Description: `(Optional) Use private IP address of the machine to connect. Default ` + "`" + `false` + "`" + ` (string)`,
+					Description: `(Optional) Use private IP address of the machine to connect. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "vnet",
@@ -5705,7 +6640,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_token",
-					Description: `(Optional/Sensitive) Digital Ocean access token. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) Digital Ocean access token. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "backups",
@@ -5841,7 +6776,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional/Sensitive) OpenStack password. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) OpenStack password. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "private_key_file",
@@ -5917,7 +6852,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional/Sensitive) vSphere password. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) vSphere password. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "pool",
@@ -5925,7 +6860,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional/Sensitive) vSphere username. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) vSphere username. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "vapp_ip_allocation_policy",
@@ -5945,11 +6880,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcenter",
-					Description: `(Optional/Sensitive) vSphere IP/hostname for vCenter. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) vSphere IP/hostname for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "vcenter_port",
-					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5987,7 +6922,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_key",
-					Description: `(Optional/Sensitive) AWS access key. Required on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) AWS access key. Required on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "block_duration_minutes",
@@ -6043,7 +6978,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `(Optional/Sensitive) AWS secret key. Required on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) AWS secret key. Required on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "security_group_readonly",
@@ -6087,15 +7022,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_id",
-					Description: `(Optional/Sensitive) Azure Service Principal Account ID. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) Azure Service Principal Account ID. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "client_secret",
-					Description: `(Optional/Sensitive) Azure Service Principal Account password. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) Azure Service Principal Account password. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "subscription_id",
-					Description: `(Optional/Sensitive) Azure Subscription ID. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) Azure Subscription ID. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "availability_set",
@@ -6104,6 +7039,10 @@ var (
 				resource.Attribute{
 					Name:        "custom_data",
 					Description: `(Optional) Path to file with custom-data (string)`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Optional) Disk size if using managed disk. Just for Rancher v2.3.x and above. Default ` + "`" + `30` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "dns",
@@ -6115,7 +7054,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "environment",
-					Description: `(Optional) Azure environment (e.g. AzurePublicCloud, AzureChinaCloud). Default ` + "`" + `AzurePublicCloud` + "`" + ` (string)`,
+					Description: `(Optional) Azure environment (e.g. AzurePublicCloud, AzureChinaCloud). Default ` + "`" + `AzurePublicCloud` + "`" + ` (string) ` + "`" + `fault_domain_count` + "`" + ` - (Optional) Fault domain count to use for availability set. Default ` + "`" + `3` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "image",
@@ -6124,6 +7063,10 @@ var (
 				resource.Attribute{
 					Name:        "location",
 					Description: `(Optional) Azure region to create the virtual machine. Default ` + "`" + `westus` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "managed_disks",
+					Description: `(Optional) Configures VM and availability set for managed disks. Just for Rancher v2.3.x and above. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "no_public_ip",
@@ -6166,8 +7109,12 @@ var (
 					Description: `(Optional) Private CIDR block to be used for the new subnet, should comply RFC 1918. Default ` + "`" + `192.168.0.0/16` + "`" + ` (string)`,
 				},
 				resource.Attribute{
+					Name:        "update_domain_count",
+					Description: `(Optional) Update domain count to use for availability set. Default ` + "`" + `5` + "`" + ` (string)`,
+				},
+				resource.Attribute{
 					Name:        "use_private_ip",
-					Description: `(Optional) Use private IP address of the machine to connect. Default ` + "`" + `false` + "`" + ` (string)`,
+					Description: `(Optional) Use private IP address of the machine to connect. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "vnet",
@@ -6175,7 +7122,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_token",
-					Description: `(Optional/Sensitive) Digital Ocean access token. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) Digital Ocean access token. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "backups",
@@ -6311,7 +7258,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional/Sensitive) OpenStack password. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) OpenStack password. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "private_key_file",
@@ -6387,7 +7334,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional/Sensitive) vSphere password. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) vSphere password. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "pool",
@@ -6395,7 +7342,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "username",
-					Description: `(Optional/Sensitive) vSphere username. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) vSphere username. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "vapp_ip_allocation_policy",
@@ -6415,11 +7362,233 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcenter",
-					Description: `(Optional/Sensitive) vSphere IP/hostname for vCenter. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x (string)`,
+					Description: `(Optional/Sensitive) vSphere IP/hostname for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "vcenter_port",
-					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_notifier",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Notifier resource. This can be used to create notifiers for Rancher v2 environments and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"notifier",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the notifier (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required/ForceNew) The cluster id where create notifier (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The notifier description (string)`,
+				},
+				resource.Attribute{
+					Name:        "pagerduty_config",
+					Description: `(Optional) Pagerduty config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "slack_config",
+					Description: `(Optional) Slack config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "smtp_config",
+					Description: `(Optional) SMTP config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "webhook_config",
+					Description: `(Optional) Webhook config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "wechat_config",
+					Description: `(Optional) Wechat config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) Annotations for notifier object (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) Labels for notifier object (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `pagerduty_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `(Required) Pagerduty service key (string)`,
+				},
+				resource.Attribute{
+					Name:        "proxy_url",
+					Description: `(Optional) Pagerduty proxy url (string) ### ` + "`" + `slack_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default_recipient",
+					Description: `(Required) Slack default recipient (string)`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Slack url (string)`,
+				},
+				resource.Attribute{
+					Name:        "proxy_url",
+					Description: `(Optional) Slack proxy url (string) ### ` + "`" + `smtp_config` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "default_recipient",
+					Description: `(Required) SMTP default recipient (string)`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) SMTP host (string)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) SMTP port (int)`,
+				},
+				resource.Attribute{
+					Name:        "sender",
+					Description: `(Required) SMTP sender (string)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional/Sensitive) SMTP password (string)`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional/Sensitive) SMTP tls. Default ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional/Sensitive) SMTP username (string) #### Arguments ### ` + "`" + `webhook_config` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Webhook url (string)`,
+				},
+				resource.Attribute{
+					Name:        "proxy_url",
+					Description: `(Optional) Webhook proxy url (string) #### Arguments ### ` + "`" + `wechat_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "agent",
+					Description: `(Required) Wechat agent ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "corp",
+					Description: `(Required) Wechat corporation ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_recipient",
+					Description: `(Required) Wechat default recipient (string)`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Required/Sensitive) Wechat agent ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "proxy_url",
+					Description: `(Optional) Wechat proxy url (string)`,
+				},
+				resource.Attribute{
+					Name:        "recipient_type",
+					Description: `(Optional) Wechat recipient type. Allowed values: ` + "`" + `party` + "`" + ` | ` + "`" + `tag` + "`" + ` | ` + "`" + `user` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_notifier` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating notifiers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for notifier modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting notifiers. ## Import Notifiers can be imported using the Rancher nNtifier ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_notifier.foo <notifier_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string) ## Nested blocks ### ` + "`" + `pagerduty_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `(Required) Pagerduty service key (string)`,
+				},
+				resource.Attribute{
+					Name:        "proxy_url",
+					Description: `(Optional) Pagerduty proxy url (string) ### ` + "`" + `slack_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "default_recipient",
+					Description: `(Required) Slack default recipient (string)`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Slack url (string)`,
+				},
+				resource.Attribute{
+					Name:        "proxy_url",
+					Description: `(Optional) Slack proxy url (string) ### ` + "`" + `smtp_config` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "default_recipient",
+					Description: `(Required) SMTP default recipient (string)`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) SMTP host (string)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) SMTP port (int)`,
+				},
+				resource.Attribute{
+					Name:        "sender",
+					Description: `(Required) SMTP sender (string)`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional/Sensitive) SMTP password (string)`,
+				},
+				resource.Attribute{
+					Name:        "tls",
+					Description: `(Optional/Sensitive) SMTP tls. Default ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional/Sensitive) SMTP username (string) #### Arguments ### ` + "`" + `webhook_config` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Webhook url (string)`,
+				},
+				resource.Attribute{
+					Name:        "proxy_url",
+					Description: `(Optional) Webhook proxy url (string) #### Arguments ### ` + "`" + `wechat_config` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "agent",
+					Description: `(Required) Wechat agent ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "corp",
+					Description: `(Required) Wechat corporation ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_recipient",
+					Description: `(Required) Wechat default recipient (string)`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Required/Sensitive) Wechat agent ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "proxy_url",
+					Description: `(Optional) Wechat proxy url (string)`,
+				},
+				resource.Attribute{
+					Name:        "recipient_type",
+					Description: `(Optional) Wechat recipient type. Allowed values: ` + "`" + `party` + "`" + ` | ` + "`" + `tag` + "`" + ` | ` + "`" + `user` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_notifier` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating notifiers. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for notifier modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting notifiers. ## Import Notifiers can be imported using the Rancher nNtifier ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_notifier.foo <notifier_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6427,7 +7596,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_project",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Project resource. This can be used to create projects for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Project resource. This can be used to create projects for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"project",
@@ -6456,6 +7625,10 @@ var (
 				resource.Attribute{
 					Name:        "pod_security_policy_template_id",
 					Description: `(Optional) Default Pod Security Policy ID for the project (string)`,
+				},
+				resource.Attribute{
+					Name:        "project_monitoring_input",
+					Description: `(Optional/Computed) Project monitoring config. Any parameter defined in [rancher-monitoring charts](https://github.com/rancher/system-charts/tree/dev/charts/rancher-monitoring) could be configured (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "resource_quota",
@@ -6491,7 +7664,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests_memory",
-					Description: `(Optional) Memory reservation for containers (string) ### ` + "`" + `resource_quota` + "`" + ` #### Arguments`,
+					Description: `(Optional) Memory reservation for containers (string) ### ` + "`" + `project_monitoring_input` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "answers",
+					Description: `(Optional/Computed) Key/value answers for monitor input (map) ### ` + "`" + `resource_quota` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "project_limit",
@@ -6547,7 +7724,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "services_node_ports",
-					Description: `(Optional) Limit for services node ports in project (string) More info at [resource-quotas](https://rancher.com/docs/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/resource-quotas/) ## Timeouts ` + "`" + `rancher2_project` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating projects. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting projects. ## Import Projects can be imported using the rancher Project ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project.foo <project_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Limit for services node ports in project (string) More info at [resource-quotas](https://rancher.com/docs/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/resource-quotas/) ## Timeouts ` + "`" + `rancher2_project` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating projects. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting projects. ## Import Projects can be imported using the Rancher Project ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project.foo <project_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6569,7 +7746,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "requests_memory",
-					Description: `(Optional) Memory reservation for containers (string) ### ` + "`" + `resource_quota` + "`" + ` #### Arguments`,
+					Description: `(Optional) Memory reservation for containers (string) ### ` + "`" + `project_monitoring_input` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "answers",
+					Description: `(Optional/Computed) Key/value answers for monitor input (map) ### ` + "`" + `resource_quota` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "project_limit",
@@ -6625,7 +7806,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "services_node_ports",
-					Description: `(Optional) Limit for services node ports in project (string) More info at [resource-quotas](https://rancher.com/docs/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/resource-quotas/) ## Timeouts ` + "`" + `rancher2_project` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating projects. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting projects. ## Import Projects can be imported using the rancher Project ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project.foo <project_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Limit for services node ports in project (string) More info at [resource-quotas](https://rancher.com/docs/rancher/v2.x/en/k8s-in-rancher/projects-and-namespaces/resource-quotas/) ## Timeouts ` + "`" + `rancher2_project` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating projects. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting projects. ## Import Projects can be imported using the Rancher Project ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project.foo <project_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6633,7 +7814,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_project_logging",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Project Logging resource. This can be used to create Project Logging for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Project Logging resource. This can be used to create Project Logging for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"project",
@@ -6878,7 +8059,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Optional/Sensitive) Token for the syslog service (string) ## Timeouts ` + "`" + `rancher2_project_logging` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project logging configurations. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project logging configuration modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project logging configurations. ## Import Project Logging can be imported using the rancher Project Logging ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_logging.foo <project_logging_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) Token for the syslog service (string) ## Timeouts ` + "`" + `rancher2_project_logging` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project logging configurations. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project logging configuration modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project logging configurations. ## Import Project Logging can be imported using the Rancher Project Logging ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_logging.foo <project_logging_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7068,7 +8249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "token",
-					Description: `(Optional/Sensitive) Token for the syslog service (string) ## Timeouts ` + "`" + `rancher2_project_logging` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project logging configurations. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project logging configuration modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project logging configurations. ## Import Project Logging can be imported using the rancher Project Logging ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_logging.foo <project_logging_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) Token for the syslog service (string) ## Timeouts ` + "`" + `rancher2_project_logging` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project logging configurations. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project logging configuration modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project logging configurations. ## Import Project Logging can be imported using the Rancher Project Logging ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_logging.foo <project_logging_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7076,7 +8257,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_project_role_template_binding",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Project Role Template Binding resource. This can be used to create Project Role Template Bindings for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Project Role Template Binding resource. This can be used to create Project Role Template Bindings for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"project",
@@ -7123,13 +8304,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_project_role_template_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project role template bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project role template binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project role template bindings. ## Import Project Role Template Bindings can be imported using the rancher Project Role Template Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_role_template_binding.foo <project_role_template_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_project_role_template_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project role template bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project role template binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project role template bindings. ## Import Project Role Template Bindings can be imported using the Rancher Project Role Template Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_role_template_binding.foo <project_role_template_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_project_role_template_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project role template bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project role template binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project role template bindings. ## Import Project Role Template Bindings can be imported using the rancher Project Role Template Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_role_template_binding.foo <project_role_template_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Timeouts ` + "`" + `rancher2_project_role_template_binding` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating project role template bindings. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for project role template binding modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting project role template bindings. ## Import Project Role Template Bindings can be imported using the Rancher Project Role Template Binding ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_project_role_template_binding.foo <project_role_template_binding_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7137,7 +8318,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_registry",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 docker registry resource. This can be used to create docker registries for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 docker registry resource. This can be used to create docker registries for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"registry",
@@ -7209,9 +8390,128 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rancher2_role_template",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Role Template resource. This can be used to create Role template for Rancher v2 RKE clusters and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"role",
+				"template",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Role template name (string)`,
+				},
+				resource.Attribute{
+					Name:        "administrative",
+					Description: `(Optional) Administrative role template. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "context",
+					Description: `(Optional) Role template context. ` + "`" + `cluster` + "`" + ` and ` + "`" + `project` + "`" + ` values are supported. Default: ` + "`" + `cluster` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_role",
+					Description: `(Optional) Default role template for new created cluster or project. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional/Computed) Role template description (string)`,
+				},
+				resource.Attribute{
+					Name:        "external",
+					Description: `(Optional) External role template. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `(Optional) Hidden role template. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `(Optional) Locked role template. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "role_template_ids",
+					Description: `(Optional/Computed) Inherit role template IDs (list)`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `(Optional/Computed) Role template policy rules (list)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) Annotations for role template object (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) Labels for role template object (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "builtin",
+					Description: `(Computed) Builtin role template (string) ## Nested blocks ### ` + "`" + `rules` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "api_groups",
+					Description: `(Optional) Policy rule api groups (list)`,
+				},
+				resource.Attribute{
+					Name:        "non_resource_urls",
+					Description: `(Optional) Policy rule non resource urls (list)`,
+				},
+				resource.Attribute{
+					Name:        "resource_names",
+					Description: `(Optional) Policy rule resource names (list)`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Optional) Policy rule resources (list)`,
+				},
+				resource.Attribute{
+					Name:        "verbs",
+					Description: `(Optional) Policy rule verbs. ` + "`" + `create` + "`" + `, ` + "`" + `delete` + "`" + `, ` + "`" + `get` + "`" + `, ` + "`" + `list` + "`" + `, ` + "`" + `patch` + "`" + `, ` + "`" + `update` + "`" + `, ` + "`" + `watch` + "`" + ` and ` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "builtin",
+					Description: `(Computed) Builtin role template (string) ## Nested blocks ### ` + "`" + `rules` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "api_groups",
+					Description: `(Optional) Policy rule api groups (list)`,
+				},
+				resource.Attribute{
+					Name:        "non_resource_urls",
+					Description: `(Optional) Policy rule non resource urls (list)`,
+				},
+				resource.Attribute{
+					Name:        "resource_names",
+					Description: `(Optional) Policy rule resource names (list)`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Optional) Policy rule resources (list)`,
+				},
+				resource.Attribute{
+					Name:        "verbs",
+					Description: `(Optional) Policy rule verbs. ` + "`" + `create` + "`" + `, ` + "`" + `delete` + "`" + `, ` + "`" + `get` + "`" + `, ` + "`" + `list` + "`" + `, ` + "`" + `patch` + "`" + `, ` + "`" + `update` + "`" + `, ` + "`" + `watch` + "`" + ` and ` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rancher2_secret",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 secret resource. This can be used to create secrets for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 secret resource. This can be used to create secrets for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"secret",
@@ -7261,7 +8561,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_setting",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 Setting resource. This can be used to create settings for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 Setting resource. This can be used to create settings for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"setting",
@@ -7285,13 +8585,115 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Import Setting can be imported using the rancher setting ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_setting.foo <setting_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Import Setting can be imported using the Rancher setting ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_setting.foo <setting_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Computed) The ID of the resource (string) ## Import Setting can be imported using the rancher setting ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_setting.foo <setting_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The ID of the resource (string) ## Import Setting can be imported using the Rancher setting ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_setting.foo <setting_id> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_token",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Token resource. This can be used to create tokens for Rancher v2 provider user and retrieve their information.`,
+			Description:      ``,
+			Keywords: []string{
+				"token",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional/ForceNew) Cluster ID for scoped token (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional/ForceNew) Token description (string)`,
+				},
+				resource.Attribute{
+					Name:        "renew",
+					Description: `(Optional/ForceNew) Renew token if expired or disabled. If ` + "`" + `true` + "`" + `, a terraform diff would be generated to renew the token if it's disabled or expired. If ` + "`" + `false` + "`" + `, the token will not be renewed. Default ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional/ForceNew) Token time to live in seconds. Default ` + "`" + `0` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional/Computed) Annotations of the token (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional/Computed) Labels of the token (map) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Computed) Token access key part (string)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Computed) Token is enabled (bool)`,
+				},
+				resource.Attribute{
+					Name:        "expired",
+					Description: `(Computed) Token is expired (bool)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Computed) Token name (string)`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Computed/Sensitive) Token secret key part (string)`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Computed/Sensitive) Token value (string)`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Computed) Token user ID (string) ## Timeouts ` + "`" + `rancher2_token` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating tokens. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for token modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting tokens.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `(Computed) Token access key part (string)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Computed) Token is enabled (bool)`,
+				},
+				resource.Attribute{
+					Name:        "expired",
+					Description: `(Computed) Token is expired (bool)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Computed) Token name (string)`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `(Computed/Sensitive) Token secret key part (string)`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Computed/Sensitive) Token value (string)`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Computed) Token user ID (string) ## Timeouts ` + "`" + `rancher2_token` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating tokens. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for token modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting tokens.`,
 				},
 			},
 		},
@@ -7299,7 +8701,7 @@ var (
 			Name:             "",
 			Type:             "rancher2_user",
 			Category:         "Resources",
-			ShortDescription: `Provides a Rancher v2 User resource. This can be used to create Users for rancher v2 environments and retrieve their information.`,
+			ShortDescription: `Provides a Rancher v2 User resource. This can be used to create Users for Rancher v2 environments and retrieve their information.`,
 			Description:      ``,
 			Keywords: []string{
 				"user",
@@ -7331,7 +8733,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "principal_ids",
-					Description: `(Computed) The user principal IDs (list) ## Timeouts ` + "`" + `rancher2_user` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating users. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for user modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting users. ## Import Users can be imported using the rancher User ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_user.foo <user_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The user principal IDs (list) ## Timeouts ` + "`" + `rancher2_user` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating users. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for user modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting users. ## Import Users can be imported using the Rancher User ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_user.foo <user_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7341,7 +8743,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "principal_ids",
-					Description: `(Computed) The user principal IDs (list) ## Timeouts ` + "`" + `rancher2_user` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating users. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for user modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting users. ## Import Users can be imported using the rancher User ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_user.foo <user_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The user principal IDs (list) ## Timeouts ` + "`" + `rancher2_user` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for creating users. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for user modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `5 minutes` + "`" + `) Used for deleting users. ## Import Users can be imported using the Rancher User ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_user.foo <user_id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7355,30 +8757,38 @@ var (
 		"rancher2_auth_config_azuread":           3,
 		"rancher2_auth_config_freeipa":           4,
 		"rancher2_auth_config_github":            5,
-		"rancher2_auth_config_openldap":          6,
-		"rancher2_auth_config_ping":              7,
-		"rancher2_bootstrap":                     8,
-		"rancher2_catalog":                       9,
-		"rancher2_certificate":                   10,
-		"rancher2_cloud_credential":              11,
-		"rancher2_cluster":                       12,
-		"rancher2_cluster_driver":                13,
-		"rancher2_cluster_logging":               14,
-		"rancher2_cluster_role_template_binding": 15,
-		"rancher2_etcd_backup":                   16,
-		"rancher2_global_role_binding":           17,
-		"rancher2_multi_cluster_app":             18,
-		"rancher2_namespace":                     19,
-		"rancher2_node_driver":                   20,
-		"rancher2_node_pool":                     21,
-		"rancher2_node_template":                 22,
-		"rancher2_project":                       23,
-		"rancher2_project_logging":               24,
-		"rancher2_project_role_template_binding": 25,
-		"rancher2_registry":                      26,
-		"rancher2_secret":                        27,
-		"rancher2_setting":                       28,
-		"rancher2_user":                          29,
+		"rancher2_auth_config_keycloak":          6,
+		"rancher2_auth_config_okta":              7,
+		"rancher2_auth_config_openldap":          8,
+		"rancher2_auth_config_ping":              9,
+		"rancher2_bootstrap":                     10,
+		"rancher2_catalog":                       11,
+		"rancher2_certificate":                   12,
+		"rancher2_cloud_credential":              13,
+		"rancher2_cluster":                       14,
+		"rancher2_cluster_alert_group":           15,
+		"rancher2_cluster_alert_rule":            16,
+		"rancher2_cluster_driver":                17,
+		"rancher2_cluster_logging":               18,
+		"rancher2_cluster_role_template_binding": 19,
+		"rancher2_cluster_template":              20,
+		"rancher2_etcd_backup":                   21,
+		"rancher2_global_role_binding":           22,
+		"rancher2_multi_cluster_app":             23,
+		"rancher2_namespace":                     24,
+		"rancher2_node_driver":                   25,
+		"rancher2_node_pool":                     26,
+		"rancher2_node_template":                 27,
+		"rancher2_notifier":                      28,
+		"rancher2_project":                       29,
+		"rancher2_project_logging":               30,
+		"rancher2_project_role_template_binding": 31,
+		"rancher2_registry":                      32,
+		"rancher2_role_template":                 33,
+		"rancher2_secret":                        34,
+		"rancher2_setting":                       35,
+		"rancher2_token":                         36,
+		"rancher2_user":                          37,
 	}
 )
 

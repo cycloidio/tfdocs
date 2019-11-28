@@ -327,6 +327,381 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "datadog_logs_custom_pipeline",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog logs custom pipeline resource, which is used to create and manage logs custom pipelines.`,
+			Description:      ``,
+			Keywords: []string{
+				"logs",
+				"custom",
+				"pipeline",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Defines your pipeline filter. Only logs that match the filter criteria are processed by this pipeline.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Required) Defines the filter criteria.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Your pipeline name.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) Boolean value to enable your pipeline.`,
+				},
+				resource.Attribute{
+					Name:        "processor",
+					Description: `(Optional) Processors or nested pipelines. See [below](logs_custom_pipeline.html#Processors) for more detailed descriptions.`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) Arithmetic operation between one or more log attributes.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Name of the attribute that contains the result of the arithmetic operation.`,
+				},
+				resource.Attribute{
+					Name:        "is_replace_missing",
+					Description: `(Optional, default = false) If true, it replaces all missing attributes of expression by 0, false skips the operation if an attribute is missing.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes or tags.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `(Required) Defines where the sources are from (log ` + "`" + `attribute` + "`" + ` or ` + "`" + `tag` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Final ` + "`" + `attribute` + "`" + ` or ` + "`" + `tag` + "`" + ` name to remap the sources.`,
+				},
+				resource.Attribute{
+					Name:        "target_type",
+					Description: `(Required) Defines if the target is a log ` + "`" + `attribute` + "`" + ` or ` + "`" + `tag` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "preserve_source",
+					Description: `(Optional, default = false) Remove or preserve the remapped source element.`,
+				},
+				resource.Attribute{
+					Name:        "override_on_conflict",
+					Description: `(Optional, default = false) Override the target element if already set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Name of the target attribute whose value is defined by the matching category.`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Required) List of filters to match or exclude a log with their corresponding name to assign a custom value to the log.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the cateory.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Required) Filter criteria of the category.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) Name of the log attribute to parse.`,
+				},
+				resource.Attribute{
+					Name:        "support_rules",
+					Description: `(Required) Support rules for your grok parser.`,
+				},
+				resource.Attribute{
+					Name:        "match_rules",
+					Description: `(Required) Match rules for your grok parser.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Defines the nested pipeline filter. Only logs that match the filter criteria are processed by this pipeline.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "processor",
+					Description: `(Optional) [Processors](logs_custom_pipeline.html#Processors). Nested pipeline can't take any other nested pipeline as its processor.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the nested pipeline.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Name of the parent attribute that contains all the extracted details from the ` + "`" + `sources` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "normalize_ending_slashes",
+					Description: `(Optional, default = false) Normalize the ending slashes or not.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Name of the parent attribute that contains all the extracted details from the sources.`,
+				},
+				resource.Attribute{
+					Name:        "is_encoded",
+					Description: `(Optional, default = false) If the source attribute is URL encoded or not.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not. Even though some arguments are optional, we still recommend you to state`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_logs_index",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog logs index resource. This can be used to create and manage logs indexes.`,
+			Description:      ``,
+			Keywords: []string{
+				"logs",
+				"index",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the index.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) Logs filter.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Required) Logs filter criteria. Only logs matching this filter criteria are considered for this index.`,
+				},
+				resource.Attribute{
+					Name:        "exclusion_filter",
+					Description: `(Optional) List of exclusion filters.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Optional) Only logs matching the filter criteria and the query of the parent index will be considered for this exclusion filter.`,
+				},
+				resource.Attribute{
+					Name:        "sample_rate",
+					Description: `(Optional, default = 0.0) The fraction of logs excluded by the exclusion filter, when active.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the exclusion filter.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) A boolean stating if the exclusion is active or not. ## Import The current Datadog Terraform provider version does not support the creation and deletion of indexes. To manage the existing indexes, do ` + "`" + `terraform import <datadog_logs_index.name> <indexName>` + "`" + ` to import them to Terraform. If you create a resource which does not match the name of any existing index, ` + "`" + `terraform apply` + "`" + ` will throw ` + "`" + `Not Found` + "`" + ` error code. ## Important Notes The order of indexes is maintained in the separated resource [datadog_logs_index_order](logs_index_order.html#datadog_logs_index_order).`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_logs_index_order",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog logs index order resource. This can be used to manage the order of logs indexes.`,
+			Description:      ``,
+			Keywords: []string{
+				"logs",
+				"index",
+				"order",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The unique name of the index order resource.`,
+				},
+				resource.Attribute{
+					Name:        "indexes",
+					Description: `(Required) The index resource list. Logs are tested against the query filter of each index one by one following the order of the list. ## Import The current Datadog Terraform provider version does not support the creation and deletion of index orders. Do ` + "`" + `terraform import <datadog_logs_index_order.name> <name>` + "`" + ` to import index order to Terraform. There must be at most one ` + "`" + `datadog_logs_index_order` + "`" + ` resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_logs_integration_pipeline",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog logs integration pipeline resource, which is used to create and manage logs integration pipelines.`,
+			Description:      ``,
+			Keywords: []string{
+				"logs",
+				"integration",
+				"pipeline",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Required) Boolean value to enable your pipeline. ` + "`" + `is_enabled` + "`" + ` is the only value that can be modified for integration pipeline. ## Import ` + "`" + `` + "`" + `` + "`" + `terraform import <resource.name> <pipelineID>` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "datadog_logs_pipeline_order",
+			Category:         "Resources",
+			ShortDescription: `Provides a Datadog logs pipeline order resource, which is used to manage the order of log pipelines.`,
+			Description:      ``,
+			Keywords: []string{
+				"logs",
+				"pipeline",
+				"order",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name attribute in the resource ` + "`" + `datadog_logs_pipeline_order` + "`" + ` needs to be unique. It's recommended to use the same value as the resource ` + "`" + `NAME` + "`" + `. No related field is available in [Logs Pipeline API](https://docs.datadoghq.com/api/?lang=python#get-pipeline-order).`,
+				},
+				resource.Attribute{
+					Name:        "pipelines",
+					Description: `(Required) The pipeline IDs list. The order of pipeline IDs in this attribute defines the overall pipeline order for logs. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "pipelines",
+					Description: `The ` + "`" + `pipelines` + "`" + ` list contains the IDs of resources created and imported by the [datadog_logs_custom_pipeline](logs_custom_pipeline.html#datadog_logs_custom_pipeline) and [datadog_logs_integration_pipeline](logs_integration_pipeline.html#datadog_logs_integration_pipeline). Updating the order of pipelines in this list reflects the application order of the pipelines. You cannot delete or create pipeline by deleting or adding IDs to this list. ## Import There must be at most one ` + "`" + `datadog_logs_pipeline_order` + "`" + ` resource. Pipeline order creation is not supported from logs config API. You can import the ` + "`" + `datadog_logs_pipeline_order` + "`" + ` or create a pipeline order (which is actually doing the update operation). ` + "`" + `` + "`" + `` + "`" + ` terraform import <datadog_logs_pipeline_order.name> <name> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pipelines",
+					Description: `The ` + "`" + `pipelines` + "`" + ` list contains the IDs of resources created and imported by the [datadog_logs_custom_pipeline](logs_custom_pipeline.html#datadog_logs_custom_pipeline) and [datadog_logs_integration_pipeline](logs_integration_pipeline.html#datadog_logs_integration_pipeline). Updating the order of pipelines in this list reflects the application order of the pipelines. You cannot delete or create pipeline by deleting or adding IDs to this list. ## Import There must be at most one ` + "`" + `datadog_logs_pipeline_order` + "`" + ` resource. Pipeline order creation is not supported from logs config API. You can import the ` + "`" + `datadog_logs_pipeline_order` + "`" + ` or create a pipeline order (which is actually doing the update operation). ` + "`" + `` + "`" + `` + "`" + ` terraform import <datadog_logs_pipeline_order.name> <name> ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "datadog_metric_metadata",
 			Category:         "Resources",
 			ShortDescription: `Provides a Datadog metric metadata resource. This can be used to manage a metric's metadata.`,
@@ -607,13 +982,18 @@ var (
 		"datadog_integration_gcp":                      4,
 		"datadog_integration_pagerduty":                5,
 		"datadog_integration_pagerduty_service_object": 6,
-		"datadog_metric_metadata":                      7,
-		"datadog_monitor":                              8,
-		"datadog_screenboard":                          9,
-		"datadog_service_level_objective":              10,
-		"datadog_synthetics":                           11,
-		"datadog_timeboard":                            12,
-		"datadog_user":                                 13,
+		"datadog_logs_custom_pipeline":                 7,
+		"datadog_logs_index":                           8,
+		"datadog_logs_index_order":                     9,
+		"datadog_logs_integration_pipeline":            10,
+		"datadog_logs_pipeline_order":                  11,
+		"datadog_metric_metadata":                      12,
+		"datadog_monitor":                              13,
+		"datadog_screenboard":                          14,
+		"datadog_service_level_objective":              15,
+		"datadog_synthetics":                           16,
+		"datadog_timeboard":                            17,
+		"datadog_user":                                 18,
 	}
 )
 

@@ -118,7 +118,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 66 characters.`,
+					Description: `(Optional) The human-readable name of the object. It supports the full UTF-8 charset, with a maximum of 64 characters.`,
 				},
 				resource.Attribute{
 					Name:        "location_uuid",
@@ -526,11 +526,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "template_uuid",
-					Description: `(Required) The UUID of a template. This can be found in the [expert panel](https://my.gridscale.io/Expert/Template) by clicking more on the template or by using a gridscale_tempalte datasource.`,
+					Description: `(Required) The UUID of a template. This can be found in the [expert panel](https://my.gridscale.io/Expert/Template) by clicking more on the template or by using a gridscale_template datasource.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) The root (Linux) or Administrator (Windows) password to set for the installed storage. Valid only for public templates. The password has to be either plaintext or a crypt string (modular crypt format - MCF)..`,
+					Description: `(Optional) The root (Linux) or Administrator (Windows) password to set for the installed storage. Valid only for public templates. The password has to be either plain-text or a crypt string (modular crypt format - MCF).`,
 				},
 				resource.Attribute{
 					Name:        "password_type",
@@ -538,7 +538,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sshkeys",
-					Description: `(Optional) (array of any - minItems: 0) Public linux templates only! The UUIDs of SSHkeys to install for the root user.`,
+					Description: `(Optional) (array of any - minItems: 0) Public Linux templates only! The UUIDs of SSHkeys to install for the root user.`,
 				},
 				resource.Attribute{
 					Name:        "hostname",

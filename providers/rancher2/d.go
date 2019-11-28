@@ -63,7 +63,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "values_yaml",
-					Description: `(Computed) values.yaml file content for the app (string)`,
+					Description: `(Computed) values.yaml base64 encoded file content for the app (string)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -109,7 +109,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "values_yaml",
-					Description: `(Computed) values.yaml file content for the app (string)`,
+					Description: `(Computed) values.yaml base64 encoded file content for the app (string)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -371,7 +371,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rke_config",
-					Description: `(Computed) The rke configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Computed) The RKE configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "aks_config",
@@ -394,8 +394,28 @@ var (
 					Description: `(Computed) Enabling the [local cluster authorized endpoint](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#local-cluster-auth-endpoint) allows direct communication with the cluster, bypassing the Rancher API proxy. (list maxitems:1)`,
 				},
 				resource.Attribute{
+					Name:        "cluster_monitoring_input",
+					Description: `(Computed) Cluster monitoring config (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_answers",
+					Description: `(Computed) Cluster template answers (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_id",
+					Description: `(Computed) Cluster template ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_questions",
+					Description: `(Computed) Cluster template questions (list)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_revision_id",
+					Description: `(Computed) Cluster template revision ID (string)`,
+				},
+				resource.Attribute{
 					Name:        "default_pod_security_policy_template_id",
-					Description: `(Computed) [Default pod security policy template id](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#pod-security-policy-support). ` + "`" + `restricted` + "`" + ` and ` + "`" + `unrestricted` + "`" + ` are supported (string)`,
+					Description: `(Optional/Computed) [Default pod security policy template id](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#pod-security-policy-support) (string)`,
 				},
 				resource.Attribute{
 					Name:        "enable_cluster_monitoring",
@@ -404,6 +424,10 @@ var (
 				resource.Attribute{
 					Name:        "enable_network_policy",
 					Description: `(Computed) Enable project network isolation. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "enable_cluster_istio",
+					Description: `(Computed) Enable built-in cluster istio. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -441,7 +465,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rke_config",
-					Description: `(Computed) The rke configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
+					Description: `(Computed) The RKE configuration for ` + "`" + `rke` + "`" + ` Clusters. Conflicts with ` + "`" + `aks_config` + "`" + `, ` + "`" + `eks_config` + "`" + ` and ` + "`" + `gke_config` + "`" + ` (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "aks_config",
@@ -464,8 +488,28 @@ var (
 					Description: `(Computed) Enabling the [local cluster authorized endpoint](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#local-cluster-auth-endpoint) allows direct communication with the cluster, bypassing the Rancher API proxy. (list maxitems:1)`,
 				},
 				resource.Attribute{
+					Name:        "cluster_monitoring_input",
+					Description: `(Computed) Cluster monitoring config (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_answers",
+					Description: `(Computed) Cluster template answers (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_id",
+					Description: `(Computed) Cluster template ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_questions",
+					Description: `(Computed) Cluster template questions (list)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_template_revision_id",
+					Description: `(Computed) Cluster template revision ID (string)`,
+				},
+				resource.Attribute{
 					Name:        "default_pod_security_policy_template_id",
-					Description: `(Computed) [Default pod security policy template id](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#pod-security-policy-support). ` + "`" + `restricted` + "`" + ` and ` + "`" + `unrestricted` + "`" + ` are supported (string)`,
+					Description: `(Optional/Computed) [Default pod security policy template id](https://rancher.com/docs/rancher/v2.x/en/cluster-provisioning/rke-clusters/options/#pod-security-policy-support) (string)`,
 				},
 				resource.Attribute{
 					Name:        "enable_cluster_monitoring",
@@ -476,12 +520,208 @@ var (
 					Description: `(Computed) Enable project network isolation. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
+					Name:        "enable_cluster_istio",
+					Description: `(Computed) Enable built-in cluster istio. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
 					Name:        "annotations",
 					Description: `(Computed) Annotations for Node Pool object (map)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
 					Description: `(Computed) Labels for Node Pool object (map)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_cluster_alert_group",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Rancher v2 cluster alert group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The cluster id where create cluster alert group (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The cluster alert group name (string) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Computed) The cluster alert group description (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Computed) The cluster alert group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Computed) The cluster alert group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Computed) The cluster alert group recipients (list)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Computed) The cluster alert group wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) The cluster alert group annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) The cluster alert group labels (map)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Computed) The cluster alert group description (string)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Computed) The cluster alert group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Computed) The cluster alert group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Computed) The cluster alert group recipients (list)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Computed) The cluster alert group wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) The cluster alert group annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) The cluster alert group labels (map)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_cluster_alert_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Rancher v2 cluster alert rule.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The cluster id where create cluster alert rule (string)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The cluster alert rule name (string) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Computed) The cluster alert rule alert group ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "event_rule",
+					Description: `(Computed) The cluster alert rule event rule. ConflictsWith: ` + "`" + `"metric_rule", "node_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Computed) The cluster alert rule group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Computed) The cluster alert rule group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "inherited",
+					Description: `(Computed) The cluster alert rule inherited. Default: ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "metric_rule",
+					Description: `(Computed) The cluster alert rule metric rule. ConflictsWith: ` + "`" + `"event_rule", "node_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "node_rule",
+					Description: `(Computed) The cluster alert rule node rule. ConflictsWith: ` + "`" + `"event_rule", "metric_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Optional) The cluster alert rule wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `(Computed) The cluster alert rule severity. Supported values : ` + "`" + `"critical" | "info" | "warning"` + "`" + `. Default: ` + "`" + `critical` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "system_service_rule",
+					Description: `(Computed) The cluster alert rule system service rule. ConflictsWith: ` + "`" + `"event_rule", "metric_rule", "node_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) The cluster alert rule annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) The cluster alert rule labels (map)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Computed) The cluster alert rule alert group ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "event_rule",
+					Description: `(Computed) The cluster alert rule event rule. ConflictsWith: ` + "`" + `"metric_rule", "node_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "group_interval_seconds",
+					Description: `(Computed) The cluster alert rule group interval seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "group_wait_seconds",
+					Description: `(Computed) The cluster alert rule group wait seconds. Default: ` + "`" + `180` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "inherited",
+					Description: `(Computed) The cluster alert rule inherited. Default: ` + "`" + `true` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "metric_rule",
+					Description: `(Computed) The cluster alert rule metric rule. ConflictsWith: ` + "`" + `"event_rule", "node_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "node_rule",
+					Description: `(Computed) The cluster alert rule node rule. ConflictsWith: ` + "`" + `"event_rule", "metric_rule", "system_service_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "repeat_interval_seconds",
+					Description: `(Optional) The cluster alert rule wait seconds. Default: ` + "`" + `3600` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `(Computed) The cluster alert rule severity. Supported values : ` + "`" + `"critical" | "info" | "warning"` + "`" + `. Default: ` + "`" + `critical` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "system_service_rule",
+					Description: `(Computed) The cluster alert rule system service rule. ConflictsWith: ` + "`" + `"event_rule", "metric_rule", "node_rule"` + "`" + `` + "`" + ` (list Maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) The cluster alert rule annotations (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) The cluster alert rule labels (map)`,
 				},
 			},
 		},
@@ -511,7 +751,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "builtin",
-					Description: `(Computed) Specify wheter the cluster driver is an internal cluster driver or not (bool)`,
+					Description: `(Computed) Specify whether the cluster driver is an internal cluster driver or not (bool)`,
 				},
 				resource.Attribute{
 					Name:        "actual_url",
@@ -549,7 +789,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "builtin",
-					Description: `(Computed) Specify wheter the cluster driver is an internal cluster driver or not (bool)`,
+					Description: `(Computed) Specify whether the cluster driver is an internal cluster driver or not (bool)`,
 				},
 				resource.Attribute{
 					Name:        "actual_url",
@@ -774,6 +1014,74 @@ var (
 				resource.Attribute{
 					Name:        "labels",
 					Description: `(Computed) Labels of the resource (map)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_cluster_template",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Rancher v2 cluster template.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The cluster template name (string)`,
+				},
+				resource.Attribute{
+					Name:        "decription",
+					Description: `(Optional/Computed) The cluster template description (string) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_revision_id",
+					Description: `(Computed) Default cluster template revision ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `(Computed) Cluster template members (list)`,
+				},
+				resource.Attribute{
+					Name:        "template_revisions",
+					Description: `(Computed) Cluster template revisions (list)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) Annotations for the cluster template (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) Labels for the cluster template (map)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_revision_id",
+					Description: `(Computed) Default cluster template revision ID (string)`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `(Computed) Cluster template members (list)`,
+				},
+				resource.Attribute{
+					Name:        "template_revisions",
+					Description: `(Computed) Cluster template revisions (list)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) Annotations for the cluster template (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) Labels for the cluster template (map)`,
 				},
 			},
 		},
@@ -1211,7 +1519,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cluster_id",
-					Description: `(Required) The rke cluster id to use Node Pool (string)`,
+					Description: `(Required) The RKE cluster id to use Node Pool (string)`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1307,7 +1615,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_credential_id",
-					Description: `(Computed) Cloud credential ID for the Node Template. Required from rancher v2.2.x (string)`,
+					Description: `(Computed) Cloud credential ID for the Node Template. Required from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1365,7 +1673,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_credential_id",
-					Description: `(Computed) Cloud credential ID for the Node Template. Required from rancher v2.2.x (string)`,
+					Description: `(Computed) Cloud credential ID for the Node Template. Required from Rancher v2.2.x (string)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1414,6 +1722,98 @@ var (
 				resource.Attribute{
 					Name:        "labels",
 					Description: `(Computed) Labels for Node Template object (map)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "rancher2_notifier",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Rancher v2 notifier.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the notifier (string)`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The cluster id where create notifier (string) ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Computed) The notifier description (string)`,
+				},
+				resource.Attribute{
+					Name:        "pagerduty_config",
+					Description: `(Computed) Pagerduty config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "slack_config",
+					Description: `(Computed) Slack config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "smtp_config",
+					Description: `(Computed) SMTP config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "webhook_config",
+					Description: `(Computed) Webhook config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "wechat_config",
+					Description: `(Computed) Wechat config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) Annotations for notifier object (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) Labels for notifier object (map)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Computed) The notifier description (string)`,
+				},
+				resource.Attribute{
+					Name:        "pagerduty_config",
+					Description: `(Computed) Pagerduty config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "slack_config",
+					Description: `(Computed) Slack config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "smtp_config",
+					Description: `(Computed) SMTP config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "webhook_config",
+					Description: `(Computed) Webhook config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "wechat_config",
+					Description: `(Computed) Wechat config for notifier (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) Annotations for notifier object (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) Labels for notifier object (map)`,
 				},
 			},
 		},
@@ -1775,6 +2175,122 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rancher2_role_template",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Rancher v2 role template resource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Node Template (string)`,
+				},
+				resource.Attribute{
+					Name:        "context",
+					Description: `(Optional/Computed) Role template context. ` + "`" + `cluster` + "`" + ` and ` + "`" + `project` + "`" + ` values are supported (string) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "builtin",
+					Description: `(Computed) Builtin role template (string)`,
+				},
+				resource.Attribute{
+					Name:        "administrative",
+					Description: `(Computed) Administrative role template (bool)`,
+				},
+				resource.Attribute{
+					Name:        "default_role",
+					Description: `(Computed) Default role template for new created cluster or project (bool)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Computed) Role template description (string)`,
+				},
+				resource.Attribute{
+					Name:        "external",
+					Description: `(Computed) External role template (bool)`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `(Computed) Hidden role template (bool)`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `(Computed) Locked role template (bool)`,
+				},
+				resource.Attribute{
+					Name:        "role_template_ids",
+					Description: `(Computed) Inherit role template IDs (list)`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `(Computed) Role template policy rules (list)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) Annotations for role template object (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) Labels for role template object (map)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource (string)`,
+				},
+				resource.Attribute{
+					Name:        "builtin",
+					Description: `(Computed) Builtin role template (string)`,
+				},
+				resource.Attribute{
+					Name:        "administrative",
+					Description: `(Computed) Administrative role template (bool)`,
+				},
+				resource.Attribute{
+					Name:        "default_role",
+					Description: `(Computed) Default role template for new created cluster or project (bool)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Computed) Role template description (string)`,
+				},
+				resource.Attribute{
+					Name:        "external",
+					Description: `(Computed) External role template (bool)`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `(Computed) Hidden role template (bool)`,
+				},
+				resource.Attribute{
+					Name:        "locked",
+					Description: `(Computed) Locked role template (bool)`,
+				},
+				resource.Attribute{
+					Name:        "role_template_ids",
+					Description: `(Computed) Inherit role template IDs (list)`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `(Computed) Role template policy rules (list)`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Computed) Annotations for role template object (map)`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Computed) Labels for role template object (map)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rancher2_secret",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Rancher v2 secret.`,
@@ -1870,24 +2386,28 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the global role binding (string)`,
-				},
-				resource.Attribute{
-					Name:        "global_role_id",
-					Description: `(Optional/Computed) The global role id (string) ## Attributes Reference`,
+					Name:        "username",
+					Description: `(Required) The name of the user (string) ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
 					Description: `(Computed) The ID of the resource (string)`,
 				},
 				resource.Attribute{
-					Name:        "user_id",
-					Description: `(Computed) The user ID to assign global role binding (string)`,
+					Name:        "name",
+					Description: `(Computed) The user common name (string)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
 					Description: `(Computed) Annotations of the resource (map)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Computed) The user is enabled (bool)`,
+				},
+				resource.Attribute{
+					Name:        "principal_ids",
+					Description: `(Computed) The user principal IDs (list)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1900,12 +2420,20 @@ var (
 					Description: `(Computed) The ID of the resource (string)`,
 				},
 				resource.Attribute{
-					Name:        "user_id",
-					Description: `(Computed) The user ID to assign global role binding (string)`,
+					Name:        "name",
+					Description: `(Computed) The user common name (string)`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
 					Description: `(Computed) Annotations of the resource (map)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Computed) The user is enabled (bool)`,
+				},
+				resource.Attribute{
+					Name:        "principal_ids",
+					Description: `(Computed) The user principal IDs (list)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1922,23 +2450,28 @@ var (
 		"rancher2_certificate":                   2,
 		"rancher2_cloud_credential":              3,
 		"rancher2_cluster":                       4,
-		"rancher2_cluster_driver":                5,
-		"rancher2_cluster_logging":               6,
-		"rancher2_cluster_role_template_binding": 7,
-		"rancher2_etcd_backup":                   8,
-		"rancher2_global_role_binding":           9,
-		"rancher2_multi_cluster_app":             10,
-		"rancher2_namespace":                     11,
-		"rancher2_node_driver":                   12,
-		"rancher2_node_pool":                     13,
-		"rancher2_node_template":                 14,
-		"rancher2_project":                       15,
-		"rancher2_project_logging":               16,
-		"rancher2_project_role_template_binding": 17,
-		"rancher2_registry":                      18,
-		"rancher2_secret":                        19,
-		"rancher2_setting":                       20,
-		"rancher2_user":                          21,
+		"rancher2_cluster_alert_group":           5,
+		"rancher2_cluster_alert_rule":            6,
+		"rancher2_cluster_driver":                7,
+		"rancher2_cluster_logging":               8,
+		"rancher2_cluster_role_template_binding": 9,
+		"rancher2_cluster_template":              10,
+		"rancher2_etcd_backup":                   11,
+		"rancher2_global_role_binding":           12,
+		"rancher2_multi_cluster_app":             13,
+		"rancher2_namespace":                     14,
+		"rancher2_node_driver":                   15,
+		"rancher2_node_pool":                     16,
+		"rancher2_node_template":                 17,
+		"rancher2_notifier":                      18,
+		"rancher2_project":                       19,
+		"rancher2_project_logging":               20,
+		"rancher2_project_role_template_binding": 21,
+		"rancher2_registry":                      22,
+		"rancher2_role_template":                 23,
+		"rancher2_secret":                        24,
+		"rancher2_setting":                       25,
+		"rancher2_user":                          26,
 	}
 )
 

@@ -115,7 +115,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Required) Whether the disk is a system disk or a data disk. Option ` + "`" + `DATA` + "`" + ` indicates a data disk. option ` + "`" + `SYS` + "`" + ` indicates a system disk. The ` + "`" + `personality` + "`" + ` block supports:`,
+					Description: `(Required) Whether the disk is a system disk or a data disk. Option ` + "`" + `DATA` + "`" + ` indicates a data disk. option ` + "`" + `SYS` + "`" + ` indicates a system disk.`,
+				},
+				resource.Attribute{
+					Name:        "kms_id",
+					Description: `(Optional) The Encryption KMS ID of the data disk. The ` + "`" + `personality` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -193,6 +197,10 @@ var (
 				resource.Attribute{
 					Name:        "lb_listener_id",
 					Description: `(Optional) The ELB listener IDs. The system supports up to three ELB listeners, the IDs of which are separated using a comma (,).`,
+				},
+				resource.Attribute{
+					Name:        "lbaas_listeners",
+					Description: `(Optional) An array of one or more enhanced load balancer. The system supports the binding of up to three load balancers. The field is alternative to lb_listener_id. The lbaas_listeners object structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "available_zones",
@@ -824,7 +832,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "multi_az",
-					Description: `(Optional) Enable multiple AZs for the cluster, only when using HA flavors. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
+					Description: `(Optional) Enable multiple AZs for the cluster, only when using HA flavors. Changing this parameter will create a new cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `(Optional) EIP address of the cluster. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1332,7 +1344,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "stop_before_destroy",
-					Description: `(Optional) Whether to try stop instance gracefully before destroying it, thus giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway. The ` + "`" + `network` + "`" + ` block supports:`,
+					Description: `(Optional) Whether to try stop instance gracefully before destroying it, thus giving chance for guest OS daemons to stop correctly. If instance doesn't stop within timeout, it will be destroyed anyway.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags key/value pairs to associate with the instance. The ` + "`" + `network` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "uuid",
@@ -1711,6 +1727,10 @@ var (
 					Description: `The MAC address of the NIC on that network.`,
 				},
 				resource.Attribute{
+					Name:        "volume_attached/id",
+					Description: `The volume id on that attachment.`,
+				},
+				resource.Attribute{
 					Name:        "all_metadata",
 					Description: `Contains all instance metadata, even metadata not set by Terraform.`,
 				},
@@ -1771,6 +1791,10 @@ var (
 				resource.Attribute{
 					Name:        "network/mac",
 					Description: `The MAC address of the NIC on that network.`,
+				},
+				resource.Attribute{
+					Name:        "volume_attached/id",
+					Description: `The volume id on that attachment.`,
 				},
 				resource.Attribute{
 					Name:        "all_metadata",
@@ -3559,11 +3583,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_elb_backend",
-			Category:         "Elastic Load Balancer Resources",
-			ShortDescription: `Manages an elastic loadbalancer backend resource within OpentelekomCloud.`,
+			Category:         "Classic Load Balancer Resources",
+			ShortDescription: `Manages a classic loadbalancer backend resource within OpentelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"elastic",
+				"classic",
 				"load",
 				"balancer",
 				"elb",
@@ -3677,11 +3701,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_elb_health",
-			Category:         "Elastic Load Balancer Resources",
-			ShortDescription: `Manages an elastic loadbalancer health resource within OpentelekomCloud.`,
+			Category:         "Classic Load Balancer Resources",
+			ShortDescription: `Manages a classic loadbalancer health resource within OpentelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"elastic",
+				"classic",
 				"load",
 				"balancer",
 				"elb",
@@ -3799,11 +3823,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_elb_listener",
-			Category:         "Elastic Load Balancer Resources",
-			ShortDescription: `Manages an elastic loadbalancer listener resource within OpentelekomCloud.`,
+			Category:         "Classic Load Balancer Resources",
+			ShortDescription: `Manages a classic loadbalancer listener resource within OpentelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"elastic",
+				"classic",
 				"load",
 				"balancer",
 				"elb",
@@ -4049,11 +4073,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_elb_loadbalancer",
-			Category:         "Elastic Load Balancer Resources",
-			ShortDescription: `Manages an elastic loadbalancer resource within OpentelekomCloud.`,
+			Category:         "Classic Load Balancer Resources",
+			ShortDescription: `Manages a classic loadbalancer resource within OpentelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"elastic",
+				"classic",
 				"load",
 				"balancer",
 				"elb",
@@ -4082,7 +4106,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `(Required) Specifies the status of the load balancer. Value range: 0 or false: indicates that the load balancer is stopped. Only tenants are allowed to enter these two values. 1 or true: indicates that the load balancer is running properly. 2 or false: indicates that the load balancer is frozen. Only tenants are allowed to enter these two values.`,
+					Description: `(Required) Specifies the status of the load balancer. Value range: false: indicates that the load balancer is stopped or frozen; true: indicates that the load balancer is running properly. Only tenants are allowed to enter these two values.`,
 				},
 				resource.Attribute{
 					Name:        "vip_subnet_id",
@@ -4201,6 +4225,156 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				resource.Attribute{
 					Name:        "id",
 					Description: `Specifies the load balancer ID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_evs_volume_v3",
+			Category:         "Block Storage Resources",
+			ShortDescription: `Manages a V3 volume resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"block",
+				"storage",
+				"evs",
+				"volume",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) The availability zone for the volume. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `(Required) The type of volume to create. Currently, the value can be SSD, SAS, SATA, co-p1, or uh-l1. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A unique name for the volume. Changing this updates the volume's name.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) The size of the volume to create (in gigabytes). This parameter is mandatory when you create an empty EVS disk or use an image or a snapshot to create an EVS disk. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the volume. Changing this updates the volume's description.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Optional) The image ID from which to create the volume. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "backup_id",
+					Description: `(Optional) The backup ID from which to create the volume. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional) The snapshot ID from which to create the volume. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags key/value pairs to associate with the volume. Changing this updates the existing volume tags.`,
+				},
+				resource.Attribute{
+					Name:        "multiattach",
+					Description: `(Optional, Default:false) Specifies the shared EVS disk information. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "cascade",
+					Description: `(Optional, Default:false) Specifies to delete all snapshots associated with the EVS disk. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "multiattach",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "attachment",
+					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_evs_volume_v3.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "multiattach",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "attachment",
+					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_evs_volume_v3.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5159,6 +5333,361 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_ims_data_image_v2",
+			Category:         "Images Resources",
+			ShortDescription: `Manages a V2 Data Image resource within OpenTelekomCloud IMS.`,
+			Description:      ``,
+			Keywords: []string{
+				"images",
+				"ims",
+				"data",
+				"image",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the image.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the image. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags of the image.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `(Optional) The ID of the ECS atatched volume that needs to be converted into an image. This parameter is mandatory when you create a privete image from an ECS. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `(Optional) The URL of the external image file in the OBS bucket. This parameter is mandatory when you create a private image from an external file uploaded to an OBS bucket. The format is`,
+				},
+				resource.Attribute{
+					Name:        "min_disk",
+					Description: `(Optional) The minimum size of the system disk in the unit of GB. This parameter is mandatory when you create a private image from an external file uploaded to an OBS bucket. The value ranges from 1 GB to 1024 GB. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `(Optional) The OS type. It can only be Windows or Linux. This parameter is valid when you create a private image from an external file uploaded to an OBS bucket. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "cmk_id",
+					Description: `(Optional) The master key used for encrypting an image. Changing this creates a new image. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `A unique ID assigned by IMS.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "min_disk",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cmk_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the image is visible to other tenants.`,
+				},
+				resource.Attribute{
+					Name:        "data_origin",
+					Description: `The image resource. The pattern can be 'instance,`,
+				},
+				resource.Attribute{
+					Name:        "disk_format",
+					Description: `The image file format. The value can be vhd, zvhd, raw, zvhd2, or qcow2.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `The size(bytes) of the image file format. ## Import Images can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_ims_data_image_v2.my_image 7886e623-f1b3-473e-b882-67ba1c35887f ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `A unique ID assigned by IMS.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "min_disk",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cmk_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the image is visible to other tenants.`,
+				},
+				resource.Attribute{
+					Name:        "data_origin",
+					Description: `The image resource. The pattern can be 'instance,`,
+				},
+				resource.Attribute{
+					Name:        "disk_format",
+					Description: `The image file format. The value can be vhd, zvhd, raw, zvhd2, or qcow2.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `The size(bytes) of the image file format. ## Import Images can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_ims_data_image_v2.my_image 7886e623-f1b3-473e-b882-67ba1c35887f ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_ims_image_v2",
+			Category:         "Images Resources",
+			ShortDescription: `Manages a V2 Image resource within OpenTelekomCloud IMS.`,
+			Description:      ``,
+			Keywords: []string{
+				"images",
+				"ims",
+				"image",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the image.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the image. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "min_ram",
+					Description: `(Optional) The minimum memory of the image in the unit of MB. The default value is 0, indicating that the memory is not restricted. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "max_ram",
+					Description: `(Optional) The maximum memory of the image in the unit of MB. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags of the image.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Optional) The ID of the ECS that needs to be converted into an image. This parameter is mandatory when you create a privete image from an ECS. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `(Optional) The URL of the external image file in the OBS bucket. This parameter is mandatory when you create a private image from an external file uploaded to an OBS bucket. The format is`,
+				},
+				resource.Attribute{
+					Name:        "min_disk",
+					Description: `(Optional) The minimum size of the system disk in the unit of GB. This parameter is mandatory when you create a private image from an external file uploaded to an OBS bucket. The value ranges from 1 GB to 1024 GB. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "os_version",
+					Description: `(Optional) The OS version. This parameter is valid when you create a private image from an external file uploaded to an OBS bucket. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "is_config",
+					Description: `(Optional) If automatic configuration is required, set the value to true. Otherwise, set the value to false. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "cmk_id",
+					Description: `(Optional) The master key used for encrypting an image. Changing this creates a new image.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The image type. Must be one of "ECS", "FusionCompute", "BMS", or "Ironic". Changing this creates a new image. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `A unique ID assigned by IMS.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "min_ram",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_ram",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "min_disk",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "os_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "is_config",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cmk_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the image is visible to other tenants.`,
+				},
+				resource.Attribute{
+					Name:        "data_origin",
+					Description: `The image resource. The pattern can be 'instance,`,
+				},
+				resource.Attribute{
+					Name:        "disk_format",
+					Description: `The image file format. The value can be vhd, zvhd, raw, zvhd2, or qcow2.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `The size(bytes) of the image file format. ## Import Images can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_ims_image_v2.my_image 7886e623-f1b3-473e-b882-67ba1c35887f ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `A unique ID assigned by IMS.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "min_ram",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_ram",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "min_disk",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "os_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "is_config",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cmk_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `Whether the image is visible to other tenants.`,
+				},
+				resource.Attribute{
+					Name:        "data_origin",
+					Description: `The image resource. The pattern can be 'instance,`,
+				},
+				resource.Attribute{
+					Name:        "disk_format",
+					Description: `The image file format. The value can be vhd, zvhd, raw, zvhd2, or qcow2.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `The size(bytes) of the image file format. ## Import Images can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_ims_image_v2.my_image 7886e623-f1b3-473e-b882-67ba1c35887f ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_kms_key_v1",
 			Category:         "KMS Resources",
 			ShortDescription: `Manages a V1 key resource within KMS.`,
@@ -5284,10 +5813,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_lb_listener_v2",
-			Category:         "Load Balancer Resources",
-			ShortDescription: `Manages a V2 listener resource within OpenTelekomCloud.`,
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages an Enhanced LB listener resource within OpenTelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"enhanced",
 				"load",
 				"balancer",
 				"lb",
@@ -5422,10 +5952,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_lb_loadbalancer_v2",
-			Category:         "Load Balancer Resources",
-			ShortDescription: `Manages a V2 loadbalancer resource within OpenTelekomCloud.`,
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages an Enhanced loadbalancer resource within OpenTelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"enhanced",
 				"load",
 				"balancer",
 				"lb",
@@ -5544,10 +6075,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_lb_member_v2",
-			Category:         "Load Balancer Resources",
-			ShortDescription: `Manages a V2 member resource within OpenTelekomCloud.`,
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages an Enhanced LB member resource within OpenTelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"enhanced",
 				"load",
 				"balancer",
 				"lb",
@@ -5666,10 +6198,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_lb_monitor_v2",
-			Category:         "Load Balancer Resources",
-			ShortDescription: `Manages a V2 monitor resource within OpenTelekomCloud.`,
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages an Enhanced LB monitor resource within OpenTelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"enhanced",
 				"load",
 				"balancer",
 				"lb",
@@ -5804,10 +6337,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		&resource.Resource{
 			Name:             "",
 			Type:             "opentelekomcloud_lb_pool_v2",
-			Category:         "Load Balancer Resources",
-			ShortDescription: `Manages a V2 pool resource within OpenTelekomCloud.`,
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages an Enhanced LB pool resource within OpenTelekomCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"enhanced",
 				"load",
 				"balancer",
 				"lb",
@@ -8305,7 +8839,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "flavor",
-					Description: `(Required) Specifies the specification code. Changing this parameter will create a new resource.`,
+					Description: `(Required) Specifies the specification code.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -8321,7 +8855,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "volume",
-					Description: `(Required) Specifies the volume information. Structure is documented below. Changing this parameter will create a new resource.`,
+					Description: `(Required) Specifies the volume information. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -8329,7 +8863,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "backup_strategy",
-					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "ha_replication_mode",
@@ -8337,7 +8871,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "param_group_id",
-					Description: `(Optional) Specifies the parameter group ID. Changing this parameter will create a new resource. The ` + "`" + `db` + "`" + ` block supports:`,
+					Description: `(Optional) Specifies the parameter group ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) Tags key/value pairs to associate with the instance. The ` + "`" + `db` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "password",
@@ -8365,7 +8903,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) Specifies the volume size. Its value range is from 40 GB to 4000 GB. The value must be a multiple of 10. Changing this parameter will create a new resource.`,
+					Description: `(Required) Specifies the volume size. Its value range is from 40 GB to 4000 GB. The value must be a multiple of 10. Changing this resize the volume.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -8373,11 +8911,11 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "keep_days",
-					Description: `(Optional) Specifies the retention days for specific backup files. The value range is from 0 to 732. If this parameter is not specified or set to 0, the automated backup policy is disabled. NOTICE: Primary/standby DB instances of Microsoft SQL Server do not support disabling the automated backup policy. Changing this parameter will create a new resource.`,
+					Description: `(Optional) Specifies the retention days for specific backup files. The value range is from 0 to 732. If this parameter is not specified or set to 0, the automated backup policy is disabled. NOTICE: Primary/standby DB instances of Microsoft SQL Server do not support disabling the automated backup policy.`,
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. It must be a valid value in the &quot;hh:mm-HH:MM&quot; format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to any of the following: 00, 15, 30, or 45. Example value: 08:15-09:15 23:00-00:00. Changing this parameter will create a new resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. It must be a valid value in the &quot;hh:mm-HH:MM&quot; format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to any of the following: 00, 15, 30, or 45. Example value: 08:15-09:15 23:00-00:00. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "created",
@@ -9884,6 +10422,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `(Required) Specifies whether a proxy is configured.`,
 				},
 				resource.Attribute{
+					Name:        "policy_id",
+					Description: `The policy ID associate with the domain. Changing this create a new domain.`,
+				},
+				resource.Attribute{
 					Name:        "sip_header_name",
 					Description: `(Optional) The type of the source IP header. This parameter is required only when proxy is set to true. The options are as follows: default, cloudflare, akamai, and custom.`,
 				},
@@ -9928,10 +10470,6 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `The subdomain name. This attribute is returned only when proxy is set to true.`,
 				},
 				resource.Attribute{
-					Name:        "policy_id",
-					Description: `The proxy ID.`,
-				},
-				resource.Attribute{
 					Name:        "protect_status",
 					Description: `The WAF mode. -1: bypassed, 0: disabled, 1: enabled.`,
 				},
@@ -9964,10 +10502,6 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				resource.Attribute{
 					Name:        "sub_domain",
 					Description: `The subdomain name. This attribute is returned only when proxy is set to true.`,
-				},
-				resource.Attribute{
-					Name:        "policy_id",
-					Description: `The proxy ID.`,
 				},
 				resource.Attribute{
 					Name:        "protect_status",
@@ -10330,71 +10864,74 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		"opentelekomcloud_elb_health":                         28,
 		"opentelekomcloud_elb_listener":                       29,
 		"opentelekomcloud_elb_loadbalancer":                   30,
-		"opentelekomcloud_fw_firewall_group_v2":               31,
-		"opentelekomcloud_fw_policy_v2":                       32,
-		"opentelekomcloud_fw_rule_v2":                         33,
-		"opentelekomcloud_identity_agency_v3":                 34,
-		"opentelekomcloud_identity_group_membership_v3":       35,
-		"opentelekomcloud_identity_group_v3":                  36,
-		"opentelekomcloud_identity_project_v3":                37,
-		"opentelekomcloud_identity_role_assignment_v3":        38,
-		"opentelekomcloud_identity_role_v3":                   39,
-		"opentelekomcloud_identity_user_v3":                   40,
-		"opentelekomcloud_images_image_v2":                    41,
-		"opentelekomcloud_kms_key_v1":                         42,
-		"opentelekomcloud_lb_listener_v2":                     43,
-		"opentelekomcloud_lb_loadbalancer_v2":                 44,
-		"opentelekomcloud_lb_member_v2":                       45,
-		"opentelekomcloud_lb_monitor_v2":                      46,
-		"opentelekomcloud_lb_pool_v2":                         47,
-		"opentelekomcloud_maas_task_v1":                       48,
-		"opentelekomcloud_mrs_cluster_v1":                     49,
-		"opentelekomcloud_mrs_job_v1":                         50,
-		"opentelekomcloud_nat_gateway_v2":                     51,
-		"opentelekomcloud_nat_snat_rule_v2":                   52,
-		"opentelekomcloud_networking_floatingip_associate_v2": 53,
-		"opentelekomcloud_networking_floatingip_v2":           54,
-		"opentelekomcloud_networking_network_v2":              55,
-		"opentelekomcloud_networking_port_v2":                 56,
-		"opentelekomcloud_networking_router_interface_v2":     57,
-		"opentelekomcloud_networking_router_route_v2":         58,
-		"opentelekomcloud_networking_router_v2":               59,
-		"opentelekomcloud_networking_secgroup_rule_v2":        60,
-		"opentelekomcloud_networking_secgroup_v2":             61,
-		"opentelekomcloud_networking_subnet_v2":               62,
-		"opentelekomcloud_networking_vip_associate_v2":        63,
-		"opentelekomcloud_networking_vip_v2":                  64,
-		"opentelekomcloud_rds_instance_v1":                    65,
-		"opentelekomcloud_rds_instance_v3":                    66,
-		"opentelekomcloud_rds_parametergroup_v3":              67,
-		"opentelekomcloud_rts_software_config_v1":             68,
-		"opentelekomcloud_rts_software_deployment_v1":         69,
-		"opentelekomcloud-resource-rts-stack-v1":              70,
-		"opentelekomcloud_s3_bucket":                          71,
-		"opentelekomcloud_s3-bucket-object":                   72,
-		"opentelekomcloud_s3_bucket_policy":                   73,
-		"opentelekomcloud_sdrs_protectiongroup_v1":            74,
-		"opentelekomcloud_sfs_file_system_v2":                 75,
-		"opentelekomcloud_smn_subscription_v2":                76,
-		"opentelekomcloud_smn_topic_v2":                       77,
-		"opentelekomcloud-vbs-backup-policy-v2":               78,
-		"opentelekomcloud-vbs-backup-share-v2":                79,
-		"opentelekomcloud-vbs-backup-v2":                      80,
-		"opentelekomcloud_vpc_eip_v1":                         81,
-		"opentelekomcloud_vpc_peering_connection_accepter_v2": 82,
-		"opentelekomcloud_vpc_peering_connection_v2":          83,
-		"opentelekomcloud_vpc_route_v2":                       84,
-		"opentelekomcloud_vpc_subnet_v1":                      85,
-		"opentelekomcloud_vpc_v1":                             86,
-		"opentelekomcloud_waf_ccattackprotection_rule_v1":     87,
-		"opentelekomcloud_waf_certificate_v1":                 88,
-		"opentelekomcloud_waf_datamasking_rule_v1":            89,
-		"opentelekomcloud_waf_domain_v1":                      90,
-		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      91,
-		"opentelekomcloud_waf_policy_v1":                      92,
-		"opentelekomcloud_waf_preciseprotection_rule_v1":      93,
-		"opentelekomcloud_waf_webtamperprotection_rule_v1":    94,
-		"opentelekomcloud_waf_whiteblackip_rule_v1":           95,
+		"opentelekomcloud_evs_volume_v3":                      31,
+		"opentelekomcloud_fw_firewall_group_v2":               32,
+		"opentelekomcloud_fw_policy_v2":                       33,
+		"opentelekomcloud_fw_rule_v2":                         34,
+		"opentelekomcloud_identity_agency_v3":                 35,
+		"opentelekomcloud_identity_group_membership_v3":       36,
+		"opentelekomcloud_identity_group_v3":                  37,
+		"opentelekomcloud_identity_project_v3":                38,
+		"opentelekomcloud_identity_role_assignment_v3":        39,
+		"opentelekomcloud_identity_role_v3":                   40,
+		"opentelekomcloud_identity_user_v3":                   41,
+		"opentelekomcloud_images_image_v2":                    42,
+		"opentelekomcloud_ims_data_image_v2":                  43,
+		"opentelekomcloud_ims_image_v2":                       44,
+		"opentelekomcloud_kms_key_v1":                         45,
+		"opentelekomcloud_lb_listener_v2":                     46,
+		"opentelekomcloud_lb_loadbalancer_v2":                 47,
+		"opentelekomcloud_lb_member_v2":                       48,
+		"opentelekomcloud_lb_monitor_v2":                      49,
+		"opentelekomcloud_lb_pool_v2":                         50,
+		"opentelekomcloud_maas_task_v1":                       51,
+		"opentelekomcloud_mrs_cluster_v1":                     52,
+		"opentelekomcloud_mrs_job_v1":                         53,
+		"opentelekomcloud_nat_gateway_v2":                     54,
+		"opentelekomcloud_nat_snat_rule_v2":                   55,
+		"opentelekomcloud_networking_floatingip_associate_v2": 56,
+		"opentelekomcloud_networking_floatingip_v2":           57,
+		"opentelekomcloud_networking_network_v2":              58,
+		"opentelekomcloud_networking_port_v2":                 59,
+		"opentelekomcloud_networking_router_interface_v2":     60,
+		"opentelekomcloud_networking_router_route_v2":         61,
+		"opentelekomcloud_networking_router_v2":               62,
+		"opentelekomcloud_networking_secgroup_rule_v2":        63,
+		"opentelekomcloud_networking_secgroup_v2":             64,
+		"opentelekomcloud_networking_subnet_v2":               65,
+		"opentelekomcloud_networking_vip_associate_v2":        66,
+		"opentelekomcloud_networking_vip_v2":                  67,
+		"opentelekomcloud_rds_instance_v1":                    68,
+		"opentelekomcloud_rds_instance_v3":                    69,
+		"opentelekomcloud_rds_parametergroup_v3":              70,
+		"opentelekomcloud_rts_software_config_v1":             71,
+		"opentelekomcloud_rts_software_deployment_v1":         72,
+		"opentelekomcloud-resource-rts-stack-v1":              73,
+		"opentelekomcloud_s3_bucket":                          74,
+		"opentelekomcloud_s3-bucket-object":                   75,
+		"opentelekomcloud_s3_bucket_policy":                   76,
+		"opentelekomcloud_sdrs_protectiongroup_v1":            77,
+		"opentelekomcloud_sfs_file_system_v2":                 78,
+		"opentelekomcloud_smn_subscription_v2":                79,
+		"opentelekomcloud_smn_topic_v2":                       80,
+		"opentelekomcloud-vbs-backup-policy-v2":               81,
+		"opentelekomcloud-vbs-backup-share-v2":                82,
+		"opentelekomcloud-vbs-backup-v2":                      83,
+		"opentelekomcloud_vpc_eip_v1":                         84,
+		"opentelekomcloud_vpc_peering_connection_accepter_v2": 85,
+		"opentelekomcloud_vpc_peering_connection_v2":          86,
+		"opentelekomcloud_vpc_route_v2":                       87,
+		"opentelekomcloud_vpc_subnet_v1":                      88,
+		"opentelekomcloud_vpc_v1":                             89,
+		"opentelekomcloud_waf_ccattackprotection_rule_v1":     90,
+		"opentelekomcloud_waf_certificate_v1":                 91,
+		"opentelekomcloud_waf_datamasking_rule_v1":            92,
+		"opentelekomcloud_waf_domain_v1":                      93,
+		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      94,
+		"opentelekomcloud_waf_policy_v1":                      95,
+		"opentelekomcloud_waf_preciseprotection_rule_v1":      96,
+		"opentelekomcloud_waf_webtamperprotection_rule_v1":    97,
+		"opentelekomcloud_waf_whiteblackip_rule_v1":           98,
 	}
 )
 

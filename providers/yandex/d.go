@@ -667,11 +667,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fixed_scale",
-					Description: `The fixed scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `The fixed scaling policy of the instance group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scale",
+					Description: `(Optional) The auto scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `The number of instances in the instance group. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `The number of instances in the instance group. --- The ` + "`" + `auto_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "initial_size",
+					Description: `(Required) The initial number of instances in the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "measurement_duration",
+					Description: `(Required) The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "min_zone_size",
+					Description: `(Optional) The minimum number of virtual machines in a single availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "max_size",
+					Description: `(Optional) The maximum number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "warmup_duration",
+					Description: `(Optional) The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
+				},
+				resource.Attribute{
+					Name:        "stabilization_duration",
+					Description: `(Optional) The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_utilization_target",
+					Description: `(Optional) Target CPU load level. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -723,7 +755,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_disk",
-					Description: `The specifications for boot disks that will be attached to the instance. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+					Description: `The specifications for boot disk that will be attached to the instance. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -1009,11 +1041,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fixed_scale",
-					Description: `The fixed scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `The fixed scaling policy of the instance group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scale",
+					Description: `(Optional) The auto scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `The number of instances in the instance group. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `The number of instances in the instance group. --- The ` + "`" + `auto_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "initial_size",
+					Description: `(Required) The initial number of instances in the instance group.`,
+				},
+				resource.Attribute{
+					Name:        "measurement_duration",
+					Description: `(Required) The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "min_zone_size",
+					Description: `(Optional) The minimum number of virtual machines in a single availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "max_size",
+					Description: `(Optional) The maximum number of virtual machines in the group.`,
+				},
+				resource.Attribute{
+					Name:        "warmup_duration",
+					Description: `(Optional) The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
+				},
+				resource.Attribute{
+					Name:        "stabilization_duration",
+					Description: `(Optional) The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_utilization_target",
+					Description: `(Optional) Target CPU load level. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1065,7 +1129,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "boot_disk",
-					Description: `The specifications for boot disks that will be attached to the instance. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+					Description: `The specifications for boot disk that will be attached to the instance. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "device_name",
@@ -1379,6 +1443,62 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_container_registry",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Container Registry.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "registry_id",
+					Description: `(Required) The ID of a specific registry. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `ID of the folder that the registry belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the registry.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the registry.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this registry.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this registry.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `ID of the folder that the registry belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the registry.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the registry.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Labels to assign to this registry.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of this registry.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_iam_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Generates an IAM policy that can be referenced by other resources and applied to them.`,
@@ -1445,7 +1565,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_email",
-					Description: `Email address of user account. [IAM Users]: https://cloud.yandex.com/docs/iam/concepts/users/users#passport`,
+					Description: `Email address of user account. [IAM User]: https://cloud.yandex.com/docs/iam/concepts/#passport`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1459,7 +1579,511 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_email",
-					Description: `Email address of user account. [IAM Users]: https://cloud.yandex.com/docs/iam/concepts/users/users#passport`,
+					Description: `Email address of user account. [IAM User]: https://cloud.yandex.com/docs/iam/concepts/#passport`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_kubernetes_cluster",
+			Category:         "Data Sources",
+			ShortDescription: ``,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) ID of a specific Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of a specific Kubernetes cluster. ~>`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `The ID of the folder that the Kubernetes cluster belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `The ID of the cluster network.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_id",
+					Description: `Service account to be used for provisioning Compute Cloud and VPC resources for Kubernetes cluster. Selected service account should have ` + "`" + `edit` + "`" + ` role on the folder where the Kubernetes cluster will be located and on the folder where selected network resides.`,
+				},
+				resource.Attribute{
+					Name:        "node_service_account_id",
+					Description: `Service account to be used by the worker nodes of the Kubernetes cluster to access Container Registry or to push node logs and metrics.`,
+				},
+				resource.Attribute{
+					Name:        "release_channel",
+					Description: `Cluster release channel.`,
+				},
+				resource.Attribute{
+					Name:        "master",
+					Description: `IP allocation policy of the Kubernetes cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Kubernetes cluster creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Health of the Kubernetes cluster. --- The ` + "`" + `master` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zonal",
+					Description: `Information about cluster zonal master. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "regional",
+					Description: `Information about cluster zonal master. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "internal_v4_address",
+					Description: `An IPv4 internal network address that is assigned to the master.`,
+				},
+				resource.Attribute{
+					Name:        "external_v4_address",
+					Description: `An IPv4 external network address that is assigned to the master.`,
+				},
+				resource.Attribute{
+					Name:        "internal_v4_endpoint",
+					Description: `Internal endpoint that can be used to connect to the master from cloud networks.`,
+				},
+				resource.Attribute{
+					Name:        "external_v4_endpoint",
+					Description: `External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).`,
+				},
+				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version_info",
+					Description: `Information about cluster version. The structure is documented below. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `ID of the availability zone where the master resides. --- The ` + "`" + `regional` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `ID of the availability region where the master resides. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "current_version",
+					Description: `Current Kubernetes version, major.minor (e.g. 1.15).`,
+				},
+				resource.Attribute{
+					Name:        "new_revision_available",
+					Description: `True/false flag. Newer revisions may include Kubernetes patches (e.g 1.15.1 -> 1.15.2) as well as some internal component updates - new features or bug fixes in yandex-specific components either on the master or nodes.`,
+				},
+				resource.Attribute{
+					Name:        "new_revision_summary",
+					Description: `Human readable description of the changes to be applied when updating to the latest revision. Empty if new_revision_available is false.`,
+				},
+				resource.Attribute{
+					Name:        "version_deprecated",
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ---`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `The ID of the folder that the Kubernetes cluster belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `The ID of the cluster network.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_id",
+					Description: `Service account to be used for provisioning Compute Cloud and VPC resources for Kubernetes cluster. Selected service account should have ` + "`" + `edit` + "`" + ` role on the folder where the Kubernetes cluster will be located and on the folder where selected network resides.`,
+				},
+				resource.Attribute{
+					Name:        "node_service_account_id",
+					Description: `Service account to be used by the worker nodes of the Kubernetes cluster to access Container Registry or to push node logs and metrics.`,
+				},
+				resource.Attribute{
+					Name:        "release_channel",
+					Description: `Cluster release channel.`,
+				},
+				resource.Attribute{
+					Name:        "master",
+					Description: `IP allocation policy of the Kubernetes cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Kubernetes cluster creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Health of the Kubernetes cluster. --- The ` + "`" + `master` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zonal",
+					Description: `Information about cluster zonal master. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "regional",
+					Description: `Information about cluster zonal master. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "internal_v4_address",
+					Description: `An IPv4 internal network address that is assigned to the master.`,
+				},
+				resource.Attribute{
+					Name:        "external_v4_address",
+					Description: `An IPv4 external network address that is assigned to the master.`,
+				},
+				resource.Attribute{
+					Name:        "internal_v4_endpoint",
+					Description: `Internal endpoint that can be used to connect to the master from cloud networks.`,
+				},
+				resource.Attribute{
+					Name:        "external_v4_endpoint",
+					Description: `External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).`,
+				},
+				resource.Attribute{
+					Name:        "cluster_ca_certificate",
+					Description: `PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version_info",
+					Description: `Information about cluster version. The structure is documented below. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `ID of the availability zone where the master resides. --- The ` + "`" + `regional` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `ID of the availability region where the master resides. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "current_version",
+					Description: `Current Kubernetes version, major.minor (e.g. 1.15).`,
+				},
+				resource.Attribute{
+					Name:        "new_revision_available",
+					Description: `True/false flag. Newer revisions may include Kubernetes patches (e.g 1.15.1 -> 1.15.2) as well as some internal component updates - new features or bug fixes in yandex-specific components either on the master or nodes.`,
+				},
+				resource.Attribute{
+					Name:        "new_revision_summary",
+					Description: `Human readable description of the changes to be applied when updating to the latest revision. Empty if new_revision_available is false.`,
+				},
+				resource.Attribute{
+					Name:        "version_deprecated",
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ---`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_kubernetes_node_group",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Kubernetes Node Group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "node_group_id",
+					Description: `(Optional) ID of a specific Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of a specific Kubernetes node group. ~>`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the Kubernetes cluster that this node group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs assigned to the Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Kubernetes node group creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "instance_template",
+					Description: `Template used to create compute instances in this Kubernetes node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "scale_policy",
+					Description: `Scale policy of the node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "allocation_policy",
+					Description: `This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "instance_group_id",
+					Description: `ID of instance group that is used to manage this Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `Information about maintenance policy for this Kubernetes node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "version_info",
+					Description: `Information about Kubernetes node group version. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "platform_id",
+					Description: `The ID of the hardware platform configuration for the instance.`,
+				},
+				resource.Attribute{
+					Name:        "nat",
+					Description: `Boolean flag, when true, NAT for node group instances is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The set of metadata ` + "`" + `key:value` + "`" + ` pairs assigned to this instance template. This includes custom metadata and predefined keys.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of labels applied to this instance.`,
+				},
+				resource.Attribute{
+					Name:        "resources.0.memory",
+					Description: `The memory size allocated to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "resources.0.cores",
+					Description: `Number of CPU cores allocated to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "resources.0.core_fraction",
+					Description: `Baseline core performance as a percent.`,
+				},
+				resource.Attribute{
+					Name:        "boot_disk",
+					Description: `The specifications for boot disks that will be attached to the instance. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "scheduling_policy",
+					Description: `The scheduling policy for the instances in node group. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the disk in GB. Allowed minimal size: 64 GB.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The disk type. --- The ` + "`" + `scheduling_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "preemptible",
+					Description: `Specifies if the instance is preemptible. Defaults to false. --- The ` + "`" + `scale_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fixed_scale",
+					Description: `The fixed scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The number of instances in the node group. --- The ` + "`" + `allocation_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below. --- The ` + "`" + `location` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `ID of the availability zone where for one compute instance in node group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `ID of the subnet, that will be used by one compute instance in node group. Subnet specified by ` + "`" + `subnet_id` + "`" + ` should be allocated in zone specified by 'zone' argument --- The ` + "`" + `maintenance_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_upgrade",
+					Description: `Boolean flag.`,
+				},
+				resource.Attribute{
+					Name:        "current_version",
+					Description: `Current Kubernetes version, major.minor (e.g. 1.15).`,
+				},
+				resource.Attribute{
+					Name:        "new_revision_available",
+					Description: `True/false flag. Newer revisions may include Kubernetes patches (e.g 1.15.1 -> 1.15.2) as well as some internal component updates - new features or bug fixes in yandex-specific components either on the master or nodes.`,
+				},
+				resource.Attribute{
+					Name:        "new_revision_summary",
+					Description: `Human readable description of the changes to be applied when updating to the latest revision. Empty if new_revision_available is false.`,
+				},
+				resource.Attribute{
+					Name:        "version_deprecated",
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ---`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the Kubernetes cluster that this node group belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs assigned to the Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Kubernetes node group creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "instance_template",
+					Description: `Template used to create compute instances in this Kubernetes node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "scale_policy",
+					Description: `Scale policy of the node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "allocation_policy",
+					Description: `This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "instance_group_id",
+					Description: `ID of instance group that is used to manage this Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `Information about maintenance policy for this Kubernetes node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "version_info",
+					Description: `Information about Kubernetes node group version. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "platform_id",
+					Description: `The ID of the hardware platform configuration for the instance.`,
+				},
+				resource.Attribute{
+					Name:        "nat",
+					Description: `Boolean flag, when true, NAT for node group instances is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `The set of metadata ` + "`" + `key:value` + "`" + ` pairs assigned to this instance template. This includes custom metadata and predefined keys.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of labels applied to this instance.`,
+				},
+				resource.Attribute{
+					Name:        "resources.0.memory",
+					Description: `The memory size allocated to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "resources.0.cores",
+					Description: `Number of CPU cores allocated to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "resources.0.core_fraction",
+					Description: `Baseline core performance as a percent.`,
+				},
+				resource.Attribute{
+					Name:        "boot_disk",
+					Description: `The specifications for boot disks that will be attached to the instance. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "scheduling_policy",
+					Description: `The scheduling policy for the instances in node group. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the disk in GB. Allowed minimal size: 64 GB.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The disk type. --- The ` + "`" + `scheduling_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "preemptible",
+					Description: `Specifies if the instance is preemptible. Defaults to false. --- The ` + "`" + `scale_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fixed_scale",
+					Description: `The fixed scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The number of instances in the node group. --- The ` + "`" + `allocation_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below. --- The ` + "`" + `location` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `ID of the availability zone where for one compute instance in node group.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `ID of the subnet, that will be used by one compute instance in node group. Subnet specified by ` + "`" + `subnet_id` + "`" + ` should be allocated in zone specified by 'zone' argument --- The ` + "`" + `maintenance_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_upgrade",
+					Description: `Boolean flag.`,
+				},
+				resource.Attribute{
+					Name:        "current_version",
+					Description: `Current Kubernetes version, major.minor (e.g. 1.15).`,
+				},
+				resource.Attribute{
+					Name:        "new_revision_available",
+					Description: `True/false flag. Newer revisions may include Kubernetes patches (e.g 1.15.1 -> 1.15.2) as well as some internal component updates - new features or bug fixes in yandex-specific components either on the master or nodes.`,
+				},
+				resource.Attribute{
+					Name:        "new_revision_summary",
+					Description: `Human readable description of the changes to be applied when updating to the latest revision. Empty if new_revision_available is false.`,
+				},
+				resource.Attribute{
+					Name:        "version_deprecated",
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ---`,
 				},
 			},
 		},
@@ -1740,6 +2364,186 @@ var (
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `Creation timestamp of this target group. [Load Balancer Target Groups]: https://cloud.yandex.com/docs/load-balancer/concepts/target-resources`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_redis_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Managed Redis cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) The ID of the Redis cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the Redis cluster. ~>`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the Redis cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Redis cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Redis cluster.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the Redis cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Configuration of the Redis cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the Redis cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the Redis cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sharded",
+					Description: `Redis Cluster mode enabled/disabled. The ` + "`" + `config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Close the connection after a client is idle for N seconds.`,
+				},
+				resource.Attribute{
+					Name:        "maxmemory_policy",
+					Description: `Redis key eviction policy for a dataset that reaches maximum memory. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a host, in gigabytes. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The availability zone where the Redis host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "shard_name",
+					Description: `The name of the shard to which the host belongs.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The fully qualified domain name of the host.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the Redis cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Redis cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the Redis cluster.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the Redis cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Configuration of the Redis cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the Redis cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the Redis cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sharded",
+					Description: `Redis Cluster mode enabled/disabled. The ` + "`" + `config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Close the connection after a client is idle for N seconds.`,
+				},
+				resource.Attribute{
+					Name:        "maxmemory_policy",
+					Description: `Redis key eviction policy for a dataset that reaches maximum memory. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a host, in gigabytes. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The availability zone where the Redis host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "shard_name",
+					Description: `The name of the shard to which the host belongs.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The fully qualified domain name of the host.`,
 				},
 			},
 		},
@@ -2064,17 +2868,21 @@ var (
 		"yandex_compute_instance":         2,
 		"yandex_compute_instance_group":   3,
 		"yandex_compute_snapshot":         4,
-		"yandex_iam_policy":               5,
-		"yandex_iam_role":                 6,
-		"yandex_iam_service_account":      7,
-		"yandex_iam_user":                 8,
-		"yandex_lb_network_load_balancer": 9,
-		"yandex_lb_target_group":          10,
-		"yandex_resourcemanager_cloud":    11,
-		"yandex_resourcemanager_folder":   12,
-		"yandex_vpc_network":              13,
-		"yandex_vpc_route_table":          14,
-		"yandex_vpc_subnet":               15,
+		"yandex_container_registry":       5,
+		"yandex_iam_policy":               6,
+		"yandex_iam_role":                 7,
+		"yandex_iam_service_account":      8,
+		"yandex_iam_user":                 9,
+		"yandex_kubernetes_cluster":       10,
+		"yandex_kubernetes_node_group":    11,
+		"yandex_lb_network_load_balancer": 12,
+		"yandex_lb_target_group":          13,
+		"yandex_mdb_redis_cluster":        14,
+		"yandex_resourcemanager_cloud":    15,
+		"yandex_resourcemanager_folder":   16,
+		"yandex_vpc_network":              17,
+		"yandex_vpc_route_table":          18,
+		"yandex_vpc_subnet":               19,
 	}
 )
 

@@ -1364,117 +1364,17 @@ The OpenTelekomCloud CTS Tracker data source allows access of Cloud Tracker.
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "engine",
-					Description: `(Required) Indicates the name of a message engine.`,
+					Name:        "spec_code",
+					Description: `(Optional) Indicates an I/O specification. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "version",
-					Description: `(Optional) Indicates the version of a message engine.`,
-				},
-				resource.Attribute{
-					Name:        "instance_type",
-					Description: `(Required) Indicates an instance type. Options: "single" and "cluster"`,
-				},
-				resource.Attribute{
-					Name:        "vm_specification",
-					Description: `(Optional) Indicates VM specifications.`,
-				},
-				resource.Attribute{
-					Name:        "storage",
-					Description: `(Optional) Indicates the message storage space.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `(Optional) Indicates the baseline bandwidth of a Kafka instance.`,
-				},
-				resource.Attribute{
-					Name:        "partition_num",
-					Description: `(Optional) Indicates the maximum number of topics that can be created for a Kafka instance.`,
-				},
-				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `(Optional) Indicates an I/O specification.`,
-				},
-				resource.Attribute{
-					Name:        "io_type",
-					Description: `(Optional) Indicates an I/O type.`,
-				},
-				resource.Attribute{
-					Name:        "node_num",
-					Description: `(Optional) Indicates the number of nodes in a cluster. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found product. In addition, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "engine",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "instance_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "vm_specification",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "partition_num",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "io_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "node_num",
+					Name:        "spec_code",
 					Description: `See Argument Reference above.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "engine",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "version",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "instance_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "vm_specification",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "partition_num",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "storage_spec_code",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "io_type",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "node_num",
+					Name:        "spec_code",
 					Description: `See Argument Reference above.`,
 				},
 			},

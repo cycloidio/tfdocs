@@ -1134,6 +1134,14 @@ var (
 					Description: `The domain ID of the user.`,
 				},
 				resource.Attribute{
+					Name:        "domain_name",
+					Description: `The domain name of the scope.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `The domain ID of the scope.`,
+				},
+				resource.Attribute{
 					Name:        "project_name",
 					Description: `The project name of the scope.`,
 				},
@@ -1178,6 +1186,14 @@ var (
 				resource.Attribute{
 					Name:        "user_domain_id",
 					Description: `The domain ID of the user.`,
+				},
+				resource.Attribute{
+					Name:        "domain_name",
+					Description: `The domain name of the scope.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `The domain ID of the scope.`,
 				},
 				resource.Attribute{
 					Name:        "project_name",
@@ -1345,6 +1361,10 @@ var (
 					Name:        "region",
 					Description: `See Argument Reference above.`,
 				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the group.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1358,6 +1378,10 @@ var (
 				resource.Attribute{
 					Name:        "region",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the group.`,
 				},
 			},
 		},
@@ -1574,10 +1598,6 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) A description of the user.`,
-				},
-				resource.Attribute{
 					Name:        "default_project_id",
 					Description: `(Optional) The default project this user belongs to.`,
 				},
@@ -1645,6 +1665,10 @@ var (
 					Name:        "unique_id",
 					Description: `See Argument Reference above.`,
 				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the user.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1682,6 +1706,10 @@ var (
 				resource.Attribute{
 					Name:        "unique_id",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the user.`,
 				},
 			},
 		},

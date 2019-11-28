@@ -91,7 +91,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_ids",
-					Description: `ID list of login keys`,
+					Description: `ID list of login keys.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -185,7 +185,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_ids",
-					Description: `ID list of login keys`,
+					Description: `ID list of login keys.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -239,7 +239,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scaling_group_name",
-					Description: `(Optional) A scaling group name used to query. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A scaling group name used to query.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags used to query. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "scaling_group_list",
@@ -328,6 +332,10 @@ var (
 				resource.Attribute{
 					Name:        "subnet_ids",
 					Description: `A list of subnet IDs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the scaling group.`,
 				},
 				resource.Attribute{
 					Name:        "termination_policies",
@@ -430,6 +438,10 @@ var (
 				resource.Attribute{
 					Name:        "subnet_ids",
 					Description: `A list of subnet IDs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the scaling group.`,
 				},
 				resource.Attribute{
 					Name:        "termination_policies",
@@ -581,17 +593,29 @@ var (
 			Name:             "",
 			Type:             "tencentcloud_availability_zones",
 			Category:         "Data Sources",
-			ShortDescription: `Get available zones in the current region.`,
+			ShortDescription: `Use this data source to get the available zones in the current region. By default only ` + "`" + `AVAILABLE` + "`" + ` zones will be returned, but ` + "`" + `UNAVAILABLE` + "`" + ` zones can also be fetched when ` + "`" + `include_unavailable` + "`" + ` is specified.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "include_unavailable",
-					Description: `(Optional) A bool variable Indicates that the query will include ` + "`" + `UNAVAILABLE` + "`" + ` zones.`,
+					Description: `(Optional) A bool variable indicates that the query will include ` + "`" + `UNAVAILABLE` + "`" + ` zones.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) When specified, only the zone with the exactly name match will return. ## Attributes Reference A list of zones will be exported and its every element contains the following attributes:`,
+					Description: `(Optional) When specified, only the zone with the exactly name match will return.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of zones will be exported and its every element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description for the zone, unfortunately only Chinese characters at this stage.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -600,10 +624,6 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `The english name for the zone, like ` + "`" + `ap-guangzhou-3` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `The description for the zone, unfortunately only Chinese characters at this stage.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -612,6 +632,14 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of zones will be exported and its every element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description for the zone, unfortunately only Chinese characters at this stage.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `An internal id for the zone, like ` + "`" + `200003` + "`" + `, usually not so useful for end user.`,
 				},
@@ -620,12 +648,744 @@ var (
 					Description: `The english name for the zone, like ` + "`" + `ap-guangzhou-3` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `The description for the zone, unfortunately only Chinese characters at this stage.`,
-				},
-				resource.Attribute{
 					Name:        "state",
 					Description: `The state for the zone, indicate availability using ` + "`" + `AVAILABLE` + "`" + ` and ` + "`" + `UNAVAILABLE` + "`" + ` values.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_group_memberships",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM groups`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Optional) Id of CAM group to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "membership_list",
+					Description: `A list of CAM group membership. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Id of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "user_ids",
+					Description: `Id set of the CAM group members.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "membership_list",
+					Description: `A list of CAM group membership. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Id of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "user_ids",
+					Description: `Id set of the CAM group members.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_group_policy_attachments",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM group policy attachments`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Id of the attached CAM group to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `(Optional) Mode of Creation of the CAM user policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) Id of CAM policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `(Optional) Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "group_policy_attachment_list",
+					Description: `A list of CAM group policy attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM group policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM group policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Id of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Name of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'Group' means customer strategy and 'QCS' means preset strategy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_policy_attachment_list",
+					Description: `A list of CAM group policy attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM group policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM group policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Id of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Name of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'Group' means customer strategy and 'QCS' means preset strategy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM groups`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Optional) Id of CAM group to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the CAM group to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) Description of the cam group.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "group_list",
+					Description: `A list of CAM groups. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `Description of CAM group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_list",
+					Description: `A list of CAM groups. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `Description of CAM group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM policies`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required) Id of CAM policy to be queried to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `(Optional) Mode of creation of policy strategy. 1 means policy was created with console, and 2 means it was created by strategies.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the CAM policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Type of the policy strategy. 1 means customer strategy and 2 means preset strategy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "policy_list",
+					Description: `A list of CAM policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "attachments",
+					Description: `Number of attached users.`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of creation of policy strategy. 1 means policy was created with console, and 2 means it was created by strategies.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `Name of attached products.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the policy strategy. 1 means customer strategy and 2 means preset strategy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_list",
+					Description: `A list of CAM policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "attachments",
+					Description: `Number of attached users.`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of creation of policy strategy. 1 means policy was created with console, and 2 means it was created by strategies.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "service_type",
+					Description: `Name of attached products.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the policy strategy. 1 means customer strategy and 2 means preset strategy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_role_policy_attachments",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM role policy attachments`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `(Required) Id of the attached CAM role to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `(Optional) Mode of Creation of the CAM user policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) Id of CAM policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `(Optional) Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "role_policy_attachment_list",
+					Description: `A list of CAM role policy attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM role policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM role policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Name of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `Id of CAM role.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role_policy_attachment_list",
+					Description: `A list of CAM role policy attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM role policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM role policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Name of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `Id of CAM role.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_roles",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM roles`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the CAM role to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the CAM policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `(Optional) Id of the CAM role to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "role_list",
+					Description: `A list of CAM roles. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "console_login",
+					Description: `Indicate whether the CAM role can be login or not.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "document",
+					Description: `Policy document of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `Id of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The last update time of the CAM role.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role_list",
+					Description: `A list of CAM roles. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "console_login",
+					Description: `Indicate whether the CAM role can be login or not.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "document",
+					Description: `Policy document of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `Id of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The last update time of the CAM role.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_saml_providers",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM SAML providers`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the CAM SAML provider to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "provider_list",
+					Description: `A list of CAM SAML providers. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `The last modify time of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM SAML provider.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "provider_list",
+					Description: `A list of CAM SAML providers. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `The last modify time of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM SAML provider.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_user_policy_attachments",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM user policy attachments`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Required) Id of the attached CAM user to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `(Optional) Mode of Creation of the CAM user policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) Id of CAM policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `(Optional) Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "user_policy_attachment_list",
+					Description: `A list of CAM user policy attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM user policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the CAM user policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Name of CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Id of CAM user.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user_policy_attachment_list",
+					Description: `A list of CAM user policy attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM user policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the CAM user policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Name of CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `Id of CAM user.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_users",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CAM users`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "console_login",
+					Description: `(Optional) Indicate whether the user can login in.`,
+				},
+				resource.Attribute{
+					Name:        "country_code",
+					Description: `(Optional) Country code of the CAM user to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Optional) Email of the CAM user to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of CAM user to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "phone_num",
+					Description: `(Optional) Phone num of the CAM user to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) Remark of the CAM user to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `(Optional) Uid of the CAM user to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "uin",
+					Description: `(Optional) Uin of the CAM user to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "user_list",
+					Description: `A list of CAM users. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "country_code",
+					Description: `Country code of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "phone_num",
+					Description: `Phone num of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `Remark of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Uid of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "uin",
+					Description: `Uin of the CAM user.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user_list",
+					Description: `A list of CAM users. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "country_code",
+					Description: `Country code of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `Email of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "phone_num",
+					Description: `Phone num of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `Remark of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Uid of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "uin",
+					Description: `Uin of the CAM user.`,
 				},
 			},
 		},
@@ -919,15 +1679,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ccn_id",
-					Description: `(Required, ForceNew) ID of the CCN to be queried.`,
+					Description: `(Required) ID of the CCN to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "limits",
-					Description: `The bandwidth limits of regions`,
+					Description: `The bandwidth limits of regions:`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_limit",
@@ -941,7 +1701,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "limits",
-					Description: `The bandwidth limits of regions`,
+					Description: `The bandwidth limits of regions:`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth_limit",
@@ -963,15 +1723,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ccn_id",
-					Description: `(Optional, ForceNew) ID of the CCN to be queried.`,
+					Description: `(Optional) ID of the CCN to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional, ForceNew) Name of the CCN to be queried.`,
+					Description: `(Optional) Name of the CCN to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "instance_list",
@@ -1086,6 +1846,266 @@ var (
 				resource.Attribute{
 					Name:        "state",
 					Description: `States of instance. The available value include 'ISOLATED'(arrears) and 'AVAILABLE'.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cfs_access_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query the detail information of CFS access group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_group_id",
+					Description: `(Optional) A specified access group ID used to query.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A access group Name used to query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "access_group_list",
+					Description: `An information list of CFS access group. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_group_id",
+					Description: `ID of the access group.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the access group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the access group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the access group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_group_list",
+					Description: `An information list of CFS access group. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_group_id",
+					Description: `ID of the access group.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the access group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the access group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the access group.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cfs_access_rules",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query the detail information of CFS access rule.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_group_id",
+					Description: `(Required) A specified access group ID used to query.`,
+				},
+				resource.Attribute{
+					Name:        "access_rule_id",
+					Description: `(Optional) A specified access rule ID used to query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "access_rule_list",
+					Description: `An information list of CFS access rule. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_rule_id",
+					Description: `ID of the access rule.`,
+				},
+				resource.Attribute{
+					Name:        "auth_client_ip",
+					Description: `Allowed IP of the access rule.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The priority level of access rule.`,
+				},
+				resource.Attribute{
+					Name:        "rw_permission",
+					Description: `Read and write permissions.`,
+				},
+				resource.Attribute{
+					Name:        "user_permission",
+					Description: `The permissions of accessing users.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_rule_list",
+					Description: `An information list of CFS access rule. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_rule_id",
+					Description: `ID of the access rule.`,
+				},
+				resource.Attribute{
+					Name:        "auth_client_ip",
+					Description: `Allowed IP of the access rule.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `The priority level of access rule.`,
+				},
+				resource.Attribute{
+					Name:        "rw_permission",
+					Description: `Read and write permissions.`,
+				},
+				resource.Attribute{
+					Name:        "user_permission",
+					Description: `The permissions of accessing users.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cfs_file_systems",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query the detail information of cloud file systems(CFS).`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) The available zone that the file system locates at.`,
+				},
+				resource.Attribute{
+					Name:        "file_system_id",
+					Description: `(Optional) A specified file system ID used to query.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) A file system name used to query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) ID of a vpc subnetwork.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) ID of the vpc to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "file_system_list",
+					Description: `An information list of cloud file system. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_group_id",
+					Description: `ID of the access group.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The available zone that the file system locates at.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "file_system_id",
+					Description: `ID of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "size_limit",
+					Description: `Size limit of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "size_used",
+					Description: `Size used of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `Storage type of the file system.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "file_system_list",
+					Description: `An information list of cloud file system. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_group_id",
+					Description: `ID of the access group.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The available zone that the file system locates at.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "file_system_id",
+					Description: `ID of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "size_limit",
+					Description: `Size limit of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "size_used",
+					Description: `Size used of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `Storage type of the file system.`,
 				},
 			},
 		},
@@ -1207,7 +2227,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_type",
-					Description: `(Optional) Type of CLB instance, and available values include 'OPEN' and 'INTERNAL'`,
+					Description: `(Optional) Type of CLB instance, and available values include 'OPEN' and 'INTERNAL'.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -1235,7 +2255,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `Creation time of the CLB`,
+					Description: `Creation time of the CLB.`,
 				},
 				resource.Attribute{
 					Name:        "network_type",
@@ -1259,7 +2279,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `Id of the subnet`,
+					Description: `Id of the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1275,7 +2295,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `Id of the VPC`,
+					Description: `Id of the VPC.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1297,7 +2317,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `Creation time of the CLB`,
+					Description: `Creation time of the CLB.`,
 				},
 				resource.Attribute{
 					Name:        "network_type",
@@ -1321,7 +2341,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `Id of the subnet`,
+					Description: `Id of the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -1337,7 +2357,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `Id of the VPC`,
+					Description: `Id of the VPC.`,
 				},
 			},
 		},
@@ -1371,7 +2391,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheduler",
-					Description: `(Optional) Scheduling method of the forwarding rule of thr CLB listener, and available values include 'WRR' , 'IP HASH' and 'LEAST_CONN'. The default is 'WRR'.`,
+					Description: `(Optional) Scheduling method of the forwarding rule of thr CLB listener, and available values include 'WRR', 'IP HASH' and 'LEAST_CONN'. The default is 'WRR'.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -1403,7 +2423,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health_check_http_code",
-					Description: `HTTP Status Code. The default is 31 and value range is 1-31. '0b0001' means the return value '1xx' is health. '0b0010' means the return value '2xx' is health. '0b0100' means the return value '3xx' is health. '0b1000' means the return value 4xx is health. '0b10000' means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values. NOTES: The 'HTTP' health check of the 'TCP' listener only supports specifying one health check status code. NOTES: Only supports listeners of 'HTTP' and 'HTTPS' protocol.`,
+					Description: `HTTP Status Code. The default is 31 and value range is 1-31. 1 means the return value '1xx' is health. 2 means the return value '2xx' is health. 4 means the return value '3xx' is health. 8 means the return value 4xx is health. 16 means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values. NOTES: The 'HTTP' health check of the 'TCP' listener only supports specifying one health check status code. NOTES: Only supports listeners of 'HTTP' and 'HTTPS' protocol.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_http_domain",
@@ -1473,7 +2493,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health_check_http_code",
-					Description: `HTTP Status Code. The default is 31 and value range is 1-31. '0b0001' means the return value '1xx' is health. '0b0010' means the return value '2xx' is health. '0b0100' means the return value '3xx' is health. '0b1000' means the return value 4xx is health. '0b10000' means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values. NOTES: The 'HTTP' health check of the 'TCP' listener only supports specifying one health check status code. NOTES: Only supports listeners of 'HTTP' and 'HTTPS' protocol.`,
+					Description: `HTTP Status Code. The default is 31 and value range is 1-31. 1 means the return value '1xx' is health. 2 means the return value '2xx' is health. 4 means the return value '3xx' is health. 8 means the return value 4xx is health. 16 means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values. NOTES: The 'HTTP' health check of the 'TCP' listener only supports specifying one health check status code. NOTES: Only supports listeners of 'HTTP' and 'HTTPS' protocol.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_http_domain",
@@ -1551,7 +2571,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate_ca_id",
-					Description: `Id of the client certificate. It must be set when SSLMode is 'mutual'. NOTES: only supported by listeners of 'HTTPS' and 'TCP_SSL' protocol .`,
+					Description: `Id of the client certificate. It must be set when SSLMode is 'mutual'. NOTES: only supported by listeners of 'HTTPS' and 'TCP_SSL' protocol.`,
 				},
 				resource.Attribute{
 					Name:        "certificate_id",
@@ -1621,7 +2641,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate_ca_id",
-					Description: `Id of the client certificate. It must be set when SSLMode is 'mutual'. NOTES: only supported by listeners of 'HTTPS' and 'TCP_SSL' protocol .`,
+					Description: `Id of the client certificate. It must be set when SSLMode is 'mutual'. NOTES: only supported by listeners of 'HTTPS' and 'TCP_SSL' protocol.`,
 				},
 				resource.Attribute{
 					Name:        "certificate_id",
@@ -1783,11 +2803,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "limit",
-					Description: `(Optional) An int variable describe how many instances in return at most. ## Attributes Reference`,
+					Description: `(Optional) An int variable describe how many instances in return at most. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "total_count",
-					Description: `Describe how many nodes in the cluster. A list of nodes will be exported and its every element contains the following attributes:`,
+					Name:        "nodes",
+					Description: `An information list of kubernetes instances.`,
 				},
 				resource.Attribute{
 					Name:        "abnormal_reason",
@@ -1798,10 +2818,6 @@ var (
 					Description: `Describe the cpu of the node.`,
 				},
 				resource.Attribute{
-					Name:        "mem",
-					Description: `Describe the memory of the node.`,
-				},
-				resource.Attribute{
 					Name:        "instance_id",
 					Description: `An id identify the node, provided by cvm.`,
 				},
@@ -1810,18 +2826,26 @@ var (
 					Description: `Describe whether the node is normal.`,
 				},
 				resource.Attribute{
+					Name:        "lan_ip",
+					Description: `Describe the lan ip of the node.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `Describe the memory of the node.`,
+				},
+				resource.Attribute{
 					Name:        "wan_ip",
 					Description: `Describe the wan ip of the node.`,
 				},
 				resource.Attribute{
-					Name:        "lan_ip",
-					Description: `Describe the lan ip of the node.`,
+					Name:        "total_count",
+					Description: `Number of instances.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "total_count",
-					Description: `Describe how many nodes in the cluster. A list of nodes will be exported and its every element contains the following attributes:`,
+					Name:        "nodes",
+					Description: `An information list of kubernetes instances.`,
 				},
 				resource.Attribute{
 					Name:        "abnormal_reason",
@@ -1832,10 +2856,6 @@ var (
 					Description: `Describe the cpu of the node.`,
 				},
 				resource.Attribute{
-					Name:        "mem",
-					Description: `Describe the memory of the node.`,
-				},
-				resource.Attribute{
 					Name:        "instance_id",
 					Description: `An id identify the node, provided by cvm.`,
 				},
@@ -1844,12 +2864,20 @@ var (
 					Description: `Describe whether the node is normal.`,
 				},
 				resource.Attribute{
+					Name:        "lan_ip",
+					Description: `Describe the lan ip of the node.`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `Describe the memory of the node.`,
+				},
+				resource.Attribute{
 					Name:        "wan_ip",
 					Description: `Describe the wan ip of the node.`,
 				},
 				resource.Attribute{
-					Name:        "lan_ip",
-					Description: `Describe the lan ip of the node.`,
+					Name:        "total_count",
+					Description: `Number of instances.`,
 				},
 			},
 		},
@@ -1867,27 +2895,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "limit",
-					Description: `(Optional) An int variable describe how many cluster in return at most . ## Attributes Reference A list of clusters will be exported and its every element contains the following attributes:`,
+					Description: `(Optional) An int variable describe how many cluster in return at most. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `An information list of kubernetes clusters.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `An id identify the cluster, like ` + "`" + `cls-xxxxxx` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "security_certification_authority",
-					Description: `Describe the certificate string needed for using kubectl to access to kubernetes.`,
-				},
-				resource.Attribute{
-					Name:        "security_cluster_external_endpoint",
-					Description: `Describe the address needed for using kubectl to access to kubernetes.`,
-				},
-				resource.Attribute{
-					Name:        "security_username",
-					Description: `Describe the username needed for using kubectl to access to kubernetes.`,
-				},
-				resource.Attribute{
-					Name:        "security_password",
-					Description: `Describe the password needed for using kubectl to access to kubernetes.`,
+					Name:        "cluster_name",
+					Description: `Name the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1906,34 +2926,46 @@ var (
 					Description: `Describe the current status of the instances in the cluster.`,
 				},
 				resource.Attribute{
+					Name:        "security_certification_authority",
+					Description: `Describe the certificate string needed for using kubectl to access to kubernetes.`,
+				},
+				resource.Attribute{
+					Name:        "security_cluster_external_endpoint",
+					Description: `Describe the address needed for using kubectl to access to kubernetes.`,
+				},
+				resource.Attribute{
+					Name:        "security_password",
+					Description: `Describe the password needed for using kubectl to access to kubernetes.`,
+				},
+				resource.Attribute{
+					Name:        "security_username",
+					Description: `Describe the username needed for using kubectl to access to kubernetes.`,
+				},
+				resource.Attribute{
 					Name:        "total_cpu",
 					Description: `Describe the total cpu of each instance in the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "total_mem",
 					Description: `Describe the total memory of each instance in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Number of clusters.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "clusters",
+					Description: `An information list of kubernetes clusters.`,
+				},
+				resource.Attribute{
 					Name:        "cluster_id",
 					Description: `An id identify the cluster, like ` + "`" + `cls-xxxxxx` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "security_certification_authority",
-					Description: `Describe the certificate string needed for using kubectl to access to kubernetes.`,
-				},
-				resource.Attribute{
-					Name:        "security_cluster_external_endpoint",
-					Description: `Describe the address needed for using kubectl to access to kubernetes.`,
-				},
-				resource.Attribute{
-					Name:        "security_username",
-					Description: `Describe the username needed for using kubectl to access to kubernetes.`,
-				},
-				resource.Attribute{
-					Name:        "security_password",
-					Description: `Describe the password needed for using kubectl to access to kubernetes.`,
+					Name:        "cluster_name",
+					Description: `Name the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1952,12 +2984,32 @@ var (
 					Description: `Describe the current status of the instances in the cluster.`,
 				},
 				resource.Attribute{
+					Name:        "security_certification_authority",
+					Description: `Describe the certificate string needed for using kubectl to access to kubernetes.`,
+				},
+				resource.Attribute{
+					Name:        "security_cluster_external_endpoint",
+					Description: `Describe the address needed for using kubectl to access to kubernetes.`,
+				},
+				resource.Attribute{
+					Name:        "security_password",
+					Description: `Describe the password needed for using kubectl to access to kubernetes.`,
+				},
+				resource.Attribute{
+					Name:        "security_username",
+					Description: `Describe the username needed for using kubectl to access to kubernetes.`,
+				},
+				resource.Attribute{
 					Name:        "total_cpu",
 					Description: `Describe the total cpu of each instance in the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "total_mem",
 					Description: `Describe the total memory of each instance in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Number of clusters.`,
 				},
 			},
 		},
@@ -1999,7 +3051,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `ETag generated for the object，which is may not equal to MD5 value.`,
+					Description: `ETag generated for the object, which is may not equal to MD5 value.`,
 				},
 				resource.Attribute{
 					Name:        "last_modified",
@@ -2029,7 +3081,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `ETag generated for the object，which is may not equal to MD5 value.`,
+					Description: `ETag generated for the object, which is may not equal to MD5 value.`,
 				},
 				resource.Attribute{
 					Name:        "last_modified",
@@ -2051,11 +3103,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket_prefix",
-					Description: `(Optional) A prefix string to filter results by bucket name`,
+					Description: `(Optional) A prefix string to filter results by bucket name.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags to filter bucket. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "bucket_list",
@@ -2124,6 +3180,10 @@ var (
 				resource.Attribute{
 					Name:        "storage_class",
 					Description: `Specifies the storage class to which you want the object to transition. Available values include STANDARD, STANDARD_IA and ARCHIVE.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags of a bucket.`,
 				},
 				resource.Attribute{
 					Name:        "website",
@@ -2206,6 +3266,10 @@ var (
 				resource.Attribute{
 					Name:        "storage_class",
 					Description: `Specifies the storage class to which you want the object to transition. Available values include STANDARD, STANDARD_IA and ARCHIVE.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags of a bucket.`,
 				},
 				resource.Attribute{
 					Name:        "website",
@@ -2315,11 +3379,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dcg_id",
-					Description: `ID of the DCG`,
+					Description: `ID of the DCG.`,
 				},
 				resource.Attribute{
 					Name:        "dcg_ip",
-					Description: `IP of the DCG`,
+					Description: `IP of the DCG.`,
 				},
 				resource.Attribute{
 					Name:        "enable_bgp",
@@ -2331,7 +3395,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the DCG`,
+					Description: `Name of the DCG.`,
 				},
 				resource.Attribute{
 					Name:        "network_instance_id",
@@ -2339,7 +3403,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_type",
-					Description: `IP of the DCG`,
+					Description: `IP of the DCG.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2357,11 +3421,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dcg_id",
-					Description: `ID of the DCG`,
+					Description: `ID of the DCG.`,
 				},
 				resource.Attribute{
 					Name:        "dcg_ip",
-					Description: `IP of the DCG`,
+					Description: `IP of the DCG.`,
 				},
 				resource.Attribute{
 					Name:        "enable_bgp",
@@ -2373,7 +3437,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the DCG`,
+					Description: `Name of the DCG.`,
 				},
 				resource.Attribute{
 					Name:        "network_instance_id",
@@ -2381,7 +3445,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_type",
-					Description: `IP of the DCG`,
+					Description: `IP of the DCG.`,
 				},
 			},
 		},
@@ -2395,15 +3459,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dc_id",
-					Description: `(Optional, ForceNew) ID of the DC to be queried.`,
+					Description: `(Optional) ID of the DC to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional, ForceNew) Name of the DC to be queried.`,
+					Description: `(Optional) Name of the DC to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "instance_list",
@@ -2587,15 +3651,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dcx_id",
-					Description: `(Optional, ForceNew) ID of the dedicated tunnels to be queried.`,
+					Description: `(Optional) ID of the dedicated tunnels to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional, ForceNew) Name of the dedicated tunnels to be queried.`,
+					Description: `(Optional) Name of the dedicated tunnels to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "instance_list",
@@ -2755,19 +3819,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description of the nat forward.`,
+					Description: `(Optional) Description of the NAT forward.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_ip",
-					Description: `(Optional) Network address of the eip.`,
+					Description: `(Optional) Network address of the EIP.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_port",
-					Description: `(Optional) Port of the eip.`,
+					Description: `(Optional) Port of the EIP.`,
 				},
 				resource.Attribute{
 					Name:        "nat_id",
-					Description: `(Optional) ID of the nat.`,
+					Description: `(Optional) Id of the NAT.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -2779,27 +3843,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results.`,
+					Description: `(Optional) Used to save results.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) ID of the vpc. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Id of the VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "dnat_list",
-					Description: `Information list of the dnats.`,
+					Description: `Information list of the DNATs.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_ip",
-					Description: `Network address of the eip.`,
+					Description: `Network address of the EIP.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_port",
-					Description: `Port of the eip.`,
+					Description: `Port of the EIP.`,
 				},
 				resource.Attribute{
 					Name:        "nat_id",
-					Description: `ID of the nat.`,
+					Description: `Id of the NAT.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -2811,29 +3875,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `Type of the network protocol, the available values include： TCP and UDP.`,
+					Description: `Type of the network protocol, the available values include: ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `ID of the vpc.`,
+					Description: `Id of the VPC.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "dnat_list",
-					Description: `Information list of the dnats.`,
+					Description: `Information list of the DNATs.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_ip",
-					Description: `Network address of the eip.`,
+					Description: `Network address of the EIP.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_port",
-					Description: `Port of the eip.`,
+					Description: `Port of the EIP.`,
 				},
 				resource.Attribute{
 					Name:        "nat_id",
-					Description: `ID of the nat.`,
+					Description: `Id of the NAT.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -2845,11 +3909,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `Type of the network protocol, the available values include： TCP and UDP.`,
+					Description: `Type of the network protocol, the available values include: ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `ID of the vpc.`,
+					Description: `Id of the VPC.`,
 				},
 			},
 		},
@@ -2863,7 +3927,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) One or more name/value pairs to filter off of. There are several valid keys: ` + "`" + `address-id` + "`" + `,` + "`" + `address-name` + "`" + `,` + "`" + `address-ip` + "`" + `. For a full reference, check out [DescribeImages in the TencentCloud API reference](https://intl.cloud.tencent.com/document/api/213/9451#filter). ## Attributes Reference`,
+					Description: `(Optional) One or more name/value pairs to filter.`,
+				},
+				resource.Attribute{
+					Name:        "include_arrears",
+					Description: `(Optional) Whether the IP is arrears.`,
+				},
+				resource.Attribute{
+					Name:        "include_blocked",
+					Description: `(Optional) Whether the IP is blocked. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Key of the filter, valid keys: ` + "`" + `address-id` + "`" + `,` + "`" + `address-name` + "`" + `,` + "`" + `address-ip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Value of the filter. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2875,7 +3955,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the EIP, there are several status like ` + "`" + `BIND` + "`" + `, ` + "`" + `UNBIND` + "`" + `, and ` + "`" + `BIND_ENI` + "`" + `. For a full reference, check out [DescribeImages in the TencentCloud API reference](https://intl.cloud.tencent.com/document/api/213/9452#eip_state).`,
+					Description: `The status of the EIP, there are several status like ` + "`" + `BIND` + "`" + `, ` + "`" + `UNBIND` + "`" + `, and ` + "`" + `BIND_ENI` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2889,7 +3969,307 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of the EIP, there are several status like ` + "`" + `BIND` + "`" + `, ` + "`" + `UNBIND` + "`" + `, and ` + "`" + `BIND_ENI` + "`" + `. For a full reference, check out [DescribeImages in the TencentCloud API reference](https://intl.cloud.tencent.com/document/api/213/9452#eip_state).`,
+					Description: `The status of the EIP, there are several status like ` + "`" + `BIND` + "`" + `, ` + "`" + `UNBIND` + "`" + `, and ` + "`" + `BIND_ENI` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_eips",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query eip instances.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "eip_id",
+					Description: `(Optional) ID of the eip to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "eip_name",
+					Description: `(Optional) Name of the eip to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `(Optional) The elastic ip address.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags of eip. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "eip_list",
+					Description: `An information list of eip. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the eip.`,
+				},
+				resource.Attribute{
+					Name:        "eip_id",
+					Description: `ID of the eip.`,
+				},
+				resource.Attribute{
+					Name:        "eip_name",
+					Description: `Name of the eip.`,
+				},
+				resource.Attribute{
+					Name:        "eip_type",
+					Description: `Type of the eip.`,
+				},
+				resource.Attribute{
+					Name:        "eni_id",
+					Description: `The eni id to bind with the eip.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The instance id to bind with the eip.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `The elastic ip address.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The eip current status.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the eip.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "eip_list",
+					Description: `An information list of eip. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the eip.`,
+				},
+				resource.Attribute{
+					Name:        "eip_id",
+					Description: `ID of the eip.`,
+				},
+				resource.Attribute{
+					Name:        "eip_name",
+					Description: `Name of the eip.`,
+				},
+				resource.Attribute{
+					Name:        "eip_type",
+					Description: `Type of the eip.`,
+				},
+				resource.Attribute{
+					Name:        "eni_id",
+					Description: `The eni id to bind with the eip.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `The instance id to bind with the eip.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `The elastic ip address.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The eip current status.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the eip.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_enis",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query query ENIs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the ENI. Conflict with ` + "`" + `ids` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) ID of the ENIs to be queried. Conflict with ` + "`" + `vpc_id` + "`" + `,` + "`" + `subnet_id` + "`" + `,` + "`" + `instance_id` + "`" + `,` + "`" + `security_group` + "`" + `,` + "`" + `name` + "`" + `,` + "`" + `ipv4` + "`" + ` and ` + "`" + `tags` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Optional) ID of the instance which bind the ENI. Conflict with ` + "`" + `ids` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `(Optional) Intranet IP of the ENI. Conflict with ` + "`" + `ids` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the ENI to be queried. Conflict with ` + "`" + `ids` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `(Optional) A set of security group IDs which bind the ENI. Conflict with ` + "`" + `ids` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) ID of the subnet within this vpc to be queried. Conflict with ` + "`" + `ids` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the ENI. Conflict with ` + "`" + `ids` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) ID of the vpc to be queried. Conflict with ` + "`" + `ids` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "enis",
+					Description: `An information list of ENIs. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance which bind the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4s",
+					Description: `A set of intranet IPv4s.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IP.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Intranet IP.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `A set of security group IDs which bind the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `States of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `ID of the subnet within this vpc.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the vpc.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "enis",
+					Description: `An information list of ENIs. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instance which bind the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4s",
+					Description: `A set of intranet IPv4s.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IP.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Intranet IP.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `A set of security group IDs which bind the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `States of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `ID of the subnet within this vpc.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the vpc.`,
 				},
 			},
 		},
@@ -2911,7 +4291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results.`,
+					Description: `(Optional) Used to save results.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -3011,7 +4391,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "domains",
@@ -3023,15 +4403,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "basic_auth",
-					Description: `Indicates whether basic authentication is enable`,
+					Description: `Indicates whether basic authentication is enable.`,
 				},
 				resource.Attribute{
 					Name:        "certificate_id",
-					Description: `ID of the server certificate`,
+					Description: `ID of the server certificate.`,
 				},
 				resource.Attribute{
 					Name:        "client_certificate_id",
-					Description: `ID of the client certificate`,
+					Description: `ID of the client certificate.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -3047,7 +4427,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "realserver_auth",
-					Description: `Indicates whether realserver authentication is enable`,
+					Description: `Indicates whether realserver authentication is enable.`,
 				},
 				resource.Attribute{
 					Name:        "realserver_certificate_domain",
@@ -3069,15 +4449,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "basic_auth",
-					Description: `Indicates whether basic authentication is enable`,
+					Description: `Indicates whether basic authentication is enable.`,
 				},
 				resource.Attribute{
 					Name:        "certificate_id",
-					Description: `ID of the server certificate`,
+					Description: `ID of the server certificate.`,
 				},
 				resource.Attribute{
 					Name:        "client_certificate_id",
-					Description: `ID of the client certificate`,
+					Description: `ID of the client certificate.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -3093,7 +4473,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "realserver_auth",
-					Description: `Indicates whether realserver authentication is enable`,
+					Description: `Indicates whether realserver authentication is enable.`,
 				},
 				resource.Attribute{
 					Name:        "realserver_certificate_domain",
@@ -3122,12 +4502,16 @@ var (
 					Description: `(Optional) Forward domain of the layer7 listener to be queried.`,
 				},
 				resource.Attribute{
+					Name:        "forward_host",
+					Description: `(Optional) Requested host which is forwarded to the realserver by the listener to be queried.`,
+				},
+				resource.Attribute{
 					Name:        "path",
 					Description: `(Optional) Path of the forward rule to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "rules",
@@ -3140,6 +4524,10 @@ var (
 				resource.Attribute{
 					Name:        "domain",
 					Description: `Forward domain of the layer7 listener.`,
+				},
+				resource.Attribute{
+					Name:        "forward_host",
+					Description: `Requested host which is forwarded to the realserver by the listener.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_method",
@@ -3222,6 +4610,10 @@ var (
 				resource.Attribute{
 					Name:        "domain",
 					Description: `Forward domain of the layer7 listener.`,
+				},
+				resource.Attribute{
+					Name:        "forward_host",
+					Description: `Requested host which is forwarded to the realserver by the listener.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_method",
@@ -3323,7 +4715,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "listeners",
@@ -3347,7 +4739,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "interval",
-					Description: `Interval of the health check`,
+					Description: `Interval of the health check.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3397,7 +4789,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "interval",
-					Description: `Interval of the health check`,
+					Description: `Interval of the health check.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3455,7 +4847,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "listeners",
@@ -3575,7 +4967,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results.`,
+					Description: `(Optional) Used to save results.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3755,7 +5147,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results.`,
+					Description: `(Optional) Used to save results.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -3835,7 +5227,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -3899,7 +5291,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results.`,
+					Description: `(Optional) Used to save results.`,
 				},
 				resource.Attribute{
 					Name:        "rule_id",
@@ -3967,12 +5359,188 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_ha_vip_eip_attachments",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of HA VIP EIP attachments`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "havip_id",
+					Description: `(Required) Id of the attached HA VIP to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `(Optional) Public IP address of EIP to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "ha_vip_eip_attachment_list",
+					Description: `A list of HA VIP EIP attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `Public IP address of EIP.`,
+				},
+				resource.Attribute{
+					Name:        "havip_id",
+					Description: `Id of the attached HA VIP.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ha_vip_eip_attachment_list",
+					Description: `A list of HA VIP EIP attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `Public IP address of EIP.`,
+				},
+				resource.Attribute{
+					Name:        "havip_id",
+					Description: `Id of the attached HA VIP.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_ha_vips",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of HA VIPs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `(Optional) EIP of the HA VIP to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) Id of the HA VIP to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the HA VIP. The length of character is limited to 1-60.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) Subnet id of the HA VIP to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) VPC id of the HA VIP to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "ha_vip_list",
+					Description: `Information list of the dedicated HA VIPs.`,
+				},
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `EIP that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the HA VIP.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the HA VIP.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Instance id that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the HA VIP.`,
+				},
+				resource.Attribute{
+					Name:        "network_interface_id",
+					Description: `Network interface id that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the HA VIP, values are ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `UNBIND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Subnet id.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Virtual IP address, it must not be occupied and in this VPC network segment. If not set, it will be assigned after resource created automatically.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC id.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ha_vip_list",
+					Description: `Information list of the dedicated HA VIPs.`,
+				},
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `EIP that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the HA VIP.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the HA VIP.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Instance id that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the HA VIP.`,
+				},
+				resource.Attribute{
+					Name:        "network_interface_id",
+					Description: `Network interface id that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the HA VIP, values are ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `UNBIND` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Subnet id.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Virtual IP address, it must not be occupied and in this VPC network segment. If not set, it will be assigned after resource created automatically.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC id.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_image",
 			Category:         "Data Sources",
 			ShortDescription: `Provides an available image for the user.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) One or more name/value pairs to filter.`,
+				},
 				resource.Attribute{
 					Name:        "image_name_regex",
 					Description: `(Optional) A regex string to apply to the image list returned by TencentCloud.`,
@@ -3982,8 +5550,16 @@ var (
 					Description: `(Optional) A string to apply with fuzzy match to the os_name atrribute on the image list returned by TencentCloud.`,
 				},
 				resource.Attribute{
-					Name:        "filter",
-					Description: `(Optional) One or more name/value pairs to filter off of. There are several valid keys: ` + "`" + `image-id` + "`" + `,` + "`" + `image-type` + "`" + `,` + "`" + `image-name` + "`" + `. For a full reference, check out [DescribeImages in the TencentCloud API reference](https://intl.cloud.tencent.com/document/api/213/9451#filter). ## Attributes Reference`,
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Key of the filter, valid keys: ` + "`" + `image-id` + "`" + `, ` + "`" + `image-type` + "`" + `, ` + "`" + `image-name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Values of the filter. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "image_id",
@@ -4007,65 +5583,609 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "tencentcloud_instance_types",
+			Type:             "tencentcloud_images",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a list of instance types available to the user.`,
+			ShortDescription: `Use this data source to query images.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "filter",
-					Description: `(Optional) One or more name/value pairs to filter off of. There are several valid keys: ` + "`" + `zone` + "`" + `,` + "`" + `instance-family` + "`" + `. For a full reference, check out [DescribeInstanceTypeConfigs in the TencentCloud API reference](https://intl.cloud.tencent.com/document/api/213/9391).`,
+					Name:        "image_id",
+					Description: `(Optional) ID of the image to be queried.`,
 				},
 				resource.Attribute{
-					Name:        "cpu_core_count",
-					Description: `(Optional) Limit search to specific cpu core count.`,
+					Name:        "image_name_regex",
+					Description: `(Optional) A regex string to apply to the image list returned by TencentCloud, conflict with 'os_name'.`,
 				},
 				resource.Attribute{
-					Name:        "memory_size",
-					Description: `(Optional) Limit search to specific memory size. ## Attributes Reference The following attributes are exported`,
+					Name:        "image_type",
+					Description: `(Optional) A list of the image type to be queried. Available values include: 'PUBLIC_IMAGE', 'PRIVATE_IMAGE', 'SHARED_IMAGE', 'MARKET_IMAGE'.`,
 				},
 				resource.Attribute{
-					Name:        "availability_zone",
-					Description: `Indicate the availability zone for this instance type.`,
+					Name:        "os_name",
+					Description: `(Optional) A string to apply with fuzzy match to the os_name atrribute on the image list returned by TencentCloud, conflict with 'image_name_regex'.`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
-					Description: `TencentCloud instance type of the cvm instance.`,
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "cpu_core_count",
-					Description: `Number of CPU cores.`,
+					Name:        "images",
+					Description: `An information list of image. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
-					Name:        "memory_size",
-					Description: `Size of memory, measured in GB.`,
+					Name:        "architecture",
+					Description: `Architecture of the image.`,
 				},
 				resource.Attribute{
-					Name:        "family",
-					Description: `The instance type family.`,
+					Name:        "created_time",
+					Description: `Created time of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_creator",
+					Description: `Image creator of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_description",
+					Description: `Description of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `ID of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `Name of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Size of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_source",
+					Description: `Image source of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_state",
+					Description: `State of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_type",
+					Description: `Type of the image.`,
+				},
+				resource.Attribute{
+					Name:        "os_name",
+					Description: `OS name of the image.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `Platform of the image.`,
+				},
+				resource.Attribute{
+					Name:        "support_cloud_init",
+					Description: `Whether support cloud-init.`,
+				},
+				resource.Attribute{
+					Name:        "sync_percent",
+					Description: `Sync percent of the image.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "availability_zone",
-					Description: `Indicate the availability zone for this instance type.`,
+					Name:        "images",
+					Description: `An information list of image. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
-					Description: `TencentCloud instance type of the cvm instance.`,
+					Name:        "architecture",
+					Description: `Architecture of the image.`,
+				},
+				resource.Attribute{
+					Name:        "created_time",
+					Description: `Created time of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_creator",
+					Description: `Image creator of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_description",
+					Description: `Description of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `ID of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `Name of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_size",
+					Description: `Size of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_source",
+					Description: `Image source of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_state",
+					Description: `State of the image.`,
+				},
+				resource.Attribute{
+					Name:        "image_type",
+					Description: `Type of the image.`,
+				},
+				resource.Attribute{
+					Name:        "os_name",
+					Description: `OS name of the image.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `Platform of the image.`,
+				},
+				resource.Attribute{
+					Name:        "support_cloud_init",
+					Description: `Whether support cloud-init.`,
+				},
+				resource.Attribute{
+					Name:        "sync_percent",
+					Description: `Sync percent of the image.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_instance_types",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query instances type.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) The available zone that the CVM instance locates at. This field is conflict with ` + "`" + `filter` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_core_count",
-					Description: `Number of CPU cores.`,
+					Description: `(Optional) The number of CPU cores of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) One or more name/value pairs to filter. This field is conflict with ` + "`" + `availability_zone` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_core_count",
+					Description: `(Optional) The number of GPU cores of the instance.`,
 				},
 				resource.Attribute{
 					Name:        "memory_size",
-					Description: `Size of memory, measured in GB.`,
+					Description: `(Optional) Instance memory capacity, unit in GB.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. The ` + "`" + `filter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The filter name, the available values include ` + "`" + `zone` + "`" + ` and ` + "`" + `instance-family` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) The filter values. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "instance_types",
+					Description: `An information list of cvm instance. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The available zone that the CVM instance locates at.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_core_count",
+					Description: `The number of CPU cores of the instance.`,
 				},
 				resource.Attribute{
 					Name:        "family",
-					Description: `The instance type family.`,
+					Description: `Type series of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_core_count",
+					Description: `The number of GPU cores of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `Instance memory capacity, unit in GB.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_types",
+					Description: `An information list of cvm instance. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The available zone that the CVM instance locates at.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_core_count",
+					Description: `The number of CPU cores of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "family",
+					Description: `Type series of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_core_count",
+					Description: `The number of GPU cores of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `Instance memory capacity, unit in GB.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query cvm instances.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) The available zone that the CVM instance locates at.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Optional) ID of the instances to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `(Optional) Name of the instances to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) The project CVM belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) ID of a vpc subnetwork.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) ID of the vpc to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "instance_list",
+					Description: `An information list of cvm instance. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "allocate_public_ip",
+					Description: `Indicates whether public ip is assigned.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The available zone that the CVM instance locates at.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `The number of CPU cores of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "data_disks",
+					Description: `An information list of data disk. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "data_disk_id",
+					Description: `Image ID of the data disk.`,
+				},
+				resource.Attribute{
+					Name:        "data_disk_size",
+					Description: `Size of the data disk.`,
+				},
+				resource.Attribute{
+					Name:        "data_disk_type",
+					Description: `Type of the data disk.`,
+				},
+				resource.Attribute{
+					Name:        "delete_with_instance",
+					Description: `Indicates whether the data disk is destroyed with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "expired_time",
+					Description: `Expired time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `ID of the image.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type",
+					Description: `The charge type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instances.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `Name of the instances.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "internet_charge_type",
+					Description: `The charge type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "internet_max_bandwidth_out",
+					Description: `Public network maximum output bandwidth of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Instance memory capacity, unit in GB.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private ip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The project CVM belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public ip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `Security groups of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `ID of a vpc subnetwork.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_id",
+					Description: `Image ID of the system disk.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_size",
+					Description: `Size of the system disk.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_type",
+					Description: `Type of the system disk.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the vpc.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_list",
+					Description: `An information list of cvm instance. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "allocate_public_ip",
+					Description: `Indicates whether public ip is assigned.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The available zone that the CVM instance locates at.`,
+				},
+				resource.Attribute{
+					Name:        "cpu",
+					Description: `The number of CPU cores of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "data_disks",
+					Description: `An information list of data disk. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "data_disk_id",
+					Description: `Image ID of the data disk.`,
+				},
+				resource.Attribute{
+					Name:        "data_disk_size",
+					Description: `Size of the data disk.`,
+				},
+				resource.Attribute{
+					Name:        "data_disk_type",
+					Description: `Type of the data disk.`,
+				},
+				resource.Attribute{
+					Name:        "delete_with_instance",
+					Description: `Indicates whether the data disk is destroyed with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "expired_time",
+					Description: `Expired time of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `ID of the image.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type",
+					Description: `The charge type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `ID of the instances.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `Name of the instances.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "internet_charge_type",
+					Description: `The charge type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "internet_max_bandwidth_out",
+					Description: `Public network maximum output bandwidth of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Instance memory capacity, unit in GB.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `Private ip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The project CVM belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Public ip of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `Security groups of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `ID of a vpc subnetwork.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_id",
+					Description: `Image ID of the system disk.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_size",
+					Description: `Size of the system disk.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_type",
+					Description: `Type of the system disk.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the vpc.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_key_pairs",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query key pairs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Optional) ID of the key pair to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `(Optional) Name of the key pair to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) Project id of the key pair to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "key_pair_list",
+					Description: `An information list of key pair. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the key pair.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `ID of the key pair.`,
+				},
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `Name of the key pair.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project id of the key pair.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `public key of the key pair.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_pair_list",
+					Description: `An information list of key pair. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the key pair.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `ID of the key pair.`,
+				},
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `Name of the key pair.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project id of the key pair.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `public key of the key pair.`,
 				},
 			},
 		},
@@ -4087,11 +6207,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the cluster. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "list",
-					Description: `An information list of kubernetes clusters . Each element contains the following attributes:`,
+					Description: `An information list of kubernetes clusters. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "certification_authority",
@@ -4107,11 +6231,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_desc",
-					Description: `Description of the cluster`,
+					Description: `Description of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_external_endpoint",
-					Description: `External network address to access`,
+					Description: `External network address to access.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_ipvs",
@@ -4143,7 +6267,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "container_runtime",
-					Description: `Container runtime of the cluster[Deprecated].`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -4168,6 +6292,10 @@ var (
 				resource.Attribute{
 					Name:        "security_policy",
 					Description: `Access policy.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "user_name",
@@ -4201,7 +6329,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "list",
-					Description: `An information list of kubernetes clusters . Each element contains the following attributes:`,
+					Description: `An information list of kubernetes clusters. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "certification_authority",
@@ -4217,11 +6345,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_desc",
-					Description: `Description of the cluster`,
+					Description: `Description of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_external_endpoint",
-					Description: `External network address to access`,
+					Description: `External network address to access.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_ipvs",
@@ -4253,7 +6381,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "container_runtime",
-					Description: `Container runtime of the cluster[Deprecated].`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -4278,6 +6406,10 @@ var (
 				resource.Attribute{
 					Name:        "security_policy",
 					Description: `Access policy.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "user_name",
@@ -4331,7 +6463,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional) Used to store results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to store results.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the Mongodb instance to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "instance_list",
@@ -4383,11 +6519,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the Mongodb, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2)`,
+					Description: `Status of the Mongodb, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2).`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `ID of the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the Mongodb instance.`,
 				},
 				resource.Attribute{
 					Name:        "vip",
@@ -4457,11 +6597,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the Mongodb, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2)`,
+					Description: `Status of the Mongodb, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2).`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `ID of the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the Mongodb instance.`,
 				},
 				resource.Attribute{
 					Name:        "vip",
@@ -4591,15 +6735,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "mysql_id",
-					Description: `(Required, ForceNew) Instance ID, such as cdb-c1nl9rpv. It is identical to the instance ID displayed in the database console page.`,
+					Description: `(Required) Instance ID, such as cdb-c1nl9rpv. It is identical to the instance ID displayed in the database console page.`,
 				},
 				resource.Attribute{
 					Name:        "max_number",
-					Description: `(Optional, ForceNew) The latest files to list, rang from 1 to 10000. And the default value is 10.`,
+					Description: `(Optional) The latest files to list, rang from 1 to 10000. And the default value is 10.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to store results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to store results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "list",
@@ -4691,7 +6835,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "init_flag",
-					Description: `(Optional) Initialization mark. Available values: 0 - Uninitialized; 1 – Initialized.`,
+					Description: `(Optional) Initialization mark. Available values: 0 - Uninitialized; 1 - Initialized.`,
 				},
 				resource.Attribute{
 					Name:        "instance_name",
@@ -4714,6 +6858,10 @@ var (
 					Description: `(Optional) Record offset. Default is 0.`,
 				},
 				resource.Attribute{
+					Name:        "pay_type",
+					Description: `(Optional) Pay type of instance, 0: prepay, 1: postpay. NOTES: Only prepay is supported.`,
+				},
+				resource.Attribute{
 					Name:        "result_output_file",
 					Description: `(Optional) Used to store results.`,
 				},
@@ -4723,7 +6871,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `(Optional) Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 – Isolated.`,
+					Description: `(Optional) Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 - Isolated.`,
 				},
 				resource.Attribute{
 					Name:        "with_dr",
@@ -4742,12 +6890,20 @@ var (
 					Description: `A list of instances. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
+					Name:        "auto_renew_flag",
+					Description: `Auto renew flag. NOTES: Only supported prepay instance.`,
+				},
+				resource.Attribute{
 					Name:        "cpu_core_count",
 					Description: `CPU count.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time at which a instance is created.`,
+				},
+				resource.Attribute{
+					Name:        "dead_line_time",
+					Description: `Expire date of instance. NOTES: Only supported prepay instance.`,
 				},
 				resource.Attribute{
 					Name:        "device_type",
@@ -4763,7 +6919,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "init_flag",
-					Description: `Initialization mark. Available values: 0 - Uninitialized; 1 – Initialized.`,
+					Description: `Initialization mark. Available values: 0 - Uninitialized; 1 - Initialized.`,
 				},
 				resource.Attribute{
 					Name:        "instance_name",
@@ -4794,12 +6950,20 @@ var (
 					Description: `Transport layer port number for internal purpose.`,
 				},
 				resource.Attribute{
+					Name:        "master_instance_id",
+					Description: `Indicates the master instance ID of recovery instances.`,
+				},
+				resource.Attribute{
 					Name:        "memory_size",
 					Description: `Memory size (in MB).`,
 				},
 				resource.Attribute{
 					Name:        "mysql_id",
 					Description: `Instance ID, such as cdb-c1nl9rpv. It is identical to the instance ID displayed in the database console page.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `Pay type of instance, 0: prepay, 1: postpay. NOTES: Only prepay is supported.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -4815,7 +6979,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 – Isolated.`,
+					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 - Isolated.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -4840,12 +7004,20 @@ var (
 					Description: `A list of instances. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
+					Name:        "auto_renew_flag",
+					Description: `Auto renew flag. NOTES: Only supported prepay instance.`,
+				},
+				resource.Attribute{
 					Name:        "cpu_core_count",
 					Description: `CPU count.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time at which a instance is created.`,
+				},
+				resource.Attribute{
+					Name:        "dead_line_time",
+					Description: `Expire date of instance. NOTES: Only supported prepay instance.`,
 				},
 				resource.Attribute{
 					Name:        "device_type",
@@ -4861,7 +7033,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "init_flag",
-					Description: `Initialization mark. Available values: 0 - Uninitialized; 1 – Initialized.`,
+					Description: `Initialization mark. Available values: 0 - Uninitialized; 1 - Initialized.`,
 				},
 				resource.Attribute{
 					Name:        "instance_name",
@@ -4892,12 +7064,20 @@ var (
 					Description: `Transport layer port number for internal purpose.`,
 				},
 				resource.Attribute{
+					Name:        "master_instance_id",
+					Description: `Indicates the master instance ID of recovery instances.`,
+				},
+				resource.Attribute{
 					Name:        "memory_size",
 					Description: `Memory size (in MB).`,
 				},
 				resource.Attribute{
 					Name:        "mysql_id",
 					Description: `Instance ID, such as cdb-c1nl9rpv. It is identical to the instance ID displayed in the database console page.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `Pay type of instance, 0: prepay, 1: postpay. NOTES: Only prepay is supported.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -4913,7 +7093,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 – Isolated.`,
+					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 - Isolated.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -5047,11 +7227,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional, ForceNew) Region parameter, which is used to identify the region to which the data you want to work with belongs.`,
+					Description: `(Optional) Region parameter, which is used to identify the region to which the data you want to work with belongs.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to store results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to store results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "list",
@@ -5203,93 +7383,93 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Optional) ID of the nat gateway.`,
+					Description: `(Optional) Id of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the nat gateway.`,
+					Description: `(Optional) Name of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results.`,
+					Description: `(Optional) Used to save results.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) ID of the vpc. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Id of the VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "nats",
-					Description: `Information list of the dedicated tunnels.`,
+					Description: `Information list of the dedicated NATs.`,
 				},
 				resource.Attribute{
 					Name:        "assigned_eip_set",
-					Description: `EIP arrays bound to the gateway. The value of at least 1.`,
+					Description: `EIP IP address set bound to the gateway. The value of at least 1.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `The maximum public network output bandwidth of nat gateway (unit: Mbps), the available values include： 20,50,100,200,500,1000,2000,5000. Default is 100.`,
+					Description: `The maximum public network output bandwidth of NAT gateway (unit: Mbps), the available values include: 20,50,100,200,500,1000,2000,5000. Default is 100.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `Create time of the nat gateway.`,
+					Description: `Create time of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the nat gateway.`,
+					Description: `Id of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "max_concurrent",
-					Description: `The upper limit of concurrent connection of nat gateway, the available values include : 1000000,3000000,10000000, Default is 1000000.`,
+					Description: `The upper limit of concurrent connection of NAT gateway, the available values include: 1000000,3000000,10000000. Default is 1000000.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the nat gateway.`,
+					Description: `Name of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `State of the nat gateway.`,
+					Description: `State of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `ID of the vpc.`,
+					Description: `Id of the VPC.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "nats",
-					Description: `Information list of the dedicated tunnels.`,
+					Description: `Information list of the dedicated NATs.`,
 				},
 				resource.Attribute{
 					Name:        "assigned_eip_set",
-					Description: `EIP arrays bound to the gateway. The value of at least 1.`,
+					Description: `EIP IP address set bound to the gateway. The value of at least 1.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `The maximum public network output bandwidth of nat gateway (unit: Mbps), the available values include： 20,50,100,200,500,1000,2000,5000. Default is 100.`,
+					Description: `The maximum public network output bandwidth of NAT gateway (unit: Mbps), the available values include: 20,50,100,200,500,1000,2000,5000. Default is 100.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `Create time of the nat gateway.`,
+					Description: `Create time of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the nat gateway.`,
+					Description: `Id of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "max_concurrent",
-					Description: `The upper limit of concurrent connection of nat gateway, the available values include : 1000000,3000000,10000000, Default is 1000000.`,
+					Description: `The upper limit of concurrent connection of NAT gateway, the available values include: 1000000,3000000,10000000. Default is 1000000.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the nat gateway.`,
+					Description: `Name of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `State of the nat gateway.`,
+					Description: `State of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `ID of the vpc.`,
+					Description: `Id of the VPC.`,
 				},
 			},
 		},
@@ -5302,90 +7482,190 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional) The maximum public network output bandwidth of the gateway (unit: Mbps), for example: 10, 20, 50, 100, 200, 500, 1000, 2000, 5000.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID for NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "max_concurrent",
+					Description: `(Optional) The upper limit of concurrent connection of NAT gateway, for example: 1000000, 3000000, 10000000.`,
 				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name for NAT Gateway.`,
 				},
 				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) NAT gateway status, 0: Running, 1: Unavailable, 2: Be in arrears and out of service.`,
+				},
+				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) The VPC ID for NAT Gateway.`,
+					Description: `(Optional) The VPC ID for NAT Gateway. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "max_concurrent",
-					Description: `(Optional) The upper limit of concurrent connection of NAT gateway, for example: 1000000, 3000000, 10000000. To learn more, please refer to [Virtual Private Cloud Gateway Description](https://intl.cloud.tencent.com/doc/product/215/1682).`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `(Optional) The maximum public network output bandwidth of the gateway (unit: Mbps), for example: 10, 20, 50, 100, 200, 500, 1000, 2000, 5000. For more information, please refer to [Virtual Private Cloud Gateway Description](https://intl.cloud.tencent.com/doc/product/215/1682).`,
+					Name:        "nats",
+					Description: `Information list of the dedicated tunnels.`,
 				},
 				resource.Attribute{
 					Name:        "assigned_eip_set",
-					Description: `(Optional) Elastic IP arrays bound to the gateway, For more information on elastic IP, please refer to [Elastic IP](eip.html).`,
-				},
-				resource.Attribute{
-					Name:        "state",
-					Description: `(Optional) NAT gateway status, 0: Running, 1: Unavailable, 2: Be in arrears and out of service ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the NAT Gateway.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the NAT Gateway.`,
-				},
-				resource.Attribute{
-					Name:        "max_concurrent",
-					Description: `The upper limit of concurrent connection of the NAT gateway.`,
+					Description: `Elastic IP arrays bound to the gateway.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `The maximum public network output bandwidth of the NAT gateway (unit: Mbps).`,
-				},
-				resource.Attribute{
-					Name:        "assigned_eip_set",
-					Description: `Elastic IP arrays bound to the NAT gateway`,
-				},
-				resource.Attribute{
-					Name:        "state",
-					Description: `NAT gateway status, 0: Running, 1: Unavailable, 2: Be in arrears and out of service`,
+					Description: `The maximum public network output bandwidth of the gateway (unit: Mbps), for example: 10, 20, 50, 100, 200, 500, 1000, 2000, 5000.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `The create time of the NAT gateway`,
+					Description: `The create time of the NAT gateway.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID for NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "max_concurrent",
+					Description: `The upper limit of concurrent connection of NAT gateway, for example: 1000000, 3000000, 10000000.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name for NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `NAT gateway status, 0: Running, 1: Unavailable, 2: Be in arrears and out of service.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC ID for NAT Gateway.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the NAT Gateway.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the NAT Gateway.`,
-				},
-				resource.Attribute{
-					Name:        "max_concurrent",
-					Description: `The upper limit of concurrent connection of the NAT gateway.`,
-				},
-				resource.Attribute{
-					Name:        "bandwidth",
-					Description: `The maximum public network output bandwidth of the NAT gateway (unit: Mbps).`,
+					Name:        "nats",
+					Description: `Information list of the dedicated tunnels.`,
 				},
 				resource.Attribute{
 					Name:        "assigned_eip_set",
-					Description: `Elastic IP arrays bound to the NAT gateway`,
+					Description: `Elastic IP arrays bound to the gateway.`,
 				},
 				resource.Attribute{
-					Name:        "state",
-					Description: `NAT gateway status, 0: Running, 1: Unavailable, 2: Be in arrears and out of service`,
+					Name:        "bandwidth",
+					Description: `The maximum public network output bandwidth of the gateway (unit: Mbps), for example: 10, 20, 50, 100, 200, 500, 1000, 2000, 5000.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
-					Description: `The create time of the NAT gateway`,
+					Description: `The create time of the NAT gateway.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID for NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "max_concurrent",
+					Description: `The upper limit of concurrent connection of NAT gateway, for example: 1000000, 3000000, 10000000.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name for NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `NAT gateway status, 0: Running, 1: Unavailable, 2: Be in arrears and out of service.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC ID for NAT Gateway.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_placement_groups",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query placement groups.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the placement group to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "placement_group_id",
+					Description: `(Optional) ID of the placement group to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "placement_group_list",
+					Description: `An information list of placement group. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "current_num",
+					Description: `Number of hosts in the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "cvm_quota_total",
+					Description: `Maximum number of hosts in the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "instance_ids",
+					Description: `Host IDs in the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "placement_group_id",
+					Description: `ID of the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the placement group.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "placement_group_list",
+					Description: `An information list of placement group. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "current_num",
+					Description: `Number of hosts in the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "cvm_quota_total",
+					Description: `Maximum number of hosts in the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "instance_ids",
+					Description: `Host IDs in the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "placement_group_id",
+					Description: `ID of the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the placement group.`,
 				},
 			},
 		},
@@ -5399,23 +7679,27 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "limit",
-					Description: `(Optional, ForceNew) The number limitation of results for a query.`,
+					Description: `(Optional) The number limitation of results for a query.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Optional, ForceNew) ID of the project to which redis instance belongs.`,
+					Description: `(Optional) ID of the project to which redis instance belongs.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results.`,
+					Description: `(Optional) Used to save results.`,
 				},
 				resource.Attribute{
 					Name:        "search_key",
-					Description: `(Optional, ForceNew) Key words used to match the results, and the key words can be: instance ID, instance name and IP address.`,
+					Description: `(Optional) Key words used to match the results, and the key words can be: instance ID, instance name and IP address.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of redis instance.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Optional, ForceNew) ID of an available zone. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) ID of an available zone. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "instance_list",
@@ -5431,7 +7715,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mem_size",
-					Description: `Memory size in MB`,
+					Description: `Memory size in MB.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5451,11 +7735,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current status of an instance，maybe: init, processing, online, isolate and todelete.`,
+					Description: `Current status of an instance, maybe: init, processing, online, isolate and todelete.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `ID of the vpc subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of an instance.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -5485,7 +7773,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mem_size",
-					Description: `Memory size in MB`,
+					Description: `Memory size in MB.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5505,11 +7793,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current status of an instance，maybe: init, processing, online, isolate and todelete.`,
+					Description: `Current status of an instance, maybe: init, processing, online, isolate and todelete.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `ID of the vpc subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of an instance.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -5535,11 +7827,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional, ForceNew) Name of a region. If this value is not set, the current region getting from provider's configuration will be used.`,
+					Description: `(Optional) Name of a region. If this value is not set, the current region getting from provider's configuration will be used.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
-					Description: `(Optional, ForceNew) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "list",
@@ -5547,7 +7839,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mem_sizes",
-					Description: `The memory volume of an available instance（in MB）.`,
+					Description: `The memory volume of an available instance(in MB).`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -5555,7 +7847,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `Version description of an available instance. Possible values: Redis 3.2, Redis 4.0 .`,
+					Description: `Version description of an available instance. Possible values: Redis 3.2, Redis 4.0.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -5569,7 +7861,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mem_sizes",
-					Description: `The memory volume of an available instance（in MB）.`,
+					Description: `The memory volume of an available instance(in MB).`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -5577,11 +7869,195 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `Version description of an available instance. Possible values: Redis 3.2, Redis 4.0 .`,
+					Description: `Version description of an available instance. Possible values: Redis 3.2, Redis 4.0.`,
 				},
 				resource.Attribute{
 					Name:        "zone",
 					Description: `ID of available zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_reserved_instance_configs",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query reserved instances configuration.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) The available zone that the reserved instance locates at.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Optional) Validity period of the reserved instance. Valid values are 31536000(1 year) and 94608000(3 years).`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Optional) The type of reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "config_list",
+					Description: `An information list of reserved instance configuration. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Availability zone of the purchasable reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `Configuration ID of the purchasable reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Settlement currency of the reserved instance, which is a standard currency code as listed in ISO 4217.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Validity period of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Instance type of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `Platform of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Purchase price of the reserved instance.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config_list",
+					Description: `An information list of reserved instance configuration. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Availability zone of the purchasable reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `Configuration ID of the purchasable reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "currency_code",
+					Description: `Settlement currency of the reserved instance, which is a standard currency code as listed in ISO 4217.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Validity period of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `Instance type of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `Platform of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "price",
+					Description: `Purchase price of the reserved instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_reserved_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query reserved instances.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) The available zone that the reserved instance locates at.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Optional) The type of reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_instance_id",
+					Description: `(Optional) ID of the reserved instance to be query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "reserved_instance_list",
+					Description: `An information list of reserved instance. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Availability zone of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `Expiry time of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_count",
+					Description: `Number of reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `The type of reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_instance_id",
+					Description: `ID of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Start time of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the reserved instance.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "reserved_instance_list",
+					Description: `An information list of reserved instance. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Availability zone of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `Expiry time of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_count",
+					Description: `Number of reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `The type of reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_instance_id",
+					Description: `ID of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Start time of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the reserved instance.`,
 				},
 			},
 		},
@@ -5595,81 +8071,637 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "route_table_id",
-					Description: `(Required) The Route Table ID. ## Attributes Reference`,
+					Description: `(Required) The Route Table ID.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name for Route Table.`,
+					Description: `(Optional) The Route Table name. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "vpc_id",
-					Description: `The VPC ID.`,
+					Name:        "create_time",
+					Description: `Creation time of routing table.`,
 				},
 				resource.Attribute{
 					Name:        "routes",
-					Description: `routes are also exported with the following attributes, when there are relevants: Each route supports the following:`,
+					Description: `The information list of the VPC route table.`,
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The RouteEntry's target network segment.`,
 				},
 				resource.Attribute{
-					Name:        "next_type",
-					Description: `The ` + "`" + `next_hub` + "`" + ` type.`,
+					Name:        "description",
+					Description: `The RouteEntry's description.`,
 				},
 				resource.Attribute{
 					Name:        "next_hub",
 					Description: `The RouteEntry's next hub.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `The RouteEntry's description.`,
+					Name:        "next_type",
+					Description: `The ` + "`" + `next_hub` + "`" + ` type.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_num",
 					Description: `Number of associated subnets.`,
 				},
 				resource.Attribute{
-					Name:        "create_time",
-					Description: `Creation time of routing table, for example: 2018-01-22 17:50:21.`,
+					Name:        "vpc_id",
+					Description: `The VPC ID.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name for Route Table.`,
-				},
-				resource.Attribute{
-					Name:        "vpc_id",
-					Description: `The VPC ID.`,
+					Name:        "create_time",
+					Description: `Creation time of routing table.`,
 				},
 				resource.Attribute{
 					Name:        "routes",
-					Description: `routes are also exported with the following attributes, when there are relevants: Each route supports the following:`,
+					Description: `The information list of the VPC route table.`,
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The RouteEntry's target network segment.`,
 				},
 				resource.Attribute{
-					Name:        "next_type",
-					Description: `The ` + "`" + `next_hub` + "`" + ` type.`,
+					Name:        "description",
+					Description: `The RouteEntry's description.`,
 				},
 				resource.Attribute{
 					Name:        "next_hub",
 					Description: `The RouteEntry's next hub.`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `The RouteEntry's description.`,
+					Name:        "next_type",
+					Description: `The ` + "`" + `next_hub` + "`" + ` type.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_num",
 					Description: `Number of associated subnets.`,
 				},
 				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The VPC ID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_scf_functions",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query SCF functions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the SCF function to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the SCF function to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Namespace of the SCF function to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the SCF function to be queried, can use up to 10 tags. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "functions",
+					Description: `An information list of functions. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cls_logset_id",
+					Description: `CLS logset ID of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "cls_topic_id",
+					Description: `CLS topic ID of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "code_error",
+					Description: `Code error of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "code_result",
+					Description: `Code result of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "code_size",
+					Description: `Code size of the SCF function.`,
+				},
+				resource.Attribute{
 					Name:        "create_time",
-					Description: `Creation time of routing table, for example: 2018-01-22 17:50:21.`,
+					Description: `Create time of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "eip_fixed",
+					Description: `Whether EIP is a fixed IP.`,
+				},
+				resource.Attribute{
+					Name:        "eips",
+					Description: `EIP list of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Environment variable of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "err_no",
+					Description: `Errno of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `Handler of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "install_dependency",
+					Description: `Whether to automatically install dependencies.`,
+				},
+				resource.Attribute{
+					Name:        "l5_enable",
+					Description: `Whether to enable L5.`,
+				},
+				resource.Attribute{
+					Name:        "mem_size",
+					Description: `Memory size of the SCF function runtime, unit is M.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `Modify time of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `Namespace of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `CAM role of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `Runtime of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "status_desc",
+					Description: `Status description of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Subnet ID of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Timeout of the SCF function maximum execution time, unit is second.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_info",
+					Description: `Trigger details list the SCF function. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "custom_argument",
+					Description: `user-defined parameter of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `Whether to enable SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `Modify time of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_desc",
+					Description: `TriggerDesc of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Vip of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC ID of the SCF function.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "functions",
+					Description: `An information list of functions. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cls_logset_id",
+					Description: `CLS logset ID of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "cls_topic_id",
+					Description: `CLS topic ID of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "code_error",
+					Description: `Code error of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "code_result",
+					Description: `Code result of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "code_size",
+					Description: `Code size of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "eip_fixed",
+					Description: `Whether EIP is a fixed IP.`,
+				},
+				resource.Attribute{
+					Name:        "eips",
+					Description: `EIP list of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Environment variable of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "err_no",
+					Description: `Errno of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `Handler of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Host of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "install_dependency",
+					Description: `Whether to automatically install dependencies.`,
+				},
+				resource.Attribute{
+					Name:        "l5_enable",
+					Description: `Whether to enable L5.`,
+				},
+				resource.Attribute{
+					Name:        "mem_size",
+					Description: `Memory size of the SCF function runtime, unit is M.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `Modify time of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `Namespace of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `CAM role of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `Runtime of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "status_desc",
+					Description: `Status description of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Subnet ID of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `Timeout of the SCF function maximum execution time, unit is second.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_info",
+					Description: `Trigger details list the SCF function. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "custom_argument",
+					Description: `user-defined parameter of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `Whether to enable SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `Modify time of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_desc",
+					Description: `TriggerDesc of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `Vip of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC ID of the SCF function.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_scf_logs",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query SCF function logs.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "function_name",
+					Description: `(Required) Name of the SCF function to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Optional) The end time of the query, the format is ` + "`" + `2017-05-16 20:00:00` + "`" + `, which can only be within one day from ` + "`" + `start_time` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "invoke_request_id",
+					Description: `(Optional) Corresponding requestId when executing function.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `(Optional) Number of logs, the default is ` + "`" + `10000` + "`" + `, offset+limit cannot be greater than 10000.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Namespace of the SCF function to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `(Optional) Log offset, default is ` + "`" + `0` + "`" + `, offset+limit cannot be greater than 10000.`,
+				},
+				resource.Attribute{
+					Name:        "order_by",
+					Description: `(Optional) Sort the logs according to the following fields: ` + "`" + `function_name` + "`" + `, ` + "`" + `duration` + "`" + `, ` + "`" + `mem_usage` + "`" + `, ` + "`" + `start_time` + "`" + `, default ` + "`" + `start_time` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) Order to sort the log, optional values ` + "`" + `desc` + "`" + ` and ` + "`" + `asc` + "`" + `, default ` + "`" + `desc` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "ret_code",
+					Description: `(Optional) Use to filter log, optional value: ` + "`" + `not0` + "`" + ` only returns the error log. ` + "`" + `is0` + "`" + ` only returns the correct log. ` + "`" + `TimeLimitExceeded` + "`" + ` returns the log of the function call timeout. ` + "`" + `ResourceLimitExceeded` + "`" + ` returns the function call generation resource overrun log. ` + "`" + `UserCodeException` + "`" + ` returns logs of the user code error that occurred in the function call. Not passing the parameter means returning all logs.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional) The start time of the query, the format is ` + "`" + `2017-05-16 20:00:00` + "`" + `, which can only be within one day from ` + "`" + `end_time` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "logs",
+					Description: `An information list of logs. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "bill_duration",
+					Description: `Function billing time, according to duration up to the last 100ms, unit is ms.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Function execution time-consuming, unit is ms.`,
+				},
+				resource.Attribute{
+					Name:        "function_name",
+					Description: `Name of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "invoke_finished",
+					Description: `Whether the function call ends, ` + "`" + `1` + "`" + ` means the execution ends, other values indicate the call exception.`,
+				},
+				resource.Attribute{
+					Name:        "level",
+					Description: `Log level.`,
+				},
+				resource.Attribute{
+					Name:        "log",
+					Description: `Log output during function execution.`,
+				},
+				resource.Attribute{
+					Name:        "mem_usage",
+					Description: `The actual memory size consumed in the execution of the function, unit is Byte.`,
+				},
+				resource.Attribute{
+					Name:        "request_id",
+					Description: `Execute the requestId corresponding to the function.`,
+				},
+				resource.Attribute{
+					Name:        "ret_code",
+					Description: `Execution result of function, ` + "`" + `0` + "`" + ` means the execution is successful, other values indicate failure.`,
+				},
+				resource.Attribute{
+					Name:        "ret_msg",
+					Description: `Return value after function execution is completed.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Log source.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Point in time at which the function begins execution.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "logs",
+					Description: `An information list of logs. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "bill_duration",
+					Description: `Function billing time, according to duration up to the last 100ms, unit is ms.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `Function execution time-consuming, unit is ms.`,
+				},
+				resource.Attribute{
+					Name:        "function_name",
+					Description: `Name of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "invoke_finished",
+					Description: `Whether the function call ends, ` + "`" + `1` + "`" + ` means the execution ends, other values indicate the call exception.`,
+				},
+				resource.Attribute{
+					Name:        "level",
+					Description: `Log level.`,
+				},
+				resource.Attribute{
+					Name:        "log",
+					Description: `Log output during function execution.`,
+				},
+				resource.Attribute{
+					Name:        "mem_usage",
+					Description: `The actual memory size consumed in the execution of the function, unit is Byte.`,
+				},
+				resource.Attribute{
+					Name:        "request_id",
+					Description: `Execute the requestId corresponding to the function.`,
+				},
+				resource.Attribute{
+					Name:        "ret_code",
+					Description: `Execution result of function, ` + "`" + `0` + "`" + ` means the execution is successful, other values indicate failure.`,
+				},
+				resource.Attribute{
+					Name:        "ret_msg",
+					Description: `Return value after function execution is completed.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `Log source.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Point in time at which the function begins execution.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_scf_namespaces",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query SCF namespaces.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the SCF namespace to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Name of the SCF namespace to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "namespaces",
+					Description: `An information list of namespace. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `Modify time of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `Name of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the SCF namespace.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespaces",
+					Description: `An information list of namespace. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `Modify time of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `Name of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the SCF namespace.`,
 				},
 			},
 		},
@@ -5682,16 +8714,12 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "security_group_id",
-					Description: `(Required) ID of the security group to be queried.`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `(Optional) Description of the security group.`,
-				},
-				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the security group to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Name of the security group to be queried. Conflict with ` + "`" + `security_group_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Optional) ID of the security group to be queried. Conflict with ` + "`" + `name` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "be_associate_count",
@@ -5700,6 +8728,14 @@ var (
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of security group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID of the security group.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5710,6 +8746,14 @@ var (
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation time of security group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Project ID of the security group.`,
 				},
 			},
 		},
@@ -5727,11 +8771,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Optional) Project ID of the security group. Conflict with ` + "`" + `security_group_id` + "`" + `.`,
+					Description: `(Optional) Project ID of the security group to be queried. Conflict with ` + "`" + `security_group_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_id",
-					Description: `(Optional) ID of the security group to be queried. Conflict with ` + "`" + `name` + "`" + ` and ` + "`" + `project_id` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) ID of the security group to be queried. Conflict with ` + "`" + `name` + "`" + ` and ` + "`" + `project_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the security group to be queried. Conflict with ` + "`" + `security_group_id` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -5750,6 +8802,14 @@ var (
 					Description: `Description of the security group.`,
 				},
 				resource.Attribute{
+					Name:        "egress",
+					Description: `Egress rules set. For items like ` + "`" + `[action]#[cidr_ip]#[port]#[protocol]` + "`" + `, it means a regular rule; for items like ` + "`" + `sg-XXXX` + "`" + `, it means a nested security group.`,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `Ingress rules set. For items like ` + "`" + `[action]#[cidr_ip]#[port]#[protocol]` + "`" + `, it means a regular rule; for items like ` + "`" + `sg-XXXX` + "`" + `, it means a nested security group.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the security group.`,
 				},
@@ -5760,6 +8820,10 @@ var (
 				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `ID of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the security group.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5780,6 +8844,14 @@ var (
 					Description: `Description of the security group.`,
 				},
 				resource.Attribute{
+					Name:        "egress",
+					Description: `Egress rules set. For items like ` + "`" + `[action]#[cidr_ip]#[port]#[protocol]` + "`" + `, it means a regular rule; for items like ` + "`" + `sg-XXXX` + "`" + `, it means a nested security group.`,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `Ingress rules set. For items like ` + "`" + `[action]#[cidr_ip]#[port]#[protocol]` + "`" + `, it means a regular rule; for items like ` + "`" + `sg-XXXX` + "`" + `, it means a nested security group.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Name of the security group.`,
 				},
@@ -5790,6 +8862,10 @@ var (
 				resource.Attribute{
 					Name:        "security_group_id",
 					Description: `ID of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the security group.`,
 				},
 			},
 		},
@@ -5934,20 +9010,24 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "vpc_id",
-					Description: `(Required) The VPC ID.`,
-				},
-				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Required) The ID of the Subnet. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The ID of the Subnet.`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name for the Subnet.`,
+					Name:        "vpc_id",
+					Description: `(Required) The VPC ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `The AZ for the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The CIDR block of the Subnet.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name for the Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -5956,12 +9036,16 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name for the Subnet.`,
+					Name:        "availability_zone",
+					Description: `The AZ for the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The CIDR block of the Subnet.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name for the Subnet.`,
 				},
 				resource.Attribute{
 					Name:        "route_table_id",
@@ -5983,17 +9067,33 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) VPC name. Fuzzy search is supported, as defined by [the underlying TencentCloud API](https://intl.cloud.tencent.com/document/product/215/1372). ## Attributes Reference All of the argument attributes except ` + "`" + `filter` + "`" + ` blocks are also exported as result attributes. This data source will complete the data by populating any fields that are not included in the configuration with the data for the selected VPC. The following attribute is additionally exported:`,
+					Description: `(Optional) The name of the specific VPC to retrieve. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The CIDR block of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `Whether or not the default VPC.`,
+				},
+				resource.Attribute{
+					Name:        "is_multicast",
+					Description: `Whether or not the VPC has Multicast support.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `The CIDR block of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `Whether or not the default VPC.`,
+				},
+				resource.Attribute{
+					Name:        "is_multicast",
+					Description: `Whether or not the VPC has Multicast support.`,
 				},
 			},
 		},
@@ -6369,64 +9469,660 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_vpn_connections",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of VPN connections.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "customer_gateway_id",
+					Description: `(Optional) Customer gateway ID of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the VPN connection. The length of character is limited to 1-60.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the VPN connection to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway_id",
+					Description: `(Optional) VPN gateway ID of the VPN connection. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "connection_list",
+					Description: `Information list of the dedicated connections.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "customer_gateway_id",
+					Description: `ID of the customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_proto",
+					Description: `Encrypt proto of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "ike_dh_group_name",
+					Description: `DH group name of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_exchange_mode",
+					Description: `Exchange mode of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_address",
+					Description: `Local address of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_fqdn_name",
+					Description: `Local FQDN name of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_identity",
+					Description: `Local identity of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_proto_authen_algorithm",
+					Description: `Proto authenticate algorithm of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_proto_encry_algorithm",
+					Description: `Proto encrypt algorithm of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_address",
+					Description: `Remote address of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_fqdn_name",
+					Description: `Remote FQDN name of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_identity",
+					Description: `Remote identity of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_sa_lifetime_seconds",
+					Description: `SA lifetime of the IKE operation specification, unit is ` + "`" + `second` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `Version of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_encrypt_algorithm",
+					Description: `Encrypt algorithm of the IPSEC operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_integrity_algorithm",
+					Description: `Integrity algorithm of the IPSEC operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_pfs_dh_group",
+					Description: `PFS DH group name of the IPSEC operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_sa_lifetime_seconds",
+					Description: `SA lifetime of the IPSEC operation specification, unit is ` + "`" + `second` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_sa_lifetime_traffic",
+					Description: `SA lifetime traffic of the IPSEC operation specification, unit is ` + "`" + `KB` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "net_status",
+					Description: `Net status of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "pre_share_key",
+					Description: `Pre-shared key of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "route_type",
+					Description: `Route type of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_policy",
+					Description: `Security group policy of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "local_cidr_block",
+					Description: `Local cidr block.`,
+				},
+				resource.Attribute{
+					Name:        "remote_cidr_block",
+					Description: `Remote cidr block list.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags used to associate different resources.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway_id",
+					Description: `ID of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_proto",
+					Description: `Vpn proto of the VPN connection.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "connection_list",
+					Description: `Information list of the dedicated connections.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "customer_gateway_id",
+					Description: `ID of the customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_proto",
+					Description: `Encrypt proto of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "ike_dh_group_name",
+					Description: `DH group name of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_exchange_mode",
+					Description: `Exchange mode of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_address",
+					Description: `Local address of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_fqdn_name",
+					Description: `Local FQDN name of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_identity",
+					Description: `Local identity of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_proto_authen_algorithm",
+					Description: `Proto authenticate algorithm of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_proto_encry_algorithm",
+					Description: `Proto encrypt algorithm of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_address",
+					Description: `Remote address of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_fqdn_name",
+					Description: `Remote FQDN name of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_identity",
+					Description: `Remote identity of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_sa_lifetime_seconds",
+					Description: `SA lifetime of the IKE operation specification, unit is ` + "`" + `second` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `Version of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_encrypt_algorithm",
+					Description: `Encrypt algorithm of the IPSEC operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_integrity_algorithm",
+					Description: `Integrity algorithm of the IPSEC operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_pfs_dh_group",
+					Description: `PFS DH group name of the IPSEC operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_sa_lifetime_seconds",
+					Description: `SA lifetime of the IPSEC operation specification, unit is ` + "`" + `second` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_sa_lifetime_traffic",
+					Description: `SA lifetime traffic of the IPSEC operation specification, unit is ` + "`" + `KB` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "net_status",
+					Description: `Net status of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "pre_share_key",
+					Description: `Pre-shared key of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "route_type",
+					Description: `Route type of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_policy",
+					Description: `Security group policy of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "local_cidr_block",
+					Description: `Local cidr block.`,
+				},
+				resource.Attribute{
+					Name:        "remote_cidr_block",
+					Description: `Remote cidr block list.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags used to associate different resources.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway_id",
+					Description: `ID of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_proto",
+					Description: `Vpn proto of the VPN connection.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_vpn_customer_gateways",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of VPN customer gateways.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the customer gateway. The length of character is limited to 1-60.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `(Optional) Public ip address of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the VPN customer gateway to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "gateway_list",
+					Description: `Information list of the dedicated gateways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `Public ip address of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the VPN customer gateway.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gateway_list",
+					Description: `Information list of the dedicated gateways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `Public ip address of the VPN customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Tags of the VPN customer gateway.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_vpn_gateways",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of VPN gateways.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ID of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the VPN gateway. The length of character is limited to 1-60.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `(Optional) Public ip address of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the VPN gateway to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Optional) Zone of the VPN gateway. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "gateway_list",
+					Description: `Information list of the dedicated gateways.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `The maximum public network output bandwidth of VPN gateway (unit: Mbps), the available values include: 5,10,20,50,100. Default is 5.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Charge Type of the VPN gateway, valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` and default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "expired_time",
+					Description: `Expired time of the VPN gateway when charge type is ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "is_address_blocked",
+					Description: `Indicates whether ip address is blocked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "new_purchase_plan",
+					Description: `The plan of new purchase, valid value is ` + "`" + `PREPAID_TO_POSTPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_renew_flag",
+					Description: `Flag indicates whether to renew or not, valid values are ` + "`" + `NOTIFY_AND_RENEW` + "`" + `, ` + "`" + `NOTIFY_AND_AUTO_RENEW` + "`" + `, ` + "`" + `NOT_NOTIFY_AND_NOT_RENEW` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `Public ip of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "restrict_state",
+					Description: `Restrict state of VPN gateway, valid values are ` + "`" + `PRETECIVELY_ISOLATED` + "`" + `, ` + "`" + `NORMAL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the VPN gateway, valid values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags used to associate different resources.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of gateway instance, valid values are ` + "`" + `IPSEC` + "`" + `, ` + "`" + `SSL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Zone of the VPN gateway.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "gateway_list",
+					Description: `Information list of the dedicated gateways.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `The maximum public network output bandwidth of VPN gateway (unit: Mbps), the available values include: 5,10,20,50,100. Default is 5.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Charge Type of the VPN gateway, valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` and default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "expired_time",
+					Description: `Expired time of the VPN gateway when charge type is ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "is_address_blocked",
+					Description: `Indicates whether ip address is blocked.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "new_purchase_plan",
+					Description: `The plan of new purchase, valid value is ` + "`" + `PREPAID_TO_POSTPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_renew_flag",
+					Description: `Flag indicates whether to renew or not, valid values are ` + "`" + `NOTIFY_AND_RENEW` + "`" + `, ` + "`" + `NOTIFY_AND_AUTO_RENEW` + "`" + `, ` + "`" + `NOT_NOTIFY_AND_NOT_RENEW` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `Public ip of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "restrict_state",
+					Description: `Restrict state of VPN gateway, valid values are ` + "`" + `PRETECIVELY_ISOLATED` + "`" + `, ` + "`" + `NORMAL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the VPN gateway, valid values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of tags used to associate different resources.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of gateway instance, valid values are ` + "`" + `IPSEC` + "`" + `, ` + "`" + `SSL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `Zone of the VPN gateway.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"tencentcloud_as_scaling_configs":          0,
-		"tencentcloud_as_scaling_groups":           1,
-		"tencentcloud_as_scaling_policies":         2,
-		"tencentcloud_availability_zones":          3,
-		"tencentcloud_cbs_snapshots":               4,
-		"tencentcloud_cbs_storages":                5,
-		"tencentcloud_ccn_bandwidth_limits":        6,
-		"tencentcloud_ccn_instances":               7,
-		"tencentcloud_clb_attachments":             8,
-		"tencentcloud_clb_instances":               9,
-		"tencentcloud_clb_listener_rules":          10,
-		"tencentcloud_clb_listeners":               11,
-		"tencentcloud_clb_redirections":            12,
-		"tencentcloud_container_cluster_instances": 13,
-		"tencentcloud_container_clusters":          14,
-		"tencentcloud_cos_bucket_object":           15,
-		"tencentcloud_cos_buckets":                 16,
-		"tencentcloud_dc_gateway_ccn_routes":       17,
-		"tencentcloud_dc_gateway_instances":        18,
-		"tencentcloud_dc_instances":                19,
-		"tencentcloud_dcx_instances":               20,
-		"tencentcloud_dnats":                       21,
-		"tencentcloud_eip":                         22,
-		"tencentcloud_gaap_certificates":           23,
-		"tencentcloud_gaap_http_domains":           24,
-		"tencentcloud_gaap_http_rules":             25,
-		"tencentcloud_gaap_layer4_listeners":       26,
-		"tencentcloud_gaap_layer7_listeners":       27,
-		"tencentcloud_gaap_proxies":                28,
-		"tencentcloud_gaap_realservers":            29,
-		"tencentcloud_gaap_security_policies":      30,
-		"tencentcloud_gaap_security_rules":         31,
-		"tencentcloud_image":                       32,
-		"tencentcloud_instance_types":              33,
-		"tencentcloud_kubernetes_clusters":         34,
-		"tencentcloud_mongodb_instances":           35,
-		"tencentcloud_mongodb_zone_config":         36,
-		"tencentcloud_mysql_backup_list":           37,
-		"tencentcloud_mysql_instance":              38,
-		"tencentcloud_mysql_parameter_list":        39,
-		"tencentcloud_mysql_zone_config":           40,
-		"tencentcloud_nat_gateways":                41,
-		"tencentcloud_nats":                        42,
-		"tencentcloud_redis_instances":             43,
-		"tencentcloud_redis_zone_config":           44,
-		"tencentcloud_route_table":                 45,
-		"tencentcloud_security_group":              46,
-		"tencentcloud_security_groups":             47,
-		"tencentcloud_ssl_certificates":            48,
-		"tencentcloud_subnet":                      49,
-		"tencentcloud_vpc":                         50,
-		"tencentcloud_vpc_instances":               51,
-		"tencentcloud_vpc_route_tables":            52,
-		"tencentcloud_vpc_subnets":                 53,
+		"tencentcloud_as_scaling_configs":           0,
+		"tencentcloud_as_scaling_groups":            1,
+		"tencentcloud_as_scaling_policies":          2,
+		"tencentcloud_availability_zones":           3,
+		"tencentcloud_cam_group_memberships":        4,
+		"tencentcloud_cam_group_policy_attachments": 5,
+		"tencentcloud_cam_groups":                   6,
+		"tencentcloud_cam_policies":                 7,
+		"tencentcloud_cam_role_policy_attachments":  8,
+		"tencentcloud_cam_roles":                    9,
+		"tencentcloud_cam_saml_providers":           10,
+		"tencentcloud_cam_user_policy_attachments":  11,
+		"tencentcloud_cam_users":                    12,
+		"tencentcloud_cbs_snapshots":                13,
+		"tencentcloud_cbs_storages":                 14,
+		"tencentcloud_ccn_bandwidth_limits":         15,
+		"tencentcloud_ccn_instances":                16,
+		"tencentcloud_cfs_access_groups":            17,
+		"tencentcloud_cfs_access_rules":             18,
+		"tencentcloud_cfs_file_systems":             19,
+		"tencentcloud_clb_attachments":              20,
+		"tencentcloud_clb_instances":                21,
+		"tencentcloud_clb_listener_rules":           22,
+		"tencentcloud_clb_listeners":                23,
+		"tencentcloud_clb_redirections":             24,
+		"tencentcloud_container_cluster_instances":  25,
+		"tencentcloud_container_clusters":           26,
+		"tencentcloud_cos_bucket_object":            27,
+		"tencentcloud_cos_buckets":                  28,
+		"tencentcloud_dc_gateway_ccn_routes":        29,
+		"tencentcloud_dc_gateway_instances":         30,
+		"tencentcloud_dc_instances":                 31,
+		"tencentcloud_dcx_instances":                32,
+		"tencentcloud_dnats":                        33,
+		"tencentcloud_eip":                          34,
+		"tencentcloud_eips":                         35,
+		"tencentcloud_enis":                         36,
+		"tencentcloud_gaap_certificates":            37,
+		"tencentcloud_gaap_http_domains":            38,
+		"tencentcloud_gaap_http_rules":              39,
+		"tencentcloud_gaap_layer4_listeners":        40,
+		"tencentcloud_gaap_layer7_listeners":        41,
+		"tencentcloud_gaap_proxies":                 42,
+		"tencentcloud_gaap_realservers":             43,
+		"tencentcloud_gaap_security_policies":       44,
+		"tencentcloud_gaap_security_rules":          45,
+		"tencentcloud_ha_vip_eip_attachments":       46,
+		"tencentcloud_ha_vips":                      47,
+		"tencentcloud_image":                        48,
+		"tencentcloud_images":                       49,
+		"tencentcloud_instance_types":               50,
+		"tencentcloud_instances":                    51,
+		"tencentcloud_key_pairs":                    52,
+		"tencentcloud_kubernetes_clusters":          53,
+		"tencentcloud_mongodb_instances":            54,
+		"tencentcloud_mongodb_zone_config":          55,
+		"tencentcloud_mysql_backup_list":            56,
+		"tencentcloud_mysql_instance":               57,
+		"tencentcloud_mysql_parameter_list":         58,
+		"tencentcloud_mysql_zone_config":            59,
+		"tencentcloud_nat_gateways":                 60,
+		"tencentcloud_nats":                         61,
+		"tencentcloud_placement_groups":             62,
+		"tencentcloud_redis_instances":              63,
+		"tencentcloud_redis_zone_config":            64,
+		"tencentcloud_reserved_instance_configs":    65,
+		"tencentcloud_reserved_instances":           66,
+		"tencentcloud_route_table":                  67,
+		"tencentcloud_scf_functions":                68,
+		"tencentcloud_scf_logs":                     69,
+		"tencentcloud_scf_namespaces":               70,
+		"tencentcloud_security_group":               71,
+		"tencentcloud_security_groups":              72,
+		"tencentcloud_ssl_certificates":             73,
+		"tencentcloud_subnet":                       74,
+		"tencentcloud_vpc":                          75,
+		"tencentcloud_vpc_instances":                76,
+		"tencentcloud_vpc_route_tables":             77,
+		"tencentcloud_vpc_subnets":                  78,
+		"tencentcloud_vpn_connections":              79,
+		"tencentcloud_vpn_customer_gateways":        80,
+		"tencentcloud_vpn_gateways":                 81,
 	}
 )
 

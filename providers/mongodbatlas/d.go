@@ -543,7 +543,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `Indicates the size in gigabytes of the server’s root volume.`,
+					Description: `Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).`,
 				},
 				resource.Attribute{
 					Name:        "encryption_at_rest_provider",
@@ -583,7 +583,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_disk_type_name",
-					Description: `Describes Azure disk type of the server’s root volume.`,
+					Description: `Describes Azure disk type of the server’s root volume (Azure Only).`,
 				},
 				resource.Attribute{
 					Name:        "provider_encrypt_ebs_volume",
@@ -591,7 +591,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_region_name",
-					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.`,
+					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
 				},
 				resource.Attribute{
 					Name:        "provider_volume_type",
@@ -697,7 +697,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `Indicates the size in gigabytes of the server’s root volume.`,
+					Description: `Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).`,
 				},
 				resource.Attribute{
 					Name:        "encryption_at_rest_provider",
@@ -737,7 +737,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_disk_type_name",
-					Description: `Describes Azure disk type of the server’s root volume.`,
+					Description: `Describes Azure disk type of the server’s root volume (Azure Only).`,
 				},
 				resource.Attribute{
 					Name:        "provider_encrypt_ebs_volume",
@@ -745,7 +745,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_region_name",
-					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.`,
+					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
 				},
 				resource.Attribute{
 					Name:        "provider_volume_type",
@@ -871,7 +871,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `Indicates the size in gigabytes of the server’s root volume.`,
+					Description: `Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).`,
 				},
 				resource.Attribute{
 					Name:        "encryption_at_rest_provider",
@@ -907,7 +907,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_disk_type_name",
-					Description: `Describes Azure disk type of the server’s root volume.`,
+					Description: `Describes Azure disk type of the server’s root volume (Azure Only).`,
 				},
 				resource.Attribute{
 					Name:        "provider_encrypt_ebs_volume",
@@ -915,7 +915,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_region_name",
-					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.`,
+					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
 				},
 				resource.Attribute{
 					Name:        "provider_volume_type",
@@ -1029,7 +1029,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `Indicates the size in gigabytes of the server’s root volume.`,
+					Description: `Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).`,
 				},
 				resource.Attribute{
 					Name:        "encryption_at_rest_provider",
@@ -1065,7 +1065,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_disk_type_name",
-					Description: `Describes Azure disk type of the server’s root volume.`,
+					Description: `Describes Azure disk type of the server’s root volume (Azure Only).`,
 				},
 				resource.Attribute{
 					Name:        "provider_encrypt_ebs_volume",
@@ -1073,7 +1073,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_region_name",
-					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.`,
+					Description: `Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).`,
 				},
 				resource.Attribute{
 					Name:        "provider_volume_type",

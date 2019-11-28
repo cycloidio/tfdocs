@@ -11,6 +11,202 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "consul_acl_auth_method",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about a Consul ACL Auth Method.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ACL Auth Method. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the ACL Auth Method.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the ACL Auth Method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The configuration options of the ACL Auth Method.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the ACL Auth Method.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the ACL Auth Method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The configuration options of the ACL Auth Method.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_acl_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about a Consul ACL Poliy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ACL Policy. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the ACL Policy.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `The rules associated with the ACL Policy.`,
+				},
+				resource.Attribute{
+					Name:        "datacenters",
+					Description: `The datacenters associated with the ACL Policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the ACL Policy.`,
+				},
+				resource.Attribute{
+					Name:        "rules",
+					Description: `The rules associated with the ACL Policy.`,
+				},
+				resource.Attribute{
+					Name:        "datacenters",
+					Description: `The datacenters associated with the ACL Policy.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_acl_role",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about a Consul ACL Role.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ACL Role. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the ACL Role.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `The list of policies associated with the ACL Role. Each entry has an ` + "`" + `id` + "`" + ` and a ` + "`" + `name` + "`" + ` attribute.`,
+				},
+				resource.Attribute{
+					Name:        "service_identities",
+					Description: `The list of service identities associated with the ACL Role. Each entry has a ` + "`" + `service_name` + "`" + ` attribute and a list of ` + "`" + `datacenters` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the ACL Role.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `The list of policies associated with the ACL Role. Each entry has an ` + "`" + `id` + "`" + ` and a ` + "`" + `name` + "`" + ` attribute.`,
+				},
+				resource.Attribute{
+					Name:        "service_identities",
+					Description: `The list of service identities associated with the ACL Role. Each entry has a ` + "`" + `service_name` + "`" + ` attribute and a list of ` + "`" + `datacenters` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_acl_token",
+			Category:         "Data Sources",
+			ShortDescription: `Provides information about a Consul ACL Token.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "accessor_id",
+					Description: `(Required) The accessor ID of the ACL token. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the ACL token.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `A list of policies associated with the ACL token. Each entry has an ` + "`" + `id` + "`" + ` and a ` + "`" + `name` + "`" + ` attribute.`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `Whether the ACL token is local to the datacenter it was created within.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the ACL token.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `A list of policies associated with the ACL token. Each entry has an ` + "`" + `id` + "`" + ` and a ` + "`" + `name` + "`" + ` attribute.`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `Whether the ACL token is local to the datacenter it was created within.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_acl_token_secret_id",
+			Category:         "Data Sources",
+			ShortDescription: `Provides the ACL Token secret ID.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "accessor_id",
+					Description: `(Required) The accessor ID of the ACL token.`,
+				},
+				resource.Attribute{
+					Name:        "gpg_key",
+					Description: `(Optional) Either a base-64 encoded PGP public key, or a keybase username in the form ` + "`" + `keybase:some_person_that_exists` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "secret_id",
+					Description: `The secret ID of the ACL token if ` + "`" + `gpg_key` + "`" + ` has not been set.`,
+				},
+				resource.Attribute{
+					Name:        "encrypted_secret_id",
+					Description: `The encrypted secret ID of the ACL token if ` + "`" + `gpg_key` + "`" + ` has been set. You can decrypt the secret by using the command line, for example with: ` + "`" + `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret_id",
+					Description: `The secret ID of the ACL token if ` + "`" + `gpg_key` + "`" + ` has not been set.`,
+				},
+				resource.Attribute{
+					Name:        "encrypted_secret_id",
+					Description: `The encrypted secret ID of the ACL token if ` + "`" + `gpg_key` + "`" + ` has been set. You can decrypt the secret by using the command line, for example with: ` + "`" + `terraform output encrypted_secret | base64 --decode | keybase pgp decrypt` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "consul_agent_config",
 			Category:         "Data Sources",
 			ShortDescription: `Provides the configuration information of the local Consul agent.`,
@@ -819,15 +1015,20 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"consul_agent_config":     0,
-		"consul_agent_self":       1,
-		"consul_autopilot_health": 2,
-		"consul_key_prefix":       3,
-		"consul_keys":             4,
-		"consul_nodes":            5,
-		"consul_service":          6,
-		"consul_service_health":   7,
-		"consul_services":         8,
+		"consul_acl_auth_method":     0,
+		"consul_acl_policy":          1,
+		"consul_acl_role":            2,
+		"consul_acl_token":           3,
+		"consul_acl_token_secret_id": 4,
+		"consul_agent_config":        5,
+		"consul_agent_self":          6,
+		"consul_autopilot_health":    7,
+		"consul_key_prefix":          8,
+		"consul_keys":                9,
+		"consul_nodes":               10,
+		"consul_service":             11,
+		"consul_service_health":      12,
+		"consul_services":            13,
 	}
 )
 

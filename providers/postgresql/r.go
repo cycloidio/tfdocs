@@ -221,6 +221,10 @@ var (
 					Description: `(Optional) Defines list of roles which will be granted to this new role.`,
 				},
 				resource.Attribute{
+					Name:        "search_path",
+					Description: `(Optional) Alters the search path of this new role. Note that due to limitations in the implementation, values cannot contain the substring ` + "`" + `", "` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "valid_until",
 					Description: `(Optional) Defines the date and time after which the role's password is no longer valid. Established connections past this ` + "`" + `valid_time` + "`" + ` will have to be manually terminated. This value corresponds to a PostgreSQL datetime. If omitted or the magic value ` + "`" + `NULL` + "`" + ` is used, ` + "`" + `valid_until` + "`" + ` will be set to ` + "`" + `infinity` + "`" + `. Default is ` + "`" + `NULL` + "`" + `, therefore ` + "`" + `infinity` + "`" + `.`,
 				},

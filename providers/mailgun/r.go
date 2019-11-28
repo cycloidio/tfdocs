@@ -24,8 +24,8 @@ var (
 					Description: `(Required) The domain to add to Mailgun`,
 				},
 				resource.Attribute{
-					Name:        "smtp_password",
-					Description: `(Required) Password for SMTP authentication`,
+					Name:        "region",
+					Description: `(Optional) The region where domain will be created. Default value is ` + "`" + `us` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "spam_action",
@@ -40,6 +40,10 @@ var (
 					Description: `The name of the domain.`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `The name of the region.`,
+				},
+				resource.Attribute{
 					Name:        "smtp_login",
 					Description: `The login email for the SMTP server.`,
 				},
@@ -93,7 +97,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the record.`,
+					Description: `The value of the record. ## Import Domains can be imported using ` + "`" + `region:domain_name` + "`" + ` via ` + "`" + `import` + "`" + ` command. Region has to be chosen from ` + "`" + `eu` + "`" + ` or ` + "`" + `us` + "`" + ` (when no selection ` + "`" + `us` + "`" + ` is applied). ` + "`" + `` + "`" + `` + "`" + `hcl terraform import mailgun_domain.test us:example.domain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -102,6 +106,10 @@ var (
 					Description: `The name of the domain.`,
 				},
 				resource.Attribute{
+					Name:        "region",
+					Description: `The name of the region.`,
+				},
+				resource.Attribute{
 					Name:        "smtp_login",
 					Description: `The login email for the SMTP server.`,
 				},
@@ -155,15 +163,49 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `The value of the record.`,
+					Description: `The value of the record. ## Import Domains can be imported using ` + "`" + `region:domain_name` + "`" + ` via ` + "`" + `import` + "`" + ` command. Region has to be chosen from ` + "`" + `eu` + "`" + ` or ` + "`" + `us` + "`" + ` (when no selection ` + "`" + `us` + "`" + ` is applied). ` + "`" + `` + "`" + `` + "`" + `hcl terraform import mailgun_domain.test us:example.domain.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mailgun_route",
+			Category:         "Resources",
+			ShortDescription: `Provides a Mailgun App resource. This can be used to create and manage applications on Mailgun.`,
+			Description:      ``,
+			Keywords: []string{
+				"route",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Smaller number indicates higher priority. Higher priority routes are handled first.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) A filter expression like ` + "`" + `match_recipient('.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Route action. This action is executed when the expression evaluates to True. Example: ` + "`" + `forward("alice@example.com")` + "`" + ` You can pass multiple ` + "`" + `action` + "`" + ` parameters.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region where domain will be created. Default value is ` + "`" + `us` + "`" + `. ## Import Routes can be imported using ` + "`" + `ROUTE_ID` + "`" + ` and ` + "`" + `region` + "`" + ` via ` + "`" + `import` + "`" + ` command. Route ID can be found on Mailgun portal in section ` + "`" + `Receiving/Routes` + "`" + `. Region has to be chosen from ` + "`" + `eu` + "`" + ` or ` + "`" + `us` + "`" + ` (when no selection ` + "`" + `us` + "`" + ` is applied). ` + "`" + `` + "`" + `` + "`" + `hcl terraform import mailgun_route.test eu:123456789 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 	}
 
 	resourcesMap = map[string]int{
 
 		"mailgun_domain": 0,
+		"mailgun_route":  1,
 	}
 )
 

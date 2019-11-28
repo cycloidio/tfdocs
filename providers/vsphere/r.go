@@ -2018,11 +2018,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "num_cpus",
-					Description: `(Optional) The number of virtual processors to assign to this virtual machine. Default: ` + "`" + `1` + "`" + `.`,
+					Description: `(Optional) The total number of virtual processor cores to assign to this virtual machine. Default: ` + "`" + `1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "num_cores_per_socket",
-					Description: `(Optional) The number of cores to distribute among the CPUs in this virtual machine. If specified, the value supplied to ` + "`" + `num_cpus` + "`" + ` must be evenly divisible by this value. Default: ` + "`" + `1` + "`" + `.`,
+					Description: `(Optional) The number of cores per socket in this virtual machine. The number of vCPUs on the virtual machine will be ` + "`" + `num_cpus` + "`" + ` divided by ` + "`" + `num_cores_per_socket` + "`" + `. If specified, the value supplied to ` + "`" + `num_cpus` + "`" + ` must be evenly divisible by this value. Default: ` + "`" + `1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_hot_add_enabled",
@@ -2186,7 +2186,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) The size of the disk, in GiB.`,
+					Description: `(Required) The size of the disk, in GB.`,
 				},
 				resource.Attribute{
 					Name:        "unit_number",
@@ -2290,7 +2290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "path",
-					Description: `(Optional) The path to the ISO file. Requried for using a datastore ISO. Conflicts with ` + "`" + `client_device` + "`" + `. ~>`,
+					Description: `(Optional) The path to the ISO file. Required for using a datastore ISO. Conflicts with ` + "`" + `client_device` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -2314,7 +2314,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customize",
-					Description: `(Optional) The customization spec for this clone. This allows the user to configure the virtual machine post-clone. For more details, see [virtual machine customization](#virtual-machine-customization). ### Virtual machine customization As part of the ` + "`" + `clone` + "`" + ` operation, a virtual machine can be [customized][vmware-docs-customize] to configure host, network, or licensing settings. [vmware-docs-customize]: https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html To perform virtual machine customization as a part of the clone process, specify the ` + "`" + `customize` + "`" + ` block with the respective customization options, nested within the ` + "`" + `clone` + "`" + ` block. See the [cloning and customization example](#cloning-and-customization-example) for a usage synopsis. The settings for ` + "`" + `customize` + "`" + ` are as follows: #### Customization timeout settings`,
+					Description: `(Optional) The customization spec for this clone. This allows the user to configure the virtual machine post-clone. For more details, see [virtual machine customization](#virtual-machine-customization). ### Virtual machine customization As part of the ` + "`" + `clone` + "`" + ` operation, a virtual machine can be [customized][vmware-docs-customize] to configure host, network, or licensing settings. [vmware-docs-customize]: https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html To perform virtual machine customization as a part of the clone process, specify the ` + "`" + `customize` + "`" + ` block with the respective customization options, nested within the ` + "`" + `clone` + "`" + ` block. Windows guests are customized using Sysprep, which will result in the machine SID being reset. Before using customization, check is that your source VM meets the [requirements](https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vsphere.vm_admin.doc_50%2FGUID-80F3F5B5-F795-45F1-B0FA-3709978113D5.html) for guest OS customization on vSphere. See the [cloning and customization example](#cloning-and-customization-example) for a usage synopsis. The settings for ` + "`" + `customize` + "`" + ` are as follows: #### Customization timeout settings`,
 				},
 				resource.Attribute{
 					Name:        "timeout",

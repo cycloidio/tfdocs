@@ -185,6 +185,14 @@ var (
 					Description: `(Required) name of Object cloud_context_profile.`,
 				},
 				resource.Attribute{
+					Name:        "primary_cidr",
+					Description: `(Required) Primary CIDR block of Cloud Context profile.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) AWS region in which profile is created.`,
+				},
+				resource.Attribute{
 					Name:        "annotation",
 					Description: `(Optional) annotation for object cloud_context_profile.`,
 				},
@@ -202,7 +210,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "relation_cloud_rs_to_ctx",
-					Description: `(Optional) Relation to class fvCtx. Cardinality - N_TO_ONE. Type - String.`,
+					Description: `(Required) Relation to class fvCtx. Cardinality - N_TO_ONE. Type - String.`,
 				},
 				resource.Attribute{
 					Name:        "relation_cloud_rs_ctx_profile_to_region",
@@ -2294,6 +2302,35 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aci_rest",
+			Category:         "Resources",
+			ShortDescription: `Manages ACI Model Objects via REST API calls. Any Model Object that is not supported by provider can be created/managed using this resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"rest",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) ACI path where object should be created. Starting with api/node/mo/{parent-dn}(if applicable)/{rn of object}.json`,
+				},
+				resource.Attribute{
+					Name:        "class_name",
+					Description: `(Optional) Which class object is being created. (Make sure there is no colon in the classname )`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Map of key-value pairs those needed to be passed to the Model object as parameters. Make sure the key name matches the name with the object parameter in ACI.`,
+				},
+				resource.Attribute{
+					Name:        "dn",
+					Description: `(Optional) Distinguished name of object being managed. ## Attribute Reference The only attribute that this resource exports is the ` + "`" + `id` + "`" + `, which is set to the Dn of the object created by it. ## Importing ## This resource does not support import.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aci_vmm_domain",
 			Category:         "Resources",
 			ShortDescription: `Manages ACI VMM Domain`,
@@ -2754,12 +2791,13 @@ var (
 		"aci_lldp_interface_policy":                     38,
 		"aci_miscabling_protocol_interface_policy":      39,
 		"aci_ospf_interface_policy":                     40,
-		"aci_vmm_domain":                                41,
-		"aci_any":                                       42,
-		"aci_contract":                                  43,
-		"aci_filter_entry":                              44,
-		"aci_filter":                                    45,
-		"aci_contract_subject":                          46,
+		"aci_rest":                                      41,
+		"aci_vmm_domain":                                42,
+		"aci_any":                                       43,
+		"aci_contract":                                  44,
+		"aci_filter_entry":                              45,
+		"aci_filter":                                    46,
+		"aci_contract_subject":                          47,
 	}
 )
 

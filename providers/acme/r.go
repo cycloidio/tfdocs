@@ -57,7 +57,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate_pem",
-					Description: `The certificate in PEM format.`,
+					Description: `The certificate in PEM format. This does not include the ` + "`" + `issuer_pem` + "`" + `. This certificate can be concatenated with ` + "`" + `issuer_pem` + "`" + ` to form a full chain.`,
 				},
 				resource.Attribute{
 					Name:        "issuer_pem",
@@ -87,7 +87,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate_pem",
-					Description: `The certificate in PEM format.`,
+					Description: `The certificate in PEM format. This does not include the ` + "`" + `issuer_pem` + "`" + `. This certificate can be concatenated with ` + "`" + `issuer_pem` + "`" + ` to form a full chain.`,
 				},
 				resource.Attribute{
 					Name:        "issuer_pem",

@@ -104,7 +104,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) Specifies the value of the roles claim that the application should expect in the authentication and access tokens. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Specifies the value of the roles claim that the application should expect in the authentication and access tokens. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "application_id",
@@ -325,13 +325,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Azure AD Group Member. ## Import Azure Active Directory Group Members can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_group_member.test 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The ID of the Azure AD Group Member. ## Import Azure Active Directory Group Members can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_group_member.test 00000000-0000-0000-0000-000000000000/member/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Azure AD Group Member. ## Import Azure Active Directory Group Members can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_group_member.test 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The ID of the Azure AD Group Member. ## Import Azure Active Directory Group Members can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azuread_group_member.test 00000000-0000-0000-0000-000000000000/member/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -506,7 +506,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "end_date_relative",
-					Description: `(Optional) A relative duration for which the Password is valid until, for example ` + "`" + `240h` + "`" + ` (10 days) or ` + "`" + `2400h30m` + "`" + `. Changing this field forces a new resource to be created. ->`,
+					Description: `(Optional) A relative duration for which the Password is valid until, for example ` + "`" + `240h` + "`" + ` (10 days) or ` + "`" + `2400h30m` + "`" + `. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Changing this field forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "key_id",
@@ -559,7 +559,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "force_password_change",
-					Description: `(Optional) ` + "`" + `true` + "`" + ` if the User is forced to change the password during the next sign-in. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) ` + "`" + `true` + "`" + ` if the User is forced to change the password during the next sign-in. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "usage_location",
+					Description: `(Optional) The usage location of the User. Required for users that will be assigned licenses due to legal requirement to check for availability of services in countries. The usage location is a two letter country code (ISO standard 3166). Examples include: ` + "`" + `NO` + "`" + `, ` + "`" + `JP` + "`" + `, and ` + "`" + `GB` + "`" + `. Cannot be reset to null once set. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "object_id",

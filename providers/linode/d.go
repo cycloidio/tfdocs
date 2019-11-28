@@ -316,6 +316,41 @@ Provides information about a Linode Networking IP Address
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_object_storage_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a Linode Object Storage Cluster.`,
+			Description: `\_object\_storage\_cluster
+
+Provides information about a Linode Object Storage Cluster
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The unique ID of this cluster. ## Attributes The Linode Object Storage Cluster resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `The base URL for this cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `This cluster's status.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this cluster is located in.`,
+				},
+				resource.Attribute{
+					Name:        "static_site_domain",
+					Description: `The base URL for this cluster used when hosting static sites.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a Linode profile.`,
@@ -456,15 +491,16 @@ Provides information about a Linode user
 
 	dataSourcesMap = map[string]int{
 
-		"linode_account":       0,
-		"linode_domain":        1,
-		"linode_image":         2,
-		"linode_instance_type": 3,
-		"linode_networking_ip": 4,
-		"linode_profile":       5,
-		"linode_region":        6,
-		"linode_sshkey":        7,
-		"linode_user":          8,
+		"linode_account":                0,
+		"linode_domain":                 1,
+		"linode_image":                  2,
+		"linode_instance_type":          3,
+		"linode_networking_ip":          4,
+		"linode_object_storage_cluster": 5,
+		"linode_profile":                6,
+		"linode_region":                 7,
+		"linode_sshkey":                 8,
+		"linode_user":                   9,
 	}
 )
 

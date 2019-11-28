@@ -11,6 +11,103 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "signalfx_alert_muting_rule",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx Alert Muting Rules`,
+			Description: `
+
+Provides a SignalFx resource for managing alert muting rules. See [Mute Notifications](https://docs.signalfx.com/en/latest/detect-alert/mute-notifications.html) for more information.
+
+~> **WARNING** SignalFx does not allow the start time of a **currently active** muting rule to be modified. As such, attempting to modify a currently active rule will destroy the existing rule and create a new rule. This may result in the emission of notifications.
+
+`,
+			Keywords: []string{
+				"alert",
+				"muting",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description for this muting rule`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Starting time of an alert muting rule as a Unit time stamp in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "stop_time",
+					Description: `(Optional) Starting time of an alert muting rule as a Unix time stamp in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "detectors",
+					Description: `(Optional) A convenience attribute that associated this muting rule with specific detector ids.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filters for this rule. See [Creating muting rules from scratch](https://docs.signalfx.com/en/latest/detect-alert/mute-notifications.html#rule-from-scratch) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "property",
+					Description: `(Required) The property to filter.`,
+				},
+				resource.Attribute{
+					Name:        "property_value",
+					Description: `(Required) The property value to filter.`,
+				},
+				resource.Attribute{
+					Name:        "negated",
+					Description: `(Optional) Determines if this is a "not" filter. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_aws_external_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx AWS External ID Integrations`,
+			Description: `
+
+SignalFx AWS CloudWatch integrations using Role ARNs. For help with this integration see [Connect to AWS CloudWatch](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#connect-to-aws).
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+
+~> **WARNING** This resource implements a part of a workflow. You must use it with one of either ` + "`" + `signalfx_aws_integration` + "`" + `. Check with SignalFx support for your realm's AWS account id.
+
+`,
+			Keywords: []string{
+				"aws",
+				"external",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of this integration ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this integration, used with ` + "`" + `signalfx_aws_integration` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `The external ID to use with your IAM role and with ` + "`" + `signalfx_aws_integration` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of this integration, used with ` + "`" + `signalfx_aws_integration` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `The external ID to use with your IAM role and with ` + "`" + `signalfx_aws_integration` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "signalfx_aws_integration",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create and manage SignalFx AWS Integrations`,
@@ -20,6 +117,8 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 
 **Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
 
+~> **WARNING** This resource implements a part of a workflow. You must use it with one of either ` + "`" + `signalfx_aws_external_integration` + "`" + ` or ` + "`" + `signalfx_aws_token_integration` + "`" + `.
+
 `,
 			Keywords: []string{
 				"aws",
@@ -27,16 +126,16 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the integration.`,
-				},
-				resource.Attribute{
 					Name:        "enabled",
 					Description: `(Required) Whether the integration is enabled.`,
 				},
 				resource.Attribute{
-					Name:        "auth_method",
-					Description: `(Optional) The mechanism used to authenticate with AWS. The allowed values are "ExternalID" or "SecurityToken".`,
+					Name:        "integration_id",
+					Description: `(Required) The id of one of a ` + "`" + `signalfx_aws_external_integration` + "`" + ` or ` + "`" + `signalfx_aws_token_integration` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "external_id",
+					Description: `(Required) The ` + "`" + `external_id` + "`" + ` property from one of a ` + "`" + `signalfx_aws_external_integration` + "`" + ` or ` + "`" + `signalfx_aws_token_integration` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "custom_cloudwatch_namespaces",
@@ -108,10 +207,46 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 				},
 				resource.Attribute{
 					Name:        "poll_rate",
-					Description: `(Oprional) AWS poll rate (in seconds). One of ` + "`" + `60` + "`" + ` or ` + "`" + `300` + "`" + `.`,
+					Description: `(Optional) AWS poll rate (in seconds). One of ` + "`" + `60` + "`" + ` or ` + "`" + `300` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_aws_token_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx AWS Security Token Integrations`,
+			Description: `
+
+SignalFx AWS CloudWatch integrations using security tokens. For help with this integration see [Connect to AWS CloudWatch](https://docs.signalfx.com/en/latest/integrations/amazon-web-services.html#connect-to-aws).
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
+
+~> **WARNING** This resource implements a part of a workflow. You must use it with one of either ` + "`" + `signalfx_aws_integration` + "`" + `.
+
+`,
+			Keywords: []string{
+				"aws",
+				"token",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of this integration ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration to use with ` + "`" + `signalfx_aws_integration` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the integration to use with ` + "`" + `signalfx_aws_integration` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -426,6 +561,14 @@ In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/v2/d
 					Description: `(Optional) Team IDs to associate the dashboard group to.`,
 				},
 				resource.Attribute{
+					Name:        "authorized_writer_teams",
+					Description: `(Optional) Team IDs that have write access to this dashboard group. Remember to use an admin's token if using this feature and to include that admin's team (or user id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "authorized_writer_users",
+					Description: `(Optional) User IDs that have write access to this dashboard group. Remember to use an admin's token if using this feature and to include that admin's user id (or team id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
+				},
+				resource.Attribute{
 					Name:        "dashboard",
 					Description: `(Optional) [Mirrored dashboards](https://docs.signalfx.com/en/latest/dashboards/dashboard-mirrors.html) in this dashboard group.`,
 				},
@@ -496,11 +639,19 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "program_text",
-					Description: `(Required) Signalflow program text for the detector. More info at <https://developers.signalfx.com/docs/signalflow-overview>.`,
+					Description: `(Required) Signalflow program text for the detector. More info at <https://developers.signalfx.com/signalflow_analytics/signalflow_overview.html>.`,
 				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description of the detector.`,
+				},
+				resource.Attribute{
+					Name:        "authorized_writer_teams",
+					Description: `(Optional) Team IDs that have write access to this detector. Remember to use an admin's token if using this feature and to include that admin's team (or user id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "authorized_writer_users",
+					Description: `(Optional) User IDs that have write access to this detector. Remember to use an admin's token if using this feature and to include that admin's user id (or team id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "max_delay",
@@ -520,7 +671,7 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "time_range",
-					Description: `(Optional) From when to display data. SignalFx time syntax (e.g. ` + "`" + `"-5m"` + "`" + `, ` + "`" + `"-1h"` + "`" + `). Conflicts with ` + "`" + `start_time` + "`" + ` and ` + "`" + `end_time` + "`" + `.`,
+					Description: `(Optional) Seconds to display in the visualization. This is a rolling range from the current time. Example: 3600 = ` + "`" + `-1h` + "`" + `. Defaults to 3600.`,
 				},
 				resource.Attribute{
 					Name:        "start_time",
@@ -532,7 +683,7 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "teams",
-					Description: `(Optional) Team IDs to associcate the detector to.`,
+					Description: `(Optional) Team IDs to associate the detector to.`,
 				},
 				resource.Attribute{
 					Name:        "rule",
@@ -726,7 +877,7 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				},
 				resource.Attribute{
 					Name:        "color_range",
-					Description: `(Optional. Conflicts with color_scale) Values and color for the color range. Example: ` + "`" + `color_range : { min : 0, max : 100, color : "#0000ff" }` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
+					Description: `(Required unless using ` + "`" + `color_scale` + "`" + `. Conflicts with ` + "`" + `color_scale` + "`" + `) Values and color for the color range. Example: ` + "`" + `color_range : { min : 0, max : 100, color : "#0000ff" }` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
 				},
 				resource.Attribute{
 					Name:        "min_value",
@@ -739,6 +890,98 @@ This chart type displays the specified plot in a heatmap fashion. This format is
 				resource.Attribute{
 					Name:        "color",
 					Description: `(Required) The color range to use. The starting hex color value for data values in a heatmap chart. Specify the value as a 6-character hexadecimal value preceded by the '#' character, for example "#ea1849" (grass green).`,
+				},
+				resource.Attribute{
+					Name:        "color_scale",
+					Description: `(Required unless using ` + "`" + `color_range` + "`" + `. Conflicts with ` + "`" + `color_range` + "`" + `) Single color range including both the color to display for that range and the borders of the range. Example: ` + "`" + `[{ gt = 60, color = "blue" }, { lte = 60, color = "yellow" }]` + "`" + `. Look at this [link](https://docs.signalfx.com/en/latest/charts/chart-options-tab.html).`,
+				},
+				resource.Attribute{
+					Name:        "gt",
+					Description: `(Optional) Indicates the lower threshold non-inclusive value for this range.`,
+				},
+				resource.Attribute{
+					Name:        "gte",
+					Description: `(Optional) Indicates the lower threshold inclusive value for this range.`,
+				},
+				resource.Attribute{
+					Name:        "lt",
+					Description: `(Optional) Indicates the upper threshold non-inculsive value for this range.`,
+				},
+				resource.Attribute{
+					Name:        "lte",
+					Description: `(Optional) Indicates the upper threshold inclusive value for this range.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Required) The color range to use. Must be either gray, blue, navy, orange, yellow, magenta, purple, violet, lilac, green, aquamarine.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_jira_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx Jira Integrations`,
+			Description: `
+
+SignalFx Jira integrations. For help with this integration see [Integration with Jira](https://docs.signalfx.com/en/latest/admin-guide/integrate-notifications.html#integrate-with-jira).
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"jira",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "auth_method",
+					Description: `(Required) Authentication method used when creating the Jira integration. One of ` + "`" + `EmailAndToken` + "`" + ` (using ` + "`" + `user_email` + "`" + ` and ` + "`" + `api_token` + "`" + `) or ` + "`" + `UsernameAndPassword` + "`" + ` (using ` + "`" + `username` + "`" + ` and ` + "`" + `password` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "api_token",
+					Description: `(Required if ` + "`" + `auth_method` + "`" + ` is ` + "`" + `EmailAndToken` + "`" + `) The API token for the user email`,
+				},
+				resource.Attribute{
+					Name:        "user_email",
+					Description: `(Required if ` + "`" + `auth_method` + "`" + ` is ` + "`" + `EmailAndToken` + "`" + `) Email address used to authenticate the Jira integration.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required if ` + "`" + `auth_method` + "`" + ` is ` + "`" + `UsernameAndPassword` + "`" + `) User name used to authenticate the Jira integration.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required if ` + "`" + `auth_method` + "`" + ` is ` + "`" + `UsernameAndPassword` + "`" + `) Password used to authenticate the Jira integration.`,
+				},
+				resource.Attribute{
+					Name:        "base_url",
+					Description: `(Required) Base URL of the Jira instance that's integrated with SignalFx.`,
+				},
+				resource.Attribute{
+					Name:        "issue_type",
+					Description: `(Required) Issue type (for example, Story) for tickets that Jira creates for detector notifications. SignalFx validates issue types, so you must specify a type that's valid for the Jira project specified in ` + "`" + `projectKey` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "project_key",
+					Description: `(Required) Jira key of an existing project. When Jira creates a new ticket for a detector notification, the ticket is assigned to this project.`,
+				},
+				resource.Attribute{
+					Name:        "assignee_name",
+					Description: `(Required) Jira user name for the assignee.`,
+				},
+				resource.Attribute{
+					Name:        "assignee_display_name",
+					Description: `(Optional) Jira display name for the assignee.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -779,7 +1022,7 @@ The name of each value in the chart reflects the name of the plot and any associ
 				},
 				resource.Attribute{
 					Name:        "color_by",
-					Description: `(Optional) Must be ` + "`" + `"Dimension"` + "`" + ` or ` + "`" + `"Metric"` + "`" + `. ` + "`" + `"Dimension"` + "`" + ` by default.`,
+					Description: `(Optional) Must be one of ` + "`" + `"Scale"` + "`" + `, ` + "`" + `"Dimension"` + "`" + ` or ` + "`" + `"Metric"` + "`" + `. ` + "`" + `"Dimension"` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "max_delay",
@@ -1149,6 +1392,61 @@ SignalFx Slack integration.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "signalfx_team",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx teams`,
+			Description: `
+
+Handles management of SignalFx teams.
+
+You can configure [team notification policies](https://docs.signalfx.com/en/latest/managing/teams/team-notifications.html) using this resource and the various ` + "`" + `notifications_*` + "`" + ` properties.
+
+`,
+			Keywords: []string{
+				"team",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the team.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the team.`,
+				},
+				resource.Attribute{
+					Name:        "members",
+					Description: `(Optional) List of user IDs to include in the team.`,
+				},
+				resource.Attribute{
+					Name:        "notifications_critical",
+					Description: `(Optional) Where to send notifications for critical alerts`,
+				},
+				resource.Attribute{
+					Name:        "notifications_default",
+					Description: `(Optional) Where to send notifications for default alerts`,
+				},
+				resource.Attribute{
+					Name:        "notifications_info",
+					Description: `(Optional) Where to send notifications for info alerts`,
+				},
+				resource.Attribute{
+					Name:        "notifications_major",
+					Description: `(Optional) Where to send notifications for major alerts`,
+				},
+				resource.Attribute{
+					Name:        "notifications_minor",
+					Description: `(Optional) Where to send notifications for minor alerts`,
+				},
+				resource.Attribute{
+					Name:        "notifications_warning",
+					Description: `(Optional) Where to send notifications for warning alerts`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "signalfx_text_chart",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create and manage SignalFx text notes`,
@@ -1430,23 +1728,28 @@ SignalFx VictorOps integration.
 
 	resourcesMap = map[string]int{
 
-		"signalfx_aws_integration":        0,
-		"signalfx_azure_integration":      1,
-		"signalfx_dashboard":              2,
-		"signalfx_dashboard_group":        3,
-		"signalfx_detector":               4,
-		"signalfx_event_feed_chart":       5,
-		"signalfx_gcp_integration":        6,
-		"signalfx_heatmap_chart":          7,
-		"signalfx_list_chart":             8,
-		"signalfx_opsgenie_integration":   9,
-		"signalfx_org_token":              10,
-		"signalfx_pagerduty_integration":  11,
-		"signalfx_single_value_chart":     12,
-		"signalfx_slack_integration":      13,
-		"signalfx_text_chart":             14,
-		"signalfx_time_chart":             15,
-		"signalfx_victor_ops_integration": 16,
+		"signalfx_alert_muting_rule":        0,
+		"signalfx_aws_external_integration": 1,
+		"signalfx_aws_integration":          2,
+		"signalfx_aws_token_integration":    3,
+		"signalfx_azure_integration":        4,
+		"signalfx_dashboard":                5,
+		"signalfx_dashboard_group":          6,
+		"signalfx_detector":                 7,
+		"signalfx_event_feed_chart":         8,
+		"signalfx_gcp_integration":          9,
+		"signalfx_heatmap_chart":            10,
+		"signalfx_jira_integration":         11,
+		"signalfx_list_chart":               12,
+		"signalfx_opsgenie_integration":     13,
+		"signalfx_org_token":                14,
+		"signalfx_pagerduty_integration":    15,
+		"signalfx_single_value_chart":       16,
+		"signalfx_slack_integration":        17,
+		"signalfx_team":                     18,
+		"signalfx_text_chart":               19,
+		"signalfx_time_chart":               20,
+		"signalfx_victor_ops_integration":   21,
 	}
 )
 

@@ -119,6 +119,10 @@ var (
 					Name:        "external_apig_endpoint",
 					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
 				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group ID of the cluster.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -172,6 +176,34 @@ var (
 				resource.Attribute{
 					Name:        "external_apig_endpoint",
 					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group ID of the cluster.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_cce_node_ids_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of node Ids for a CCE cluster.`,
+			Description: `
+
+` + "`" + `flexibleengine_cce_node_ids_v3` + "`" + ` provides a list of node ids for a CCE cluster. This resource can be useful for getting back a list of node ids for a CCE cluster.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of all the node ids found. This data source will fail if none are found.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of all the node ids found. This data source will fail if none are found.`,
 				},
 			},
 		},
@@ -1316,6 +1348,78 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "node_num",
 					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_dds_flavors_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get the flavor information on FlexibleEngine DDS service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V3 dds client.`,
+				},
+				resource.Attribute{
+					Name:        "engine_name",
+					Description: `(Optional) The engine name of the dds, now only DDS-Community is supported.`,
+				},
+				resource.Attribute{
+					Name:        "speccode",
+					Description: `(Optional) The spec code of a dds flavor. ## Available value for attributes engine_name | type | vcpus | ram | speccode ---- | --- | --- DDS-Community | mongos | 1 | 4 | dds.mongodb.s3.medium.4.mongos DDS-Community | mongos | 2 | 8 | dds.mongodb.s3.large.4.mongos DDS-Community | mongos | 4 | 16 | dds.mongodb.s3.xlarge.4.mongos DDS-Community | mongos | 8 | 32 | dds.mongodb.s3.2xlarge.4.mongos DDS-Community | mongos | 16 | 64 | dds.mongodb.s3.4xlarge.4.mongos DDS-Community | shard | 1 | 4 | dds.mongodb.s3.medium.4.shard DDS-Community | shard | 2 | 8 | dds.mongodb.s3.large.4.shard DDS-Community | shard | 4 | 16 | dds.mongodb.s3.xlarge.4.shard DDS-Community | shard | 8 | 32 | dds.mongodb.s3.2xlarge.4.shard DDS-Community | shard | 16 | 64 | dds.mongodb.s3.4xlarge.4.shard DDS-Community | config | 2 | 4 | dds.mongodb.s3.large.2.config DDS-Community | replica | 1 | 4 | dds.mongodb.s3.medium.4.repset DDS-Community | replica | 2 | 8 | dds.mongodb.s3.large.4.repset DDS-Community | replica | 4 | 16 | dds.mongodb.s3.xlarge.4.repset DDS-Community | replica | 8 | 32 | dds.mongodb.s3.2xlarge.4.repset DDS-Community | replica | 16 | 64 | dds.mongodb.s3.4xlarge.4.repset ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "speccode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The vcpus of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The ram of the dds flavor.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "engine_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "speccode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The vcpus of the dds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `The ram of the dds flavor.`,
 				},
 			},
 		},
@@ -2935,38 +3039,40 @@ VPC that the subnet belongs to.
 
 		"flexibleengine_blockstorage_volume_v2":    0,
 		"flexibleengine_cce_cluster_v3":            1,
-		"flexibleengine_cce_node_v3":               2,
-		"flexibleengine_compute_bms_flavors_v2":    3,
-		"flexibleengine_compute_bms_keypairs_v2":   4,
-		"flexibleengine_compute_bms_nic_v2":        5,
-		"flexibleengine_compute_bms_server_v2":     6,
-		"flexibleengine_csbs_backup_policy_v1":     7,
-		"flexibleengine_csbs_backup_v1":            8,
-		"flexibleengine_cts_tracker_v1":            9,
-		"flexibleengine_dcs_az_v1":                 10,
-		"flexibleengine_dcs_maintainwindow_v1":     11,
-		"flexibleengine_dcs_product_v1":            12,
-		"flexibleengine_dns_zone_v2":               13,
-		"flexibleengine_images_image_v2":           14,
-		"flexibleengine_kms_data_key_v1":           15,
-		"flexibleengine_kms_key_v1":                16,
-		"flexibleengine_networking_network_v2":     17,
-		"flexibleengine_networking_secgroup_v2":    18,
-		"flexibleengine_rds_flavors_v1":            19,
-		"flexibleengine_rds_flavors_v3":            20,
-		"flexibleengine_rts_software_config_v1":    21,
-		"flexibleengine_rts_stack_resource_v1":     22,
-		"flexibleengine_rts_stack_v1":              23,
-		"flexibleengine_s3_bucket_object":          24,
-		"flexibleengine_sfs_file_system_v2":        25,
-		"flexibleengine_vbs_backup_policy_v2":      26,
-		"flexibleengine_vbs_backup_v2":             27,
-		"flexibleengine_vpc_peering_connection_v2": 28,
-		"flexibleengine_vpc_route_ids_v2":          29,
-		"flexibleengine_vpc_route_v2":              30,
-		"flexibleengine_vpc_subnet_ids_v1":         31,
-		"flexibleengine_vpc_subnet_v1":             32,
-		"flexibleengine_vpc_v1":                    33,
+		"flexibleengine_cce_node_ids_v3":           2,
+		"flexibleengine_cce_node_v3":               3,
+		"flexibleengine_compute_bms_flavors_v2":    4,
+		"flexibleengine_compute_bms_keypairs_v2":   5,
+		"flexibleengine_compute_bms_nic_v2":        6,
+		"flexibleengine_compute_bms_server_v2":     7,
+		"flexibleengine_csbs_backup_policy_v1":     8,
+		"flexibleengine_csbs_backup_v1":            9,
+		"flexibleengine_cts_tracker_v1":            10,
+		"flexibleengine_dcs_az_v1":                 11,
+		"flexibleengine_dcs_maintainwindow_v1":     12,
+		"flexibleengine_dcs_product_v1":            13,
+		"flexibleengine_dds_flavors_v3":            14,
+		"flexibleengine_dns_zone_v2":               15,
+		"flexibleengine_images_image_v2":           16,
+		"flexibleengine_kms_data_key_v1":           17,
+		"flexibleengine_kms_key_v1":                18,
+		"flexibleengine_networking_network_v2":     19,
+		"flexibleengine_networking_secgroup_v2":    20,
+		"flexibleengine_rds_flavors_v1":            21,
+		"flexibleengine_rds_flavors_v3":            22,
+		"flexibleengine_rts_software_config_v1":    23,
+		"flexibleengine_rts_stack_resource_v1":     24,
+		"flexibleengine_rts_stack_v1":              25,
+		"flexibleengine_s3_bucket_object":          26,
+		"flexibleengine_sfs_file_system_v2":        27,
+		"flexibleengine_vbs_backup_policy_v2":      28,
+		"flexibleengine_vbs_backup_v2":             29,
+		"flexibleengine_vpc_peering_connection_v2": 30,
+		"flexibleengine_vpc_route_ids_v2":          31,
+		"flexibleengine_vpc_route_v2":              32,
+		"flexibleengine_vpc_subnet_ids_v1":         33,
+		"flexibleengine_vpc_subnet_v1":             34,
+		"flexibleengine_vpc_v1":                    35,
 	}
 )
 

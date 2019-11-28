@@ -1007,7 +1007,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A unique name to identify this dictionary. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+					Description: `(Required) A unique name to identify this dictionary.`,
+				},
+				resource.Attribute{
+					Name:        "write_only",
+					Description: `(Optional) If ` + "`" + `true` + "`" + `, the dictionary is a private dictionary, and items are not readable in the UI or via API. Default is ` + "`" + `false` + "`" + `. It is important to note that changing this attribute will delete and recreate the dictionary, discard the current items in the dictionary. Using a write-only/private dictionary should only be done if the items are managed outside of Terraform. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cloned_version",
+					Description: `The latest cloned version by the provider. The value gets only set after running ` + "`" + `terraform apply` + "`" + `. The ` + "`" + `dynamicsnippet` + "`" + ` block exports:`,
 				},
 				resource.Attribute{
 					Name:        "snippet_id",
@@ -1023,6 +1031,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cloned_version",
+					Description: `The latest cloned version by the provider. The value gets only set after running ` + "`" + `terraform apply` + "`" + `. The ` + "`" + `dynamicsnippet` + "`" + ` block exports:`,
+				},
 				resource.Attribute{
 					Name:        "snippet_id",
 					Description: `The ID of the dynamic snippet. The ` + "`" + `acl` + "`" + ` block exports:`,

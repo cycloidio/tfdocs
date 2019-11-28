@@ -71,6 +71,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gitlab_deploy_key_enable",
+			Category:         "Resources",
+			ShortDescription: `Enable a pre-existing deploy key in the project`,
+			Description:      ``,
+			Keywords: []string{
+				"deploy",
+				"key",
+				"enable",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Required, string) The name or id of the project to add the deploy key to.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `(Required, string) The Gitlab key id for the pre-existing deploy key ## Import GitLab enabled deploy keys can be imported using an id made up of ` + "`" + `{project_id}:{deploy_key_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_deploy_key_enable.example 12345:67890 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gitlab_group",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages GitLab groups`,
@@ -164,11 +187,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Required) Acceptable values are: guest, reporter, developer, master.`,
+					Description: `(Required) Acceptable values are: guest, reporter, developer, master, owner.`,
 				},
 				resource.Attribute{
 					Name:        "expires_at",
-					Description: `(Optional) Expiration date for the group membership. Format: ` + "`" + `YYYY-MM-DD` + "`" + ` ## Import GitLab group membership can be imported using an id made up of ` + "`" + `groupid:username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_group_membership.test 12345:1337 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Expiration date for the group membership. Format: ` + "`" + `YYYY-MM-DD` + "`" + ` ## Import GitLab group membership can be imported using an id made up of ` + "`" + `group_id:user_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_group_membership.test "12345:1337" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -195,6 +218,10 @@ var (
 				resource.Attribute{
 					Name:        "value",
 					Description: `(Required, string) The value of the variable.`,
+				},
+				resource.Attribute{
+					Name:        "variable_type",
+					Description: `(Optional, string) The type of a variable. Available types are: env_var (default) and file.`,
 				},
 				resource.Attribute{
 					Name:        "protected",
@@ -393,7 +420,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "archived",
-					Description: `(Optional) Whether the project is in read-only mode (archived). Repositories can be archived/unarchived by toggling this parameter. ## Attributes Reference The following additional attributes are exported:`,
+					Description: `(Optional) Whether the project is in read-only mode (archived). Repositories can be archived/unarchived by toggling this parameter.`,
+				},
+				resource.Attribute{
+					Name:        "initialize_with_readme",
+					Description: `(Optional) Create master branch with first commit containing a README.md file. ## Attributes Reference The following additional attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -605,7 +636,98 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Required) One of five levels of access to the project. ## Import GitLab group membership can be imported using an id made up of ` + "`" + `groupid:username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_membership.test 12345:1337`,
+					Description: `(Required) One of five levels of access to the project. ## Import GitLab group membership can be imported using an id made up of ` + "`" + `group_id:user_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_membership.test "12345:1337" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gitlab_project_push_rules",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages push rules for GitLab projects`,
+			Description:      ``,
+			Keywords: []string{
+				"project",
+				"push",
+				"rules",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Required, string) The name or id of the project to add the push rules to.`,
+				},
+				resource.Attribute{
+					Name:        "commit_message_regex",
+					Description: `(Optional, string) All commit messages must match this regex, e.g. "Fixed \d+\..`,
+				},
+				resource.Attribute{
+					Name:        "deny_delete_tag",
+					Description: `(Optional, bool) Deny deleting a tag`,
+				},
+				resource.Attribute{
+					Name:        "member_check",
+					Description: `(Optional, bool) Restrict commits by author (email) to existing GitLab users`,
+				},
+				resource.Attribute{
+					Name:        "prevent_secrets",
+					Description: `(Optional, bool) GitLab will reject any files that are likely to contain secrets`,
+				},
+				resource.Attribute{
+					Name:        "branch_name_regex",
+					Description: `(Optional, string) All branch names must match this regex, e.g. "(feature|hotfix)\/`,
+				},
+				resource.Attribute{
+					Name:        "author_email_regex",
+					Description: `(Optional, string) All commit author emails must match this regex, e.g. "@my-company.com$"`,
+				},
+				resource.Attribute{
+					Name:        "file_name_regex",
+					Description: `(Optional, string) All commited filenames must not match this regex, e.g. "(jar|exe)$"`,
+				},
+				resource.Attribute{
+					Name:        "max_file_size",
+					Description: `(Optional, int) Maximum file size (MB)`,
+				},
+				resource.Attribute{
+					Name:        "commit_committer_check",
+					Description: `(Optional, bool) Users can only push commits to this repository that were committed with one of their own verified emails ## Attributes Reference The resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique id assigned to the push rules by the GitLab server.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique id assigned to the push rules by the GitLab server.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gitlab_project_share_group",
+			Category:         "Resources",
+			ShortDescription: `Shares a project with a group`,
+			Description:      ``,
+			Keywords: []string{
+				"project",
+				"share",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The id of the project.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) The id of the group.`,
+				},
+				resource.Attribute{
+					Name:        "access_level",
+					Description: `(Required) One of five levels of access to the project. ## Import GitLab project group shares can be imported using an id made up of ` + "`" + `projectid:groupid` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_share_group.test 12345:1337 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -634,8 +756,20 @@ var (
 					Description: `(Required, string) The value of the variable.`,
 				},
 				resource.Attribute{
+					Name:        "variable_type",
+					Description: `(Optional, string) The type of a variable. Available types are: env_var (default) and file.`,
+				},
+				resource.Attribute{
 					Name:        "protected",
-					Description: `(Optional, boolean) If set to ` + "`" + `true` + "`" + `, the variable will be passed only to pipelines running on protected branches and tags. Defaults to ` + "`" + `false` + "`" + `. ## Import GitLab project variables can be imported using an id made up of ` + "`" + `projectid:variablename` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_variable.example 12345:project_variable_key ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, boolean) If set to ` + "`" + `true` + "`" + `, the variable will be passed only to pipelines running on protected branches and tags. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "masked",
+					Description: `(Optional, boolean) If set to ` + "`" + `true` + "`" + `, the variable will be masked if it would have been written to the logs. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "environment_scope",
+					Description: `(Optional, string) The environment_scope of the variable ## Import GitLab project variables can be imported using an id made up of ` + "`" + `projectid:variablename` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import gitlab_project_variable.example 12345:project_variable_key ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -868,23 +1002,26 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"gitlab_branch_protection":  0,
-		"gitlab_deploy_key":         1,
-		"gitlab_group":              2,
-		"gitlab_group_membership":   3,
-		"gitlab_group_variable":     4,
-		"gitlab_label":              5,
-		"gitlab_pipeline_schedule":  6,
-		"gitlab_pipeline_trigger":   7,
-		"gitlab_project":            8,
-		"gitlab_project_cluster":    9,
-		"gitlab_project_hook":       10,
-		"gitlab_project_membership": 11,
-		"gitlab_project_variable":   12,
-		"gitlab_service_jira":       13,
-		"gitlab_service_slack":      14,
-		"gitlab_tag_protection":     15,
-		"gitlab_user":               16,
+		"gitlab_branch_protection":   0,
+		"gitlab_deploy_key":          1,
+		"gitlab_deploy_key_enable":   2,
+		"gitlab_group":               3,
+		"gitlab_group_membership":    4,
+		"gitlab_group_variable":      5,
+		"gitlab_label":               6,
+		"gitlab_pipeline_schedule":   7,
+		"gitlab_pipeline_trigger":    8,
+		"gitlab_project":             9,
+		"gitlab_project_cluster":     10,
+		"gitlab_project_hook":        11,
+		"gitlab_project_membership":  12,
+		"gitlab_project_push_rules":  13,
+		"gitlab_project_share_group": 14,
+		"gitlab_project_variable":    15,
+		"gitlab_service_jira":        16,
+		"gitlab_service_slack":       17,
+		"gitlab_tag_protection":      18,
+		"gitlab_user":                19,
 	}
 )
 

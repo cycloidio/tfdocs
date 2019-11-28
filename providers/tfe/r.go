@@ -548,6 +548,10 @@ var (
 					Description: `(Optional) Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "operations",
+					Description: `(Optional) Whether to use remote execution mode. When set to ` + "`" + `false` + "`" + `, the workspace will be used for state storage only. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "queue_all_runs",
 					Description: `(Optional) Whether all runs should be queued. When set to ` + "`" + `false` + "`" + `, runs triggered by a VCS change will not be queued until at least one run is manually queued. Defaults to ` + "`" + `true` + "`" + `.`,
 				},

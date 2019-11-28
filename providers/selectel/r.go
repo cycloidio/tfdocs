@@ -11,71 +11,6 @@ var (
 
 		&resource.Resource{
 			Name:             "",
-			Type:             "selectel_vpc_crossregion_subnet_v2",
-			Category:         "VPC Resources",
-			ShortDescription: `Manages a V2 Cross-region subnet resource within VPC Selectel VPC.`,
-			Description:      ``,
-			Keywords: []string{
-				"vpc",
-				"crossregion",
-				"subnet",
-				"v2",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) An associated Selectel VPC project. Changing this creates a new Cross-region subnet.`,
-				},
-				resource.Attribute{
-					Name:        "regions",
-					Description: `(Required) An array of regions where the Cross-region subnet resides. Changing this creates a new Cross-region subnet. The structure is described below.`,
-				},
-				resource.Attribute{
-					Name:        "cidr",
-					Description: `(Required) A cross-region subnet CIDR representation. Changing this creates a new Cross-region subnet. The ` + "`" + `regions` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "region",
-					Description: `(Required) A region of where the Cross-region subnet resides. Changing this creates a new Cross-region subnet. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "servers",
-					Description: `Shows information about servers that use this Cross-region subnet. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Shows if the Cross-region subnet is used or not.`,
-				},
-				resource.Attribute{
-					Name:        "subnets",
-					Description: `Shows information about OpenStack Networking subnets that use this Cross-region subnet. Contains ` + "`" + `cidr` + "`" + `, ` + "`" + `network_id` + "`" + `, ` + "`" + `project_id` + "`" + `, ` + "`" + `region` + "`" + `, ` + "`" + `subnet_id` + "`" + `, ` + "`" + `vlan_id` + "`" + ` and ` + "`" + `vtep_ip_address` + "`" + ` fields.`,
-				},
-				resource.Attribute{
-					Name:        "vlan_id",
-					Description: `Shows id of the associated VLAN in the OpenStack Networking service for this Cross-region subnet. ## Import Cross-region subnets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_crossregion_subnet_v2.crossregion_subnet_1 2060 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "servers",
-					Description: `Shows information about servers that use this Cross-region subnet. Contains ` + "`" + `id` + "`" + `, ` + "`" + `name` + "`" + ` and ` + "`" + `status` + "`" + ` fields.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Shows if the Cross-region subnet is used or not.`,
-				},
-				resource.Attribute{
-					Name:        "subnets",
-					Description: `Shows information about OpenStack Networking subnets that use this Cross-region subnet. Contains ` + "`" + `cidr` + "`" + `, ` + "`" + `network_id` + "`" + `, ` + "`" + `project_id` + "`" + `, ` + "`" + `region` + "`" + `, ` + "`" + `subnet_id` + "`" + `, ` + "`" + `vlan_id` + "`" + ` and ` + "`" + `vtep_ip_address` + "`" + ` fields.`,
-				},
-				resource.Attribute{
-					Name:        "vlan_id",
-					Description: `Shows id of the associated VLAN in the OpenStack Networking service for this Cross-region subnet. ## Import Cross-region subnets can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ env SEL_TOKEN=SELECTEL_API_TOKEN terraform import selectel_vpc_crossregion_subnet_v2.crossregion_subnet_1 2060 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "selectel_vpc_floatingip_v2",
 			Category:         "VPC Resources",
 			ShortDescription: `Manages a V2 floating IP resource within Selectel VPC.`,
@@ -519,16 +454,15 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"selectel_vpc_crossregion_subnet_v2": 0,
-		"selectel_vpc_floatingip_v2":         1,
-		"selectel_vpc_keypair_v2":            2,
-		"selectel_vpc_license_v2":            3,
-		"selectel_vpc_project_v2":            4,
-		"selectel_vpc_role_v2":               5,
-		"selectel_vpc_subnet_v2":             6,
-		"selectel_vpc_token_v2":              7,
-		"selectel_vpc_user_v2":               8,
-		"selectel_vpc_vrrp_subnet_v2":        9,
+		"selectel_vpc_floatingip_v2":  0,
+		"selectel_vpc_keypair_v2":     1,
+		"selectel_vpc_license_v2":     2,
+		"selectel_vpc_project_v2":     3,
+		"selectel_vpc_role_v2":        4,
+		"selectel_vpc_subnet_v2":      5,
+		"selectel_vpc_token_v2":       6,
+		"selectel_vpc_user_v2":        7,
+		"selectel_vpc_vrrp_subnet_v2": 8,
 	}
 )
 

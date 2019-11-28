@@ -76,6 +76,10 @@ var (
 					Description: `(Required) The metric field accepts parameters based on the ` + "`" + `type` + "`" + ` set.`,
 				},
 				resource.Attribute{
+					Name:        "condition_scope",
+					Description: `(Required) ` + "`" + `application` + "`" + ` or ` + "`" + `instance` + "`" + `. Choose ` + "`" + `application` + "`" + ` for most scenarios. If you are using the JVM plugin in New Relic, the ` + "`" + `instance` + "`" + ` setting allows your condition to trigger [for specific app instances](https://docs.newrelic.com/docs/alerts/new-relic-alerts/defining-conditions/scope-alert-thresholds-specific-instances).`,
+				},
+				resource.Attribute{
 					Name:        "gc_metric",
 					Description: `(Optional) A valid Garbage Collection metric e.g. ` + "`" + `GC/G1 Young Generation` + "`" + `. This is required if you are using ` + "`" + `apm_jvm_metric` + "`" + ` with ` + "`" + `gc_cpu_time` + "`" + ` condition type.`,
 				},
@@ -86,10 +90,6 @@ var (
 				resource.Attribute{
 					Name:        "runbook_url",
 					Description: `(Optional) Runbook URL to display in notifications.`,
-				},
-				resource.Attribute{
-					Name:        "condition_scope",
-					Description: `(Optional) ` + "`" + `instance` + "`" + ` or ` + "`" + `application` + "`" + `. This is required if you are using the JVM plugin in New Relic.`,
 				},
 				resource.Attribute{
 					Name:        "term",
@@ -105,7 +105,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "duration",
-					Description: `(Required) In minutes, must be: ` + "`" + `5` + "`" + `, ` + "`" + `10` + "`" + `, ` + "`" + `15` + "`" + `, ` + "`" + `30` + "`" + `, ` + "`" + `60` + "`" + `, or ` + "`" + `120` + "`" + `.`,
+					Description: `(Required) In minutes, must be in the range of ` + "`" + `5` + "`" + ` to ` + "`" + `120` + "`" + `, inclusive.`,
 				},
 				resource.Attribute{
 					Name:        "operator",
@@ -221,19 +221,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "icon",
-					Description: `(Optional) The icon for the dashboard. Defaults to ` + "`" + `bar-chart` + "`" + `.`,
+					Description: `(Optional) The icon for the dashboard. Valid values are ` + "`" + `adjust` + "`" + `, ` + "`" + `archive` + "`" + `, ` + "`" + `bar-chart` + "`" + `, ` + "`" + `bell` + "`" + `, ` + "`" + `bolt` + "`" + `, ` + "`" + `bug` + "`" + `, ` + "`" + `bullhorn` + "`" + `, ` + "`" + `bullseye` + "`" + `, ` + "`" + `clock-o` + "`" + `, ` + "`" + `cloud` + "`" + `, ` + "`" + `cog` + "`" + `, ` + "`" + `comments-o` + "`" + `, ` + "`" + `crosshairs` + "`" + `, ` + "`" + `dashboard` + "`" + `, ` + "`" + `envelope` + "`" + `, ` + "`" + `fire` + "`" + `, ` + "`" + `flag` + "`" + `, ` + "`" + `flask` + "`" + `, ` + "`" + `globe` + "`" + `, ` + "`" + `heart` + "`" + `, ` + "`" + `leaf` + "`" + `, ` + "`" + `legal` + "`" + `, ` + "`" + `life-ring` + "`" + `, ` + "`" + `line-chart` + "`" + `, ` + "`" + `magic` + "`" + `, ` + "`" + `mobile` + "`" + `, ` + "`" + `money` + "`" + `, ` + "`" + `none` + "`" + `, ` + "`" + `paper-plane` + "`" + `, ` + "`" + `pie-chart` + "`" + `, ` + "`" + `puzzle-piece` + "`" + `, ` + "`" + `road` + "`" + `, ` + "`" + `rocket` + "`" + `, ` + "`" + `shopping-cart` + "`" + `, ` + "`" + `sitemap` + "`" + `, ` + "`" + `sliders` + "`" + `, ` + "`" + `tablet` + "`" + `, ` + "`" + `thumbs-down` + "`" + `, ` + "`" + `thumbs-up` + "`" + `, ` + "`" + `trophy` + "`" + `, ` + "`" + `usd` + "`" + `, ` + "`" + `user` + "`" + `, and ` + "`" + `users` + "`" + `. Defaults to ` + "`" + `bar-chart` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "visibility",
-					Description: `(Optional) Who can see the dashboard in an account. Must be ` + "`" + `owner` + "`" + ` or ` + "`" + `all` + "`" + `. Defaults to ` + "`" + `all` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "widget",
-					Description: `(Optional) A widget that describes a visualization. See [Widgets](#widgets) below for details.`,
+					Description: `(Optional) Determines who can see the dashboard in an account. Valid values are ` + "`" + `all` + "`" + ` or ` + "`" + `owner` + "`" + `. Defaults to ` + "`" + `all` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "editable",
-					Description: `(Optional) Who can edit the dashboard in an account. Must be ` + "`" + `read_only` + "`" + `, ` + "`" + `editable_by_owner` + "`" + `, ` + "`" + `editable_by_all` + "`" + `, or ` + "`" + `all` + "`" + `. Defaults to ` + "`" + `editable_by_all` + "`" + `. ## Widgets The ` + "`" + `widget` + "`" + ` mapping supports the following arguments:`,
+					Description: `(Optional) Determines who can edit the dashboard in an account. Valid values are ` + "`" + `all` + "`" + `, ` + "`" + `editable_by_all` + "`" + `, ` + "`" + `editable_by_owner` + "`" + `, or ` + "`" + `read_only` + "`" + `. Defaults to ` + "`" + `editable_by_all` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "widget",
+					Description: `(Optional) A nested block that describes a visualization. Up to 300 ` + "`" + `widget` + "`" + ` blocks are allowed in a dashboard definition. See [Nested widget blocks](#nested-` + "`" + `widget` + "`" + `-blocks) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A nested block that describes a dashboard filter. Exactly one nested ` + "`" + `filter` + "`" + ` block is allowed. See [Nested filter block](#nested-` + "`" + `filter` + "`" + `-block) below for details. ### Nested ` + "`" + `widget` + "`" + ` blocks All nested ` + "`" + `widget` + "`" + ` blocks support the following common arguments:`,
 				},
 				resource.Attribute{
 					Name:        "title",
@@ -241,7 +245,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "visualization",
-					Description: `(Required) How the widget visualizes data.`,
+					Description: `(Required) How the widget visualizes data. Valid values are ` + "`" + `billboard` + "`" + `, ` + "`" + `gauge` + "`" + `, ` + "`" + `billboard_comparison` + "`" + `, ` + "`" + `facet_bar_chart` + "`" + `, ` + "`" + `faceted_line_chart` + "`" + `, ` + "`" + `facet_pie_chart` + "`" + `, ` + "`" + `facet_table` + "`" + `, ` + "`" + `faceted_area_chart` + "`" + `, ` + "`" + `heatmap` + "`" + `, ` + "`" + `attribute_sheet` + "`" + `, ` + "`" + `single_event` + "`" + `, ` + "`" + `histogram` + "`" + `, ` + "`" + `funnel` + "`" + `, ` + "`" + `raw_json` + "`" + `, ` + "`" + `event_feed` + "`" + `, ` + "`" + `event_table` + "`" + `, ` + "`" + `uniques_list` + "`" + `, ` + "`" + `line_chart` + "`" + `, ` + "`" + `comparison_line_chart` + "`" + `, ` + "`" + `markdown` + "`" + `, and ` + "`" + `metric_line_chart` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "row",
@@ -253,31 +257,98 @@ var (
 				},
 				resource.Attribute{
 					Name:        "width",
-					Description: `(Optional) Width of the widget. Defaults to ` + "`" + `1` + "`" + `.`,
+					Description: `(Optional) Width of the widget. Valid values are ` + "`" + `1` + "`" + ` to ` + "`" + `3` + "`" + ` inclusive. Defaults to ` + "`" + `1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "height",
-					Description: `(Optional) Height of the widget. Defaults to ` + "`" + `1` + "`" + `.`,
+					Description: `(Optional) Height of the widget. Valid values are ` + "`" + `1` + "`" + ` to ` + "`" + `3` + "`" + ` inclusive. Defaults to ` + "`" + `1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) Description of the widget.`,
+					Description: `(Optional) Description of the widget. Each visualization type supports an additional set of arguments:`,
 				},
 				resource.Attribute{
 					Name:        "nrql",
-					Description: `(Optional) Valid NRQL query string. See [Writing NRQL Queries](https://docs.newrelic.com/docs/insights/nrql-new-relic-query-language/using-nrql/introduction-nrql) for help. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Valid NRQL query string. See [Writing NRQL Queries](https://docs.newrelic.com/docs/insights/nrql-new-relic-query-language/using-nrql/introduction-nrql) for help.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the dashboard.`,
+					Name:        "threshold_red",
+					Description: `(Optional) Threshold above which the displayed value will be styled with a red color.`,
 				},
-			},
-			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the dashboard.`,
+					Name:        "threshold_yellow",
+					Description: `(Optional) Threshold above which the displayed value will be styled with a yellow color.`,
+				},
+				resource.Attribute{
+					Name:        "nrql",
+					Description: `(Required) Valid NRQL query string. See [Writing NRQL Queries](https://docs.newrelic.com/docs/insights/nrql-new-relic-query-language/using-nrql/introduction-nrql) for help.`,
+				},
+				resource.Attribute{
+					Name:        "threshold_red",
+					Description: `(Required) Threshold above which the displayed value will be styled with a red color.`,
+				},
+				resource.Attribute{
+					Name:        "threshold_yellow",
+					Description: `(Optional) Threshold above which the displayed value will be styled with a yellow color.`,
+				},
+				resource.Attribute{
+					Name:        "nrql",
+					Description: `(Required) Valid NRQL query string. See [Writing NRQL Queries](https://docs.newrelic.com/docs/insights/nrql-new-relic-query-language/using-nrql/introduction-nrql) for help.`,
+				},
+				resource.Attribute{
+					Name:        "drilldown_dashboard_id",
+					Description: `(Optional) The ID of a dashboard to link to from the widget's facets.`,
+				},
+				resource.Attribute{
+					Name:        "nrql",
+					Description: `(Required) Valid NRQL query string. See [Writing NRQL Queries](https://docs.newrelic.com/docs/insights/nrql-new-relic-query-language/using-nrql/introduction-nrql) for help.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) The markdown source to be rendered in the widget.`,
+				},
+				resource.Attribute{
+					Name:        "entity_ids",
+					Description: `(Required) A collection of entity ids to display data for. These are typically application IDs.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Required) A nested block that describes a metric. Nested ` + "`" + `metric` + "`" + ` blocks support the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The metric name to display.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) The metric values to display.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) The duration, in ms, of the time window represented in the chart.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Optional) The end time of the time window represented in the chart in epoch time. When not set, the time window will end at the current time.`,
+				},
+				resource.Attribute{
+					Name:        "facet",
+					Description: `(Optional) Can be set to "host" to facet the metric data by host.`,
+				},
+				resource.Attribute{
+					Name:        "limit",
+					Description: `(Optional) The limit of distinct data series to display. ### Nested ` + "`" + `filter` + "`" + ` block The optional filter block supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "event_types",
+					Description: `(Optional) A list of event types to enable filtering for.`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Optional) A list of attributes belonging to the specified event types to enable filtering for. ## Import New Relic dashboards can be imported using their ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_dashboard.my_dashboard 8675309 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -337,7 +408,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "integration_provider",
-					Description: `(Optional) For alerts on integrations, use this instead of ` + "`" + `event` + "`" + `. ## Thresholds The ` + "`" + `critical` + "`" + ` and ` + "`" + `warning` + "`" + ` threshold mapping supports the following arguments:`,
+					Description: `(Optional) For alerts on integrations, use this instead of ` + "`" + `event` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "runbook_url",
+					Description: `(Optional) Runbook URL to display in notifications. ## Thresholds The ` + "`" + `critical` + "`" + ` and ` + "`" + `warning` + "`" + ` threshold mapping supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "duration",
@@ -374,74 +449,8 @@ var (
 				"alert",
 				"condition",
 			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "policy_id",
-					Description: `(Required) The ID of the policy where this condition should be used.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The title of the condition`,
-				},
-				resource.Attribute{
-					Name:        "runbook_url",
-					Description: `(Optional) Runbook URL to display in notifications.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Optional) Set whether to enable the alert condition. Defaults to ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "term",
-					Description: `(Required) A list of terms for this condition. See [Terms](#terms) below for details.`,
-				},
-				resource.Attribute{
-					Name:        "nrql",
-					Description: `(Required) A NRQL query. See [NRQL](#nrql) below for details.`,
-				},
-				resource.Attribute{
-					Name:        "value_function",
-					Description: `(Optional) Possible values are ` + "`" + `single_value` + "`" + `, ` + "`" + `sum` + "`" + `. ## Terms The ` + "`" + `term` + "`" + ` mapping supports the following arguments:`,
-				},
-				resource.Attribute{
-					Name:        "duration",
-					Description: `(Required) In minutes, must be: ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `3` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `5` + "`" + `, ` + "`" + `10` + "`" + `, ` + "`" + `15` + "`" + `, ` + "`" + `30` + "`" + `, ` + "`" + `60` + "`" + `, or ` + "`" + `120` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "operator",
-					Description: `(Optional) ` + "`" + `above` + "`" + `, ` + "`" + `below` + "`" + `, or ` + "`" + `equal` + "`" + `. Defaults to ` + "`" + `equal` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "priority",
-					Description: `(Optional) ` + "`" + `critical` + "`" + ` or ` + "`" + `warning` + "`" + `. Defaults to ` + "`" + `critical` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "threshold",
-					Description: `(Required) Must be 0 or greater.`,
-				},
-				resource.Attribute{
-					Name:        "time_function",
-					Description: `(Required) ` + "`" + `all` + "`" + ` or ` + "`" + `any` + "`" + `. ## NRQL The ` + "`" + `nrql` + "`" + ` attribute supports the following arguments:`,
-				},
-				resource.Attribute{
-					Name:        "query",
-					Description: `(Required) The NRQL query to execute for the condition.`,
-				},
-				resource.Attribute{
-					Name:        "since_value",
-					Description: `(Required) The value to be used in the ` + "`" + `SINCE <X> MINUTES AGO` + "`" + ` clause for the NRQL query. Must be between ` + "`" + `1` + "`" + ` and ` + "`" + `20` + "`" + `. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the NRQL alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_nrql_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the NRQL alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_nrql_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -504,7 +513,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The monitor type.`,
+					Description: `(Required) The monitor type (i.e. SIMPLE, BROWSER, SCRIPT_API, SCRIPT_BROWSER).`,
 				},
 				resource.Attribute{
 					Name:        "frequency",
@@ -539,7 +548,7 @@ var (
 					Description: `(Optional) Bypass HEAD request.`,
 				},
 				resource.Attribute{
-					Name:        "treat_redirect_as_faiure",
+					Name:        "treat_redirect_as_failure",
 					Description: `(Optional) Fail the monitor check if redirected. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{

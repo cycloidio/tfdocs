@@ -142,6 +142,10 @@ Use this data source to get information about a workspace.
 					Description: `Indicates whether runs are triggered based on the changed files in a VCS push (if ` + "`" + `true` + "`" + `) or always triggered on every push (if ` + "`" + `false` + "`" + `).`,
 				},
 				resource.Attribute{
+					Name:        "operations",
+					Description: `Indicates whether the workspace is using remote execution mode.`,
+				},
+				resource.Attribute{
 					Name:        "queue_all_runs",
 					Description: `Indicates whether all runs should be queued.`,
 				},
@@ -194,6 +198,10 @@ Use this data source to get information about a workspace.
 				resource.Attribute{
 					Name:        "file_triggers_enabled",
 					Description: `Indicates whether runs are triggered based on the changed files in a VCS push (if ` + "`" + `true` + "`" + `) or always triggered on every push (if ` + "`" + `false` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "operations",
+					Description: `Indicates whether the workspace is using remote execution mode.`,
 				},
 				resource.Attribute{
 					Name:        "queue_all_runs",

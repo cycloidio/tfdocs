@@ -189,6 +189,10 @@ var (
 					Description: `(Optional) Engine version used by the cluster (ex. ` + "`" + `11` + "`" + ` for PostgreSQL 11).`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of tag names to be applied to the database cluster.`,
+				},
+				resource.Attribute{
 					Name:        "maintenance_window",
 					Description: `(Optional) Defines when the automatic maintenance should be performed for the database cluster. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
 				},
@@ -213,12 +217,20 @@ var (
 					Description: `Database cluster's hostname.`,
 				},
 				resource.Attribute{
+					Name:        "private_host",
+					Description: `Same as ` + "`" + `host` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: `Network port that the database cluster is listening on.`,
 				},
 				resource.Attribute{
 					Name:        "uri",
 					Description: `The full URI for connecting to the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_uri",
+					Description: `Same as ` + "`" + `uri` + "`" + `, but only accessible from resources within the account and in the same region.`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -247,12 +259,20 @@ var (
 					Description: `Database cluster's hostname.`,
 				},
 				resource.Attribute{
+					Name:        "private_host",
+					Description: `Same as ` + "`" + `host` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: `Network port that the database cluster is listening on.`,
 				},
 				resource.Attribute{
 					Name:        "uri",
 					Description: `The full URI for connecting to the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_uri",
+					Description: `Same as ` + "`" + `uri` + "`" + `, but only accessible from resources within the account and in the same region.`,
 				},
 				resource.Attribute{
 					Name:        "database",
@@ -265,6 +285,266 @@ var (
 				resource.Attribute{
 					Name:        "password",
 					Description: `Password for the cluster's default user. ## Import Database clusters can be imported using the ` + "`" + `id` + "`" + ` returned from DigitalOcean, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_cluster.mycluster 245bcfd0-7f31-4ce6-a2bc-475a116cca97 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_database_connection_pool",
+			Category:         "Resources",
+			ShortDescription: `Provides a DigitalOcean database connection pool resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"connection",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the source database cluster. Note: This must be a PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for the database connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Required) The PGBouncer transaction mode for the connection pool. The allowed values are session, transaction, and statement.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) The desired size of the PGBouncer connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "db_name",
+					Description: `(Required) The database for use with the connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) The name of the database user for use with the connection pool. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the database connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The hostname used to connect to the database connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "private_host",
+					Description: `Same as ` + "`" + `host` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Network port that the database connection pool is listening on.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `The full URI for connecting to the database connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "private_uri",
+					Description: `Same as ` + "`" + `uri` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the connection pool's user. ## Import Database connection pools can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the connection pool joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_connection_pool.pool-01 245bcfd0-7f31-4ce6-a2bc-475a116cca97,pool-01 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the database connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The hostname used to connect to the database connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "private_host",
+					Description: `Same as ` + "`" + `host` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Network port that the database connection pool is listening on.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `The full URI for connecting to the database connection pool.`,
+				},
+				resource.Attribute{
+					Name:        "private_uri",
+					Description: `Same as ` + "`" + `uri` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the connection pool's user. ## Import Database connection pools can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the connection pool joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_connection_pool.pool-01 245bcfd0-7f31-4ce6-a2bc-475a116cca97,pool-01 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_database_db",
+			Category:         "Resources",
+			ShortDescription: `Provides a DigitalOcean database resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"db",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the original source database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for the database. ## Attributes Reference Only the above arguments are exported. ## Import Database can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the database joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_db.database-example 245bcfd0-7f31-4ce6-a2bc-475a116cca97,foobar ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_database_replica",
+			Category:         "Resources",
+			ShortDescription: `Provides a DigitalOcean database replica resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"replica",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the original source database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for the database replica.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) Database Droplet size associated with the replica (ex. ` + "`" + `db-s-1vcpu-1gb` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) DigitalOcean region where the replica will reside. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the database replica.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Database replica's hostname.`,
+				},
+				resource.Attribute{
+					Name:        "private_host",
+					Description: `Same as ` + "`" + `host` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Network port that the database replica is listening on.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `The full URI for connecting to the database replica.`,
+				},
+				resource.Attribute{
+					Name:        "private_uri",
+					Description: `Same as ` + "`" + `uri` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `Name of the replica's default database.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Username for the replica's default user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the replica's default user. ## Import Database replicas can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the replica joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_replica.read-replica 245bcfd0-7f31-4ce6-a2bc-475a116cca97,read-replica ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the database replica.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `Database replica's hostname.`,
+				},
+				resource.Attribute{
+					Name:        "private_host",
+					Description: `Same as ` + "`" + `host` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Network port that the database replica is listening on.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `The full URI for connecting to the database replica.`,
+				},
+				resource.Attribute{
+					Name:        "private_uri",
+					Description: `Same as ` + "`" + `uri` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `Name of the replica's default database.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `Username for the replica's default user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the replica's default user. ## Import Database replicas can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the replica joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_replica.read-replica 245bcfd0-7f31-4ce6-a2bc-475a116cca97,read-replica ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_database_user",
+			Category:         "Resources",
+			ShortDescription: `Provides a DigitalOcean database user resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"user",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the original source database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for the database user. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role for the database user. The value will be either "primary" or "normal".`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the database user. ## Import Database user can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the user joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_user.user-example 245bcfd0-7f31-4ce6-a2bc-475a116cca97,foobar ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role for the database user. The value will be either "primary" or "normal".`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the database user. ## Import Database user can be imported using the ` + "`" + `id` + "`" + ` of the source database cluster and the ` + "`" + `name` + "`" + ` of the user joined with a comma. For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_user.user-example 245bcfd0-7f31-4ce6-a2bc-475a116cca97,foobar ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -792,11 +1072,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Required) The slug identifier for the version of Kubernetes used for the cluster.`,
+					Description: `(Required) The slug identifier for the version of Kubernetes used for the cluster. Use [doctl](https://github.com/digitalocean/doctl) to find the available versions ` + "`" + `doctl kubernetes options versions` + "`" + `. (`,
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `(Required) A block representing the cluster's default node pool. Additional node pools may be added to the cluster using the ` + "`" + `digitalocean_kubernetes_node_pool` + "`" + ` resource. The following arguments may be specified: - ` + "`" + `name` + "`" + ` - (Required) A name for the node pool. - ` + "`" + `size` + "`" + ` - (Required) The slug identifier for the type of Droplet to be used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - (Required) The number of Droplet instances in the node pool. - ` + "`" + `tags` + "`" + ` - (Optional) A list of tag names to be applied to the Kubernetes cluster.`,
+					Description: `(Required) A block representing the cluster's default node pool. Additional node pools may be added to the cluster using the ` + "`" + `digitalocean_kubernetes_node_pool` + "`" + ` resource. The following arguments may be specified: - ` + "`" + `name` + "`" + ` - (Required) A name for the node pool. - ` + "`" + `size` + "`" + ` - (Required) The slug identifier for the type of Droplet to be used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - (Optional) The number of Droplet instances in the node pool. If auto-scaling is enabled, this should only be set if the desired result is to explicitly reset the number of nodes to this value. If auto-scaling is enabled, and the node count is outside of the given min/max range, it will use the min nodes value. - ` + "`" + `auto_scale` + "`" + ` - (Optional) Enable auto-scaling of the number of nodes in the node pool within the given min/max range. - ` + "`" + `min_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - (Optional) If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - (Optional) A list of tag names to be applied to the Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -836,11 +1116,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kube_config.0",
-					Description: `A representation of the Kubernetes cluster's kubeconfig with the following attributes: - ` + "`" + `raw_config` + "`" + ` - The full contents of the Kubernetes cluster's kubeconfig file. - ` + "`" + `host` + "`" + ` - The URL of the API server on the Kubernetes master node. - ` + "`" + `client_key` + "`" + ` - The base64 encoded private key used by clients to access the cluster. - ` + "`" + `client_certificate` + "`" + ` - The base64 encoded public certificate used by clients to access the cluster. - ` + "`" + `cluster_ca_certificate` + "`" + ` - The base64 encoded public certificate for the cluster's certificate authority.`,
+					Description: `A representation of the Kubernetes cluster's kubeconfig with the following attributes: - ` + "`" + `raw_config` + "`" + ` - The full contents of the Kubernetes cluster's kubeconfig file. - ` + "`" + `host` + "`" + ` - The URL of the API server on the Kubernetes master node. - ` + "`" + `cluster_ca_certificate` + "`" + ` - The base64 encoded public certificate for the cluster's certificate authority. - ` + "`" + `token` + "`" + ` - The DigitalOcean API access token used by clients to access the cluster. - ` + "`" + `client_key` + "`" + ` - The base64 encoded private key used by clients to access the cluster. Only available if token authentication is not supported on your cluster. - ` + "`" + `client_certificate` + "`" + ` - The base64 encoded public certificate used by clients to access the cluster. Only available if token authentication is not supported on your cluster. - ` + "`" + `expires_at` + "`" + ` - The date and time when the credentials will expire and need to be regenerated.`,
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes clusters can not be imported at this time.`,
+					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `actual_node_count` + "`" + ` - A computed field representing the actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes clusters can not be imported at this time.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -878,11 +1158,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kube_config.0",
-					Description: `A representation of the Kubernetes cluster's kubeconfig with the following attributes: - ` + "`" + `raw_config` + "`" + ` - The full contents of the Kubernetes cluster's kubeconfig file. - ` + "`" + `host` + "`" + ` - The URL of the API server on the Kubernetes master node. - ` + "`" + `client_key` + "`" + ` - The base64 encoded private key used by clients to access the cluster. - ` + "`" + `client_certificate` + "`" + ` - The base64 encoded public certificate used by clients to access the cluster. - ` + "`" + `cluster_ca_certificate` + "`" + ` - The base64 encoded public certificate for the cluster's certificate authority.`,
+					Description: `A representation of the Kubernetes cluster's kubeconfig with the following attributes: - ` + "`" + `raw_config` + "`" + ` - The full contents of the Kubernetes cluster's kubeconfig file. - ` + "`" + `host` + "`" + ` - The URL of the API server on the Kubernetes master node. - ` + "`" + `cluster_ca_certificate` + "`" + ` - The base64 encoded public certificate for the cluster's certificate authority. - ` + "`" + `token` + "`" + ` - The DigitalOcean API access token used by clients to access the cluster. - ` + "`" + `client_key` + "`" + ` - The base64 encoded private key used by clients to access the cluster. Only available if token authentication is not supported on your cluster. - ` + "`" + `client_certificate` + "`" + ` - The base64 encoded public certificate used by clients to access the cluster. Only available if token authentication is not supported on your cluster. - ` + "`" + `expires_at` + "`" + ` - The date and time when the credentials will expire and need to be regenerated.`,
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes clusters can not be imported at this time.`,
+					Description: `In addition to the arguments provided, these additional attributes about the cluster's default node pool are exported: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node pool. - ` + "`" + `actual_node_count` + "`" + ` - A computed field representing the actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes clusters can not be imported at this time.`,
 				},
 			},
 		},
@@ -912,7 +1192,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "node_count",
-					Description: `(Required) The number of Droplet instances in the node pool.`,
+					Description: `(Optional) The number of Droplet instances in the node pool. If auto-scaling is enabled, this should only be set if the desired result is to explicitly reset the number of nodes to this value. If auto-scaling is enabled, and the node count is outside of the given min/max range, it will use the min nodes value.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scale",
+					Description: `(Optional) Enable auto-scaling of the number of nodes in the node pool within the given min/max range.`,
+				},
+				resource.Attribute{
+					Name:        "min_nodes",
+					Description: `(Optional) If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to.`,
+				},
+				resource.Attribute{
+					Name:        "max_nodes",
+					Description: `(Optional) If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -923,6 +1215,10 @@ var (
 					Description: `A unique ID that can be used to identify and reference the node pool.`,
 				},
 				resource.Attribute{
+					Name:        "actual_node_count",
+					Description: `A computed field representing the actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled.`,
+				},
+				resource.Attribute{
 					Name:        "nodes",
 					Description: `A list of nodes in the pool. Each node exports the following attributes: - ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. - ` + "`" + `name` + "`" + ` - The auto-generated name for the node. - ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. - ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. - ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated. ## Import Kubernetes node pools can not be imported at this time.`,
 				},
@@ -931,6 +1227,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `A unique ID that can be used to identify and reference the node pool.`,
+				},
+				resource.Attribute{
+					Name:        "actual_node_count",
+					Description: `A computed field representing the actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled.`,
 				},
 				resource.Attribute{
 					Name:        "nodes",
@@ -1233,7 +1533,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "force_destroy",
-					Description: `Unless ` + "`" + `true` + "`" + `, the bucket will only be destroyed if empty (Defaults to ` + "`" + `false` + "`" + `) ## Attributes Reference The following attributes are exported:`,
+					Description: `Unless ` + "`" + `true` + "`" + `, the bucket will only be destroyed if empty (Defaults to ` + "`" + `false` + "`" + `) The ` + "`" + `cors_rule` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allowed_headers",
+					Description: `(Optional) A list of headers that will be included in the CORS preflight request's ` + "`" + `Access-Control-Request-Headers` + "`" + `. A header may contain one wildcard (e.g. ` + "`" + `x-amz-`,
+				},
+				resource.Attribute{
+					Name:        "allowed_methods",
+					Description: `(Required) A list of HTTP methods (e.g. ` + "`" + `GET` + "`" + `) which are allowed from the specified origin.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_origins",
+					Description: `(Required) A list of hosts from which requests using the specified methods are allowed. A host may contain one wildcard (e.g. http://`,
+				},
+				resource.Attribute{
+					Name:        "max_age_seconds",
+					Description: `(Optional) The time in seconds that browser can cache the response for a preflight request. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1524,26 +1840,30 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"digitalocean_cdn":                    0,
-		"digitalocean_certificate":            1,
-		"digitalocean_database_cluster":       2,
-		"digitalocean_domain":                 3,
-		"digitalocean_droplet":                4,
-		"digitalocean_droplet_snapshot":       5,
-		"digitalocean_firewall":               6,
-		"digitalocean_floating_ip":            7,
-		"digitalocean_floating_ip_assignment": 8,
-		"digitalocean_kubernetes_cluster":     9,
-		"digitalocean_kubernetes_node_pool":   10,
-		"digitalocean_loadbalancer":           11,
-		"digitalocean_project":                12,
-		"digitalocean_record":                 13,
-		"digitalocean_spaces_bucket":          14,
-		"digitalocean_ssh_key":                15,
-		"digitalocean_tag":                    16,
-		"digitalocean_volume":                 17,
-		"digitalocean_volume_attachment":      18,
-		"digitalocean_volume_snapshot":        19,
+		"digitalocean_cdn":                      0,
+		"digitalocean_certificate":              1,
+		"digitalocean_database_cluster":         2,
+		"digitalocean_database_connection_pool": 3,
+		"digitalocean_database_db":              4,
+		"digitalocean_database_replica":         5,
+		"digitalocean_database_user":            6,
+		"digitalocean_domain":                   7,
+		"digitalocean_droplet":                  8,
+		"digitalocean_droplet_snapshot":         9,
+		"digitalocean_firewall":                 10,
+		"digitalocean_floating_ip":              11,
+		"digitalocean_floating_ip_assignment":   12,
+		"digitalocean_kubernetes_cluster":       13,
+		"digitalocean_kubernetes_node_pool":     14,
+		"digitalocean_loadbalancer":             15,
+		"digitalocean_project":                  16,
+		"digitalocean_record":                   17,
+		"digitalocean_spaces_bucket":            18,
+		"digitalocean_ssh_key":                  19,
+		"digitalocean_tag":                      20,
+		"digitalocean_volume":                   21,
+		"digitalocean_volume_attachment":        22,
+		"digitalocean_volume_snapshot":          23,
 	}
 )
 

@@ -217,7 +217,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are ` + "`" + `"g6-nanode-1"` + "`" + `, ` + "`" + `"g6-standard-2"` + "`" + `, ` + "`" + `"g6-highmem-16"` + "`" + `, ` + "`" + `"g6-dedicated-16"` + "`" + `, etc.`,
+					Description: `(Required) The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are ` + "`" + `"g6-nanode-1"` + "`" + `, ` + "`" + `"g6-standard-2"` + "`" + `, ` + "`" + `"g6-highmem-16"` + "`" + `, ` + "`" + `"g6-dedicated-16"` + "`" + `, etc. - - -`,
 				},
 				resource.Attribute{
 					Name:        "label",
@@ -661,6 +661,56 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_object_storage_bucket",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode Object Storage Bucket.`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+				"bucket",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `(Required) The cluster of the Linode Object Storage Bucket.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) The label of the Linode Object Storage Bucket.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_object_storage_key",
+			Category:         "Resources",
+			ShortDescription: `Manages a Linode Object Storage Key.`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+				"key",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) The label given to this key. For display purposes only. - - - ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "access_key",
+					Description: `This keypair's access key. This is not secret.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `This keypair's secret key.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_rdns",
 			Category:         "Resources",
 			ShortDescription: `Manages the RDNS / PTR record for the IP Address associated with a Linode Instance.`,
@@ -725,7 +775,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Required) A description for the StackScript. - - -`,
+					Description: `(Required) A description for the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `(Required) An array of Image IDs representing the Images that this StackScript is compatible for deploying with. - - -`,
 				},
 				resource.Attribute{
 					Name:        "rev_note",
@@ -734,10 +788,6 @@ var (
 				resource.Attribute{
 					Name:        "is_public",
 					Description: `(Optional) This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private.`,
-				},
-				resource.Attribute{
-					Name:        "images",
-					Description: `(Optional) An array of Image IDs representing the Images that this StackScript is compatible for deploying with. ## Attributes This resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "deployments_active",
@@ -884,18 +934,20 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"linode_domain":              0,
-		"linode_domain_record":       1,
-		"linode_image":               2,
-		"linode_instance":            3,
-		"linode_nodebalancer":        4,
-		"linode_nodebalancer_config": 5,
-		"linode_nodebalancer_node":   6,
-		"linode_rdns":                7,
-		"linode_sshkey":              8,
-		"linode_stackscript":         9,
-		"linode_token":               10,
-		"linode_volume":              11,
+		"linode_domain":                0,
+		"linode_domain_record":         1,
+		"linode_image":                 2,
+		"linode_instance":              3,
+		"linode_nodebalancer":          4,
+		"linode_nodebalancer_config":   5,
+		"linode_nodebalancer_node":     6,
+		"linode_object_storage_bucket": 7,
+		"linode_object_storage_key":    8,
+		"linode_rdns":                  9,
+		"linode_sshkey":                10,
+		"linode_stackscript":           11,
+		"linode_token":                 12,
+		"linode_volume":                13,
 	}
 )
 

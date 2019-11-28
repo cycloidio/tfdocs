@@ -39,7 +39,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of database instances that satisfy the condition. The attribute (` + "`" + `db_instances` + "`" + `) support the following:`,
+					Description: `Total number of database instances that satisfy the condition. - - - The attribute (` + "`" + `db_instances` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -91,7 +91,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `The charge type of db instance,`,
+					Description: `The charge type of db instance.`,
 				},
 				resource.Attribute{
 					Name:        "backup_count",
@@ -103,11 +103,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_date",
-					Description: `Specifies whether the backup took place from Sunday to Saturday by displaying 7 digits. 0 stands for backup disbaled and 1 stands for backup enabled. The rightmost digit specifies whether the backup took place on Sunday, and the digits from right to left specify whether the backup took place from Monday to Saturday, it's mandatory required to backup twice per week at least. such as: digits "1100000" stands for the backup took place on Saturday and Friday.`,
+					Description: `Specifies whether the backup took place from Sunday to Saturday by displaying 7 digits. 0 stands for backup disabled and 1 stands for backup enabled. The rightmost digit specifies whether the backup took place on Sunday, and the digits from right to left specify whether the backup took place from Monday to Saturday, it's mandatory required to backup twice per week at least. such as: digits "1100000" stands for the backup took place on Saturday and Friday.`,
 				},
 				resource.Attribute{
 					Name:        "backup_black_list",
-					Description: `The backup for database instance such as "test.%" or table such as "city.address" specified in the black lists are not supprted.`,
+					Description: `The backup for database instance such as "test.%" or table such as "city.address" specified in the black lists are not supported.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -137,7 +137,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of database instances that satisfy the condition. The attribute (` + "`" + `db_instances` + "`" + `) support the following:`,
+					Description: `Total number of database instances that satisfy the condition. - - - The attribute (` + "`" + `db_instances` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -189,7 +189,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "charge_type",
-					Description: `The charge type of db instance,`,
+					Description: `The charge type of db instance.`,
 				},
 				resource.Attribute{
 					Name:        "backup_count",
@@ -201,11 +201,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_date",
-					Description: `Specifies whether the backup took place from Sunday to Saturday by displaying 7 digits. 0 stands for backup disbaled and 1 stands for backup enabled. The rightmost digit specifies whether the backup took place on Sunday, and the digits from right to left specify whether the backup took place from Monday to Saturday, it's mandatory required to backup twice per week at least. such as: digits "1100000" stands for the backup took place on Saturday and Friday.`,
+					Description: `Specifies whether the backup took place from Sunday to Saturday by displaying 7 digits. 0 stands for backup disabled and 1 stands for backup enabled. The rightmost digit specifies whether the backup took place on Sunday, and the digits from right to left specify whether the backup took place from Monday to Saturday, it's mandatory required to backup twice per week at least. such as: digits "1100000" stands for the backup took place on Saturday and Friday.`,
 				},
 				resource.Attribute{
 					Name:        "backup_black_list",
-					Description: `The backup for database instance such as "test.%" or table such as "city.address" specified in the black lists are not supprted.`,
+					Description: `The backup for database instance such as "test.%" or table such as "city.address" specified in the black lists are not supported.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -263,7 +263,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Disks that satisfy the condition. The attribute (` + "`" + `disks` + "`" + `) support the following:`,
+					Description: `Total number of Disks that satisfy the condition. - - - The attribute (` + "`" + `disks` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -313,7 +313,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Disks that satisfy the condition. The attribute (` + "`" + `disks` + "`" + `) support the following:`,
+					Description: `Total number of Disks that satisfy the condition. - - - The attribute (` + "`" + `disks` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -383,7 +383,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Elastic IPs that satisfy the condition. The attribute (` + "`" + `eips` + "`" + `) support the following:`,
+					Description: `Total number of Elastic IPs that satisfy the condition. - - - The attribute (` + "`" + `eips` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
@@ -441,7 +441,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Elastic IPs that satisfy the condition. The attribute (` + "`" + `eips` + "`" + `) support the following:`,
+					Description: `Total number of Elastic IPs that satisfy the condition. - - - The attribute (` + "`" + `eips` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
@@ -535,7 +535,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of images that satisfy the condition. The attribute (` + "`" + `images` + "`" + `) support the following:`,
+					Description: `Total number of images that satisfy the condition. - - - The attribute (` + "`" + `images` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -589,7 +589,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of images that satisfy the condition. The attribute (` + "`" + `images` + "`" + `) support the following:`,
+					Description: `Total number of images that satisfy the condition. - - - The attribute (` + "`" + `images` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -663,7 +663,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to instance, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A tag assigned to instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "instances",
@@ -671,7 +671,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of instances that satisfy the condition. The attribute (` + "`" + `instances` + "`" + `) support the following:`,
+					Description: `Total number of instances that satisfy the condition. - - - The attribute (` + "`" + `instances` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -763,7 +763,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_type",
-					Description: `Type of Elastic IP routes. Possible values are: ` + "`" + `International` + "`" + ` as internaltional BGP IP, ` + "`" + `BGP` + "`" + ` as china BGP IP and ` + "`" + `Private` + "`" + ` as private IP.`,
+					Description: `Type of Elastic IP routes.`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -777,7 +777,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of instances that satisfy the condition. The attribute (` + "`" + `instances` + "`" + `) support the following:`,
+					Description: `Total number of instances that satisfy the condition. - - - The attribute (` + "`" + `instances` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
@@ -869,7 +869,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_type",
-					Description: `Type of Elastic IP routes. Possible values are: ` + "`" + `International` + "`" + ` as internaltional BGP IP, ` + "`" + `BGP` + "`" + ` as china BGP IP and ` + "`" + `Private` + "`" + ` as private IP.`,
+					Description: `Type of Elastic IP routes.`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -907,7 +907,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of LB Attachments that satisfy the condition. The attribute (` + "`" + `lb_attachments` + "`" + `) support the following:`,
+					Description: `Total number of LB Attachments that satisfy the condition. - - - The attribute (` + "`" + `lb_attachments` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -937,7 +937,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of LB Attachments that satisfy the condition. The attribute (` + "`" + `lb_attachments` + "`" + `) support the following:`,
+					Description: `Total number of LB Attachments that satisfy the condition. - - - The attribute (` + "`" + `lb_attachments` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -971,7 +971,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "load_balancer_id",
-					Description: `(Required) The ID of a load balancer.`,
+					Description: `(Required) The ID of a load balancer. - - -`,
 				},
 				resource.Attribute{
 					Name:        "ids",
@@ -991,7 +991,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of LB listeners that satisfy the condition. The attribute (` + "`" + `lb_listeners` + "`" + `) support the following:`,
+					Description: `Total number of LB listeners that satisfy the condition. - - - The attribute (` + "`" + `lb_listeners` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1053,7 +1053,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of LB listeners that satisfy the condition. The attribute (` + "`" + `lb_listeners` + "`" + `) support the following:`,
+					Description: `Total number of LB listeners that satisfy the condition. - - - The attribute (` + "`" + `lb_listeners` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1123,7 +1123,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listener_id",
-					Description: `(Required) The ID of a listener server.`,
+					Description: `(Required) The ID of a listener server. - - -`,
 				},
 				resource.Attribute{
 					Name:        "ids",
@@ -1139,7 +1139,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of LB Rules that satisfy the condition. The attribute (` + "`" + `lb_rules` + "`" + `) support the following:`,
+					Description: `Total number of LB Rules that satisfy the condition. - - - The attribute (` + "`" + `lb_rules` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1161,7 +1161,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of LB Rules that satisfy the condition. The attribute (` + "`" + `lb_rules` + "`" + `) support the following:`,
+					Description: `Total number of LB Rules that satisfy the condition. - - - The attribute (` + "`" + `lb_rules` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1203,7 +1203,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of LB SSL certificate resources that satisfy the condition. The attribute (` + "`" + `lb_ssls` + "`" + `) support the following:`,
+					Description: `Total number of LB SSL certificate resources that satisfy the condition. - - - The attribute (` + "`" + `lb_ssls` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1225,7 +1225,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of LB SSL certificate resources that satisfy the condition. The attribute (` + "`" + `lb_ssls` + "`" + `) support the following:`,
+					Description: `Total number of LB SSL certificate resources that satisfy the condition. - - - The attribute (` + "`" + `lb_ssls` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1275,7 +1275,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Load Balancers that satisfy the condition. The attribute (` + "`" + `lbs` + "`" + `) support the following:`,
+					Description: `Total number of Load Balancers that satisfy the condition. - - - The attribute (` + "`" + `lbs` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1329,7 +1329,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Load Balancers that satisfy the condition. The attribute (` + "`" + `lbs` + "`" + `) support the following:`,
+					Description: `Total number of Load Balancers that satisfy the condition. - - - The attribute (` + "`" + `lbs` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1379,6 +1379,126 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ucloud_nat_gateways",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Nat Gateway resources in the current region.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of Nat Gateway IDs, all the Nat Gateways belongs to the defined region will be retrieved if this argument is "".`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter resulting Nat Gateways by name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "nat_gateways",
+					Description: `It is a nested type. Nat Gateways documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of Nat Gateways that satisfy the condition. - - - The attribute (` + "`" + `nat_gateways` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The remarks of Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `A tag assigned to the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of VPC linked to the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `The list of subnet ID under the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for Nat Gateway, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "ip_set",
+					Description: `It is a nested type which documented below. The attribute (` + "`" + `ip_set` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "internet_type",
+					Description: `Type of Elastic IP routes.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Elastic IP address.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nat_gateways",
+					Description: `It is a nested type. Nat Gateways documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of Nat Gateways that satisfy the condition. - - - The attribute (` + "`" + `nat_gateways` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The remarks of Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `A tag assigned to the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of VPC linked to the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `The list of subnet ID under the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for Nat Gateway, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "ip_set",
+					Description: `It is a nested type which documented below. The attribute (` + "`" + `ip_set` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "internet_type",
+					Description: `Type of Elastic IP routes.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Elastic IP address.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ucloud_projects",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of projects owned by the user.`,
@@ -1403,7 +1523,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of projects that satisfy the condition. The attribute (` + "`" + `projects` + "`" + `) support the following:`,
+					Description: `Total number of projects that satisfy the condition. - - - The attribute (` + "`" + `projects` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1441,7 +1561,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of projects that satisfy the condition. The attribute (` + "`" + `projects` + "`" + `) support the following:`,
+					Description: `Total number of projects that satisfy the condition. - - - The attribute (` + "`" + `projects` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1503,7 +1623,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Security Group resources that satisfy the condition. The attribute (` + "`" + `security_groups` + "`" + `) support the following:`,
+					Description: `Total number of Security Group resources that satisfy the condition. - - - The attribute (` + "`" + `security_groups` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1561,7 +1681,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Security Group resources that satisfy the condition. The attribute (` + "`" + `security_groups` + "`" + `) support the following:`,
+					Description: `Total number of Security Group resources that satisfy the condition. - - - The attribute (` + "`" + `security_groups` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1643,7 +1763,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Subnet resources that satisfy the condition. The attribute (` + "`" + `subnets` + "`" + `) support the following:`,
+					Description: `Total number of Subnet resources that satisfy the condition. - - - The attribute (` + "`" + `subnets` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1677,7 +1797,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of Subnet resources that satisfy the condition. The attribute (` + "`" + `subnets` + "`" + `) support the following:`,
+					Description: `Total number of Subnet resources that satisfy the condition. - - - The attribute (` + "`" + `subnets` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1731,7 +1851,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of VPC resources that satisfy the condition. The attribute (` + "`" + `vpcs` + "`" + `) support the following:`,
+					Description: `Total number of VPC resources that satisfy the condition. - - - The attribute (` + "`" + `vpcs` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1765,7 +1885,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of VPC resources that satisfy the condition. The attribute (` + "`" + `vpcs` + "`" + `) support the following:`,
+					Description: `Total number of VPC resources that satisfy the condition. - - - The attribute (` + "`" + `vpcs` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1795,6 +1915,514 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ucloud_vpn_connections",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of VPN Connection resources in the current region.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of VPN Connection IDs, all the VPN Connections belongs to the defined region will be retrieved if this argument is "".`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter resulting VPN Connections by name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag assigned to VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) The ID of VPC linked to the VPN Connection. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vpn_connections",
+					Description: `It is a nested type. VPN Connections documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of VPN Connections that satisfy the condition. - - - The attribute (` + "`" + `vpn_connections` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The remarks of VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `A tag assigned to the VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway_id",
+					Description: `The ID of VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "customer_gateway_id",
+					Description: `The ID of VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of VPC linked to the VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for VPN Connection, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "ike_config",
+					Description: `It is a nested type which documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_config",
+					Description: `It is a nested type which documented below. The attribute (` + "`" + `ike_config` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "pre_shared_key",
+					Description: `The key used for authentication between the VPN gateway and the Customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `The version of the IKE protocol.`,
+				},
+				resource.Attribute{
+					Name:        "exchange_mode",
+					Description: `The negotiation exchange mode of IKE V1 of VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `The encryption algorithm of IKE negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_algorithm",
+					Description: `The authentication algorithm of IKE negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `The identification of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remote_id",
+					Description: `The identification of the Customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "dh_group",
+					Description: `The Diffie-Hellman group used by IKE negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time",
+					Description: `The Security Association lifecycle as the result of IKE negotiation. The attribute (` + "`" + `ipsec_config` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "local_subnet_ids",
+					Description: `The id list of Local subnet.`,
+				},
+				resource.Attribute{
+					Name:        "remote_subnets",
+					Description: `The ip address list of remote subnet.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The security protocol of IPSec negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `The encryption algorithm of IPSec negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_algorithm",
+					Description: `The authentication algorithm of IPSec negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "pfs_dh_group",
+					Description: `Whether the PFS of IPSec negotiation is on or off, ` + "`" + `disable` + "`" + ` as off, The Diffie-Hellman group as open.`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time",
+					Description: `The Security Association lifecycle as the result of IPSec negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time_bytes",
+					Description: `The Security Association lifecycle in bytes as the result of IPSec negotiation.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpn_connections",
+					Description: `It is a nested type. VPN Connections documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of VPN Connections that satisfy the condition. - - - The attribute (` + "`" + `vpn_connections` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The remarks of VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `A tag assigned to the VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway_id",
+					Description: `The ID of VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "customer_gateway_id",
+					Description: `The ID of VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of VPC linked to the VPN Connection.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for VPN Connection, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "ike_config",
+					Description: `It is a nested type which documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_config",
+					Description: `It is a nested type which documented below. The attribute (` + "`" + `ike_config` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "pre_shared_key",
+					Description: `The key used for authentication between the VPN gateway and the Customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `The version of the IKE protocol.`,
+				},
+				resource.Attribute{
+					Name:        "exchange_mode",
+					Description: `The negotiation exchange mode of IKE V1 of VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `The encryption algorithm of IKE negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_algorithm",
+					Description: `The authentication algorithm of IKE negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `The identification of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remote_id",
+					Description: `The identification of the Customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "dh_group",
+					Description: `The Diffie-Hellman group used by IKE negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time",
+					Description: `The Security Association lifecycle as the result of IKE negotiation. The attribute (` + "`" + `ipsec_config` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "local_subnet_ids",
+					Description: `The id list of Local subnet.`,
+				},
+				resource.Attribute{
+					Name:        "remote_subnets",
+					Description: `The ip address list of remote subnet.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `The security protocol of IPSec negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `The encryption algorithm of IPSec negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_algorithm",
+					Description: `The authentication algorithm of IPSec negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "pfs_dh_group",
+					Description: `Whether the PFS of IPSec negotiation is on or off, ` + "`" + `disable` + "`" + ` as off, The Diffie-Hellman group as open.`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time",
+					Description: `The Security Association lifecycle as the result of IPSec negotiation.`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time_bytes",
+					Description: `The Security Association lifecycle in bytes as the result of IPSec negotiation.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ucloud_vpn_customer_gateways",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of VPN Gateway resources in the current region.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of VPN Customer Gateway IDs, all the VPN Customer Gateways belongs to the defined region will be retrieved if this argument is "".`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter resulting VPN Customer Gateways by name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag assigned to VPN Customer Gateway. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vpn_customer_gateways",
+					Description: `It is a nested type. VPN Customer Gateways documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of VPN Customer Gateways that satisfy the condition. - - - The attribute (` + "`" + `vpn_customer_gateways` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The remarks of VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `A tag assigned to the VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The ip address of the VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for VPN Customer Gateway, formatted in RFC3339 time string.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpn_customer_gateways",
+					Description: `It is a nested type. VPN Customer Gateways documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of VPN Customer Gateways that satisfy the condition. - - - The attribute (` + "`" + `vpn_customer_gateways` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The remarks of VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `A tag assigned to the VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The ip address of the VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for VPN Customer Gateway, formatted in RFC3339 time string.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ucloud_vpn_gateways",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of VPN Gateway resources in the current region.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of VPN Gateway IDs, all the VPN Gateways belongs to the defined region will be retrieved if this argument is "".`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter resulting VPN Gateways by name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag assigned to VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) The ID of VPC linked to the VPN Gateway. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateways",
+					Description: `It is a nested type. VPN Gateways documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of VPN Gateways that satisfy the condition. - - - The attribute (` + "`" + `vpn_gateways` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The remarks of VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `A tag assigned to the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "grade",
+					Description: `The type of the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of VPC linked to the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `The charge type of VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `Whether to renew an VPN Gateway automatically or not.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for VPN Gateway, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time for VPN Gateway, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "ip_set",
+					Description: `It is a nested type which documented below. The attribute (` + "`" + `ip_set` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "internet_type",
+					Description: `Type of Elastic IP routes.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Elastic IP address.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpn_gateways",
+					Description: `It is a nested type. VPN Gateways documented below.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Total number of VPN Gateways that satisfy the condition. - - - The attribute (` + "`" + `vpn_gateways` + "`" + `) support the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `The remarks of VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `A tag assigned to the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "grade",
+					Description: `The type of the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `The ID of VPC linked to the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `The charge type of VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `Whether to renew an VPN Gateway automatically or not.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for VPN Gateway, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time for VPN Gateway, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "ip_set",
+					Description: `It is a nested type which documented below. The attribute (` + "`" + `ip_set` + "`" + `) supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "internet_type",
+					Description: `Type of Elastic IP routes.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Elastic IP address.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ucloud_zones",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of available zones in the current region.`,
@@ -1811,7 +2439,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of zones that satisfy the condition. The attribute (` + "`" + `zones` + "`" + `) support the following:`,
+					Description: `Total number of zones that satisfy the condition. - - - The attribute (` + "`" + `zones` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1825,7 +2453,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "total_count",
-					Description: `Total number of zones that satisfy the condition. The attribute (` + "`" + `zones` + "`" + `) support the following:`,
+					Description: `Total number of zones that satisfy the condition. - - - The attribute (` + "`" + `zones` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1837,21 +2465,25 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"ucloud_db_instances":    0,
-		"ucloud_disks":           1,
-		"ucloud_eips":            2,
-		"ucloud_images":          3,
-		"ucloud_instances":       4,
-		"ucloud_lb_attachments":  5,
-		"ucloud_lb_listeners":    6,
-		"ucloud_lb_rules":        7,
-		"ucloud_lb_ssls":         8,
-		"ucloud_lbs":             9,
-		"ucloud_projects":        10,
-		"ucloud_security_groups": 11,
-		"ucloud_subnets":         12,
-		"ucloud_vpcs":            13,
-		"ucloud_zones":           14,
+		"ucloud_db_instances":          0,
+		"ucloud_disks":                 1,
+		"ucloud_eips":                  2,
+		"ucloud_images":                3,
+		"ucloud_instances":             4,
+		"ucloud_lb_attachments":        5,
+		"ucloud_lb_listeners":          6,
+		"ucloud_lb_rules":              7,
+		"ucloud_lb_ssls":               8,
+		"ucloud_lbs":                   9,
+		"ucloud_nat_gateways":          10,
+		"ucloud_projects":              11,
+		"ucloud_security_groups":       12,
+		"ucloud_subnets":               13,
+		"ucloud_vpcs":                  14,
+		"ucloud_vpn_connections":       15,
+		"ucloud_vpn_customer_gateways": 16,
+		"ucloud_vpn_gateways":          17,
+		"ucloud_zones":                 18,
 	}
 )
 

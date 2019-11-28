@@ -77,6 +77,10 @@ var (
 					Name:        "show_upload_progress",
 					Description: `(Optional) - Default false. Allows to see upload progress`,
 				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -118,6 +122,38 @@ var (
 				resource.Attribute{
 					Name:        "show_upload_progress",
 					Description: `(Optional) - Default false. Allows to see upload progress`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "is_iso",
+					Description: `(Computed) returns True if this media file is ISO`,
+				},
+				resource.Attribute{
+					Name:        "owner_name",
+					Description: `(Computed) returns owner name`,
+				},
+				resource.Attribute{
+					Name:        "is_published",
+					Description: `(Computed) returns True if this media file is in a published catalog`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `(Computed) returns creation date`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Computed) returns media storage in Bytes`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Computed) returns media status`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile_name",
+					Description: `(Computed) returns storage profile name ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -411,7 +447,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcenter",
-					Description: `(Required) The vCenter server name`,
+					Description: `(Required) The vCenter server name ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -503,19 +539,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) - Size of disk in MB`,
+					Description: `(Required) Size of disk in MB. On read this values isn't refreshed.`,
 				},
 				resource.Attribute{
 					Name:        "bus_type",
-					Description: `(Optional) - Disk bus type. Values can be: IDE, SCSI, SATA`,
+					Description: `(Optional) Disk bus type. Values can be: ` + "`" + `IDE` + "`" + `, ` + "`" + `SCSI` + "`" + `, ` + "`" + `SATA` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "bus_sub_type",
-					Description: `(Optional) - Disk bus subtype. Values can be: "IDE" for IDE. buslogic, lsilogic, lsilogicsas, VirtualSCSI for SCSI and ahci for SATA`,
+					Description: `(Optional) Disk bus subtype. Values can be: ` + "`" + `buslogic` + "`" + `, ` + "`" + `lsilogic` + "`" + `, ` + "`" + `lsilogicsas` + "`" + `, ` + "`" + `VirtualSCSI` + "`" + ` for ` + "`" + `SCSI` + "`" + ` and ` + "`" + `ahci` + "`" + ` for ` + "`" + `SATA` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "storage_profile",
-					Description: `(Optional) - The name of storage profile where disk will be created`,
+					Description: `(Optional) The name of storage profile where disk will be created ## Attribute reference Supported in provider`,
+				},
+				resource.Attribute{
+					Name:        "iops",
+					Description: `(Computed) IOPS request for the created disk`,
+				},
+				resource.Attribute{
+					Name:        "owner_name",
+					Description: `(Computed) The owner name of the disk`,
+				},
+				resource.Attribute{
+					Name:        "datastore_name",
+					Description: `(Computed) Data store name. Readable only for system user.`,
+				},
+				resource.Attribute{
+					Name:        "is_attached",
+					Description: `(Computed) True if the disk is already attached ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1036,7 +1088,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shared",
-					Description: `(Optional) Defines if this network is shared between multiple vDCs in the vOrg. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Defines if this network is shared between multiple VDCs in the Org. Defaults to ` + "`" + `false` + "`" + `. ## Attribute reference Supported in provider`,
+				},
+				resource.Attribute{
+					Name:        "external_network_gateway",
+					Description: `(Computed) returns the gateway from the external network`,
+				},
+				resource.Attribute{
+					Name:        "external_network_netmask",
+					Description: `(Computed) returns the netmask from the external network`,
+				},
+				resource.Attribute{
+					Name:        "external_network_dns1",
+					Description: `(Computed) returns the first DNS from the external network`,
+				},
+				resource.Attribute{
+					Name:        "external_network_dns2",
+					Description: `(Computed) returns the second DNS from the external network`,
+				},
+				resource.Attribute{
+					Name:        "external_network_dns_suffix",
+					Description: `(Computed) returns the DNS suffix from the external network ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1082,7 +1154,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shared",
-					Description: `(Optional) Defines if this network is shared between multiple vDCs in the vOrg. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Defines if this network is shared between multiple VDCs in the Org. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_pool",
@@ -1106,7 +1178,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_lease_time",
-					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `.`,
+					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `. ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1156,7 +1228,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shared",
-					Description: `(Optional) Defines if this network is shared between multiple vDCs in the vOrg. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Defines if this network is shared between multiple VDCs in the Org. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "dhcp_pool",
@@ -1180,16 +1252,270 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_lease_time",
-					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `.`,
+					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `. ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxv_dnat",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director DNAT resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete destination NATs to map an external IP/port to an internal IP/port.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxv",
+				"dnat",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which to apply the DNAT rule.`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `(Required) Type of the network on which to apply the DNAT rule. Possible values ` + "`" + `org` + "`" + ` or ` + "`" + `ext` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `(Required) The name of the network on which to apply the DNAT rule.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the rule is enabaled. Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "logging_enabled",
+					Description: `(Optional) Defines if the logging for this rule is enabaled. Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Free text description.`,
+				},
+				resource.Attribute{
+					Name:        "rule_tag",
+					Description: `(Optional) This can be used to specify user-controlled rule tag. If not specified, it will report rule ID after creation. Must be between 65537-131072.`,
+				},
+				resource.Attribute{
+					Name:        "original_address",
+					Description: `(Required) IP address, range or subnet. This address must be the public IP address of the edge gateway for which you are configuring the DNAT rule. In the packet being inspected, this IP address or range would be those that appear as the destination IP address of the packet. These packet destination addresses are the ones translated by this DNAT rule.`,
+				},
+				resource.Attribute{
+					Name:        "original_port",
+					Description: `(Optional) Select the port or port range that the incoming traffic uses on the edge gateway to connect to the internal network on which the virtual machines are connected. This selection is not available when the Protocol is set to ` + "`" + `icmp` + "`" + ` or ` + "`" + `any` + "`" + `. Default ` + "`" + `any` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "translated_address",
+					Description: `(Required) IP address, range or subnet. IP addresses to which destination addresses on inbound packets will be translated. These addresses are the IP addresses of the one or more virtual machines for which you are configuring DNAT so that they can receive traffic from the external network.`,
+				},
+				resource.Attribute{
+					Name:        "translated_port",
+					Description: `(Optional) Select the port or port range that inbound traffic is connecting to on the virtual machines on the internal network. These ports are the ones into which the DNAT rule is translating for the packets inbound to the virtual machines.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Select the protocol to which the rule applies. One of ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + `, ` + "`" + `any` + "`" + `. Default ` + "`" + `any` + "`" + ` protocols, select Any.`,
+				},
+				resource.Attribute{
+					Name:        "icmp_type",
+					Description: `(Optional) Only when ` + "`" + `protocol` + "`" + ` is set to ` + "`" + `icmp` + "`" + `. One of ` + "`" + `any` + "`" + `, ` + "`" + `address-mask-request` + "`" + `, ` + "`" + `address-mask-reply` + "`" + `, ` + "`" + `destination-unreachable` + "`" + `, ` + "`" + `echo-request` + "`" + `, ` + "`" + `echo-reply` + "`" + `, ` + "`" + `parameter-problem` + "`" + `, ` + "`" + `redirect` + "`" + `, ` + "`" + `router-advertisement` + "`" + `, ` + "`" + `router-solicitation` + "`" + `, ` + "`" + `source-quench` + "`" + `, ` + "`" + `time-exceeded` + "`" + `, ` + "`" + `timestamp-request` + "`" + `, ` + "`" + `timestamp-reply` + "`" + `. Default ` + "`" + `any` + "`" + ` ## Attribute Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `Possible values - ` + "`" + `user` + "`" + `, ` + "`" + `internal_high` + "`" + `. ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `Possible values - ` + "`" + `user` + "`" + `, ` + "`" + `internal_high` + "`" + `. ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxv_firewall_rule",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director firewall rule resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete firewall rules.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxv",
+				"firewall",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which to apply the firewall rule.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) Defines if the rule is set to ` + "`" + `accept` + "`" + ` or ` + "`" + `deny` + "`" + ` traffic. Default ` + "`" + `accept` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the rule is enabaled. Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "logging_enabled",
+					Description: `(Optional) Defines if the logging for this rule is enabaled. Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Free text name. Can be duplicate.`,
+				},
+				resource.Attribute{
+					Name:        "rule_tag",
+					Description: `(Optional) This can be used to specify user-controlled rule tag. If not specified, it will report rule ID after creation. Must be between 65537-131072.`,
+				},
+				resource.Attribute{
+					Name:        "above_rule_id",
+					Description: `(Optional) This can be used to alter default rule placement order. By default every rule is appended to the end of firewall rule list. When a value of another rule is set - this rule will be placed above the specified rule.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) Exactly one block to define source criteria for firewall. See [Endpoint](#endpoint) and example for usage details.`,
+				},
+				resource.Attribute{
+					Name:        "destination",
+					Description: `(Required) Exactly one block to define source criteria for firewall. See [Endpoint](#endpoint) and example for usage details.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Required) One or more blocks to define protocol and port details. Use multiple blocks if you want to define multiple port/protocol combinations for the same rule. See [Service](#service) and example for usage details. <a id="endpoint"></a> ## Endpoint (source or destination)`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `(Optional) When the toggle exclusion is selected, the rule is applied to traffic on all sources except for the locations you excluded. When the toggle exclusion is not selected, the rule applies to traffic you specified. Default ` + "`" + `false` + "`" + `. This [example](#example-usage-3-use-exclusion-in-source-) uses it.`,
+				},
+				resource.Attribute{
+					Name:        "ip_addresses",
+					Description: `(Optional) A set of IP addresses, CIDRs or ranges. A keyword ` + "`" + `any` + "`" + ` is also accepted as a parameter.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_interfaces",
+					Description: `(Optional) A set of with either three keywords ` + "`" + `vse` + "`" + ` (UI names it as ` + "`" + `any` + "`" + `), ` + "`" + `internal` + "`" + `, ` + "`" + `external` + "`" + ` or an org network name. It automatically looks up vNic in the backend.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_machine_ids",
+					Description: `(Optional) A set of ` + "`" + `.id` + "`" + ` fields of ` + "`" + `vcd_vapp_vm` + "`" + ` resources.`,
+				},
+				resource.Attribute{
+					Name:        "org_networks",
+					Description: `(Optional) A set of org network names. <a id="service"></a> ## Service`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) One of ` + "`" + `any` + "`" + `, ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `, ` + "`" + `icmp` + "`" + ` to apply.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Port number or range separated by ` + "`" + `-` + "`" + ` for port number. Default 'any'.`,
+				},
+				resource.Attribute{
+					Name:        "source_port",
+					Description: `(Optional) Port number or range separated by ` + "`" + `-` + "`" + ` for port number. Default 'any'. ## Attribute Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `Possible values - ` + "`" + `user` + "`" + `, ` + "`" + `internal_high` + "`" + `. ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `Possible values - ` + "`" + `user` + "`" + `, ` + "`" + `internal_high` + "`" + `. ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxv_snat",
+			Category:         "Resources",
+			ShortDescription: `Provides a vCloud Director SNAT resource for advanced edge gateways (NSX-V). This can be used to create, modify, and delete source NATs to allow vApps to send external traffic.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxv",
+				"snat",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which to apply the SNAT rule.`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `(Required) Type of the network on which to apply the DNAT rule. Possible values ` + "`" + `org` + "`" + ` or ` + "`" + `ext` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `(Required) The name of the network on which to apply the SNAT rule.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Defines if the rule is enabaled. Default ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "logging_enabled",
+					Description: `(Optional) Defines if the logging for this rule is enabaled. Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Free text description.`,
+				},
+				resource.Attribute{
+					Name:        "rule_tag",
+					Description: `(Optional) This can be used to specify user-controlled rule tag. If not specified, it will report rule ID after creation. Must be between 65537-131072.`,
+				},
+				resource.Attribute{
+					Name:        "original_address",
+					Description: `(Required) IP address, range or subnet. These addresses are the IP addresses of one or more virtual machines for which you are configuring the SNAT rule so that they can send traffic to the external network.`,
+				},
+				resource.Attribute{
+					Name:        "translated_address",
+					Description: `(Required) IP address, range or subnet. This address is always the public IP address of the gateway for which you are configuring the SNAT rule. Specifies the IP address to which source addresses (the virtual machines) on outbound packets are translated to when they send traffic to the external network. ## Attribute Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `Possible values - ` + "`" + `user` + "`" + `, ` + "`" + `internal_high` + "`" + `. ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `Possible values - ` + "`" + `user` + "`" + `, ` + "`" + `internal_high` + "`" + `. ## Importing ~>`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_org",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Organization resource. This can be used to create and delete an organization.`,
+			ShortDescription: `Provides a vCloud Director Organization resource. This can be used to create delete, and update an organization.`,
 			Description:      ``,
 			Keywords: []string{
 				"org",
@@ -1221,11 +1547,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deployed_vm_quota",
-					Description: `(Optional) - Maximum number of virtual machines that can be deployed simultaneously by a member of this organization. Default is unlimited (-1)`,
+					Description: `(Optional) - Maximum number of virtual machines that can be deployed simultaneously by a member of this organization. Default is unlimited (0)`,
 				},
 				resource.Attribute{
 					Name:        "stored_vm_quota",
-					Description: `(Optional) - Maximum number of virtual machines in vApps or vApp templates that can be stored in an undeployed state by a member of this organization. Default is unlimited (-1)`,
+					Description: `(Optional) - Maximum number of virtual machines in vApps or vApp templates that can be stored in an undeployed state by a member of this organization. Default is unlimited (0)`,
 				},
 				resource.Attribute{
 					Name:        "can_publish_catalogs",
@@ -1233,7 +1559,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "delay_after_power_on_seconds",
-					Description: `(Optional) - Specifies this organization's default for virtual machine boot delay after power on. Default is ` + "`" + `0` + "`" + `. ## Sources`,
+					Description: `(Optional) - Specifies this organization's default for virtual machine boot delay after power on. Default is ` + "`" + `0` + "`" + `. ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1329,7 +1655,7 @@ var (
 			Name:             "",
 			Type:             "vcd_org_vdc",
 			Category:         "Resources",
-			ShortDescription: `Provides a vCloud Director Organization VDC resource. This can be used to create and delete a Organization VDC.`,
+			ShortDescription: `Provides a vCloud Director Organization VDC resource. This can be used to create and delete an Organization VDC.`,
 			Description:      ``,
 			Keywords: []string{
 				"org",
@@ -1446,7 +1772,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "limit",
-					Description: `(Optional) Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go").`,
+					Description: `(Optional) Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go"). ## Importing Supported in provider`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1511,51 +1837,67 @@ var (
 					Description: `(Required) A unique name for the vApp`,
 				},
 				resource.Attribute{
-					Name:        "catalog_name",
-					Description: `(Optional) The catalog name in which to find the given vApp Template`,
-				},
-				resource.Attribute{
-					Name:        "template_name",
-					Description: `(Optional) The name of the vApp Template to use`,
-				},
-				resource.Attribute{
-					Name:        "memory",
-					Description: `(Optional) The amount of RAM (in MB) to allocate to the vApp`,
-				},
-				resource.Attribute{
-					Name:        "cpus",
-					Description: `(Optional) The number of virtual CPUs to allocate to the vApp`,
-				},
-				resource.Attribute{
-					Name:        "network_name",
-					Description: `(Optional) Name of the network this vApp should join`,
-				},
-				resource.Attribute{
-					Name:        "network_href",
+					Name:        "org",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
-					Name:        "ip",
-					Description: `(Optional) The IP to assign to this vApp. Must be an IP address or one of dhcp, allocated or none. If given the address must be within the ` + "`" + `static_ip_pool` + "`" + ` set for the network. If left blank, and the network has ` + "`" + `dhcp_pool` + "`" + ` set with at least one available IP then this will be set with DHCP.`,
-				},
-				resource.Attribute{
-					Name:        "metadata",
-					Description: `(Optional) Key value map of metadata to assign to this vApp. Key and value can be any string. (Since`,
-				},
-				resource.Attribute{
-					Name:        "ovf",
-					Description: `(Optional) Key value map of ovf parameters to assign to VM product section`,
+					Name:        "vdc",
+					Description: `(Optional;`,
 				},
 				resource.Attribute{
 					Name:        "power_on",
 					Description: `(Optional) A boolean value stating if this vApp should be powered on. Default is ` + "`" + `true` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "org",
+					Name:        "storage_profile",
+					Description: `(Optional) Storage profile to override the default one.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) Key value map of metadata to assign to this vApp. Key and value can be any string. (Since`,
+				},
+				resource.Attribute{
+					Name:        "guest_properties",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
-					Name:        "vdc",
+					Name:        "href",
+					Description: `(Computed) The vApp Hyper Reference`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Computed;`,
+				},
+				resource.Attribute{
+					Name:        "status_text",
+					Description: `(Computed;`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "cpus",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "ovf",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
@@ -1667,6 +2009,10 @@ var (
 					Description: `(Required) A unique name for the VM`,
 				},
 				resource.Attribute{
+					Name:        "computer_name",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
 					Name:        "catalog_name",
 					Description: `(Required) The catalog name in which to find the given vApp Template`,
 				},
@@ -1720,6 +2066,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "customization",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "guest_properties",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
@@ -1780,13 +2134,16 @@ var (
 		"vcd_network_direct":     16,
 		"vcd_network_isolated":   17,
 		"vcd_network_routed":     18,
-		"vcd_org":                19,
-		"vcd_org_user":           20,
-		"vcd_org_vdc":            21,
-		"vcd_snat":               22,
-		"vcd_vapp":               23,
-		"vcd_vapp_network":       24,
-		"vcd_vapp_vm":            25,
+		"vcd_nsxv_dnat":          19,
+		"vcd_nsxv_firewall_rule": 20,
+		"vcd_nsxv_snat":          21,
+		"vcd_org":                22,
+		"vcd_org_user":           23,
+		"vcd_org_vdc":            24,
+		"vcd_snat":               25,
+		"vcd_vapp":               26,
+		"vcd_vapp_network":       27,
+		"vcd_vapp_vm":            28,
 	}
 )
 

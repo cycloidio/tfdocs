@@ -144,6 +144,10 @@ var (
 					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "token_policies",
 					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
@@ -173,11 +177,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. The maximum allowed lifetime of token issued using this role. Specified as a number of seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import AppRole authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_approle_auth_backend_role.example auth/approle/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import AppRole authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_approle_auth_backend_role.example auth/approle/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -637,6 +641,10 @@ var (
 					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "token_policies",
 					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
@@ -662,19 +670,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` isntead) The TTL period of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. The maximum allowed lifetime of token issued using this role. Specified as a number of seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_role.example auth/aws/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import AWS auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_aws_auth_backend_role.example auth/aws/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -821,7 +829,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The AWS region for API calls. Defaults to ` + "`" + `us-east-1` + "`" + `.`,
+					Description: `(Optional) The AWS region for API calls. Defaults to ` + "`" + `us-east-1` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -980,6 +988,10 @@ var (
 					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "token_policies",
 					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
@@ -1005,26 +1017,26 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` isntead) The TTL period of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. The maximum allowed lifetime of token issued using this role. Specified as a number of seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import Azure auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_azure_auth_backend_role.example auth/azure/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. ## Attributes Reference No additional attributes are exported by this resource. ## Import Azure auth backend roles can be imported using ` + "`" + `auth/` + "`" + `, the ` + "`" + `backend` + "`" + ` path, ` + "`" + `/role/` + "`" + `, and the ` + "`" + `role` + "`" + ` name e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_azure_auth_backend_role.example auth/azure/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "azure_secret_backend",
+			Type:             "vault_azure_secret_backend",
 			Category:         "Resources",
 			ShortDescription: `Creates an azure secret backend for Vault.`,
 			Description:      ``,
@@ -1038,7 +1050,7 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "azure_secret_backend_role",
+			Type:             "vault_azure_secret_backend_role",
 			Category:         "Resources",
 			ShortDescription: `Creates an azure secret backend role for Vault.`,
 			Description:      ``,
@@ -1134,6 +1146,10 @@ var (
 					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "token_policies",
 					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
@@ -1163,23 +1179,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bound_cidrs",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead) Restriction usage of the certificates to client IPs falling within the range of the specified CIDRs`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead if you are running Vault >= 1.2) Restriction usage of the certificates to client IPs falling within the range of the specified CIDRs`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` isntead) The TTL period of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. The maximum allowed lifetime of token issued using this role. Specified as a number of seconds. For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api/auth/cert/index.html). ## Attribute Reference No additional attributes are exposed by this resource.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. For more details on the usage of each argument consult the [Vault Cert API documentation](https://www.vaultproject.io/api/auth/cert/index.html). ## Attribute Reference No additional attributes are exposed by this resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1255,6 +1271,14 @@ var (
 				resource.Attribute{
 					Name:        "allowed_roles",
 					Description: `(Optional) A list of roles that are allowed to use this connection.`,
+				},
+				resource.Attribute{
+					Name:        "root_rotation_statements",
+					Description: `(Optional) A list of database statements to be executed to rotate the root user's credentials.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(Optional) A map of sensitive data to pass to the endpoint. Useful for templated connection strings.`,
 				},
 				resource.Attribute{
 					Name:        "cassandra",
@@ -1631,6 +1655,10 @@ var (
 					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "token_policies",
 					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
@@ -1656,19 +1684,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` isntead) The TTL period of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. The maximum allowed lifetime of token issued using this role. Specified as a number of seconds. ## Attribute Reference No additional attributes are exposed by this resource. ## Import GCP authentication roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_gcp_auth_backend_role.my_role auth/gcp/role/my_role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds. ## Attribute Reference No additional attributes are exposed by this resource. ## Import GCP authentication roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_gcp_auth_backend_role.my_role auth/gcp/role/my_role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1846,15 +1874,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Specifies the description of the mount. This overrides the current stored value, if any.`,
-				},
-				resource.Attribute{
-					Name:        "ttl",
-					Description: `(Optional) Duration after which authentication will be expired. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).`,
-				},
-				resource.Attribute{
-					Name:        "max_ttl",
-					Description: `(Optional) Maximum duration after which authentication will be expired. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration). The ` + "`" + `tune` + "`" + ` block is used to tune the auth backend:`,
+					Description: `(Optional) Specifies the description of the mount. This overrides the current stored value, if any. The ` + "`" + `tune` + "`" + ` block is used to tune the auth backend:`,
 				},
 				resource.Attribute{
 					Name:        "default_lease_ttl",
@@ -1878,17 +1898,121 @@ var (
 				},
 				resource.Attribute{
 					Name:        "passthrough_request_headers",
-					Description: `(Optional) List of headers to whitelist and pass from the request to the backend. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) List of headers to whitelist and pass from the request to the backend.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_response_headers",
+					Description: `(Optional) List of headers to whitelist and allowing a plugin to include them in the response.`,
+				},
+				resource.Attribute{
+					Name:        "token_type",
+					Description: `(Optional) Specifies the type of tokens that should be returned by the mount. Valid values are "default-service", "default-batch", "service", "batch". ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "accessor",
-					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html). ## Import Github authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html). ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
+				},
+				resource.Attribute{
+					Name:        "token_ttl",
+					Description: `(Optional) The incremental lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+				},
+				resource.Attribute{
+					Name:        "token_max_ttl",
+					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+				},
+				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "token_policies",
+					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
+				},
+				resource.Attribute{
+					Name:        "token_bound_cidrs",
+					Description: `(Optional) List of CIDR blocks; if set, specifies blocks of IP addresses which can authenticate successfully, and ties the resulting token to these blocks as well.`,
+				},
+				resource.Attribute{
+					Name:        "token_explicit_max_ttl",
+					Description: `(Optional) If set, will encode an [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls) onto the token in number of seconds. This is a hard cap even if ` + "`" + `token_ttl` + "`" + ` and ` + "`" + `token_max_ttl` + "`" + ` would otherwise allow a renewal.`,
+				},
+				resource.Attribute{
+					Name:        "token_no_default_policy",
+					Description: `(Optional) If set, the default policy will not be set on generated tokens; otherwise it will be added to the policies set in token_policies.`,
+				},
+				resource.Attribute{
+					Name:        "token_num_uses",
+					Description: `(Optional) The number of times issued tokens can be used. A value of 0 means unlimited uses.`,
+				},
+				resource.Attribute{
+					Name:        "token_num_uses",
+					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+				},
+				resource.Attribute{
+					Name:        "token_type",
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).`,
+				},
+				resource.Attribute{
+					Name:        "max_ttl",
+					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration). ## Import Github authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "accessor",
-					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html). ## Import Github authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html). ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
+				},
+				resource.Attribute{
+					Name:        "token_ttl",
+					Description: `(Optional) The incremental lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+				},
+				resource.Attribute{
+					Name:        "token_max_ttl",
+					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+				},
+				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "token_policies",
+					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
+				},
+				resource.Attribute{
+					Name:        "token_bound_cidrs",
+					Description: `(Optional) List of CIDR blocks; if set, specifies blocks of IP addresses which can authenticate successfully, and ties the resulting token to these blocks as well.`,
+				},
+				resource.Attribute{
+					Name:        "token_explicit_max_ttl",
+					Description: `(Optional) If set, will encode an [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls) onto the token in number of seconds. This is a hard cap even if ` + "`" + `token_ttl` + "`" + ` and ` + "`" + `token_max_ttl` + "`" + ` would otherwise allow a renewal.`,
+				},
+				resource.Attribute{
+					Name:        "token_no_default_policy",
+					Description: `(Optional) If set, the default policy will not be set on generated tokens; otherwise it will be added to the policies set in token_policies.`,
+				},
+				resource.Attribute{
+					Name:        "token_num_uses",
+					Description: `(Optional) The number of times issued tokens can be used. A value of 0 means unlimited uses.`,
+				},
+				resource.Attribute{
+					Name:        "token_num_uses",
+					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+				},
+				resource.Attribute{
+					Name:        "token_type",
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration).`,
+				},
+				resource.Attribute{
+					Name:        "max_ttl",
+					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role. This must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration). ## Import Github authentication mounts can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_auth_backend.example github ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1909,43 +2033,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "team",
-					Description: `(Required) GitHub team name in "slugified" format, for example: Terraform Developers -> ` + "`" + `terraform-developers` + "`" + `. ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
-				},
-				resource.Attribute{
-					Name:        "token_ttl",
-					Description: `(Optional) The incremental lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
-				},
-				resource.Attribute{
-					Name:        "token_max_ttl",
-					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
-				},
-				resource.Attribute{
-					Name:        "token_policies",
-					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
-				},
-				resource.Attribute{
-					Name:        "token_bound_cidrs",
-					Description: `(Optional) List of CIDR blocks; if set, specifies blocks of IP addresses which can authenticate successfully, and ties the resulting token to these blocks as well.`,
-				},
-				resource.Attribute{
-					Name:        "token_explicit_max_ttl",
-					Description: `(Optional) If set, will encode an [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls) onto the token in number of seconds. This is a hard cap even if ` + "`" + `token_ttl` + "`" + ` and ` + "`" + `token_max_ttl` + "`" + ` would otherwise allow a renewal.`,
-				},
-				resource.Attribute{
-					Name:        "token_no_default_policy",
-					Description: `(Optional) If set, the default policy will not be set on generated tokens; otherwise it will be added to the policies set in token_policies.`,
-				},
-				resource.Attribute{
-					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
-				},
-				resource.Attribute{
-					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
+					Description: `(Required) GitHub team name in "slugified" format, for example: Terraform Developers -> ` + "`" + `terraform-developers` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role. ## Attributes Reference No additional attributes are exported by this resource. ## Import Github team mappings can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_team.tf_devs auth/github/map/teams/terraform-developers ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) An array of strings specifying the policies to be set on tokens issued using this role. ## Attributes Reference No additional attributes are exported by this resource. ## Import Github team mappings can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_team.tf_devs auth/github/map/teams/terraform-developers ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1967,43 +2059,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user",
-					Description: `(Required) GitHub user name. ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
-				},
-				resource.Attribute{
-					Name:        "token_ttl",
-					Description: `(Optional) The incremental lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
-				},
-				resource.Attribute{
-					Name:        "token_max_ttl",
-					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
-				},
-				resource.Attribute{
-					Name:        "token_policies",
-					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
-				},
-				resource.Attribute{
-					Name:        "token_bound_cidrs",
-					Description: `(Optional) List of CIDR blocks; if set, specifies blocks of IP addresses which can authenticate successfully, and ties the resulting token to these blocks as well.`,
-				},
-				resource.Attribute{
-					Name:        "token_explicit_max_ttl",
-					Description: `(Optional) If set, will encode an [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls) onto the token in number of seconds. This is a hard cap even if ` + "`" + `token_ttl` + "`" + ` and ` + "`" + `token_max_ttl` + "`" + ` would otherwise allow a renewal.`,
-				},
-				resource.Attribute{
-					Name:        "token_no_default_policy",
-					Description: `(Optional) If set, the default policy will not be set on generated tokens; otherwise it will be added to the policies set in token_policies.`,
-				},
-				resource.Attribute{
-					Name:        "token_num_uses",
-					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
-				},
-				resource.Attribute{
-					Name:        "token_type",
-					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. ### Deprecated Arguments These arguments are deprecated since Vault 1.2 in favour of the common token arguments documented above.`,
+					Description: `(Required) GitHub user name.`,
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role. ## Attributes Reference No additional attributes are exported by this resource. ## Import Github user mappings can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_user.tf_user auth/github/map/users/john.doe ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) An array of strings specifying the policies to be set on tokens issued using this role. ## Attributes Reference No additional attributes are exported by this resource. ## Import Github user mappings can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_github_user.tf_user auth/github/map/users/john.doe ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2033,7 +2093,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disabled",
-					Description: `(Optional) True/false Is this entity currently disabled. Defaults to ` + "`" + `false` + "`" + ` ## Attributes Reference`,
+					Description: `(Optional) True/false Is this entity currently disabled. Defaults to ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "external_policies",
+					Description: `(Optional) ` + "`" + `false` + "`" + ` by default. If set to ` + "`" + `true` + "`" + `, this resource will ignore any policies return from Vault or specified in the resource. You can use [` + "`" + `vault_identity_entity_policies` + "`" + `](identity_entity_policies.html) to manage policies for this entity in a decoupled manner. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2085,6 +2149,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_identity_entity_policies",
+			Category:         "Resources",
+			ShortDescription: `Manages policies for an Identity Entity for Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"entity",
+				"policies",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policies",
+					Description: `(Required) List of policies to assign to the entity`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `(Required) Entity ID to assign policies to.`,
+				},
+				resource.Attribute{
+					Name:        "exclusive",
+					Description: `(Optional) Defaults to ` + "`" + `true` + "`" + `. If ` + "`" + `true` + "`" + `, this resource will take exclusive control of the policies assigned to the entity and will set it equal to what is specified in the resource. If set to ` + "`" + `false` + "`" + `, this resource will simply ensure that the policies specified in the resource are present in the entity. When destroying the resource, the resource will ensure that the policies specified in the resource are removed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "entity_name",
+					Description: `The name of the entity that are assigned the policies.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "entity_name",
+					Description: `The name of the entity that are assigned the policies.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_identity_group",
 			Category:         "Resources",
 			ShortDescription: `Creates an Identity Group for Vault.`,
@@ -2116,7 +2216,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "member_entity_ids",
-					Description: `(Optional) A list of Entity IDs to be assigned as group members. Not allowed on ` + "`" + `external` + "`" + ` groups. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) A list of Entity IDs to be assigned as group members. Not allowed on ` + "`" + `external` + "`" + ` groups.`,
+				},
+				resource.Attribute{
+					Name:        "external_policies",
+					Description: `(Optional) ` + "`" + `false` + "`" + ` by default. If set to ` + "`" + `true` + "`" + `, this resource will ignore any policies return from Vault or specified in the resource. You can use [` + "`" + `vault_identity_group_policies` + "`" + `](identity_group_policies.html) to manage policies for this group in a decoupled manner. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2163,6 +2267,42 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ` + "`" + `id` + "`" + ` of the created group alias.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_identity_group_policies",
+			Category:         "Resources",
+			ShortDescription: `Manages policies for an Identity Group for Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"group",
+				"policies",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policies",
+					Description: `(Required) List of policies to assign to the group`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Group ID to assign policies to.`,
+				},
+				resource.Attribute{
+					Name:        "exclusive",
+					Description: `(Optional) Defaults to ` + "`" + `true` + "`" + `. If ` + "`" + `true` + "`" + `, this resource will take exclusive control of the policies assigned to the group and will set it equal to what is specified in the resource. If set to ` + "`" + `false` + "`" + `, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the group that are assigned the policies.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the group that are assigned the policies.`,
 				},
 			},
 		},
@@ -2384,7 +2524,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "passthrough_request_headers",
-					Description: `(Optional) List of headers to whitelist and pass from the request to the backend. ## Attributes Reference No additional attributes are exposed by this resource.`,
+					Description: `(Optional) List of headers to whitelist and pass from the request to the backend.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_response_headers",
+					Description: `(Optional) List of headers to whitelist and allowing a plugin to include them in the response.`,
+				},
+				resource.Attribute{
+					Name:        "token_type",
+					Description: `(Optional) Specifies the type of tokens that should be returned by the mount. Valid values are "default-service", "default-batch", "service", "batch". ## Attributes Reference No additional attributes are exposed by this resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2448,7 +2596,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allowed_redirect_uris",
-					Description: `(Optional) The list of allowed values for redirect_uri during OIDC logins. Required for OIDC roles ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
+					Description: `(Optional) The list of allowed values for redirect_uri during OIDC logins. Required for OIDC roles`,
+				},
+				resource.Attribute{
+					Name:        "clock_skew_leeway",
+					Description: `(Optional) The amount of leeway to add to all claims to account for clock skew, in seconds. Defaults to ` + "`" + `60` + "`" + ` seconds if set to ` + "`" + `0` + "`" + ` and can be disabled if set to ` + "`" + `-1` + "`" + `. Only applicable with "jwt" roles.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_leeway",
+					Description: `(Optional) The amount of leeway to add to expiration (` + "`" + `exp` + "`" + `) claims to account for clock skew, in seconds. Defaults to ` + "`" + `60` + "`" + ` seconds if set to ` + "`" + `0` + "`" + ` and can be disabled if set to ` + "`" + `-1` + "`" + `. Only applicable with "jwt" roles.`,
+				},
+				resource.Attribute{
+					Name:        "not_before_leeway",
+					Description: `(Optional) The amount of leeway to add to not before (` + "`" + `nbf` + "`" + `) claims to account for clock skew, in seconds. Defaults to ` + "`" + `60` + "`" + ` seconds if set to ` + "`" + `0` + "`" + ` and can be disabled if set to ` + "`" + `-1` + "`" + `. Only applicable with "jwt" roles.`,
+				},
+				resource.Attribute{
+					Name:        "verbose_oidc_logging",
+					Description: `(Optional) Log received OIDC tokens and claims when debug-level logging is active. Not recommended in production since sensitive information may be present in OIDC responses. ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
 				},
 				resource.Attribute{
 					Name:        "token_ttl",
@@ -2457,6 +2621,10 @@ var (
 				resource.Attribute{
 					Name:        "token_max_ttl",
 					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+				},
+				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
 				},
 				resource.Attribute{
 					Name:        "token_policies",
@@ -2484,27 +2652,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "num_uses",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_num_uses` + "`" + ` instead) If set, puts a use-count limitation on the issued token.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_num_uses` + "`" + ` instead if you are running Vault >= 1.2) If set, puts a use-count limitation on the issued token.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` isntead) The TTL period of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. The maximum allowed lifetime of token issued using this role. Specified as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
 				},
 				resource.Attribute{
 					Name:        "bound_cidrs",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource. ## Import JWT authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_jwt_auth_backend_role.example auth/jwt/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead if you are running Vault >= 1.2) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource. ## Import JWT authentication backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_jwt_auth_backend_role.example auth/jwt/role/test-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2579,6 +2747,10 @@ var (
 					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "token_policies",
 					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
@@ -2604,27 +2776,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "num_uses",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_num_uses` + "`" + ` instead) If set, puts a use-count limitation on the issued token.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_num_uses` + "`" + ` instead if you are running Vault >= 1.2) If set, puts a use-count limitation on the issued token.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` isntead) The TTL period of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_ttl` + "`" + ` instead if you are running Vault >= 1.2) The TTL period of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_max_ttl` + "`" + ` instead if you are running Vault >= 1.2) The maximum allowed lifetime of tokens issued using this role, provided as a number of seconds.`,
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead) An array of strings specifying the policies to be set on tokens issued using this role.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_policies` + "`" + ` instead if you are running Vault >= 1.2) An array of strings specifying the policies to be set on tokens issued using this role.`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. The maximum allowed lifetime of token issued using this role. Specified as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
 				},
 				resource.Attribute{
 					Name:        "bound_cidrs",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead if you are running Vault >= 1.2) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2707,7 +2879,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description for the LDAP auth backend mount For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api/auth/ldap/index.html). ~>`,
+					Description: `(Optional) Description for the LDAP auth backend mount ### Common Token Arguments These arguments are common across several Authentication Token resources since Vault 1.2.`,
+				},
+				resource.Attribute{
+					Name:        "token_ttl",
+					Description: `(Optional) The incremental lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+				},
+				resource.Attribute{
+					Name:        "token_max_ttl",
+					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+				},
+				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "token_policies",
+					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
+				},
+				resource.Attribute{
+					Name:        "token_bound_cidrs",
+					Description: `(Optional) List of CIDR blocks; if set, specifies blocks of IP addresses which can authenticate successfully, and ties the resulting token to these blocks as well.`,
+				},
+				resource.Attribute{
+					Name:        "token_explicit_max_ttl",
+					Description: `(Optional) If set, will encode an [explicit max TTL](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls) onto the token in number of seconds. This is a hard cap even if ` + "`" + `token_ttl` + "`" + ` and ` + "`" + `token_max_ttl` + "`" + ` would otherwise allow a renewal.`,
+				},
+				resource.Attribute{
+					Name:        "token_no_default_policy",
+					Description: `(Optional) If set, the default policy will not be set on generated tokens; otherwise it will be added to the policies set in token_policies.`,
+				},
+				resource.Attribute{
+					Name:        "token_num_uses",
+					Description: `(Optional) The number of times issued tokens can be used. A value of 0 means unlimited uses.`,
+				},
+				resource.Attribute{
+					Name:        "token_num_uses",
+					Description: `(Optional) The [period](https://www.vaultproject.io/docs/concepts/tokens.html#token-time-to-live-periodic-tokens-and-explicit-max-ttls), if any, in number of seconds to set on the token.`,
+				},
+				resource.Attribute{
+					Name:        "token_type",
+					Description: `(Optional) The type of token that should be generated. Can be ` + "`" + `service` + "`" + `, ` + "`" + `batch` + "`" + `, or ` + "`" + `default` + "`" + ` to use the mount's tuned default (which unless changed will be ` + "`" + `service` + "`" + ` tokens). For token store roles, there are two additional possibilities: ` + "`" + `default-service` + "`" + ` and ` + "`" + `default-batch` + "`" + ` which specify the type to return unless the client requests a different type at generation time. For more details on the usage of each argument consult the [Vault LDAP API documentation](https://www.vaultproject.io/api/auth/ldap/index.html). ~>`,
 				},
 				resource.Attribute{
 					Name:        "accessor",
@@ -3220,6 +3432,35 @@ var (
 				resource.Attribute{
 					Name:        "ocsp_servers",
 					Description: `(Optional) Specifies the URL values for the OCSP Servers field. ## Attributes Reference No additional attributes are exported by this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vault_pki_secret_backend_crl_config",
+			Category:         "Resources",
+			ShortDescription: `Sets the CRL config on an PKI Secret Backend for Vault.`,
+			Description:      ``,
+			Keywords: []string{
+				"pki",
+				"secret",
+				"backend",
+				"crl",
+				"config",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "backend",
+					Description: `(Required) The path the PKI secret backend is mounted at, with no leading or trailing ` + "`" + `/` + "`" + `s.`,
+				},
+				resource.Attribute{
+					Name:        "expiry",
+					Description: `(Optional) Specifies the time until expiration.`,
+				},
+				resource.Attribute{
+					Name:        "disable",
+					Description: `(Optional) Disables or enables CRL building. ## Attributes Reference No additional attributes are exported by this resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4281,8 +4522,8 @@ var (
 					Description: `(Optional) The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
-					Name:        "token_policies",
-					Description: `(Optional) List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
 				},
 				resource.Attribute{
 					Name:        "token_bound_cidrs",
@@ -4306,11 +4547,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. The maximum allowed lifetime of token issued using this role. Specified as a number of seconds.`,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_period` + "`" + ` instead if you are running Vault >= 1.2) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
 				},
 				resource.Attribute{
 					Name:        "bound_cidrs",
-					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource. ## Import Token auth backend roles can be imported with ` + "`" + `auth/token/roles/` + "`" + ` followed by the ` + "`" + `role_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token_auth_backend_role.example auth/token/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional; Deprecated, use ` + "`" + `token_bound_cidrs` + "`" + ` instead if you are running Vault >= 1.2) If set, a list of CIDRs valid as the source address for login requests. This value is also encoded into any resulting token. ## Attributes Reference No additional attributes are exported by this resource. ## Import Token auth backend roles can be imported with ` + "`" + `auth/token/roles/` + "`" + ` followed by the ` + "`" + `role_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_token_auth_backend_role.example auth/token/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4473,8 +4714,8 @@ var (
 		"vault_aws_secret_backend_role":                      14,
 		"vault_azure_auth_backend_config":                    15,
 		"vault_azure_auth_backend_role":                      16,
-		"azure_secret_backend":                               17,
-		"azure_secret_backend_role":                          18,
+		"vault_azure_secret_backend":                         17,
+		"vault_azure_secret_backend_role":                    18,
 		"vault_cert_auth_backend_role":                       19,
 		"vault_consul_secret_backend":                        20,
 		"vault_database_secret_backend_connection":           21,
@@ -4491,44 +4732,47 @@ var (
 		"vault_github_user":                                  32,
 		"vault_identity_entity":                              33,
 		"vault_identity_entity_alias":                        34,
-		"vault_identity_group":                               35,
-		"vault_identity_group_alias":                         36,
-		"vault_identity_oidc":                                37,
-		"vault_identity_oidc_key":                            38,
-		"vault_identity_oidc_key_allowed_client_id":          39,
-		"vault_identity_oidc_role":                           40,
-		"vault_jwt_auth_backend":                             41,
-		"vault_jwt_auth_backend_role":                        42,
-		"vault_kubernetes_auth_backend_config":               43,
-		"vault_kubernetes_auth_backend_role":                 44,
-		"vault_ldap_auth_backend":                            45,
-		"vault_ldap_auth_backend_group":                      46,
-		"vault_ldap_auth_backend_user":                       47,
-		"vault_mfa_duo":                                      48,
-		"vault_mount":                                        49,
-		"vault_namespace":                                    50,
-		"vault_okta_auth_backend":                            51,
-		"vault_okta_auth_backend_group":                      52,
-		"vault_okta_auth_backend_user":                       53,
-		"vault_pki_secret_backend":                           54,
-		"vault_pki_secret_backend_cert":                      55,
-		"vault_pki_secret_backend_config_ca":                 56,
-		"vault_pki_secret_backend_config_urls":               57,
-		"vault_pki_secret_backend_intermediate_cert_request": 58,
-		"vault_pki_secret_backend_intermediate_set_signed":   59,
-		"vault_pki_secret_backend_role":                      60,
-		"vault_pki_secret_backend_root_cert":                 61,
-		"vault_pki_secret_backend_root_sign_intermediate":    62,
-		"vault_pki_secret_backend_sign":                      63,
-		"vault_policy":                                       64,
-		"vault_rabbitmq_secret_backend":                      65,
-		"vault_rabbitmq_secret_backend_role":                 66,
-		"vault_rgp_policy":                                   67,
-		"vault_ssh_secret_backend_ca":                        68,
-		"vault_ssh_secret_backend_role":                      69,
-		"vault_token":                                        70,
-		"vault_token_auth_backend_role":                      71,
-		"vault_transit_secret_backend_key":                   72,
+		"vault_identity_entity_policies":                     35,
+		"vault_identity_group":                               36,
+		"vault_identity_group_alias":                         37,
+		"vault_identity_group_policies":                      38,
+		"vault_identity_oidc":                                39,
+		"vault_identity_oidc_key":                            40,
+		"vault_identity_oidc_key_allowed_client_id":          41,
+		"vault_identity_oidc_role":                           42,
+		"vault_jwt_auth_backend":                             43,
+		"vault_jwt_auth_backend_role":                        44,
+		"vault_kubernetes_auth_backend_config":               45,
+		"vault_kubernetes_auth_backend_role":                 46,
+		"vault_ldap_auth_backend":                            47,
+		"vault_ldap_auth_backend_group":                      48,
+		"vault_ldap_auth_backend_user":                       49,
+		"vault_mfa_duo":                                      50,
+		"vault_mount":                                        51,
+		"vault_namespace":                                    52,
+		"vault_okta_auth_backend":                            53,
+		"vault_okta_auth_backend_group":                      54,
+		"vault_okta_auth_backend_user":                       55,
+		"vault_pki_secret_backend":                           56,
+		"vault_pki_secret_backend_cert":                      57,
+		"vault_pki_secret_backend_config_ca":                 58,
+		"vault_pki_secret_backend_config_urls":               59,
+		"vault_pki_secret_backend_crl_config":                60,
+		"vault_pki_secret_backend_intermediate_cert_request": 61,
+		"vault_pki_secret_backend_intermediate_set_signed":   62,
+		"vault_pki_secret_backend_role":                      63,
+		"vault_pki_secret_backend_root_cert":                 64,
+		"vault_pki_secret_backend_root_sign_intermediate":    65,
+		"vault_pki_secret_backend_sign":                      66,
+		"vault_policy":                                       67,
+		"vault_rabbitmq_secret_backend":                      68,
+		"vault_rabbitmq_secret_backend_role":                 69,
+		"vault_rgp_policy":                                   70,
+		"vault_ssh_secret_backend_ca":                        71,
+		"vault_ssh_secret_backend_role":                      72,
+		"vault_token":                                        73,
+		"vault_token_auth_backend_role":                      74,
+		"vault_transit_secret_backend_key":                   75,
 	}
 )
 

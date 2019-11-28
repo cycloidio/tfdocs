@@ -313,6 +313,10 @@ var (
 					Description: `(Optional) meta is supported at the ` + "`" + `record` + "`" + ` level. [Meta](#meta-3) is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "regions",
+					Description: `(Optional) One or more "regions" for the record. These are really just groupings based on metadata, and are called "Answer Groups" in the NS1 UI, but remain ` + "`" + `regions` + "`" + ` here for legacy reasons. [Regions](#regions-1) are documented below. Please note the ordering requirement!`,
+				},
+				resource.Attribute{
 					Name:        "answers",
 					Description: `(Optional) One or more NS1 answers for the records' specified type. [Answers](#answers-1) are documented below.`,
 				},
@@ -325,8 +329,8 @@ var (
 					Description: `(Required) Space delimited string of RDATA fields dependent on the record type. A: answer = "1.2.3.4" CNAME: answer = "www.example.com" MX: answer = "5 mail.example.com" SRV: answer = "10 0 2380 node-1.example.com" SPF: answer = "v=DKIM1; k=rsa; p=XXXXXXXX"`,
 				},
 				resource.Attribute{
-					Name:        "regions",
-					Description: `(Optional) One or more regions (or groups) that this answer belongs to. Regions must be sorted alphanumerically by name, otherwise Terraform will detect changes to the record when none actually exist. [Regions](#regions-1) are documented below.`,
+					Name:        "region",
+					Description: `(Optional) The region (Answer Group really) that this answer belongs to. This should be one of the names specified in ` + "`" + `regions` + "`" + `. Only a single ` + "`" + `region` + "`" + ` per answer is currently supported. If you want an answer in multiple regions, duplicating the answer (including metadata) is the correct approach.`,
 				},
 				resource.Attribute{
 					Name:        "meta",
@@ -346,11 +350,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Region (or group) name.`,
+					Description: `(Required) Name of the region (or Answer Group).`,
 				},
 				resource.Attribute{
 					Name:        "meta",
-					Description: `(Optional) meta is supported at the ` + "`" + `regions` + "`" + ` level. [Meta](#meta-3) is documented below. #### Meta Metadata (` + "`" + `meta` + "`" + `) is a bit tricky at the moment. For "static" values it works as you would expect, but when a value is a ` + "`" + `datafeed` + "`" + `, it should be represented as "escaped" JSON. See the [Example Usage](#example-usage) above for illustration of this. Note that variables are still supported in the escaped JSON format. Note also that we intend to fix up this "escaped" JSON stuff as soon as possible, so please bear with us and plan accordingly. Since this resource supports [import](#import), you may find it helpful to set up some ` + "`" + `meta` + "`" + ` fields via the web portal or API, and use the results from import to ensure that everything is properly escaped and evaluated. See [NS1 API](https://ns1.com/api#get-available-metadata-fields) for the most up-to-date list of available ` + "`" + `meta` + "`" + ` fields. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions. ## Import ` + "`" + `terraform import ns1_record.<name> <zone>/<domain>/<type>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_record.www terraform.example.io/www.terraform.example.io/CNAME` + "`" + ``,
+					Description: `(Optional) meta is supported at the ` + "`" + `regions` + "`" + ` level. [Meta](#meta-3) is documented below. Note that ` + "`" + `Meta` + "`" + ` values for ` + "`" + `country` + "`" + `, ` + "`" + `ca_province` + "`" + `, ` + "`" + `georegion` + "`" + `, and ` + "`" + `us_state` + "`" + ` should be comma separated strings, and changes in ordering will not lead to terraform detecting a change. Note: regions`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -577,11 +581,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "primary",
-					Description: `(Optional) The primary zones' IP. This makes the zone a secondary.`,
+					Description: `(Optional) The primary zones' IP. This makes the zone a secondary. Conflicts with ` + "`" + `secondaries` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "additional_primaries",
-					Description: `(Optional) List of additional IPs for the primary zone.`,
+					Description: `(Optional) List of additional IPs for the primary zone. Conflicts with ` + "`" + `secondaries` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -589,23 +593,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "refresh",
-					Description: `(Optional/Computed) The SOA Refresh.`,
+					Description: `(Optional/Computed) The SOA Refresh. Conflicts with ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` (default must be accepted).`,
 				},
 				resource.Attribute{
 					Name:        "retry",
-					Description: `(Optional/Computed) The SOA Retry.`,
+					Description: `(Optional/Computed) The SOA Retry. Conflicts with ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` (default must be accepted).`,
 				},
 				resource.Attribute{
 					Name:        "expiry",
-					Description: `(Optional/Computed) The SOA Expiry.`,
+					Description: `(Optional/Computed) The SOA Expiry. Conflicts with ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` (default must be accepted).`,
 				},
 				resource.Attribute{
 					Name:        "nx_ttl",
-					Description: `(Optional/Computed) The SOA NX TTL.`,
+					Description: `(Optional/Computed) The SOA NX TTL. Conflicts with ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` (default must be accepted).`,
+				},
+				resource.Attribute{
+					Name:        "dnssec",
+					Description: `(Optional/Computed) Whether or not DNSSEC is enabled for the zone. Note that DNSSEC must be enabled on the account by support for this to be set to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "networks",
-					Description: `(Optional/Computed) List of network IDs for which the zone is available. If no network is provided, the zone will be created in network 0, the primary NS1 Global Network. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional/Computed) List of network IDs for which the zone is available. If no network is provided, the zone will be created in network 0, the primary NS1 Global Network.`,
+				},
+				resource.Attribute{
+					Name:        "secondaries",
+					Description: `(Optional) List of secondary servers. This makes the zone a primary. Conflicts with ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + `. [Secondaries](#secondaries-1) is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "autogenerate_ns_record",
+					Description: `(Optional, default true). If set to false, clears the autogenerated NS record on zone creation. This allows an automated workflow for creating zones with the NS record in terraform state. See above for an example. Note that this option only has an effect when a zone is being created. #### Secondaries A zone can have zero or more ` + "`" + `secondaries` + "`" + `. Note how this is implemented in the example above. A secondary has the following fields:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required) IPv4 address of the secondary server.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Port of the the secondary server. Default ` + "`" + `53` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "notify",
+					Description: `(Optional) Whether we send ` + "`" + `NOTIFY` + "`" + ` messages to the secondary host when the zone changes. Default ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "networks",
+					Description: `(Computed) - List of network IDs (` + "`" + `int` + "`" + `) for which the zone should be made available. Default is network 0, the primary NSONE Global Network. Normally, you should not have to worry about this. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "dns_servers",
@@ -613,7 +645,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hostmaster",
-					Description: `(Computed) The SOA Hostmaster. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ``,
+					Description: `(Computed) The SOA Hostmaster. ## A note on making Primary or Secondary changes to zones Switching a zone to being a secondary forces a new resource. In other words, the zone will first be destroyed, then recreated as a secondary. Editing or removing the ` + "`" + `primary` + "`" + ` key, or directly changing a secondary zone to a primary (by removing the ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` keys, and setting ` + "`" + `secondaries` + "`" + `) is supported "in place". However, in these situations we do not alter records on the zone. You may need to amend records, or finagle them into Terraform state. As a particular example, if you change a secondary zone to be primary (or just not-a-secondary) before a zone transfer has occurred, you can end up with no records on the zone. Currently, this provider does not support zones being both Primary and Secondary. If that functionality is important for your workflow, please open an issue or contact support, so we can prioritize the work accordingly. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -623,7 +655,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hostmaster",
-					Description: `(Computed) The SOA Hostmaster. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ``,
+					Description: `(Computed) The SOA Hostmaster. ## A note on making Primary or Secondary changes to zones Switching a zone to being a secondary forces a new resource. In other words, the zone will first be destroyed, then recreated as a secondary. Editing or removing the ` + "`" + `primary` + "`" + ` key, or directly changing a secondary zone to a primary (by removing the ` + "`" + `primary` + "`" + ` and ` + "`" + `additional_primaries` + "`" + ` keys, and setting ` + "`" + `secondaries` + "`" + `) is supported "in place". However, in these situations we do not alter records on the zone. You may need to amend records, or finagle them into Terraform state. As a particular example, if you change a secondary zone to be primary (or just not-a-secondary) before a zone transfer has occurred, you can end up with no records on the zone. Currently, this provider does not support zones being both Primary and Secondary. If that functionality is important for your workflow, please open an issue or contact support, so we can prioritize the work accordingly. ## Import ` + "`" + `terraform import ns1_zone.<name> <zone>` + "`" + ` So for the example above: ` + "`" + `terraform import ns1_zone.example terraform.example.io` + "`" + ``,
 				},
 			},
 		},

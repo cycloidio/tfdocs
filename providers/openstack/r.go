@@ -1316,6 +1316,10 @@ var (
 					Description: `(Optional) Provide the VM state. Only 'active' and 'shutoff' are supported values.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A set of string tags for the instance. Changing this updates the existing instance tags.`,
+				},
+				resource.Attribute{
 					Name:        "vendor_options",
 					Description: `(Optional) Map of additional vendor-specific options. Supported options are described below. The ` + "`" + `network` + "`" + ` block supports:`,
 				},
@@ -1469,7 +1473,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "all_metadata",
-					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + `hcl resource "openstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Security Groups When referencing a security group resource in an instance resource, always use the _name_ of the security group. If you specify the ID of the security group, Terraform will remove and reapply the security group upon each call. This is because the OpenStack Compute API returns the names of the associated security groups and not their IDs. Note the following example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "openstack_networking_secgroup_v2" "sg_1" { name = "sg_1" } resource "openstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["${openstack_networking_secgroup_v2.sg_1.name}"] } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
+					Description: `Contains all instance metadata, even metadata not set by Terraform.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "all_tags",
+					Description: `The collection of tags assigned on the instance, which have been explicitly and implicitly added. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + `hcl resource "openstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Security Groups When referencing a security group resource in an instance resource, always use the _name_ of the security group. If you specify the ID of the security group, Terraform will remove and reapply the security group upon each call. This is because the OpenStack Compute API returns the names of the associated security groups and not their IDs. Note the following example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "openstack_networking_secgroup_v2" "sg_1" { name = "sg_1" } resource "openstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["${openstack_networking_secgroup_v2.sg_1.name}"] } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1531,7 +1543,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "all_metadata",
-					Description: `Contains all instance metadata, even metadata not set by Terraform. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + `hcl resource "openstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Security Groups When referencing a security group resource in an instance resource, always use the _name_ of the security group. If you specify the ID of the security group, Terraform will remove and reapply the security group upon each call. This is because the OpenStack Compute API returns the names of the associated security groups and not their IDs. Note the following example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "openstack_networking_secgroup_v2" "sg_1" { name = "sg_1" } resource "openstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["${openstack_networking_secgroup_v2.sg_1.name}"] } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
+					Description: `Contains all instance metadata, even metadata not set by Terraform.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "all_tags",
+					Description: `The collection of tags assigned on the instance, which have been explicitly and implicitly added. ## Notes ### Multiple Ephemeral Disks It's possible to specify multiple ` + "`" + `block_device` + "`" + ` entries to create an instance with multiple ephemeral (local) disks. In order to create multiple ephemeral disks, the sum of the total amount of ephemeral space must be less than or equal to what the chosen flavor supports. The following example shows how to create an instance with multiple ephemeral disks: ` + "`" + `` + "`" + `` + "`" + `hcl resource "openstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["default"] block_device { boot_index = 0 delete_on_termination = true destination_type = "local" source_type = "image" uuid = "<image uuid>" } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } block_device { boot_index = -1 delete_on_termination = true destination_type = "local" source_type = "blank" volume_size = 1 } } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Security Groups When referencing a security group resource in an instance resource, always use the _name_ of the security group. If you specify the ID of the security group, Terraform will remove and reapply the security group upon each call. This is because the OpenStack Compute API returns the names of the associated security groups and not their IDs. Note the following example: ` + "`" + `` + "`" + `` + "`" + `hcl resource "openstack_networking_secgroup_v2" "sg_1" { name = "sg_1" } resource "openstack_compute_instance_v2" "foo" { name = "terraform-test" security_groups = ["${openstack_networking_secgroup_v2.sg_1.name}"] } ` + "`" + `` + "`" + `` + "`" + ` ### Instances and Ports Neutron Ports are a great feature and provide a lot of functionality. However, there are some notes to be aware of when mixing Instances and Ports:`,
 				},
 			},
 		},
@@ -1673,6 +1693,214 @@ var (
 				resource.Attribute{
 					Name:        "private_key",
 					Description: `The generated private key when no public key is specified. ## Import Keypairs can be imported using the ` + "`" + `name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_compute_keypair_v2.my-keypair test-keypair ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_compute_quotaset_v2",
+			Category:         "Compute Resources",
+			ShortDescription: `Manages a V2 compute quotaset resource within OpenStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"quotaset",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to create the volume. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) ID of the project to manage quotas. Changing this creates a new quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ips",
+					Description: `(Optional) Quota value for fixed IPs. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ips",
+					Description: `(Optional) Quota value for floating IPs. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_content_bytes",
+					Description: `(Optional) Quota value for content bytes of injected files. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_path_bytes",
+					Description: `(Optional) Quota value for path bytes of injected files. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "injected_files",
+					Description: `(Optional) Quota value for injected files. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "key_pairs",
+					Description: `(Optional) Quota value for key pairs. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_items",
+					Description: `(Optional) Quota value for metadata items. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `(Optional) Quota value for RAM. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rules",
+					Description: `(Optional) Quota value for security group rules. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `(Optional) Quota value for security groups. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "cores",
+					Description: `(Optional) Quota value for cores. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `(Optional) Quota value for instances. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "server_groups",
+					Description: `(Optional) Quota value for server groups. Changing this updates the existing quotaset.`,
+				},
+				resource.Attribute{
+					Name:        "server_group_members",
+					Description: `(Optional) Quota value for server groups members. Changing this updates the existing quotaset. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ips",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ips",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_content_bytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_path_bytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "injected_files",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_pairs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_items",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rules",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cores",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "server_groups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "server_group_members",
+					Description: `See Argument Reference above. ## Import Quotasets can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_compute_quotaset_v2.quotaset_1 2a0f2240-c5e6-41de-896d-e80d97428d6b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_ips",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ips",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_content_bytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "injected_file_path_bytes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "injected_files",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key_pairs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_items",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ram",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rules",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cores",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "server_groups",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "server_group_members",
+					Description: `See Argument Reference above. ## Import Quotasets can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_compute_quotaset_v2.quotaset_1 2a0f2240-c5e6-41de-896d-e80d97428d6b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3594,6 +3822,121 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "openstack_images_image_access_accept_v2",
+			Category:         "Images Resources",
+			ShortDescription: `Manages a V2 Image membership proposal resource within OpenStack Glance.`,
+			Description:      ``,
+			Keywords: []string{
+				"images",
+				"image",
+				"access",
+				"accept",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Glance client. A Glance client is needed to manage Image memberships. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new membership.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) The proposed image ID.`,
+				},
+				resource.Attribute{
+					Name:        "member_id",
+					Description: `(Optional) The member ID, e.g. the target project ID. Optional for admin accounts. Defaults to the current scope project ID.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Required) The membership proposal status. Can either be ` + "`" + `accepted` + "`" + `, ` + "`" + `rejected` + "`" + ` or ` + "`" + `pending` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the image membership was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the image membership was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: `The membership schema. ## Import Image access acceptance status can be imported using the ` + "`" + `image_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_images_image_access_accept_v2 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the image membership was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the image membership was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: `The membership schema. ## Import Image access acceptance status can be imported using the ` + "`" + `image_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_images_image_access_accept_v2 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_images_image_access_v2",
+			Category:         "Images Resources",
+			ShortDescription: `Manages a V2 Image member resource within OpenStack Glance.`,
+			Description:      ``,
+			Keywords: []string{
+				"images",
+				"image",
+				"access",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Glance client. A Glance client is needed to manage Image members. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) The image ID.`,
+				},
+				resource.Attribute{
+					Name:        "member_id",
+					Description: `(Required) The member ID, e.g. the target project ID.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The member proposal status. Optional if admin wants to force the member proposal acceptance. Can either be ` + "`" + `accepted` + "`" + `, ` + "`" + `rejected` + "`" + ` or ` + "`" + `pending` + "`" + `. Defaults to ` + "`" + `pending` + "`" + `. Foridden for non-admin users. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the image access was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the image access was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: `The member schema. ## Import Image access can be imported using the ` + "`" + `image_id` + "`" + ` and the ` + "`" + `member_id` + "`" + `, separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_images_image_access_v2 89c60255-9bd6-460c-822a-e2b959ede9d2/bed6b6cbb86a4e2d8dc2735c2f1000e4 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the image access was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the image access was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: `The member schema. ## Import Image access can be imported using the ` + "`" + `image_id` + "`" + ` and the ` + "`" + `member_id` + "`" + `, separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_images_image_access_v2 89c60255-9bd6-460c-822a-e2b959ede9d2/bed6b6cbb86a4e2d8dc2735c2f1000e4 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "openstack_images_image_v2",
 			Category:         "Images Resources",
 			ShortDescription: `Manages a V2 Image resource within OpenStack Glance.`,
@@ -4480,7 +4823,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) The protocol - can either be TCP, HTTP, HTTPS or TERMINATED_HTTPS. Changing this creates a new Listener.`,
+					Description: `(Required) The protocol - can either be TCP, HTTP, HTTPS, TERMINATED_HTTPS or UDP (supported only in Octavia). Changing this creates a new Listener.`,
 				},
 				resource.Attribute{
 					Name:        "protocol_port",
@@ -4509,6 +4852,22 @@ var (
 				resource.Attribute{
 					Name:        "connection_limit",
 					Description: `(Optional) The maximum number of connections allowed for the Listener.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_client_data",
+					Description: `(Optional) The client inactivity timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_connect",
+					Description: `(Optional) The member connection timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_data",
+					Description: `(Optional) The member inactivity timeout in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_tcp_inspect",
+					Description: `(Optional) The time in milliseconds, to wait for additional TCP packets for content inspection.`,
 				},
 				resource.Attribute{
 					Name:        "default_tls_container_ref",
@@ -4555,6 +4914,22 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "timeout_client_data",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_connect",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_data",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_tcp_inspect",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "default_tls_container_ref",
 					Description: `See Argument Reference above.`,
 				},
@@ -4598,6 +4973,22 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connection_limit",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_client_data",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_connect",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_member_data",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_tcp_inspect",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -4657,7 +5048,7 @@ var (
 					Description: `(Optional) The administrative state of the Loadbalancer. A valid value is true (UP) or false (DOWN).`,
 				},
 				resource.Attribute{
-					Name:        "flavor",
+					Name:        "flavor_id",
 					Description: `(Optional) The UUID of a flavor. Changing this creates a new loadbalancer.`,
 				},
 				resource.Attribute{
@@ -4697,7 +5088,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "flavor",
+					Name:        "flavor_id",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -4743,7 +5134,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "flavor",
+					Name:        "flavor_id",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -5146,7 +5537,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of probe, which is PING, TCP, HTTP, or HTTPS, that is sent by the load balancer to verify the member state. Changing this creates a new monitor.`,
+					Description: `(Required) The type of probe, which is PING, TCP, HTTP, HTTPS, TLS-HELLO or UDP-CONNECT (supported only in Octavia), that is sent by the load balancer to verify the member state. Changing this creates a new monitor.`,
 				},
 				resource.Attribute{
 					Name:        "delay",
@@ -5427,6 +5818,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Human-readable description for the pool.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) The protocol - can either be TCP, HTTP, HTTPS, PROXY or UDP (supported only in Octavia). Changing this creates a new pool.`,
 				},
 				resource.Attribute{
 					Name:        "loadbalancer_id",
@@ -6908,6 +7303,154 @@ var (
 				resource.Attribute{
 					Name:        "all_tags",
 					Description: `The collection of tags assigned on the QoS policy, which have been explicitly and implicitly added. ## Import QoS Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_networking_qos_policy_v2.qos_policy_1 d6ae28ce-fcb5-4180-aa62-d260a27e09ae ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_networking_quota_v2",
+			Category:         "Networking Resources",
+			ShortDescription: `Manages a V2 networking quota resource within OpenStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"networking",
+				"quota",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to create the quota. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates new quota.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) ID of the project to manage quota. Changing this creates new quota.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip",
+					Description: `(Optional) Quota value for floating IPs. Changing this updates the existing quota.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Optional) Quota value for networks. Changing this updates the existing quota.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Quota value for ports. Changing this updates the existing quota.`,
+				},
+				resource.Attribute{
+					Name:        "rbac_policy",
+					Description: `(Optional) Quota value for RBAC policies. Changing this updates the existing quota.`,
+				},
+				resource.Attribute{
+					Name:        "router",
+					Description: `(Optional) Quota value for routers. Changing this updates the existing quota.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `(Optional) Quota value for security groups. Changing this updates the existing quota.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rule",
+					Description: `(Optional) Quota value for security group rules. Changing this updates the existing quota.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `(Optional) Quota value for subnets. Changing this updates the existing quota.`,
+				},
+				resource.Attribute{
+					Name:        "subnetpool",
+					Description: `(Optional) Quota value for subnetpools. Changing this updates the existing quota. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "rbac_policy",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "router",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rule",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnetpool",
+					Description: `See Argument Reference above. ## Import Quotas can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_networking_quota_v2.quota_1 2a0f2240-c5e6-41de-896d-e80d97428d6b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "floatingip",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "rbac_policy",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "router",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_rule",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnetpool",
+					Description: `See Argument Reference above. ## Import Quotas can be imported using the ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_networking_quota_v2.quota_1 2a0f2240-c5e6-41de-896d-e80d97428d6b ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10076,73 +10619,77 @@ var (
 		"openstack_compute_instance_v2":                      11,
 		"openstack_compute_interface_attach_v2":              12,
 		"openstack_compute_keypair_v2":                       13,
-		"openstack_compute_secgroup_v2":                      14,
-		"openstack_compute_servergroup_v2":                   15,
-		"openstack_compute_volume_attach_v2":                 16,
-		"openstack_containerinfra_cluster_v1":                17,
-		"openstack_containerinfra_clustertemplate_v1":        18,
-		"openstack_db_configuration_v1":                      19,
-		"openstack_db_database_v1":                           20,
-		"openstack_db_instance_v1":                           21,
-		"openstack_db_user_v1":                               22,
-		"openstack_dns_recordset_v2":                         23,
-		"openstack_dns_zone_v2":                              24,
-		"openstack_fw_firewall_v1":                           25,
-		"openstack_fw_policy_v1":                             26,
-		"openstack_fw_rule_v1":                               27,
-		"openstack_identity_application_credential_v3":       28,
-		"openstack_identity_endpoint_v3":                     29,
-		"openstack_identity_project_v3":                      30,
-		"openstack_identity_role_assignment_v3":              31,
-		"openstack_identity_role_v3":                         32,
-		"openstack_identity_service_v3":                      33,
-		"openstack_identity_user_v3":                         34,
-		"openstack_images_image_v2":                          35,
-		"openstack_keymanager_container_v1":                  36,
-		"openstack_keymanager_secret_v1":                     37,
-		"openstack_lb_l7policy_v2":                           38,
-		"openstack_lb_l7rule_v2":                             39,
-		"openstack_lb_listener_v2":                           40,
-		"openstack_lb_loadbalancer_v2":                       41,
-		"openstack_lb_member_v1":                             42,
-		"openstack_lb_member_v2":                             43,
-		"openstack_lb_monitor_v1":                            44,
-		"openstack_lb_monitor_v2":                            45,
-		"openstack_lb_pool_v1":                               46,
-		"openstack_lb_pool_v2":                               47,
-		"openstack_lb_vip_v1":                                48,
-		"openstack_networking_addressscope_v2":               49,
-		"openstack_networking_floatingip_associate_v2":       50,
-		"openstack_networking_floatingip_v2":                 51,
-		"openstack_networking_network_v2":                    52,
-		"openstack_networking_port_secgroup_associate_v2":    53,
-		"openstack_networking_port_v2":                       54,
-		"openstack_networking_qos_bandwidth_limit_rule_v2":   55,
-		"openstack_networking_qos_dscp_marking_rule_v2":      56,
-		"openstack_networking_qos_minimum_bandwidth_rule_v2": 57,
-		"openstack_networking_qos_policy_v2":                 58,
-		"openstack_networking_rbac_policy_v2":                59,
-		"openstack_networking_router_interface_v2":           60,
-		"openstack_networking_router_route_v2":               61,
-		"openstack_networking_router_v2":                     62,
-		"openstack_networking_secgroup_rule_v2":              63,
-		"openstack_networking_secgroup_v2":                   64,
-		"openstack_networking_subnet_route_v2":               65,
-		"openstack_networking_subnet_v2":                     66,
-		"openstack_networking_subnetpool_v2":                 67,
-		"openstack_networking_trunk_v2":                      68,
-		"openstack_objectstorage_container_v1":               69,
-		"openstack_objectstorage_object_v1":                  70,
-		"openstack_objectstorage_tempurl_v1":                 71,
-		"openstack_sharedfilesystem_securityservice_v2":      72,
-		"openstack_sharedfilesystem_share_access_v2":         73,
-		"openstack_sharedfilesystem_share_v2":                74,
-		"openstack_sharedfilesystem_sharenetwork_v2":         75,
-		"openstack_vpnaas_endpoint_group_v2":                 76,
-		"openstack_vpnaas_ike_policy_v2":                     77,
-		"openstack_vpnaas_ipsec_policy_v2":                   78,
-		"openstack_vpnaas_service_v2":                        79,
-		"openstack_vpnaas_site_connection_v2":                80,
+		"openstack_compute_quotaset_v2":                      14,
+		"openstack_compute_secgroup_v2":                      15,
+		"openstack_compute_servergroup_v2":                   16,
+		"openstack_compute_volume_attach_v2":                 17,
+		"openstack_containerinfra_cluster_v1":                18,
+		"openstack_containerinfra_clustertemplate_v1":        19,
+		"openstack_db_configuration_v1":                      20,
+		"openstack_db_database_v1":                           21,
+		"openstack_db_instance_v1":                           22,
+		"openstack_db_user_v1":                               23,
+		"openstack_dns_recordset_v2":                         24,
+		"openstack_dns_zone_v2":                              25,
+		"openstack_fw_firewall_v1":                           26,
+		"openstack_fw_policy_v1":                             27,
+		"openstack_fw_rule_v1":                               28,
+		"openstack_identity_application_credential_v3":       29,
+		"openstack_identity_endpoint_v3":                     30,
+		"openstack_identity_project_v3":                      31,
+		"openstack_identity_role_assignment_v3":              32,
+		"openstack_identity_role_v3":                         33,
+		"openstack_identity_service_v3":                      34,
+		"openstack_identity_user_v3":                         35,
+		"openstack_images_image_access_accept_v2":            36,
+		"openstack_images_image_access_v2":                   37,
+		"openstack_images_image_v2":                          38,
+		"openstack_keymanager_container_v1":                  39,
+		"openstack_keymanager_secret_v1":                     40,
+		"openstack_lb_l7policy_v2":                           41,
+		"openstack_lb_l7rule_v2":                             42,
+		"openstack_lb_listener_v2":                           43,
+		"openstack_lb_loadbalancer_v2":                       44,
+		"openstack_lb_member_v1":                             45,
+		"openstack_lb_member_v2":                             46,
+		"openstack_lb_monitor_v1":                            47,
+		"openstack_lb_monitor_v2":                            48,
+		"openstack_lb_pool_v1":                               49,
+		"openstack_lb_pool_v2":                               50,
+		"openstack_lb_vip_v1":                                51,
+		"openstack_networking_addressscope_v2":               52,
+		"openstack_networking_floatingip_associate_v2":       53,
+		"openstack_networking_floatingip_v2":                 54,
+		"openstack_networking_network_v2":                    55,
+		"openstack_networking_port_secgroup_associate_v2":    56,
+		"openstack_networking_port_v2":                       57,
+		"openstack_networking_qos_bandwidth_limit_rule_v2":   58,
+		"openstack_networking_qos_dscp_marking_rule_v2":      59,
+		"openstack_networking_qos_minimum_bandwidth_rule_v2": 60,
+		"openstack_networking_qos_policy_v2":                 61,
+		"openstack_networking_quota_v2":                      62,
+		"openstack_networking_rbac_policy_v2":                63,
+		"openstack_networking_router_interface_v2":           64,
+		"openstack_networking_router_route_v2":               65,
+		"openstack_networking_router_v2":                     66,
+		"openstack_networking_secgroup_rule_v2":              67,
+		"openstack_networking_secgroup_v2":                   68,
+		"openstack_networking_subnet_route_v2":               69,
+		"openstack_networking_subnet_v2":                     70,
+		"openstack_networking_subnetpool_v2":                 71,
+		"openstack_networking_trunk_v2":                      72,
+		"openstack_objectstorage_container_v1":               73,
+		"openstack_objectstorage_object_v1":                  74,
+		"openstack_objectstorage_tempurl_v1":                 75,
+		"openstack_sharedfilesystem_securityservice_v2":      76,
+		"openstack_sharedfilesystem_share_access_v2":         77,
+		"openstack_sharedfilesystem_share_v2":                78,
+		"openstack_sharedfilesystem_sharenetwork_v2":         79,
+		"openstack_vpnaas_endpoint_group_v2":                 80,
+		"openstack_vpnaas_ike_policy_v2":                     81,
+		"openstack_vpnaas_ipsec_policy_v2":                   82,
+		"openstack_vpnaas_service_v2":                        83,
+		"openstack_vpnaas_site_connection_v2":                84,
 	}
 )
 

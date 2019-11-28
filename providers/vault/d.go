@@ -638,6 +638,10 @@ var (
 					Description: `The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
 				},
 				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
+				},
+				resource.Attribute{
 					Name:        "token_policies",
 					Description: `List of policies to encode onto generated tokens. Depending on the auth method, this list may be supplemented by user/group/other values.`,
 				},
@@ -678,6 +682,10 @@ var (
 				resource.Attribute{
 					Name:        "token_max_ttl",
 					Description: `The maximum lifetime for generated tokens in number of seconds. Its current value will be referenced at renewal time.`,
+				},
+				resource.Attribute{
+					Name:        "token_period",
+					Description: `(Optional) If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this field. Specified in seconds.`,
 				},
 				resource.Attribute{
 					Name:        "token_policies",

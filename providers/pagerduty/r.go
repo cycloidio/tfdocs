@@ -119,11 +119,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "advanced_condition_json",
-					Description: `(Required) Contains a list of specific conditions including ` + "`" + `active-between` + "`" + `,` + "`" + `scheduled-weekly` + "`" + `, and ` + "`" + `frequency-over` + "`" + `. The first element in the list is the label for the condition, followed by a list of values for the specific condition. For more details on these conditions see [Advanced Condition](https://v2.developer.pagerduty.com/docs/global-event-rules-api#section-advanced-condition) in the PagerDuty API documentation.`,
+					Description: `(Optional) Contains a list of specific conditions including ` + "`" + `active-between` + "`" + `,` + "`" + `scheduled-weekly` + "`" + `, and ` + "`" + `frequency-over` + "`" + `. The first element in the list is the label for the condition, followed by a list of values for the specific condition. For more details on these conditions see [Advanced Condition](https://v2.developer.pagerduty.com/docs/global-event-rules-api#section-advanced-condition) in the PagerDuty API documentation.`,
 				},
 				resource.Attribute{
 					Name:        "catch_all",
-					Description: `(Optional) A boolean that indicates whether the rule is a catch all for the account. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A boolean that indicates whether the rule is a catch all for the account.`,
+				},
+				resource.Attribute{
+					Name:        "depends_on",
+					Description: `(Optional) A [Terraform meta-parameter](https://www.terraform.io/docs/configuration-0-11/resources.html#depends_on) that ensures that the ` + "`" + `event_rule` + "`" + ` specified is created before the current rule. This is important because Event Rules in PagerDuty are executed in order. ` + "`" + `depends_on` + "`" + ` ensures that the rules are created in the order specified. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -173,7 +177,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `a URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -183,7 +187,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "html_url",
-					Description: `a URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Extensions can be imported using the id.e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_extension.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -501,13 +505,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the team. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_team.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_team.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the team. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_team.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the team.`,
+				},
+				resource.Attribute{
+					Name:        "html_url",
+					Description: `URL at which the entity is uniquely displayed in the Web app ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_team.main PLBP09X ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -570,7 +582,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "color",
-					Description: `(Optional) The schedule color for the user. Valid options are blue, brown, cayenne, chocolate, crimson, cyan, dark, darkolive, deep, firebrick, forest, goldenrod, gray, green, grey, grey20, indigo, lime, magenta, maroon, medium, midnight, olive, olivedrab, orange, orchid, pink, purple, red, royal, saddle, sea, slate, steel, teal, turquoise or violet.`,
+					Description: `(Optional) The schedule color for the user. Valid options are purple, red, green, blue, teal, orange, brown, turquoise, dark-slate-blue, cayenne, orange-red, dark-orchid, dark-slate-grey, lime, dark-magenta, lime-green, midnight-blue, deep-pink, dark-green, dark-orange, dark-cyan, darkolive-green, dark-slate-gray, grey20, firebrick, maroon, crimson, dark-red, dark-goldenrod, chocolate, medium-violet-red, sea-green, olivedrab, forest-green, dark-olive-green, blue-violet, royal-blue, indigo, slate-blue, saddle-brown, or steel-blue.`,
 				},
 				resource.Attribute{
 					Name:        "role",

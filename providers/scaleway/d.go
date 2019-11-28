@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "scaleway_account_ssh_key",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Scaleway SSH key.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "scaleway_bootscript",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Scaleway bootscript.`,
@@ -225,10 +235,11 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"scaleway_bootscript":     0,
-		"scaleway_image":          1,
-		"scaleway_security_group": 2,
-		"scaleway_volume":         3,
+		"scaleway_account_ssh_key": 0,
+		"scaleway_bootscript":      1,
+		"scaleway_image":           2,
+		"scaleway_security_group":  3,
+		"scaleway_volume":          4,
 	}
 )
 

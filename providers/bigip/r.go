@@ -87,6 +87,35 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "bigip_do",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip do resource`,
+			Description:      ``,
+			Keywords: []string{
+				"do",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "do_json",
+					Description: `(Required) Name of the of the Declarative DO JSON file`,
+				},
+				resource.Attribute{
+					Name:        "tenant_name",
+					Description: `(Required) This is the partition name where the application services will be configured.`,
+				},
+				resource.Attribute{
+					Name:        "example.json",
+					Description: `Example of DO Declarative JSON ` + "`" + `` + "`" + `` + "`" + `hcl { "schemaVersion": "1.0.0", "class": "Device", "async": true, "label": "my BIG-IP declaration for declarative onboarding", "Common": { "class": "Tenant", "hostname": "bigip.example.com", "myLicense": { "class": "License", "licenseType": "regKey", "regKey": "xxxx" }, "admin": { "class": "User", "userType": "regular", "password": "xxxx", "shell": "bash" }, "myProvisioning": { "class": "Provision", "ltm": "nominal", "gtm": "minimum" }, "external": { "class": "VLAN", "tag": 4093, "mtu": 1500, "interfaces": [ { "name": "1.1", "tagged": true } ], "cmpHash": "dst-ip" }, "external-self": { "class": "SelfIp", "address": "x.x.x.x", "vlan": "external", "allowService": "default", "trafficGroup": "traffic-group-local-only" } } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "DO documentation",
+					Description: `https://clouddocs.f5.com/products/extensions/f5-declarative-onboarding/latest/composing-a-declaration.html#sample-declaration-for-a-standalone-big-ip`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bigip_ltm_datagroup",
 			Category:         "Resources",
 			ShortDescription: `Provides details about bigip_ltm_datagroup resource`,
@@ -426,6 +455,90 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "bigip_ltm_profile_client_ssl",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_ltm_profile_client_ssl resource`,
+			Description:      ``,
+			Keywords: []string{
+				"ltm",
+				"profile",
+				"client",
+				"ssl",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional) Device partition to manage resources on.`,
+				},
+				resource.Attribute{
+					Name:        "defaults_from",
+					Description: `(Optional) The parent template of this monitor template. Once this value has been set, it cannot be changed. By default, this value is the ` + "`" + `clientssl` + "`" + ` parent on the ` + "`" + `Common` + "`" + ` partition.`,
+				},
+				resource.Attribute{
+					Name:        "allow_non_ssl",
+					Description: `(Optional) Enables or disables acceptance of non-SSL connections, When creating a new profile, the setting is provided by the parent profile`,
+				},
+				resource.Attribute{
+					Name:        "authenticate",
+					Description: `(Optional) Specifies the frequency of client authentication for an SSL session.When ` + "`" + `once` + "`" + `,specifies that the system authenticates the client once for an SSL session. When ` + "`" + `always` + "`" + `, specifies that the system authenticates the client once for an SSL session and also upon reuse of that session.`,
+				},
+				resource.Attribute{
+					Name:        "authenticate_depth",
+					Description: `(Optional) Specifies the maximum number of certificates to be traversed in a client certificate chain`,
+				},
+				resource.Attribute{
+					Name:        "cert",
+					Description: `(Optional) Specifies a cert name for use.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Contains a key name`,
+				},
+				resource.Attribute{
+					Name:        "chain",
+					Description: `(Optional) Contains a certificate chain that is relevant to the certificate and key mentioned earlier.This key is optional`,
+				},
+				resource.Attribute{
+					Name:        "ciphers",
+					Description: `(Optional) Specifies the list of ciphers that the system supports. When creating a new profile, the default cipher list is provided by the parent profile.`,
+				},
+				resource.Attribute{
+					Name:        "peer_cert_mode",
+					Description: `(Optional) Specifies the way the system handles client certificates.When ignore, specifies that the system ignores certificates from client systems.When require, specifies that the system requires a client to present a valid certificate.When request, specifies that the system requests a valid certificate from a client but always authenticate the client.`,
+				},
+				resource.Attribute{
+					Name:        "renegotiation",
+					Description: `(Optional) Enables or disables SSL renegotiation.When creating a new profile, the setting is provided by the parent profile`,
+				},
+				resource.Attribute{
+					Name:        "retain_certificate",
+					Description: `(Optional) When ` + "`" + `true` + "`" + `, client certificate is retained in SSL session.`,
+				},
+				resource.Attribute{
+					Name:        "secure_renegotiation",
+					Description: `(Optional) Specifies the method of secure renegotiations for SSL connections. When creating a new profile, the setting is provided by the parent profile. When ` + "`" + `request` + "`" + ` is set the system request secure renegotation of SSL connections. ` + "`" + `require` + "`" + ` is a default setting and when set the system permits initial SSL handshakes from clients but terminates renegotiations from unpatched clients. The ` + "`" + `require-strict` + "`" + ` setting the system requires strict renegotiation of SSL connections. In this mode the system refuses connections to insecure servers, and terminates existing SSL connections to insecure servers`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `(Optional) Specifies the fully qualified DNS hostname of the server used in Server Name Indication communications. When creating a new profile, the setting is provided by the parent profile.The server name can also be a wildcard string containing the asterisk ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "sni_default",
+					Description: `(Optional) Indicates that the system uses this profile as the default SSL profile when there is no match to the server name, or when the client provides no SNI extension support.When creating a new profile, the setting is provided by the parent profile. There can be only one SSL profile with this setting enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sni_require",
+					Description: `(Optional) Requires that the network peers also provide SNI support, this setting only takes effect when ` + "`" + `sni_default` + "`" + ` is set to ` + "`" + `true` + "`" + `.When creating a new profile, the setting is provided by the parent profile`,
+				},
+				resource.Attribute{
+					Name:        "strict_resume",
+					Description: `(Optional) Enables or disables the resumption of SSL sessions after an unclean shutdown.When creating a new profile, the setting is provided by the parent profile.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bigip_ltm_profile_fasthttp",
 			Category:         "Resources",
 			ShortDescription: `Provides details about bigip_ltm_profile_fasthttp resource`,
@@ -676,6 +789,78 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "bigip_ltm_profile_server_ssl",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_ltm_profile_server_ssl resource`,
+			Description:      ``,
+			Keywords: []string{
+				"ltm",
+				"profile",
+				"server",
+				"ssl",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Optional) Device partition to manage resources on.`,
+				},
+				resource.Attribute{
+					Name:        "defaults_from",
+					Description: `(Optional) The parent template of this monitor template. Once this value has been set, it cannot be changed. By default, this value is ` + "`" + `/Common/serverssl` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cert",
+					Description: `(Optional) Specifies the name of the certificate that the system uses for server-side SSL processing.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Specifies the file name of the SSL key.`,
+				},
+				resource.Attribute{
+					Name:        "chain",
+					Description: `(Optional) Specifies the certificates-key chain to associate with the SSL profile`,
+				},
+				resource.Attribute{
+					Name:        "ciphers",
+					Description: `(Optional) Specifies the list of ciphers that the system supports. When creating a new profile, the default cipher list is provided by the parent profile.`,
+				},
+				resource.Attribute{
+					Name:        "peer_cert_mode",
+					Description: `(Optional) Specifies the way the system handles client certificates.When ignore, specifies that the system ignores certificates from client systems.When require, specifies that the system requires a client to present a valid certificate.When request, specifies that the system requests a valid certificate from a client but always authenticate the client.`,
+				},
+				resource.Attribute{
+					Name:        "renegotiation",
+					Description: `(Optional) Enables or disables SSL renegotiation.When creating a new profile, the setting is provided by the parent profile`,
+				},
+				resource.Attribute{
+					Name:        "retain_certificate",
+					Description: `(Optional) When ` + "`" + `true` + "`" + `, client certificate is retained in SSL session.`,
+				},
+				resource.Attribute{
+					Name:        "secure_renegotiation",
+					Description: `(Optional) Specifies the method of secure renegotiations for SSL connections. When creating a new profile, the setting is provided by the parent profile. When ` + "`" + `request` + "`" + ` is set the system request secure renegotation of SSL connections. ` + "`" + `require` + "`" + ` is a default setting and when set the system permits initial SSL handshakes from clients but terminates renegotiations from unpatched clients. The ` + "`" + `require-strict` + "`" + ` setting the system requires strict renegotiation of SSL connections. In this mode the system refuses connections to insecure servers, and terminates existing SSL connections to insecure servers`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `(Optional) Specifies the fully qualified DNS hostname of the server used in Server Name Indication communications. When creating a new profile, the setting is provided by the parent profile.The server name can also be a wildcard string containing the asterisk ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "sni_default",
+					Description: `(Optional) Indicates that the system uses this profile as the default SSL profile when there is no match to the server name, or when the client provides no SNI extension support.When creating a new profile, the setting is provided by the parent profile. There can be only one SSL profile with this setting enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sni_require",
+					Description: `(Optional) Requires that the network peers also provide SNI support, this setting only takes effect when ` + "`" + `sni_default` + "`" + ` is set to ` + "`" + `true` + "`" + `.When creating a new profile, the setting is provided by the parent profile`,
+				},
+				resource.Attribute{
+					Name:        "strict_resume",
+					Description: `(Optional) Enables or disables the resumption of SSL sessions after an unclean shutdown.When creating a new profile, the setting is provided by the parent profile.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bigip_ltm_profile_tcp",
 			Category:         "Resources",
 			ShortDescription: `Provides details about bigip_ltm_profile_tcp resource`,
@@ -909,8 +1094,8 @@ var (
 					Description: `(Optional) Specifies an IP address or network from which the virtual server will accept traffic.`,
 				},
 				resource.Attribute{
-					Name:        "rules",
-					Description: `(Optional) The iRules you want run on this virtual server. iRules help automate the intercepting, processing, and routing of application traffic.`,
+					Name:        "irules",
+					Description: `(Optional) The iRules list you want run on this virtual server. iRules help automate the intercepting, processing, and routing of application traffic.`,
 				},
 				resource.Attribute{
 					Name:        "snatpool",
@@ -1025,6 +1210,50 @@ var (
 				resource.Attribute{
 					Name:        "tagged",
 					Description: `Specifies a list of tagged interfaces or trunks associated with this VLAN. Note that you can associate tagged interfaces or trunks with any number of VLANs.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_ssl_certificate",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_ssl_certificate resource`,
+			Description:      ``,
+			Keywords: []string{
+				"ssl",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Content of certificate on Local Disk,path of SSL certificate will be provided to terraform ` + "`" + `file` + "`" + ` function`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Required) Partition on to SSL Certificate to be imported`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bigip_ssl_key",
+			Category:         "Resources",
+			ShortDescription: `Provides details about bigip_ssl_key resource`,
+			Description:      ``,
+			Keywords: []string{
+				"ssl",
+				"key",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) Content of certificate key on Local Disk,path of SSL certificate key will be provided to terraform ` + "`" + `file` + "`" + ` function`,
+				},
+				resource.Attribute{
+					Name:        "partition",
+					Description: `(Required) Partition on to SSL Certificate key to be imported`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1269,37 +1498,42 @@ var (
 		"bigip_as3":                             0,
 		"bigip_cm_device":                       1,
 		"bigip_cm_devicegroup":                  2,
-		"bigip_ltm_datagroup":                   3,
-		"bigip_ltm_irule":                       4,
-		"bigip_ltm_monitor":                     5,
-		"bigip_ltm_node":                        6,
-		"bigip_ltm_persistence_profile_cookie":  7,
-		"bigip_ltm_persistence_profile_dstaddr": 8,
-		"bigip_ltm_persistence_profile_srcaddr": 9,
-		"bigip_ltm_persistence_profile_ssl":     10,
-		"bigip_ltm_policy":                      11,
-		"bigip_ltm_pool":                        12,
-		"bigip_ltm_pool_attachment":             13,
-		"bigip_ltm_profile_fasthttp":            14,
-		"bigip_ltm_profile_fastl4":              15,
-		"bigip_ltm_profile_http":                16,
-		"bigip_ltm_profile_http2":               17,
-		"bigip_ltm_profile_httpcompress":        18,
-		"bigip_ltm_profile_oneconnect":          19,
-		"bigip_ltm_profile_tcp":                 20,
-		"bigip_ltm_snat":                        21,
-		"bigip_ltm_snatpool":                    22,
-		"bigip_ltm_virtual_address":             23,
-		"bigip_ltm_virtual_server":              24,
-		"bigip_net_route":                       25,
-		"bigip_net_selfip":                      26,
-		"bigip_net_vlan":                        27,
-		"bigip_sys_dns":                         28,
-		"bigip_sys_iapp":                        29,
-		"bigip_sys_ntp":                         30,
-		"bigip_sys_provision":                   31,
-		"bigip_sys_snmp":                        32,
-		"bigip_sys_snmp_traps":                  33,
+		"bigip_do":                              3,
+		"bigip_ltm_datagroup":                   4,
+		"bigip_ltm_irule":                       5,
+		"bigip_ltm_monitor":                     6,
+		"bigip_ltm_node":                        7,
+		"bigip_ltm_persistence_profile_cookie":  8,
+		"bigip_ltm_persistence_profile_dstaddr": 9,
+		"bigip_ltm_persistence_profile_srcaddr": 10,
+		"bigip_ltm_persistence_profile_ssl":     11,
+		"bigip_ltm_policy":                      12,
+		"bigip_ltm_pool":                        13,
+		"bigip_ltm_pool_attachment":             14,
+		"bigip_ltm_profile_client_ssl":          15,
+		"bigip_ltm_profile_fasthttp":            16,
+		"bigip_ltm_profile_fastl4":              17,
+		"bigip_ltm_profile_http":                18,
+		"bigip_ltm_profile_http2":               19,
+		"bigip_ltm_profile_httpcompress":        20,
+		"bigip_ltm_profile_oneconnect":          21,
+		"bigip_ltm_profile_server_ssl":          22,
+		"bigip_ltm_profile_tcp":                 23,
+		"bigip_ltm_snat":                        24,
+		"bigip_ltm_snatpool":                    25,
+		"bigip_ltm_virtual_address":             26,
+		"bigip_ltm_virtual_server":              27,
+		"bigip_net_route":                       28,
+		"bigip_net_selfip":                      29,
+		"bigip_net_vlan":                        30,
+		"bigip_ssl_certificate":                 31,
+		"bigip_ssl_key":                         32,
+		"bigip_sys_dns":                         33,
+		"bigip_sys_iapp":                        34,
+		"bigip_sys_ntp":                         35,
+		"bigip_sys_provision":                   36,
+		"bigip_sys_snmp":                        37,
+		"bigip_sys_snmp_traps":                  38,
 	}
 )
 

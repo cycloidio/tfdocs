@@ -12,10 +12,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_db_instance",
-			Category:         "DB Resources",
+			Category:         "UDB Resources",
 			ShortDescription: `Provides a Database instance resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"udb",
 				"db",
 				"instance",
 			},
@@ -23,14 +24,6 @@ var (
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) Availability zone where database instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
-				},
-				resource.Attribute{
-					Name:        "standby_zone",
-					Description: `(Optional) Availability zone where the standby database instance is located for the high availability database instance with multiple zone; The disaster recovery of data center can be activated by switching to the standby database instance for the high availability database instance.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional) The password for the database instance which should have 8-30 characters. It must contain at least 3 items of Capital letters, small letter, numbers and special characters. The special characters include ` + "`" + `-_` + "`" + `. If not specified, terraform will auto-generate a password.`,
 				},
 				resource.Attribute{
 					Name:        "engine",
@@ -46,11 +39,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_storage",
-					Description: `(Required) Specifies the allocated storage size in gigabytes (GB), range from 20 to 3000GB. The volume adjustment must be a multiple of 10 GB. The maximum disk volume for SSD type are： - 500GB if the memory chosen is equal or less than 8GB; - 1000GB if the memory chosen is from 12 to 24GB; - 2000GB if the memory chosen is 32GB; - 3000GB if the memory chosen is equal or more than 48GB.`,
+					Description: `(Required) Specifies the allocated storage size in gigabytes (GB), range from 20 to 4500GB. The volume adjustment must be a multiple of 10 GB. The maximum disk volume for SSD type are： - 500GB if the memory chosen is equal or less than 6GB; - 1000GB if the memory chosen is from 8 to 16GB; - 2000GB if the memory chosen is 24GB or 32GB; - 3500GB if the memory chosen is 48GB or 64GB; - 4500GB if the memory chosen is equal or more than 96GB;`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
-					Description: `(Required) Specifies the type of database instance with format "engine-type-memory", Possible values are: - "mysql" and "percona"for engine; - "ha" as high availability version for type of database, high availability version use the dual main hot standby structure which can thoroughly solved the issue of unavailable database caused by the system downtime or hardware failure, the "ha" version only supports "mysql" and "percona" engine. - possible values for memory are: 1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64GB. You may refer to [list of instance type](https://docs.ucloud.cn/compute/terraform/specification/db_instance)`,
+					Description: `(Required) The type of database instance, please visit the [instance type table](https://www.terraform.io/docs/providers/ucloud/appendix/db_instance_type.html). - - -`,
+				},
+				resource.Attribute{
+					Name:        "standby_zone",
+					Description: `(Optional) Availability zone where the standby database instance is located for the high availability database instance with multiple zone; The disaster recovery of data center can be activated by switching to the standby database instance for the high availability database instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password for the database instance which should have 8-30 characters. It must contain at least 3 items of Capital letters, small letter, numbers and special characters. The special characters include ` + "`" + `-_` + "`" + `. If not specified, terraform will auto-generate a password.`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -153,7 +154,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size",
-					Description: `(Required) The size of disk. Purchase the size of disk in GB. 1-8000 for a cloud disk, 1-4000 for SSD cloud disk. If the disk have attached to the instance, the instance will reboot automatically to make the change take effect when update the ` + "`" + `disk_size` + "`" + `.`,
+					Description: `(Required) The size of disk. Purchase the size of disk in GB. 1-8000 for a cloud disk, 1-4000 for SSD cloud disk. If the disk have attached to the instance, the instance will reboot automatically to make the change take effect when update the ` + "`" + `disk_size` + "`" + `. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -243,7 +244,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "internet_type",
-					Description: `(Required) Type of Elastic IP routes. Possible values are: ` + "`" + `international` + "`" + ` as international BGP IP and ` + "`" + `bgp` + "`" + ` as china mainland BGP IP.`,
+					Description: `(Required) Type of Elastic IP routes. Possible values are: ` + "`" + `international` + "`" + ` as international BGP IP and ` + "`" + `bgp` + "`" + ` as china mainland BGP IP. - - -`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
@@ -295,7 +296,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `Public IP address of Elastic IP. The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
+					Description: `Public IP address of Elastic IP. - - - The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "internet_type",
@@ -307,7 +308,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of resource with EIP attached. Possible values are ` + "`" + `instance` + "`" + ` as instance, ` + "`" + `vrouter` + "`" + ` as visual router, ` + "`" + `lb` + "`" + ` as load balancer. ## Import EIP can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_eip.example eip-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of resource with EIP attached. Possible values are ` + "`" + `instance` + "`" + ` as instance, ` + "`" + `lb` + "`" + ` as load balancer. ## Import EIP can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_eip.example eip-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -333,7 +334,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip",
-					Description: `Public IP address of Elastic IP. The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
+					Description: `Public IP address of Elastic IP. - - - The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "internet_type",
@@ -345,7 +346,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of resource with EIP attached. Possible values are ` + "`" + `instance` + "`" + ` as instance, ` + "`" + `vrouter` + "`" + ` as visual router, ` + "`" + `lb` + "`" + ` as load balancer. ## Import EIP can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_eip.example eip-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The type of resource with EIP attached. Possible values are ` + "`" + `instance` + "`" + ` as instance, ` + "`" + `lb` + "`" + ` as load balancer. ## Import EIP can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_eip.example eip-abcdefg ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -393,7 +394,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_type",
-					Description: `(Required) The type of instance. You may refer to [list of instance type](https://docs.ucloud.cn/compute/terraform/specification/instance) ~>`,
+					Description: `(Required) The type of instance, please visit the [instance type table](https://www.terraform.io/docs/providers/ucloud/appendix/instance_type.html) ~>`,
+				},
+				resource.Attribute{
+					Name:        "allow_stopping_for_update",
+					Description: `(Optional) If you try to update some properties which requires stopping the instance, you must set ` + "`" + `allow_stopping_for_update` + "`" + ` to ` + "`" + `true` + "`" + ` in your config to allows Terraform to stop the instance to update its properties like ` + "`" + `instance_type` + "`" + `, ` + "`" + `root_password` + "`" + `, ` + "`" + `boot_disk_size` + "`" + `, ` + "`" + `data_disk_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "root_password",
@@ -461,7 +466,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `The size of memory, measured in MB (Megabyte).`,
+					Description: `The size of memory, measured in GB(Gigabyte).`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -485,7 +490,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_set",
-					Description: `It is a nested type which documented below. The attribute (` + "`" + `disk_set` + "`" + `) supports the following:`,
+					Description: `It is a nested type which documented below. - - - The attribute (` + "`" + `disk_set` + "`" + `) supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -523,7 +528,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory",
-					Description: `The size of memory, measured in MB (Megabyte).`,
+					Description: `The size of memory, measured in GB(Gigabyte).`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -547,7 +552,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_set",
-					Description: `It is a nested type which documented below. The attribute (` + "`" + `disk_set` + "`" + `) supports the following:`,
+					Description: `It is a nested type which documented below. - - - The attribute (` + "`" + `disk_set` + "`" + `) supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -699,7 +704,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_id",
-					Description: `(Required) The ID of a backend server.`,
+					Description: `(Required) The ID of a backend server. - - -`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -743,7 +748,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) Listener protocol. Possible values: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp` + "`" + ` if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `request_proxy` + "`" + `, ` + "`" + `tcp` + "`" + ` and ` + "`" + `udp` + "`" + ` if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `packets_transmit` + "`" + `.`,
+					Description: `(Required) Listener protocol. Possible values: ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `, ` + "`" + `tcp` + "`" + ` if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `request_proxy` + "`" + `, ` + "`" + `tcp` + "`" + ` and ` + "`" + `udp` + "`" + ` if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `packets_transmit` + "`" + `. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -819,7 +824,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backend_ids",
-					Description: `(Required) The IDs of the backend servers where rule applies, this argument is populated base on the ` + "`" + `backend_id` + "`" + ` responded from ` + "`" + `lb_attachment` + "`" + ` create.`,
+					Description: `(Required) The IDs of the backend servers where rule applies, this argument is populated base on the ` + "`" + `backend_id` + "`" + ` responded from ` + "`" + `lb_attachment` + "`" + ` create. - - -`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -845,16 +850,16 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of the LB ssl, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-lb-ssl` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "private_key",
 					Description: `(Required) The content of the private key about ssl certificate.`,
 				},
 				resource.Attribute{
 					Name:        "user_cert",
-					Description: `(Required) The content of the user certificate about ssl certificate.`,
+					Description: `(Required) The content of the user certificate about ssl certificate. - - -`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the LB ssl, which contains 1-63 characters and only support Chinese, English, numbers, '-', '_', '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-lb-ssl` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ca_cert",
@@ -903,12 +908,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_memcache_instance",
-			Category:         "UMem Resources DB Resources",
+			Category:         "UMem Resources UDB Resources",
 			ShortDescription: `Provides a Memcache instance resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"umem",
-				"db",
+				"udb",
 				"memcache",
 				"instance",
 			},
@@ -918,12 +923,12 @@ var (
 					Description: `(Required) Availability zone where Memcache instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of Memcache instance, which contains 6-63 characters and only support English, numbers, '-', '_'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-memcache-instance` + "`" + `.`,
+					Name:        "instance_type",
+					Description: `(Required) The type of Memcache instance, please visit the [instance type table](https://www.terraform.io/docs/providers/ucloud/appendix/memcache_instance_type.html) for more details. - - -`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
-					Description: `(Required) The type of Memcache instance, please visit the [instance type table](https://docs.ucloud.cn/compute/terraform/specification/umem_instance) for more details. Specifies the type of Memcache instance with format ` + "`" + `engine-type-memory` + "`" + `, Possible values are: - ` + "`" + `engine` + "`" + ` can only be ` + "`" + `memcache` + "`" + `. - ` + "`" + `type` + "`" + ` can only be ` + "`" + `master` + "`" + ` as active-standby Memcache instance. - ` + "`" + `memory` + "`" + ` can be one of ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `8` + "`" + `, ` + "`" + `16` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `32` + "`" + ` for active-standby Memcache instance.`,
+					Name:        "name",
+					Description: `(Optional) The name of Memcache instance, which contains 6-63 characters and only support English, numbers, '-', '_'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-memcache-instance` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "charge_type",
@@ -959,7 +964,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of KV Memcache instance. The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
+					Description: `The status of KV Memcache instance. - - - The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -985,7 +990,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of KV Memcache instance. The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
+					Description: `The status of KV Memcache instance. - - - The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -999,13 +1004,117 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ucloud_nat_gateway",
+			Category:         "VPC Resources",
+			ShortDescription: `Provides a Nat Gateway resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"nat",
+				"gateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) The ID of VPC linked to the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `(Required) The list of subnet ID under the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "eip_id",
+					Description: `(Required) The ID of eip associate to the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `(Required) The ID of the associated security group.`,
+				},
+				resource.Attribute{
+					Name:        "enable_white_list",
+					Description: `(Required) The boolean value to Controls whether or not start the whitelist mode. - - -`,
+				},
+				resource.Attribute{
+					Name:        "white_list",
+					Description: `(Optional) The white list of instance under the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the Nat Gateway which contains 6-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-nat-gateway-` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) The remarks of the Nat Gateway. (Default: ` + "`" + `""` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag assigned to Nat Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation of Nat Gateway, formatted in RFC3339 time string. ## Import Nat Gateway can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_nat_gateway.example natgw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation of Nat Gateway, formatted in RFC3339 time string. ## Import Nat Gateway can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_nat_gateway.example natgw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ucloud_nat_gateway_rule",
+			Category:         "VPC Resources",
+			ShortDescription: `Provides a Nat Gateway Rule resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"nat",
+				"gateway",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "nat_gateway_id",
+					Description: `(Required) The ID of the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) The protocol of the Nat Gateway Rule. Possible values: ` + "`" + `tcp` + "`" + `, ` + "`" + `udp` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "src_eip_id",
+					Description: `(Required) The ID of eip associate to the Nat Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "src_port_range",
+					Description: `(Required) The range of port numbers of the eip, range: 1-65535. (eg: ` + "`" + `port` + "`" + ` or ` + "`" + `port1-port2` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "dst_ip",
+					Description: `(Required) The private ip of instance bound to the jNAT gateway.`,
+				},
+				resource.Attribute{
+					Name:        "dst_port_range",
+					Description: `(Required) The range of port numbers of the private ip, range: 1-65535. (eg: ` + "`" + `port` + "`" + ` or ` + "`" + `port1-port2` + "`" + `). - - -`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the Nat Gateway Rule which contains 6-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-nat-gateway-rule-` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ucloud_redis_instance",
-			Category:         "UMem Resources DB Resources",
+			Category:         "UMem Resources UDB Resources",
 			ShortDescription: `Provides a Redis instance resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"umem",
-				"db",
+				"udb",
 				"redis",
 				"instance",
 			},
@@ -1015,12 +1124,12 @@ var (
 					Description: `(Required) Availability zone where Redis instance is located. Such as: "cn-bj2-02". You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist)`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The name of Redis instance, which contains 6-63 characters and only support English, numbers, '-', '_'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-redis-instance` + "`" + `.`,
+					Name:        "instance_type",
+					Description: `(Required) The type of Redis instance, please visit the [instance type table](https://www.terraform.io/docs/providers/ucloud/appendix/redis_instance_type.html) for more details. - - -`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
-					Description: `(Required) The type of Redis instance, please visit the [instance type table](https://docs.ucloud.cn/compute/terraform/specification/umem_instance) for more details. Specifies the type of Redis instance with format ` + "`" + `engine-type-memory` + "`" + `, Possible values are: - ` + "`" + `engine` + "`" + ` can only be ` + "`" + `redis` + "`" + `. - ` + "`" + `type` + "`" + ` can be ` + "`" + `master` + "`" + ` and ` + "`" + `distributed` + "`" + `, ` + "`" + `master` + "`" + ` as active-standby Redis instance, ` + "`" + `distributed` + "`" + ` as distributed Redis instance. - ` + "`" + `memory` + "`" + ` can be one of ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `6` + "`" + `, ` + "`" + `8` + "`" + `, ` + "`" + `12` + "`" + `, ` + "`" + `16` + "`" + `, ` + "`" + `24` + "`" + `, ` + "`" + `32` + "`" + ` for active-standby Redis instance. ` + "`" + `memory` + "`" + ` range of ` + "`" + `16` + "`" + `-` + "`" + `1000` + "`" + ` for distributed Redis instance (memory must be divisible by 4).`,
+					Name:        "name",
+					Description: `(Optional) The name of Redis instance, which contains 6-63 characters and only support English, numbers, '-', '_'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-redis-instance` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "charge_type",
@@ -1064,7 +1173,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of KV Redis instance. The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
+					Description: `The status of KV Redis instance. - - - The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -1090,7 +1199,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The status of KV Redis instance. The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
+					Description: `The status of KV Redis instance. - - - The attribute (` + "`" + `ip_set` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "ip",
@@ -1116,7 +1225,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "rules",
-					Description: `(Required) A list of security group rules. Can be specified multiple times for each rules. Each rules supports fields documented below.`,
+					Description: `(Required) A list of security group rules. Can be specified multiple times for each rules. Each rules supports fields documented below. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1128,7 +1237,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag",
-					Description: `(Optional) A tag assigned to security group, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). The ` + "`" + `rules` + "`" + ` supports:`,
+					Description: `(Optional) A tag assigned to security group, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ### Block rules The rules mapping supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "port_range",
@@ -1179,7 +1288,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required) The id of the VPC that the desired subnet belongs to.`,
+					Description: `(Required) The id of the VPC that the desired subnet belongs to. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1207,6 +1316,57 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ucloud_vip",
+			Category:         "VPC Resources",
+			ShortDescription: `Provides a VIP resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"vip",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) The ID of VPC linked to the VIP.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The ID of subnet. If defined ` + "`" + `vpc_id` + "`" + `, the ` + "`" + `subnet_id` + "`" + ` is Required. - - -`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of VIP. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vip-` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag assigned to VIP, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) The remarks of the VIP. (Default: ` + "`" + `""` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The ip address of the VIP.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for VIP, formatted in RFC3339 time string.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The ip address of the VIP.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for VIP, formatted in RFC3339 time string.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ucloud_vpc",
 			Category:         "VPC Resources",
 			ShortDescription: `Provides a VPC resource.`,
@@ -1217,7 +1377,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cidr_blocks",
-					Description: `(Required) The CIDR blocks of VPC.`,
+					Description: `(Required) The CIDR blocks of VPC. - - -`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1241,7 +1401,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_info",
-					Description: `It is a nested type which documented below. The attribute (` + "`" + `network_info` + "`" + `) support the following:`,
+					Description: `It is a nested type which documented below. - - - The attribute (` + "`" + `network_info` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
@@ -1259,7 +1419,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_info",
-					Description: `It is a nested type which documented below. The attribute (` + "`" + `network_info` + "`" + `) support the following:`,
+					Description: `It is a nested type which documented below. - - - The attribute (` + "`" + `network_info` + "`" + `) support the following:`,
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
@@ -1285,7 +1445,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "peer_vpc_id",
-					Description: `(Required) The short ID of accepter VPC of the specific VPC Peering Connection to retrieve.`,
+					Description: `(Required) The short ID of accepter VPC of the specific VPC Peering Connection to retrieve. - - -`,
 				},
 				resource.Attribute{
 					Name:        "peer_project_id",
@@ -1293,6 +1453,247 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ucloud_vpn_connection",
+			Category:         "IPSec VPN Resources",
+			ShortDescription: `Provides a IPSec VPN Gateway Connection resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"ipsec",
+				"vpn",
+				"connection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) The ID of VPC linked to the VPN Gateway Connection.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway_id",
+					Description: `(Required) The ID of the VPN Customer Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "customer_gateway_id",
+					Description: `(Required) The grade of the VPN Gateway`,
+				},
+				resource.Attribute{
+					Name:        "ike_config",
+					Description: `(Required) The configurations of IKE negotiation. Each ike_config supports fields documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_config",
+					Description: `(Required) The configurations of IPSec negotiation. Each ipsec_config supports fields documented below. - - -`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the VPN Gateway Connection which contains 1-63 characters and only support Chinese, English, numbers and special characters: ` + "`" + `-_.` + "`" + `. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpn-connection-` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) The remarks of the VPN Gateway Connection. (Default: ` + "`" + `""` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag assigned to VPN Gateway Connection, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `). ### Block ike_config The ike_config mapping supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "pre_shared_key",
+					Description: `(Required) The key used for authentication between the VPN gateway and the Customer gateway which contains 1-128 characters and only support English, numbers and special characters: ` + "`" + `!@#$%^&`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `(Optional) The version of the IKE protocol which only be supported IKE V1 protocol at present. Possible values: ikev1. (Default: ikev1)`,
+				},
+				resource.Attribute{
+					Name:        "exchange_mode",
+					Description: `(Optional) The negotiation exchange mode of IKE V1 of VPN gateway. Possible values: ` + "`" + `main` + "`" + ` (main mode), ` + "`" + `aggressive` + "`" + ` (aggressive mode). (Default: ` + "`" + `main` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `(Optional) The encryption algorithm of IKE negotiation. Possible values: ` + "`" + `aes128` + "`" + `, ` + "`" + `aes192` + "`" + `, ` + "`" + `aes256` + "`" + `, ` + "`" + `aes512` + "`" + `, ` + "`" + `3des` + "`" + `. (Default: ` + "`" + `aes128` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "authentication_algorithm",
+					Description: `(Optional) The authentication algorithm of IKE negotiation. Possible values: ` + "`" + `sha1` + "`" + `, ` + "`" + `md5` + "`" + `, ` + "`" + `sha2-256` + "`" + `. (Default: ` + "`" + `sha1` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `(Optional) The identification of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "remote_id",
+					Description: `(Optional) The identification of the Customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "dh_group",
+					Description: `(Optional) The Diffie-Hellman group used by IKE negotiation. Possible values: ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `5` + "`" + `, ` + "`" + `14` + "`" + `, ` + "`" + `15` + "`" + `, ` + "`" + `16` + "`" + `. (Default:` + "`" + `15` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time",
+					Description: `(Optional) The Security Association lifecycle as the result of IKE negotiation. Unit: second. Range: 600-604800. (Default: ` + "`" + `86400` + "`" + `) ### Block ipsec_config The ipsec_config mapping supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "local_subnet_ids",
+					Description: `(Required) The id list of Local subnet.`,
+				},
+				resource.Attribute{
+					Name:        "remote_subnets",
+					Description: `(Required) The ip address list of remote subnet.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) The security protocol of IPSec negotiation. Possible values: ` + "`" + `esp` + "`" + `, ` + "`" + `ah` + "`" + `. (Default:` + "`" + `esp` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `(Optional) The encryption algorithm of IPSec negotiation. Possible values: ` + "`" + `aes128` + "`" + `, ` + "`" + `aes192` + "`" + `, ` + "`" + `aes256` + "`" + `, ` + "`" + `aes512` + "`" + `, ` + "`" + `3des` + "`" + `. (Default: ` + "`" + `aes128` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "authentication_algorithm",
+					Description: `(Optional) The authentication algorithm of IPSec negotiation. Possible values: ` + "`" + `sha1` + "`" + `, ` + "`" + `md5` + "`" + `. (Default: ` + "`" + `sha1` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "pfs_dh_group",
+					Description: `(Optional) Whether the PFS of IPSec negotiation is on or off, ` + "`" + `disable` + "`" + ` as off, The Diffie-Hellman group as open. Possible values: ` + "`" + `disable` + "`" + `, ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `5` + "`" + `, ` + "`" + `14` + "`" + `, ` + "`" + `15` + "`" + `, ` + "`" + `16` + "`" + `. (Default:` + "`" + `disable` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time",
+					Description: `(Optional) The Security Association lifecycle as the result of IPSec negotiation. Unit: second. Range: 1200-604800. (Default: ` + "`" + `3600` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "sa_life_time_bytes",
+					Description: `(Optional) The Security Association lifecycle in bytes as the result of IPSec negotiation. Unit: second. Range: 1200-604800. (Default: ` + "`" + `3600` + "`" + `) ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The creation time for VPN Gateway Connection, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time for VPN Gateway Connection, formatted in RFC3339 time string. ## Import VPN Connection can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_vpn_connection.example vpntunnel-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The creation time for VPN Gateway Connection, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time for VPN Gateway Connection, formatted in RFC3339 time string. ## Import VPN Connection can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_vpn_connection.example vpntunnel-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ucloud_vpn_customer_gateway",
+			Category:         "IPSec VPN Resources",
+			ShortDescription: `Provides a VPN Customer Gateway resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"ipsec",
+				"vpn",
+				"customer",
+				"gateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `(Required) The ip address of the VPN Customer Gateway. - - -`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the VPN Customer Gateway which contains 1-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpn-customer-gateway-` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) The remarks of the VPN Customer Gateway. (Default: ` + "`" + `""` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag assigned to VPN Customer Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The creation time for VPN Customer Gateway, formatted in RFC3339 time string. ## Import VPN Customer Gateway can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_vpn_gateway.example remotevpngw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The creation time for VPN Customer Gateway, formatted in RFC3339 time string. ## Import VPN Customer Gateway can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_vpn_gateway.example remotevpngw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ucloud_vpn_gateway",
+			Category:         "IPSec VPN Resources",
+			ShortDescription: `Provides a VPN Gateway resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"ipsec",
+				"vpn",
+				"gateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) The ID of VPC linked to the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "grade",
+					Description: `(Required) The type of the VPN Gateway. Possible values: ` + "`" + `standard` + "`" + `, ` + "`" + `enhanced` + "`" + `. ` + "`" + `standard` + "`" + ` recommended application scenario: Applicable to services with bidirectional peak bandwidth of 1M~50M; ` + "`" + `enhanced` + "`" + ` recommended application scenario: Suitable for services with bidirectional peak bandwidths of 50M~100M.`,
+				},
+				resource.Attribute{
+					Name:        "eip_id",
+					Description: `(Required) The ID of eip associate to the VPN Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "security_group",
+					Description: `(Required) The ID of the associated security group. - - -`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(Optional) The charge type of VPN Gateway, possible values are: ` + "`" + `year` + "`" + `, ` + "`" + `month` + "`" + ` and ` + "`" + `dynamic` + "`" + ` as pay by hour (specific permission required). (Default: ` + "`" + `month` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Optional) The duration that you will buy the VPN Gateway (Default: ` + "`" + `1` + "`" + `). The value is ` + "`" + `0` + "`" + ` when pay by month and the instance will be valid till the last day of that month. It is not required when ` + "`" + `dynamic` + "`" + ` (pay by hour).`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the VPN Gateway which contains 1-63 characters and only support Chinese, English, numbers, '-', '_' and '.'. If not specified, terraform will auto-generate a name beginning with ` + "`" + `tf-vpn-gateway-` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) The remarks of the VPN Gateway. (Default: ` + "`" + `""` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag assigned to VPN Gateway, which contains at most 63 characters and only support Chinese, English, numbers, '-', '_', and '.'. If it is not filled in or a empty string is filled in, then default tag will be assigned. (Default: ` + "`" + `Default` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The creation time for VPN Gateway, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time for VPN Gateway, formatted in RFC3339 time string. ## Import VPN Gateway can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_vpn_gateway.example vpngw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The creation time for VPN Gateway, formatted in RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time for VPN Gateway, formatted in RFC3339 time string. ## Import VPN Gateway can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_vpn_gateway.example vpngw-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 	}
 
@@ -1312,11 +1713,17 @@ var (
 		"ucloud_lb_ssl":                 11,
 		"ucloud_lb_ssl_attachment":      12,
 		"ucloud_memcache_instance":      13,
-		"ucloud_redis_instance":         14,
-		"ucloud_security_group":         15,
-		"ucloud_subnet":                 16,
-		"ucloud_vpc":                    17,
-		"ucloud_vpc_peering_connection": 18,
+		"ucloud_nat_gateway":            14,
+		"ucloud_nat_gateway_rule":       15,
+		"ucloud_redis_instance":         16,
+		"ucloud_security_group":         17,
+		"ucloud_subnet":                 18,
+		"ucloud_vip":                    19,
+		"ucloud_vpc":                    20,
+		"ucloud_vpc_peering_connection": 21,
+		"ucloud_vpn_connection":         22,
+		"ucloud_vpn_customer_gateway":   23,
+		"ucloud_vpn_gateway":            24,
 	}
 )
 

@@ -125,10 +125,6 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Optional) The DNS zone to which the access rule should be added. Will be resolved to ` + "`" + `zone_id` + "`" + ` upon creation.`,
-				},
-				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Optional) The DNS zone to which the access rule should be added.`,
 				},
@@ -193,6 +189,62 @@ var (
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
 					Description: `access rule ID as returned by respective API endpoint for the type you are attempting to import.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_access_service_token",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare Access Service Token resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"access",
+				"service",
+				"token",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The ID of the account where the Access Service is being created.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Friendly name of the token's intent. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `UUID client ID associated with the Service Token.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `A secret for interacting with Access protocols. ## Import ~>`,
+				},
+				resource.Attribute{
+					Name:        "cb029e245cfdd66dc8d2e570d5dd3322",
+					Description: `Account ID`,
+				},
+				resource.Attribute{
+					Name:        "d41d8cd98f00b204e9800998ecf8427e",
+					Description: `Access Service Token ID`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `UUID client ID associated with the Service Token.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `A secret for interacting with Access protocols. ## Import ~>`,
+				},
+				resource.Attribute{
+					Name:        "cb029e245cfdd66dc8d2e570d5dd3322",
+					Description: `Account ID`,
+				},
+				resource.Attribute{
+					Name:        "d41d8cd98f00b204e9800998ecf8427e",
+					Description: `Access Service Token ID`,
 				},
 			},
 		},
@@ -334,7 +386,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Whether to enable support for legacy clients which do not include SNI in the TLS handshake. Valid values are ` + "`" + `legacy_custom` + "`" + ` (default), ` + "`" + `sni_custom` + "`" + `. ## Import Custom SSL Certs can be imported using a composite ID formed of the zone id and certificate id, separated by a "/" e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_custom_ssl.default 1d5fdc9e88c8a8c4518b068cd94331fe/c671356fb0ef68a9d746e3c9ef84ec3e ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Whether to enable support for legacy clients which do not include SNI in the TLS handshake. Valid values are ` + "`" + `legacy_custom` + "`" + ` (default), ` + "`" + `sni_custom` + "`" + `. ## Import Custom SSL Certs can be imported using a composite ID formed of the zone ID and [certificate ID](https://api.cloudflare.com/#custom-ssl-for-a-zone-properties), separated by a "/" e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_custom_ssl.default 1d5fdc9e88c8a8c4518b068cd94331fe/0123f0ab-9cde-45b2-80bd-4da3010f1337 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -350,12 +402,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Optional) The DNS zone to which the Filter should be added. Will be resolved to ` + "`" + `zone_id` + "`" + ` upon creation.`,
-				},
-				resource.Attribute{
 					Name:        "zone_id",
-					Description: `(Optional) The DNS zone to which the Filter should be added.`,
+					Description: `(Required) The DNS zone to which the Filter should be added.`,
 				},
 				resource.Attribute{
 					Name:        "paused",
@@ -375,11 +423,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Filter identifier.`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The DNS zone ID. ## Import Filter can be imported using a composite ID formed of zone ID and filter ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `Filter identifier. ## Import Filter can be imported using a composite ID formed of zone ID and filter ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -393,11 +437,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Filter identifier.`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The DNS zone ID. ## Import Filter can be imported using a composite ID formed of zone ID and filter ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `Filter identifier. ## Import Filter can be imported using a composite ID formed of zone ID and filter ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -421,12 +461,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Optional) The DNS zone to which the Firewall Rule should be added. Will be resolved to ` + "`" + `zone_id` + "`" + ` upon creation.`,
-				},
-				resource.Attribute{
 					Name:        "zone_id",
-					Description: `(Optional) The DNS zone to which the Filter should be added.`,
+					Description: `(Required) The DNS zone to which the Filter should be added.`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -446,11 +482,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Firewall Rule identifier.`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The DNS zone ID. ## Import Firewall Rule can be imported using a composite ID formed of zone ID and rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `Firewall Rule identifier. ## Import Firewall Rule can be imported using a composite ID formed of zone ID and rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -464,11 +496,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Firewall Rule identifier.`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The DNS zone ID. ## Import Firewall Rule can be imported using a composite ID formed of zone ID and rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `Firewall Rule identifier. ## Import Firewall Rule can be imported using a composite ID formed of zone ID and rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -492,8 +520,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Required) The zone to add the load balancer to.`,
+					Name:        "zone_id",
+					Description: `(Required) The zone ID to add the load balancer to.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -560,10 +588,6 @@ var (
 					Description: `Unique identifier in the API for the load balancer.`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `ID associated with the specified ` + "`" + `zone` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "created_on",
 					Description: `The RFC3339 timestamp of when the load balancer was created.`,
 				},
@@ -576,10 +600,6 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `Unique identifier in the API for the load balancer.`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `ID associated with the specified ` + "`" + `zone` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "created_on",
@@ -825,8 +845,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Required) The DNS zone to which the page rule should be added.`,
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to which the page rule should be added.`,
 				},
 				resource.Attribute{
 					Name:        "target",
@@ -1013,10 +1033,6 @@ var (
 					Description: `The page rule ID.`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The ID of the zone in which the page rule will be applied.`,
-				},
-				resource.Attribute{
 					Name:        "target",
 					Description: `The URL pattern targeted by the page rule.`,
 				},
@@ -1030,7 +1046,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Whether the page rule is active or disabled. ## Import Page rules can be imported using a composite ID formed of zone name and page rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_page_rule.default example.com/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Whether the page rule is active or disabled. ## Import Page rules can be imported using a composite ID formed of zone ID and page rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_page_rule.default d41d8cd98f00b204e9800998ecf8427e/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1039,10 +1055,6 @@ var (
 					Description: `The page rule ID.`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The ID of the zone in which the page rule will be applied.`,
-				},
-				resource.Attribute{
 					Name:        "target",
 					Description: `The URL pattern targeted by the page rule.`,
 				},
@@ -1056,7 +1068,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Whether the page rule is active or disabled. ## Import Page rules can be imported using a composite ID formed of zone name and page rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_page_rule.default example.com/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Whether the page rule is active or disabled. ## Import Page rules can be imported using a composite ID formed of zone ID and page rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_page_rule.default d41d8cd98f00b204e9800998ecf8427e/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1072,8 +1084,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Required) The DNS zone to apply rate limiting to.`,
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to apply rate limiting to.`,
 				},
 				resource.Attribute{
 					Name:        "threshold",
@@ -1157,21 +1169,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Rate limit ID.`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The DNS zone ID. ## Import Rate limits can be imported using a composite ID formed of zone name and rate limit ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_rate_limit.default example.com/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Rate limit ID. ## Import Rate limits can be imported using a composite ID formed of zone name and rate limit ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_rate_limit.default d41d8cd98f00b204e9800998ecf8427e/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Rate limit ID.`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The DNS zone ID. ## Import Rate limits can be imported using a composite ID formed of zone name and rate limit ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_rate_limit.default example.com/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Rate limit ID. ## Import Rate limits can be imported using a composite ID formed of zone name and rate limit ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_rate_limit.default d41d8cd98f00b204e9800998ecf8427e/ch8374ftwdghsif43 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1186,8 +1190,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "domain",
-					Description: `(Required) The DNS zone to add the record to`,
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to add the record to`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1239,15 +1243,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `A key-value map of string metadata cloudflare associates with the record`,
+					Description: `A key-value map of string metadata Cloudflare associates with the record ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_record.default ae36f999674d196762efcc5abb06b345/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The zone id of the record ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_record.default example.com/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
-				},
-				resource.Attribute{
-					Name:        "example.com",
-					Description: `the zone name`,
+					Name:        "ae36f999674d196762efcc5abb06b345",
+					Description: `the zone ID`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -1277,15 +1277,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `A key-value map of string metadata cloudflare associates with the record`,
+					Description: `A key-value map of string metadata Cloudflare associates with the record ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_record.default ae36f999674d196762efcc5abb06b345/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The zone id of the record ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_record.default example.com/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
-				},
-				resource.Attribute{
-					Name:        "example.com",
-					Description: `the zone name`,
+					Name:        "ae36f999674d196762efcc5abb06b345",
+					Description: `the zone ID`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -1333,6 +1329,10 @@ var (
 					Description: `(Optional) Enables Proxy Protocol v1 to the origin. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "traffic_type",
+					Description: `(Optional) Set's application type. Valid values are: ` + "`" + `direct` + "`" + `, ` + "`" + `http` + "`" + `, ` + "`" + `https` + "`" + `. Defaults to ` + "`" + `direct` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `(Required) The type of DNS record associated with the application. Valid values: ` + "`" + `CNAME` + "`" + `.`,
 				},
@@ -1374,6 +1374,92 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_waf_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare WAF rule group resource for a particular zone.`,
+			Description:      ``,
+			Keywords: []string{
+				"waf",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to apply to.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) The WAF Rule Group ID.`,
+				},
+				resource.Attribute{
+					Name:        "package_id",
+					Description: `(Optional) The ID of the WAF Rule Package that contains the group.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) The mode of the group, can be one of ["on", "off"]. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The WAF Rule Group ID, the same as ` + "`" + `group_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "package_id",
+					Description: `The ID of the WAF Rule Package that contains the group. ## Import WAF Rule Groups can be imported using a composite ID formed of zone ID and the WAF Rule Group ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_group.honey_pot ae36f999674d196762efcc5abb06b345/de677e5818985db1285d0e80225f06e5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The WAF Rule Group ID, the same as ` + "`" + `group_id` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "package_id",
+					Description: `The ID of the WAF Rule Package that contains the group. ## Import WAF Rule Groups can be imported using a composite ID formed of zone ID and the WAF Rule Group ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_group.honey_pot ae36f999674d196762efcc5abb06b345/de677e5818985db1285d0e80225f06e5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_waf_package",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare WAF rule package resource for a particular zone.`,
+			Description:      ``,
+			Keywords: []string{
+				"waf",
+				"package",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to apply to.`,
+				},
+				resource.Attribute{
+					Name:        "package_id",
+					Description: `(Required) The WAF Package ID.`,
+				},
+				resource.Attribute{
+					Name:        "sensitivity",
+					Description: `(Optional) The sensitivity of the package, can be one of ["high", "medium", "low", "off"].`,
+				},
+				resource.Attribute{
+					Name:        "action_mode",
+					Description: `(Optional) The action mode of the package, can be one of ["block", "challenge", "simulate"]. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The WAF Package ID, the same as package_id. ## Import Packages can be imported using a composite ID formed of zone ID and the WAF Package ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_package.owasp ae36f999674d196762efcc5abb06b345/a25a9a7e9c00afc1fb2e0245519d725b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The WAF Package ID, the same as package_id. ## Import Packages can be imported using a composite ID formed of zone ID and the WAF Package ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_package.owasp ae36f999674d196762efcc5abb06b345/a25a9a7e9c00afc1fb2e0245519d725b ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_waf_rule",
 			Category:         "Resources",
 			ShortDescription: `Provides a Cloudflare WAF rule resource for a particular zone.`,
@@ -1384,8 +1470,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Required) The DNS zone to apply to.`,
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to apply to.`,
 				},
 				resource.Attribute{
 					Name:        "rule_id",
@@ -1400,12 +1486,8 @@ var (
 					Description: `The WAF Rule ID, the same as rule_id.`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The DNS zone ID.`,
-				},
-				resource.Attribute{
 					Name:        "package_id",
-					Description: `The ID of the WAF Rule Package that contains the rule. ## Import Rules can be imported using a composite ID formed of zone name and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 example.com/100000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the WAF Rule Package that contains the rule. ## Import Rules can be imported using a composite ID formed of zone ID and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 ae36f999674d196762efcc5abb06b345/100000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1414,12 +1496,8 @@ var (
 					Description: `The WAF Rule ID, the same as rule_id.`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The DNS zone ID.`,
-				},
-				resource.Attribute{
 					Name:        "package_id",
-					Description: `The ID of the WAF Rule Package that contains the rule. ## Import Rules can be imported using a composite ID formed of zone name and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 example.com/100000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the WAF Rule Package that contains the rule. ## Import Rules can be imported using a composite ID formed of zone ID and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 ae36f999674d196762efcc5abb06b345/100000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1435,32 +1513,23 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Required) The zone to add the route to.`,
+					Name:        "zone_id",
+					Description: `(Required) The zone ID to add the route to.`,
 				},
 				resource.Attribute{
 					Name:        "pattern",
-					Description: `(Required) The [route pattern](https://developers.cloudflare.com/workers/api/route-matching/)`,
+					Description: `(Required) The [route pattern](https://developers.cloudflare.com/workers/about/routes/)`,
 				},
 				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The zone id of the route ## Import Records can be imported using a composite ID formed of zone name and route ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_route.default example.com/9a7806061c88ada191ed06f989cc3dac ` + "`" + `` + "`" + `` + "`" + ` where:`,
-				},
-				resource.Attribute{
-					Name:        "9a7806061c88ada191ed06f989cc3dac",
-					Description: `route ID as returned by [API](https://api.cloudflare.com/#worker-filters-list-filters)`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The zone id of the route ## Import Records can be imported using a composite ID formed of zone name and route ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_route.default example.com/9a7806061c88ada191ed06f989cc3dac ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Name:        "d41d8cd98f00b204e9800998ecf8427e",
+					Description: `zone ID`,
 				},
 				resource.Attribute{
 					Name:        "9a7806061c88ada191ed06f989cc3dac",
 					Description: `route ID as returned by [API](https://api.cloudflare.com/#worker-filters-list-filters)`,
 				},
 			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1474,44 +1543,19 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `(Required for single-script accounts) The zone for the script.`,
-				},
-				resource.Attribute{
 					Name:        "name",
-					Description: `(Required for multi-script accounts) The name for the script.`,
+					Description: `(Required) The name for the script.`,
 				},
 				resource.Attribute{
 					Name:        "content",
-					Description: `(Required) The script content. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The zone id of the script (only for non-multi-script resources) ## Import ### single-script To import a script from a single-script account, use an id like ` + "`" + `zone:example.com` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default zone:example.com ` + "`" + `` + "`" + `` + "`" + ` where:`,
-				},
-				resource.Attribute{
-					Name:        "example.com",
-					Description: `the zone name ### multi-script To import a script from a multi-script account, use an id like ` + "`" + `name:script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default name:script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `(Required) The script content. ## Import To import a script, use a script name, e.g. ` + "`" + `script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "script_name",
 					Description: `the script name`,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "zone_id",
-					Description: `The zone id of the script (only for non-multi-script resources) ## Import ### single-script To import a script from a single-script account, use an id like ` + "`" + `zone:example.com` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default zone:example.com ` + "`" + `` + "`" + `` + "`" + ` where:`,
-				},
-				resource.Attribute{
-					Name:        "example.com",
-					Description: `the zone name ### multi-script To import a script from a multi-script account, use an id like ` + "`" + `name:script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default name:script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
-				},
-				resource.Attribute{
-					Name:        "script_name",
-					Description: `the script name`,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1569,7 +1613,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_servers",
-					Description: `Cloudflare-assigned name servers. This is only populated for zones that use Cloudflare DNS. ## Import Zone resource can be imported using a zone ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `Cloudflare-assigned name servers. This is only populated for zones that use Cloudflare DNS.`,
+				},
+				resource.Attribute{
+					Name:        "verification_key",
+					Description: `Contains the TXT record value to validate domain ownership. This is only populated for zones of type ` + "`" + `partial` + "`" + `. ## Import Zone resource can be imported using a zone ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -1603,7 +1651,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name_servers",
-					Description: `Cloudflare-assigned name servers. This is only populated for zones that use Cloudflare DNS. ## Import Zone resource can be imported using a zone ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `Cloudflare-assigned name servers. This is only populated for zones that use Cloudflare DNS.`,
+				},
+				resource.Attribute{
+					Name:        "verification_key",
+					Description: `Contains the TXT record value to validate domain ownership. This is only populated for zones of type ` + "`" + `partial` + "`" + `. ## Import Zone resource can be imported using a zone ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone.example d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -1623,12 +1675,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "zone",
-					Description: `The DNS zone to which the lockdown will be added. Will be resolved to ` + "`" + `zone_id` + "`" + ` upon creation.`,
-				},
-				resource.Attribute{
 					Name:        "zone_id",
-					Description: `The DNS zone to which the access rule should be added.`,
+					Description: `(Required) The DNS zone ID to which the access rule should be added.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1656,20 +1704,28 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The access rule ID. ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone_lockdown api.mysite.com/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `The access rule ID. ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone_lockdown d41d8cd98f00b204e9800998ecf8427e/37cb64fe4a90adb5ca3afc04f2c82a2f ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
+					Description: `zone ID`,
+				},
+				resource.Attribute{
+					Name:        "37cb64fe4a90adb5ca3afc04f2c82a2f",
 					Description: `zone lockdown ID as returned by [API](https://api.cloudflare.com/#zone-lockdown-list-lockdown-rules)`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The access rule ID. ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone_lockdown api.mysite.com/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `The access rule ID. ## Import Records can be imported using a composite ID formed of zone name and record ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_zone_lockdown d41d8cd98f00b204e9800998ecf8427e/37cb64fe4a90adb5ca3afc04f2c82a2f ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
+					Description: `zone ID`,
+				},
+				resource.Attribute{
+					Name:        "37cb64fe4a90adb5ca3afc04f2c82a2f",
 					Description: `zone lockdown ID as returned by [API](https://api.cloudflare.com/#zone-lockdown-list-lockdown-rules)`,
 				},
 			},
@@ -1687,8 +1743,8 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The DNS zone to which apply settings.`,
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to which apply settings.`,
 				},
 				resource.Attribute{
 					Name:        "settings",
@@ -1737,26 +1793,29 @@ var (
 		"cloudflare_access_application":     0,
 		"cloudflare_access_policy":          1,
 		"cloudflare_access_rule":            2,
-		"cloudflare_account_member":         3,
-		"cloudflare_argo":                   4,
-		"cloudflare_custom_pages":           5,
-		"cloudflare_custom_ssl":             6,
-		"cloudflare_filter":                 7,
-		"cloudflare_firewall_rule":          8,
-		"cloudflare_load_balancer":          9,
-		"cloudflare_load_balancer_monitor":  10,
-		"cloudflare_load_balancer_pool":     11,
-		"cloudflare_logpush_job":            12,
-		"cloudflare_page_rule":              13,
-		"cloudflare_rate_limit":             14,
-		"cloudflare_record":                 15,
-		"cloudflare_spectrum_application":   16,
-		"cloudflare_waf_rule":               17,
-		"cloudflare_worker_route":           18,
-		"cloudflare_worker_script":          19,
-		"cloudflare_zone":                   20,
-		"cloudflare_zone_lockdown":          21,
-		"cloudflare_zone_settings_override": 22,
+		"cloudflare_access_service_token":   3,
+		"cloudflare_account_member":         4,
+		"cloudflare_argo":                   5,
+		"cloudflare_custom_pages":           6,
+		"cloudflare_custom_ssl":             7,
+		"cloudflare_filter":                 8,
+		"cloudflare_firewall_rule":          9,
+		"cloudflare_load_balancer":          10,
+		"cloudflare_load_balancer_monitor":  11,
+		"cloudflare_load_balancer_pool":     12,
+		"cloudflare_logpush_job":            13,
+		"cloudflare_page_rule":              14,
+		"cloudflare_rate_limit":             15,
+		"cloudflare_record":                 16,
+		"cloudflare_spectrum_application":   17,
+		"cloudflare_waf_group":              18,
+		"cloudflare_waf_package":            19,
+		"cloudflare_waf_rule":               20,
+		"cloudflare_worker_route":           21,
+		"cloudflare_worker_script":          22,
+		"cloudflare_zone":                   23,
+		"cloudflare_zone_lockdown":          24,
+		"cloudflare_zone_settings_override": 25,
 	}
 )
 

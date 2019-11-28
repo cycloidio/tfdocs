@@ -136,6 +136,21 @@ This resource is useful if you want to use a non-terraform managed SSH Key.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "hcloud_ssh_keys",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about multiple Hetzner Cloud SSH Keys.`,
+			Description: `
+
+Provides details about Hetzner Cloud SSH Keys.
+This resource is useful if you want to use a non-terraform managed SSH Key.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "hcloud_volume",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Hetzner Cloud volume.`,
@@ -160,7 +175,8 @@ This resource is useful if you want to use a non-terraform managed volume.
 		"hcloud_network":     6,
 		"hcloud_server":      7,
 		"hcloud_ssh_key":     8,
-		"hcloud_volume":      9,
+		"hcloud_ssh_keys":    9,
+		"hcloud_volume":      10,
 	}
 )
 

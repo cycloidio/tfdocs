@@ -818,7 +818,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_version",
-					Description: `(Optional) For the cluster version, possible value is v1.9.7-r1.`,
+					Description: `(Optional) For the cluster version, possible value is 'v1.11.7-r2' and 'v1.13.10-r0'. If this parameter is not set, the latest version will be used.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_type",
@@ -866,7 +866,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "container_network_cidr",
-					Description: `(Optional) Container network segment. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
+					Description: `(Optional) Container network segment. Changing this parameter will create a new cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_mode",
+					Description: `(Optional) Authentication mode of the cluster, possible values are x509 and rbac. Defaults to x509. Changing this parameter will create a new cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "eip",
+					Description: `(Optional) EIP address of the cluster. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -886,7 +894,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_apig_endpoint",
-					Description: `The endpoint of the cluster to be accessed through API Gateway. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/name",
+					Description: `The cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/server",
+					Description: `The server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/certificate_authority_data",
+					Description: `The certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/name",
+					Description: `The user name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_certificate_data",
+					Description: `The client certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_key_data",
+					Description: `The client key data. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -908,7 +944,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_apig_endpoint",
-					Description: `The endpoint of the cluster to be accessed through API Gateway. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The endpoint of the cluster to be accessed through API Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `Security group ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/name",
+					Description: `The cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/server",
+					Description: `The server IP address.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_clusters/certificate_authority_data",
+					Description: `The certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/name",
+					Description: `The user name.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_certificate_data",
+					Description: `The client certificate data.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_users/client_key_data",
+					Description: `The client key data. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -952,6 +1016,10 @@ var (
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Required) specify the name of the available partition (AZ). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `(Optional) Operating System of the node, possible values are EulerOS 2.2 and CentOS 7.6. Defaults to EulerOS 2.2. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "key_pair",
@@ -2510,7 +2578,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Required) Subnet ID. For details on how to create subnets, see the Virtual Private Cloud API Reference. Changing this creates a new instance.`,
+					Description: `(Deprecated, Optional, conflict with ` + "`" + `network_id` + "`" + `) Network ID. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Optional, conflict with ` + "`" + `subnet_id` + "`" + `) Network ID. Changing this creates a new instance.`,
 				},
 				resource.Attribute{
 					Name:        "available_zones",
@@ -2530,23 +2602,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "save_days",
-					Description: `(Required) Retention time. Unit: day. Range: 1–7. Changing this creates a new instance.`,
+					Description: `(Optional) Retention time. Unit: day. Range: 1–7. Changing this creates a new instance.`,
 				},
 				resource.Attribute{
 					Name:        "backup_type",
-					Description: `(Required) Backup type. Options: auto: automatic backup. manual: manual backup. Changing this creates a new instance.`,
+					Description: `(Optional) Backup type. Options: auto: automatic backup. manual: manual backup. Changing this creates a new instance.`,
 				},
 				resource.Attribute{
 					Name:        "begin_at",
-					Description: `(Required) Time at which backup starts. "00:00-01:00" indicates that backup starts at 00:00:00. Changing this creates a new instance.`,
+					Description: `(Optional) Time at which backup starts. "00:00-01:00" indicates that backup starts at 00:00:00. Changing this creates a new instance.`,
 				},
 				resource.Attribute{
 					Name:        "period_type",
-					Description: `(Required) Interval at which backup is performed. Currently, only weekly backup is supported. Changing this creates a new instance.`,
+					Description: `(Optional) Interval at which backup is performed. Currently, only weekly backup is supported. Changing this creates a new instance.`,
 				},
 				resource.Attribute{
 					Name:        "backup_at",
-					Description: `(Required) Day in a week on which backup starts. Range: 1–7. Where: 1 indicates Monday; 7 indicates Sunday. Changing this creates a new instance. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Day in a week on which backup starts. Range: 1–7. Where: 1 indicates Monday; 7 indicates Sunday. Changing this creates a new instance. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2789,6 +2861,214 @@ var (
 				resource.Attribute{
 					Name:        "ip",
 					Description: `Cache node's IP address in tenant's VPC.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_dds_instance_v3",
+			Category:         "DDS Resources",
+			ShortDescription: `Manages dds instance resource within FlexibleEngine`,
+			Description:      ``,
+			Keywords: []string{
+				"dds",
+				"instance",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) Specifies the region of the DDS instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type is unique in the same tenant. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `(Required) Specifies database information. The structure is described below. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) Specifies the ID of the availability zone. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Specifies the VPC ID. For details about how to obtain this parameter value, see section "Virtual Private Cloud" in the Virtual Private Cloud API Reference. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Specifies the subnet Network ID. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Specifies the security group ID of the DDS instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the Administrator password of the database instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `(Required) Specifies the disk encryption ID of the instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Required) Specifies the mode of the database instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the flavors information. The structure is described below. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `(Optional) Specifies the advanced backup policy. The structure is described below. Changing this creates a new instance. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the DB engine. Only DDS-Community is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Specifies the DB instance version. Only 3.4 is supported now.`,
+				},
+				resource.Attribute{
+					Name:        "storage_engine",
+					Description: `(Optional) Specifies the storage engine of the DB instance. Only wiredTiger is supported now. The ` + "`" + `flavor` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the node type. Valid value: mongos, shard, config, replica.`,
+				},
+				resource.Attribute{
+					Name:        "num",
+					Description: `(Required) Specifies the node quantity. Valid value:`,
+				},
+				resource.Attribute{
+					Name:        "storage",
+					Description: `(Optional) Specifies the disk type. Valid value: ULTRAHIGH which indicates the type SSD.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) Specifies the disk size. The value must be a multiple of 10. The unit is GB. This parameter is mandatory for nodes except mongos and invalid for mongos.`,
+				},
+				resource.Attribute{
+					Name:        "spec_code",
+					Description: `(Required) Specifies the resource specification code. Valid values: engine_name | type | vcpus | ram | speccode ---- | --- | --- DDS-Community | mongos | 1 | 4 | dds.mongodb.s3.medium.4.mongos DDS-Community | mongos | 2 | 8 | dds.mongodb.s3.large.4.mongos DDS-Community | mongos | 4 | 16 | dds.mongodb.s3.xlarge.4.mongos DDS-Community | mongos | 8 | 32 | dds.mongodb.s3.2xlarge.4.mongos DDS-Community | mongos | 16 | 64 | dds.mongodb.s3.4xlarge.4.mongos DDS-Community | shard | 1 | 4 | dds.mongodb.s3.medium.4.shard DDS-Community | shard | 2 | 8 | dds.mongodb.s3.large.4.shard DDS-Community | shard | 4 | 16 | dds.mongodb.s3.xlarge.4.shard DDS-Community | shard | 8 | 32 | dds.mongodb.s3.2xlarge.4.shard DDS-Community | shard | 16 | 64 | dds.mongodb.s3.4xlarge.4.shard DDS-Community | config | 2 | 4 | dds.mongodb.s3.large.2.config DDS-Community | replica | 1 | 4 | dds.mongodb.s3.medium.4.repset DDS-Community | replica | 2 | 8 | dds.mongodb.s3.large.4.repset DDS-Community | replica | 4 | 16 | dds.mongodb.s3.xlarge.4.repset DDS-Community | replica | 8 | 32 | dds.mongodb.s3.2xlarge.4.repset DDS-Community | replica | 16 | 64 | dds.mongodb.s3.4xlarge.4.repset The ` + "`" + `backup_strategy ` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. The value cannot be empty. It must be a valid value in the "hh:mm-HH:MM" format. The current time is in the UTC format.`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `(Optional) Specifies the number of days to retain the generated backup files. The value range is from 0 to 732.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "db_username",
+					Description: `Indicates the DB Administator name.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "db_username",
+					Description: `Indicates the DB Administator name.`,
 				},
 			},
 		},
@@ -6053,6 +6333,81 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_lb_whitelist_v2",
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages an Enhanced LB whitelist resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"enhanced",
+				"load",
+				"balancer",
+				"lb",
+				"whitelist",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the whitelist. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Required) The Listener ID that the whitelist will be associated with. Changing this creates a new whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `(Optional) Specify whether to enable access control.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `(Optional) Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple IP addresses. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_mls_instance_v1",
 			Category:         "MLS Resources",
 			ShortDescription: `Manages mls instance resource within FlexibleEngine`,
@@ -8728,7 +9083,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7. PostgreSQL databases support PostgreSQL 9.5 and 9.6. Microsoft SQL Server databases support 2014 SE, 2016 SE, and 2016 EE. Changing this parameter will create a new resource. The ` + "`" + `volume` + "`" + ` block supports:`,
+					Description: `(Required) Specifies the database version. MySQL databases support MySQL 5.6 and 5.7, example values: "5.6", "5.7". PostgreSQL databases support PostgreSQL 9.5, 9.6, 10 and 11, example values: "9.5", "9.6", "10", "11". Microsoft SQL Server databases support 2014 SE and 2014 EE, example values: "2014_SE", "2014_EE". Changing this parameter will create a new resource. The ` + "`" + `volume` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "disk_encryption_id",
@@ -10015,65 +10370,67 @@ var (
 		"flexibleengine_csbs_backup_v1":                     17,
 		"flexibleengine_cts_tracker_v1":                     18,
 		"flexibleengine_dcs_instance_v1":                    19,
-		"flexibleengine_dns_recordset_v2":                   20,
-		"flexibleengine_dns_zone_v2":                        21,
-		"flexibleengine_drs_replication_v2":                 22,
-		"flexibleengine_drs_replicationconsistencygroup_v2": 23,
-		"flexibleengine_dws_cluster_v1":                     24,
-		"flexibleengine_elb_backend":                        25,
-		"flexibleengine_elb_health":                         26,
-		"flexibleengine_elb_listener":                       27,
-		"flexibleengine_elb_loadbalancer":                   28,
-		"flexibleengine_fw_firewall_group_v2":               29,
-		"flexibleengine_fw_policy_v2":                       30,
-		"flexibleengine_fw_rule_v2":                         31,
-		"flexibleengine_images_image_v2":                    32,
-		"flexibleengine_kms_key_v1":                         33,
-		"flexibleengine_lb_certificate_v2":                  34,
-		"flexibleengine_lb_l7policy_v2":                     35,
-		"flexibleengine_lb_l7rule_v2":                       36,
-		"flexibleengine_lb_listener_v2":                     37,
-		"flexibleengine_lb_loadbalancer_v2":                 38,
-		"flexibleengine_lb_member_v2":                       39,
-		"flexibleengine_lb_monitor_v2":                      40,
-		"flexibleengine_lb_pool_v2":                         41,
-		"flexibleengine_mls_instance_v1":                    42,
-		"flexibleengine_mrs_cluster_v1":                     43,
-		"flexibleengine_mrs_job_v1":                         44,
-		"flexibleengine_nat_dnat_rule_v2":                   45,
-		"flexibleengine_nat_gateway_v2":                     46,
-		"flexibleengine_nat_snat_rule_v2":                   47,
-		"flexibleengine_networking_floatingip_associate_v2": 48,
-		"flexibleengine_networking_floatingip_v2":           49,
-		"flexibleengine_networking_network_v2":              50,
-		"flexibleengine_networking_port_v2":                 51,
-		"flexibleengine_networking_router_interface_v2":     52,
-		"flexibleengine_networking_router_route_v2":         53,
-		"flexibleengine_networking_router_v2":               54,
-		"flexibleengine_networking_secgroup_rule_v2":        55,
-		"flexibleengine_networking_secgroup_v2":             56,
-		"flexibleengine_networking_subnet_v2":               57,
-		"flexibleengine_networking_vip_associate_v2":        58,
-		"flexibleengine_networking_vip_v2":                  59,
-		"flexibleengine_rds_instance_v1":                    60,
-		"flexibleengine_rds_instance_v3":                    61,
-		"flexibleengine_rds_parametergroup_v3":              62,
-		"flexibleengine_rts_software_config_v1":             63,
-		"flexibleengine_resource_rts_stack_v1":              64,
-		"flexibleengine_s3_bucket":                          65,
-		"flexibleengine_s3_bucket_object":                   66,
-		"flexibleengine_s3_bucket_policy":                   67,
-		"flexibleengine_sfs_file_system_v2":                 68,
-		"flexibleengine_smn_subscription_v2":                69,
-		"flexibleengine_smn_topic_v2":                       70,
-		"flexibleengine-vbs-backup-policy-v2":               71,
-		"flexibleengine-vbs-backup-v2":                      72,
-		"flexibleengine_vpc_eip_v1":                         73,
-		"flexibleengine_vpc_peering_connection_accepter_v2": 74,
-		"flexibleengine_vpc_peering_connection_v2":          75,
-		"flexibleengine_vpc_route_v2":                       76,
-		"flexibleengine_vpc_subnet_v1":                      77,
-		"flexibleengine_vpc_v1":                             78,
+		"flexibleengine_dds_instance_v3":                    20,
+		"flexibleengine_dns_recordset_v2":                   21,
+		"flexibleengine_dns_zone_v2":                        22,
+		"flexibleengine_drs_replication_v2":                 23,
+		"flexibleengine_drs_replicationconsistencygroup_v2": 24,
+		"flexibleengine_dws_cluster_v1":                     25,
+		"flexibleengine_elb_backend":                        26,
+		"flexibleengine_elb_health":                         27,
+		"flexibleengine_elb_listener":                       28,
+		"flexibleengine_elb_loadbalancer":                   29,
+		"flexibleengine_fw_firewall_group_v2":               30,
+		"flexibleengine_fw_policy_v2":                       31,
+		"flexibleengine_fw_rule_v2":                         32,
+		"flexibleengine_images_image_v2":                    33,
+		"flexibleengine_kms_key_v1":                         34,
+		"flexibleengine_lb_certificate_v2":                  35,
+		"flexibleengine_lb_l7policy_v2":                     36,
+		"flexibleengine_lb_l7rule_v2":                       37,
+		"flexibleengine_lb_listener_v2":                     38,
+		"flexibleengine_lb_loadbalancer_v2":                 39,
+		"flexibleengine_lb_member_v2":                       40,
+		"flexibleengine_lb_monitor_v2":                      41,
+		"flexibleengine_lb_pool_v2":                         42,
+		"flexibleengine_lb_whitelist_v2":                    43,
+		"flexibleengine_mls_instance_v1":                    44,
+		"flexibleengine_mrs_cluster_v1":                     45,
+		"flexibleengine_mrs_job_v1":                         46,
+		"flexibleengine_nat_dnat_rule_v2":                   47,
+		"flexibleengine_nat_gateway_v2":                     48,
+		"flexibleengine_nat_snat_rule_v2":                   49,
+		"flexibleengine_networking_floatingip_associate_v2": 50,
+		"flexibleengine_networking_floatingip_v2":           51,
+		"flexibleengine_networking_network_v2":              52,
+		"flexibleengine_networking_port_v2":                 53,
+		"flexibleengine_networking_router_interface_v2":     54,
+		"flexibleengine_networking_router_route_v2":         55,
+		"flexibleengine_networking_router_v2":               56,
+		"flexibleengine_networking_secgroup_rule_v2":        57,
+		"flexibleengine_networking_secgroup_v2":             58,
+		"flexibleengine_networking_subnet_v2":               59,
+		"flexibleengine_networking_vip_associate_v2":        60,
+		"flexibleengine_networking_vip_v2":                  61,
+		"flexibleengine_rds_instance_v1":                    62,
+		"flexibleengine_rds_instance_v3":                    63,
+		"flexibleengine_rds_parametergroup_v3":              64,
+		"flexibleengine_rts_software_config_v1":             65,
+		"flexibleengine_resource_rts_stack_v1":              66,
+		"flexibleengine_s3_bucket":                          67,
+		"flexibleengine_s3_bucket_object":                   68,
+		"flexibleengine_s3_bucket_policy":                   69,
+		"flexibleengine_sfs_file_system_v2":                 70,
+		"flexibleengine_smn_subscription_v2":                71,
+		"flexibleengine_smn_topic_v2":                       72,
+		"flexibleengine-vbs-backup-policy-v2":               73,
+		"flexibleengine-vbs-backup-v2":                      74,
+		"flexibleengine_vpc_eip_v1":                         75,
+		"flexibleengine_vpc_peering_connection_accepter_v2": 76,
+		"flexibleengine_vpc_peering_connection_v2":          77,
+		"flexibleengine_vpc_route_v2":                       78,
+		"flexibleengine_vpc_subnet_v1":                      79,
+		"flexibleengine_vpc_v1":                             80,
 	}
 )
 

@@ -557,7 +557,11 @@ Gets information about an Azure Active Directory user.
 				},
 				resource.Attribute{
 					Name:        "object_id",
-					Description: `(Optional) Specifies the Object ID of the Application within Azure Active Directory. ->`,
+					Description: `(Optional) Specifies the Object ID of the Application within Azure Active Directory.`,
+				},
+				resource.Attribute{
+					Name:        "mail_nickname",
+					Description: `(Optional) The email alias of the Azure AD User. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -582,6 +586,10 @@ Gets information about an Azure Active Directory user.
 				resource.Attribute{
 					Name:        "mail_nickname",
 					Description: `The email alias of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "usage_location",
+					Description: `The usage location of the Azure AD User.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -608,6 +616,10 @@ Gets information about an Azure Active Directory user.
 				resource.Attribute{
 					Name:        "mail_nickname",
 					Description: `The email alias of the Azure AD User.`,
+				},
+				resource.Attribute{
+					Name:        "usage_location",
+					Description: `The usage location of the Azure AD User.`,
 				},
 			},
 		},
@@ -631,7 +643,11 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				},
 				resource.Attribute{
 					Name:        "object_ids",
-					Description: `(Optional) The Object IDs of the Azure AD Users. ->`,
+					Description: `(Optional) The Object IDs of the Azure AD Users.`,
+				},
+				resource.Attribute{
+					Name:        "mail_nicknames",
+					Description: `(Optional) The email aliases of the Azure AD Users. ->`,
 				},
 				resource.Attribute{
 					Name:        "object_ids",
@@ -640,6 +656,10 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				resource.Attribute{
 					Name:        "user_principal_names",
 					Description: `The User Principal Names of the Azure AD Users.`,
+				},
+				resource.Attribute{
+					Name:        "mail_nicknames",
+					Description: `The email aliases of the Azure AD Users.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -650,6 +670,10 @@ Gets Object IDs or UPNs for multiple Azure Active Directory users.
 				resource.Attribute{
 					Name:        "user_principal_names",
 					Description: `The User Principal Names of the Azure AD Users.`,
+				},
+				resource.Attribute{
+					Name:        "mail_nicknames",
+					Description: `The email aliases of the Azure AD Users.`,
 				},
 			},
 		},

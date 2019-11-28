@@ -23,20 +23,20 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "loadbalancer_id",
-					Description: `(Required, Forces new resource) loadbalancer ID.`,
+					Name:        "backends",
+					Description: `(Required) list of backend server.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
-					Description: `(Required, Forces new resource) listener ID.`,
+					Description: `(Required, ForceNew) listener ID.`,
+				},
+				resource.Attribute{
+					Name:        "loadbalancer_id",
+					Description: `(Required, ForceNew) loadbalancer ID.`,
 				},
 				resource.Attribute{
 					Name:        "location_id",
-					Description: `(Optional) location ID only support for layer 7 loadbalancer`,
-				},
-				resource.Attribute{
-					Name:        "backends",
-					Description: `(Required) list of backend server. Valid value range [1-100]. ### Block backends The backends mapping supports the following:`,
+					Description: `(Optional, ForceNew) location ID, only support for layer 7 loadbalancer. The ` + "`" + `backends` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "instance_id",
@@ -48,41 +48,17 @@ var (
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `(Optional) Weight of the backend server. Valid value range: [0-100]. Default to 10. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "loadbalancer_id",
-					Description: `loadbalancer ID.`,
-				},
-				resource.Attribute{
-					Name:        "listener_id",
-					Description: `listener ID.`,
-				},
-				resource.Attribute{
-					Name:        "location_id",
-					Description: `location ID (only support for layer 7 loadbalancer)`,
+					Description: `(Optional) Weight of the backend server. Valid value range: [0-100]. Default to 10. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "protocol_type",
-					Description: `http or tcp`,
+					Description: `The protocol type, http or tcp.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "loadbalancer_id",
-					Description: `loadbalancer ID.`,
-				},
-				resource.Attribute{
-					Name:        "listener_id",
-					Description: `listener ID.`,
-				},
-				resource.Attribute{
-					Name:        "location_id",
-					Description: `location ID (only support for layer 7 loadbalancer)`,
-				},
-				resource.Attribute{
 					Name:        "protocol_type",
-					Description: `http or tcp`,
+					Description: `The protocol type, http or tcp.`,
 				},
 			},
 		},
@@ -227,7 +203,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_charge_type",
-					Description: `(Optional) Charge types for network traffic. Available values include TRAFFIC_POSTPAID_BY_HOUR.`,
+					Description: `(Optional) Charge types for network traffic. Available values include ` + "`" + `BANDWIDTH_PREPAID` + "`" + `, ` + "`" + `TRAFFIC_POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `TRAFFIC_POSTPAID_BY_HOUR` + "`" + ` and ` + "`" + `BANDWIDTH_PACKAGE` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "internet_max_bandwidth_out",
@@ -263,7 +239,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "system_disk_type",
-					Description: `(Optional) Type of a CVM disk, and available values include CLOUD_PREMIUM and CLOUD_SSD. Default is CLOUD_PREMIUM`,
+					Description: `(Optional) Type of a CVM disk, and available values include CLOUD_PREMIUM and CLOUD_SSD. Default is CLOUD_PREMIUM.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -275,7 +251,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Optional) Types of disk，available values: CLOUD_PREMIUM and CLOUD_SSD.`,
+					Description: `(Optional) Types of disk, available values: CLOUD_PREMIUM and CLOUD_SSD.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -362,6 +338,10 @@ var (
 					Description: `(Optional) ID list of subnet, and for VPC it is required.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of a scaling group.`,
+				},
+				resource.Attribute{
 					Name:        "termination_policies",
 					Description: `(Optional) Available values for termination policies include OLDEST_INSTANCE and NEWEST_INSTANCE.`,
 				},
@@ -394,22 +374,30 @@ var (
 					Description: `(Required) Weight. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "instance_count",
+					Name:        "create_time",
 					Description: `The time when the AS group was created.`,
 				},
 				resource.Attribute{
+					Name:        "instance_count",
+					Description: `Instance number of a scaling group.`,
+				},
+				resource.Attribute{
 					Name:        "status",
-					Description: `Current status of a scaling group. ## Import AutoScaling Groups can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_as_scaling_group.scaling_group asg-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Current status of a scaling group. ## Import AutoScaling Groups can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_as_scaling_group.scaling_group asg-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "instance_count",
+					Name:        "create_time",
 					Description: `The time when the AS group was created.`,
 				},
 				resource.Attribute{
+					Name:        "instance_count",
+					Description: `Instance number of a scaling group.`,
+				},
+				resource.Attribute{
 					Name:        "status",
-					Description: `Current status of a scaling group. ## Import AutoScaling Groups can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_as_scaling_group.scaling_group asg-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Current status of a scaling group. ## Import AutoScaling Groups can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_as_scaling_group.scaling_group asg-n32ymck2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -521,6 +509,464 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_group",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM group.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) Description of the CAM group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM group. ## Import CAM group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group.foo 90496 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM group. ## Import CAM group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group.foo 90496 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_group_membership",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM group membership.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"group",
+				"membership",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Id of CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "user_ids",
+					Description: `(Required) Id set of the CAM group members. ## Import CAM group membership can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group_membership.foo 12515263 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_group_policy_attachment",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM group policy attachment.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"group",
+				"policy",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required, ForceNew) Id of the attached CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, ForceNew) Id of the policy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM group policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM group policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'Group' means customer strategy and 'QCS' means preset strategy. ## Import CAM group policy attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group_attachment.foo 12515263#26800353 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM group policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM group policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'Group' means customer strategy and 'QCS' means preset strategy. ## Import CAM group policy attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_group_attachment.foo 12515263#26800353 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_policy",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM policy.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "document",
+					Description: `(Required) Document of the CAM policy. The syntax refers to https://intl.cloud.tencent.com/document/product/598/10604. There are some notes when using this para in terraform: 1. The elements in JSON claimed supporting two types as ` + "`" + `string` + "`" + ` and ` + "`" + `array` + "`" + ` only support type ` + "`" + `array` + "`" + `; 2. Terraform does not support the ` + "`" + `root` + "`" + ` syntax, when it appears, it must be replaced with the uin it stands for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, ForceNew) Name of CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the CAM policy. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the policy strategy. 1 means customer strategy and 2 means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The last update time of the CAM policy. ## Import CAM policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_policy.foo 26655801 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the policy strategy. 1 means customer strategy and 2 means preset strategy.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The last update time of the CAM policy. ## Import CAM policy can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_policy.foo 26655801 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_role",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM role.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "document",
+					Description: `(Required) Document of the CAM role. The syntax refers to https://intl.cloud.tencent.com/document/product/598/10604. There are some notes when using this para in terraform: 1. The elements in json claimed supporting two types as ` + "`" + `string` + "`" + ` and ` + "`" + `array` + "`" + ` only support type ` + "`" + `array` + "`" + `; 2. Terraform does not support the ` + "`" + `root` + "`" + ` syntax, when appears, it must be replaced with the uin it stands for.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, ForceNew) Name of CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "console_login",
+					Description: `(Optional, ForceNew) Indicade whether the CAM role can login or not.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the CAM role. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The last update time of the CAM role. ## Import CAM role can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_role.foo 4611686018427733635 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM role.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The last update time of the CAM role. ## Import CAM role can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_role.foo 4611686018427733635 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_role_policy_attachment",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM role policy attachment.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"role",
+				"policy",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, ForceNew) Id of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `(Required, ForceNew) Id of the attached CAM role. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM role policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the CAM role policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy. ## Import CAM role policy attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_role_policy_attachment.foo 4611686018427922725#26800353 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM role policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the CAM role policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `The name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy. ## Import CAM role policy attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_role_policy_attachment.foo 4611686018427922725#26800353 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_saml_provider",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM SAML provider.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"saml",
+				"provider",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) The description of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "meta_data",
+					Description: `(Required) The meta data document of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of CAM SAML provider. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "provider_arn",
+					Description: `The arn of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The last update time of the CAM SAML provider. ## Import CAM SAML provider can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_saml_provider.foo cam-SAML-provider-test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create time of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "provider_arn",
+					Description: `The arn of the CAM SAML provider.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `The last update time of the CAM SAML provider. ## Import CAM SAML provider can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_saml_provider.foo cam-SAML-provider-test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_user",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM user.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"user",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, ForceNew) Name of CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "console_login",
+					Description: `(Optional) Indicade whether the CAM user can login or not.`,
+				},
+				resource.Attribute{
+					Name:        "country_code",
+					Description: `(Optional) Country code of the phone num, like '86'.`,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Optional) Email of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "need_reset_password",
+					Description: `(Optional) Indicate whether the CAM user will reset the password the next time he/her logs in.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password of the CAM user. The password should be set with 8 characters or more and contains uppercase small letters, numbers, and special characters. Only valid when console_login set true. If not set and the value of console_login is true, a random password is automatically generated.`,
+				},
+				resource.Attribute{
+					Name:        "phone_num",
+					Description: `(Optional) Phone num of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "remark",
+					Description: `(Optional) Remark of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "use_api",
+					Description: `(Optional) Indicate whether to generate a secret key or not. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "secret_id",
+					Description: `Secret Id of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `Secret key of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Id of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "uin",
+					Description: `Uin of the CAM User. ## Import CAM user can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_user.foo cam-user-test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret_id",
+					Description: `Secret Id of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "secret_key",
+					Description: `Secret key of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `Id of the CAM user.`,
+				},
+				resource.Attribute{
+					Name:        "uin",
+					Description: `Uin of the CAM User. ## Import CAM user can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_user.foo cam-user-test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cam_user_policy_attachment",
+			Category:         "CAM Resources",
+			ShortDescription: `Provides a resource to create a CAM user policy attachment.`,
+			Description:      ``,
+			Keywords: []string{
+				"cam",
+				"user",
+				"policy",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required, ForceNew) Id of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `(Required, ForceNew) Id of the attached cam user. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM user policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM user policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy. ## Import CAM user policy attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_user_policy_attachment.foo cam-test#26800353 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_mode",
+					Description: `Mode of Creation of the CAM user policy attachment. 1 means the cam policy attachment is created by production, and the others indicate syntax strategy ways.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CAM user policy attachment.`,
+				},
+				resource.Attribute{
+					Name:        "policy_name",
+					Description: `Name of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_type",
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy. ## Import CAM user policy attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cam_user_policy_attachment.foo cam-test#26800353 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -637,7 +1083,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_size",
-					Description: `(Required) Volume of CBS.`,
+					Description: `(Required) Volume of CBS, and unit is GB. If storage type is ` + "`" + `CLOUD_SSD` + "`" + `, the size range is [100, 16000], and the others are [10-16000].`,
 				},
 				resource.Attribute{
 					Name:        "storage_type",
@@ -769,7 +1215,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ccn_id",
-					Description: `(Required, ForceNew) ID of the CCN`,
+					Description: `(Required, ForceNew) ID of the CCN.`,
 				},
 				resource.Attribute{
 					Name:        "instance_id",
@@ -825,7 +1271,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ccn_id",
-					Description: `(Required, ForceNew) ID of the CCN`,
+					Description: `(Required, ForceNew) ID of the CCN.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -837,6 +1283,125 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cfs_access_group",
+			Category:         "CFS Resources",
+			ShortDescription: `Provides a resource to create a CFS access group.`,
+			Description:      ``,
+			Keywords: []string{
+				"cfs",
+				"access",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the access group, and max length is 64.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the access group, and max length is 255. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the access group. ## Import CFS access group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cfs_access_group.foo pgroup-7nx89k7l ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the access group. ## Import CFS access group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cfs_access_group.foo pgroup-7nx89k7l ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cfs_access_rule",
+			Category:         "CFS Resources",
+			ShortDescription: `Provides a resource to create a CFS access rule.`,
+			Description:      ``,
+			Keywords: []string{
+				"cfs",
+				"access",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_group_id",
+					Description: `(Required, ForceNew) ID of a access group.`,
+				},
+				resource.Attribute{
+					Name:        "auth_client_ip",
+					Description: `(Required) A single IP or a single IP address range such as 10.1.10.11 or 10.10.1.0/24 indicates that all IPs are allowed. Please note that the IP entered should be CVM's private IP.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) The priority level of rule. The range is 1-100, and 1 indicates the highest priority.`,
+				},
+				resource.Attribute{
+					Name:        "rw_permission",
+					Description: `(Optional) Read and write permissions. Valid values are ` + "`" + `RO` + "`" + ` and ` + "`" + `RW` + "`" + `, and default is ` + "`" + `RO` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "user_permission",
+					Description: `(Optional) The permissions of accessing users. Valid values are ` + "`" + `all_squash` + "`" + `, ` + "`" + `no_all_squash` + "`" + `, ` + "`" + `root_squash` + "`" + ` and ` + "`" + `no_root_squash` + "`" + `, and default is ` + "`" + `root_squash` + "`" + `. ` + "`" + `all_squash` + "`" + ` indicates that all access users are mapped as anonymous users or user groups; ` + "`" + `no_all_squash` + "`" + ` indicates that access users will match local users first and be mapped to anonymous users or user groups after matching failed; ` + "`" + `root_squash` + "`" + ` indicates that map access root users to anonymous users or user groups; ` + "`" + `no_root_squash` + "`" + ` indicates that access root users keep root account permission.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cfs_file_system",
+			Category:         "CFS Resources",
+			ShortDescription: `Provides a resource to create a cloud file system(CFS).`,
+			Description:      ``,
+			Keywords: []string{
+				"cfs",
+				"file",
+				"system",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "access_group_id",
+					Description: `(Required) ID of a access group.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required, ForceNew) The available zone that the file system locates at.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required, ForceNew) ID of a subnet.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) ID of a VPC network.`,
+				},
+				resource.Attribute{
+					Name:        "mount_ip",
+					Description: `(Optional, ForceNew) IP of mount point.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of a file system.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional, ForceNew) File service protocol. Valid values are ` + "`" + `NFS` + "`" + ` and ` + "`" + `CIFS` + "`" + `, and the default is ` + "`" + `NFS` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the file system. ## Import Cloud file system can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cfs_file_system.foo cfs-6hgquxmj ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the file system. ## Import Cloud file system can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_cfs_file_system.foo cfs-6hgquxmj ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1068,7 +1633,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health_check_http_code",
-					Description: `(Optional) HTTP Status Code. The default is 31 and value range is 1-31. '0b0001' means the return value '1xx' is health. '0b0010' means the return value '2xx' is health. '0b0100' means the return value '3xx' is health. '0b1000' means the return value '4xx' is health. 0b10000 means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values. NOTES: The 'HTTP' health check of the 'TCP' listener only supports specifying one health check status code. NOTES: Only supports listeners of 'HTTP' and 'HTTPS' protocol.`,
+					Description: `(Optional) HTTP Status Code. The default is 31 and value range is 1-31. 1 means the return value '1xx' is health. 2 means the return value '2xx' is health. 4 means the return value '3xx' is health. 8 means the return value '4xx' is health. 16 means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values. NOTES: The 'HTTP' health check of the 'TCP' listener only supports specifying one health check status code. NOTES: Only supports listeners of 'HTTP' and 'HTTPS' protocol.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_http_domain",
@@ -1155,92 +1720,72 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "cluster_name",
-					Description: `(Required) The name of the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Required) The cpu of the node.`,
-				},
-				resource.Attribute{
-					Name:        "mem",
-					Description: `(Required) The memory of the node.`,
-				},
-				resource.Attribute{
-					Name:        "os_name",
-					Description: `(Required) The system os name of the node.`,
+					Name:        "bandwidth_type",
+					Description: `(Required) The network type of the node.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
 					Description: `(Required) The network bandwidth of the node.`,
 				},
 				resource.Attribute{
-					Name:        "bandwidth_type",
-					Description: `(Required) The network type of the node.`,
+					Name:        "cluster_cidr",
+					Description: `(Required) The CIDR which the cluster is going to use.`,
 				},
 				resource.Attribute{
-					Name:        "subnet_id",
-					Description: `(Required) The subnet id which the node stays in.`,
-				},
-				resource.Attribute{
-					Name:        "is_vpc_gateway",
-					Description: `(Required) Describe whether the node enable the gateway capability.`,
-				},
-				resource.Attribute{
-					Name:        "storage_size",
-					Description: `(Required) The size of the data volumn.`,
-				},
-				resource.Attribute{
-					Name:        "storage_type",
-					Description: `(Optional) The type of the data volumn. see more from CVM.`,
-				},
-				resource.Attribute{
-					Name:        "root_size",
-					Description: `(Required) The size of the root volumn.`,
-				},
-				resource.Attribute{
-					Name:        "root_type",
-					Description: `(Optional) The type of the root volumn. see more from CVM.`,
+					Name:        "cluster_name",
+					Description: `(Required) The name of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "goods_num",
 					Description: `(Required) The node number is going to create in the cluster.`,
 				},
 				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Required) The instance type of the node needed by cvm.`,
+				},
+				resource.Attribute{
+					Name:        "is_vpc_gateway",
+					Description: `(Required) Describe whether the node enable the gateway capability.`,
+				},
+				resource.Attribute{
+					Name:        "os_name",
+					Description: `(Required) The system os name of the node.`,
+				},
+				resource.Attribute{
+					Name:        "root_size",
+					Description: `(Required) The size of the root volumn.`,
+				},
+				resource.Attribute{
+					Name:        "storage_size",
+					Description: `(Required) The size of the data volumn.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The subnet id which the node stays in.`,
+				},
+				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Required) Specify vpc which the node(s) stay in.`,
-				},
-				resource.Attribute{
-					Name:        "cluster_cidr",
-					Description: `(Required) The CIDR which the cluster is going to use.`,
-				},
-				resource.Attribute{
-					Name:        "cluster_desc",
-					Description: `(Optional) The description of the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "cvm_type",
-					Description: `(Optional) The type of node needed by cvm.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional) The puchase duration of the node needed by cvm.`,
 				},
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The zone which the node stays in.`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
-					Description: `(Optional) The instance type of the node needed by cvm.`,
+					Name:        "cluster_desc",
+					Description: `(Optional) The description of the cluster.`,
 				},
 				resource.Attribute{
-					Name:        "sg_id",
-					Description: `(Optional) The safe-group id.`,
+					Name:        "cluster_version",
+					Description: `(Optional) The kubernetes version of the cluster.`,
 				},
 				resource.Attribute{
-					Name:        "mount_target",
-					Description: `(Optional) The path which volumn is going to be mounted.`,
+					Name:        "cpu",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "cvm_type",
+					Description: `(Optional) The type of node needed by cvm.`,
 				},
 				resource.Attribute{
 					Name:        "docker_graph_path",
@@ -1251,66 +1796,90 @@ var (
 					Description: `(Optional) The name ot node.`,
 				},
 				resource.Attribute{
-					Name:        "cluster_version",
-					Description: `(Optional) The kubernetes version of the cluster.`,
+					Name:        "key_id",
+					Description: `(Optional) The key_id of each node(if using key pair to access).`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "mount_target",
+					Description: `(Optional) The path which volumn is going to be mounted.`,
 				},
 				resource.Attribute{
 					Name:        "password",
 					Description: `(Optional) The password of each node.`,
 				},
 				resource.Attribute{
-					Name:        "key_id",
-					Description: `(Optional) The key_id of each node(if using key pair to access).`,
+					Name:        "period",
+					Description: `(Optional) The puchase duration of the node needed by cvm.`,
 				},
 				resource.Attribute{
 					Name:        "require_wan_ip",
 					Description: `(Optional) Indicate whether wan ip is needed.`,
 				},
 				resource.Attribute{
+					Name:        "root_type",
+					Description: `(Optional) The type of the root volumn. see more from CVM.`,
+				},
+				resource.Attribute{
+					Name:        "sg_id",
+					Description: `(Optional) The security group id.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(Optional) The type of the data volumn. see more from CVM.`,
+				},
+				resource.Attribute{
+					Name:        "unschedulable",
+					Description: `(Optional) Determine whether the node will be schedulable. 0 is the default meaning node will be schedulable. 1 for unschedulable.`,
+				},
+				resource.Attribute{
 					Name:        "user_script",
-					Description: `(Optional) User defined script in a base64-format. The script runs after the kubernetes component is ready on node. see more from CCS api documents. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) User defined script in a base64-format. The script runs after the kubernetes component is ready on node. see more from CCS api documents. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "kubernetes_version",
-					Description: `The kubernetes version of the cluster`,
+					Description: `The kubernetes version of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "nodes_num",
-					Description: `The node number of the cluster`,
+					Description: `The node number of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "nodes_status",
-					Description: `The node status of the cluster`,
+					Description: `The node status of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "total_cpu",
-					Description: `The total cpu of the cluster`,
+					Description: `The total cpu of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "total_mem",
-					Description: `The total memory of the cluster`,
+					Description: `The total memory of the cluster.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "kubernetes_version",
-					Description: `The kubernetes version of the cluster`,
+					Description: `The kubernetes version of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "nodes_num",
-					Description: `The node number of the cluster`,
+					Description: `The node number of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "nodes_status",
-					Description: `The node status of the cluster`,
+					Description: `The node status of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "total_cpu",
-					Description: `The total cpu of the cluster`,
+					Description: `The total cpu of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "total_mem",
-					Description: `The total memory of the cluster`,
+					Description: `The total memory of the cluster.`,
 				},
 			},
 		},
@@ -1327,92 +1896,92 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "cluster_id",
-					Description: `(Required) The id of the cluster.`,
-				},
-				resource.Attribute{
-					Name:        "cpu",
-					Description: `(Required) The cpu of the node.`,
-				},
-				resource.Attribute{
-					Name:        "mem",
-					Description: `(Required) The memory of the node.`,
+					Name:        "bandwidth_type",
+					Description: `(Required) The network type of the node.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
 					Description: `(Required) The network bandwidth of the node.`,
 				},
 				resource.Attribute{
-					Name:        "bandwidth_type",
-					Description: `(Required) The network type of the node.`,
-				},
-				resource.Attribute{
-					Name:        "require_wan_ip",
-					Description: `(Optional) Indicate whether wan ip is needed.`,
-				},
-				resource.Attribute{
-					Name:        "subnet_id",
-					Description: `(Required) The subnet id which the node stays in.`,
+					Name:        "cluster_id",
+					Description: `(Required) The id of the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "is_vpc_gateway",
 					Description: `(Required) Describe whether the node enable the gateway capability.`,
 				},
 				resource.Attribute{
-					Name:        "storage_size",
-					Description: `(Required) The size of the data volumn.`,
-				},
-				resource.Attribute{
-					Name:        "storage_type",
-					Description: `(Optional) The type of the data volumn. see more from CVM.`,
-				},
-				resource.Attribute{
 					Name:        "root_size",
 					Description: `(Required) The size of the root volumn.`,
 				},
 				resource.Attribute{
-					Name:        "root_type",
-					Description: `(Optional) The type of the root volumn. see more from CVM.`,
+					Name:        "storage_size",
+					Description: `(Required) The size of the data volumn.`,
 				},
 				resource.Attribute{
-					Name:        "vpc_id",
-					Description: `(Required) Specify vpc which the node(s) stay in.`,
-				},
-				resource.Attribute{
-					Name:        "cvm_type",
-					Description: `(Optional) The type of node needed by cvm.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `(Optional) The puchase duration of the node needed by cvm.`,
+					Name:        "subnet_id",
+					Description: `(Required) The subnet id which the node stays in.`,
 				},
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `(Required) The zone which the node stays in.`,
 				},
 				resource.Attribute{
-					Name:        "instance_type",
-					Description: `(Optional) The instance type of the node needed by cvm.`,
+					Name:        "cpu",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
-					Name:        "sg_id",
-					Description: `(Optional) The safe-group id.`,
-				},
-				resource.Attribute{
-					Name:        "mount_target",
-					Description: `(Optional) The path which volumn is going to be mounted.`,
+					Name:        "cvm_type",
+					Description: `(Optional) The type of node needed by cvm.`,
 				},
 				resource.Attribute{
 					Name:        "docker_graph_path",
 					Description: `(Optional) The docker graph path is going to mounted.`,
 				},
 				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional) The password of each node.`,
+					Name:        "instance_name",
+					Description: `(Optional) The name ot node.`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `(Optional) The instance type of the node needed by cvm.`,
 				},
 				resource.Attribute{
 					Name:        "key_id",
 					Description: `(Optional) The key_id of each node(if using key pair to access).`,
+				},
+				resource.Attribute{
+					Name:        "mem",
+					Description: `(Optional,`,
+				},
+				resource.Attribute{
+					Name:        "mount_target",
+					Description: `(Optional) The path which volumn is going to be mounted.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password of each node.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) The puchase duration of the node needed by cvm.`,
+				},
+				resource.Attribute{
+					Name:        "require_wan_ip",
+					Description: `(Optional) Indicate whether wan ip is needed.`,
+				},
+				resource.Attribute{
+					Name:        "root_type",
+					Description: `(Optional) The type of the root volumn. see more from CVM.`,
+				},
+				resource.Attribute{
+					Name:        "sg_id",
+					Description: `(Optional) The security group id.`,
+				},
+				resource.Attribute{
+					Name:        "storage_type",
+					Description: `(Optional) The type of the data volumn. see more from CVM.`,
 				},
 				resource.Attribute{
 					Name:        "unschedulable",
@@ -1420,7 +1989,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_script",
-					Description: `(Optional) User defined script in a base64-format. The script runs after the kubernetes component is ready on node. see more from CCS api documents. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) User defined script in a base64-format. The script runs after the kubernetes component is ready on node. see more from CCS api documents. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "abnormal_reason",
@@ -1435,12 +2004,12 @@ var (
 					Description: `Describe whether the node is normal.`,
 				},
 				resource.Attribute{
-					Name:        "wan_ip",
-					Description: `Describe the wan ip of the node.`,
-				},
-				resource.Attribute{
 					Name:        "lan_ip",
 					Description: `Describe the lan ip of the node.`,
+				},
+				resource.Attribute{
+					Name:        "wan_ip",
+					Description: `Describe the wan ip of the node.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1457,12 +2026,12 @@ var (
 					Description: `Describe whether the node is normal.`,
 				},
 				resource.Attribute{
-					Name:        "wan_ip",
-					Description: `Describe the wan ip of the node.`,
-				},
-				resource.Attribute{
 					Name:        "lan_ip",
 					Description: `Describe the lan ip of the node.`,
+				},
+				resource.Attribute{
+					Name:        "wan_ip",
+					Description: `Describe the wan ip of the node.`,
 				},
 			},
 		},
@@ -1494,6 +2063,10 @@ var (
 					Description: `(Optional) A configuration of object lifecycle management (documented below).`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags of a bucket.`,
+				},
+				resource.Attribute{
 					Name:        "website",
 					Description: `(Optional) A website object(documented below). The ` + "`" + `cors_rules` + "`" + ` object supports the following:`,
 				},
@@ -1515,7 +2088,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_age_seconds",
-					Description: `(Optional) Specifies time in seconds that browser can cache the response for a preflight request. The ` + "`" + `lifecycle_rules` + "`" + ` object supports the following:`,
+					Description: `(Optional) Specifies time in seconds that browser can cache the response for a preflight request. The ` + "`" + `expiration` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "date",
+					Description: `(Optional) Specifies the date after which you want the corresponding action to take effect.`,
+				},
+				resource.Attribute{
+					Name:        "days",
+					Description: `(Optional) Specifies the number of days after object creation when the specific rule action takes effect. The ` + "`" + `lifecycle_rules` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "filter_prefix",
@@ -1532,14 +2113,6 @@ var (
 				resource.Attribute{
 					Name:        "storage_class",
 					Description: `(Required) Specifies the storage class to which you want the object to transition. Available values include STANDARD, STANDARD_IA and ARCHIVE.`,
-				},
-				resource.Attribute{
-					Name:        "date",
-					Description: `(Optional) Specifies the date after which you want the corresponding action to take effect.`,
-				},
-				resource.Attribute{
-					Name:        "days",
-					Description: `(Optional) Specifies the number of days after object creation when the specific rule action takes effect. The ` + "`" + `expiration` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "date",
@@ -1586,7 +2159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cache_control",
-					Description: `(Optional) Specifies caching behavior along the request/reply chain.For further details，RFC2616 can be referred.`,
+					Description: `(Optional) Specifies caching behavior along the request/reply chain. For further details, RFC2616 can be referred.`,
 				},
 				resource.Attribute{
 					Name:        "content_disposition",
@@ -1645,7 +2218,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "gateway_type",
-					Description: `(Optional, ForceNew) Type of the gateway, the available value include 'NORMAL' and 'NAT'. Default is 'NORMAL’. NOTES: CCN only supports 'NORMAL' and a vpc can create two DCGs, the one is NAT type and the other is non-NAT type. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) Type of the gateway, the available value include 'NORMAL' and 'NAT'. Default is 'NORMAL'. NOTES: CCN only supports 'NORMAL' and a vpc can create two DCGs, the one is NAT type and the other is non-NAT type. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cnn_route_type",
@@ -1695,7 +2268,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dcg_id",
-					Description: `(Required, ForceNew) ID of the DCG ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required, ForceNew) ID of the DCG. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "as_path",
@@ -1805,15 +2378,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "elastic_ip",
-					Description: `(Required, ForceNew) Network address of the eip.`,
+					Description: `(Required, ForceNew) Network address of the EIP.`,
 				},
 				resource.Attribute{
 					Name:        "elastic_port",
-					Description: `(Required, ForceNew) Port of the eip.`,
+					Description: `(Required, ForceNew) Port of the EIP.`,
 				},
 				resource.Attribute{
 					Name:        "nat_id",
-					Description: `(Required, ForceNew) ID of the nat.`,
+					Description: `(Required, ForceNew) Id of the NAT.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -1825,15 +2398,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required, ForceNew) Type of the network protocol, the available values include： TCP and UDP.`,
+					Description: `(Required, ForceNew) Type of the network protocol, the available values are: ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required, ForceNew) ID of the vpc.`,
+					Description: `(Required, ForceNew) Id of the VPC.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Description of the nat forward. ## Import NAT forwarding can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_dnat.foo tcp://vpc-asg3sfa3:nat-1asg3t63@127.15.2.3:8080 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Description of the NAT forward. ## Import NAT forwarding can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_dnat.foo tcp://vpc-asg3sfa3:nat-1asg3t63@127.15.2.3:8080 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1842,7 +2415,7 @@ var (
 			Name:             "",
 			Type:             "tencentcloud_eip",
 			Category:         "CVM Resources",
-			ShortDescription: `Provides a TencentCloud EIP resource.`,
+			ShortDescription: `Provides an EIP resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"cvm",
@@ -1850,12 +2423,36 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Optional) The eip's name. ## Attributes Reference The following attributes are exported:`,
+					Name:        "anycast_zone",
+					Description: `(Optional, ForceNew) The zone of anycast, and available values include ` + "`" + `ANYCAST_ZONE_GLOBAL` + "`" + ` and ` + "`" + `ANYCAST_ZONE_OVERSEAS` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The EIP id, something like ` + "`" + `eip-xxxxxxx` + "`" + `, use this for EIP assocication.`,
+					Name:        "applicable_for_clb",
+					Description: `(Optional, ForceNew) Indicates whether the anycast eip can be associated to a CLB.`,
+				},
+				resource.Attribute{
+					Name:        "internet_charge_type",
+					Description: `(Optional, ForceNew) The charge type of eip, and available values include ` + "`" + `BANDWIDTH_PACKAGE` + "`" + `, ` + "`" + `BANDWIDTH_POSTPAID_BY_HOUR` + "`" + ` and ` + "`" + `TRAFFIC_POSTPAID_BY_HOUR` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "internet_max_bandwidth_out",
+					Description: `(Optional, ForceNew) The bandwidth limit of eip, unit is Mbps, and the range is 1-1000.`,
+				},
+				resource.Attribute{
+					Name:        "internet_service_provider",
+					Description: `(Optional, ForceNew) Internet service provider of eip, and available values include ` + "`" + `BGP` + "`" + `, ` + "`" + `CMCC` + "`" + `, ` + "`" + `CTCC` + "`" + ` and ` + "`" + `CUCC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of eip.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags of eip.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional, ForceNew) The type of eip, and available values include ` + "`" + `EIP` + "`" + ` and ` + "`" + `AnycastEIP` + "`" + `. Default is ` + "`" + `EIP` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
@@ -1863,21 +2460,17 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The EIP current status. ## Import EIPs can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_eip.foo eip-nyvf60va ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The eip current status. ## Import EIP can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_eip.foo eip-nyvf60va ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `The EIP id, something like ` + "`" + `eip-xxxxxxx` + "`" + `, use this for EIP assocication.`,
-				},
-				resource.Attribute{
 					Name:        "public_ip",
 					Description: `The elastic ip address.`,
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The EIP current status. ## Import EIPs can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_eip.foo eip-nyvf60va ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The eip current status. ## Import EIP can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_eip.foo eip-nyvf60va ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1885,7 +2478,7 @@ var (
 			Name:             "",
 			Type:             "tencentcloud_eip_association",
 			Category:         "CVM Resources",
-			ShortDescription: `Provides a TencentCloud EIP association.`,
+			ShortDescription: `Provides an eip resource associated with other resource like CVM, ENI and CLB.`,
 			Description:      ``,
 			Keywords: []string{
 				"cvm",
@@ -1895,63 +2488,168 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "eip_id",
-					Description: `(Required) The eip's id.`,
+					Description: `(Required, ForceNew) The id of eip.`,
 				},
 				resource.Attribute{
 					Name:        "instance_id",
-					Description: `(Optional) The instance id going to bind with the EIP. This field is conflict with ` + "`" + `network_interface_id` + "`" + ` and ` + "`" + `private_ip` + "`" + ` fields.`,
+					Description: `(Optional, ForceNew) The CVM or CLB instance id going to bind with the eip. This field is conflict with ` + "`" + `network_interface_id` + "`" + ` and ` + "`" + `private_ip fields` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "network_interface_id",
-					Description: `(Optional) Indicates the network interface id like ` + "`" + `eni-xxxxxx` + "`" + `. This field is conflict with ` + "`" + `instance_id` + "`" + `.`,
+					Description: `(Optional, ForceNew) Indicates the network interface id like ` + "`" + `eni-xxxxxx` + "`" + `. This field is conflict with ` + "`" + `instance_id` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) Indicates an IP belongs to the ` + "`" + `network_interface_id` + "`" + `. This field is conflict with ` + "`" + `instance_id` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, ForceNew) Indicates an IP belongs to the ` + "`" + `network_interface_id` + "`" + `. This field is conflict with ` + "`" + `instance_id` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_eni",
+			Category:         "VPC Resources",
+			ShortDescription: `Provides a resource to create an ENI.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"eni",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the ENI, maximum length 60.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The association id.`,
+					Name:        "subnet_id",
+					Description: `(Required, ForceNew) ID of the subnet within this vpc.`,
 				},
 				resource.Attribute{
-					Name:        "eip_id",
-					Description: `The id of the EIP.`,
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) ID of the vpc.`,
 				},
 				resource.Attribute{
-					Name:        "instance_id",
-					Description: `The instance id of the EIP bound with.`,
+					Name:        "description",
+					Description: `(Optional) Description of the ENI, maximum length 60.`,
 				},
 				resource.Attribute{
-					Name:        "network_interface_id",
-					Description: `The network interface id.`,
+					Name:        "ipv4_count",
+					Description: `(Optional) The number of intranet IPv4s. When it is greater than 1, there is only one primary intranet IP. The others are auxiliary intranet IPs, which conflict with ` + "`" + `ipv4s` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "private_ip",
-					Description: `(Optional) The IP belongs to the ` + "`" + `network_interface_id` + "`" + `.`,
+					Name:        "ipv4s",
+					Description: `(Optional) Applying for intranet IPv4s collection, conflict with ` + "`" + `ipv4_count` + "`" + `. When there are multiple ipv4s, can only be one primary IP, and the maximum length of the array is 30. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `(Optional) A set of security group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the ENI. The ` + "`" + `ipv4s` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Required) Intranet IP.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `(Required) Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the IP, maximum length 25. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the ENI.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4_info",
+					Description: `An information list of IPv4s. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IP.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Intranet IP.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the ENI. ## Import ENI can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_eni.foo eni-qka182br ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `The association id.`,
+					Name:        "create_time",
+					Description: `Creation time of the ENI.`,
 				},
 				resource.Attribute{
-					Name:        "eip_id",
-					Description: `The id of the EIP.`,
+					Name:        "ipv4_info",
+					Description: `An information list of IPv4s. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the IP.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Intranet IP.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `MAC address.`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `Indicates whether the IP is primary.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the ENI. ## Import ENI can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_eni.foo eni-qka182br ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_eni_attachment",
+			Category:         "VPC Resources",
+			ShortDescription: `Provides a resource to detailed information of attached backend server to an ENI.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"eni",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "eni_id",
+					Description: `(Required, ForceNew) ID of the ENI.`,
 				},
 				resource.Attribute{
 					Name:        "instance_id",
-					Description: `The instance id of the EIP bound with.`,
-				},
-				resource.Attribute{
-					Name:        "network_interface_id",
-					Description: `The network interface id.`,
-				},
-				resource.Attribute{
-					Name:        "private_ip",
-					Description: `(Optional) The IP belongs to the ` + "`" + `network_interface_id` + "`" + `.`,
+					Description: `(Required, ForceNew) ID of the instance which bind the ENI. ## Import ENI attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_eni_attachment.foo eni-gtlvkjvz+ins-0h3a5new ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2078,7 +2776,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "realserver_certificate_id",
-					Description: `(Optional) CA certificate ID of the realserver.`,
+					Description: `(Optional) CA certificate ID of the realserver. ## Import GAAP http domain can be imported using the id, e.g. ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -2122,6 +2820,10 @@ var (
 				resource.Attribute{
 					Name:        "connect_timeout",
 					Description: `(Optional) Timeout of the health check response, default is 2s.`,
+				},
+				resource.Attribute{
+					Name:        "forward_host",
+					Description: `(Optional) The default value of requested host which is forwarded to the realserver by the listener is ` + "`" + `default` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_method",
@@ -2300,7 +3002,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the layer7 listener.`,
+					Description: `Status of the layer7 listener. ## Import GAAP layer7 listener can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_layer7_listener.foo listener-11112222 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2310,7 +3012,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the layer7 listener.`,
+					Description: `Status of the layer7 listener. ## Import GAAP layer7 listener can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_gaap_layer7_listener.foo listener-11112222 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2327,7 +3029,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "access_region",
-					Description: `(Required, ForceNew) Access region of the GAAP proxy. The available values include ` + "`" + `NorthChina` + "`" + `, ` + "`" + `EastChina` + "`" + `, ` + "`" + `SouthChina` + "`" + `, ` + "`" + `SouthwestChina` + "`" + `, ` + "`" + `Hongkong` + "`" + `, ` + "`" + `SL_TAIWAN` + "`" + `, ` + "`" + `SoutheastAsia` + "`" + `, ` + "`" + `Korea` + "`" + `, ` + "`" + `SL_India` + "`" + `, ` + "`" + `SL_Australia` + "`" + `, ` + "`" + `Europe` + "`" + `, ` + "`" + `SL_UK` + "`" + `, ` + "`" + `SL_SouthAmerica` + "`" + `, ` + "`" + `NorthAmerica` + "`" + `, ` + "`" + `SL_MiddleUSA` + "`" + `, ` + "`" + `Canada` + "`" + `, ` + "`" + `SL_VIET` + "`" + `, ` + "`" + `WestIndia` + "`" + `, ` + "`" + `Thailand` + "`" + `, ` + "`" + `Virginia` + "`" + `, ` + "`" + `Russia` + "`" + `, ` + "`" + `Japan` + "`" + `, ` + "`" + `SL_Indonesia` + "`" + ``,
+					Description: `(Required, ForceNew) Access region of the GAAP proxy. The available values include ` + "`" + `NorthChina` + "`" + `, ` + "`" + `EastChina` + "`" + `, ` + "`" + `SouthChina` + "`" + `, ` + "`" + `SouthwestChina` + "`" + `, ` + "`" + `Hongkong` + "`" + `, ` + "`" + `SL_TAIWAN` + "`" + `, ` + "`" + `SoutheastAsia` + "`" + `, ` + "`" + `Korea` + "`" + `, ` + "`" + `SL_India` + "`" + `, ` + "`" + `SL_Australia` + "`" + `, ` + "`" + `Europe` + "`" + `, ` + "`" + `SL_UK` + "`" + `, ` + "`" + `SL_SouthAmerica` + "`" + `, ` + "`" + `NorthAmerica` + "`" + `, ` + "`" + `SL_MiddleUSA` + "`" + `, ` + "`" + `Canada` + "`" + `, ` + "`" + `SL_VIET` + "`" + `, ` + "`" + `WestIndia` + "`" + `, ` + "`" + `Thailand` + "`" + `, ` + "`" + `Virginia` + "`" + `, ` + "`" + `Russia` + "`" + `, ` + "`" + `Japan` + "`" + `, ` + "`" + `SL_Indonesia` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
@@ -2343,7 +3045,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "realserver_region",
-					Description: `(Required, ForceNew) Region of the GAAP realserver. The available values include ` + "`" + `NorthChina` + "`" + `, ` + "`" + `EastChina` + "`" + `, ` + "`" + `SouthChina` + "`" + `, ` + "`" + `SouthwestChina` + "`" + `, ` + "`" + `Hongkong` + "`" + `, ` + "`" + `SL_TAIWAN` + "`" + `, ` + "`" + `SoutheastAsia` + "`" + `, ` + "`" + `Korea` + "`" + `, ` + "`" + `SL_India` + "`" + `, ` + "`" + `SL_Australia` + "`" + `, ` + "`" + `Europe` + "`" + `, ` + "`" + `SL_UK` + "`" + `, ` + "`" + `SL_SouthAmerica` + "`" + `, ` + "`" + `NorthAmerica` + "`" + `, ` + "`" + `SL_MiddleUSA` + "`" + `, ` + "`" + `Canada` + "`" + `, ` + "`" + `SL_VIET` + "`" + `, ` + "`" + `WestIndia` + "`" + `, ` + "`" + `Thailand` + "`" + `, ` + "`" + `Virginia` + "`" + `, ` + "`" + `Russia` + "`" + `, ` + "`" + `Japan` + "`" + `, ` + "`" + `SL_Indonesia` + "`" + ``,
+					Description: `(Required, ForceNew) Region of the GAAP realserver. The available values include ` + "`" + `NorthChina` + "`" + `, ` + "`" + `EastChina` + "`" + `, ` + "`" + `SouthChina` + "`" + `, ` + "`" + `SouthwestChina` + "`" + `, ` + "`" + `Hongkong` + "`" + `, ` + "`" + `SL_TAIWAN` + "`" + `, ` + "`" + `SoutheastAsia` + "`" + `, ` + "`" + `Korea` + "`" + `, ` + "`" + `SL_India` + "`" + `, ` + "`" + `SL_Australia` + "`" + `, ` + "`" + `Europe` + "`" + `, ` + "`" + `SL_UK` + "`" + `, ` + "`" + `SL_SouthAmerica` + "`" + `, ` + "`" + `NorthAmerica` + "`" + `, ` + "`" + `SL_MiddleUSA` + "`" + `, ` + "`" + `Canada` + "`" + `, ` + "`" + `SL_VIET` + "`" + `, ` + "`" + `WestIndia` + "`" + `, ` + "`" + `Thailand` + "`" + `, ` + "`" + `Virginia` + "`" + `, ` + "`" + `Russia` + "`" + `, ` + "`" + `Japan` + "`" + `, ` + "`" + `SL_Indonesia` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "enable",
@@ -2519,6 +3221,103 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_ha_vip",
+			Category:         "VPC Resources",
+			ShortDescription: `Provides a resource to create a HA VIP.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"ha",
+				"vip",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the HA VIP. The length of character is limited to 1-60.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required, ForceNew) Subnet id.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) VPC id.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `(Optional, ForceNew) Virtual IP address, it must not be occupied and in this VPC network segment. If not set, it will be assigned after resource created automatically. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `EIP that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the HA VIP.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Instance id that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "network_interface_id",
+					Description: `Network interface id that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the HA VIP, values are ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `UNBIND` + "`" + `. ## Import HA VIP can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ha_vip.foo havip-kjqwe4ba ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `EIP that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the HA VIP.`,
+				},
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `Instance id that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "network_interface_id",
+					Description: `Network interface id that is associated.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the HA VIP, values are ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `UNBIND` + "`" + `. ## Import HA VIP can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ha_vip.foo havip-kjqwe4ba ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_ha_vip_eip_attachment",
+			Category:         "VPC Resources",
+			ShortDescription: `Provides a resource to create a HA VIP EIP attachment.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"ha",
+				"vip",
+				"eip",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "address_ip",
+					Description: `(Required, ForceNew) Public address of the EIP.`,
+				},
+				resource.Attribute{
+					Name:        "havip_id",
+					Description: `(Required, ForceNew) Id of the attached HA VIP. ## Import HA VIP EIP attachment can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_ha_vip_eip_attachment.foo havip-kjqwe4ba#1.1.1.1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_instance",
 			Category:         "CVM Resources",
 			ShortDescription: `Provides a CVM instance resource.`,
@@ -2554,7 +3353,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hostname",
-					Description: `(Optional, ForceNew) The hostname of CVM.`,
+					Description: `(Optional, ForceNew) The hostname of CVM. Windows instance: The name should be a combination of 2 to 15 characters comprised of letters (case insensitive), numbers, and hyphens (-). Period (.) is not supported, and the name cannot be a string of pure numbers. Other types (such as Linux) of instances: The name should be a combination of 2 to 60 characters, supporting multiple periods (.). The piece between two periods is composed of letters (case insensitive), numbers, and hyphens (-).`,
 				},
 				resource.Attribute{
 					Name:        "instance_charge_type_prepaid_period",
@@ -2566,7 +3365,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_charge_type",
-					Description: `(Optional, ForceNew) The charge type of instance. Valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` and ` + "`" + `SPOTPAID` + "`" + `, The default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `.`,
+					Description: `(Optional, ForceNew) The charge type of instance. Valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` and ` + "`" + `SPOTPAID` + "`" + `, The default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `. Note: TencentCloud International only supports ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `PREPAID` + "`" + ` instance may not allow to delete before expired.`,
 				},
 				resource.Attribute{
 					Name:        "instance_name",
@@ -2582,7 +3381,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internet_max_bandwidth_out",
-					Description: `(Optional, ForceNew) Maximum outgoing bandwidth to the public network, measured in Mbps (Mega bit per second). Value range: [0, 100], If this value is not specified, then automatically sets it to 0 Mbps.`,
+					Description: `(Optional, ForceNew) Maximum outgoing bandwidth to the public network, measured in Mbps (Mega bit per second). If this value is not specified, then automatically sets it to 0 Mbps.`,
 				},
 				resource.Attribute{
 					Name:        "key_name",
@@ -2591,6 +3390,10 @@ var (
 				resource.Attribute{
 					Name:        "password",
 					Description: `(Optional) Password to an instance. In order to take effect new password, the instance will be restarted after modifying the password.`,
+				},
+				resource.Attribute{
+					Name:        "placement_group_id",
+					Description: `(Optional, ForceNew) The id of a placement group.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -2642,7 +3445,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_disk_size",
-					Description: `(Required) Size of the system disk. Value range: [50, 16000], and unit is GB.`,
+					Description: `(Required) Size of the data disk, and unit is GB. If disk type is ` + "`" + `CLOUD_SSD` + "`" + `, the size range is [100, 16000], and the others are [10-16000].`,
 				},
 				resource.Attribute{
 					Name:        "data_disk_type",
@@ -2696,7 +3499,7 @@ var (
 			Name:             "",
 			Type:             "tencentcloud_key_pair",
 			Category:         "CVM Resources",
-			ShortDescription: `Provides a TencentCloud key pair resource.`,
+			ShortDescription: `Provides a key pair resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"cvm",
@@ -2706,23 +3509,18 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "key_name",
-					Description: `(Force new resource) The key pair's name. It is the only in one TencentCloud account.`,
+					Description: `(Required) The key pair's name. It is the only in one TencentCloud account.`,
 				},
 				resource.Attribute{
 					Name:        "public_key",
-					Description: `(Force new resource) You can import an existing public key and using TencentCloud key pair to manage it. ## Attributes Reference`,
+					Description: `(Required, ForceNew) You can import an existing public key and using TencentCloud key pair to manage it.`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `The id of the key pair, something like ` + "`" + `skey-xxxxxxx` + "`" + `, use this for instance creation and resetting. ## Import Key pairs can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_key_pair.foo skey-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "project_id",
+					Description: `(Optional, ForceNew) Specifys to which project the key pair belongs. ## Import Key pair can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_key_pair.foo skey-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The id of the key pair, something like ` + "`" + `skey-xxxxxxx` + "`" + `, use this for instance creation and resetting. ## Import Key pairs can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import tencentcloud_key_pair.foo skey-17634f05 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2769,7 +3567,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_os",
-					Description: `(Optional, ForceNew) Operating system of the cluster, the available values include: 'centos7.2x86_64' and 'ubuntu16.04.1 LTSx86_64'. Default is 'ubuntu16.04.1 LTSx86_64'.`,
+					Description: `(Optional, ForceNew) Operating system of the cluster, the available values include: 'centos7.2x86_64','centos7.6x86_64','ubuntu16.04.1 LTSx86_64','ubuntu18.04.1 LTSx86_64'. Default is 'ubuntu16.04.1 LTSx86_64'.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_version",
@@ -2792,76 +3590,12 @@ var (
 					Description: `(Optional, ForceNew) Project ID, default value is 0.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags of the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "worker_config",
-					Description: `(Optional, ForceNew) Deploy the machine configuration information of the 'WORKER' service, and create <=20 units for common users. The other 'WORK' service are added by 'tencentcloud_kubernetes_worker'. The ` + "`" + `worker_config` + "`" + ` object supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "instance_type",
-					Description: `(Required, ForceNew) Specified types of CVM instance.`,
-				},
-				resource.Attribute{
-					Name:        "subnet_id",
-					Description: `(Required, ForceNew) Private network ID.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone",
-					Description: `(Optional, ForceNew) Indicates which availability zone will be used.`,
-				},
-				resource.Attribute{
-					Name:        "count",
-					Description: `(Optional, ForceNew) Number of cvm.`,
-				},
-				resource.Attribute{
-					Name:        "data_disk",
-					Description: `(Optional, ForceNew) Configurations of data disk.`,
-				},
-				resource.Attribute{
-					Name:        "enhanced_monitor_service",
-					Description: `(Optional, ForceNew) To specify whether to enable cloud monitor service. Default is TRUE.`,
-				},
-				resource.Attribute{
-					Name:        "enhanced_security_service",
-					Description: `(Optional, ForceNew) To specify whether to enable cloud security service. Default is TRUE.`,
-				},
-				resource.Attribute{
-					Name:        "instance_name",
-					Description: `(Optional, ForceNew) Name of the CVMs.`,
-				},
-				resource.Attribute{
-					Name:        "internet_charge_type",
-					Description: `(Optional, ForceNew) Charge types for network traffic. Available values include TRAFFIC_POSTPAID_BY_HOUR.`,
-				},
-				resource.Attribute{
-					Name:        "internet_max_bandwidth_out",
-					Description: `(Optional, ForceNew) Max bandwidth of Internet access in Mbps. Default is 0.`,
-				},
-				resource.Attribute{
-					Name:        "key_ids",
-					Description: `(Optional, ForceNew) ID list of keys.`,
-				},
-				resource.Attribute{
-					Name:        "password",
-					Description: `(Optional, ForceNew) Password to access.`,
-				},
-				resource.Attribute{
-					Name:        "public_ip_assigned",
-					Description: `(Optional, ForceNew) Specify whether to assign an Internet IP address.`,
-				},
-				resource.Attribute{
-					Name:        "security_group_ids",
-					Description: `(Optional, ForceNew) Security groups to which a CVM instance belongs.`,
-				},
-				resource.Attribute{
-					Name:        "system_disk_size",
-					Description: `(Optional, ForceNew) Volume of system disk in GB. Default is 50.`,
-				},
-				resource.Attribute{
-					Name:        "system_disk_type",
-					Description: `(Optional, ForceNew) Type of a CVM disk, and available values include CLOUD_PREMIUM and CLOUD_SSD. Default is CLOUD_PREMIUM.`,
-				},
-				resource.Attribute{
-					Name:        "user_data",
-					Description: `(Optional, ForceNew) ase64-encoded User Data text, the length limit is 16KB. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
+					Description: `(Optional, ForceNew) Deploy the machine configuration information of the 'WORKER' service, and create <=20 units for common users. The other 'WORK' service are added by 'tencentcloud_kubernetes_worker'. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
@@ -2869,7 +3603,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Optional, ForceNew) Types of disk，available values: CLOUD_PREMIUM and CLOUD_SSD.`,
+					Description: `(Optional, ForceNew) Types of disk, available values: CLOUD_PREMIUM and CLOUD_SSD.`,
 				},
 				resource.Attribute{
 					Name:        "snapshot_id",
@@ -2904,6 +3638,18 @@ var (
 					Description: `(Optional, ForceNew) To specify whether to enable cloud security service. Default is TRUE.`,
 				},
 				resource.Attribute{
+					Name:        "instance_charge_type_prepaid_period",
+					Description: `(Optional, ForceNew) The tenancy (time unit is month) of the prepaid instance, NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `. Valid values are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type_prepaid_renew_flag",
+					Description: `(Optional, ForceNew) When enabled, the CVM instance will be renew automatically when it reach the end of the prepaid tenancy. Valid values are ` + "`" + `NOTIFY_AND_AUTO_RENEW` + "`" + `, ` + "`" + `NOTIFY_AND_MANUAL_RENEW` + "`" + ` and ` + "`" + `DISABLE_NOTIFY_AND_MANUAL_RENEW` + "`" + `. NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type",
+					Description: `(Optional, ForceNew) The charge type of instance. Valid values are ` + "`" + `PREPAID` + "`" + ` and ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, The default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `. Note: TencentCloud International only supports ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `PREPAID` + "`" + ` instance will not terminated after cluster deleted, and may not allow to delete before expired.`,
+				},
+				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Optional, ForceNew) Name of the CVMs.`,
 				},
@@ -2917,11 +3663,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_ids",
-					Description: `(Optional, ForceNew) ID list of keys.`,
+					Description: `(Optional, ForceNew) ID list of keys, should be set if ` + "`" + `password` + "`" + ` not set.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional, ForceNew) Password to access.`,
+					Description: `(Optional, ForceNew) Password to access, should be set if ` + "`" + `key_ids` + "`" + ` not set.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_assigned",
@@ -2941,19 +3687,87 @@ var (
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `(Optional, ForceNew) ase64-encoded User Data text, the length limit is 16KB. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
+					Description: `(Optional, ForceNew) ase64-encoded User Data text, the length limit is 16KB. The ` + "`" + `worker_config` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "disk_size",
-					Description: `(Optional, ForceNew) Volume of disk in GB. Default is 0.`,
+					Name:        "instance_type",
+					Description: `(Required, ForceNew) Specified types of CVM instance.`,
 				},
 				resource.Attribute{
-					Name:        "disk_type",
-					Description: `(Optional, ForceNew) Types of disk，available values: CLOUD_PREMIUM and CLOUD_SSD.`,
+					Name:        "subnet_id",
+					Description: `(Required, ForceNew) Private network ID.`,
 				},
 				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `(Optional, ForceNew) Data disk snapshot ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Name:        "availability_zone",
+					Description: `(Optional, ForceNew) Indicates which availability zone will be used.`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `(Optional, ForceNew) Number of cvm.`,
+				},
+				resource.Attribute{
+					Name:        "data_disk",
+					Description: `(Optional, ForceNew) Configurations of data disk.`,
+				},
+				resource.Attribute{
+					Name:        "enhanced_monitor_service",
+					Description: `(Optional, ForceNew) To specify whether to enable cloud monitor service. Default is TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "enhanced_security_service",
+					Description: `(Optional, ForceNew) To specify whether to enable cloud security service. Default is TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type_prepaid_period",
+					Description: `(Optional, ForceNew) The tenancy (time unit is month) of the prepaid instance, NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `. Valid values are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type_prepaid_renew_flag",
+					Description: `(Optional, ForceNew) When enabled, the CVM instance will be renew automatically when it reach the end of the prepaid tenancy. Valid values are ` + "`" + `NOTIFY_AND_AUTO_RENEW` + "`" + `, ` + "`" + `NOTIFY_AND_MANUAL_RENEW` + "`" + ` and ` + "`" + `DISABLE_NOTIFY_AND_MANUAL_RENEW` + "`" + `. NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type",
+					Description: `(Optional, ForceNew) The charge type of instance. Valid values are ` + "`" + `PREPAID` + "`" + ` and ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, The default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `. Note: TencentCloud International only supports ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `PREPAID` + "`" + ` instance will not terminated after cluster deleted, and may not allow to delete before expired.`,
+				},
+				resource.Attribute{
+					Name:        "instance_name",
+					Description: `(Optional, ForceNew) Name of the CVMs.`,
+				},
+				resource.Attribute{
+					Name:        "internet_charge_type",
+					Description: `(Optional, ForceNew) Charge types for network traffic. Available values include TRAFFIC_POSTPAID_BY_HOUR.`,
+				},
+				resource.Attribute{
+					Name:        "internet_max_bandwidth_out",
+					Description: `(Optional, ForceNew) Max bandwidth of Internet access in Mbps. Default is 0.`,
+				},
+				resource.Attribute{
+					Name:        "key_ids",
+					Description: `(Optional, ForceNew) ID list of keys, should be set if ` + "`" + `password` + "`" + ` not set.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional, ForceNew) Password to access, should be set if ` + "`" + `key_ids` + "`" + ` not set.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_assigned",
+					Description: `(Optional, ForceNew) Specify whether to assign an Internet IP address.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional, ForceNew) Security groups to which a CVM instance belongs.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_size",
+					Description: `(Optional, ForceNew) Volume of system disk in GB. Default is 50.`,
+				},
+				resource.Attribute{
+					Name:        "system_disk_type",
+					Description: `(Optional, ForceNew) Type of a CVM disk, and available values include CLOUD_PREMIUM and CLOUD_SSD. Default is CLOUD_PREMIUM.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional, ForceNew) ase64-encoded User Data text, the length limit is 16KB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "certification_authority",
@@ -2961,7 +3775,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_external_endpoint",
-					Description: `External network address to access`,
+					Description: `External network address to access.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_node_num",
@@ -3015,7 +3829,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_external_endpoint",
-					Description: `External network address to access`,
+					Description: `External network address to access.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_node_num",
@@ -3081,7 +3895,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "worker_config",
-					Description: `(Required, ForceNew) Deploy the machine configuration information of the 'WORK' service, and create <=20 units for common users. The ` + "`" + `worker_config` + "`" + ` object supports the following:`,
+					Description: `(Required, ForceNew) Deploy the machine configuration information of the 'WORK' service, and create <=20 units for common users. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Optional, ForceNew) Volume of disk in GB. Default is 0.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type",
+					Description: `(Optional, ForceNew) Types of disk, available values: CLOUD_PREMIUM and CLOUD_SSD.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_id",
+					Description: `(Optional, ForceNew) Data disk snapshot ID. The ` + "`" + `worker_config` + "`" + ` object supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "instance_type",
@@ -3112,6 +3938,18 @@ var (
 					Description: `(Optional, ForceNew) To specify whether to enable cloud security service. Default is TRUE.`,
 				},
 				resource.Attribute{
+					Name:        "instance_charge_type_prepaid_period",
+					Description: `(Optional, ForceNew) The tenancy (time unit is month) of the prepaid instance, NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `. Valid values are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type_prepaid_renew_flag",
+					Description: `(Optional, ForceNew) When enabled, the CVM instance will be renew automatically when it reach the end of the prepaid tenancy. Valid values are ` + "`" + `NOTIFY_AND_AUTO_RENEW` + "`" + `, ` + "`" + `NOTIFY_AND_MANUAL_RENEW` + "`" + ` and ` + "`" + `DISABLE_NOTIFY_AND_MANUAL_RENEW` + "`" + `. NOTE: it only works when instance_charge_type is set to ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_charge_type",
+					Description: `(Optional, ForceNew) The charge type of instance. Valid values are ` + "`" + `PREPAID` + "`" + ` and ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, The default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `. Note: TencentCloud International only supports ` + "`" + `POSTPAID_BY_HOUR` + "`" + `, ` + "`" + `PREPAID` + "`" + ` instance will not terminated after cluster deleted, and may not allow to delete before expired.`,
+				},
+				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Optional, ForceNew) Name of the CVMs.`,
 				},
@@ -3125,11 +3963,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_ids",
-					Description: `(Optional, ForceNew) ID list of keys.`,
+					Description: `(Optional, ForceNew) ID list of keys, should be set if ` + "`" + `password` + "`" + ` not set.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional, ForceNew) Password to access.`,
+					Description: `(Optional, ForceNew) Password to access, should be set if ` + "`" + `key_ids` + "`" + ` not set.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_assigned",
@@ -3145,27 +3983,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "system_disk_type",
-					Description: `(Optional, ForceNew) Type of a CVM disk, and available values include CLOUD_PREMIUM and CLOUD_SSD. Default is CLOUD_PREMIUM`,
+					Description: `(Optional, ForceNew) Type of a CVM disk, and available values include CLOUD_PREMIUM and CLOUD_SSD. Default is CLOUD_PREMIUM.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
-					Description: `(Optional, ForceNew) ase64-encoded User Data text, the length limit is 16KB. The ` + "`" + `data_disk` + "`" + ` object supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "disk_size",
-					Description: `(Optional, ForceNew) Volume of disk in GB. Default is 0.`,
-				},
-				resource.Attribute{
-					Name:        "disk_type",
-					Description: `(Optional, ForceNew) Types of disk，available values: CLOUD_PREMIUM and CLOUD_SSD.`,
-				},
-				resource.Attribute{
-					Name:        "snapshot_id",
-					Description: `(Optional, ForceNew) Data disk snapshot ID. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional, ForceNew) ase64-encoded User Data text, the length limit is 16KB. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "worker_instances_list",
-					Description: `An information list of kubernetes cluster 'WORKER' . Each element contains the following attributes:`,
+					Description: `An information list of kubernetes cluster 'WORKER'. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "failed_reason",
@@ -3173,21 +3999,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_id",
-					Description: `ID of the cvm`,
+					Description: `ID of the cvm.`,
 				},
 				resource.Attribute{
 					Name:        "instance_role",
-					Description: `Role of the cvm`,
+					Description: `Role of the cvm.`,
 				},
 				resource.Attribute{
 					Name:        "instance_state",
-					Description: `State of the cvm`,
+					Description: `State of the cvm.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "worker_instances_list",
-					Description: `An information list of kubernetes cluster 'WORKER' . Each element contains the following attributes:`,
+					Description: `An information list of kubernetes cluster 'WORKER'. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "failed_reason",
@@ -3195,15 +4021,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_id",
-					Description: `ID of the cvm`,
+					Description: `ID of the cvm.`,
 				},
 				resource.Attribute{
 					Name:        "instance_role",
-					Description: `Role of the cvm`,
+					Description: `Role of the cvm.`,
 				},
 				resource.Attribute{
 					Name:        "instance_state",
-					Description: `State of the cvm`,
+					Description: `State of the cvm.`,
 				},
 			},
 		},
@@ -3220,23 +4046,23 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The network type of the LB, valid choices: "OPEN", "INTERNAL".`,
+					Description: `(Required, ForceNew) The network type of the LB, valid choices: 'OPEN', 'INTERNAL'.`,
 				},
 				resource.Attribute{
 					Name:        "forward",
-					Description: `(Optional) The type of the LB, valid choices: "CLASSIC", "APPLICATION".`,
+					Description: `(Optional, ForceNew) The type of the LB, valid choices: 'CLASSIC', 'APPLICATION'.`,
 				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the LB.`,
 				},
 				resource.Attribute{
-					Name:        "vpc_id",
-					Description: `(Optional) The VPC ID of the LB, unspecified or 0 stands for CVM basic network.`,
+					Name:        "project_id",
+					Description: `(Optional, ForceNew) The project id of the LB, unspecified or 0 stands for default project.`,
 				},
 				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Optional) The project id of the LB, unspecified or 0 stands for default project. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Name:        "vpc_id",
+					Description: `(Optional, ForceNew) The VPC ID of the LB, unspecified or 0 stands for CVM basic network. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -3302,6 +4128,10 @@ var (
 					Description: `(Optional, ForceNew) ID of the subnet within this VPC. The vaule is required if VpcId is set.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags of the Mongodb.`,
+				},
+				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Optional, ForceNew) ID of the VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
@@ -3311,7 +4141,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the Mongodb instance, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2)`,
+					Description: `Status of the Mongodb instance, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2).`,
 				},
 				resource.Attribute{
 					Name:        "vip",
@@ -3329,7 +4159,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the Mongodb instance, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2)`,
+					Description: `Status of the Mongodb instance, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2).`,
 				},
 				resource.Attribute{
 					Name:        "vip",
@@ -3363,7 +4193,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_name",
-					Description: `(Required) Name of the Mongodb instance`,
+					Description: `(Required) Name of the Mongodb instance.`,
 				},
 				resource.Attribute{
 					Name:        "machine_type",
@@ -3402,6 +4232,10 @@ var (
 					Description: `(Optional, ForceNew) ID of the subnet within this VPC. The vaule is required if VpcId is set.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) The tags of the Mongodb.`,
+				},
+				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `(Optional, ForceNew) ID of the VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
@@ -3411,7 +4245,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the Mongodb instance, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2)`,
+					Description: `Status of the Mongodb instance, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2).`,
 				},
 				resource.Attribute{
 					Name:        "vip",
@@ -3429,7 +4263,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Status of the Mongodb instance, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2)`,
+					Description: `Status of the Mongodb instance, and available values include pending initialization(expressed with 0), processing(expressed with 1), running(expressed with 2) and expired(expressed with -2).`,
 				},
 				resource.Attribute{
 					Name:        "vip",
@@ -3520,11 +4354,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_model",
-					Description: `(Optional) Backup method. Supported values include: 'physical' - physical backup`,
+					Description: `(Optional) Backup method. Supported values include: 'physical' - physical backup.`,
 				},
 				resource.Attribute{
 					Name:        "backup_time",
-					Description: `(Optional) Instance backup time, in the format of "HH:mm-HH:mm". Time setting interval is four hours. Default to "02:00-06:00". The following value can be supported: 02:00\-06:00, 06:00\-10:00, 10:00\-14:00, 14:00\-18:00, 18:00\-22:00, and 22:00\-02:00.`,
+					Description: `(Optional) Instance backup time, in the format of "HH:mm-HH:mm". Time setting interval is four hours. Default to "02:00-06:00". The following value can be supported: 02:00-06:00, 06:00-10:00, 10:00-14:00, 14:00-18:00, 18:00-22:00, and 22:00-02:00.`,
 				},
 				resource.Attribute{
 					Name:        "retention_period",
@@ -3570,6 +4404,10 @@ var (
 					Description: `(Required) Disk size (in GB).`,
 				},
 				resource.Attribute{
+					Name:        "auto_renew_flag",
+					Description: `(Optional) Auto renew flag. NOTES: Only supported prepay instance.`,
+				},
+				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional, ForceNew) Indicates which availability zone will be used.`,
 				},
@@ -3592,6 +4430,14 @@ var (
 				resource.Attribute{
 					Name:        "parameters",
 					Description: `(Optional) List of parameters to use.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `(Optional, ForceNew) Pay type of instance, 0: prepay, 1: postpay. NOTES: Only supported prepay instance.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) Period of instance. NOTES: Only supported prepay instance.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -3623,7 +4469,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) ID of VPC, which can be modified once every 24 hours and can’t be removed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) ID of VPC, which can be modified once every 24 hours and can't be removed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "gtid",
@@ -3647,7 +4493,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 – Isolated.`,
+					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 - Isolated.`,
 				},
 				resource.Attribute{
 					Name:        "task_status",
@@ -3677,7 +4523,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 – Isolated.`,
+					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 - Isolated.`,
 				},
 				resource.Attribute{
 					Name:        "task_status",
@@ -3714,8 +4560,20 @@ var (
 					Description: `(Required) Disk size (in GB).`,
 				},
 				resource.Attribute{
+					Name:        "auto_renew_flag",
+					Description: `(Optional) Auto renew flag. NOTES: Only supported prepay instance.`,
+				},
+				resource.Attribute{
 					Name:        "intranet_port",
 					Description: `(Optional) Public access port, rang form 1024 to 65535 and default value is 3306.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `(Optional, ForceNew) Pay type of instance, 0: prepay, 1: postpay. NOTES: Only supported prepay instance.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) Period of instance. NOTES: Only supported prepay instance.`,
 				},
 				resource.Attribute{
 					Name:        "security_groups",
@@ -3731,7 +4589,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) ID of VPC, which can be modified once every 24 hours and can’t be removed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) ID of VPC, which can be modified once every 24 hours and can't be removed. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "intranet_ip",
@@ -3743,7 +4601,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 – Isolated.`,
+					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 - Isolated.`,
 				},
 				resource.Attribute{
 					Name:        "task_status",
@@ -3761,7 +4619,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 – Isolated.`,
+					Description: `Instance status. Available values: 0 - Creating; 1 - Running; 4 - Isolating; 5 - Isolated.`,
 				},
 				resource.Attribute{
 					Name:        "task_status",
@@ -3783,7 +4641,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the nat gateway.`,
+					Description: `(Required) Name of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -3791,18 +4649,75 @@ var (
 				},
 				resource.Attribute{
 					Name:        "assigned_eip_set",
-					Description: `(Optional) EIP arrays bound to the gateway. The value of at least 1.`,
+					Description: `(Optional) EIP IP address set bound to the gateway. The value of at least 1 and at most 10.`,
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `(Optional) The maximum public network output bandwidth of nat gateway (unit: Mbps), the available values include： 20,50,100,200,500,1000,2000,5000. Default is 100.`,
+					Description: `(Optional) The maximum public network output bandwidth of NAT gateway (unit: Mbps), the available values include: 20,50,100,200,500,1000,2000,5000. Default is 100.`,
 				},
 				resource.Attribute{
 					Name:        "max_concurrent",
-					Description: `(Optional) The upper limit of concurrent connection of nat gateway, the available values include : 1000000,3000000,10000000, Default is 1000000. ## Import NAT gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_nat_gateway.foo nat-1asg3t63 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The upper limit of concurrent connection of NAT gateway, the available values include: 1000000,3000000,10000000. Default is 1000000. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_time",
+					Description: `Create time of the NAT gateway. ## Import NAT gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_nat_gateway.foo nat-1asg3t63 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_time",
+					Description: `Create time of the NAT gateway. ## Import NAT gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_nat_gateway.foo nat-1asg3t63 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_placement_group",
+			Category:         "CVM Resources",
+			ShortDescription: `Provide a resource to create a placement group.`,
+			Description:      ``,
+			Keywords: []string{
+				"cvm",
+				"placement",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the placement group, 1-60 characters in length.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required, ForceNew) Type of the placement group, the available values include ` + "`" + `HOST` + "`" + `,` + "`" + `SW` + "`" + ` and ` + "`" + `RACK` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "current_num",
+					Description: `Number of hosts in the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "cvm_quota_total",
+					Description: `Maximum number of hosts in the placement group. ## Import Placement group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_placement_group.foo ps-ilan8vjf ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "current_num",
+					Description: `Number of hosts in the placement group.`,
+				},
+				resource.Attribute{
+					Name:        "cvm_quota_total",
+					Description: `Maximum number of hosts in the placement group. ## Import Placement group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_placement_group.foo ps-ilan8vjf ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3818,7 +4733,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "backup_period",
-					Description: `(Required) Specifys which day the backup action should take place. Supported values include: Monday，Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.`,
+					Description: `(Required) Specifys which day the backup action should take place. Supported values include: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.`,
 				},
 				resource.Attribute{
 					Name:        "backup_time",
@@ -3844,15 +4759,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required, ForceNew) The available zone ID of an instance to be created., refer to tencentcloud_redis_zone_config.list`,
+					Description: `(Required, ForceNew) The available zone ID of an instance to be created, please refer to tencentcloud_redis_zone_config.list.`,
 				},
 				resource.Attribute{
 					Name:        "mem_size",
-					Description: `(Required) The memory volume of an available instance(in MB), refer to tencentcloud_redis_zone_config.list[zone].mem_sizes`,
+					Description: `(Required) The memory volume of an available instance(in MB), please refer to tencentcloud_redis_zone_config.list[zone].mem_sizes.`,
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Required) Password for a Redis user，which should be 8 to 16 characters.`,
+					Description: `(Required) Password for a Redis user, which should be 8 to 16 characters.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3875,6 +4790,10 @@ var (
 					Description: `(Optional, ForceNew) Specifies which subnet the instance should belong to.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Instance tags.`,
+				},
+				resource.Attribute{
 					Name:        "type",
 					Description: `(Optional, ForceNew) Instance type. Available values: master_slave_redis.`,
 				},
@@ -3892,7 +4811,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current status of an instance，maybe: init, processing, online, isolate and todelete. ## Import Redis instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_redis_instance.redislab redis-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Current status of an instance, maybe: init, processing, online, isolate and todelete. ## Import Redis instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_redis_instance.redislab redis-id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3906,7 +4825,55 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `Current status of an instance，maybe: init, processing, online, isolate and todelete. ## Import Redis instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + `hcl $ terraform import tencentcloud_redis_instance.redislab redis-id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Current status of an instance, maybe: init, processing, online, isolate and todelete. ## Import Redis instance can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_redis_instance.redislab redis-id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_reserved_instance",
+			Category:         "CVM Resources",
+			ShortDescription: `Provides a reserved instance resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cvm",
+				"reserved",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `(Required) Configuration id of the reserved instance.`,
+				},
+				resource.Attribute{
+					Name:        "instance_count",
+					Description: `(Required) Number of reserved instances to be purchased. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `Expiry time of the RI.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Start time of the RI.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the RI at the time of purchase. ## Import Reserved instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_reserved_instance.foo 6cc16e7c-47d7-4fae-9b44-ce5c0f59a920 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `Expiry time of the RI.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `Start time of the RI.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the RI at the time of purchase. ## Import Reserved instance can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_reserved_instance.foo 6cc16e7c-47d7-4fae-9b44-ce5c0f59a920 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3923,60 +4890,27 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "cidr_block",
+					Description: `(Required, ForceNew) The RouteEntry's target network segment.`,
+				},
+				resource.Attribute{
+					Name:        "next_hub",
+					Description: `(Required, ForceNew) The route entry's next hub. CVM instance ID or VPC router interface ID.`,
+				},
+				resource.Attribute{
+					Name:        "next_type",
+					Description: `(Required, ForceNew) The next hop type. Available value is ` + "`" + `public_gateway` + "`" + `,` + "`" + `vpn_gateway` + "`" + `,` + "`" + `sslvpn_gateway` + "`" + `,` + "`" + `dc_gateway` + "`" + `,` + "`" + `peering_connection` + "`" + `,` + "`" + `nat_gateway` + "`" + ` and ` + "`" + `instance` + "`" + `. ` + "`" + `instance` + "`" + ` points to CVM Instance.`,
+				},
+				resource.Attribute{
+					Name:        "route_table_id",
+					Description: `(Required, ForceNew) The ID of the route table.`,
+				},
+				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Required, Forces new resource) The VPC ID.`,
-				},
-				resource.Attribute{
-					Name:        "route_table_id",
-					Description: `(Required, Forces new resource) The ID of the route table.`,
-				},
-				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `(Required, Forces new resource) The RouteEntry's target network segment.`,
-				},
-				resource.Attribute{
-					Name:        "next_type",
-					Description: `(Required, Forces new resource) The next hop type. Available value is ` + "`" + `public_gateway` + "`" + `、` + "`" + `vpn_gateway` + "`" + `、` + "`" + `sslvpn_gateway` + "`" + `、` + "`" + `dc_gateway` + "`" + `、` + "`" + `peering_connection` + "`" + `、` + "`" + `nat_gateway` + "`" + ` and ` + "`" + `instance` + "`" + `. ` + "`" + `instance` + "`" + ` points to CVM Instance.`,
-				},
-				resource.Attribute{
-					Name:        "next_hub",
-					Description: `(Required, Forces new resource) The route entry's next hub. CVM instance ID or VPC router interface ID. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "route_table_id",
-					Description: `The ID of the route table.`,
-				},
-				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `The RouteEntry's target network segment.`,
-				},
-				resource.Attribute{
-					Name:        "next_type",
-					Description: `The next hub type.`,
-				},
-				resource.Attribute{
-					Name:        "next_hub",
-					Description: `The route entry's next hub.`,
+					Description: `(Required, ForceNew) The VPC ID.`,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "route_table_id",
-					Description: `The ID of the route table.`,
-				},
-				resource.Attribute{
-					Name:        "cidr_block",
-					Description: `The RouteEntry's target network segment.`,
-				},
-				resource.Attribute{
-					Name:        "next_type",
-					Description: `The next hub type.`,
-				},
-				resource.Attribute{
-					Name:        "next_hub",
-					Description: `The route entry's next hub.`,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -4076,6 +5010,320 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_scf_function",
+			Category:         "SCF Resources",
+			ShortDescription: `Provide a resource to create a SCF function.`,
+			Description:      ``,
+			Keywords: []string{
+				"scf",
+				"function",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) Handler of the SCF function. The format of name is ` + "`" + `<filename>.<method_name>` + "`" + `, and it supports 26 English letters, numbers, connectors, and underscores, it should start with a letter. The last character cannot be ` + "`" + `-` + "`" + ` or ` + "`" + `_` + "`" + `. Available length is 2-60.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, ForceNew) Name of the SCF function. Name supports 26 English letters, numbers, connectors, and underscores, it should start with a letter. The last character cannot be ` + "`" + `-` + "`" + ` or ` + "`" + `_` + "`" + `. Available length is 2-60.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `(Required) Runtime of the SCF function, only supports ` + "`" + `Python2.7` + "`" + `, ` + "`" + `Python3.6` + "`" + `, ` + "`" + `Nodejs6.10` + "`" + `, ` + "`" + `PHP5` + "`" + `, ` + "`" + `PHP7` + "`" + `, ` + "`" + `Golang1` + "`" + `, and ` + "`" + `Java8` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cls_logset_id",
+					Description: `(Optional) cls logset id of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "cls_topic_id",
+					Description: `(Optional) cls topic id of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "cos_bucket_name",
+					Description: `(Optional) Cos bucket name of the SCF function, such as ` + "`" + `cos-1234567890` + "`" + `, conflict with ` + "`" + `zip_file` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cos_bucket_region",
+					Description: `(Optional) Cos bucket region of the SCF function, conflict with ` + "`" + `zip_file` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cos_object_name",
+					Description: `(Optional) Cos object name of the SCF function, should have suffix ` + "`" + `.zip` + "`" + ` or ` + "`" + `.jar` + "`" + `, conflict with ` + "`" + `zip_file` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the SCF function. Description supports English letters, numbers, spaces, commas, newlines, periods and Chinese, the maximum length is 1000.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Optional) Environment of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "l5_enable",
+					Description: `(Optional) Enable L5 for SCF function, default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mem_size",
+					Description: `(Optional) Memory size of the SCF function, unit is MB. The default is ` + "`" + `128` + "`" + `MB. The range is 128M-1536M, and the ladder is 128M.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional, ForceNew) Namespace of the SCF function, default is ` + "`" + `default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) Role of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) Subnet id of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout of the SCF function, unit is second. Default ` + "`" + `3` + "`" + `. Available value is 1-300.`,
+				},
+				resource.Attribute{
+					Name:        "triggers",
+					Description: `(Optional) Trigger list of the SCF function, note that if you modify the trigger list, all existing triggers will be deleted, and then create triggers in the new list. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Optional) VPC id of the SCF function.`,
+				},
+				resource.Attribute{
+					Name:        "zip_file",
+					Description: `(Optional) Zip file of the SCF function, content is encoded by base64, conflict with ` + "`" + `cos_bucket_name` + "`" + `, ` + "`" + `cos_object_name` + "`" + `, ` + "`" + `cos_bucket_region` + "`" + `. The ` + "`" + `triggers` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) name of the SCF function trigger, if ` + "`" + `type` + "`" + ` is ` + "`" + `ckafka` + "`" + `, the format of name must be ` + "`" + `<ckafkaInstanceId>-<topicId>` + "`" + `; if ` + "`" + `type` + "`" + ` is ` + "`" + `cos` + "`" + `, the name is cos bucket id, other In any case, it can be combined arbitrarily. It can only contain English letters, numbers, connectors and underscores. The maximum length is 100.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_desc",
+					Description: `(Required) TriggerDesc of the SCF function trigger, parameter format of ` + "`" + `timer` + "`" + ` is linux cron expression; parameter of ` + "`" + `cos` + "`" + ` type is json string ` + "`" + `{"event":"cos:ObjectCreated:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of the SCF function trigger, support ` + "`" + `cos` + "`" + `, ` + "`" + `cmq` + "`" + `, ` + "`" + `timer` + "`" + `, ` + "`" + `ckafka` + "`" + `, ` + "`" + `apigw` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "code_error",
+					Description: `SCF function code error message.`,
+				},
+				resource.Attribute{
+					Name:        "code_result",
+					Description: `SCF function code is correct.`,
+				},
+				resource.Attribute{
+					Name:        "code_size",
+					Description: `SCF function code size, unit is M.`,
+				},
+				resource.Attribute{
+					Name:        "eip_fixed",
+					Description: `Whether EIP is a fixed IP.`,
+				},
+				resource.Attribute{
+					Name:        "eips",
+					Description: `SCF function EIP list.`,
+				},
+				resource.Attribute{
+					Name:        "err_no",
+					Description: `SCF function code error code.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `SCF function domain name.`,
+				},
+				resource.Attribute{
+					Name:        "install_dependency",
+					Description: `Whether to automatically install dependencies.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `SCF function last modified time.`,
+				},
+				resource.Attribute{
+					Name:        "status_desc",
+					Description: `SCF status description.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `SCF function status.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_info",
+					Description: `SCF trigger details list. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "custom_argument",
+					Description: `User-defined parameters of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `Whether SCF function trigger is enable.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `Modify time of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_desc",
+					Description: `TriggerDesc of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `SCF function vip. ## Import SCF function can be imported, e.g. ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "code_error",
+					Description: `SCF function code error message.`,
+				},
+				resource.Attribute{
+					Name:        "code_result",
+					Description: `SCF function code is correct.`,
+				},
+				resource.Attribute{
+					Name:        "code_size",
+					Description: `SCF function code size, unit is M.`,
+				},
+				resource.Attribute{
+					Name:        "eip_fixed",
+					Description: `Whether EIP is a fixed IP.`,
+				},
+				resource.Attribute{
+					Name:        "eips",
+					Description: `SCF function EIP list.`,
+				},
+				resource.Attribute{
+					Name:        "err_no",
+					Description: `SCF function code error code.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `SCF function domain name.`,
+				},
+				resource.Attribute{
+					Name:        "install_dependency",
+					Description: `Whether to automatically install dependencies.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `SCF function last modified time.`,
+				},
+				resource.Attribute{
+					Name:        "status_desc",
+					Description: `SCF status description.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `SCF function status.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_info",
+					Description: `SCF trigger details list. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "custom_argument",
+					Description: `User-defined parameters of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `Whether SCF function trigger is enable.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `Modify time of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "trigger_desc",
+					Description: `TriggerDesc of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of SCF function trigger.`,
+				},
+				resource.Attribute{
+					Name:        "vip",
+					Description: `SCF function vip. ## Import SCF function can be imported, e.g. ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_scf_namespace",
+			Category:         "SCF Resources",
+			ShortDescription: `Provide a resource to create a SCF namespace.`,
+			Description:      ``,
+			Keywords: []string{
+				"scf",
+				"namespace",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required, ForceNew) Name of the SCF namespace.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the SCF namespace. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `SCF namespace creation time.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `SCF namespace last modified time.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `SCF namespace type. ## Import SCF namespace can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_scf_function.test default ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `SCF namespace creation time.`,
+				},
+				resource.Attribute{
+					Name:        "modify_time",
+					Description: `SCF namespace last modified time.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `SCF namespace type. ## Import SCF namespace can be imported, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_scf_function.test default ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_security_group",
 			Category:         "VPC Resources",
 			ShortDescription: `Provides a resource to create security group.`,
@@ -4096,7 +5344,40 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Optional, ForceNew) Project ID of the security group. ## Import Security group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group.sglab sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional, ForceNew) Project ID of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags of the security group. ## Import Security group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group.sglab sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_security_group_lite_rule",
+			Category:         "VPC Resources",
+			ShortDescription: `Provide a resource to create security group some lite rules quickly.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpc",
+				"security",
+				"group",
+				"lite",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required, ForceNew) ID of the security group.`,
+				},
+				resource.Attribute{
+					Name:        "egress",
+					Description: `(Optional) Egress rules set. A rule must match the following format: [action]#[cidr_ip]#[port]#[protocol]. The available value of 'action' is ` + "`" + `ACCEPT` + "`" + ` and ` + "`" + `DROP` + "`" + `. The 'cidr_ip' must be an IP address network or segment. The 'port' valid format is ` + "`" + `80` + "`" + `, ` + "`" + `80,443` + "`" + `, ` + "`" + `80-90` + "`" + ` or ` + "`" + `ALL` + "`" + `. The available value of 'protocol' is ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + ` and ` + "`" + `ALL` + "`" + `. When 'protocol' is ` + "`" + `ICMP` + "`" + ` or ` + "`" + `ALL` + "`" + `, the 'port' must be ` + "`" + `ALL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ingress",
+					Description: `(Optional) Ingress rules set. A rule must match the following format: [action]#[cidr_ip]#[port]#[protocol]. The available value of 'action' is ` + "`" + `ACCEPT` + "`" + ` and ` + "`" + `DROP` + "`" + `. The 'cidr_ip' must be an IP address network or segment. The 'port' valid format is ` + "`" + `80` + "`" + `, ` + "`" + `80,443` + "`" + `, ` + "`" + `80-90` + "`" + ` or ` + "`" + `ALL` + "`" + `. The available value of 'protocol' is ` + "`" + `TCP` + "`" + `, ` + "`" + `UDP` + "`" + `, ` + "`" + `ICMP` + "`" + ` and ` + "`" + `ALL` + "`" + `. When 'protocol' is ` + "`" + `ICMP` + "`" + ` or ` + "`" + `ALL` + "`" + `, the 'port' must be ` + "`" + `ALL` + "`" + `. ## Import Security group lite rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_security_group_lite_rule.foo sg-ey3wmiz1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4357,72 +5638,422 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_vpn_connection",
+			Category:         "VPN Resources",
+			ShortDescription: `Provides a resource to create a VPN connection.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"connection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "customer_gateway_id",
+					Description: `(Required, ForceNew) ID of the customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the VPN connection. The length of character is limited to 1-60.`,
+				},
+				resource.Attribute{
+					Name:        "pre_share_key",
+					Description: `(Required) Pre-shared key of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_policy",
+					Description: `(Required) Security group policy of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_gateway_id",
+					Description: `(Required, ForceNew) ID of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ike_dh_group_name",
+					Description: `(Optional) DH group name of the IKE operation specification, valid values are ` + "`" + `GROUP1` + "`" + `, ` + "`" + `GROUP2` + "`" + `, ` + "`" + `GROUP5` + "`" + `, ` + "`" + `GROUP14` + "`" + `, ` + "`" + `GROUP24` + "`" + `. Default value is ` + "`" + `GROUP1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_exchange_mode",
+					Description: `(Optional) Exchange mode of the IKE operation specification, valid values are ` + "`" + `AGGRESSIVE` + "`" + `, ` + "`" + `MAIN` + "`" + `. Default value is ` + "`" + `MAIN` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_address",
+					Description: `(Optional) Local address of IKE operation specification, valid when ike_local_identity is ` + "`" + `ADDRESS` + "`" + `, generally the value is public_ip_address of the related VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_fqdn_name",
+					Description: `(Optional) Local FQDN name of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_local_identity",
+					Description: `(Optional) Local identity way of IKE operation specification, valid values are ` + "`" + `ADDRESS` + "`" + `, ` + "`" + `FQDN` + "`" + `. Default value is ` + "`" + `ADDRESS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_proto_authen_algorithm",
+					Description: `(Optional) Proto authenticate algorithm of the IKE operation specification, valid values are ` + "`" + `MD5` + "`" + `, ` + "`" + `SHA` + "`" + `. Default Value is ` + "`" + `MD5` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_proto_encry_algorithm",
+					Description: `(Optional) Proto encrypt algorithm of the IKE operation specification, valid values are ` + "`" + `3DES-CBC` + "`" + `, ` + "`" + `AES-CBC-128` + "`" + `, ` + "`" + `AES-CBC-128` + "`" + `, ` + "`" + `AES-CBC-256` + "`" + `, ` + "`" + `DES-CBC` + "`" + `. Default value is ` + "`" + `3DES-CBC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_address",
+					Description: `(Optional) Remote address of IKE operation specification, valid when ike_remote_identity is ` + "`" + `ADDRESS` + "`" + `, generally the value is public_ip_address of the related customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_fqdn_name",
+					Description: `(Optional) Remote FQDN name of the IKE operation specification.`,
+				},
+				resource.Attribute{
+					Name:        "ike_remote_identity",
+					Description: `(Optional) Remote identity way of IKE operation specification, valid values are ` + "`" + `ADDRESS` + "`" + `, ` + "`" + `FQDN` + "`" + `. Default value is ` + "`" + `ADDRESS` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ike_sa_lifetime_seconds",
+					Description: `(Optional) SA lifetime of the IKE operation specification, unit is ` + "`" + `second` + "`" + `. The value ranges from 60 to 604800. Default value is 86400 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `(Optional) Version of the IKE operation specification. Default value is ` + "`" + `IKEV1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_encrypt_algorithm",
+					Description: `(Optional) Encrypt algorithm of the IPSEC operation specification, valid values are ` + "`" + `3DES-CBC` + "`" + `, ` + "`" + `AES-CBC-128` + "`" + `, ` + "`" + `AES-CBC-128` + "`" + `, ` + "`" + `AES-CBC-256` + "`" + `, ` + "`" + `DES-CBC` + "`" + `. Default value is ` + "`" + `3DES-CBC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_integrity_algorithm",
+					Description: `(Optional) Integrity algorithm of the IPSEC operation specification, valid values are ` + "`" + `SHA1` + "`" + `, ` + "`" + `MD5` + "`" + `. Default value is ` + "`" + `MD5` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_pfs_dh_group",
+					Description: `(Optional) PFS DH group, valid values are ` + "`" + `GROUP1` + "`" + `, ` + "`" + `GROUP2` + "`" + `, ` + "`" + `GROUP5` + "`" + `, ` + "`" + `GROUP14` + "`" + `, ` + "`" + `GROUP24` + "`" + `, ` + "`" + `NULL` + "`" + `. Default value is ` + "`" + `NULL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_sa_lifetime_seconds",
+					Description: `(Optional) SA lifetime of the IPSEC operation specification, unit is ` + "`" + `second` + "`" + `. The value ranges from 180 to 604800. Default value is 3600 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "ipsec_sa_lifetime_traffic",
+					Description: `(Optional) SA lifetime of the IPSEC operation specification, unit is ` + "`" + `KB` + "`" + `. The value should not be less then 2560. Default value is 1843200.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of tags used to associate different resources. The ` + "`" + `security_group_policy` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "local_cidr_block",
+					Description: `(Required) Local cidr block.`,
+				},
+				resource.Attribute{
+					Name:        "remote_cidr_block",
+					Description: `(Required) Remote cidr block list. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_proto",
+					Description: `Encrypt proto of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "net_status",
+					Description: `Net status of the VPN connection, values are ` + "`" + `AVAILABLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_type",
+					Description: `Route type of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the connection, values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `DELETING` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_proto",
+					Description: `Vpn proto of the VPN connection. ## Import VPN connection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_connection.foo vpnx-nadifg3s ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "encrypt_proto",
+					Description: `Encrypt proto of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "net_status",
+					Description: `Net status of the VPN connection, values are ` + "`" + `AVAILABLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "route_type",
+					Description: `Route type of the VPN connection.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the connection, values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `, ` + "`" + `DELETING` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vpn_proto",
+					Description: `Vpn proto of the VPN connection. ## Import VPN connection can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_connection.foo vpnx-nadifg3s ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_vpn_customer_gateway",
+			Category:         "VPN Resources",
+			ShortDescription: `Provides a resource to create a VPN customer gateway.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"customer",
+				"gateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the customer gateway. The length of character is limited to 1-60.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `(Required, ForceNew) Public ip of the customer gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of tags used to associate different resources. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the customer gateway. ## Import VPN customer gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_customer_gateway.foo cgw-xfqag ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the customer gateway. ## Import VPN customer gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_customer_gateway.foo cgw-xfqag ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_vpn_gateway",
+			Category:         "VPN Resources",
+			ShortDescription: `Provides a resource to create a VPN gateway.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpn",
+				"gateway",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the VPN gateway. The length of character is limited to 1-60.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required, ForceNew) ID of the VPC.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required, ForceNew) Zone of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional) The maximum public network output bandwidth of VPN gateway (unit: Mbps), the available values include: 5,10,20,50,100. Default is 5.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of tags used to associate different resources. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Charge Type of the VPN gateway, valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` and default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "expired_time",
+					Description: `Expired time of the VPN gateway when charge type is ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_address_blocked",
+					Description: `Indicates whether ip address is blocked.`,
+				},
+				resource.Attribute{
+					Name:        "new_purchase_plan",
+					Description: `The plan of new purchase, valid value is ` + "`" + `PREPAID_TO_POSTPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_period",
+					Description: `Period of instance to be prepaid. Valid values are 1, 2, 3, 4, 6, 7, 8, 9, 12, 24, 36 and unit is month.`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_renew_flag",
+					Description: `Flag indicates whether to renew or not, valid values are ` + "`" + `NOTIFY_AND_RENEW` + "`" + `, ` + "`" + `NOTIFY_AND_AUTO_RENEW` + "`" + `, ` + "`" + `NOT_NOTIFY_AND_NOT_RENEW` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `Public ip of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "restrict_state",
+					Description: `Restrict state of gateway, valid values are ` + "`" + `PRETECIVELY_ISOLATED` + "`" + `, ` + "`" + `NORMAL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the VPN gateway, valid values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of gateway instance, valid values are ` + "`" + `IPSEC` + "`" + `, ` + "`" + `SSL` + "`" + `. ## Import VPN gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_gateway.foo vpngw-8ccsnclt ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Charge Type of the VPN gateway, valid values are ` + "`" + `PREPAID` + "`" + `, ` + "`" + `POSTPAID_BY_HOUR` + "`" + ` and default is ` + "`" + `POSTPAID_BY_HOUR` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "expired_time",
+					Description: `Expired time of the VPN gateway when charge type is ` + "`" + `PREPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "is_address_blocked",
+					Description: `Indicates whether ip address is blocked.`,
+				},
+				resource.Attribute{
+					Name:        "new_purchase_plan",
+					Description: `The plan of new purchase, valid value is ` + "`" + `PREPAID_TO_POSTPAID` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_period",
+					Description: `Period of instance to be prepaid. Valid values are 1, 2, 3, 4, 6, 7, 8, 9, 12, 24, 36 and unit is month.`,
+				},
+				resource.Attribute{
+					Name:        "prepaid_renew_flag",
+					Description: `Flag indicates whether to renew or not, valid values are ` + "`" + `NOTIFY_AND_RENEW` + "`" + `, ` + "`" + `NOTIFY_AND_AUTO_RENEW` + "`" + `, ` + "`" + `NOT_NOTIFY_AND_NOT_RENEW` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address",
+					Description: `Public ip of the VPN gateway.`,
+				},
+				resource.Attribute{
+					Name:        "restrict_state",
+					Description: `Restrict state of gateway, valid values are ` + "`" + `PRETECIVELY_ISOLATED` + "`" + `, ` + "`" + `NORMAL` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `State of the VPN gateway, valid values are ` + "`" + `PENDING` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `AVAILABLE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of gateway instance, valid values are ` + "`" + `IPSEC` + "`" + `, ` + "`" + `SSL` + "`" + `. ## Import VPN gateway can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import tencentcloud_vpn_gateway.foo vpngw-8ccsnclt ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"tencentcloud_alb_server_attachment":      0,
-		"tencentcloud_as_attachment":              1,
-		"tencentcloud_as_lifecycle_hook":          2,
-		"tencentcloud_as_notification":            3,
-		"tencentcloud_as_scaling_config":          4,
-		"tencentcloud_as_scaling_group":           5,
-		"tencentcloud_as_scaling_policy":          6,
-		"tencentcloud_as_schedule":                7,
-		"tencentcloud_cbs_snapshot":               8,
-		"tencentcloud_cbs_snapshot_policy":        9,
-		"tencentcloud_cbs_storage":                10,
-		"tencentcloud_cbs_storage_attachment":     11,
-		"tencentcloud_ccn":                        12,
-		"tencentcloud_ccn_attachment":             13,
-		"tencentcloud_ccn_bandwidth_limit":        14,
-		"tencentcloud_clb_attachment":             15,
-		"tencentcloud_clb_instance":               16,
-		"tencentcloud_clb_listener":               17,
-		"tencentcloud_clb_listener_rule":          18,
-		"tencentcloud_clb_redirection":            19,
-		"tencentcloud_container_cluster":          20,
-		"tencentcloud_container_cluster_instance": 21,
-		"tencentcloud_cos_bucket":                 22,
-		"tencentcloud_cos_bucket_object":          23,
-		"tencentcloud_dc_gateway":                 24,
-		"tencentcloud_dc_gateway_ccn_route":       25,
-		"tencentcloud_dcx":                        26,
-		"tencentcloud_dnat":                       27,
-		"tencentcloud_eip":                        28,
-		"tencentcloud_eip_association":            29,
-		"tencentcloud_gaap_certificate":           30,
-		"tencentcloud_gaap_http_domain":           31,
-		"tencentcloud_gaap_http_rule":             32,
-		"tencentcloud_gaap_layer4_listener":       33,
-		"tencentcloud_gaap_layer7_listener":       34,
-		"tencentcloud_gaap_proxy":                 35,
-		"tencentcloud_gaap_realserver":            36,
-		"tencentcloud_gaap_security_policy":       37,
-		"tencentcloud_gaap_security_rule":         38,
-		"tencentcloud_instance":                   39,
-		"tencentcloud_key_pair":                   40,
-		"tencentcloud_kubernetes_cluster":         41,
-		"tencentcloud_kubernetes_scale_worker":    42,
-		"tencentcloud_lb":                         43,
-		"tencentcloud_mongodb_instance":           44,
-		"tencentcloud_mongodb_sharding_instance":  45,
-		"tencentcloud_mysql_account":              46,
-		"tencentcloud_mysql_account_privilege":    47,
-		"tencentcloud_mysql_backup_policy":        48,
-		"tencentcloud_mysql_instance":             49,
-		"tencentcloud_mysql_readonly_instance":    50,
-		"tencentcloud_nat_gateway":                51,
-		"tencentcloud_redis_backup_config":        52,
-		"tencentcloud_redis_instance":             53,
-		"tencentcloud_route_entry":                54,
-		"tencentcloud_route_table":                55,
-		"tencentcloud_route_table_entry":          56,
-		"tencentcloud_security_group":             57,
-		"tencentcloud_security_group_rule":        58,
-		"tencentcloud_ssl_certificate":            59,
-		"tencentcloud_subnet":                     60,
-		"tencentcloud_vpc":                        61,
+		"tencentcloud_alb_server_attachment":       0,
+		"tencentcloud_as_attachment":               1,
+		"tencentcloud_as_lifecycle_hook":           2,
+		"tencentcloud_as_notification":             3,
+		"tencentcloud_as_scaling_config":           4,
+		"tencentcloud_as_scaling_group":            5,
+		"tencentcloud_as_scaling_policy":           6,
+		"tencentcloud_as_schedule":                 7,
+		"tencentcloud_cam_group":                   8,
+		"tencentcloud_cam_group_membership":        9,
+		"tencentcloud_cam_group_policy_attachment": 10,
+		"tencentcloud_cam_policy":                  11,
+		"tencentcloud_cam_role":                    12,
+		"tencentcloud_cam_role_policy_attachment":  13,
+		"tencentcloud_cam_saml_provider":           14,
+		"tencentcloud_cam_user":                    15,
+		"tencentcloud_cam_user_policy_attachment":  16,
+		"tencentcloud_cbs_snapshot":                17,
+		"tencentcloud_cbs_snapshot_policy":         18,
+		"tencentcloud_cbs_storage":                 19,
+		"tencentcloud_cbs_storage_attachment":      20,
+		"tencentcloud_ccn":                         21,
+		"tencentcloud_ccn_attachment":              22,
+		"tencentcloud_ccn_bandwidth_limit":         23,
+		"tencentcloud_cfs_access_group":            24,
+		"tencentcloud_cfs_access_rule":             25,
+		"tencentcloud_cfs_file_system":             26,
+		"tencentcloud_clb_attachment":              27,
+		"tencentcloud_clb_instance":                28,
+		"tencentcloud_clb_listener":                29,
+		"tencentcloud_clb_listener_rule":           30,
+		"tencentcloud_clb_redirection":             31,
+		"tencentcloud_container_cluster":           32,
+		"tencentcloud_container_cluster_instance":  33,
+		"tencentcloud_cos_bucket":                  34,
+		"tencentcloud_cos_bucket_object":           35,
+		"tencentcloud_dc_gateway":                  36,
+		"tencentcloud_dc_gateway_ccn_route":        37,
+		"tencentcloud_dcx":                         38,
+		"tencentcloud_dnat":                        39,
+		"tencentcloud_eip":                         40,
+		"tencentcloud_eip_association":             41,
+		"tencentcloud_eni":                         42,
+		"tencentcloud_eni_attachment":              43,
+		"tencentcloud_gaap_certificate":            44,
+		"tencentcloud_gaap_http_domain":            45,
+		"tencentcloud_gaap_http_rule":              46,
+		"tencentcloud_gaap_layer4_listener":        47,
+		"tencentcloud_gaap_layer7_listener":        48,
+		"tencentcloud_gaap_proxy":                  49,
+		"tencentcloud_gaap_realserver":             50,
+		"tencentcloud_gaap_security_policy":        51,
+		"tencentcloud_gaap_security_rule":          52,
+		"tencentcloud_ha_vip":                      53,
+		"tencentcloud_ha_vip_eip_attachment":       54,
+		"tencentcloud_instance":                    55,
+		"tencentcloud_key_pair":                    56,
+		"tencentcloud_kubernetes_cluster":          57,
+		"tencentcloud_kubernetes_scale_worker":     58,
+		"tencentcloud_lb":                          59,
+		"tencentcloud_mongodb_instance":            60,
+		"tencentcloud_mongodb_sharding_instance":   61,
+		"tencentcloud_mysql_account":               62,
+		"tencentcloud_mysql_account_privilege":     63,
+		"tencentcloud_mysql_backup_policy":         64,
+		"tencentcloud_mysql_instance":              65,
+		"tencentcloud_mysql_readonly_instance":     66,
+		"tencentcloud_nat_gateway":                 67,
+		"tencentcloud_placement_group":             68,
+		"tencentcloud_redis_backup_config":         69,
+		"tencentcloud_redis_instance":              70,
+		"tencentcloud_reserved_instance":           71,
+		"tencentcloud_route_entry":                 72,
+		"tencentcloud_route_table":                 73,
+		"tencentcloud_route_table_entry":           74,
+		"tencentcloud_scf_function":                75,
+		"tencentcloud_scf_namespace":               76,
+		"tencentcloud_security_group":              77,
+		"tencentcloud_security_group_lite_rule":    78,
+		"tencentcloud_security_group_rule":         79,
+		"tencentcloud_ssl_certificate":             80,
+		"tencentcloud_subnet":                      81,
+		"tencentcloud_vpc":                         82,
+		"tencentcloud_vpn_connection":              83,
+		"tencentcloud_vpn_customer_gateway":        84,
+		"tencentcloud_vpn_gateway":                 85,
 	}
 )
 

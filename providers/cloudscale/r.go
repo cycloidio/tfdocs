@@ -33,6 +33,10 @@ var (
 					Description: `(Optional) If you want to assign an entire network instead of a single IP address to your server, you must specify the prefix length. Currently, there is only support for ` + "`" + `ip_version=6` + "`" + ` and ` + "`" + `prefix_length=56` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "region_slug",
+					Description: `(Optional) You can specify a region slug. Options include ` + "`" + `lpg` + "`" + ` and ` + "`" + `rma` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "reverse_ptr",
 					Description: `(Optional) You can specify the PTR record (reverse DNS pointer) in case of a single Floating IP address. The following arguments are supported when updating Floating IPs:`,
 				},
@@ -93,6 +97,10 @@ var (
 				resource.Attribute{
 					Name:        "ssh_keys",
 					Description: `(Required) A list of SSH public keys. Use the full content of your \`,
+				},
+				resource.Attribute{
+					Name:        "zone_slug",
+					Description: `(Optional) You can specify a zone slug. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "volume_size_gb",
@@ -303,7 +311,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of the server group can currently only be ` + "`" + `"anti-affinity"` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) The type of the server group can currently only be ` + "`" + `"anti-affinity"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "zone_slug",
+					Description: `(Optional) You can specify a zone slug. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "href",
@@ -334,6 +346,10 @@ var (
 				resource.Attribute{
 					Name:        "size_gb",
 					Description: `(Required) The volume size in GB. Valid values are multiples of 1 for type "ssd" and multiples of 100 for type "bulk".`,
+				},
+				resource.Attribute{
+					Name:        "zone_slug",
+					Description: `(Optional) You can specify a zone slug. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "type",

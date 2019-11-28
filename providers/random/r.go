@@ -117,7 +117,7 @@ var (
 			Name:             "",
 			Type:             "random_password",
 			Category:         "Resources",
-			ShortDescription: `Produces a random string of a length using alphanumeric characters and optionally special characters. The result will be displayed to console or in any logs.`,
+			ShortDescription: `Produces a random string of a length using alphanumeric characters and optionally special characters. The result will not be displayed to console.`,
 			Description:      ``,
 			Keywords: []string{
 				"password",
@@ -241,7 +241,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "special",
-					Description: `(Optional) (default true) Include special characters in random string. These are '!@#$%&`,
+					Description: `(Optional) (default true) Include special characters in random string. These are ` + "`" + `!@#$%&`,
 				},
 				resource.Attribute{
 					Name:        "min_special",
@@ -249,7 +249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "override_special",
-					Description: `(Optional) Supply your own list of special characters to use for string generation. This overrides characters list in the special argument. The special argument must still be set to true for any overwritten characters to be used in generation.`,
+					Description: `(Optional) Supply your own list of special characters to use for string generation. This overrides the default character list in the special argument. The special argument must still be set to true for any overwritten characters to be used in generation.`,
 				},
 				resource.Attribute{
 					Name:        "keepers",

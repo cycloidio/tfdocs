@@ -33,7 +33,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filename",
-					Description: `(Required) The path of the file to create. Any required parent directories will be created automatically, and any existing file with the given name will be overwritten.`,
+					Description: `(Required) The path of the file to create.`,
+				},
+				resource.Attribute{
+					Name:        "file_permission",
+					Description: `(Optional) The permission to set for the created file. Expects an a string. The default value is ` + "`" + `"0777"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "directory_permission",
+					Description: `(Optional) The permission to set for any directories created. Expects a string. The default value is ` + "`" + `"0777"` + "`" + `. Any required parent directories will be created automatically, and any existing file with the given name will be overwritten.`,
 				},
 			},
 			Attributes: []resource.Attribute{},

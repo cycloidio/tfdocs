@@ -37,56 +37,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "packet_connect",
-			Category:         "Resources",
-			ShortDescription: `Provides a resource for Packet Connect.`,
-			Description:      ``,
-			Keywords: []string{
-				"connect",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name for the Connect resource`,
-				},
-				resource.Attribute{
-					Name:        "facility",
-					Description: `(Required) Facility where to create the VLAN`,
-				},
-				resource.Attribute{
-					Name:        "project_id",
-					Description: `(Required) ID of parent project`,
-				},
-				resource.Attribute{
-					Name:        "provider_id",
-					Description: `(Required) ID of Connect Provider. Provider IDs are`,
-				},
-				resource.Attribute{
-					Name:        "provider_payload",
-					Description: `(Required) Authorization key for the Connect provider`,
-				},
-				resource.Attribute{
-					Name:        "port_speed",
-					Description: `(Required) Port speed in Mbps`,
-				},
-				resource.Attribute{
-					Name:        "vxlan",
-					Description: `(Required) VXLAN Network identifier of the linked Packet VLAN ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "status",
-					Description: `Status of the Connect resource, one of PROVISIONING, PROVISIONED, DEPROVISIONING, DEPROVISIONED`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "packet_device",
 			Category:         "Resources",
 			ShortDescription: `Provides a Packet device resource. This can be used to create, modify, and delete devices.`,
@@ -101,7 +51,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The id of the project in which to create the device`,
+					Description: `(Required) The ID of the project in which to create the device`,
 				},
 				resource.Attribute{
 					Name:        "operating_system",
@@ -161,7 +111,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hardware_reservation_id",
-					Description: `The id of hardware reservation which this device occupies`,
+					Description: `The ID of hardware reservation which this device occupies`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -279,7 +229,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hardware_reservation_id",
-					Description: `The id of hardware reservation which this device occupies`,
+					Description: `The ID of hardware reservation which this device occupies`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -742,6 +692,10 @@ var (
 					Description: `The ID of parent project`,
 				},
 				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The ID of parent project (same as project_id)`,
+				},
+				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `The fingerprint of the SSH key`,
 				},
@@ -770,6 +724,10 @@ var (
 				resource.Attribute{
 					Name:        "project_id",
 					Description: `The ID of parent project`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The ID of parent project (same as project_id)`,
 				},
 				resource.Attribute{
 					Name:        "fingerprint",
@@ -811,7 +769,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "facility",
-					Description: `(Optional) Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4 ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Facility where to allocate the public IP address block, makes sense only for type==public_ipv4, must be empty for type==global_ipv4`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Arbitrary description ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "facility",
@@ -1001,6 +963,10 @@ var (
 					Description: `The fingerprint of the SSH key`,
 				},
 				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The UUID of the Packet API User who owns this key`,
+				},
+				resource.Attribute{
 					Name:        "created",
 					Description: `The timestamp for when the SSH key was created`,
 				},
@@ -1025,6 +991,10 @@ var (
 				resource.Attribute{
 					Name:        "fingerprint",
 					Description: `The fingerprint of the SSH key`,
+				},
+				resource.Attribute{
+					Name:        "owner_id",
+					Description: `The UUID of the Packet API User who owns this key`,
 				},
 				resource.Attribute{
 					Name:        "created",
@@ -1256,19 +1226,18 @@ var (
 	resourcesMap = map[string]int{
 
 		"packet_bgp_session":          0,
-		"packet_connect":              1,
-		"packet_device":               2,
-		"packet_ip_attachment":        3,
-		"packet_organization":         4,
-		"packet_port_vlan_attachment": 5,
-		"packet_project":              6,
-		"packet_project_ssh_key":      7,
-		"packet_reserved_ip_block":    8,
-		"packet_spot_market_request":  9,
-		"packet_ssh_key":              10,
-		"packet_vlan":                 11,
-		"packet_volume":               12,
-		"packet_volume_attachment":    13,
+		"packet_device":               1,
+		"packet_ip_attachment":        2,
+		"packet_organization":         3,
+		"packet_port_vlan_attachment": 4,
+		"packet_project":              5,
+		"packet_project_ssh_key":      6,
+		"packet_reserved_ip_block":    7,
+		"packet_spot_market_request":  8,
+		"packet_ssh_key":              9,
+		"packet_vlan":                 10,
+		"packet_volume":               11,
+		"packet_volume_attachment":    12,
 	}
 )
 

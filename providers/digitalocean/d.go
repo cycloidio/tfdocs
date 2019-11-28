@@ -11,6 +11,16 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_account",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on your DigitalOcean account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_certificate",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a certificate.`,
@@ -73,6 +83,10 @@ var (
 					Description: `Database cluster's hostname.`,
 				},
 				resource.Attribute{
+					Name:        "private_host",
+					Description: `Same as ` + "`" + `host` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: `Network port that the database cluster is listening on.`,
 				},
@@ -81,12 +95,20 @@ var (
 					Description: `The full URI for connecting to the database cluster.`,
 				},
 				resource.Attribute{
+					Name:        "private_uri",
+					Description: `Same as ` + "`" + `uri` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
 					Name:        "database",
 					Description: `Name of the cluster's default database.`,
 				},
 				resource.Attribute{
 					Name:        "user",
-					Description: `Username for the cluster's default user. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
+					Description: `Username for the cluster's default user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the cluster's default user. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "day",
@@ -135,6 +157,10 @@ var (
 					Description: `Database cluster's hostname.`,
 				},
 				resource.Attribute{
+					Name:        "private_host",
+					Description: `Same as ` + "`" + `host` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
 					Name:        "port",
 					Description: `Network port that the database cluster is listening on.`,
 				},
@@ -143,12 +169,20 @@ var (
 					Description: `The full URI for connecting to the database cluster.`,
 				},
 				resource.Attribute{
+					Name:        "private_uri",
+					Description: `Same as ` + "`" + `uri` + "`" + `, but only accessible from resources within the account and in the same region.`,
+				},
+				resource.Attribute{
 					Name:        "database",
 					Description: `Name of the cluster's default database.`,
 				},
 				resource.Attribute{
 					Name:        "user",
-					Description: `Username for the cluster's default user. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
+					Description: `Username for the cluster's default user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password for the cluster's default user. ` + "`" + `maintenance_window` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "day",
@@ -194,7 +228,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of Droplet. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The name of Droplet.`,
+				},
+				resource.Attribute{
+					Name:        "tag",
+					Description: `(Optional) A tag applied to the Droplet. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "urn",
@@ -553,11 +591,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kube_config.0",
-					Description: `A representation of the Kubernetes cluster's kubeconfig with the following attributes: - ` + "`" + `raw_config` + "`" + ` - The full contents of the Kubernetes cluster's kubeconfig file. - ` + "`" + `host` + "`" + ` - The URL of the API server on the Kubernetes master node. - ` + "`" + `client_key` + "`" + ` - The base64 encoded private key used by clients to access the cluster. - ` + "`" + `client_certificate` + "`" + ` - The base64 encoded public certificate used by clients to access the cluster. - ` + "`" + `cluster_ca_certificate` + "`" + ` - The base64 encoded public certificate for the cluster's certificate authority.`,
+					Description: `A representation of the Kubernetes cluster's kubeconfig with the following attributes: - ` + "`" + `raw_config` + "`" + ` - The full contents of the Kubernetes cluster's kubeconfig file. - ` + "`" + `host` + "`" + ` - The URL of the API server on the Kubernetes master node. - ` + "`" + `cluster_ca_certificate` + "`" + ` - The base64 encoded public certificate for the cluster's certificate authority. - ` + "`" + `token` + "`" + ` - The DigitalOcean API access token used by clients to access the cluster. - ` + "`" + `client_key` + "`" + ` - The base64 encoded private key used by clients to access the cluster. Only available if token authentication is not supported on your cluster. - ` + "`" + `client_certificate` + "`" + ` - The base64 encoded public certificate used by clients to access the cluster. Only available if token authentication is not supported on your cluster. - ` + "`" + `expires_at` + "`" + ` - The date and time when the credentials will expire and need to be regenerated.`,
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
+					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `actual_node_count` + "`" + ` - The actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `auto_scale` + "`" + ` - A boolean indicating whether auto-scaling is enabled on the node pool. - ` + "`" + `min_nodes` + "`" + ` - If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -607,11 +645,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kube_config.0",
-					Description: `A representation of the Kubernetes cluster's kubeconfig with the following attributes: - ` + "`" + `raw_config` + "`" + ` - The full contents of the Kubernetes cluster's kubeconfig file. - ` + "`" + `host` + "`" + ` - The URL of the API server on the Kubernetes master node. - ` + "`" + `client_key` + "`" + ` - The base64 encoded private key used by clients to access the cluster. - ` + "`" + `client_certificate` + "`" + ` - The base64 encoded public certificate used by clients to access the cluster. - ` + "`" + `cluster_ca_certificate` + "`" + ` - The base64 encoded public certificate for the cluster's certificate authority.`,
+					Description: `A representation of the Kubernetes cluster's kubeconfig with the following attributes: - ` + "`" + `raw_config` + "`" + ` - The full contents of the Kubernetes cluster's kubeconfig file. - ` + "`" + `host` + "`" + ` - The URL of the API server on the Kubernetes master node. - ` + "`" + `cluster_ca_certificate` + "`" + ` - The base64 encoded public certificate for the cluster's certificate authority. - ` + "`" + `token` + "`" + ` - The DigitalOcean API access token used by clients to access the cluster. - ` + "`" + `client_key` + "`" + ` - The base64 encoded private key used by clients to access the cluster. Only available if token authentication is not supported on your cluster. - ` + "`" + `client_certificate` + "`" + ` - The base64 encoded public certificate used by clients to access the cluster. Only available if token authentication is not supported on your cluster. - ` + "`" + `expires_at` + "`" + ` - The date and time when the credentials will expire and need to be regenerated.`,
 				},
 				resource.Attribute{
 					Name:        "node_pool",
-					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
+					Description: `A list of node pools associated with the cluster. Each node pool exports the following attributes: - ` + "`" + `id` + "`" + ` - The unique ID that can be used to identify and reference the node pool. - ` + "`" + `name` + "`" + ` - The name of the node pool. - ` + "`" + `size` + "`" + ` - The slug identifier for the type of Droplet used as workers in the node pool. - ` + "`" + `node_count` + "`" + ` - The number of Droplet instances in the node pool. - ` + "`" + `actual_node_count` + "`" + ` - The actual number of nodes in the node pool, which is especially useful when auto-scaling is enabled. - ` + "`" + `auto_scale` + "`" + ` - A boolean indicating whether auto-scaling is enabled on the node pool. - ` + "`" + `min_nodes` + "`" + ` - If auto-scaling is enabled, this represents the minimum number of nodes that the node pool can be scaled down to. - ` + "`" + `max_nodes` + "`" + ` - If auto-scaling is enabled, this represents the maximum number of nodes that the node pool can be scaled up to. - ` + "`" + `tags` + "`" + ` - A list of tag names applied to the node pool. - ` + "`" + `nodes` + "`" + ` - A list of nodes in the pool. Each node exports the following attributes: + ` + "`" + `id` + "`" + ` - A unique ID that can be used to identify and reference the node. + ` + "`" + `name` + "`" + ` - The auto-generated name for the node. + ` + "`" + `status` + "`" + ` - A string indicating the current status of the individual node. + ` + "`" + `created_at` + "`" + ` - The date and time when the node was created. + ` + "`" + `updated_at` + "`" + ` - The date and time when the node was last updated.`,
 				},
 			},
 		},
@@ -652,6 +690,114 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_sizes",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information DigitalOcean Cloud Firewall resource. This can be used to create, modify, and delete Firewalls.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Filter the results. The ` + "`" + `filter` + "`" + ` block is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional) Sort the results. The ` + "`" + `sort` + "`" + ` block is documented below. ` + "`" + `filter` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Filter the sizes by this key. This may be one of ` + "`" + `slug` + "`" + `, ` + "`" + `regions` + "`" + `, ` + "`" + `memory` + "`" + `, ` + "`" + `vcpus` + "`" + `, ` + "`" + `disk` + "`" + `, ` + "`" + `transfer` + "`" + `, ` + "`" + `price_monthly` + "`" + `, ` + "`" + `price_hourly` + "`" + `, or ` + "`" + `available` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Only retrieves images which keys has value that matches one of the values provided here. ` + "`" + `sort` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Sort the sizes by this key. This may be one of ` + "`" + `slug` + "`" + `, ` + "`" + `memory` + "`" + `, ` + "`" + `vcpus` + "`" + `, ` + "`" + `disk` + "`" + `, ` + "`" + `transfer` + "`" + `, ` + "`" + `price_monthly` + "`" + `, or ` + "`" + `price_hourly` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The sort direction. This may be either ` + "`" + `asc` + "`" + ` or ` + "`" + `desc` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "slug",
+					Description: `A human-readable string that is used to uniquely identify each size.`,
+				},
+				resource.Attribute{
+					Name:        "available",
+					Description: `This represents whether new Droplets can be created with this size.`,
+				},
+				resource.Attribute{
+					Name:        "transfer",
+					Description: `The amount of transfer bandwidth that is available for Droplets created in this size. This only counts traffic on the public interface. The value is given in terabytes.`,
+				},
+				resource.Attribute{
+					Name:        "price_monthly",
+					Description: `The monthly cost of Droplets created in this size if they are kept for an entire month. The value is measured in US dollars.`,
+				},
+				resource.Attribute{
+					Name:        "price_hourly",
+					Description: `The hourly cost of Droplets created in this size as measured hourly. The value is measured in US dollars.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The amount of RAM allocated to Droplets created of this size. The value is measured in megabytes.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The number of CPUs allocated to Droplets of this size.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The amount of disk space set aside for Droplets of this size. The value is measured in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `List of region slugs where Droplets can be created in this size.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "slug",
+					Description: `A human-readable string that is used to uniquely identify each size.`,
+				},
+				resource.Attribute{
+					Name:        "available",
+					Description: `This represents whether new Droplets can be created with this size.`,
+				},
+				resource.Attribute{
+					Name:        "transfer",
+					Description: `The amount of transfer bandwidth that is available for Droplets created in this size. This only counts traffic on the public interface. The value is given in terabytes.`,
+				},
+				resource.Attribute{
+					Name:        "price_monthly",
+					Description: `The monthly cost of Droplets created in this size if they are kept for an entire month. The value is measured in US dollars.`,
+				},
+				resource.Attribute{
+					Name:        "price_hourly",
+					Description: `The hourly cost of Droplets created in this size as measured hourly. The value is measured in US dollars.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The amount of RAM allocated to Droplets created of this size. The value is measured in megabytes.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `The number of CPUs allocated to Droplets of this size.`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `The amount of disk space set aside for Droplets of this size. The value is measured in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "regions",
+					Description: `List of region slugs where Droplets can be created in this size.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -815,20 +961,22 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"digitalocean_certificate":        0,
-		"digitalocean_database_cluster":   1,
-		"digitalocean_domain":             2,
-		"digitalocean_droplet":            3,
-		"digitalocean_droplet_snapshot":   4,
-		"digitalocean_floating_ip":        5,
-		"digitalocean_image":              6,
-		"digitalocean_kubernetes_cluster": 7,
-		"digitalocean_loadbalancer":       8,
-		"digitalocean_record":             9,
-		"digitalocean_ssh_key":            10,
-		"digitalocean_tag":                11,
-		"digitalocean_volume":             12,
-		"digitalocean_volume_snapshot":    13,
+		"digitalocean_account":            0,
+		"digitalocean_certificate":        1,
+		"digitalocean_database_cluster":   2,
+		"digitalocean_domain":             3,
+		"digitalocean_droplet":            4,
+		"digitalocean_droplet_snapshot":   5,
+		"digitalocean_floating_ip":        6,
+		"digitalocean_image":              7,
+		"digitalocean_kubernetes_cluster": 8,
+		"digitalocean_loadbalancer":       9,
+		"digitalocean_record":             10,
+		"digitalocean_sizes":              11,
+		"digitalocean_ssh_key":            12,
+		"digitalocean_tag":                13,
+		"digitalocean_volume":             14,
+		"digitalocean_volume_snapshot":    15,
 	}
 )
 

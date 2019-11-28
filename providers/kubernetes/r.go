@@ -22,11 +22,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard API service's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard API service's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec contains information for locating and communicating with a server. [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec contains information for locating and communicating with a server. [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -34,7 +34,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -50,7 +50,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this API service that can be used by clients to determine when API service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this API service that can be used by clients to determine when API service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -94,7 +94,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "namespace",
-					Description: `(Required) Namespace is the namespace of the service. ## Import API service can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_api_service.example v1.terraform-name.k8s.io ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Namespace is the namespace of the service.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) If specified, the port on the service that is hosting the service. Defaults to 443 for backward compatibility. Should be a valid port number (1-65535, inclusive). ## Import API service can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_api_service.example v1.terraform-name.k8s.io ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -126,7 +130,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard kubernetes metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard kubernetes metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "role_ref",
@@ -142,7 +146,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -158,7 +162,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this object that can be used by clients to determine when the object has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this object that can be used by clients to determine when the object has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -220,7 +224,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard config map's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Standard config map's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -228,7 +232,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -248,7 +252,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this config map that can be used by clients to determine when config map has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this config map that can be used by clients to determine when config map has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -286,7 +290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#idempotency`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -306,7 +310,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#concurrency-control-and-consistency`,
+					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -403,11 +407,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard daemonset's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard daemonset's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the specification of the desired behavior of the daemonset. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the specification of the desired behavior of the daemonset. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -415,7 +419,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -435,7 +439,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this deployment that can be used by clients to determine when deployment has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this deployment that can be used by clients to determine when deployment has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -544,6 +548,10 @@ var (
 				resource.Attribute{
 					Name:        "node_selector",
 					Description: `(Optional) NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/node-selection).`,
+				},
+				resource.Attribute{
+					Name:        "priority_class_name",
+					Description: `(Optional) If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the formerer being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.`,
 				},
 				resource.Attribute{
 					Name:        "restart_policy",
@@ -1615,7 +1623,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sub_path",
-					Description: `(Optional) Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root). ### ` + "`" + `vsphere_volume` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).`,
+				},
+				resource.Attribute{
+					Name:        "mount_propagation",
+					Description: `(Optional) Mount propagation mode. Defaults to "None". For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation) ### ` + "`" + `vsphere_volume` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -1652,11 +1664,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard deployment's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard deployment's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the specification of the desired behavior of the deployment. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the specification of the desired behavior of the deployment. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -1664,7 +1676,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1684,7 +1696,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this deployment that can be used by clients to determine when deployment has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this deployment that can be used by clients to determine when deployment has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -1779,8 +1791,8 @@ var (
 					Description: `(Optional) Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy. Defaults to empty. See ` + "`" + `dns_config` + "`" + ` block definition below.`,
 				},
 				resource.Attribute{
-					Name:        "host_alias",
-					Description: `(Optional) List of hosts and IPs that will be injected into the pod's hosts file if specified. Optional: Defaults to empty. See ` + "`" + `host_alias` + "`" + ` block definition below.`,
+					Name:        "host_aliases",
+					Description: `(Optional) List of hosts and IPs that will be injected into the pod's hosts file if specified. Optional: Defaults to empty. See ` + "`" + `host_aliases` + "`" + ` block definition below.`,
 				},
 				resource.Attribute{
 					Name:        "host_ipc",
@@ -1809,6 +1821,10 @@ var (
 				resource.Attribute{
 					Name:        "node_selector",
 					Description: `(Optional) NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/node-selection).`,
+				},
+				resource.Attribute{
+					Name:        "priority_class_name",
+					Description: `(Optional) If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the formerer being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.`,
 				},
 				resource.Attribute{
 					Name:        "restart_policy",
@@ -2296,7 +2312,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "read_only",
-					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod ### ` + "`" + `host_alias` + "`" + ` #### Arguments`,
+					Description: `(Optional) Whether to force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. For more info see http://releases.k8s.io/HEAD/examples/volumes/glusterfs/README.md#create-a-pod ### ` + "`" + `host_aliases` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "hostnames",
@@ -2888,7 +2904,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sub_path",
-					Description: `(Optional) Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root). ### ` + "`" + `vsphere_volume` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).`,
+				},
+				resource.Attribute{
+					Name:        "mount_propagation",
+					Description: `(Optional) Mount propagation mode. Defaults to "None". For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation) ### ` + "`" + `vsphere_volume` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -2925,7 +2945,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard endpoints' metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard endpoints' metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "subset",
@@ -2937,7 +2957,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2957,7 +2977,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this endpoints resource that can be used by clients to determine when endpoints resource has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this endpoints resource that can be used by clients to determine when endpoints resource has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -3032,11 +3052,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard horizontal pod autoscaler's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard horizontal pod autoscaler's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Behaviour of the autoscaler. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Behaviour of the autoscaler. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -3044,7 +3064,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3064,7 +3084,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this horizontal pod autoscaler that can be used by clients to determine when horizontal pod autoscaler has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this horizontal pod autoscaler that can be used by clients to determine when horizontal pod autoscaler has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -3117,11 +3137,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard ingress's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata`,
+					Description: `(Required) Standard ingress's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the behavior of a ingress. https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#spec-and-status ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the behavior of a ingress. https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -3129,7 +3149,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#idempotency`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3149,7 +3169,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#concurrency-control-and-consistency`,
+					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -3246,7 +3266,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#idempotency`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3266,7 +3286,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#concurrency-control-and-consistency`,
+					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -3328,11 +3348,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard limit range's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard limit range's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Optional) Spec defines the limits enforced. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+					Description: `(Optional) Spec defines the limits enforced. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `spec` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "limit",
@@ -3368,7 +3388,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3388,7 +3408,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this limit range that can be used by clients to determine when limit range has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this limit range that can be used by clients to determine when limit range has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -3413,7 +3433,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard namespace's [metadata](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata). ### Timeouts ` + "`" + `kubernetes_namespace` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `delete` + "`" + ` - Default ` + "`" + `5 minutes` + "`" + ` ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Standard namespace's [metadata](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata). ### Timeouts ` + "`" + `kubernetes_namespace` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `delete` + "`" + ` - Default ` + "`" + `5 minutes` + "`" + ` ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -3421,7 +3441,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more about [name idempotency](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency).`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more about [name idempotency](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency).`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3437,7 +3457,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this namespace that can be used by clients to determine when namespaces have changed. Read more about [concurrency control and consistency](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency).`,
+					Description: `An opaque value that represents the internal version of this namespace that can be used by clients to determine when namespaces have changed. Read more about [concurrency control and consistency](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency).`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -3463,7 +3483,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard network policy's [metadata](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata). ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Standard network policy's [metadata](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata). ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -3471,7 +3491,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more about [name idempotency](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#idempotency).`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more about [name idempotency](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency).`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -3487,7 +3507,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this network policy that can be used by clients to determine when network policies have changed. Read more about [concurrency control and consistency](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#concurrency-control-and-consistency).`,
+					Description: `An opaque value that represents the internal version of this network policy that can be used by clients to determine when network policies have changed. Read more about [concurrency control and consistency](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency).`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -3605,7 +3625,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard persistent volume's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard persistent volume's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
@@ -3945,7 +3965,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this persistent volume that can be used by clients to determine when persistent volume has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this persistent volume that can be used by clients to determine when persistent volume has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -4056,7 +4076,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard persistent volume claim's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard persistent volume claim's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
@@ -4072,7 +4092,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -4092,7 +4112,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this persistent volume claim that can be used by clients to determine when persistent volume claim has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this persistent volume claim that can be used by clients to determine when persistent volume claim has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -4165,7 +4185,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard pod's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard pod's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
@@ -4177,7 +4197,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -4197,7 +4217,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this pod that can be used by clients to determine when pod has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this pod that can be used by clients to determine when pod has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -4266,6 +4286,10 @@ var (
 				resource.Attribute{
 					Name:        "node_selector",
 					Description: `(Optional) NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/node-selection).`,
+				},
+				resource.Attribute{
+					Name:        "priority_class_name",
+					Description: `(Optional) If specified, indicates the pod's priority. 'system-node-critical' and 'system-cluster-critical' are two special keywords which indicate the highest priorities with the formerer being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.`,
 				},
 				resource.Attribute{
 					Name:        "restart_policy",
@@ -5345,7 +5369,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sub_path",
-					Description: `(Optional) Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root). ### ` + "`" + `vsphere_volume` + "`" + ` #### Arguments`,
+					Description: `(Optional) Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).`,
+				},
+				resource.Attribute{
+					Name:        "mount_propagation",
+					Description: `(Optional) Mount propagation mode. Defaults to "None". For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation) ### ` + "`" + `vsphere_volume` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "fs_type",
@@ -5368,6 +5396,135 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "kubernetes_pod_disruption_budget",
+			Category:         "Resources",
+			ShortDescription: `A Pod Disruption Budget limits the number of pods of a replicated application that are down simultaneously from voluntary disruptions. For example, a quorum-based application would like to ensure that the number of replicas running is never brought below the number needed for a quorum. A web front end might want to ensure that the number of replicas serving load never falls below a certain percentage of the total.`,
+			Description:      ``,
+			Keywords: []string{
+				"pod",
+				"disruption",
+				"budget",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Required) Standard resource's metadata. More info: https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status`,
+				},
+				resource.Attribute{
+					Name:        "spec",
+					Description: `(Required) Spec defines the behavior of a Pod Disruption Budget. https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional) An unstructured key value map stored with the resource that may be used to store arbitrary metadata.`,
+				},
+				resource.Attribute{
+					Name:        "generate_name",
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#idempotency`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the service. May match selectors of replication controllers and services.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the service, must be unique. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Optional) Namespace defines the space within which name of the service must be unique. #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "generation",
+					Description: `A sequence number representing a specific generation of the desired state.`,
+				},
+				resource.Attribute{
+					Name:        "resource_version",
+					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. Read more: https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#concurrency-control-and-consistency`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `A URL representing this service.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `The unique in time and space value for this service. More info: http://kubernetes.io/docs/user-guide/identifiers#uids ### ` + "`" + `spec` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "max_unavailable",
+					Description: `(Optional) Specifies the number of pods from the selected set that can be unavailable after the eviction. It can be either an absolute number or a percentage. You can specify only one of max_unavailable and min_available in a single Pod Disruption Budget. max_unavailable can only be used to control the eviction of pods that have an associated controller managing them.`,
+				},
+				resource.Attribute{
+					Name:        "min_available",
+					Description: `(Optional) Specifies the number of pods from the selected set that must still be available after the eviction, even in the absence of the evicted pod. min_available can be either an absolute number or a percentage. You can specify only one of min_available and max_unavailable in a single Pod Disruption Budget. min_available can only be used to control the eviction of pods that have an associated controller managing them.`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) A label query over controllers (Deployment, ReplicationController, ReplicaSet, or StatefulSet) that the Pod Disruption Budget should be applied to. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "kubernetes_priority_class",
+			Category:         "Resources",
+			ShortDescription: `A PriorityClass is a non-namespaced object that defines a mapping from a priority class name to the integer value of the priority.`,
+			Description:      ``,
+			Keywords: []string{
+				"priority",
+				"class",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Required) Standard resource quota's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required, Forces new resource) The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An arbitrary string that usually provides guidelines on when this priority class should be used.`,
+				},
+				resource.Attribute{
+					Name:        "global_default",
+					Description: `(Optional) Boolean that specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional) An unstructured key value map stored with the resource quota that may be used to store arbitrary metadata.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Map of string keys and values that can be used to organize and categorize (scope and select) the resource quota. May match selectors of replication controllers and services.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the resource quota, must be unique. Cannot be updated. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#names) #### Attributes`,
+				},
+				resource.Attribute{
+					Name:        "generation",
+					Description: `A sequence number representing a specific generation of the desired state.`,
+				},
+				resource.Attribute{
+					Name:        "resource_version",
+					Description: `An opaque value that represents the internal version of this resource quota that can be used by clients to determine when resource quota has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `A URL representing this resource quota.`,
+				},
+				resource.Attribute{
+					Name:        "uid",
+					Description: `The unique in time and space value for this resource quota. For more info see [Kubernetes reference](http://kubernetes.io/docs/user-guide/identifiers#uids) ## Import Priority Class can be imported using its name, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import kubernetes_priority_class.example terraform-example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "kubernetes_replication_controller",
 			Category:         "Resources",
 			ShortDescription: `A Replication Controller ensures that a specified number of pod “replicas” are running at any one time. In other words, a Replication Controller makes sure that a pod or homogeneous set of pods are always up and available. If there are too many pods, it will kill some. If there are too few, the Replication Controller will start more.`,
@@ -5379,11 +5536,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard replication controller's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard replication controller's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the specification of the desired behavior of the replication controller. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the specification of the desired behavior of the replication controller. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -5391,7 +5548,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -5411,7 +5568,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this replication controller that can be used by clients to determine when replication controller has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this replication controller that can be used by clients to determine when replication controller has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -5451,7 +5608,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -5481,11 +5638,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard resource quota's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard resource quota's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Optional) Spec defines the desired quota. [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) Spec defines the desired quota. [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -5509,7 +5666,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this resource quota that can be used by clients to determine when resource quota has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this resource quota that can be used by clients to determine when resource quota has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -5542,7 +5699,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard role's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard role's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "rule",
@@ -5554,7 +5711,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](hhttps://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -5574,7 +5731,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this role that can be used by clients to determine when role has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this role that can be used by clients to determine when role has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -5616,7 +5773,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard kubernetes metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard kubernetes metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "role_ref",
@@ -5632,7 +5789,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -5652,7 +5809,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this object that can be used by clients to determine when the object has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this object that can be used by clients to determine when the object has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -5709,7 +5866,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard secret's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard secret's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -5721,7 +5878,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -5741,7 +5898,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this secret that can be used by clients to determine when secret has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this secret that can be used by clients to determine when secret has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -5766,11 +5923,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard service's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard service's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the behavior of a service. [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the behavior of a service. [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -5778,7 +5935,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -5798,7 +5955,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this service that can be used by clients to determine when service has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -5900,7 +6057,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard service account's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard service account's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "image_pull_secret",
@@ -5920,7 +6077,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -5940,7 +6097,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this service account that can be used by clients to determine when service account has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this service account that can be used by clients to determine when service account has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -5983,11 +6140,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard Kubernetes object metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard Kubernetes object metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) Spec defines the specification of the desired behavior of the stateful set. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Required) Spec defines the specification of the desired behavior of the stateful set. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",
@@ -5995,7 +6152,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -6015,7 +6172,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this stateful set that can be used by clients to determine when stateful set has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this stateful set that can be used by clients to determine when stateful set has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -6093,7 +6250,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Required) Standard storage class's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#metadata)`,
+					Description: `(Required) Standard storage class's metadata. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#metadata)`,
 				},
 				resource.Attribute{
 					Name:        "parameters",
@@ -6117,7 +6274,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "generate_name",
-					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#idempotency)`,
+					Description: `(Optional) Prefix, used by the server, to generate a unique name ONLY IF the ` + "`" + `name` + "`" + ` field has not been provided. This value will also be combined with a unique suffix. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#idempotency)`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -6133,7 +6290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_version",
-					Description: `An opaque value that represents the internal version of this storage class that can be used by clients to determine when storage class has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/e59e666e3464c7d4851136baa8835a311efdfb8e/contributors/devel/api-conventions.md#concurrency-control-and-consistency)`,
+					Description: `An opaque value that represents the internal version of this storage class that can be used by clients to determine when storage class has changed. For more info see [Kubernetes reference](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency)`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
@@ -6167,15 +6324,17 @@ var (
 		"kubernetes_persistent_volume":         14,
 		"kubernetes_persistent_volume_claim":   15,
 		"kubernetes_pod":                       16,
-		"kubernetes_replication_controller":    17,
-		"kubernetes_resource_quota":            18,
-		"kubernetes_role":                      19,
-		"kubernetes_role_binding":              20,
-		"kubernetes_secret":                    21,
-		"kubernetes_service":                   22,
-		"kubernetes_service_account":           23,
-		"kubernetes_stateful_set":              24,
-		"kubernetes_storage_class":             25,
+		"kubernetes_pod_disruption_budget":     17,
+		"kubernetes_priority_class":            18,
+		"kubernetes_replication_controller":    19,
+		"kubernetes_resource_quota":            20,
+		"kubernetes_role":                      21,
+		"kubernetes_role_binding":              22,
+		"kubernetes_secret":                    23,
+		"kubernetes_service":                   24,
+		"kubernetes_service_account":           25,
+		"kubernetes_stateful_set":              26,
+		"kubernetes_storage_class":             27,
 	}
 )
 

@@ -83,6 +83,34 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "nsxt_ip_pool",
+			Category:         "Data Sources",
+			ShortDescription: `A IP pool data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of IP pool to retrieve`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The Display Name of the IP pool to retrieve. ## Attributes Reference In addition to arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the IP pool.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the IP pool.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nsxt_logical_tier0_router",
 			Category:         "Data Sources",
 			ShortDescription: `A logical Tier 0 router data source.`,
@@ -331,13 +359,14 @@ var (
 
 		"nsxt_certificate":          0,
 		"nsxt_edge_cluster":         1,
-		"nsxt_logical_tier0_router": 2,
-		"nsxt_logical_tier1_router": 3,
-		"nsxt_mac_pool":             4,
-		"nsxt_ns_group":             5,
-		"nsxt_ns_service":           6,
-		"nsxt_switching_profile":    7,
-		"nsxt_transport_zone":       8,
+		"nsxt_ip_pool":              2,
+		"nsxt_logical_tier0_router": 3,
+		"nsxt_logical_tier1_router": 4,
+		"nsxt_mac_pool":             5,
+		"nsxt_ns_group":             6,
+		"nsxt_ns_service":           7,
+		"nsxt_switching_profile":    8,
+		"nsxt_transport_zone":       9,
 	}
 )
 

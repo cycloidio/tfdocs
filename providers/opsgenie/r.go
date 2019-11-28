@@ -26,7 +26,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Type of the integration. (API,Marid,Prometheus ...)`,
+					Description: `(Optional) Type of the integration (API, Marid, Prometheus, etc). The full list of options can be found [here](https://docs.opsgenie.com/docs/integration-types-to-use-with-api).`,
 				},
 				resource.Attribute{
 					Name:        "allow_write_access",
@@ -62,13 +62,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie API Integration. ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie API Integration.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie API Integration. ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie API Integration.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `(Computed) API key of the created integration ## Import API Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 		},
@@ -121,13 +129,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Email based Integration. ## Import Email Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_email_integration.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Email based Integration. ## Import Email Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_email_integration.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Email based Integration. ## Import Email Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_email_integration.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Email based Integration. ## Import Email Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_email_integration.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 		},
@@ -179,13 +187,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Escalation. ## Import Escalations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_escalation.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Escalation. ## Import Escalations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_escalation.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Escalation. ## Import Escalations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_escalation.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Escalation. ## Import Escalations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_escalation.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 		},
@@ -233,19 +241,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alert_tags",
-					Description: `(Optional) Specifies the alert tags for heartbeat expiration alert. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the Opsgenie Heartbeat. ## Import Heartbeat Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_heartbeat.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies the alert tags for heartbeat expiration alert. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import Heartbeat Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_heartbeat.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the Opsgenie Heartbeat. ## Import Heartbeat Integrations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_heartbeat.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -291,13 +290,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Maintenance Policy. ## Import Maintenance policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_maintenance.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Maintenance Policy. ## Import Maintenance policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_maintenance.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Maintenance Policy. ## Import Maintenance policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_maintenance.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Maintenance Policy. ## Import Maintenance policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_maintenance.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 		},
@@ -337,13 +336,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule. ## Import Schedule can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_schedule.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Schedule. ## Import Schedule can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule. ## Import Schedule can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_schedule.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Schedule. ## Import Schedule can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 		},
@@ -424,13 +423,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_schedule_rotation.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule_rotation.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_schedule_rotation.test 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule_rotation.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 		},
@@ -457,22 +456,22 @@ var (
 					Description: `(Optional) A Member block as documented below. ` + "`" + `member` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
-					Name:        "username",
-					Description: `(Required) The username for the member to add to this Team.`,
+					Name:        "id",
+					Description: `(Required) The UUID for the member to add to this Team.`,
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Required) The role for the user within the Team - can be either 'Admin' or 'User'. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The role for the user within the Team - can be either 'admin' or 'user', defaults to 'user' if not set. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie User. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Team. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie User. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Team. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
 				},
 			},
 		},
@@ -496,7 +495,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Required) The Role assigned to the User. Either a built-in such as 'Owner', 'Admin' or 'User' - or the name of a custom role.`,
+					Description: `(Required) The Role assigned to the User. Either a built-in such as 'Admin' or 'User' - or the name of a custom role.`,
 				},
 				resource.Attribute{
 					Name:        "locale",
@@ -508,13 +507,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie User. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_user.user da4faf16-5546-41e4-8330-4d0002b74048 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie User. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user.user da4faf16-5546-41e4-8330-4d0002b74048s` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie User. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_user.user da4faf16-5546-41e4-8330-4d0002b74048 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie User. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user.user da4faf16-5546-41e4-8330-4d0002b74048s` + "`" + ``,
 				},
 			},
 		},
@@ -547,13 +546,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_user_contact.contact da4faf16-5546-41e4-8330-4d0002b74048 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact da4faf16-5546-41e4-8330-4d0002b74048` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opsgenie_user_contact.contact da4faf16-5546-41e4-8330-4d0002b74048 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact da4faf16-5546-41e4-8330-4d0002b74048` + "`" + ``,
 				},
 			},
 		},

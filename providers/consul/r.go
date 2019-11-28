@@ -11,6 +11,162 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "consul_acl_auth_method",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create an ACL auth method`,
+			Description:      ``,
+			Keywords: []string{
+				"acl",
+				"auth",
+				"method",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A free form human readable description of the auth method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) The raw configuration for this ACL auth method. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the the auth method.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A free form human readable description of the auth method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The raw configuration for this ACL auth method.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the the auth method.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the ACL auth method.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A free form human readable description of the auth method.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `The raw configuration for this ACL auth method.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_acl_binding_rule",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create an ACL binding rule`,
+			Description:      ``,
+			Keywords: []string{
+				"acl",
+				"binding",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "auth_method",
+					Description: `(Required) The name of the ACL auth method this rule apply.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A free form human readable description of the binding rule.`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) The expression used to math this rule against valid identities returned from an auth method validation.`,
+				},
+				resource.Attribute{
+					Name:        "bind_type",
+					Description: `(Required) Specifies the way the binding rule affects a token created at login.`,
+				},
+				resource.Attribute{
+					Name:        "bind_name",
+					Description: `(Required) The name to bind to a token at login-time. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the the binding rule.`,
+				},
+				resource.Attribute{
+					Name:        "auth_method",
+					Description: `The name of the ACL auth method this rule apply.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A free form human readable description of the binding rule.`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `The expression used to math this rule against valid identities returned from an auth method validation.`,
+				},
+				resource.Attribute{
+					Name:        "bind_type",
+					Description: `Specifies the way the binding rule affects a token created at login.`,
+				},
+				resource.Attribute{
+					Name:        "bind_name",
+					Description: `The name to bind to a token at login-time.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the the binding rule.`,
+				},
+				resource.Attribute{
+					Name:        "auth_method",
+					Description: `The name of the ACL auth method this rule apply.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A free form human readable description of the binding rule.`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `The expression used to math this rule against valid identities returned from an auth method validation.`,
+				},
+				resource.Attribute{
+					Name:        "bind_type",
+					Description: `Specifies the way the binding rule affects a token created at login.`,
+				},
+				resource.Attribute{
+					Name:        "bind_name",
+					Description: `The name to bind to a token at login-time.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "consul_acl_policy",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create an ACL policy`,
@@ -82,6 +238,85 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "consul_acl_role",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create an ACL role`,
+			Description:      ``,
+			Keywords: []string{
+				"acl",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ACL role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A free form human readable description of the role.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `(Optional) The list of policies that should be applied to the role.`,
+				},
+				resource.Attribute{
+					Name:        "service_identities",
+					Description: `(Optional) The list of service identities that should be applied to the role. The ` + "`" + `service_identities` + "`" + ` supports:`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The name of the service.`,
+				},
+				resource.Attribute{
+					Name:        "datacenters",
+					Description: `(Optional) The datacenters the effective policy is valid within. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the role.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the ACL role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A free form human readable description of the role.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `The list of policies that should be applied to the role.`,
+				},
+				resource.Attribute{
+					Name:        "service_identities",
+					Description: `The list of service identities that should be applied to the role.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the role.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the ACL role.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A free form human readable description of the role.`,
+				},
+				resource.Attribute{
+					Name:        "policies",
+					Description: `The list of policies that should be applied to the role.`,
+				},
+				resource.Attribute{
+					Name:        "service_identities",
+					Description: `The list of service identities that should be applied to the role.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "consul_acl_token",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create an ACL token`,
@@ -91,6 +326,10 @@ var (
 				"token",
 			},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "accessor_id",
+					Description: `(Optional) The uuid of the token. If omitted, Consul will generate a random uuid.`,
+				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) The description of the token.`,
@@ -105,6 +344,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
+					Description: `The token accessor ID.`,
+				},
+				resource.Attribute{
+					Name:        "accessor_id",
 					Description: `The token accessor ID.`,
 				},
 				resource.Attribute{
@@ -126,6 +369,10 @@ var (
 					Description: `The token accessor ID.`,
 				},
 				resource.Attribute{
+					Name:        "accessor_id",
+					Description: `The token accessor ID.`,
+				},
+				resource.Attribute{
 					Name:        "description",
 					Description: `The description of the token.`,
 				},
@@ -136,6 +383,55 @@ var (
 				resource.Attribute{
 					Name:        "local",
 					Description: `The flag to set the token local to the current datacenter. ## Import ` + "`" + `consul_acl_token` + "`" + ` can be imported. This is especially useful to manage the anonymous and the master token with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token.anonymous 00000000-0000-0000-0000-000000000002 $ terraform import consul_acl_token.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_acl_token_policy_attachment",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create a link between an ACL token and a policy`,
+			Description:      ``,
+			Keywords: []string{
+				"acl",
+				"token",
+				"policy",
+				"attachment",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "token_id",
+					Description: `(Required) The id of the token.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Required) The name of the policy attached to the token. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The attachment ID.`,
+				},
+				resource.Attribute{
+					Name:        "token_id",
+					Description: `The id of the token.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `The name of the policy attached to the token. ## Import ` + "`" + `consul_acl_token_policy_attachment` + "`" + ` can be imported. This is especially useful to manage the policies attached to the anonymous and the master tokens with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token_policy_attachment.anonymous 00000000-0000-0000-0000-000000000002:policy_name $ terraform import consul_acl_token_policy_attachment.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be:policy_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The attachment ID.`,
+				},
+				resource.Attribute{
+					Name:        "token_id",
+					Description: `The id of the token.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `The name of the policy attached to the token. ## Import ` + "`" + `consul_acl_token_policy_attachment` + "`" + ` can be imported. This is especially useful to manage the policies attached to the anonymous and the master tokens with Terraform: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import consul_acl_token_policy_attachment.anonymous 00000000-0000-0000-0000-000000000002:policy_name $ terraform import consul_acl_token_policy_attachment.master-token 624d94ca-bc5c-f960-4e83-0a609cf588be:policy_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -389,6 +685,65 @@ var (
 				resource.Attribute{
 					Name:        "node",
 					Description: `The ID of the service, defaults to the value of ` + "`" + `name` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "consul_config_entry",
+			Category:         "Resources",
+			ShortDescription: `Registers a configuration entry in Consul.`,
+			Description:      ``,
+			Keywords: []string{
+				"config",
+				"entry",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Required) The kind of configuration entry to register.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the configuration entry being registred.`,
+				},
+				resource.Attribute{
+					Name:        "config_json",
+					Description: `(Optional) An arbitrary map of configuration values. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the configuration entry.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `The kind of the configuration entry.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the configuration entry.`,
+				},
+				resource.Attribute{
+					Name:        "config_json",
+					Description: `A map of configuration values.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the configuration entry.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `The kind of the configuration entry.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the configuration entry.`,
+				},
+				resource.Attribute{
+					Name:        "config_json",
+					Description: `A map of configuration values.`,
 				},
 			},
 		},
@@ -756,7 +1111,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "datacenter",
-					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup. The following attributes are available for each health-check:`,
+					Description: `(Optional) The datacenter to use. This overrides the agent's default datacenter and the datacenter in the provider setup.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `(Optional) A map of arbitrary KV metadata linked to the service instance. The following attributes are available for each health-check:`,
 				},
 				resource.Attribute{
 					Name:        "check_id",
@@ -772,7 +1131,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `(Optional, string) The initial health-check status. Defaults to ` + "`" + `critical` + "`" + `.`,
+					Description: `(Optional, string) The initial health-check status.`,
 				},
 				resource.Attribute{
 					Name:        "tcp",
@@ -804,7 +1163,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "deregister_critical_service_after",
-					Description: `(Required, string) The time after which the service is automatically deregistered when in the ` + "`" + `critical` + "`" + ` state. Each ` + "`" + `header` + "`" + ` must have the following attributes:`,
+					Description: `(Optional, string) The time after which the service is automatically deregistered when in the ` + "`" + `critical` + "`" + ` state. Defaults to ` + "`" + `30s` + "`" + `. Each ` + "`" + `header` + "`" + ` must have the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -846,6 +1205,10 @@ var (
 					Name:        "datacenter",
 					Description: `The datacenter of the service.`,
 				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `A map of arbitrary KV metadata linked to the service instance.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -880,23 +1243,32 @@ var (
 					Name:        "datacenter",
 					Description: `The datacenter of the service.`,
 				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `A map of arbitrary KV metadata linked to the service instance.`,
+				},
 			},
 		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"consul_acl_policy":       0,
-		"consul_acl_token":        1,
-		"consul_agent_service":    2,
-		"consul_autopilot_config": 3,
-		"consul_catalog_entry":    4,
-		"consul_intention":        5,
-		"consul_key_prefix":       6,
-		"consul_keys":             7,
-		"consul_node":             8,
-		"consul_prepared_query":   9,
-		"consul_service":          10,
+		"consul_acl_auth_method":             0,
+		"consul_acl_binding_rule":            1,
+		"consul_acl_policy":                  2,
+		"consul_acl_role":                    3,
+		"consul_acl_token":                   4,
+		"consul_acl_token_policy_attachment": 5,
+		"consul_agent_service":               6,
+		"consul_autopilot_config":            7,
+		"consul_catalog_entry":               8,
+		"consul_config_entry":                9,
+		"consul_intention":                   10,
+		"consul_key_prefix":                  11,
+		"consul_keys":                        12,
+		"consul_node":                        13,
+		"consul_prepared_query":              14,
+		"consul_service":                     15,
 	}
 )
 

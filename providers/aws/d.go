@@ -2040,6 +2040,10 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 					Name:        "vpc_id",
 					Description: `The VPC ID associated with the DB cluster snapshot.`,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags for the resource.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -2101,6 +2105,10 @@ See the [` + "`" + `aws_db_snapshot` + "`" + ` data source](/docs/providers/aws/
 				resource.Attribute{
 					Name:        "vpc_id",
 					Description: `The VPC ID associated with the DB cluster snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags for the resource.`,
 				},
 			},
 		},
@@ -4133,12 +4141,20 @@ Retrieve information about an EKS Cluster.
 					Description: `The status of the EKS cluster. One of ` + "`" + `CREATING` + "`" + `, ` + "`" + `ACTIVE` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `FAILED` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value mapping of resource tags.`,
+				},
+				resource.Attribute{
 					Name:        "version",
 					Description: `The Kubernetes server version for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_config",
 					Description: `Nested attribute containing VPC configuration for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_security_group_id",
+					Description: `The cluster security group that was created by Amazon EKS for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "endpoint_private_access",
@@ -4203,12 +4219,20 @@ Retrieve information about an EKS Cluster.
 					Description: `The status of the EKS cluster. One of ` + "`" + `CREATING` + "`" + `, ` + "`" + `ACTIVE` + "`" + `, ` + "`" + `DELETING` + "`" + `, ` + "`" + `FAILED` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value mapping of resource tags.`,
+				},
+				resource.Attribute{
 					Name:        "version",
 					Description: `The Kubernetes server version for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_config",
 					Description: `Nested attribute containing VPC configuration for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_security_group_id",
+					Description: `The cluster security group that was created by Amazon EKS for the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "endpoint_private_access",
@@ -5049,6 +5073,51 @@ Use this data source to generate a Glue script from a Directed Acyclic Graph (DA
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_guardduty_detector",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information about a GuardDuty detector.`,
+			Description: `
+
+Retrieve information about a GuardDuty detector.
+
+`,
+			Icon:     "Security_Identity_and_Compliance/Amazon-GuardDuty.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of the detector. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "finding_publishing_frequency",
+					Description: `The frequency of notifications sent about subsequent finding occurrences.`,
+				},
+				resource.Attribute{
+					Name:        "service_role_arn",
+					Description: `The service-linked role that grants GuardDuty access to the resources in the AWS account.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the detector.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "finding_publishing_frequency",
+					Description: `The frequency of notifications sent about subsequent finding occurrences.`,
+				},
+				resource.Attribute{
+					Name:        "service_role_arn",
+					Description: `The service-linked role that grants GuardDuty access to the resources in the AWS account.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the detector.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_iam_account_alias",
 			Category:         "Data Sources",
 			ShortDescription: `Provides the account alias for the AWS account associated with the provider connection to AWS.`,
@@ -5104,6 +5173,26 @@ properties without having to hard code ARNs as input.
 					Name:        "group_id",
 					Description: `The stable and unique string identifying the group.`,
 				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `List of objects containing group member information. See supported fields below. ### ` + "`" + `users` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) specifying the iam user.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The stable and unique string identifying the iam user.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `The name of the iam user.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path to the iam user.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -5117,6 +5206,26 @@ properties without having to hard code ARNs as input.
 				resource.Attribute{
 					Name:        "group_id",
 					Description: `The stable and unique string identifying the group.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `List of objects containing group member information. See supported fields below. ### ` + "`" + `users` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) specifying the iam user.`,
+				},
+				resource.Attribute{
+					Name:        "user_id",
+					Description: `The stable and unique string identifying the iam user.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `The name of the iam user.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `The path to the iam user.`,
 				},
 			},
 		},
@@ -5261,7 +5370,7 @@ This is a data source which can be used to construct a JSON representation of
 an IAM policy document, for use with resources which expect policy documents,
 such as the ` + "`" + `aws_iam_policy` + "`" + ` resource.
 
--> For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](/docs/providers/aws/guides/iam-policy-documents.html).
+-> For more information about building AWS IAM policy documents with Terraform, see the [AWS IAM Policy Document Guide](https://learn.hashicorp.com/terraform/aws/iam-policy).
 
 ` + "`" + `` + "`" + `` + "`" + `hcl
 data "aws_iam_policy_document" "example" {
@@ -8161,6 +8270,42 @@ This data source is only available in a us-east-1 or ap-south-1 provider.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_qldb_ledger",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on a Amazon Quantum Ledger Database (QLDB)`,
+			Description: `
+
+Use this data source to fetch information about a Quantum Ledger Database.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The friendly name of the ledger to match. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the ledger.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `Deletion protection on the QLDB Ledger instance. Set to ` + "`" + `true` + "`" + ` by default.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Amazon Resource Name (ARN) of the ledger.`,
+				},
+				resource.Attribute{
+					Name:        "deletion_protection",
+					Description: `Deletion protection on the QLDB Ledger instance. Set to ` + "`" + `true` + "`" + ` by default.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_ram_resource_share",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieve information about a RAM Resource Share`,
@@ -9225,6 +9370,18 @@ _optionally_ (see below) content of an object stored inside S3 bucket.
 					Description: `A map of metadata stored with the object in S3`,
 				},
 				resource.Attribute{
+					Name:        "object_lock_legal_hold_status",
+					Description: `Indicates whether this object has an active [legal hold](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-legal-holds). This field is only returned if you have permission to view an object's legal hold status.`,
+				},
+				resource.Attribute{
+					Name:        "object_lock_mode",
+					Description: `The object lock [retention mode](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-retention-modes) currently in place for this object.`,
+				},
+				resource.Attribute{
+					Name:        "object_lock_retain_until_date",
+					Description: `The date and time when this object's object lock will expire.`,
+				},
+				resource.Attribute{
 					Name:        "server_side_encryption",
 					Description: `If the object is stored using server-side encryption (KMS or Amazon S3-managed encryption key), this field includes the chosen encryption and algorithm used.`,
 				},
@@ -9293,6 +9450,18 @@ _optionally_ (see below) content of an object stored inside S3 bucket.
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `A map of metadata stored with the object in S3`,
+				},
+				resource.Attribute{
+					Name:        "object_lock_legal_hold_status",
+					Description: `Indicates whether this object has an active [legal hold](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-legal-holds). This field is only returned if you have permission to view an object's legal hold status.`,
+				},
+				resource.Attribute{
+					Name:        "object_lock_mode",
+					Description: `The object lock [retention mode](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-retention-modes) currently in place for this object.`,
+				},
+				resource.Attribute{
+					Name:        "object_lock_retain_until_date",
+					Description: `The date and time when this object's object lock will expire.`,
 				},
 				resource.Attribute{
 					Name:        "server_side_encryption",
@@ -10452,6 +10621,10 @@ a specific VPC endpoint.
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) Custom filter block as described below.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `(Optional) The ID of the specific VPC Endpoint to retrieve.`,
 				},
@@ -10464,8 +10637,20 @@ a specific VPC endpoint.
 					Description: `(Optional) The state of the specific VPC Endpoint to retrieve.`,
 				},
 				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags, each pair of which must exactly match a pair on the specific VPC Endpoint to retrieve.`,
+				},
+				resource.Attribute{
 					Name:        "vpc_id",
-					Description: `(Optional) The ID of the VPC in which the specific VPC Endpoint is used. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The ID of the VPC in which the specific VPC Endpoint is used. More complex filters can be expressed using one or more ` + "`" + `filter` + "`" + ` sub-blocks, which take the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the field to filter by, as defined by [the underlying AWS API](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpcPeeringConnections.html).`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) Set of values that are accepted for the given field. A VPC Endpoint will be selected if any one of the given values matches. ## Attributes Reference In addition to all arguments above except ` + "`" + `filter` + "`" + `, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cidr_blocks",
@@ -10510,10 +10695,6 @@ a specific VPC endpoint.
 				resource.Attribute{
 					Name:        "subnet_ids",
 					Description: `One or more subnets in which the VPC Endpoint is located. Applicable for endpoints of type ` + "`" + `Interface` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_endpoint_type",
@@ -10572,10 +10753,6 @@ a specific VPC endpoint.
 				resource.Attribute{
 					Name:        "subnet_ids",
 					Description: `One or more subnets in which the VPC Endpoint is located. Applicable for endpoints of type ` + "`" + `Interface` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `A mapping of tags assigned to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_endpoint_type",
@@ -10937,6 +11114,35 @@ a specific VPN gateway.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_waf_rate_based_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieves an AWS WAF rate based rule id.`,
+			Description: `
+
+` + "`" + `aws_waf_rate_based_rule` + "`" + ` Retrieves a WAF Rate Based Rule Resource Id.
+
+`,
+			Icon:     "Security_Identity_and_Compliance/AWS-WAF.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the WAF rate based rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF rate based rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF rate based rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_waf_rule",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieves an AWS WAF rule id.`,
@@ -10971,7 +11177,7 @@ a specific VPN gateway.
 			ShortDescription: `Retrieves a WAF Web ACL id.`,
 			Description: `
 
-` + "`" + `aws_waf_rule` + "`" + ` Retrieves a WAF Web ACL Resource Id.
+` + "`" + `aws_waf_web_acl` + "`" + ` Retrieves a WAF Web ACL Resource Id.
 
 `,
 			Icon:     "Security_Identity_and_Compliance/AWS-WAF.svg",
@@ -10983,13 +11189,13 @@ a specific VPN gateway.
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the WAF WebACL.`,
+					Description: `The ID of the WAF Web ACL.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the WAF WebACL.`,
+					Description: `The ID of the WAF Web ACL.`,
 				},
 			},
 		},
@@ -11024,6 +11230,35 @@ a specific VPN gateway.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_wafregional_rate_based_rule",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieves an AWS WAF Regional rate based rule id.`,
+			Description: `
+
+` + "`" + `aws_wafregional_rate_based_rule` + "`" + ` Retrieves a WAF Regional Rate Based Rule Resource Id.
+
+`,
+			Icon:     "Security_Identity_and_Compliance/AWS-WAF.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the WAF Regional rate based rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF Regional rate based rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the WAF Regional rate based rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_wafregional_rule",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieves an AWS WAF Regional rule id.`,
@@ -11037,7 +11272,7 @@ a specific VPN gateway.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the WAF rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The name of the WAF Regional rule. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -11066,17 +11301,17 @@ a specific VPN gateway.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the WAF Web ACL. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The name of the WAF Regional Web ACL. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the WAF Regional WebACL.`,
+					Description: `The ID of the WAF Regional Web ACL.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the WAF Regional WebACL.`,
+					Description: `The ID of the WAF Regional Web ACL.`,
 				},
 			},
 		},
@@ -11188,87 +11423,91 @@ Use this data source to get information about a Workspaces Bundle.
 		"aws_elb_hosted_zone_id":                        61,
 		"aws_elb_service_account":                       62,
 		"aws_glue_script":                               63,
-		"aws_iam_account_alias":                         64,
-		"aws_iam_group":                                 65,
-		"aws_iam_instance_profile":                      66,
-		"aws_iam_policy":                                67,
-		"aws_iam_policy_document":                       68,
-		"aws_iam_role":                                  69,
-		"aws_iam_server_certificate":                    70,
-		"aws_iam_user":                                  71,
-		"aws_inspector_rules_packages":                  72,
-		"aws_instance":                                  73,
-		"aws_instances":                                 74,
-		"aws_internet_gateway":                          75,
-		"aws_iot_endpoint":                              76,
-		"aws_ip_ranges":                                 77,
-		"aws_kinesis_stream":                            78,
-		"aws_kms_alias":                                 79,
-		"aws_kms_ciphertext":                            80,
-		"aws_kms_key":                                   81,
-		"aws_kms_secrets":                               82,
-		"aws_lambda_function":                           83,
-		"aws_lambda_invocation":                         84,
-		"aws_lambda_layer_version":                      85,
-		"aws_launch_configuration":                      86,
-		"aws_launch_template":                           87,
-		"aws_lb":                                        88,
-		"aws_lb_listener":                               89,
-		"aws_lb_target_group":                           90,
-		"aws_mq_broker":                                 91,
-		"aws_msk_cluster":                               92,
-		"aws_msk_configuration":                         93,
-		"aws_nat_gateway":                               94,
-		"aws_network_acls":                              95,
-		"aws_network_interface":                         96,
-		"aws_network_interfaces":                        97,
-		"aws_organizations_organization":                98,
-		"aws_partition":                                 99,
-		"aws_prefix_list":                               100,
-		"aws_pricing_product":                           101,
-		"aws_ram_resource_share":                        102,
-		"aws_rds_cluster":                               103,
-		"aws_redshift_cluster":                          104,
-		"aws_redshift_service_account":                  105,
-		"aws_region":                                    106,
-		"aws_route":                                     107,
-		"aws_route53_delegation_set":                    108,
-		"aws_route53_resolver_rule":                     109,
-		"aws_route53_resolver_rules":                    110,
-		"aws_route53_zone":                              111,
-		"aws_route_table":                               112,
-		"aws_route_tables":                              113,
-		"aws_s3_bucket":                                 114,
-		"aws_s3_bucket_object":                          115,
-		"aws_s3_bucket_objects":                         116,
-		"aws_secretsmanager_secret":                     117,
-		"aws_secretsmanager_secret_version":             118,
-		"aws_security_group":                            119,
-		"aws_security_groups":                           120,
-		"aws_servicequotas_service":                     121,
-		"aws_servicequotas_service_quota":               122,
-		"aws_sns_topic":                                 123,
-		"aws_sqs_queue":                                 124,
-		"aws_ssm_document":                              125,
-		"aws_ssm_parameter":                             126,
-		"aws_storagegateway_local_disk":                 127,
-		"aws_subnet":                                    128,
-		"aws_subnet_ids":                                129,
-		"aws_transfer_server":                           130,
-		"aws_vpc":                                       131,
-		"aws_vpc_dhcp_options":                          132,
-		"aws_vpc_endpoint":                              133,
-		"aws_vpc_endpoint_service":                      134,
-		"aws_vpc_peering_connection":                    135,
-		"aws_vpcs":                                      136,
-		"aws_vpn_gateway":                               137,
-		"aws_waf_ipset":                                 138,
-		"aws_waf_rule":                                  139,
-		"aws_waf_web_acl":                               140,
-		"aws_wafregional_ipset":                         141,
-		"aws_wafregional_rule":                          142,
-		"aws_wafregional_web_acl":                       143,
-		"aws_workspaces_bundle":                         144,
+		"aws_guardduty_detector":                        64,
+		"aws_iam_account_alias":                         65,
+		"aws_iam_group":                                 66,
+		"aws_iam_instance_profile":                      67,
+		"aws_iam_policy":                                68,
+		"aws_iam_policy_document":                       69,
+		"aws_iam_role":                                  70,
+		"aws_iam_server_certificate":                    71,
+		"aws_iam_user":                                  72,
+		"aws_inspector_rules_packages":                  73,
+		"aws_instance":                                  74,
+		"aws_instances":                                 75,
+		"aws_internet_gateway":                          76,
+		"aws_iot_endpoint":                              77,
+		"aws_ip_ranges":                                 78,
+		"aws_kinesis_stream":                            79,
+		"aws_kms_alias":                                 80,
+		"aws_kms_ciphertext":                            81,
+		"aws_kms_key":                                   82,
+		"aws_kms_secrets":                               83,
+		"aws_lambda_function":                           84,
+		"aws_lambda_invocation":                         85,
+		"aws_lambda_layer_version":                      86,
+		"aws_launch_configuration":                      87,
+		"aws_launch_template":                           88,
+		"aws_lb":                                        89,
+		"aws_lb_listener":                               90,
+		"aws_lb_target_group":                           91,
+		"aws_mq_broker":                                 92,
+		"aws_msk_cluster":                               93,
+		"aws_msk_configuration":                         94,
+		"aws_nat_gateway":                               95,
+		"aws_network_acls":                              96,
+		"aws_network_interface":                         97,
+		"aws_network_interfaces":                        98,
+		"aws_organizations_organization":                99,
+		"aws_partition":                                 100,
+		"aws_prefix_list":                               101,
+		"aws_pricing_product":                           102,
+		"aws_qldb_ledger":                               103,
+		"aws_ram_resource_share":                        104,
+		"aws_rds_cluster":                               105,
+		"aws_redshift_cluster":                          106,
+		"aws_redshift_service_account":                  107,
+		"aws_region":                                    108,
+		"aws_route":                                     109,
+		"aws_route53_delegation_set":                    110,
+		"aws_route53_resolver_rule":                     111,
+		"aws_route53_resolver_rules":                    112,
+		"aws_route53_zone":                              113,
+		"aws_route_table":                               114,
+		"aws_route_tables":                              115,
+		"aws_s3_bucket":                                 116,
+		"aws_s3_bucket_object":                          117,
+		"aws_s3_bucket_objects":                         118,
+		"aws_secretsmanager_secret":                     119,
+		"aws_secretsmanager_secret_version":             120,
+		"aws_security_group":                            121,
+		"aws_security_groups":                           122,
+		"aws_servicequotas_service":                     123,
+		"aws_servicequotas_service_quota":               124,
+		"aws_sns_topic":                                 125,
+		"aws_sqs_queue":                                 126,
+		"aws_ssm_document":                              127,
+		"aws_ssm_parameter":                             128,
+		"aws_storagegateway_local_disk":                 129,
+		"aws_subnet":                                    130,
+		"aws_subnet_ids":                                131,
+		"aws_transfer_server":                           132,
+		"aws_vpc":                                       133,
+		"aws_vpc_dhcp_options":                          134,
+		"aws_vpc_endpoint":                              135,
+		"aws_vpc_endpoint_service":                      136,
+		"aws_vpc_peering_connection":                    137,
+		"aws_vpcs":                                      138,
+		"aws_vpn_gateway":                               139,
+		"aws_waf_ipset":                                 140,
+		"aws_waf_rate_based_rule":                       141,
+		"aws_waf_rule":                                  142,
+		"aws_waf_web_acl":                               143,
+		"aws_wafregional_ipset":                         144,
+		"aws_wafregional_rate_based_rule":               145,
+		"aws_wafregional_rule":                          146,
+		"aws_wafregional_web_acl":                       147,
+		"aws_workspaces_bundle":                         148,
 	}
 )
 

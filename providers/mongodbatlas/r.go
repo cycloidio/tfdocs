@@ -299,15 +299,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_name",
-					Description: `(Required) Cloud service provider on which the servers are provisioned.`,
+					Description: `(Required) Cloud service provider on which the servers are provisioned. The possible values are: - ` + "`" + `AWS` + "`" + ` - Amazon AWS - ` + "`" + `GCP` + "`" + ` - Google Cloud Platform - ` + "`" + `AZURE` + "`" + ` - Microsoft Azure - ` + "`" + `TENANT` + "`" + ` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. The possible values are: - ` + "`" + `AWS` + "`" + ` - Amazon AWS - ` + "`" + `GCP` + "`" + ` - Google Cloud Platform - ` + "`" + `AZURE` + "`" + ` - Microsoft Azure - ` + "`" + `TENANT` + "`" + ` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is either M2 or M5.`,
-				},
-				resource.Attribute{
-					Name:        "provider_instance_size_name",
-					Description: `(Required) Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) ` + "`" + `providerSettings.instanceSizeName` + "`" + ` for valid values and default resources.`,
+					Description: `(Required) Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.`,
 				},
 				resource.Attribute{
 					Name:        "provider_instance_size_name",
@@ -331,11 +327,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `(Optional) The size in gigabytes of the server’s root volume. You can add capacity by increasing this number, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer. The minimum disk size for dedicated clusters is 10GB for AWS and GCP, and 32GB for Azure. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.`,
+					Description: `(Optional - GCP/AWS Only) The size in gigabytes of the server’s root volume. You can add capacity by increasing this number, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer. The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.`,
 				},
 				resource.Attribute{
 					Name:        "encryption_at_rest_provider",
-					Description: `(Optional) Set the Encryption at Rest parameter.`,
+					Description: `(Optional) Set the Encryption at Rest parameter. Possible values are AWS, GCP, AZURE or NONE. Requires M10 or greater and for backup_enabled to be false or omitted.`,
 				},
 				resource.Attribute{
 					Name:        "mongo_db_major_version",
@@ -351,7 +347,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backing_provider_name",
-					Description: `(Optional) Cloud service provider on which the server for a multi-tenant cluster is provisioned. This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5. The possible values are: - AWS - Amazon AWS - GCP - Google Cloud Platform - AZURE - Microsoft Azure`,
+					Description: `(Optional) Cloud service provider on which the server for a multi-tenant cluster is provisioned. (Note: When upgrading from a multi-tenant cluster to a dedicated cluster remove this argument.) This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5. The possible values are: - AWS - Amazon AWS - GCP - Google Cloud Platform - AZURE - Microsoft Azure`,
 				},
 				resource.Attribute{
 					Name:        "provider_disk_iops",
@@ -359,7 +355,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_disk_type_name",
-					Description: `(Optional) Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.`,
+					Description: `(Optional - Azure Only) Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName. Example disk types and associated storage sizes: PP4 - 32GB, P6 - 64GB, P10 - 128GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB. More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.`,
 				},
 				resource.Attribute{
 					Name:        "provider_encrypt_ebs_volume",
@@ -367,11 +363,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_region_name",
-					Description: `(Optional) Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.`,
+					Description: `(Optional) Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.`,
 				},
 				resource.Attribute{
 					Name:        "provider_volume_type",
-					Description: `(Optional) The type of the volume. The possible values are: ` + "`" + `STANDARD` + "`" + ` and ` + "`" + `PROVISIONED` + "`" + `.`,
+					Description: `(AWS - Optional) The type of the volume. The possible values are: ` + "`" + `STANDARD` + "`" + ` and ` + "`" + `PROVISIONED` + "`" + `. ` + "`" + `PROVISIONED` + "`" + ` required if setting IOPS higher than the default instance IOPS.`,
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
@@ -423,7 +419,35 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `(Optional) The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region. ### Advanced Configuration Options ->`,
+				},
+				resource.Attribute{
+					Name:        "fail_index_key_too_long",
+					Description: `(Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.`,
+				},
+				resource.Attribute{
+					Name:        "javascript_enabled",
+					Description: `(Optional) When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "minimum_enabled_tls_protocol",
+					Description: `(Optional) Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections.Valid values are: - TLS1_0 - TLS1_1 - TLS1_2`,
+				},
+				resource.Attribute{
+					Name:        "no_table_scan",
+					Description: `(Optional) When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.`,
+				},
+				resource.Attribute{
+					Name:        "oplog_size_mb",
+					Description: `(Optional) The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.`,
+				},
+				resource.Attribute{
+					Name:        "sample_size_bi_connector",
+					Description: `(Optional) Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "sample_refresh_interval_bi_connector",
+					Description: `(Optional) Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -898,12 +922,20 @@ var (
 					Description: `GCP project ID of the owner of the network peer.`,
 				},
 				resource.Attribute{
+					Name:        "atlas_gcp_project_id",
+					Description: `The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.`,
+				},
+				resource.Attribute{
+					Name:        "atlas_vpc_name",
+					Description: `The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.`,
+				},
+				resource.Attribute{
 					Name:        "network_name",
 					Description: `Name of the network peer to which Atlas connects.`,
 				},
 				resource.Attribute{
 					Name:        "error_message",
-					Description: `When ` + "`" + `"status" : "FAILED"` + "`" + `, Atlas provides a description of the error. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEER-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
+					Description: `When ` + "`" + `"status" : "FAILED"` + "`" + `, Atlas provides a description of the error. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -980,12 +1012,52 @@ var (
 					Description: `GCP project ID of the owner of the network peer.`,
 				},
 				resource.Attribute{
+					Name:        "atlas_gcp_project_id",
+					Description: `The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that it is need to set up the reciprocal connection.`,
+				},
+				resource.Attribute{
+					Name:        "atlas_vpc_name",
+					Description: `The Atlas VPC Name is used by your atlas clister that it is need to set up the reciprocal connection.`,
+				},
+				resource.Attribute{
 					Name:        "network_name",
 					Description: `Name of the network peer to which Atlas connects.`,
 				},
 				resource.Attribute{
 					Name:        "error_message",
-					Description: `When ` + "`" + `"status" : "FAILED"` + "`" + `, Atlas provides a description of the error. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEER-ID` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
+					Description: `When ` + "`" + `"status" : "FAILED"` + "`" + `, Atlas provides a description of the error. ## Import Clusters can be imported using project ID and network peering peering id, in the format ` + "`" + `PROJECTID-PEERID-PROVIDERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_network_peering.my_peering 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a-AWS ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_private_ip_mode",
+			Category:         "Resources",
+			ShortDescription: `Provides a Private IP Mode resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"ip",
+				"mode",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique ID for the project to enable Only Private IP Mode.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Indicates whether Connect via Peering Only mode is enabled or disabled for an Atlas project. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The project id. ## Import Project must be imported using project ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_private_ip_mode.my_private_ip_mode 5d09d6a59ccf6445652a444a ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The project id. ## Import Project must be imported using project ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_private_ip_mode.my_private_ip_mode 5d09d6a59ccf6445652a444a ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/get-private-ip-mode-for-project/)`,
 				},
 			},
 		},
@@ -1086,8 +1158,9 @@ var (
 		"mongodbatlas_encryption_at_rest":                  4,
 		"mongodbatlas_network_container":                   5,
 		"mongodbatlas_network_peering":                     6,
-		"mongodbatlas_project":                             7,
-		"mongodbatlas_project_ip_whitelist":                8,
+		"mongodbatlas_private_ip_mode":                     7,
+		"mongodbatlas_project":                             8,
+		"mongodbatlas_project_ip_whitelist":                9,
 	}
 )
 

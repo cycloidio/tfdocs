@@ -46,6 +46,10 @@ var (
 					Description: `(Optional) Controls how the read-write server is used in the query pool. If this values is set to ` + "`" + `All` + "`" + ` then read-write servers are also used for queries. Otherwise with ` + "`" + `ReadOnly` + "`" + ` these servers do not participate in query operations.`,
 				},
 				resource.Attribute{
+					Name:        "backup_blob_container_uri",
+					Description: `(Optional) URI and SAS token for a blob container to store backups.`,
+				},
+				resource.Attribute{
 					Name:        "enable_power_bi_service",
 					Description: `(Optional) Indicates if the Power BI service is allowed to access or not.`,
 				},
@@ -67,13 +71,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Analysis Services Server. ## Import Analysis Services Server can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_analysis_services_server.server /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.AnalysisServices/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Analysis Services Server.`,
+				},
+				resource.Attribute{
+					Name:        "server_full_name",
+					Description: `The full name of the Analysis Services Server. ## Import Analysis Services Server can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_analysis_services_server.server /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.AnalysisServices/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Analysis Services Server. ## Import Analysis Services Server can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_analysis_services_server.server /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.AnalysisServices/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Analysis Services Server.`,
+				},
+				resource.Attribute{
+					Name:        "server_full_name",
+					Description: `The full name of the Analysis Services Server. ## Import Analysis Services Server can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_analysis_services_server.server /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourcegroup1/providers/Microsoft.AnalysisServices/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -109,8 +121,8 @@ var (
 					Description: `(Required) The email of publisher/company.`,
 				},
 				resource.Attribute{
-					Name:        "sku",
-					Description: `(Required) A ` + "`" + `sku` + "`" + ` block as documented below. ---`,
+					Name:        "sku_name",
+					Description: `(Required) ` + "`" + `sku_name` + "`" + ` is a string consisting of two parts separated by an underscore(\_). The fist part is the ` + "`" + `name` + "`" + `, valid values include: ` + "`" + `Developer` + "`" + `, ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + ` and ` + "`" + `Premium` + "`" + `. The second part is the ` + "`" + `capacity` + "`" + ` (e.g. the number of deployed units of the ` + "`" + `sku` + "`" + `), which must be a positive ` + "`" + `integer` + "`" + ` (e.g. ` + "`" + `Developer_1` + "`" + `). ---`,
 				},
 				resource.Attribute{
 					Name:        "additional_location",
@@ -241,40 +253,68 @@ var (
 					Description: `(Optional) Should Client Certificate Negotiation be enabled for this Hostname? Defaults to ` + "`" + `false` + "`" + `. --- A ` + "`" + `security` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
+					Name:        "enable_backend_ssl30",
+					Description: `(Optional) Should SSL 3.0 be enabled on the backend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_backend_tls10",
+					Description: `(Optional) Should TLS 1.0 be enabled on the backend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_backend_tls11",
+					Description: `(Optional) Should TLS 1.1 be enabled on the backend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_frontend_ssl30",
+					Description: `(Optional) Should SSL 3.0 be enabled on the frontend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_frontend_tls10",
+					Description: `(Optional) Should TLS 1.0 be enabled on the frontend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_frontend_tls11",
+					Description: `(Optional) Should TLS 1.1 be enabled on the frontend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_triple_des_ciphers",
+					Description: `(Optional) Should the ` + "`" + `TLS_RSA_WITH_3DES_EDE_CBC_SHA` + "`" + ` cipher be enabled for alL TLS versions (1.0, 1.1 and 1.2)? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
 					Name:        "disable_backend_ssl30",
-					Description: `(Optional) Should SSL 3.0 be disabled on the backend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+					Description: `(Optional) Should SSL 3.0 be disabled on the backend of the gateway? This property was mistakenly inverted and ` + "`" + `true` + "`" + ` actually enables it. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "disable_backend_tls10",
-					Description: `(Optional) Should TLS 1.0 be disabled on the backend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+					Description: `(Optional) Should TLS 1.0 be disabled on the backend of the gateway? This property was mistakenly inverted and ` + "`" + `true` + "`" + ` actually enables it. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "disable_backend_tls11",
-					Description: `(Optional) Should TLS 1.1 be disabled on the backend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+					Description: `(Optional) Should TLS 1.1 be disabled on the backend of the gateway? This property was mistakenly inverted and ` + "`" + `true` + "`" + ` actually enables it. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "disable_frontend_ssl30",
-					Description: `(Optional) Should SSL 3.0 be disabled on the frontend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+					Description: `(Optional) Should SSL 3.0 be disabled on the frontend of the gateway? This property was mistakenly inverted and ` + "`" + `true` + "`" + ` actually enables it. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "disable_frontend_tls10",
-					Description: `(Optional) Should TLS 1.0 be disabled on the frontend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+					Description: `(Optional) Should TLS 1.0 be disabled on the frontend of the gateway? This property was mistakenly inverted and ` + "`" + `true` + "`" + ` actually enables it. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "disable_frontend_tls11",
-					Description: `(Optional) Should TLS 1.1 be disabled on the frontend of the gateway? Defaults to ` + "`" + `false` + "`" + `. ->`,
+					Description: `(Optional) Should TLS 1.1 be disabled on the frontend of the gateway? This property was mistakenly inverted and ` + "`" + `true` + "`" + ` actually enables it. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "disable_triple_des_ciphers",
-					Description: `(Optional) Should the ` + "`" + `TLS_RSA_WITH_3DES_EDE_CBC_SHA` + "`" + ` cipher be disabled for alL TLS versions (1.0, 1.1 and 1.2)? Defaults to ` + "`" + `false` + "`" + `. ->`,
+					Description: `(Optional) Should the ` + "`" + `TLS_RSA_WITH_3DES_EDE_CBC_SHA` + "`" + ` cipher be disabled for alL TLS versions (1.0, 1.1 and 1.2)? This property was mistakenly inverted and ` + "`" + `true` + "`" + ` actually enables it. Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Specifies the Pricing Tier for the API Management Service. Possible values include: ` + "`" + `Developer` + "`" + `, ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + ` and ` + "`" + `Premium` + "`" + `.`,
+					Description: `(Required) Specifies the Pricing Tier for the API Management Service. Possible values include: Developer, Basic, Standard and Premium.`,
 				},
 				resource.Attribute{
 					Name:        "capacity",
-					Description: `(Required) Specifies the Pricing Capacity for the API Management Service. --- A ` + "`" + `sign_in` + "`" + ` block supports the following:`,
+					Description: `(Required) Specifies the Pricing Capacity for the API Management Service. ->`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -350,7 +390,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID associated with this Managed Service Identity. ## Import API Management Services can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Tenant ID associated with this Managed Service Identity. ## Import API Management Services can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -404,7 +444,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID associated with this Managed Service Identity. ## Import API Management Services can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Tenant ID associated with this Managed Service Identity. ## Import API Management Services can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -465,7 +505,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subscription_key_parameter_names",
-					Description: `(Optional) A ` + "`" + `subscription_key_parameter_names` + "`" + ` block as documented below. --- A ` + "`" + `import` + "`" + ` block supports the following:`,
+					Description: `(Optional) A ` + "`" + `subscription_key_parameter_names` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) The Version number of this API, if this API is versioned.`,
+				},
+				resource.Attribute{
+					Name:        "version_set_id",
+					Description: `(Optional) The ID of the Version Set which this API is associated with. ->`,
 				},
 				resource.Attribute{
 					Name:        "content_format",
@@ -513,7 +561,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_set_id",
-					Description: `The ID of the Version Set which this API is associated with. ## Import API Management API's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Version Set which this API is associated with. ## Import API Management API's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -535,7 +583,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_set_id",
-					Description: `The ID of the Version Set which this API is associated with. ## Import API Management API's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Version Set which this API is associated with. ## Import API Management API's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -745,13 +793,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management API Operation. ## Import API Management API Operation's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_operation.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/operations/operation1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management API Operation. ## Import API Management API Operation's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_operation.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/operations/operation1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management API Operation. ## Import API Management API Operation's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_operation.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/operations/operation1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management API Operation. ## Import API Management API Operation's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_operation.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/apis/api1/operations/operation1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -882,21 +930,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management API Schema. ## Import API Management API Schema's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_schema.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/schemas/schema1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management API Schema. ## Import API Management API Schema's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_schema.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/schemas/schema1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management API Schema. ## Import API Management API Schema's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_schema.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/schemas/schema1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management API Schema. ## Import API Management API Schema's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_schema.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/schemas/schema1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "azurerm_api_management_version_set",
+			Type:             "azurerm_api_management_api_version_set",
 			Category:         "API Management Resources",
-			ShortDescription: `Manages an API Version Set within a API Management Service.`,
+			ShortDescription: `Manages an API Version Set within an API Management Service.`,
 			Description:      ``,
 			Keywords: []string{
 				"api",
@@ -939,13 +987,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Version Set. ## Import API Version Set can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_version_set.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/api-version-sets/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Version Set. ## Import API Version Set can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_version_set.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/api-version-sets/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Version Set. ## Import API Version Set can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_version_set.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/api-version-sets/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Version Set. ## Import API Version Set can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_api_version_set.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-resources/providers/Microsoft.ApiManagement/service/example-apim/api-version-sets/example-apimp ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1192,13 +1240,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management API. ## Import API Management backends can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_backend.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/backends/backend1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management API. ## Import API Management backends can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_backend.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/backends/backend1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management API. ## Import API Management backends can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_backend.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/backends/backend1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management API. ## Import API Management backends can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_backend.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/backends/backend1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1248,7 +1296,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
-					Description: `The Thumbprint of this Certificate. ## Import API Management Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_certificate.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/certificates/certificate1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Thumbprint of this Certificate. ## Import API Management Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/certificates/certificate1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1266,7 +1314,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
-					Description: `The Thumbprint of this Certificate. ## Import API Management Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_certificate.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/certificates/certificate1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Thumbprint of this Certificate. ## Import API Management Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/certificates/certificate1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1475,13 +1523,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management OpenID Connect Provider. ## Import API Management OpenID Connect Providers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_openid_connect_provider.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/openidConnectProviders/provider1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management OpenID Connect Provider. ## Import API Management OpenID Connect Providers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_openid_connect_provider.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/openidConnectProviders/provider1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management OpenID Connect Provider. ## Import API Management OpenID Connect Providers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_openid_connect_provider.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/openidConnectProviders/provider1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management OpenID Connect Provider. ## Import API Management OpenID Connect Providers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_openid_connect_provider.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/openidConnectProviders/provider1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1539,13 +1587,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management Product. ## Import API Management Products can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/products/myproduct ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management Product. ## Import API Management Products can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/products/myproduct ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management Product. ## Import API Management Products can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/products/myproduct ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management Product. ## Import API Management Products can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_product.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/products/myproduct ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1761,7 +1809,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `(Optional) The state of this Subscription. Possible values are ` + "`" + `Active` + "`" + `, ` + "`" + `Cancelled` + "`" + `, ` + "`" + `Expired` + "`" + `, ` + "`" + `Rejected` + "`" + `, ` + "`" + `Submitted` + "`" + ` and ` + "`" + `Suspended` + "`" + `. Defaults to ` + "`" + `Submitted` + "`" + `.`,
+					Description: `(Optional) The state of this Subscription. Possible values are ` + "`" + `active` + "`" + `, ` + "`" + `cancelled` + "`" + `, ` + "`" + `expired` + "`" + `, ` + "`" + `rejected` + "`" + `, ` + "`" + `submitted` + "`" + ` and ` + "`" + `suspended` + "`" + `. Defaults to ` + "`" + `submitted` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "subscription_id",
@@ -1833,13 +1881,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management User. ## Import API Management Users can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_user.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/users/abc123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management User. ## Import API Management Users can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_user.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/users/abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the API Management User. ## Import API Management Users can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_user.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/users/abc123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the API Management User. ## Import API Management Users can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_api_management_user.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.ApiManagement/service/instance1/users/abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1974,6 +2022,14 @@ var (
 				},
 				resource.Attribute{
 					Name:        "azure_blob_storage",
+					Description: `(Optional) An ` + "`" + `azure_blob_storage` + "`" + ` block as defined below. --- An ` + "`" + `http_logs` + "`" + ` block supports`,
+				},
+				resource.Attribute{
+					Name:        "file_system",
+					Description: `(Optional) A ` + "`" + `file_system` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage",
 					Description: `(Optional) An ` + "`" + `azure_blob_storage` + "`" + ` block as defined below. --- An ` + "`" + `azure_blob_storage` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
@@ -1986,11 +2042,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retention_in_days",
-					Description: `(Required) The number of days to retain logs for. --- An ` + "`" + `http_logs` + "`" + ` block supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "file_system",
-					Description: `(Optional) A ` + "`" + `file_system` + "`" + ` block as defined below. --- A ` + "`" + `file_system` + "`" + ` block supports the following:`,
+					Description: `(Required) The number of days to retain logs for. --- A ` + "`" + `file_system` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "retention_in_days",
@@ -2034,11 +2086,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "java_version",
-					Description: `(Optional) The version of Java to use. If specified ` + "`" + `java_container` + "`" + ` and ` + "`" + `java_container_version` + "`" + ` must also be specified. Possible values are ` + "`" + `1.7` + "`" + `, ` + "`" + `1.8` + "`" + ` and ` + "`" + `11` + "`" + `.`,
+					Description: `(Optional) The version of Java to use. If specified ` + "`" + `java_container` + "`" + ` and ` + "`" + `java_container_version` + "`" + ` must also be specified. Possible values are ` + "`" + `1.7` + "`" + `, ` + "`" + `1.8` + "`" + ` and ` + "`" + `11` + "`" + ` and their specific versions - except for Java 11 (e.g. ` + "`" + `1.7.0_80` + "`" + `, ` + "`" + `1.8.0_181` + "`" + `, ` + "`" + `11` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "java_container",
-					Description: `(Optional) The Java Container to use. If specified ` + "`" + `java_version` + "`" + ` and ` + "`" + `java_container_version` + "`" + ` must also be specified. Possible values are ` + "`" + `JETTY` + "`" + ` and ` + "`" + `TOMCAT` + "`" + `.`,
+					Description: `(Optional) The Java Container to use. If specified ` + "`" + `java_version` + "`" + ` and ` + "`" + `java_container_version` + "`" + ` must also be specified. Possible values are ` + "`" + `JAVA` + "`" + `, ` + "`" + `JETTY` + "`" + `, and ` + "`" + `TOMCAT` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "java_container_version",
@@ -2066,7 +2118,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "php_version",
-					Description: `(Optional) The version of PHP to use in this App Service. Possible values are ` + "`" + `5.5` + "`" + `, ` + "`" + `5.6` + "`" + `, ` + "`" + `7.0` + "`" + `, ` + "`" + `7.1` + "`" + ` and ` + "`" + `7.2` + "`" + `.`,
+					Description: `(Optional) The version of PHP to use in this App Service. Possible values are ` + "`" + `5.5` + "`" + `, ` + "`" + `5.6` + "`" + `, ` + "`" + `7.0` + "`" + `, ` + "`" + `7.1` + "`" + `, ` + "`" + `7.2` + "`" + `, and ` + "`" + `7.3` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "python_version",
@@ -2082,7 +2134,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scm_type",
-					Description: `(Optional) The type of Source Control enabled for this App Service. Defaults to ` + "`" + `None` + "`" + `. Possible values are: ` + "`" + `BitbucketGit` + "`" + `, ` + "`" + `BitbucketHg` + "`" + `, ` + "`" + `CodePlexGit` + "`" + `, ` + "`" + `CodePlexHg` + "`" + `, ` + "`" + `Dropbox` + "`" + `, ` + "`" + `ExternalGit` + "`" + `, ` + "`" + `ExternalHg` + "`" + `, ` + "`" + `GitHub` + "`" + `, ` + "`" + `LocalGit` + "`" + `, ` + "`" + `None` + "`" + `, ` + "`" + `OneDrive` + "`" + `, ` + "`" + `Tfs` + "`" + `, ` + "`" + `VSO` + "`" + ` and ` + "`" + `VSTSRM` + "`" + ``,
+					Description: `(Optional) The type of Source Control enabled for this App Service. Defaults to ` + "`" + `None` + "`" + `. Possible values are: ` + "`" + `BitbucketGit` + "`" + `, ` + "`" + `BitbucketHg` + "`" + `, ` + "`" + `CodePlexGit` + "`" + `, ` + "`" + `CodePlexHg` + "`" + `, ` + "`" + `Dropbox` + "`" + `, ` + "`" + `ExternalGit` + "`" + `, ` + "`" + `ExternalHg` + "`" + `, ` + "`" + `GitHub` + "`" + `, ` + "`" + `LocalGit` + "`" + `, ` + "`" + `None` + "`" + `, ` + "`" + `OneDrive` + "`" + `, ` + "`" + `Tfs` + "`" + `, ` + "`" + `VSO` + "`" + `, and ` + "`" + `VSTSRM` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "use_32_bit_worker_process",
@@ -2186,11 +2238,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Required) The IP Address used for this IP Restriction.`,
+					Description: `(Optional) The IP Address used for this IP Restriction.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_mask",
-					Description: `(Optional) The Subnet mask used for this IP Restriction. Defaults to ` + "`" + `255.255.255.255` + "`" + `. --- A ` + "`" + `microsoft` + "`" + ` block supports the following:`,
+					Description: `(Optional) The Subnet mask used for this IP Restriction. Defaults to ` + "`" + `255.255.255.255` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_subnet_id",
+					Description: `(Optional.The Virtual Network Subnet ID used for this IP Restriction. ->`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -2262,7 +2318,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this App Service. -> You can access the Principal ID via ` + "`" + `${azurerm_app_service.test.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_app_service.test.identity.0.tenant_id}` + "`" + ` --- A ` + "`" + `site_credential` + "`" + ` block exports the following:`,
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this App Service. -> You can access the Principal ID via ` + "`" + `${azurerm_app_service.example.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_app_service.example.identity.0.tenant_id}` + "`" + ` --- A ` + "`" + `site_credential` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -2316,7 +2372,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this App Service. -> You can access the Principal ID via ` + "`" + `${azurerm_app_service.test.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_app_service.test.identity.0.tenant_id}` + "`" + ` --- A ` + "`" + `site_credential` + "`" + ` block exports the following:`,
+					Description: `The Tenant ID for the Service Principal associated with the Managed Service Identity of this App Service. -> You can access the Principal ID via ` + "`" + `${azurerm_app_service.example.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_app_service.example.identity.0.tenant_id}` + "`" + ` --- A ` + "`" + `site_credential` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -2368,6 +2424,287 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_app_service_certificate",
+			Category:         "App Service (Web Apps) Resources",
+			ShortDescription: `Manages an App Service certificate.`,
+			Description:      ``,
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the certificate. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the certificate. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "pfx_blob",
+					Description: `(Optional) The base64-encoded contents of the certificate. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password to access the certificate's private key. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_secret_id",
+					Description: `(Optional) The ID of the Key Vault secret. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The App Service certificate ID.`,
+				},
+				resource.Attribute{
+					Name:        "friendly_name",
+					Description: `The friendly name of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "subject_name",
+					Description: `The subject name of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "host_names",
+					Description: `List of host names the certificate applies to.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `The name of the certificate issuer.`,
+				},
+				resource.Attribute{
+					Name:        "issue_date",
+					Description: `The issue date for the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The expiration date for the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `The thumbprint for the certificate. ## Import App Service certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/certificates/certificate1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The App Service certificate ID.`,
+				},
+				resource.Attribute{
+					Name:        "friendly_name",
+					Description: `The friendly name of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "subject_name",
+					Description: `The subject name of the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "host_names",
+					Description: `List of host names the certificate applies to.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `The name of the certificate issuer.`,
+				},
+				resource.Attribute{
+					Name:        "issue_date",
+					Description: `The issue date for the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `The expiration date for the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `The thumbprint for the certificate. ## Import App Service certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/certificates/certificate1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_app_service_certificate_order",
+			Category:         "App Service (Web Apps) Resources",
+			ShortDescription: `Manages an App Service Certificate Order.`,
+			Description:      ``,
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+				"certificate",
+				"order",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the certificate. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the certificate. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `(Optional) true if the certificate should be automatically renewed when it expires; otherwise, false.`,
+				},
+				resource.Attribute{
+					Name:        "csr",
+					Description: `(Optional) Last CSR that was created for this order.`,
+				},
+				resource.Attribute{
+					Name:        "distinguished_name",
+					Description: `(Optional) The Distinguished Name for the App Service Certificate Order. ->`,
+				},
+				resource.Attribute{
+					Name:        "key_size",
+					Description: `(Optional) Certificate key size.`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `(Optional) Certificate product type, such as ` + "`" + `Standard` + "`" + ` or ` + "`" + `WildCard` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "validity_in_years",
+					Description: `(Optional) Duration in years (must be between 1 and 3). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The App Service Certificate Order ID.`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `State of the Key Vault secret. A ` + "`" + `certificates` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "domain_verification_token",
+					Description: `Domain verification token.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current order status.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `Certificate expiration time.`,
+				},
+				resource.Attribute{
+					Name:        "is_private_key_external",
+					Description: `Whether the private key is external or not.`,
+				},
+				resource.Attribute{
+					Name:        "app_service_certificate_not_renewable_reasons",
+					Description: `Reasons why App Service Certificate is not renewable at the current moment.`,
+				},
+				resource.Attribute{
+					Name:        "signed_certificate_thumbprint",
+					Description: `Certificate thumbprint for signed certificate.`,
+				},
+				resource.Attribute{
+					Name:        "root_thumbprint",
+					Description: `Certificate thumbprint for root certificate.`,
+				},
+				resource.Attribute{
+					Name:        "intermediate_thumbprint",
+					Description: `Certificate thumbprint intermediate certificate.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource. --- ` + "`" + `certificates` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "certificate_name",
+					Description: `The name of the App Service Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_id",
+					Description: `Key Vault resource Id.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_secret_name",
+					Description: `Key Vault secret name.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_state",
+					Description: `Status of the Key Vault secret. ## Import App Service certificate order can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_certificate_order.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.CertificateRegistration/certificateOrders/certificateorder1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The App Service Certificate Order ID.`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `State of the Key Vault secret. A ` + "`" + `certificates` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "domain_verification_token",
+					Description: `Domain verification token.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Current order status.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `Certificate expiration time.`,
+				},
+				resource.Attribute{
+					Name:        "is_private_key_external",
+					Description: `Whether the private key is external or not.`,
+				},
+				resource.Attribute{
+					Name:        "app_service_certificate_not_renewable_reasons",
+					Description: `Reasons why App Service Certificate is not renewable at the current moment.`,
+				},
+				resource.Attribute{
+					Name:        "signed_certificate_thumbprint",
+					Description: `Certificate thumbprint for signed certificate.`,
+				},
+				resource.Attribute{
+					Name:        "root_thumbprint",
+					Description: `Certificate thumbprint for root certificate.`,
+				},
+				resource.Attribute{
+					Name:        "intermediate_thumbprint",
+					Description: `Certificate thumbprint intermediate certificate.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource. --- ` + "`" + `certificates` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "certificate_name",
+					Description: `The name of the App Service Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_id",
+					Description: `Key Vault resource Id.`,
+				},
+				resource.Attribute{
+					Name:        "key_vault_secret_name",
+					Description: `Key Vault secret name.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_state",
+					Description: `Status of the Key Vault secret. ## Import App Service certificate order can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_certificate_order.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.CertificateRegistration/certificateOrders/certificateorder1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_app_service_custom_hostname_binding",
 			Category:         "App Service (Web Apps) Resources",
 			ShortDescription: `Manages a Hostname Binding within an App Service.`,
@@ -2392,17 +2729,33 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which the App Service exists. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The name of the resource group in which the App Service exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_state",
+					Description: `(Optional) The SSL type. Possible values are ` + "`" + `IpBasedEnabled` + "`" + ` and ` + "`" + `SniEnabled` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `(Optional) The SSL certificate thumbprint. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the App Service Custom Hostname Binding ## Import App Service Custom Hostname Bindings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_custom_hostname_binding.mywebsite /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/instance1/hostNameBindings/mywebsite.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the App Service Custom Hostname Binding`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip",
+					Description: `The virtual IP address assigned to the hostname if IP based SSL is enabled. ## Import App Service Custom Hostname Bindings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_custom_hostname_binding.mywebsite /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/instance1/hostNameBindings/mywebsite.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the App Service Custom Hostname Binding ## Import App Service Custom Hostname Bindings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_custom_hostname_binding.mywebsite /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/instance1/hostNameBindings/mywebsite.com ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the App Service Custom Hostname Binding`,
+				},
+				resource.Attribute{
+					Name:        "virtual_ip",
+					Description: `The virtual IP address assigned to the hostname if IP based SSL is enabled. ## Import App Service Custom Hostname Bindings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_custom_hostname_binding.mywebsite /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/instance1/hostNameBindings/mywebsite.com ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2434,11 +2787,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kind",
-					Description: `(Optional) The kind of the App Service Plan to create. Possible values are ` + "`" + `Windows` + "`" + ` (also available as ` + "`" + `App` + "`" + `), ` + "`" + `Linux` + "`" + `, ` + "`" + `elastic` + "`" + ` (for Premium Consumption) and ` + "`" + `FunctionApp` + "`" + ` (for a Consumption Plan). Defaults to ` + "`" + `Windows` + "`" + `. Changing this forces a new resource to be created.`,
+					Description: `(Optional) The kind of the App Service Plan to create. Possible values are ` + "`" + `Windows` + "`" + ` (also available as ` + "`" + `App` + "`" + `), ` + "`" + `Linux` + "`" + `, ` + "`" + `elastic` + "`" + ` (for Premium Consumption) and ` + "`" + `FunctionApp` + "`" + ` (for a Consumption Plan). Defaults to ` + "`" + `Windows` + "`" + `. Changing this forces a new resource to be created. ~>`,
 				},
 				resource.Attribute{
 					Name:        "maximum_elastic_worker_count",
-					Description: `The maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan. ~>`,
+					Description: `The maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan.`,
 				},
 				resource.Attribute{
 					Name:        "sku",
@@ -2478,7 +2831,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maximum_number_of_workers",
-					Description: `The maximum number of workers supported with the App Service Plan's sku. ## Import App Service Plan instances can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_plan.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/serverfarms/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The maximum number of workers supported with the App Service Plan's sku. ## Import App Service Plan instances can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_plan.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/serverFarms/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2488,7 +2841,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maximum_number_of_workers",
-					Description: `The maximum number of workers supported with the App Service Plan's sku. ## Import App Service Plan instances can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_plan.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/serverfarms/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The maximum number of workers supported with the App Service Plan's sku. ## Import App Service Plan instances can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_plan.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/serverFarms/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2568,7 +2921,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of the Connection String. Possible values are ` + "`" + `APIHub` + "`" + `, ` + "`" + `Custom` + "`" + `, ` + "`" + `DocDb` + "`" + `, ` + "`" + `EventHub` + "`" + `, ` + "`" + `MySQL` + "`" + `, ` + "`" + `NotificationHub` + "`" + `, ` + "`" + `PostgreSQL` + "`" + `, ` + "`" + `RedisCache` + "`" + `, ` + "`" + `ServiceBus` + "`" + `, ` + "`" + `SQLAzure` + "`" + ` and ` + "`" + `SQLServer` + "`" + `.`,
+					Description: `(Required) The type of the Connection String. Possible values are ` + "`" + `APIHub` + "`" + `, ` + "`" + `Custom` + "`" + `, ` + "`" + `DocDb` + "`" + `, ` + "`" + `EventHub` + "`" + `, ` + "`" + `MySQL` + "`" + `, ` + "`" + `NotificationHub` + "`" + `, ` + "`" + `PostgreSQL` + "`" + `, ` + "`" + `RedisCache` + "`" + `, ` + "`" + `ServiceBus` + "`" + `, ` + "`" + `SQLAzure` + "`" + `, and ` + "`" + `SQLServer` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "value",
@@ -2612,7 +2965,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "java_version",
-					Description: `(Optional) The version of Java to use. If specified ` + "`" + `java_container` + "`" + ` and ` + "`" + `java_container_version` + "`" + ` must also be specified. Possible values are ` + "`" + `1.7` + "`" + `, ` + "`" + `1.8` + "`" + ` and ` + "`" + `11` + "`" + `.`,
+					Description: `(Optional) The version of Java to use. If specified ` + "`" + `java_container` + "`" + ` and ` + "`" + `java_container_version` + "`" + ` must also be specified. Possible values are ` + "`" + `1.7` + "`" + `, ` + "`" + `1.8` + "`" + `, and ` + "`" + `11` + "`" + ` and their specific versions - except for Java 11 (e.g. ` + "`" + `1.7.0_80` + "`" + `, ` + "`" + `1.8.0_181` + "`" + `, ` + "`" + `11` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "local_mysql_enabled",
@@ -2628,7 +2981,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "php_version",
-					Description: `(Optional) The version of PHP to use in this App Service Slot. Possible values are ` + "`" + `5.5` + "`" + `, ` + "`" + `5.6` + "`" + `, ` + "`" + `7.0` + "`" + `, ` + "`" + `7.1` + "`" + ` and ` + "`" + `7.2` + "`" + `.`,
+					Description: `(Optional) The version of PHP to use in this App Service Slot. Possible values are ` + "`" + `5.5` + "`" + `, ` + "`" + `5.6` + "`" + `, ` + "`" + `7.0` + "`" + `, ` + "`" + `7.1` + "`" + `, ` + "`" + `7.2` + "`" + `, and ` + "`" + `7.3` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "python_version",
@@ -2640,11 +2993,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remote_debugging_version",
-					Description: `(Optional) Which version of Visual Studio should the Remote Debugger be compatible with? Possible values are ` + "`" + `VS2012` + "`" + `, ` + "`" + `VS2013` + "`" + `, ` + "`" + `VS2015` + "`" + ` and ` + "`" + `VS2017` + "`" + `.`,
+					Description: `(Optional) Which version of Visual Studio should the Remote Debugger be compatible with? Possible values are ` + "`" + `VS2012` + "`" + `, ` + "`" + `VS2013` + "`" + `, ` + "`" + `VS2015` + "`" + `, and ` + "`" + `VS2017` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "scm_type",
-					Description: `(Optional) The type of Source Control enabled for this App Service Slot. Defaults to ` + "`" + `None` + "`" + `. Possible values are: ` + "`" + `BitbucketGit` + "`" + `, ` + "`" + `BitbucketHg` + "`" + `, ` + "`" + `CodePlexGit` + "`" + `, ` + "`" + `CodePlexHg` + "`" + `, ` + "`" + `Dropbox` + "`" + `, ` + "`" + `ExternalGit` + "`" + `, ` + "`" + `ExternalHg` + "`" + `, ` + "`" + `GitHub` + "`" + `, ` + "`" + `LocalGit` + "`" + `, ` + "`" + `None` + "`" + `, ` + "`" + `OneDrive` + "`" + `, ` + "`" + `Tfs` + "`" + `, ` + "`" + `VSO` + "`" + ` and ` + "`" + `VSTSRM` + "`" + ``,
+					Description: `(Optional) The type of Source Control enabled for this App Service Slot. Defaults to ` + "`" + `None` + "`" + `. Possible values are: ` + "`" + `BitbucketGit` + "`" + `, ` + "`" + `BitbucketHg` + "`" + `, ` + "`" + `CodePlexGit` + "`" + `, ` + "`" + `CodePlexHg` + "`" + `, ` + "`" + `Dropbox` + "`" + `, ` + "`" + `ExternalGit` + "`" + `, ` + "`" + `ExternalHg` + "`" + `, ` + "`" + `GitHub` + "`" + `, ` + "`" + `LocalGit` + "`" + `, ` + "`" + `None` + "`" + `, ` + "`" + `OneDrive` + "`" + `, ` + "`" + `Tfs` + "`" + `, ` + "`" + `VSO` + "`" + `, and ` + "`" + `VSTSRM` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "use_32_bit_worker_process",
@@ -2656,7 +3009,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "websockets_enabled",
-					Description: `(Optional) Should WebSockets be enabled? --- A ` + "`" + `cors` + "`" + ` block supports the following:`,
+					Description: `(Optional) Should WebSockets be enabled?`,
+				},
+				resource.Attribute{
+					Name:        "auto_swap_slot_name",
+					Description: `(Optional) The name of the swap to automatically swap to during deployment --- A ` + "`" + `cors` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "allowed_origins",
@@ -2748,11 +3105,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Required) The IP Address used for this IP Restriction.`,
+					Description: `(Optional) The IP Address used for this IP Restriction.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_mask",
-					Description: `(Optional) The Subnet mask used for this IP Restriction. Defaults to ` + "`" + `255.255.255.255` + "`" + `. --- A ` + "`" + `microsoft` + "`" + ` block supports the following:`,
+					Description: `(Optional) The Subnet mask used for this IP Restriction. Defaults to ` + "`" + `255.255.255.255` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_subnet_id",
+					Description: `(Optional.The Virtual Network Subnet ID used for this IP Restriction. ->`,
 				},
 				resource.Attribute{
 					Name:        "client_id",
@@ -2768,7 +3129,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `(Optional) Specifies a list of user managed identity ids to be assigned. Required if ` + "`" + `type` + "`" + ` is ` + "`" + `UserAssigned` + "`" + `. --- Elements of ` + "`" + `ip_restriction` + "`" + ` [block](/docs/configuration/attr-as-blocks.html) support:`,
+					Description: `(Optional) Specifies a list of user managed identity ids to be assigned. Required if ` + "`" + `type` + "`" + ` is ` + "`" + `UserAssigned` + "`" + `. --- A ` + "`" + `logs` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "application_logs",
+					Description: `(Optional) An ` + "`" + `application_logs` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "http_logs",
+					Description: `(Optional) An ` + "`" + `http_logs` + "`" + ` block as defined below. --- An ` + "`" + `application_logs` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage",
+					Description: `(Optional) An ` + "`" + `azure_blob_storage` + "`" + ` block as defined below. --- An ` + "`" + `http_logs` + "`" + ` block supports`,
+				},
+				resource.Attribute{
+					Name:        "file_system",
+					Description: `(Optional) A ` + "`" + `file_system` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "azure_blob_storage",
+					Description: `(Optional) An ` + "`" + `azure_blob_storage` + "`" + ` block as defined below. --- An ` + "`" + `azure_blob_storage` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "level",
+					Description: `(Required) The level at which to log. Possible values include ` + "`" + `Error` + "`" + `, ` + "`" + `Warning` + "`" + `, ` + "`" + `Information` + "`" + `, ` + "`" + `Verbose` + "`" + ` and ` + "`" + `Off` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sas_url",
+					Description: `(Required) The URL to the storage container, with a Service SAS token appended.`,
+				},
+				resource.Attribute{
+					Name:        "retention_in_days",
+					Description: `(Required) The number of days to retain logs for. --- A ` + "`" + `file_system` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "retention_in_days",
+					Description: `(Required) The number of days to retain logs for.`,
+				},
+				resource.Attribute{
+					Name:        "retention_in_mb",
+					Description: `(Required) The maximum size in megabytes that http log files can use before being removed. --- Elements of ` + "`" + `ip_restriction` + "`" + ` [block](/docs/configuration/attr-as-blocks.html) support:`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
@@ -2821,6 +3222,37 @@ var (
 					Description: `The password associated with the username, which can be used to publish to this App Service. ## Import App Service Slots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_slot.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Web/sites/website1/slots/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_app_service_source_control_token",
+			Category:         "App Service (Web Apps) Resources",
+			ShortDescription: `Manages an App Service source control token.`,
+			Description:      ``,
+			Keywords: []string{
+				"app",
+				"service",
+				"web",
+				"apps",
+				"source",
+				"control",
+				"token",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The source control type. Possible values are ` + "`" + `BitBucket` + "`" + `, ` + "`" + `Dropbox` + "`" + `, ` + "`" + `GitHub` + "`" + ` and ` + "`" + `OneDrive` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "token",
+					Description: `(Required) The OAuth access token.`,
+				},
+				resource.Attribute{
+					Name:        "token_secret",
+					Description: `(Optional) The OAuth access token secret. ## Import App Service source control tokens can be imported using the ` + "`" + `type` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_app_service_source_control_token.example GitHub ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2891,6 +3323,10 @@ var (
 					Description: `(Optional) One or more ` + "`" + `authentication_certificate` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "trusted_root_certificate",
+					Description: `(Optional) One or more ` + "`" + `trusted_root_certificate` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "disabled_ssl_protocols",
 					Description: `(Optional /`,
 				},
@@ -2933,6 +3369,14 @@ var (
 				resource.Attribute{
 					Name:        "rewrite_rule_set",
 					Description: `(Optional) One or more ` + "`" + `rewrite_rule_set` + "`" + ` blocks as defined below. Only valid for v2 SKUs. --- A ` + "`" + `authentication_certificate` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The Name of the Authentication Certificate to use.`,
+				},
+				resource.Attribute{
+					Name:        "data",
+					Description: `(Required) The contents of the Authentication Certificate which should be used. --- A ` + "`" + `trusted_root_certificate` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -3276,7 +3720,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rule_set_version",
-					Description: `(Required) The Version of the Rule Set used for this Web Application Firewall.`,
+					Description: `(Required) The Version of the Rule Set used for this Web Application Firewall. Possible values are ` + "`" + `2.2.9` + "`" + `, ` + "`" + `3.0` + "`" + `, and ` + "`" + `3.1` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disabled_rule_group",
@@ -3408,7 +3852,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "header_value",
-					Description: `(Required) Header value of the header configuration. --- A ` + "`" + `response_header_configuration` + "`" + ` block supports the following:`,
+					Description: `(Required) Header value of the header configuration. To delete a request header set this property to an empty string. --- A ` + "`" + `response_header_configuration` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "header_name",
@@ -3416,7 +3860,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "header_value",
-					Description: `(Required) Header value of the header configuration. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Header value of the header configuration. To delete a response header set this property to an empty string. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3616,7 +4060,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Rewrite Rule Set ## Import Application Gateway's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_gateway.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/applicationGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Rewrite Rule Set ## Import Application Gateway's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_gateway.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/applicationGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -3818,7 +4262,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Rewrite Rule Set ## Import Application Gateway's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_gateway.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/applicationGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Rewrite Rule Set ## Import Application Gateway's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_gateway.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/applicationGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3850,6 +4294,10 @@ var (
 					Description: `(Required) Specifies the type of Application Insights to create. Valid values are ` + "`" + `ios` + "`" + ` for _iOS_, ` + "`" + `java` + "`" + ` for _Java web_, ` + "`" + `MobileCenter` + "`" + ` for _App Center_, ` + "`" + `Node.JS` + "`" + ` for _Node.js_, ` + "`" + `other` + "`" + ` for _General_, ` + "`" + `phone` + "`" + ` for _Windows Phone_, ` + "`" + `store` + "`" + ` for _Windows Store_ and ` + "`" + `web` + "`" + ` for _ASP.NET_. Please note these values are case sensitive; unmatched values are treated as _ASP.NET_ by Azure. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
+					Name:        "sampling_percentage",
+					Description: `(Optional) Specifies the percentage of the data produced by the monitored application that is sampled for Application Insights telemetry.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -3878,6 +4326,79 @@ var (
 				resource.Attribute{
 					Name:        "instrumentation_key",
 					Description: `The Instrumentation Key for this Application Insights component. ## Import Application Insights instances can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_insights.instance1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/components/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_application_insights_analytics_item",
+			Category:         "Application Insights Resources",
+			ShortDescription: `Manages an Application Insights Analytics Item component.`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"insights",
+				"analytics",
+				"item",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Application Insights Analytics Item. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "application_insights_id",
+					Description: `(Required) The ID of the Application Insights component on which the Analytics Item exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of Analytics Item to create. Can be one of ` + "`" + `query` + "`" + `, ` + "`" + `function` + "`" + `, ` + "`" + `folder` + "`" + `, ` + "`" + `recent` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "scope",
+					Description: `(Required) The scope for the Analytics Item. Can be ` + "`" + `shared` + "`" + ` or ` + "`" + `user` + "`" + `. Changing this forces a new resource to be created. Must be ` + "`" + `shared` + "`" + ` for functions.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) The content for the Analytics Item, for example the query text if ` + "`" + `type` + "`" + ` is ` + "`" + `query` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "function_alias",
+					Description: `(Optional) The alias to use for the function. Required when ` + "`" + `type` + "`" + ` is ` + "`" + `function` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Application Insights Analytics Item.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `A string containing the time the Analytics Item was created.`,
+				},
+				resource.Attribute{
+					Name:        "time_modified",
+					Description: `A string containing the time the Analytics Item was last modified.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `A string indicating the version of the query format ## Import Application Insights Analytics Items can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_insights_analytics_item.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/components/analyticsItems/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Application Insights Analytics Item.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `A string containing the time the Analytics Item was created.`,
+				},
+				resource.Attribute{
+					Name:        "time_modified",
+					Description: `A string containing the time the Analytics Item was last modified.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `A string indicating the version of the query format ## Import Application Insights Analytics Items can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_insights_analytics_item.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/components/analyticsItems/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -3985,7 +4506,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Resource tags. ## Import Application Insights Web Tests can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_insights_web_test.my_test/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/webtests/my_test ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Resource tags. ## Import Application Insights Web Tests can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_application_insights_web_test.my_test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.insights/webtests/my_test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -4126,7 +4647,7 @@ var (
 					Description: `(Required) The name of the resource group in which the Credential is created. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
-					Name:        "account_name",
+					Name:        "automation_account_name",
 					Description: `(Required) The name of the automation account in which the Credential is created. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
@@ -4242,6 +4763,58 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DSC Node Configuration ID.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_automation_job_schedule",
+			Category:         "Automation Resources",
+			ShortDescription: `Links an Automation Runbook and Schedule.`,
+			Description:      ``,
+			Keywords: []string{
+				"automation",
+				"job",
+				"schedule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which the Job Schedule is created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "automation_account_name",
+					Description: `(Required) The name of the Automation Account in which the Job Schedule is created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "runbook_name",
+					Description: `(Required) The name of a Runbook to link to a Schedule. It needs to be in the same Automation Account as the Schedule and Job Schedule. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) A map of key/value pairs corresponding to the arguments that can be passed to the Runbook. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "run_on",
+					Description: `(Optional) Name of a Hybrid Worker Group the Runbook will be executed on. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Automation Job Schedule's full ID.`,
+				},
+				resource.Attribute{
+					Name:        "job_schedule_id",
+					Description: `The UUID identifying the Automation Job Schedule. ## Import Automation Job Schedule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_job_schedule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1/jobSchedules/10000000-1001-1001-1001-000000000001 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Automation Job Schedule's full ID.`,
+				},
+				resource.Attribute{
+					Name:        "job_schedule_id",
+					Description: `The UUID identifying the Automation Job Schedule. ## Import Automation Job Schedule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_automation_job_schedule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Automation/automationAccounts/account1/jobSchedules/10000000-1001-1001-1001-000000000001 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4816,13 +5389,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_autoscale_setting.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_autoscale_setting.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_autoscale_setting.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_autoscale_setting.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4857,6 +5430,10 @@ var (
 				resource.Attribute{
 					Name:        "platform_fault_domain_count",
 					Description: `(Optional) Specifies the number of fault domains that are used. Defaults to 3. ~>`,
+				},
+				resource.Attribute{
+					Name:        "proximity_placement_group_id",
+					Description: `(Optional) The ID of the Proximity Placement Group to which this Virtual Machine should be assigned. Changing this forces a new resource to be created`,
 				},
 				resource.Attribute{
 					Name:        "managed",
@@ -4918,13 +5495,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "application_id",
-					Description: `The Application ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_application.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Application ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_application.example 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "application_id",
-					Description: `The Application ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_application.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Application ID. ## Import Azure Active Directory Applications can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_application.example 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4953,7 +5530,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `The Display Name of the Azure Active Directory Application associated with this Service Principal. ## Import Azure Active Directory Service Principals can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Display Name of the Azure Active Directory Application associated with this Service Principal. ## Import Azure Active Directory Service Principals can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal.example 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4963,7 +5540,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "display_name",
-					Description: `The Display Name of the Azure Active Directory Application associated with this Service Principal. ## Import Azure Active Directory Service Principals can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal.test 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Display Name of the Azure Active Directory Application associated with this Service Principal. ## Import Azure Active Directory Service Principals can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal.example 00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5005,13 +5582,65 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Key ID for the Service Principal Password. ## Import Service Principal Passwords can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal_password.test 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The Key ID for the Service Principal Password. ## Import Service Principal Passwords can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal_password.example 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Key ID for the Service Principal Password. ## Import Service Principal Passwords can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal_password.test 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The Key ID for the Service Principal Password. ## Import Service Principal Passwords can be imported using the ` + "`" + `object id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_azuread_service_principal_password.example 00000000-0000-0000-0000-000000000000/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_bastion_host",
+			Category:         "Network Resources",
+			ShortDescription: `Manages a Bastion Host Instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"bastion",
+				"host",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Bastion Host. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Bastion Host.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "ip_configuration",
+					Description: `(Required) A ` + "`" + `ip_configuration` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `ip_configuration` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the IP configuration.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Reference to a subnet in which this Bastion Host has been created.`,
+				},
+				resource.Attribute{
+					Name:        "dns_name",
+					Description: `The FQDN for the Azure Bastion Host. ## Import Bastion Hosts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bastion_host.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/bastionHosts/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dns_name",
+					Description: `The FQDN for the Azure Bastion Host. ## Import Bastion Hosts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bastion_host.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/bastionHosts/instance1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5102,7 +5731,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_batch_application",
 			Category:         "Batch Resources",
-			ShortDescription: `Manage Azure Batch Application instance.`,
+			ShortDescription: `Manages Azure Batch Application instance.`,
 			Description:      ``,
 			Keywords: []string{
 				"batch",
@@ -5425,6 +6054,309 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_bot_channel_email",
+			Category:         "Bot Resources",
+			ShortDescription: `Manages a Email integration for a Bot Channel`,
+			Description:      ``,
+			Keywords: []string{
+				"bot",
+				"channel",
+				"email",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Bot Channel. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "bot_name",
+					Description: `(Required) The name of the Bot Resource this channel will be associated with. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `(Required) The email address that the Bot will authenticate with.`,
+				},
+				resource.Attribute{
+					Name:        "email_password",
+					Description: `(Required) The email password that the the Bot will authenticate with. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Bot Channel ID. ## Import The Email Channel for a Bot can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_channel_email.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example/channels/EmailChannel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Bot Channel ID. ## Import The Email Channel for a Bot can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_channel_email.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example/channels/EmailChannel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_bot_channel_slack",
+			Category:         "Bot Resources",
+			ShortDescription: `Manages a Slack integration for a Bot Channel`,
+			Description:      ``,
+			Keywords: []string{
+				"bot",
+				"channel",
+				"slack",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Bot Channel. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "bot_name",
+					Description: `(Required) The name of the Bot Resource this channel will be associated with. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The Client ID that will be used to authenticate with Slack.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Required) The Client Secret that will be used to authenticate with Slack.`,
+				},
+				resource.Attribute{
+					Name:        "verification_token",
+					Description: `(Required) The Verification Token that will be used to authenticate with Slack.`,
+				},
+				resource.Attribute{
+					Name:        "landing_page_url",
+					Description: `(Optional) The Slack Landing Page URL. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Bot Channel ID. ## Import The Slack Channel for a Bot can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_channel_slack.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example/channels/SlackChannel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Bot Channel ID. ## Import The Slack Channel for a Bot can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_channel_slack.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example/channels/SlackChannel ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_bot_channels_registration",
+			Category:         "Bot Resources",
+			ShortDescription: `Manages a Bot Channels Registration.`,
+			Description:      ``,
+			Keywords: []string{
+				"bot",
+				"channels",
+				"registration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Bot Channels Registration. Changing this forces a new resource to be created. Must be globally unique.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Bot Channels Registration. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `(Required) The SKU of the Bot Channels Registration. Valid values include ` + "`" + `F0` + "`" + ` or ` + "`" + `S1` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "microsoft_app_id",
+					Description: `(Required) The Microsoft Application ID for the Bot Channels Registration. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The name of the Bot Channels Registration will be displayed as. This defaults to ` + "`" + `name` + "`" + ` if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Optional) The Bot Channels Registration endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "developer_app_insights_key",
+					Description: `(Optional) The Application Insights Key to associate with the Bot Channels Registration.`,
+				},
+				resource.Attribute{
+					Name:        "developer_app_insights_api_key",
+					Description: `(Optional) The Application Insights API Key to associate with the Bot Channels Registration.`,
+				},
+				resource.Attribute{
+					Name:        "developer_app_insights_application_id",
+					Description: `(Optional) The Application Insights Application ID to associate with the Bot Channels Registration.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Bot Channels Registration ID. ## Import Bot Channels Registration can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_channels_registration.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Bot Channels Registration ID. ## Import Bot Channels Registration can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_channels_registration.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_bot_connection",
+			Category:         "Bot Resources",
+			ShortDescription: `Manages a Bot Connection.`,
+			Description:      ``,
+			Keywords: []string{
+				"bot",
+				"connection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Bot Connection. Changing this forces a new resource to be created. Must be globally unique.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Bot Connection. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "bot_name",
+					Description: `(Required) The name of the Bot Resource this connection will be associated with. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_provider_name",
+					Description: `(Required) The name of the service provider that will be associated with this connection. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "client_id",
+					Description: `(Required) The Client ID that will be used to authenticate with the service provider.`,
+				},
+				resource.Attribute{
+					Name:        "client_secret",
+					Description: `(Required) The Client Secret that will be used to authenticate with the service provider.`,
+				},
+				resource.Attribute{
+					Name:        "scopes",
+					Description: `(Optional) The Scopes at which the connection should be applied.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) A map of additional parameters to apply to the connection.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Bot Connection ID. ## Import Bot Connection can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_connection.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example/connections/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Bot Connection ID. ## Import Bot Connection can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_connection.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example/connections/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_bot_web_app",
+			Category:         "Bot Resources",
+			ShortDescription: `Manages a Web App Bot.`,
+			Description:      ``,
+			Keywords: []string{
+				"bot",
+				"web",
+				"app",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Web App Bot. Changing this forces a new resource to be created. Must be globally unique.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Web App Bot. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `(Required) The SKU of the Web App Bot. Valid values include ` + "`" + `F0` + "`" + ` or ` + "`" + `S1` + "`" + `. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "microsoft_app_id",
+					Description: `(Required) The Microsoft Application ID for the Web App Bot. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The name of the Web App Bot will be displayed as. This defaults to ` + "`" + `name` + "`" + ` if not specified.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint",
+					Description: `(Optional) The Web App Bot endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "developer_app_insights_key",
+					Description: `(Optional) The Application Insights Key to associate with the Web App Bot.`,
+				},
+				resource.Attribute{
+					Name:        "developer_app_insights_api_key",
+					Description: `(Optional) The Application Insights API Key to associate with the Web App Bot.`,
+				},
+				resource.Attribute{
+					Name:        "developer_app_insights_application_id",
+					Description: `(Optional) The Application Insights Application ID to associate with the Web App Bot.`,
+				},
+				resource.Attribute{
+					Name:        "luis_app_ids",
+					Description: `(Optional) A list of LUIS App IDs to associate with the Web App Bot.`,
+				},
+				resource.Attribute{
+					Name:        "luis_key",
+					Description: `(Optional) The LUIS key to associate with the Web App Bot.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Web App Bot ID. ## Import Web App Bots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_web_app.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Web App Bot ID. ## Import Web App Bots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_bot_web_app.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.BotService/botServices/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_cdn_endpoint",
 			Category:         "CDN Resources",
 			ShortDescription: `Manages a CDN Endpoint.`,
@@ -5528,13 +6460,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The CDN Endpoint ID. ## Import CDN Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_endpoint.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1/endpoints/myendpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CDN Endpoint ID. ## Import CDN Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_endpoint.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1/endpoints/myendpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The CDN Endpoint ID. ## Import CDN Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_endpoint.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1/endpoints/myendpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CDN Endpoint ID. ## Import CDN Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_endpoint.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1/endpoints/myendpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5571,13 +6503,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The CDN Profile ID. ## Import CDN Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_profile.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CDN Profile ID. ## Import CDN Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_profile.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The CDN Profile ID. ## Import CDN Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_profile.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The CDN Profile ID. ## Import CDN Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cdn_profile.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Cdn/profiles/myprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5607,7 +6539,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kind",
-					Description: `(Required) Specifies the type of Cognitive Service Account that should be created. Possible values are ` + "`" + `Academic` + "`" + `, ` + "`" + `Bing.Autosuggest` + "`" + `, ` + "`" + `Bing.Autosuggest.v7` + "`" + `, ` + "`" + `Bing.CustomSearch` + "`" + `, ` + "`" + `Bing.Search` + "`" + `, ` + "`" + `Bing.Search.v7` + "`" + `, ` + "`" + `Bing.Speech` + "`" + `, ` + "`" + `Bing.SpellCheck` + "`" + `, ` + "`" + `Bing.SpellCheck.v7` + "`" + `, ` + "`" + `ComputerVision` + "`" + `, ` + "`" + `ContentModerator` + "`" + `, ` + "`" + `CustomSpeech` + "`" + `, ` + "`" + `CustomVision.Prediction` + "`" + `, ` + "`" + `CustomVision.Training` + "`" + `, ` + "`" + `Emotion` + "`" + `, ` + "`" + `Face` + "`" + `, ` + "`" + `LUIS` + "`" + `, ` + "`" + `QnAMaker` + "`" + `, ` + "`" + `Recommendations` + "`" + `, ` + "`" + `SpeakerRecognition` + "`" + `, ` + "`" + `Speech` + "`" + `, ` + "`" + `SpeechServices` + "`" + `, ` + "`" + `SpeechTranslation` + "`" + `, ` + "`" + `TextAnalytics` + "`" + `, ` + "`" + `TextTranslation` + "`" + ` and ` + "`" + `WebLM` + "`" + `. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the type of Cognitive Service Account that should be created. Possible values are ` + "`" + `Academic` + "`" + `, ` + "`" + `Bing.Autosuggest` + "`" + `, ` + "`" + `Bing.Autosuggest.v7` + "`" + `, ` + "`" + `Bing.CustomSearch` + "`" + `, ` + "`" + `Bing.Search` + "`" + `, ` + "`" + `Bing.Search.v7` + "`" + `, ` + "`" + `Bing.Speech` + "`" + `, ` + "`" + `Bing.SpellCheck` + "`" + `, ` + "`" + `Bing.SpellCheck.v7` + "`" + `, ` + "`" + `CognitiveServices` + "`" + `, ` + "`" + `ComputerVision` + "`" + `, ` + "`" + `ContentModerator` + "`" + `, ` + "`" + `CustomSpeech` + "`" + `, ` + "`" + `CustomVision.Prediction` + "`" + `, ` + "`" + `CustomVision.Training` + "`" + `, ` + "`" + `Emotion` + "`" + `, ` + "`" + `Face` + "`" + `, ` + "`" + `LUIS` + "`" + `, ` + "`" + `LUIS.Authoring` + "`" + `, ` + "`" + `QnAMaker` + "`" + `, ` + "`" + `Recommendations` + "`" + `, ` + "`" + `SpeakerRecognition` + "`" + `, ` + "`" + `Speech` + "`" + `, ` + "`" + `SpeechServices` + "`" + `, ` + "`" + `SpeechTranslation` + "`" + `, ` + "`" + `TextAnalytics` + "`" + `, ` + "`" + `TextTranslation` + "`" + ` and ` + "`" + `WebLM` + "`" + `. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "sku",
@@ -5619,7 +6551,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Specifies the Name of the Sku. Possible values are ` + "`" + `F0` + "`" + `, ` + "`" + `S0` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, ` + "`" + `S3` + "`" + `, ` + "`" + `S4` + "`" + `, ` + "`" + `S5` + "`" + `, ` + "`" + `S6` + "`" + `, ` + "`" + `P0` + "`" + `, ` + "`" + `P1` + "`" + ` and ` + "`" + `P2` + "`" + `.`,
+					Description: `(Required) Specifies the Name of the Sku. Possible values are ` + "`" + `F0` + "`" + `, ` + "`" + `F1` + "`" + `, ` + "`" + `S0` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, ` + "`" + `S3` + "`" + `, ` + "`" + `S4` + "`" + `, ` + "`" + `S5` + "`" + `, ` + "`" + `S6` + "`" + `, ` + "`" + `P0` + "`" + `, ` + "`" + `P1` + "`" + ` and ` + "`" + `P2` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tier",
@@ -6085,7 +7017,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_rule",
-					Description: `(Optional) One or more ` + "`" + `ip_rule` + "`" + ` blocks as defined below. ~>`,
+					Description: `(Optional) One or more ` + "`" + `ip_rule` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network",
+					Description: `(Optional) One or more ` + "`" + `virtual_network` + "`" + ` blocks as defined below. ~>`,
 				},
 				resource.Attribute{
 					Name:        "action",
@@ -6093,7 +7029,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_range",
-					Description: `(Required) The CIDR block from which requests will match the rule. --- ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The CIDR block from which requests will match the rule. ` + "`" + `virtual_network` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) The behaviour for requests matching this rule. At this time the only supported value is ` + "`" + `Allow` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The subnet id from which requests will match the rule. --- ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6109,7 +7053,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_password",
-					Description: `The Password associated with the Container Registry Admin account - if the admin account is enabled. ## Import Container Registries can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Password associated with the Container Registry Admin account - if the admin account is enabled. ## Import Container Registries can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6127,7 +7071,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_password",
-					Description: `The Password associated with the Container Registry Admin account - if the admin account is enabled. ## Import Container Registries can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Password associated with the Container Registry Admin account - if the admin account is enabled. ## Import Container Registries can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6181,13 +7125,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Container Registry Webhook ID. ## Import Container Registry Webhooks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry_webhook.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1/webhooks/mywebhook1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Container Registry Webhook ID. ## Import Container Registry Webhooks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry_webhook.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1/webhooks/mywebhook1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Container Registry Webhook ID. ## Import Container Registry Webhooks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry_webhook.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1/webhooks/mywebhook1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Container Registry Webhook ID. ## Import Container Registry Webhooks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_container_registry_webhook.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.ContainerRegistry/registries/myregistry1/webhooks/mywebhook1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6420,7 +7364,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The capability to enable - Possible values are ` + "`" + `EnableTable` + "`" + `, ` + "`" + `EnableCassandra` + "`" + `, and ` + "`" + `EnableGremlin` + "`" + `.`,
+					Description: `(Required) The capability to enable - Possible values are ` + "`" + `EnableAggregationPipeline` + "`" + `, ` + "`" + `EnableCassandra` + "`" + `, ` + "`" + `EnableGremlin` + "`" + `, ` + "`" + `EnableTable` + "`" + `, ` + "`" + `MongoDBv3.4` + "`" + `, and ` + "`" + `mongoEnableDocLevelTTL` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6573,6 +7517,10 @@ var (
 					Description: `(Required) The name of the key to partition on for sharding. There must not be any other unique index keys.`,
 				},
 				resource.Attribute{
+					Name:        "throughput",
+					Description: `(Optional) The throughput of the MongoDB collection (RU/s). Must be set in increments of ` + "`" + `100` + "`" + `. The default and minimum value is ` + "`" + `400` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "indexes",
 					Description: `(Optional) One or more ` + "`" + `indexes` + "`" + ` blocks as defined below. --- An ` + "`" + `indexes` + "`" + ` block supports the following:`,
 				},
@@ -6630,6 +7578,59 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `the Cosmos DB Mongo Database ID. ## Import Cosmos Mongo Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_mongo_database.db1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/mongodb/databases/db1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_cosmosdb_sql_container",
+			Category:         "CosmosDB (DocumentDB) Resources",
+			ShortDescription: `Manages a SQL Container within a Cosmos DB Account.`,
+			Description:      ``,
+			Keywords: []string{
+				"cosmosdb",
+				"documentdb",
+				"sql",
+				"container",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Cosmos DB SQL Database. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which the Cosmos DB SQL Database is created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) The name of the Cosmos DB Account to create the container within. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `(Required) The name of the Cosmos DB SQL Database to create the container within. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "partition_key_path",
+					Description: `(Optional) Define a partition key. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "unique_key",
+					Description: `(Optional) One or more ` + "`" + `unique_key` + "`" + ` blocks as defined below. Changing this forces a new resource to be created. --- A ` + "`" + `unique_key` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "paths",
+					Description: `(Required) A list of paths to use for this unique key. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `the Cosmos DB SQL Database ID. ## Import Cosmos SQL Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_sql_container.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/sql/databases/database1/containers/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `the Cosmos DB SQL Database ID. ## Import Cosmos SQL Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_cosmosdb_sql_container.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.DocumentDB/databaseAccounts/account1/apis/sql/databases/database1/containers/example ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6708,9 +7709,52 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_dashboard",
+			Category:         "Portal Resources",
+			ShortDescription: `Manages a shared dashboard in the Azure Portal.`,
+			Description:      ``,
+			Keywords: []string{
+				"portal",
+				"dashboard",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Shared Dashboard. This should be be 64 chars max, only alphanumeric and hyphens (no spaces). For a more friendly display name, add the ` + "`" + `hidden-title` + "`" + ` tag.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_properties",
+					Description: `(Required) JSON data representing dashboard body. See above for details on how to obtain this from the Portal.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Dashboard ID. ## Import Dashboards can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dashboard.my-board /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Portal/dashboards/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ` Note the URI in the above sample can be found using the Resource Explorer tool in the Azure Portal.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Dashboard ID. ## Import Dashboards can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dashboard.my-board /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Portal/dashboards/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ` Note the URI in the above sample can be found using the Resource Explorer tool in the Azure Portal.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_data_factory",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage an Azure Data Factory (Version 2).`,
+			ShortDescription: `Manages an Azure Data Factory (Version 2).`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -6833,7 +7877,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_factory_dataset_mysql",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage a MySQL Dataset inside a Azure Data Factory.`,
+			ShortDescription: `Manages a MySQL Dataset inside a Azure Data Factory.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -6914,7 +7958,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_factory_dataset_postgresql",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage a PostgreSQL Dataset inside a Azure Data Factory.`,
+			ShortDescription: `Manages a PostgreSQL Dataset inside a Azure Data Factory.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -6995,7 +8039,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_factory_dataset_sql_server_table",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage a SQL Server Table Dataset inside a Azure Data Factory.`,
+			ShortDescription: `Manages a SQL Server Table Dataset inside a Azure Data Factory.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7076,9 +8120,115 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_data_factory_integration_runtime_managed",
+			Category:         "Data Factory Resources",
+			ShortDescription: `Manages an Azure Data Factory Managed Integration Runtime.`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"factory",
+				"integration",
+				"runtime",
+				"managed",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Managed Integration Runtime. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
+				},
+				resource.Attribute{
+					Name:        "data_factory_name",
+					Description: `(Required) Specifies the name of the Data Factory the Managed Integration Runtime belongs to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Managed Integration Runtime. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "node_size",
+					Description: `(Required) The size of the nodes on which the Managed Integration Runtime runs. Valid values are: ` + "`" + `Standard_D2_v3` + "`" + `, ` + "`" + `Standard_D4_v3` + "`" + `, ` + "`" + `Standard_D8_v3` + "`" + `, ` + "`" + `Standard_D16_v3` + "`" + `, ` + "`" + `Standard_D32_v3` + "`" + `, ` + "`" + `Standard_D64_v3` + "`" + `, ` + "`" + `Standard_E2_v3` + "`" + `, ` + "`" + `Standard_E4_v3` + "`" + `, ` + "`" + `Standard_E8_v3` + "`" + `, ` + "`" + `Standard_E16_v3` + "`" + `, ` + "`" + `Standard_E32_v3` + "`" + `, ` + "`" + `Standard_E64_v3` + "`" + `, ` + "`" + `Standard_D1_v2` + "`" + `, ` + "`" + `Standard_D2_v2` + "`" + `, ` + "`" + `Standard_D3_v2` + "`" + `, ` + "`" + `Standard_D4_v2` + "`" + `, ` + "`" + `Standard_A4_v2` + "`" + ` and ` + "`" + `Standard_A8_v2` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "number_of_nodes",
+					Description: `(Optional) Number of nodes for the Managed Integration Runtime. Max is ` + "`" + `10` + "`" + `. Defaults to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max_parallel_executions_per_node",
+					Description: `(Optional) Defines the maximum parallel executions per node. Defaults to ` + "`" + `1` + "`" + `. Max is ` + "`" + `16` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "edition",
+					Description: `(Optional) The Managed Integration Runtime edition. Valid values are ` + "`" + `Standard` + "`" + ` and ` + "`" + `Enterprise` + "`" + `. Defaults to ` + "`" + `Standard` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "license_type",
+					Description: `(Optional) The type of the license that is used. Valid values are ` + "`" + `LicenseIncluded` + "`" + ` and ` + "`" + `BasePrize` + "`" + `. Defaults to ` + "`" + `LicenseIncluded` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_info",
+					Description: `(Optional) A ` + "`" + `catalog_info` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "custom_setup_script",
+					Description: `(Optional) A ` + "`" + `custom_setup_script` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_integration",
+					Description: `(Optional) A ` + "`" + `vnet_integration` + "`" + ` block as defined below. --- A ` + "`" + `catalog_info` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "server_endpoint",
+					Description: `(Required) The endpoint of an Azure SQL Server that will be used to host the SSIS catalog.`,
+				},
+				resource.Attribute{
+					Name:        "administrator_login",
+					Description: `(Required) Administrator login name for the SQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "administrator_password",
+					Description: `(Required) Administrator login password for the SQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "pricing_tier",
+					Description: `(Required) Pricing tier for the database that will be created for the SSIS catalog. Valid values are: ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + `, ` + "`" + `Premium` + "`" + ` and ` + "`" + `PremiumRS` + "`" + `. --- A ` + "`" + `custom_setup_script` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "blob_container_uri",
+					Description: `(Required) The blob endpoint for the container which contains a custom setup script that will be run on every node on startup. See [https://docs.microsoft.com/en-us/azure/data-factory/how-to-configure-azure-ssis-ir-custom-setup](https://docs.microsoft.com/en-us/azure/data-factory/how-to-configure-azure-ssis-ir-custom-setup) for more information.`,
+				},
+				resource.Attribute{
+					Name:        "sas_token",
+					Description: `(Required) A container SAS token that gives access to the files. See [https://docs.microsoft.com/en-us/azure/data-factory/how-to-configure-azure-ssis-ir-custom-setup](https://docs.microsoft.com/en-us/azure/data-factory/how-to-configure-azure-ssis-ir-custom-setup) for more information. --- A ` + "`" + `vnet_integration` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "vnet_id",
+					Description: `(Required) ID of the virtual network to which the nodes of the Managed Integration Runtime will be added.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_name",
+					Description: `(Required) Name of the subnet to which the nodes of the Managed Integration Runtime will be added. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Managed Integration Runtime ID. ## Import Managed Integration Runtime can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/integrationruntimes/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Managed Integration Runtime ID. ## Import Managed Integration Runtime can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/integrationruntimes/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_data_factory_linked_service_data_lake_storage_gen2",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage a Linked Service (connection) between Data Lake Storage Gen2 and Azure Data Factory.`,
+			ShortDescription: `Manages a Linked Service (connection) between Data Lake Storage Gen2 and Azure Data Factory.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7154,7 +8304,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_factory_linked_service_mysql",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage a Linked Service (connection) between MySQL and Azure Data Factory.`,
+			ShortDescription: `Manages a Linked Service (connection) between MySQL and Azure Data Factory.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7216,7 +8366,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_factory_linked_service_postgresql",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage a Linked Service (connection) between PostgreSQL and Azure Data Factory.`,
+			ShortDescription: `Manages a Linked Service (connection) between PostgreSQL and Azure Data Factory.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7278,7 +8428,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_factory_linked_service_sql_server",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage a Linked Service (connection) between a SQL Server and Azure Data Factory.`,
+			ShortDescription: `Manages a Linked Service (connection) between a SQL Server and Azure Data Factory.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7341,7 +8491,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_factory_pipeline",
 			Category:         "Data Factory Resources",
-			ShortDescription: `Manage a Pipeline inside a Azure Data Factory.`,
+			ShortDescription: `Manages a Pipeline inside a Azure Data Factory.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7391,9 +8541,74 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_data_factory_trigger_schedule",
+			Category:         "Data Factory Resources",
+			ShortDescription: `Manages a Trigger Schedule inside a Azure Data Factory.`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"factory",
+				"trigger",
+				"schedule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Data Factory Schedule Trigger. Changing this forces a new resource to be created. Must be globally unique. See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/data-factory/naming-rules) for all restrictions.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the Data Factory Schedule Trigger. Changing this forces a new resource`,
+				},
+				resource.Attribute{
+					Name:        "data_factory_name",
+					Description: `(Required) The Data Factory name in which to associate the Schedule Trigger with. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "pipeline_name",
+					Description: `(Required) The Data Factory Pipeline name that the trigger will act on.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional) The time the Schedule Trigger will start. This defaults to the current time. The time will be represented in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Optional) The time the Schedule Trigger should end. The time will be represented in UTC.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Optional) The interval for how often the trigger occurs. This defaults to 1.`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `(Optional) The trigger freqency. Valid values include ` + "`" + `Minute` + "`" + `, ` + "`" + `Hour` + "`" + `, ` + "`" + `Day` + "`" + `, ` + "`" + `Week` + "`" + `, ` + "`" + `Month` + "`" + `. Defaults to ` + "`" + `Minute` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "pipeline_parameters",
+					Description: `(Optional) The pipeline parameters that the the trigger will act upon.`,
+				},
+				resource.Attribute{
+					Name:        "annotations",
+					Description: `(Optional) List of tags that can be used for describing the Data Factory Schedule Trigger. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Data Factory Schedule Trigger. ## Import Data Factory Schedule Trigger can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_schedule_trigger.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/triggers/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Data Factory Schedule Trigger. ## Import Data Factory Schedule Trigger can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_factory_schedule_trigger.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example/providers/Microsoft.DataFactory/factories/example/triggers/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_data_lake_analytics_account",
 			Category:         "Data Lake Resources",
-			ShortDescription: `Manage an Azure Data Lake Analytics Account.`,
+			ShortDescription: `Manages an Azure Data Lake Analytics Account.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7428,13 +8643,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Date Lake Store ID. ## Import Date Lake Analytics Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_analytics_account.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeAnalytics/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Date Lake Store ID. ## Import Date Lake Analytics Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_analytics_account.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeAnalytics/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Date Lake Store ID. ## Import Date Lake Analytics Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_analytics_account.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeAnalytics/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Date Lake Store ID. ## Import Date Lake Analytics Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_analytics_account.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeAnalytics/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7442,7 +8657,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_lake_analytics_firewall_rule",
 			Category:         "Data Lake Resources",
-			ShortDescription: `Manage a Azure Data Lake Analytics Firewall Rule.`,
+			ShortDescription: `Manages a Azure Data Lake Analytics Firewall Rule.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7488,7 +8703,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_data_lake_store",
 			Category:         "Data Lake Resources",
-			ShortDescription: `Manage an Azure Data Lake Store.`,
+			ShortDescription: `Manages an Azure Data Lake Store.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7538,7 +8753,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `The Endpoint for the Data Lake Store. ## Import Date Lake Store can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_store.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeStore/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Endpoint for the Data Lake Store. ## Import Date Lake Store can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_store.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeStore/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7548,15 +8763,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `The Endpoint for the Data Lake Store. ## Import Date Lake Store can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_store.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeStore/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Endpoint for the Data Lake Store. ## Import Date Lake Store can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_store.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DataLakeStore/accounts/mydatalakeaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_data_lake_store_file",
+			Category:         "Data Lake Resources",
+			ShortDescription: `Manages a Azure Data Lake Store File.`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"lake",
+				"store",
+				"file",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) Specifies the name of the Data Lake Store for which the File should created.`,
+				},
+				resource.Attribute{
+					Name:        "local_file_path",
+					Description: `(Required) The path to the local file to be added to the Data Lake Store.`,
+				},
+				resource.Attribute{
+					Name:        "remote_file_path",
+					Description: `(Required) The path created for the file on the Data Lake Store. ## Import Date Lake Store File's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_data_lake_store_file.exampleexample.azuredatalakestore.net/test/example.txt ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_data_lake_store_firewall_rule",
 			Category:         "Data Lake Resources",
-			ShortDescription: `Manage a Azure Data Lake Store Firewall Rule.`,
+			ShortDescription: `Manages a Azure Data Lake Store Firewall Rule.`,
 			Description:      ``,
 			Keywords: []string{
 				"data",
@@ -7639,7 +8882,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "managed_resource_group_id",
-					Description: `The ID of the Managed Resource Group created by the Databricks Workspace. ## Import Databrick Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_databrick_workspace.workspace1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Databricks/workspaces/workspace1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Managed Resource Group created by the Databricks Workspace. ## Import Databrick Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_databricks_workspace.workspace1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Databricks/workspaces/workspace1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7649,7 +8892,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "managed_resource_group_id",
-					Description: `The ID of the Managed Resource Group created by the Databricks Workspace. ## Import Databrick Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_databrick_workspace.workspace1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Databricks/workspaces/workspace1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Managed Resource Group created by the Databricks Workspace. ## Import Databrick Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_databricks_workspace.workspace1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Databricks/workspaces/workspace1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -7688,7 +8931,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_network_ids",
-					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_ddos_protection_plan.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_ddos_protection_plan.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7698,7 +8941,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_network_ids",
-					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_ddos_protection_plan.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_ddos_protection_plan.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8010,6 +9253,86 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_dev_test_schedule",
+			Category:         "Dev Test Resources",
+			ShortDescription: `Manages automated startup and shutdown schedules for Azure Dev Test Lab.`,
+			Description:      ``,
+			Keywords: []string{
+				"dev",
+				"test",
+				"schedule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the dev test lab schedule. Valid value for name depends on the ` + "`" + `task_type` + "`" + `. For instance for task_type ` + "`" + `LabVmsStartupTask` + "`" + ` the name needs to be ` + "`" + `LabVmAutoStart` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location where the schedule is created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the dev test lab schedule. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "lab_name",
+					Description: `(Required) The name of the dev test lab. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of this schedule. Possible values are ` + "`" + `Enabled` + "`" + ` and ` + "`" + `Disabled` + "`" + `. Defaults to ` + "`" + `Disabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) The task type of the schedule. Possible values include ` + "`" + `LabVmsShutdownTask` + "`" + ` and ` + "`" + `LabVmAutoStart` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "time_zone_id",
+					Description: `(Required) The time zone ID (e.g. Pacific Standard time).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `weekly_recurrence` + "`" + ` - block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "time",
+					Description: `The time when the schedule takes effect.`,
+				},
+				resource.Attribute{
+					Name:        "week_days",
+					Description: `A list of days that this schedule takes effect . Possible values include ` + "`" + `Monday` + "`" + `, ` + "`" + `Tuesday` + "`" + `, ` + "`" + `Wednesday` + "`" + `, ` + "`" + `Thursday` + "`" + `, ` + "`" + `Friday` + "`" + `, ` + "`" + `Saturday` + "`" + ` and ` + "`" + `Sunday` + "`" + `. --- A ` + "`" + `daily_recurrence` + "`" + ` - block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "time",
+					Description: `The time each day when the schedule takes effect. --- A ` + "`" + `notification_settings` + "`" + ` - (Required) - block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the notification. Possible values are ` + "`" + `Enabled` + "`" + ` and ` + "`" + `Disabled` + "`" + `. Defaults to ` + "`" + `Disabled` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_in_minutes",
+					Description: `Time in minutes before event at which notification will be sent.`,
+				},
+				resource.Attribute{
+					Name:        "webhook_url",
+					Description: `The webhook URL to which the notification will be sent. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Dev Test Lab Schedule ID. ## Import Dev Test Schedule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dev_test_schedule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DevTestLab/labs/myDevTestLab/schedules/labvmautostart ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Dev Test Lab Schedule ID. ## Import Dev Test Schedule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dev_test_schedule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DevTestLab/labs/myDevTestLab/schedules/labvmautostart ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_dev_test_virtual_network",
 			Category:         "Dev Test Resources",
 			ShortDescription: `Manages a Virtual Network within a Dev Test Lab.`,
@@ -8263,10 +9586,6 @@ var (
 					Description: `(Required) A ` + "`" + `sku` + "`" + ` block as documented below. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
-					Name:        "host_suffix",
-					Description: `(Required) The host suffix for the DevSpace Controller. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
 					Name:        "target_container_host_resource_id",
 					Description: `(Required) The resource id of Azure Kubernetes Service cluster. Changing this forces a new resource to be created.`,
 				},
@@ -8292,7 +9611,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_plane_fqdn",
-					Description: `DNS name for accessing DataPlane services. ## Import DevSpace Controller's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_devspace_controller.controller1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevSpaces/controllers/controller1Name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `DNS name for accessing DataPlane services.`,
+				},
+				resource.Attribute{
+					Name:        "host_suffix",
+					Description: `The host suffix for the DevSpace Controller. ## Import DevSpace Controller's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_devspace_controller.controller1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevSpaces/controllers/controller1Name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8302,7 +9625,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_plane_fqdn",
-					Description: `DNS name for accessing DataPlane services. ## Import DevSpace Controller's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_devspace_controller.controller1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevSpaces/controllers/controller1Name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `DNS name for accessing DataPlane services.`,
+				},
+				resource.Attribute{
+					Name:        "host_suffix",
+					Description: `The host suffix for the DevSpace Controller. ## Import DevSpace Controller's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_devspace_controller.controller1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.DevSpaces/controllers/controller1Name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8324,7 +9651,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the resource group where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "zone_name",
@@ -8344,13 +9671,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS A Record ID. ## Import A records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS A Record ID. ## Import A records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_a_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS A Record ID. ## Import A records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS A Record ID. ## Import A records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_a_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8372,7 +9699,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the resource group where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "zone_name",
@@ -8392,13 +9719,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS AAAA Record ID. ## Import AAAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_aaaa_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/AAAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS AAAA Record ID. ## Import AAAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_aaaa_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/AAAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS AAAA Record ID. ## Import AAAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_aaaa_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/AAAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS AAAA Record ID. ## Import AAAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_aaaa_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/AAAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8406,7 +9733,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_dns_caa_record",
 			Category:         "DNS Resources",
-			ShortDescription: `Manage a DNS CAA Record.`,
+			ShortDescription: `Manages a DNS CAA Record.`,
 			Description:      ``,
 			Keywords: []string{
 				"dns",
@@ -8420,7 +9747,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the resource group where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "zone_name",
@@ -8452,13 +9779,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS CAA Record ID. ## Import CAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_caa_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS CAA Record ID. ## Import CAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_caa_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS CAA Record ID. ## Import CAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_caa_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS CAA Record ID. ## Import CAA records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_caa_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8480,7 +9807,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the resource group where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "zone_name",
@@ -8500,13 +9827,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS CName Record ID. ## Import CNAME records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_cname_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CNAME/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS CName Record ID. ## Import CNAME records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_cname_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CNAME/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS CName Record ID. ## Import CNAME records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_cname_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CNAME/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS CName Record ID. ## Import CNAME records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_cname_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/CNAME/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8514,7 +9841,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_dns_mx_record",
 			Category:         "DNS Resources",
-			ShortDescription: `Manage a DNS MX Record.`,
+			ShortDescription: `Manages a DNS MX Record.`,
 			Description:      ``,
 			Keywords: []string{
 				"dns",
@@ -8532,7 +9859,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Required) Specifies the DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the DNS Zone where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -8556,13 +9883,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS MX Record ID. ## Import MX records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_mx_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/MX/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS MX Record ID. ## Import MX records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_mx_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/MX/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS MX Record ID. ## Import MX records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_mx_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/MX/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS MX Record ID. ## Import MX records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_mx_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/MX/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8588,7 +9915,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Required) Specifies the DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the DNS Zone where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -8612,13 +9939,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS NS Record ID. ## Import NS records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ns_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/NS/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS NS Record ID. ## Import NS records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ns_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/NS/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS NS Record ID. ## Import NS records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ns_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/NS/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS NS Record ID. ## Import NS records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ns_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/NS/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8644,7 +9971,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Required) Specifies the DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the DNS Zone where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -8660,13 +9987,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS PTR Record ID. ## Import PTR records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ptr_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/PTR/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS PTR Record ID. ## Import PTR records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ptr_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/PTR/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS PTR Record ID. ## Import PTR records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ptr_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/PTR/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS PTR Record ID. ## Import PTR records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_ptr_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/PTR/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8674,7 +10001,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_dns_srv_record",
 			Category:         "DNS Resources",
-			ShortDescription: `Manage a DNS SRV Record.`,
+			ShortDescription: `Manages a DNS SRV Record.`,
 			Description:      ``,
 			Keywords: []string{
 				"dns",
@@ -8692,7 +10019,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Required) Specifies the DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the DNS Zone where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -8724,13 +10051,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS SRV Record ID. ## Import SRV records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_srv_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/SRV/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS SRV Record ID. ## Import SRV records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_srv_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/SRV/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS SRV Record ID. ## Import SRV records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_srv_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/SRV/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS SRV Record ID. ## Import SRV records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_srv_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/SRV/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8756,7 +10083,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone_name",
-					Description: `(Required) Specifies the DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the DNS Zone where the DNS Zone (parent resource) exists. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -8776,13 +10103,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS TXT Record ID. ## Import TXT records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_txt_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/TXT/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS TXT Record ID. ## Import TXT records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_txt_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/TXT/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The DNS TXT Record ID. ## Import TXT records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_txt_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/TXT/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The DNS TXT Record ID. ## Import TXT records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_dns_txt_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/dnszones/zone1/TXT/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8939,7 +10266,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `The Endpoint associated with the EventGrid Domain. ## Import EventGrid Domain's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventgrid_domain.domain1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventGrid/domains/domain1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Endpoint associated with the EventGrid Domain.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The Primary Shared Access Key associated with the EventGrid Domain.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The Secondary Shared Access Key associated with the EventGrid Domain. ## Import EventGrid Domains can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventgrid_domain.domain1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventGrid/domains/domain1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -8949,7 +10284,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `The Endpoint associated with the EventGrid Domain. ## Import EventGrid Domain's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventgrid_domain.domain1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventGrid/domains/domain1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Endpoint associated with the EventGrid Domain.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The Primary Shared Access Key associated with the EventGrid Domain.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The Secondary Shared Access Key associated with the EventGrid Domain. ## Import EventGrid Domains can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventgrid_domain.domain1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventGrid/domains/domain1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -9397,7 +10740,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "capacity",
-					Description: `(Optional) Specifies the Capacity / Throughput Units for a ` + "`" + `Standard` + "`" + ` SKU namespace. Valid values range from 1 - 20.`,
+					Description: `(Optional) Specifies the Capacity / Throughput Units for a ` + "`" + `Standard` + "`" + ` SKU namespace. Valid values range from ` + "`" + `1` + "`" + ` - ` + "`" + `20` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "auto_inflate_enabled",
@@ -9405,15 +10748,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maximum_throughput_units",
-					Description: `(Optional) Specifies the maximum number of throughput units when Auto Inflate is Enabled. Valid values range from 1 - 20.`,
+					Description: `(Optional) Specifies the maximum number of throughput units when Auto Inflate is Enabled. Valid values range from ` + "`" + `1` + "`" + ` - ` + "`" + `20` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "kafka_enabled",
-					Description: `(Optional) Is Kafka enabled for the EventHub Namespace? Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional /`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "network_rulesets",
+					Description: `(Optional) A ` + "`" + `network_rulesets` + "`" + ` block as defined below. --- A ` + "`" + `network_rulesets` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "default_action",
+					Description: `(Required) The default action to take when a rule is not matched. Possible values are ` + "`" + `Allow` + "`" + ` and ` + "`" + `Deny` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_rule",
+					Description: `(Optional) One or more ` + "`" + `virtual_network_rule` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "ip_rule",
+					Description: `(Optional) One or more ` + "`" + `ip_rule` + "`" + ` blocks as defined below. --- A ` + "`" + `virtual_network_rule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The id of the subnet to match on.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_missing_virtual_network_service_endpoint",
+					Description: `(Optional) Are missing virtual network service endpoints ignored? Defaults to ` + "`" + `false` + "`" + `. --- A ` + "`" + `ip_rule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "ip_mask",
+					Description: `(Required) The ip mask to match on.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) The action to take when the rule is matched. Possible values are ` + "`" + `Allow` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9499,7 +10874,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The EventHub ID.`,
+					Description: `The EventHub Namespace Authorization Rule ID.`,
 				},
 				resource.Attribute{
 					Name:        "primary_key",
@@ -9521,7 +10896,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The EventHub ID.`,
+					Description: `The EventHub Namespace Authorization Rule ID.`,
 				},
 				resource.Attribute{
 					Name:        "primary_key",
@@ -9538,6 +10913,57 @@ var (
 				resource.Attribute{
 					Name:        "secondary_connection_string",
 					Description: `The Secondary Connection String for the Authorization Rule. ## Import EventHubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub_namespace_authorization_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1/authorizationRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_eventhub_namespace_disaster_recovery_config",
+			Category:         "Messaging Resources",
+			ShortDescription: `Manages an Disaster Recovery Config for an Event Hub Namespace.`,
+			Description:      ``,
+			Keywords: []string{
+				"messaging",
+				"eventhub",
+				"namespace",
+				"disaster",
+				"recovery",
+				"config",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Disaster Recovery Config. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_name",
+					Description: `(Required) Specifies the name of the primary EventHub Namespace to replicate. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which the Disaster Recovery Config exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "partner_namespace_id",
+					Description: `(Optional) The ID of the EventHub Namespace to replicate to.`,
+				},
+				resource.Attribute{
+					Name:        "alternate_name",
+					Description: `(Optional) An alternate name to use when the Disaster Recovery Config's name is the same as the replicated namespace's name.`,
+				},
+				resource.Attribute{
+					Name:        "wait_for_replication",
+					Description: `(Optional) Should the resource wait for replication upon creation? Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The EventHub Namespace Disaster Recovery Config ID. ## Import EventHubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub_namespace_disaster_recovery_config.config1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1/disasterRecoveryConfigs/config1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The EventHub Namespace Disaster Recovery Config ID. ## Import EventHubs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_eventhub_namespace_disaster_recovery_config.config1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.EventHub/namespaces/namespace1/disasterRecoveryConfigs/config1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -9798,6 +11224,10 @@ var (
 					Description: `(Required) A ` + "`" + `ip_configuration` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "zones",
+					Description: `(Optional) Specifies the availability zones in which the Azure Firewall should be created. ->`,
+				},
+				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `ip_configuration` + "`" + ` block supports the following:`,
 				},
@@ -9807,7 +11237,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Required) Reference to the subnet associated with the IP Configuration. ->`,
+					Description: `(Optional) Reference to the subnet associated with the IP Configuration. ->`,
 				},
 				resource.Attribute{
 					Name:        "public_ip_address_id",
@@ -9823,7 +11253,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_address",
-					Description: `The private IP address of the Azure Firewall. ## Import Azure Firewalls can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/azureFirewalls/testfirewall ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The private IP address of the Azure Firewall. ## Import Azure Firewalls can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/azureFirewalls/testfirewall ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9837,7 +11267,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_address",
-					Description: `The private IP address of the Azure Firewall. ## Import Azure Firewalls can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/azureFirewalls/testfirewall ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The private IP address of the Azure Firewall. ## Import Azure Firewalls can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/azureFirewalls/testfirewall ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -9909,7 +11339,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the type of connection. Possible values are ` + "`" + `Http` + "`" + ` or ` + "`" + `Https` + "`" + `. ## Import Azure Firewall Application Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_application_rule_collection.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/applicationRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) Specifies the type of connection. Possible values are ` + "`" + `Http` + "`" + `, ` + "`" + `Https` + "`" + ` and ` + "`" + `Mssql` + "`" + `. ## Import Azure Firewall Application Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_application_rule_collection.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/applicationRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -9982,7 +11412,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "translated_port",
-					Description: `(Required) The port of the service behind the Firewall. ## Import Azure Firewall NAT Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_nat_rule_collection.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/natRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The port of the service behind the Firewall. ## Import Azure Firewall NAT Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_nat_rule_collection.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/natRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -10046,10 +11476,512 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocols",
-					Description: `(Required) A list of protocols. Possible values are ` + "`" + `Any` + "`" + `, ` + "`" + `ICMP` + "`" + `, ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `. ## Import Azure Firewall Network Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_network_rule_collection.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/networkRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) A list of protocols. Possible values are ` + "`" + `Any` + "`" + `, ` + "`" + `ICMP` + "`" + `, ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `. ## Import Azure Firewall Network Rule Collections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_firewall_network_rule_collection.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/azureFirewalls/myfirewall/networkRuleCollections/mycollection ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_frontdoor",
+			Category:         "Front Door Resources",
+			ShortDescription: `Manages an Azure Front Door instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"front",
+				"door",
+				"frontdoor",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Front Door which is globally unique. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the Resource group within the Azure subscription. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Resource location. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "backend_pool",
+					Description: `(Required) A ` + "`" + `backend_pool` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "backend_pool_health_probe",
+					Description: `(Required) A ` + "`" + `backend_pool_health_probe` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "backend_pool_load_balancing",
+					Description: `(Required) A ` + "`" + `backend_pool_load_balancing` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "enforce_backend_pools_certificate_name_check",
+					Description: `(Required) Whether to enforce certificate name check on HTTPS requests to all backend pools. No effect on non-HTTPS requests. Permitted values are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_enabled",
+					Description: `(Optional) Operational status of the Front Door load balancer. Permitted values are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "friendly_name",
+					Description: `(Optional) A friendly name for the Front Door service.`,
+				},
+				resource.Attribute{
+					Name:        "frontend_endpoint",
+					Description: `(Required) A ` + "`" + `frontend_endpoint` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "routing_rule",
+					Description: `(Required) A ` + "`" + `routing_rule` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Resource tags. --- The ` + "`" + `backend_pool` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ` + "`" + `Backend Pool` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "backend",
+					Description: `(Required) A ` + "`" + `backend` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancing_name",
+					Description: `(Required) The name property of the ` + "`" + `backend_pool_load_balancing` + "`" + ` block whithin this resource to use for the ` + "`" + `Backend Pool` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "health_probe_name",
+					Description: `(Required) The name property of a ` + "`" + `backend_pool_health_probe` + "`" + ` block whithin this resource to use for the ` + "`" + `Backend Pool` + "`" + `. --- The ` + "`" + `backend` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) Location of the backend (IP address or FQDN)`,
+				},
+				resource.Attribute{
+					Name:        "host_header",
+					Description: `(Required) The value to use as the host header sent to the backend.`,
+				},
+				resource.Attribute{
+					Name:        "http_port",
+					Description: `(Required) The HTTP TCP port number. Possible values are between ` + "`" + `1` + "`" + ` - ` + "`" + `65535` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "https_port",
+					Description: `(Required) The HTTPS TCP port number. Possible values are between ` + "`" + `1` + "`" + ` - ` + "`" + `65535` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Priority to use for load balancing. Higher priorities will not be used for load balancing if any lower priority backend is healthy. Defaults to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) Weight of this endpoint for load balancing purposes. Defaults to ` + "`" + `50` + "`" + `. --- The ` + "`" + `frontend_endpoint` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Frontend Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "host_name",
+					Description: `(Required) The host name of the Frontend Endpoint. Must be a domain name.`,
+				},
+				resource.Attribute{
+					Name:        "custom_https_provisioning_enabled",
+					Description: `(Required) Whether to allow HTTPS protocol for a custom domain that's associated with Front Door to ensure sensitive data is delivered securely via TLS/SSL encryption when sent across the internet. Valid options are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity_enabled",
+					Description: `(Optional) Whether to allow session affinity on this host. Valid options are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "session_affinity_ttl_seconds",
+					Description: `(Optional) The TTL to use in seconds for session affinity, if applicable. Defaults to ` + "`" + `0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "web_application_firewall_policy_link_id",
+					Description: `(Optional) Defines the Web Application Firewall policy ` + "`" + `ID` + "`" + ` for each host. --- The ` + "`" + `backend_pool_health_probe` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Azure Front Door Backend Health Probe.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) The path to use for the Backend Health Probe. Default is ` + "`" + `/` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Optional) Protocol scheme to use for the Backend Health Probe. Defaults to ` + "`" + `Http` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interval_in_seconds",
+					Description: `(Optional) The number of seconds between health probes. Defaults to ` + "`" + `120` + "`" + `. --- The ` + "`" + `backend_pool_load_balancing` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Azure Front Door Backend Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "sample_size",
+					Description: `(Optional) The number of samples to consider for load balancing decisions. Defaults to ` + "`" + `4` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "successful_samples_required",
+					Description: `(Optional) The number of samples within the sample period that must succeed. Defaults to ` + "`" + `2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "additional_latency_milliseconds",
+					Description: `(Optional) The additional latency in milliseconds for probes to fall into the lowest latency bucket. Defaults to ` + "`" + `0` + "`" + `. --- The ` + "`" + `routing_rule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Front Door Backend Routing Rule.`,
+				},
+				resource.Attribute{
+					Name:        "frontend_endpoints",
+					Description: `(Required) The names of the ` + "`" + `frontend_endpoint` + "`" + ` blocks whithin this resource to associate with this ` + "`" + `routing_rule` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "accepted_protocols",
+					Description: `(Optional) Protocol schemes to match for the Backend Routing Rule. Defaults to ` + "`" + `Http` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "patterns_to_match",
+					Description: `(Optional) The route patterns for the Backend Routing Rule. Defaults to ` + "`" + `/`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) ` + "`" + `Enable` + "`" + ` or ` + "`" + `Disable` + "`" + ` use of this Backend Routing Rule. Permitted values are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_configuration",
+					Description: `(Optional) A ` + "`" + `forwarding_configuration` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "backend_pool_name",
+					Description: `(Required) The name of the Front Door Backend Pool.`,
+				},
+				resource.Attribute{
+					Name:        "cache_use_dynamic_compression",
+					Description: `(Optional) Whether to use dynamic compression when caching. Valid options are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cache_query_parameter_strip_directive",
+					Description: `(Optional) Defines cache behavior in releation to query string parameters. Valid options are ` + "`" + `StripAll` + "`" + ` or ` + "`" + `StripNone` + "`" + `. Defaults to ` + "`" + `StripNone` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "custom_forwarding_path",
+					Description: `(Optional) Path to use when constructing the request to forward to the backend. This functions as a URL Rewrite. Default behavior preserves the URL path.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_protocol",
+					Description: `(Optional) Protocol to use when redirecting. Valid options are ` + "`" + `HTTPOnly` + "`" + `, ` + "`" + `HTTPSOnly` + "`" + `, or ` + "`" + `MatchRequest` + "`" + `. Defaults to ` + "`" + `MatchRequest` + "`" + `. --- The ` + "`" + `redirect_configuration` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "custom_host",
+					Description: `(Optional) Set this to change the URL for the redirection.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_protocol",
+					Description: `(Optional) Protocol to use when redirecting. Valid options are ` + "`" + `HTTPOnly` + "`" + `, ` + "`" + `HTTPSOnly` + "`" + `, ` + "`" + `MatchRequest` + "`" + `. Defaults to ` + "`" + `MatchRequest` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "redirect_type",
+					Description: `(Optional) Status code for the redirect. Valida options are ` + "`" + `Moved` + "`" + `, ` + "`" + `Found` + "`" + `, ` + "`" + `TemporaryRedirect` + "`" + `, ` + "`" + `PermanentRedirect` + "`" + `. Defaults to ` + "`" + `Found` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "custom_fragment",
+					Description: `(Optional) The destination fragment in the portion of URL after '#'. Set this to add a fragment to the redirect URL.`,
+				},
+				resource.Attribute{
+					Name:        "custom_path",
+					Description: `(Optional) The path to retain as per the incoming request, or update in the URL for the redirection.`,
+				},
+				resource.Attribute{
+					Name:        "custom_query_string",
+					Description: `(Optional) Replace any existing query string from the incoming request URL. --- The ` + "`" + `custom_https_configuration` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "certificate_source",
+					Description: `(Optional) Certificate source to encrypted ` + "`" + `HTTPS` + "`" + ` traffic with. Allowed values are ` + "`" + `FrontDoor` + "`" + ` or ` + "`" + `AzureKeyVault` + "`" + `. Defaults to ` + "`" + `FrontDoor` + "`" + `. The following attributes are only valid if ` + "`" + `certificate_source` + "`" + ` is set to ` + "`" + `AzureKeyVault` + "`" + `:`,
+				},
+				resource.Attribute{
+					Name:        "azure_key_vault_certificate_vault_id",
+					Description: `(Required) The ` + "`" + `id` + "`" + ` of the Key Vault containing the SSL certificate.`,
+				},
+				resource.Attribute{
+					Name:        "azure_key_vault_certificate_secret_name",
+					Description: `(Required) The name of the Key Vault secret representing the full certificate PFX.`,
+				},
+				resource.Attribute{
+					Name:        "azure_key_vault_certificate_secret_version",
+					Description: `(Required) The version of the Key Vault secret representing the full certificate PFX. ~>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend Pool. ` + "`" + `backend` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend. ` + "`" + `frontend_endpoint` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Frontend Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_state",
+					Description: `Provisioning state of the Front Door.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_substate",
+					Description: `Provisioning substate of the Front Door [//]:`,
+				},
+				resource.Attribute{
+					Name:        "web_application_firewall_policy_link_id",
+					Description: `(Optional) The ` + "`" + `id` + "`" + ` of the ` + "`" + `web_application_firewall_policy_link` + "`" + ` to use for this Frontend Endpoint." ` + "`" + `backend_pool_health_probe` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend Health Probe. ` + "`" + `backend_pool_load_balancing` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend Load Balancer. ` + "`" + `routing_rule` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend Routing Rule. The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `The host that each frontendEndpoint must CNAME to.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Resource ID. ## Import Front Doors can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_frontdoor.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.Network/frontdoors/frontdoor1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend Pool. ` + "`" + `backend` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend. ` + "`" + `frontend_endpoint` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Frontend Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_state",
+					Description: `Provisioning state of the Front Door.`,
+				},
+				resource.Attribute{
+					Name:        "provisioning_substate",
+					Description: `Provisioning substate of the Front Door [//]:`,
+				},
+				resource.Attribute{
+					Name:        "web_application_firewall_policy_link_id",
+					Description: `(Optional) The ` + "`" + `id` + "`" + ` of the ` + "`" + `web_application_firewall_policy_link` + "`" + ` to use for this Frontend Endpoint." ` + "`" + `backend_pool_health_probe` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend Health Probe. ` + "`" + `backend_pool_load_balancing` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend Load Balancer. ` + "`" + `routing_rule` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Azure Front Door Backend Routing Rule. The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "cname",
+					Description: `The host that each frontendEndpoint must CNAME to.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Resource ID. ## Import Front Doors can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_frontdoor.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/mygroup1/providers/Microsoft.Network/frontdoors/frontdoor1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_frontdoor_firewall_policy",
+			Category:         "Front Door Resources",
+			ShortDescription: `Manages an Azure Front Door Web Application Firewall Policy instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"front",
+				"door",
+				"frontdoor",
+				"firewall",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the policy. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Is the policy a enabled state or disabled state. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) The firewall policy mode. Possible values are ` + "`" + `Detection` + "`" + `, ` + "`" + `Prevention` + "`" + ` and defaults to ` + "`" + `Prevention` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_url",
+					Description: `(Optional) If action type is redirect, this field represents redirect URL for the client.`,
+				},
+				resource.Attribute{
+					Name:        "custom_rule",
+					Description: `(Optional) One or more ` + "`" + `custom_rule` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "custom_block_response_status_code",
+					Description: `(Optional) If a ` + "`" + `custom_rule` + "`" + ` block's action type is ` + "`" + `block` + "`" + `, this is the response status code. Possible values are ` + "`" + `200` + "`" + `, ` + "`" + `403` + "`" + `, ` + "`" + `405` + "`" + `, ` + "`" + `406` + "`" + `, or ` + "`" + `429` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "custom_block_response_body",
+					Description: `(Optional) If a ` + "`" + `custom_rule` + "`" + ` block's action type is ` + "`" + `block` + "`" + `, this is the response body. The body must be specified in base64 encoding.`,
+				},
+				resource.Attribute{
+					Name:        "managed_rule",
+					Description: `(Optional) One or more ` + "`" + `managed_rule` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the Web Application Firewall Policy. --- The ` + "`" + `custom_rule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Gets name of the resource that is unique within a policy. This name can be used to access the resource.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) The action to perform when the rule is matched. Possible values are ` + "`" + `Allow` + "`" + `, ` + "`" + `Block` + "`" + `, ` + "`" + `Log` + "`" + `, or ` + "`" + `Redirect` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Is the rule is enabled or disabled? Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) The priority of the rule. Rules with a lower value will be evaluated before rules with a higher value. Defaults to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The the type of rule. Possible values are ` + "`" + `MatchRule` + "`" + ` or ` + "`" + `RateLimitRule` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "match_condition",
+					Description: `(Required) One or more ` + "`" + `match_condition` + "`" + ` block defined below.`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit_duration_in_minutes",
+					Description: `(Optional) The rate limit duration in minutes. Defaults to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rate_limit_threshold",
+					Description: `(Optional) The rate limit threshold. Defaults to ` + "`" + `10` + "`" + `. --- The ` + "`" + `match_condition` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "match_variable",
+					Description: `(Required) The request variable to compare with. Possible values are ` + "`" + `Cookies` + "`" + `, ` + "`" + `PostArgs` + "`" + `, ` + "`" + `QueryString` + "`" + `, ` + "`" + `RemoteAddr` + "`" + `, ` + "`" + `RequestBody` + "`" + `, ` + "`" + `RequestHeader` + "`" + `, ` + "`" + `RequestMethod` + "`" + `, or ` + "`" + `RequestURI` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "match_values",
+					Description: `(Required) Up to ` + "`" + `100` + "`" + ` possible values to match.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Required) Comparison type to use for matching with the variable value. Possible values are ` + "`" + `Any` + "`" + `, ` + "`" + `BeginsWith` + "`" + `, ` + "`" + `Contains` + "`" + `, ` + "`" + `EndsWith` + "`" + `, ` + "`" + `Equal` + "`" + `, ` + "`" + `GeoMatch` + "`" + `, ` + "`" + `GreaterThan` + "`" + `, ` + "`" + `GreaterThanOrEqual` + "`" + `, ` + "`" + `IPMatch` + "`" + `, ` + "`" + `LessThan` + "`" + `, ` + "`" + `LessThanOrEqual` + "`" + ` or ` + "`" + `RegEx` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) Match against a specific key if the ` + "`" + `match_variable` + "`" + ` is ` + "`" + `QueryString` + "`" + `, ` + "`" + `PostArgs` + "`" + `, ` + "`" + `RequestHeader` + "`" + ` or ` + "`" + `Cookies` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "negation_condition",
+					Description: `(Optional) Should the result of the condition be negated.`,
+				},
+				resource.Attribute{
+					Name:        "transforms",
+					Description: `(Optional) Up to ` + "`" + `5` + "`" + ` transforms to apply. Possible values are ` + "`" + `Lowercase` + "`" + `, ` + "`" + `RemoveNulls` + "`" + `, ` + "`" + `Trim` + "`" + `, ` + "`" + `Uppercase` + "`" + `, ` + "`" + `URLDecode` + "`" + ` or` + "`" + `URLEncode` + "`" + `. --- The ` + "`" + `managed_rule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The name of the managed rule to use with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) The version on the managed rule to use with this resource.`,
+				},
+				resource.Attribute{
+					Name:        "override",
+					Description: `(Optional) One or more ` + "`" + `override` + "`" + ` blocks as defined below. --- The ` + "`" + `override` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "rule_group_name",
+					Description: `(Required) The managed rule group to override.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) One or more ` + "`" + `rule` + "`" + ` blocks as defined below. If none are specified, all of the rules in the group will be disabled. --- The ` + "`" + `rule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `(Required) Identifier for the managed rule.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) The action to be applied when the rule matches. Possible values are ` + "`" + `Allow` + "`" + `, ` + "`" + `Block` + "`" + `, ` + "`" + `Log` + "`" + `, or ` + "`" + `Redirect` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Is the managed rule override enabled or disabled. Defaults to ` + "`" + `false` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Resource ID.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Resource location.`,
+				},
+				resource.Attribute{
+					Name:        "frontend_endpoint_ids",
+					Description: `the Frontend Endpoints associated with this Front Door Web Application Firewall policy. ## Import Front Door Web Application Firewall Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_frontdoor_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/example-fdwafpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Resource ID.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Resource location.`,
+				},
+				resource.Attribute{
+					Name:        "frontend_endpoint_ids",
+					Description: `the Frontend Endpoints associated with this Front Door Web Application Firewall policy. ## Import Front Door Web Application Firewall Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_frontdoor_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/example-fdwafpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10079,7 +12011,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "app_service_plan_id",
-					Description: `(Required) The ID of the App Service Plan within which to create this Function App. Changing this forces a new resource to be created.`,
+					Description: `(Required) The ID of the App Service Plan within which to create this Function App.`,
 				},
 				resource.Attribute{
 					Name:        "storage_connection_string",
@@ -10160,6 +12092,10 @@ var (
 				resource.Attribute{
 					Name:        "linux_fx_version",
 					Description: `(Optional) Linux App Framework and version for the AppService, e.g. ` + "`" + `DOCKER|(golang:latest)` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http2_enabled",
+					Description: `(Optional) Specifies whether or not the http2 protocol should be enabled. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cors",
@@ -10402,6 +12338,10 @@ var (
 					Description: `(Required) One or more ` + "`" + `storage_account` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "storage_account_gen2",
+					Description: `(Required) A ` + "`" + `storage_account_gen2` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "tier",
 					Description: `(Required) Specifies the Tier which should be used for this HDInsight Hadoop Cluster. Possible values are ` + "`" + `Standard` + "`" + ` or ` + "`" + `Premium` + "`" + `. Changing this forces a new resource to be created. ---`,
 				},
@@ -10459,7 +12399,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zookeeper_node",
-					Description: `(Required) A ` + "`" + `zookeeper_node` + "`" + ` block as defined below. --- A ` + "`" + `storage_account` + "`" + ` block supports the following:`,
+					Description: `(Required) A ` + "`" + `zookeeper_node` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "edge_node",
+					Description: `(Optional) A ` + "`" + `edge_node` + "`" + ` block as defined below. --- A ` + "`" + `storage_account` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "is_default",
@@ -10472,6 +12416,22 @@ var (
 				resource.Attribute{
 					Name:        "storage_container_id",
 					Description: `(Required) The ID of the Storage Container. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "storage_resource_id",
+					Description: `(Required) The ID of the Storage Account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_id",
+					Description: `(Required) The ID of the Gen2 Filesystem. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "managed_identity_resource_id",
+					Description: `(Required) The ID of Managed Identity to use for accessing the Gen2 filesystem. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -10527,7 +12487,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_network_id",
-					Description: `(Optional) The ID of the Virtual Network where the Zookeeper Nodes should be provisioned within. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The ID of the Virtual Network where the Zookeeper Nodes should be provisioned within. Changing this forces a new resource to be created. --- A ` + "`" + `edge_node` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "vm_size",
+					Description: `(Required) The Size of the Virtual Machine which should be used as the Edge Nodes. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "install_script_action",
+					Description: `A ` + "`" + `install_script_action` + "`" + ` block as defined below. --- A ` + "`" + `install_script_action` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the install script action. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required) The URI pointing to the script to run during the installation of the edge node. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -10539,7 +12515,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Hadoop Cluster. ## Import HDInsight Hadoop Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hadoop_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Hadoop Cluster. ## Import HDInsight Hadoop Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hadoop_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10553,7 +12529,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Hadoop Cluster. ## Import HDInsight Hadoop Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hadoop_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Hadoop Cluster. ## Import HDInsight Hadoop Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hadoop_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10600,6 +12576,10 @@ var (
 				resource.Attribute{
 					Name:        "storage_account",
 					Description: `(Required) One or more ` + "`" + `storage_account` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_gen2",
+					Description: `(Required) A ` + "`" + `storage_account_gen2` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "tier",
@@ -10663,7 +12643,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_default",
-					Description: `(Required) Is this the Default Storage Account for the HDInsight HBase Cluster? Changing this forces a new resource to be created. ->`,
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_key",
@@ -10672,6 +12652,22 @@ var (
 				resource.Attribute{
 					Name:        "storage_container_id",
 					Description: `(Required) The ID of the Storage Container. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "storage_resource_id",
+					Description: `(Required) The ID of the Storage Account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_id",
+					Description: `(Required) The ID of the Gen2 Filesystem. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "managed_identity_resource_id",
+					Description: `(Required) The ID of Managed Identity to use for accessing the Gen2 filesystem. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -10739,7 +12735,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight HBase Cluster. ## Import HDInsight HBase Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hbase_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight HBase Cluster. ## Import HDInsight HBase Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hbase_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10753,7 +12749,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight HBase Cluster. ## Import HDInsight HBase Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hbase_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight HBase Cluster. ## Import HDInsight HBase Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_hbase_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -10801,6 +12797,10 @@ var (
 				resource.Attribute{
 					Name:        "storage_account",
 					Description: `(Required) One or more ` + "`" + `storage_account` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_gen2",
+					Description: `(Required) A ` + "`" + `storage_account_gen2` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "tier",
@@ -10864,7 +12864,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_default",
-					Description: `(Required) Is this the Default Storage Account for the HDInsight Interactive Query Cluster? Changing this forces a new resource to be created. ->`,
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_key",
@@ -10873,6 +12873,22 @@ var (
 				resource.Attribute{
 					Name:        "storage_container_id",
 					Description: `(Required) The ID of the Storage Container. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "storage_resource_id",
+					Description: `(Required) The ID of the Storage Account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_id",
+					Description: `(Required) The ID of the Gen2 Filesystem. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "managed_identity_resource_id",
+					Description: `(Required) The ID of Managed Identity to use for accessing the Gen2 filesystem. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -10940,7 +12956,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Interactive Query Cluster. ## Import HDInsight Interactive Query Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_interactive_query_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Interactive Query Cluster. ## Import HDInsight Interactive Query Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_interactive_query_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10954,7 +12970,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Interactive Query Cluster. ## Import HDInsight Interactive Query Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_interactive_query_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Interactive Query Cluster. ## Import HDInsight Interactive Query Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_interactive_query_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11001,6 +13017,10 @@ var (
 				resource.Attribute{
 					Name:        "storage_account",
 					Description: `(Required) One or more ` + "`" + `storage_account` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_gen2",
+					Description: `(Required) A ` + "`" + `storage_account_gen2` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "tier",
@@ -11064,7 +13084,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_default",
-					Description: `(Required) Is this the Default Storage Account for the HDInsight Kafka Cluster? Changing this forces a new resource to be created. ->`,
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_key",
@@ -11073,6 +13093,22 @@ var (
 				resource.Attribute{
 					Name:        "storage_container_id",
 					Description: `(Required) The ID of the Storage Container. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "storage_resource_id",
+					Description: `(Required) The ID of the Storage Account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_id",
+					Description: `(Required) The ID of the Gen2 Filesystem. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "managed_identity_resource_id",
+					Description: `(Required) The ID of Managed Identity to use for accessing the Gen2 filesystem. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "number_of_disks_per_node",
@@ -11144,7 +13180,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Kafka Cluster. ## Import HDInsight Kafka Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_kafka_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Kafka Cluster. ## Import HDInsight Kafka Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_kafka_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11158,7 +13194,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Kafka Cluster. ## Import HDInsight Kafka Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_kafka_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Kafka Cluster. ## Import HDInsight Kafka Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_kafka_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11373,7 +13409,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight ML Services Cluster. ## Import HDInsight ML Services Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_ml_services_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight ML Services Cluster. ## Import HDInsight ML Services Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_ml_services_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11391,7 +13427,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight ML Services Cluster. ## Import HDInsight ML Services Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_ml_services_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight ML Services Cluster. ## Import HDInsight ML Services Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_ml_services_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11605,7 +13641,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight RServer Cluster. ## Import HDInsight RServer Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_rserver_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight RServer Cluster. ## Import HDInsight RServer Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_rserver_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11623,7 +13659,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight RServer Cluster. ## Import HDInsight RServer Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_rserver_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight RServer Cluster. ## Import HDInsight RServer Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_rserver_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -11670,6 +13706,10 @@ var (
 				resource.Attribute{
 					Name:        "storage_account",
 					Description: `(Required) One or more ` + "`" + `storage_account` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_gen2",
+					Description: `(Required) A ` + "`" + `storage_account_gen2` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "tier",
@@ -11733,7 +13773,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_default",
-					Description: `(Required) Is this the Default Storage Account for the HDInsight Spark Cluster? Changing this forces a new resource to be created. ->`,
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "storage_account_key",
@@ -11742,6 +13782,22 @@ var (
 				resource.Attribute{
 					Name:        "storage_container_id",
 					Description: `(Required) The ID of the Storage Container. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Required) Is this the Default Storage Account for the HDInsight Hadoop Cluster? Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "storage_resource_id",
+					Description: `(Required) The ID of the Storage Account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "filesystem_id",
+					Description: `(Required) The ID of the Gen2 Filesystem. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "managed_identity_resource_id",
+					Description: `(Required) The ID of Managed Identity to use for accessing the Gen2 filesystem. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "username",
@@ -11809,7 +13865,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Spark Cluster. ## Import HDInsight Spark Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_spark_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Spark Cluster. ## Import HDInsight Spark Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_spark_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11823,7 +13879,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Spark Cluster. ## Import HDInsight Spark Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_spark_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Spark Cluster. ## Import HDInsight Spark Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_spark_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -12009,7 +14065,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Storm Cluster. ## Import HDInsight Storm Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_storm_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Storm Cluster. ## Import HDInsight Storm Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_storm_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -12023,7 +14079,99 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_endpoint",
-					Description: `The SSH Connectivity Endpoint for this HDInsight Storm Cluster. ## Import HDInsight Storm Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_storm_cluster.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The SSH Connectivity Endpoint for this HDInsight Storm Cluster. ## Import HDInsight Storm Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_hdinsight_storm_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.HDInsight/clusters/cluster1} ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_healthcare_service",
+			Category:         "Healthcare API Resources",
+			ShortDescription: `Manages a Healthcare Service Resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"healthcare",
+				"api",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the service instance. Used for service endpoint, must be unique within the audience.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group in which to create the Service.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure Region where the Service should be created. ~>`,
+				},
+				resource.Attribute{
+					Name:        "access_policy_ids",
+					Description: `(Optional) A set of Azure object id's that are allowed to access the Service. If not configured, the default value is the object id of the service principal or user that is running Terraform.`,
+				},
+				resource.Attribute{
+					Name:        "authentication_configuration",
+					Description: `(Optional) An ` + "`" + `authentication_configuration` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "cosmosdb_throughput",
+					Description: `(Optional) The provisioned throughput for the backing database. Range of ` + "`" + `400` + "`" + `-` + "`" + `1000` + "`" + `. Defaults to ` + "`" + `400` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cors_configuration",
+					Description: `(Optional) A ` + "`" + `cors_configuration` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Optional) The type of the service. Values at time of publication are: ` + "`" + `fhir` + "`" + `, ` + "`" + `fhir-Stu3` + "`" + ` and ` + "`" + `fhir-R4` + "`" + `. Default value is ` + "`" + `fhir` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. --- An ` + "`" + `authentication_configuration` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "authority",
+					Description: `(Optional) The Azure Active Directory (tenant) that serves as the authentication authority to access the service. The default authority is the Directory defined in the authentication scheme in use when running Terraform. Authority must be registered to Azure AD and in the following format: https://{Azure-AD-endpoint}/{tenant-id}.`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) The intended audience to receive authentication tokens for the service. The default value is https://azurehealthcareapis.com`,
+				},
+				resource.Attribute{
+					Name:        "smart_proxy_enabled",
+					Description: `(Boolean) Enables the 'SMART on FHIR' option for mobile and web implementations. --- A ` + "`" + `cors_configuration` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allowed_origins",
+					Description: `(Required) A set of origins to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_headers",
+					Description: `(Required) A set of headers to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_methods",
+					Description: `(Required) The methods to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "max_age_in_seconds",
+					Description: `(Required) The max age to be allowed via CORS.`,
+				},
+				resource.Attribute{
+					Name:        "allow_credentials",
+					Description: `(Boolean) If credentials are allowed via CORS. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ` + "`" + `id` + "`" + ` of the Healthcare Service. ## Import Healthcare Service can be imported using the resource` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_healthcare_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource_group/providers/Microsoft.HealthcareApis/services/service_name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ` + "`" + `id` + "`" + ` of the Healthcare Service. ## Import Healthcare Service can be imported using the resource` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_healthcare_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource_group/providers/Microsoft.HealthcareApis/services/service_name ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -12116,134 +14264,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The managed image ID. ## Import Image can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_image.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The managed image ID. ## Import Image can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_image.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The managed image ID. ## Import Image can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_image.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "azurerm_iot_dps",
-			Category:         "Messaging Resources",
-			ShortDescription: `Manages an IoT Device Provisioning Service.`,
-			Description:      ``,
-			Keywords: []string{
-				"messaging",
-				"iot",
-				"dps",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Specifies the name of the Iot Device Provisioning Service resource. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group under which the Iot Device Provisioning Service resource has to be created. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "location",
-					Description: `(Required) Specifies the supported Azure location where the resource has to be createc. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "sku",
-					Description: `(Required) A ` + "`" + `sku` + "`" + ` block as defined below.`,
-				},
-				resource.Attribute{
-					Name:        "linked_hub",
-					Description: `(Optional) A ` + "`" + `linked_hub` + "`" + ` block as defined below.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the sku. Possible values are ` + "`" + `B1` + "`" + `, ` + "`" + `B2` + "`" + `, ` + "`" + `B3` + "`" + `, ` + "`" + `F1` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, and ` + "`" + `S3` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "tier",
-					Description: `(Required) The billing tier for the IoT Device Provisioning Service. Possible values are ` + "`" + `Basic` + "`" + `, ` + "`" + `Free` + "`" + ` or ` + "`" + `Standard` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "capacity",
-					Description: `(Required) The number of provisioned IoT Device Provisioning Service units. --- A ` + "`" + `linked_hub` + "`" + ` block supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "connection_string",
-					Description: `(Required) The connection string to connect to the IoT Hub. Changing this forces a new resource.`,
-				},
-				resource.Attribute{
-					Name:        "location",
-					Description: `(Required) The location of the IoT hub. Changing this forces a new resource.`,
-				},
-				resource.Attribute{
-					Name:        "apply_application_policy",
-					Description: `(Optional) Determines whether to apply application policies to the IoT Hub. Defaults to false.`,
-				},
-				resource.Attribute{
-					Name:        "allocation_weight",
-					Description: `(Optional) The weight applied to the IoT Hub. Defaults to 0.`,
-				},
-				resource.Attribute{
-					Name:        "hostname",
-					Description: `(Computed) The IoT Hub hostname. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the IoT Device Provisioning Service. ## Import IoT Device Provisioning Service can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iot_dps.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the IoT Device Provisioning Service. ## Import IoT Device Provisioning Service can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iot_dps.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "azurerm_iot_dps_certificate",
-			Category:         "Messaging Resources",
-			ShortDescription: `Manages an IoT Device Provisioning Service Certificate.`,
-			Description:      ``,
-			Keywords: []string{
-				"messaging",
-				"iot",
-				"dps",
-				"certificate",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Specifies the name of the Iot Device Provisioning Service Certificate resource. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group under which the Iot Device Provisioning Service Certificate resource has to be created. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "iot_dps_name",
-					Description: `(Required) The name of the IoT Device Provisioning Service that this certificate will be attached to. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "certificate_content",
-					Description: `(Required) The Base-64 representation of the X509 leaf certificate .cer file or just a .pem file content. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the IoT Device Provisioning Service Certificate. ## Import IoT Device Provisioning Service Certificate can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iot_dps_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example/certificates/example ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the IoT Device Provisioning Service Certificate. ## Import IoT Device Provisioning Service Certificate can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iot_dps_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example/certificates/example ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The managed image ID. ## Import Image can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_image.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/images/image1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -12553,6 +14580,322 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_iothub_dps",
+			Category:         "Messaging Resources",
+			ShortDescription: `Manages an IoT Device Provisioning Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"messaging",
+				"iothub",
+				"dps",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Iot Device Provisioning Service resource. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group under which the Iot Device Provisioning Service resource has to be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource has to be createc. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `(Required) A ` + "`" + `sku` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "linked_hub",
+					Description: `(Optional) A ` + "`" + `linked_hub` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the sku. Possible values are ` + "`" + `B1` + "`" + `, ` + "`" + `B2` + "`" + `, ` + "`" + `B3` + "`" + `, ` + "`" + `F1` + "`" + `, ` + "`" + `S1` + "`" + `, ` + "`" + `S2` + "`" + `, and ` + "`" + `S3` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tier",
+					Description: `(Required) The billing tier for the IoT Device Provisioning Service. Possible values are ` + "`" + `Basic` + "`" + `, ` + "`" + `Free` + "`" + ` or ` + "`" + `Standard` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Required) The number of provisioned IoT Device Provisioning Service units. --- A ` + "`" + `linked_hub` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `(Required) The connection string to connect to the IoT Hub. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location of the IoT hub. Changing this forces a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "apply_application_policy",
+					Description: `(Optional) Determines whether to apply application policies to the IoT Hub. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "allocation_weight",
+					Description: `(Optional) The weight applied to the IoT Hub. Defaults to 0.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Computed) The IoT Hub hostname. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoT Device Provisioning Service.`,
+				},
+				resource.Attribute{
+					Name:        "allocation_policy",
+					Description: `The allocation policy of the IoT Device Provisioning Service.`,
+				},
+				resource.Attribute{
+					Name:        "device_provisioning_host_name",
+					Description: `The device endpoint of the IoT Device Provisioning Service.`,
+				},
+				resource.Attribute{
+					Name:        "id_scope",
+					Description: `The unique identifier of the IoT Device Provisioning Service.`,
+				},
+				resource.Attribute{
+					Name:        "service_operations_host_name",
+					Description: `The service endpoint of the IoT Device Provisioning Service. ## Import IoT Device Provisioning Service can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_dps.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoT Device Provisioning Service.`,
+				},
+				resource.Attribute{
+					Name:        "allocation_policy",
+					Description: `The allocation policy of the IoT Device Provisioning Service.`,
+				},
+				resource.Attribute{
+					Name:        "device_provisioning_host_name",
+					Description: `The device endpoint of the IoT Device Provisioning Service.`,
+				},
+				resource.Attribute{
+					Name:        "id_scope",
+					Description: `The unique identifier of the IoT Device Provisioning Service.`,
+				},
+				resource.Attribute{
+					Name:        "service_operations_host_name",
+					Description: `The service endpoint of the IoT Device Provisioning Service. ## Import IoT Device Provisioning Service can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_dps.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_iothub_dps_certificate",
+			Category:         "Messaging Resources",
+			ShortDescription: `Manages an IoT Device Provisioning Service Certificate.`,
+			Description:      ``,
+			Keywords: []string{
+				"messaging",
+				"iothub",
+				"dps",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the Iot Device Provisioning Service Certificate resource. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group under which the Iot Device Provisioning Service Certificate resource has to be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "iot_dps_name",
+					Description: `(Required) The name of the IoT Device Provisioning Service that this certificate will be attached to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "certificate_content",
+					Description: `(Required) The Base-64 representation of the X509 leaf certificate .cer file or just a .pem file content. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoT Device Provisioning Service Certificate. ## Import IoT Device Provisioning Service Certificate can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_dps_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example/certificates/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoT Device Provisioning Service Certificate. ## Import IoT Device Provisioning Service Certificate can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_dps_certificate.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/provisioningServices/example/certificates/example ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_iothub_endpoint_eventhub",
+			Category:         "Messaging Resources",
+			ShortDescription: `Manages an IotHub EventHub Endpoint`,
+			Description:      ``,
+			Keywords: []string{
+				"messaging",
+				"iothub",
+				"endpoint",
+				"eventhub",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the endpoint. The name must be unique across endpoint types. The following names are reserved: ` + "`" + `events` + "`" + `, ` + "`" + `operationsMonitoringEvents` + "`" + `, ` + "`" + `fileNotifications` + "`" + ` and ` + "`" + `$default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `(Required) The connection string for the endpoint. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub EventHub Endpoint. ## Import IoTHub EventHub Endpoint can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_endpoint_eventhub.eventhub1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/Endpoints/eventhub_endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub EventHub Endpoint. ## Import IoTHub EventHub Endpoint can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_endpoint_eventhub.eventhub1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/Endpoints/eventhub_endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_iothub_endpoint_servicebus_queue",
+			Category:         "Messaging Resources",
+			ShortDescription: `Manages an IotHub ServiceBus Queue Endpoint`,
+			Description:      ``,
+			Keywords: []string{
+				"messaging",
+				"iothub",
+				"endpoint",
+				"servicebus",
+				"queue",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the endpoint. The name must be unique across endpoint types. The following names are reserved: ` + "`" + `events` + "`" + `, ` + "`" + `operationsMonitoringEvents` + "`" + `, ` + "`" + `fileNotifications` + "`" + ` and ` + "`" + `$default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `(Required) The connection string for the endpoint. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub ServiceBus Queue Endpoint. ## Import IoTHub ServiceBus Queue Endpoint can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_endpoint_servicebus_queue.servicebus_queue1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/Endpoints/servicebusqueue_endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub ServiceBus Queue Endpoint. ## Import IoTHub ServiceBus Queue Endpoint can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_endpoint_servicebus_queue.servicebus_queue1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/Endpoints/servicebusqueue_endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_iothub_endpoint_servicebus_topic",
+			Category:         "Messaging Resources",
+			ShortDescription: `Manages an IotHub ServiceBus Topic Endpoint`,
+			Description:      ``,
+			Keywords: []string{
+				"messaging",
+				"iothub",
+				"endpoint",
+				"servicebus",
+				"topic",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the endpoint. The name must be unique across endpoint types. The following names are reserved: ` + "`" + `events` + "`" + `, ` + "`" + `operationsMonitoringEvents` + "`" + `, ` + "`" + `fileNotifications` + "`" + ` and ` + "`" + `$default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `(Required) The connection string for the endpoint. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub ServiceBus Topic Endpoint. ## Import IoTHub ServiceBus Topic Endpoint can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_endpoint_servicebus_topic.servicebus_topic1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/Endpoints/servicebustopic_endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub ServiceBus Topic Endpoint. ## Import IoTHub ServiceBus Topic Endpoint can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_endpoint_servicebus_topic.servicebus_topic1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/Endpoints/servicebustopic_endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_iothub_endpoint_storage_container",
+			Category:         "Messaging Resources",
+			ShortDescription: `Manages an IotHub Storage Container Endpoint`,
+			Description:      ``,
+			Keywords: []string{
+				"messaging",
+				"iothub",
+				"endpoint",
+				"storage",
+				"container",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the endpoint. The name must be unique across endpoint types. The following names are reserved: ` + "`" + `events` + "`" + `, ` + "`" + `operationsMonitoringEvents` + "`" + `, ` + "`" + `fileNotifications` + "`" + ` and ` + "`" + `$default` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group under which the IotHub Storage Container Endpoint resource has to be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "iothub_name",
+					Description: `(Required) The name of the IoTHub to which this Storage Container Endpoint belongs. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `(Required) The connection string for the endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "batch_frequency_in_seconds",
+					Description: `(Optional) Time interval at which blobs are written to storage. Value should be between 60 and 720 seconds. Default value is 300 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "max_chunk_size_in_bytes",
+					Description: `(Optional) Maximum number of bytes for each blob written to storage. Value should be between 10485760(10MB) and 524288000(500MB). Default value is 314572800(300MB).`,
+				},
+				resource.Attribute{
+					Name:        "container_name",
+					Description: `(Required) The name of storage container in the storage account.`,
+				},
+				resource.Attribute{
+					Name:        "encoding",
+					Description: `(Optional) Encoding that is used to serialize messages to blobs. Supported values are 'avro' and 'avrodeflate'. Default value is 'avro'.`,
+				},
+				resource.Attribute{
+					Name:        "file_name_format",
+					Description: `(Optional) File name format for the blob. Default format is ` + "`" + `` + "`" + `{iothub}/{partition}/{YYYY}/{MM}/{DD}/{HH}/{mm}` + "`" + `` + "`" + `. All parameters are mandatory but can be reordered. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub Storage Container Endpoint. ## Import IoTHub Storage Container Endpoint can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_endpoint_storage_container.storage_container1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/Endpoints/storage_container_endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the IoTHub Storage Container Endpoint. ## Import IoTHub Storage Container Endpoint can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_iothub_endpoint_storage_container.storage_container1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Devices/IotHubs/hub1/Endpoints/storage_container_endpoint1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_iothub_shared_access_policy",
 			Category:         "Messaging Resources",
 			ShortDescription: `Manages an IotHub Shared Access Policy`,
@@ -12750,7 +15093,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vault_uri",
-					Description: `The URI of the Key Vault, used for performing operations on keys and secrets. ## Import Key Vault's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.KeyVault/vaults/vault1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The URI of the Key Vault, used for performing operations on keys and secrets. ## Import Key Vault's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.KeyVault/vaults/vault1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -12760,7 +15103,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vault_uri",
-					Description: `The URI of the Key Vault, used for performing operations on keys and secrets. ## Import Key Vault's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.KeyVault/vaults/vault1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The URI of the Key Vault, used for performing operations on keys and secrets. ## Import Key Vault's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.KeyVault/vaults/vault1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -12979,11 +15322,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate_data",
-					Description: `The raw Key Vault Certificate.`,
+					Description: `The raw Key Vault Certificate data represented as a hexadecimal string.`,
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
-					Description: `The X509 Thumbprint of the Key Vault Certificate returned as hex string. ## Import Key Vault Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_certificate.test https://example-keyvault.vault.azure.net/certificates/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The X509 Thumbprint of the Key Vault Certificate represented as a hexadecimal string. ## Import Key Vault Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_certificate.examplehttps://example-keyvault.vault.azure.net/certificates/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -13001,11 +15344,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "certificate_data",
-					Description: `The raw Key Vault Certificate.`,
+					Description: `The raw Key Vault Certificate data represented as a hexadecimal string.`,
 				},
 				resource.Attribute{
 					Name:        "thumbprint",
-					Description: `The X509 Thumbprint of the Key Vault Certificate returned as hex string. ## Import Key Vault Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_certificate.test https://example-keyvault.vault.azure.net/certificates/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The X509 Thumbprint of the Key Vault Certificate represented as a hexadecimal string. ## Import Key Vault Certificates can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_certificate.examplehttps://example-keyvault.vault.azure.net/certificates/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13070,7 +15413,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "y",
-					Description: `The EC Y component of this Key Vault Key. ## Import Key Vault Key which is Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_key.test https://example-keyvault.vault.azure.net/keys/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The EC Y component of this Key Vault Key. ## Import Key Vault Key which is Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_key.examplehttps://example-keyvault.vault.azure.net/keys/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -13096,7 +15439,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "y",
-					Description: `The EC Y component of this Key Vault Key. ## Import Key Vault Key which is Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_key.test https://example-keyvault.vault.azure.net/keys/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The EC Y component of this Key Vault Key. ## Import Key Vault Key which is Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_key.examplehttps://example-keyvault.vault.azure.net/keys/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13118,7 +15461,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Required) Specifies the value of the Key Vault Secret.`,
+					Description: `(Required) Specifies the value of the Key Vault Secret. ~>`,
 				},
 				resource.Attribute{
 					Name:        "key_vault_id",
@@ -13130,7 +15473,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "not_before_date",
+					Description: `(Optional) Key not usable before the provided UTC datetime (Y-m-d'T'H:M:S'Z').`,
+				},
+				resource.Attribute{
+					Name:        "expiration_date",
+					Description: `(Optional) Expiration UTC datetime (Y-m-d'T'H:M:S'Z'). ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -13138,7 +15489,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The current version of the Key Vault Secret. ## Import Key Vault Secrets which are Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_secret.test https://example-keyvault.vault.azure.net/secrets/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The current version of the Key Vault Secret. ## Import Key Vault Secrets which are Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_secret.examplehttps://example-keyvault.vault.azure.net/secrets/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -13148,7 +15499,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `The current version of the Key Vault Secret. ## Import Key Vault Secrets which are Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_secret.test https://example-keyvault.vault.azure.net/secrets/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The current version of the Key Vault Secret. ## Import Key Vault Secrets which are Enabled can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_key_vault_secret.examplehttps://example-keyvault.vault.azure.net/secrets/example/fdf067c93bbb4b22bff4d8b7a9a56217 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13177,8 +15528,8 @@ var (
 					Description: `(Required) Specifies the Resource Group where the Managed Kubernetes Cluster should exist. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
-					Name:        "agent_pool_profile",
-					Description: `(Required) One or more ` + "`" + `agent_pool_profile` + "`" + ` blocks as defined below.`,
+					Name:        "default_node_pool",
+					Description: `(Optional) A ` + "`" + `default_node_pool` + "`" + ` block as defined below. ->`,
 				},
 				resource.Attribute{
 					Name:        "dns_prefix",
@@ -13186,7 +15537,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_principal",
-					Description: `(Required) A ` + "`" + `service_principal` + "`" + ` block as documented below. --- A ` + "`" + `aci_connector_linux` + "`" + ` block supports the following:`,
+					Description: `(Required) A ` + "`" + `service_principal` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "agent_pool_profile",
+					Description: `(Optional) One or more ` + "`" + `agent_pool_profile` + "`" + ` blocks as defined below. ~>`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -13194,59 +15549,67 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_name",
-					Description: `(Required) The subnet name for the virtual nodes to run. ->`,
+					Description: `(Optional) The subnet name for the virtual nodes to run. This is required when ` + "`" + `aci_connector_linux` + "`" + ` ` + "`" + `enabled` + "`" + ` argument is set to ` + "`" + `true` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "addon_profile",
-					Description: `(Optional) A ` + "`" + `addon_profile` + "`" + ` block.`,
+					Description: `(Optional) A ` + "`" + `addon_profile` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "api_server_authorized_ip_ranges",
 					Description: `(Optional) The IP ranges to whitelist for incoming traffic to the masters. ->`,
 				},
 				resource.Attribute{
+					Name:        "enable_pod_security_policy",
+					Description: `(Optional) Whether Pod Security Policies are enabled. Note that this also requires role based access control to be enabled. ->`,
+				},
+				resource.Attribute{
 					Name:        "kubernetes_version",
-					Description: `(Optional) Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade).`,
+					Description: `(Optional) Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade). ->`,
 				},
 				resource.Attribute{
 					Name:        "linux_profile",
-					Description: `(Optional) A ` + "`" + `linux_profile` + "`" + ` block.`,
-				},
-				resource.Attribute{
-					Name:        "windows_profile",
-					Description: `(Optional) A ` + "`" + `windows_profile` + "`" + ` block.`,
+					Description: `(Optional) A ` + "`" + `linux_profile` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "network_profile",
-					Description: `(Optional) A ` + "`" + `network_profile` + "`" + ` block. ->`,
-				},
-				resource.Attribute{
-					Name:        "role_based_access_control",
-					Description: `(Optional) A ` + "`" + `role_based_access_control` + "`" + ` block. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
-					Name:        "enable_pod_security_policy",
-					Description: `(Optional) Whether Pod Security Policies are enabled. Note that this also requires role based access control to be enabled. ->`,
+					Description: `(Optional) A ` + "`" + `network_profile` + "`" + ` block as defined below. ->`,
 				},
 				resource.Attribute{
 					Name:        "node_resource_group",
 					Description: `(Optional) The name of the Resource Group where the the Kubernetes Nodes should exist. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
+					Name:        "role_based_access_control",
+					Description: `(Optional) A ` + "`" + `role_based_access_control` + "`" + ` block. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `addon_profile` + "`" + ` block supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "windows_profile",
+					Description: `(Optional) A ` + "`" + `windows_profile` + "`" + ` block as defined below. --- A ` + "`" + `addon_profile` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "aci_connector_linux",
 					Description: `(Optional) A ` + "`" + `aci_connector_linux` + "`" + ` block. For more details, please visit [Create and configure an AKS cluster to use virtual nodes](https://docs.microsoft.com/en-us/azure/aks/virtual-nodes-portal).`,
 				},
 				resource.Attribute{
+					Name:        "azure_policy",
+					Description: `(Optional) A ` + "`" + `azure_policy` + "`" + ` block as defined below. For more details please visit [Understand Azure Policy for Azure Kubernetes Service](https://docs.microsoft.com/en-ie/azure/governance/policy/concepts/rego-for-aks) ->`,
+				},
+				resource.Attribute{
 					Name:        "http_application_routing",
-					Description: `(Optional) A ` + "`" + `http_application_routing` + "`" + ` block.`,
+					Description: `(Optional) A ` + "`" + `http_application_routing` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "kube_dashboard",
+					Description: `(Optional) A ` + "`" + `kube_dashboard` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "oms_agent",
-					Description: `(Optional) A ` + "`" + `oms_agent` + "`" + ` block. For more details, please visit [How to onboard Azure Monitor for containers](https://docs.microsoft.com/en-us/azure/monitoring/monitoring-container-insights-onboard). --- A ` + "`" + `agent_pool_profile` + "`" + ` block supports the following:`,
+					Description: `(Optional) A ` + "`" + `oms_agent` + "`" + ` block as defined below. For more details, please visit [How to onboard Azure Monitor for containers](https://docs.microsoft.com/en-us/azure/monitoring/monitoring-container-insights-onboard). --- A ` + "`" + `agent_pool_profile` + "`" + ` block supports the following: ~>`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -13254,7 +15617,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "count",
-					Description: `(Required) Number of Agents (VMs) in the Pool. Possible values must be in the range of 1 to 100 (inclusive). Defaults to ` + "`" + `1` + "`" + `.`,
+					Description: `(Optional) Number of Agents (VMs) in the Pool. Possible values must be in the range of 1 to 100 (inclusive). Defaults to ` + "`" + `1` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "vm_size",
@@ -13269,16 +15632,24 @@ var (
 					Description: `(Optional) Whether to enable [auto-scaler](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler). Note that auto scaling feature requires the that the ` + "`" + `type` + "`" + ` is set to ` + "`" + `VirtualMachineScaleSets` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "enable_node_public_ip",
+					Description: `(Optional) Should each node have a Public IP Address? Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
 					Name:        "min_count",
-					Description: `(Optional) Minimum number of nodes for auto-scaling`,
+					Description: `(Optional) Minimum number of nodes for auto-scaling.`,
 				},
 				resource.Attribute{
 					Name:        "max_count",
-					Description: `(Optional) Maximum number of nodes for auto-scaling`,
+					Description: `(Optional) Maximum number of nodes for auto-scaling.`,
 				},
 				resource.Attribute{
 					Name:        "max_pods",
 					Description: `(Optional) The maximum number of pods that can run on each agent. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `(Optional) A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g ` + "`" + `key=value:NoSchedule` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "os_disk_size_gb",
@@ -13290,15 +15661,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Type of the Agent Pool. Possible values are ` + "`" + `AvailabilitySet` + "`" + ` and ` + "`" + `VirtualMachineScaleSets` + "`" + `. Changing this forces a new resource to be created. Defaults to ` + "`" + `AvailabilitySet` + "`" + `. ~>`,
+					Description: `(Optional) Type of the Agent Pool. Possible values are ` + "`" + `AvailabilitySet` + "`" + ` and ` + "`" + `VirtualMachineScaleSets` + "`" + `. Changing this forces a new resource to be created. Defaults to ` + "`" + `AvailabilitySet` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vnet_subnet_id",
-					Description: `(Optional) The ID of the Subnet where the Agents in the Pool should be provisioned. Changing this forces a new resource to be created. ~>`,
-				},
-				resource.Attribute{
-					Name:        "node_taints",
-					Description: `(Optional) A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g ` + "`" + `key=value:NoSchedule` + "`" + `) --- A ` + "`" + `azure_active_directory` + "`" + ` block supports the following:`,
+					Description: `(Optional) The ID of the Subnet where the Agents in the Pool should be provisioned. Changing this forces a new resource to be created. ->`,
 				},
 				resource.Attribute{
 					Name:        "client_app_id",
@@ -13314,7 +15681,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) The Tenant ID used for Azure Active Directory Application. If this isn't specified the Tenant ID of the current Subscription is used. Changing this forces a new resource to be created. --- A ` + "`" + `http_application_routing` + "`" + ` block supports the following:`,
+					Description: `(Optional) The Tenant ID used for Azure Active Directory Application. If this isn't specified the Tenant ID of the current Subscription is used. Changing this forces a new resource to be created. --- A ` + "`" + `azure_policy` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Is the Azure Policy for Kubernetes Add On enabled? --- A ` + "`" + `default_node_pool` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name which should be used for the default Kubernetes Node Pool. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "vm_size",
+					Description: `(Required) The size of the Virtual Machine, such as ` + "`" + `Standard_DS2_v2` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `(Optional) A list of Availability Zones across which the Node Pool should be spread. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_scaling",
+					Description: `(Optional) Should [the Kubernetes Auto Scaler](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler) be enabled for this Node Pool? Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_node_public_ip",
+					Description: `(Optional) Should nodes in this Node Pool have a Public IP Address? Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max_pods",
+					Description: `(Optional) The maximum number of pods that can run on each agent. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `(Optional) A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g ` + "`" + `key=value:NoSchedule` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "os_disk_size_gb",
+					Description: `(Optional) The size of the OS Disk which should be used for each agent in the Node Pool. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of Node Pool which should be created. Possible values are ` + "`" + `AvailabilitySet` + "`" + ` and ` + "`" + `VirtualMachineScaleSets` + "`" + `. Defaults to ` + "`" + `VirtualMachineScaleSets` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "vnet_subnet_id",
+					Description: `(Required) The ID of a Subnet where the Kubernetes Node Pool should exist. Changing this forces a new resource to be created. ~>`,
+				},
+				resource.Attribute{
+					Name:        "max_count",
+					Description: `(Required) The maximum number of nodes which should exist in this Node Pool. If specified this must be between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "min_count",
+					Description: `(Required) The minimum number of nodes which should exist in this Node Pool. If specified this must be between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `(Optional) The initial number of nodes which should exist in this Node Pool. If specified this must be between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + ` and between ` + "`" + `min_count` + "`" + ` and ` + "`" + `max_count` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `(Required) The number of nodes which should exist in this Node Pool. If specified this must be between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + `. --- A ` + "`" + `http_application_routing` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Is the Kubernetes Dashboard enabled? --- A ` + "`" + `linux_profile` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "admin_username",
@@ -13322,15 +15753,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_key",
-					Description: `(Required) An ` + "`" + `ssh_key` + "`" + ` block. Only one is currently allowed. Changing this forces a new resource to be created. --- A ` + "`" + `windows_profile` + "`" + ` block supports the following:`,
-				},
-				resource.Attribute{
-					Name:        "admin_username",
-					Description: `(Required) The Admin Username for Windows VMs.`,
-				},
-				resource.Attribute{
-					Name:        "admin_password",
-					Description: `(Required) The Admin Password for Windows VMs. --- A ` + "`" + `network_profile` + "`" + ` block supports the following:`,
+					Description: `(Required) An ` + "`" + `ssh_key` + "`" + ` block. Only one is currently allowed. Changing this forces a new resource to be created. --- A ` + "`" + `network_profile` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "network_plugin",
@@ -13358,7 +15781,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_sku",
-					Description: `(Optional) Specifies the SKU of the Load Balancer used for this Kubernetes Cluster. Possible values are ` + "`" + `basic` + "`" + ` and ` + "`" + `standard` + "`" + `. Defaults to ` + "`" + `basic` + "`" + `. ~>`,
+					Description: `(Optional) Specifies the SKU of the Load Balancer used for this Kubernetes Cluster. Possible values are ` + "`" + `basic` + "`" + ` and ` + "`" + `standard` + "`" + `. Defaults to ` + "`" + `basic` + "`" + `. --- A ` + "`" + `oms_agent` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "enabled",
@@ -13366,7 +15789,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "log_analytics_workspace_id",
-					Description: `(Required) The ID of the Log Analytics Workspace which the OMS Agent should send data to. --- A ` + "`" + `role_based_access_control` + "`" + ` block supports the following:`,
+					Description: `(Optional) The ID of the Log Analytics Workspace which the OMS Agent should send data to. Must be present if ` + "`" + `enabled` + "`" + ` is ` + "`" + `true` + "`" + `. --- A ` + "`" + `role_based_access_control` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "azure_active_directory",
@@ -13378,15 +15801,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_id",
-					Description: `(Required) The Client ID for the Service Principal. Changing this forces a new resource to be created.`,
+					Description: `(Required) The Client ID for the Service Principal.`,
 				},
 				resource.Attribute{
 					Name:        "client_secret",
-					Description: `(Required) The Client Secret for the Service Principal. Changing this forces a new resource to be created. --- A ` + "`" + `ssh_key` + "`" + ` block supports the following:`,
+					Description: `(Required) The Client Secret for the Service Principal. --- A ` + "`" + `ssh_key` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "key_data",
-					Description: `(Required) The Public SSH Key used to access the cluster. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The Public SSH Key used to access the cluster. Changing this forces a new resource to be created. --- A ` + "`" + `windows_profile` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "admin_username",
+					Description: `(Required) The Admin Username for Windows VMs.`,
+				},
+				resource.Attribute{
+					Name:        "admin_password",
+					Description: `(Required) The Admin Password for Windows VMs. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -13509,6 +15940,284 @@ var (
 				resource.Attribute{
 					Name:        "password",
 					Description: `A password or token used to authenticate to the Kubernetes cluster. ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_kubernetes_cluster_node_pool",
+			Category:         "Container Resources",
+			ShortDescription: `Manages a Node Pool within a Kubernetes Cluster`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"kubernetes",
+				"cluster",
+				"node",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Node Pool which should be created within the Kubernetes Cluster. Changing this forces a new resource to be created. ->`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_cluster_id",
+					Description: `(Required) The ID of the Kubernetes Cluster where this Node Pool should exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "vm_size",
+					Description: `(Required) The SKU which should be used for the Virtual Machines used in this Node Pool. Changing this forces a new resource to be created. ---`,
+				},
+				resource.Attribute{
+					Name:        "availability_zones",
+					Description: `(Optional) A list of Availability Zones where the Nodes in this Node Pool should be created in.`,
+				},
+				resource.Attribute{
+					Name:        "enable_auto_scaling",
+					Description: `(Optional) Whether to enable [auto-scaler](https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler). Defaults to ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "enable_node_public_ip",
+					Description: `(Optional) Should each node have a Public IP Address? Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "max_pods",
+					Description: `(Optional) The maximum number of pods that can run on each agent. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `(Optional) A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g ` + "`" + `key=value:NoSchedule` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "os_disk_size_gb",
+					Description: `(Optional) The Agent Operating System disk size in GB. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `(Optional) The Operating System which should be used for this Node Pool. Changing this forces a new resource to be created. Possible values are ` + "`" + `Linux` + "`" + ` and ` + "`" + `Windows` + "`" + `. Defaults to ` + "`" + `Linux` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "vnet_subnet_id",
+					Description: `(Optional) The ID of the Subnet where this Node Pool should exist. ->`,
+				},
+				resource.Attribute{
+					Name:        "max_count",
+					Description: `(Required) The maximum number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + ` and must be greater than or equal to ` + "`" + `min_count` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "min_count",
+					Description: `(Required) The minimum number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + ` and must be less than or equal to ` + "`" + `max_count` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `(Optional) The initial number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + ` and must be a value in the range ` + "`" + `min_count` + "`" + ` - ` + "`" + `max_count` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "node_count",
+					Description: `(Required) The number of nodes which should exist within this Node Pool. Valid values are between ` + "`" + `1` + "`" + ` and ` + "`" + `100` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Kubernetes Cluster Node Pool. --- ## Import Kubernetes Cluster Node Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_kubernetes_cluster_node_pool.pool1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ContainerService/managedClusters/cluster1/agentPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Kubernetes Cluster Node Pool. --- ## Import Kubernetes Cluster Node Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_kubernetes_cluster_node_pool.pool1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.ContainerService/managedClusters/cluster1/agentPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_kusto_cluster",
+			Category:         "Data Explorer Resources",
+			ShortDescription: `Manages Kusto (also known as Azure Data Explorer) Cluster`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"explorer",
+				"kusto",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Kusto Cluster to create. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location where the Kusto Cluster should be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the Resource Group where the Kusto Cluster should exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "sku",
+					Description: `(Required) A ` + "`" + `sku` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the SKU. Valid values are: ` + "`" + `Dev(No SLA)_Standard_D11_v2` + "`" + `, ` + "`" + `Standard_D11_v2` + "`" + `, ` + "`" + `Standard_D12_v2` + "`" + `, ` + "`" + `Standard_D13_v2` + "`" + `, ` + "`" + `Standard_D14_v2` + "`" + `, ` + "`" + `Standard_DS13_v2+1TB_PS` + "`" + `, ` + "`" + `Standard_DS13_v2+2TB_PS` + "`" + `, ` + "`" + `Standard_DS14_v2+3TB_PS` + "`" + `, ` + "`" + `Standard_DS14_v2+4TB_PS` + "`" + `, ` + "`" + `Standard_L16s` + "`" + `, ` + "`" + `Standard_L4s` + "`" + ` and ` + "`" + `Standard_L8s` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "capacity",
+					Description: `(Required) Specifies the node count for the cluster. Boundaries depend on the sku name. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Kusto Cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `The FQDN of the Azure Kusto Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "data_ingestion_uri",
+					Description: `The Kusto Cluster URI to be used for data ingestion. --- ## Import Kusto Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_kusto_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Kusto/Clusters/cluster1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Kusto Cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `The FQDN of the Azure Kusto Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "data_ingestion_uri",
+					Description: `The Kusto Cluster URI to be used for data ingestion. --- ## Import Kusto Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_kusto_cluster.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Kusto/Clusters/cluster1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_kusto_database",
+			Category:         "Data Explorer Resources",
+			ShortDescription: `Manages Kusto / Data Explorer Database`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"explorer",
+				"kusto",
+				"database",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Kusto Database to create. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location where the Kusto Database should be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the Resource Group where the Kusto Database should exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) Specifies the name of the Kusto Cluster this database will be added to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "hot_cache_period",
+					Description: `(Optional) The time the data that should be kept in cache for fast queries as ISO 8601 timespan. Default is unlimited. For more information see: [ISO 8601 Timespan](https://en.wikipedia.org/wiki/ISO_8601#Durations)`,
+				},
+				resource.Attribute{
+					Name:        "soft_delete_period",
+					Description: `(Optional) The time the data should be kept before it stops being accessible to queries as ISO 8601 timespan. Default is unlimited. For more information see: [ISO 8601 Timespan](https://en.wikipedia.org/wiki/ISO_8601#Durations) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Kusto Cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the database in bytes. --- ## Import Kusto Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_kusto_database.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Kusto/Clusters/cluster1/Databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Kusto Cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the database in bytes. --- ## Import Kusto Clusters can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_kusto_database.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Kusto/Clusters/cluster1/Databases/database1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_kusto_eventhub_data_connection",
+			Category:         "Data Explorer Resources",
+			ShortDescription: `Manages Kusto / Data Explorer EventHub Data Connection`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"explorer",
+				"kusto",
+				"eventhub",
+				"connection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Kusto EventHub Data Connection to create. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location where the Kusto Database should be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the Resource Group where the Kusto Database should exist. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) Specifies the name of the Kusto Cluster this data connection will be added to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `(Required) Specifies the name of the Kusto Database this data connection will be added to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "eventhub_id",
+					Description: `(Required) Specifies the resource id of the EventHub this data connection will use for ingestion. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "consumer_group",
+					Description: `(Required) Specifies the EventHub consumer group this data connection will use for ingestion. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "table_name",
+					Description: `(Optional) Specifies the target table name used for the message ingestion. Table must exist before resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "mapping_rule_name",
+					Description: `(Optional) Specifies the mapping rule used for the message ingestion. Mapping rule must exist before resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "data_format",
+					Description: `(Optional) Specifies the data format of the EventHub messages. Allowed values: ` + "`" + `AVRO` + "`" + `, ` + "`" + `CSV` + "`" + `, ` + "`" + `JSON` + "`" + `, ` + "`" + `MULTIJSON` + "`" + `, ` + "`" + `PSV` + "`" + `, ` + "`" + `RAW` + "`" + `, ` + "`" + `SCSV` + "`" + `, ` + "`" + `SINGLEJSON` + "`" + `, ` + "`" + `SOHSV` + "`" + `, ` + "`" + `TSV` + "`" + ` and ` + "`" + `TXT` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The EventHub Data Connection ID. --- ## Import Kusto EventHub Data Connections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_kusto_eventhub_data_connection.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Kusto/Clusters/cluster1/Databases/database1/DataConnections/eventHubConnection1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The EventHub Data Connection ID. --- ## Import Kusto EventHub Data Connections can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_kusto_eventhub_data_connection.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Kusto/Clusters/cluster1/Databases/database1/DataConnections/eventHubConnection1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13586,7 +16295,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_addresses",
-					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the Frontend IP Configuration. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -13600,7 +16313,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip_addresses",
-					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The list of private IP address assigned to the load balancer in ` + "`" + `frontend_ip_configuration` + "`" + ` blocks, if any.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the Frontend IP Configuration. ## Import Load Balancers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13641,7 +16358,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancing_rules",
-					Description: `The Load Balancing Rules associated with this Backend Address Pool. ## Import Load Balancer Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_backend_address_pool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Load Balancing Rules associated with this Backend Address Pool. ## Import Load Balancer Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_backend_address_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -13655,7 +16372,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancing_rules",
-					Description: `The Load Balancing Rules associated with this Backend Address Pool. ## Import Load Balancer Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_backend_address_pool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Load Balancing Rules associated with this Backend Address Pool. ## Import Load Balancer Backend Address Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_backend_address_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/backendAddressPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13707,13 +16424,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer NAT Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_pool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer NAT pool. ## Import Load Balancer NAT Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer NAT Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_pool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer NAT pool. ## Import Load Balancer NAT Pools can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13765,13 +16482,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer NAT Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer NAT Rule. ## Import Load Balancer NAT Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer NAT Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer NAT Rule. ## Import Load Balancer NAT Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_nat_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/inboundNatRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13831,13 +16548,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Outbound Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_outbound_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/outboundRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer Outbound Rule. ## Import Load Balancer Outbound Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_outbound_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/outboundRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Outbound Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_outbound_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/outboundRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer Outbound Rule. ## Import Load Balancer Outbound Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_outbound_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/outboundRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13888,13 +16605,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Probes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_probe.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/probes/probe1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer Probe. ## Import Load Balancer Probes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_probe.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/probes/probe1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Probes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_probe.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/probes/probe1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer Probe. ## Import Load Balancer Probes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_probe.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/probes/probe1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13965,13 +16682,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/loadBalancingRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer Rule. ## Import Load Balancer Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/loadBalancingRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Load Balancer to which the resource is attached. ## Import Load Balancer Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/loadBalancingRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Load Balancer Rule. ## Import Load Balancer Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_lb_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/loadBalancers/lb1/loadBalancingRules/rule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14086,7 +16803,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_linked_service.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_linked_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -14096,7 +16813,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_linked_service.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_linked_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14279,7 +16996,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_workspace_linked_service.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_workspace_linked_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -14289,7 +17006,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_workspace_linked_service.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The automatically generated name of the Linked Service. This cannot be specified. The format is always ` + "`" + `<workspace_name>/<linked_service_name>` + "`" + ` e.g. ` + "`" + `workspace1/Automation` + "`" + ` ## Import Log Analytics Workspaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_log_analytics_workspace_linked_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.OperationalInsights/workspaces/workspace1/linkedservices/automation ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14589,7 +17306,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_account_type",
-					Description: `(Required) The type of storage to use for the managed disk. Allowable values are ` + "`" + `Standard_LRS` + "`" + `, ` + "`" + `Premium_LRS` + "`" + `, ` + "`" + `StandardSSD_LRS` + "`" + ` or ` + "`" + `UltraSSD_LRS` + "`" + `.`,
+					Description: `(Required) The type of storage to use for the managed disk. Allowable values are ` + "`" + `Standard_LRS` + "`" + `, ` + "`" + `Premium_LRS` + "`" + `, ` + "`" + `StandardSSD_LRS` + "`" + ` or ` + "`" + `UltraSSD_LRS` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "create_option",
@@ -14636,6 +17353,14 @@ var (
 					Description: `(Optional, Required for a new managed disk) Specifies the size of the managed disk to create in gigabytes. If ` + "`" + `create_option` + "`" + ` is ` + "`" + `Copy` + "`" + ` or ` + "`" + `FromImage` + "`" + `, then the value must be equal to or greater than the source's size.`,
 				},
 				resource.Attribute{
+					Name:        "disk_iops_read_write",
+					Description: `(Optional) The number of IOPS allowed for this disk; only settable for UltraSSD disks. One operation can transfer between 4k and 256k bytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_mbps_read_write",
+					Description: `(Optional) The bandwidth allowed for this disk; only settable for UltraSSD disks. MBps means millions of bytes per second.`,
+				},
+				resource.Attribute{
 					Name:        "encryption_settings",
 					Description: `(Optional) an ` + "`" + `encryption_settings` + "`" + ` block as defined below.`,
 				},
@@ -14669,7 +17394,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_url",
-					Description: `(Required) The URL to the Key Vault Key used as the Key Encryption Key. This can be found as ` + "`" + `id` + "`" + ` on the ` + "`" + `azurerm_key_vault_secret` + "`" + ` resource.`,
+					Description: `(Required) The URL to the Key Vault Key used as the Key Encryption Key. This can be found as ` + "`" + `id` + "`" + ` on the ` + "`" + `azurerm_key_vault_key` + "`" + ` resource.`,
 				},
 				resource.Attribute{
 					Name:        "source_vault_id",
@@ -14677,13 +17402,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The managed disk ID. ## Import Managed Disks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_managed_disk.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/disks/manageddisk1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The managed disk ID. ## Import Managed Disks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_managed_disk.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/disks/manageddisk1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The managed disk ID. ## Import Managed Disks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_managed_disk.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/disks/manageddisk1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The managed disk ID. ## Import Managed Disks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_managed_disk.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/disks/manageddisk1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14716,13 +17441,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Management Group. ## Import Management Groups can be imported using the ` + "`" + `management group resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_group.test /providers/Microsoft.Management/ManagementGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Management Group. ## Import Management Groups can be imported using the ` + "`" + `management group resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_group.example/providers/Microsoft.Management/ManagementGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Management Group. ## Import Management Groups can be imported using the ` + "`" + `management group resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_group.test /providers/Microsoft.Management/ManagementGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Management Group. ## Import Management Groups can be imported using the ` + "`" + `management group resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_management_group.example/providers/Microsoft.Management/ManagementGroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14806,7 +17531,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "x_ms_client_id",
-					Description: `A unique identifier for the Maps Account. ## Import A Maps Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_maps_account.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Maps/accounts/my-maps-account ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the Maps Account. ## Import A Maps Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_maps_account.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Maps/accounts/my-maps-account ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -14824,7 +17549,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "x_ms_client_id",
-					Description: `A unique identifier for the Maps Account. ## Import A Maps Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_maps_account.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Maps/accounts/my-maps-account ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `A unique identifier for the Maps Account. ## Import A Maps Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_maps_account.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Maps/accounts/my-maps-account ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_mariadb_configuration",
+			Category:         "Database Resources",
+			ShortDescription: `Sets a MariaDB Configuration value on a MariaDB Server.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"mariadb",
+				"configuration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the MariaDB Configuration, which needs [to be a valid MariaDB configuration name](https://mariadb.com/kb/en/library/server-system-variables/). Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `(Required) Specifies the name of the MariaDB Server. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which the MariaDB Server exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Specifies the value of the MariaDB Configuration. See the MariaDB documentation for valid values. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the MariaDB Configuration. ## Import MariaDB Configurations can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_configuration.interactive_timeout /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMariaDB/servers/server1/configurations/interactive_timeout ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the MariaDB Configuration. ## Import MariaDB Configurations can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_configuration.interactive_timeout /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMariaDB/servers/server1/configurations/interactive_timeout ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -14958,7 +17723,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `(Required) Specifies the version of MariaDB to use. The valid value is ` + "`" + `10.2` + "`" + `. Changing this forces a new resource to be created.`,
+					Description: `(Required) Specifies the version of MariaDB to use. Possible values are ` + "`" + `10.2` + "`" + ` and ` + "`" + `10.3` + "`" + `. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "ssl_enforcement",
@@ -14994,7 +17759,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "geo_redundant_backup",
-					Description: `(Optional) Enable Geo-redundant or not for server backup. Valid values for this property are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `. ->`,
+					Description: `(Optional) Enable Geo-redundant or not for server backup. Valid values for this property are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auto_grow",
+					Description: `(Optional) Defines whether autogrow is enabled or disabled for the storage. Valid values are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -15013,6 +17782,84 @@ var (
 				resource.Attribute{
 					Name:        "fqdn",
 					Description: `The FQDN of the MariaDB Server. ## Import MariaDB Server's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_server.server1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.DBforMariaDB/servers/server1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_mariadb_virtual_network_rule",
+			Category:         "Database Resources",
+			ShortDescription: `Manages a MariaDB Virtual Network Rule.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"mariadb",
+				"virtual",
+				"network",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the MariaDB Virtual Network Rule. Cannot be empty and must only contain alphanumeric characters and hyphens. Cannot start with a number, and cannot start or end with a hyphen. Changing this forces a new resource to be created. ~>`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group where the MariaDB server resides. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `(Required) The name of the SQL Server to which this MariaDB virtual network rule will be applied to. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The ID of the subnet that the MariaDB server will be connected to. ~>`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the MariaDB Virtual Network Rule. ## Import MariaDB Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/MariaDB/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the MariaDB Virtual Network Rule. ## Import MariaDB Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mariadb_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/MariaDB/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_marketplace_agreement",
+			Category:         "Compute Resources",
+			ShortDescription: `Allows accepting the Legal Terms for a Marketplace Image.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"marketplace",
+				"agreement",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "offer",
+					Description: `(Required) The Offer of the Marketplace Image. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "plan",
+					Description: `(Required) The Plan of the Marketplace Image. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "publisher",
+					Description: `(Required) The Publisher of the Marketplace Image. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Marketplace Agreement. ## Import Marketplace Agreement can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_marketplace_agreement.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualmachine/publishers/publisher1/offers/offer1/plans/plan1/agreements/current ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Marketplace Agreement. ## Import Marketplace Agreement can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_marketplace_agreement.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.MarketplaceOrdering/offerTypes/virtualmachine/publishers/publisher1/offers/offer1/plans/plan1/agreements/current ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -15189,20 +18036,116 @@ var (
 					Description: `(Optional) Whether this action group is enabled. If an action group is not enabled, then none of its receivers will receive communications. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "arm_role_receiver",
+					Description: `(Optional) One or more ` + "`" + `arm_role_receiver` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "automation_runbook_receiver",
+					Description: `(Optional) One or more ` + "`" + `automation_runbook_receiver` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "azure_app_push_receiver",
+					Description: `(Optional) One or more ` + "`" + `azure_app_push_receiver` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "azure_function_receiver",
+					Description: `(Optional) One or more ` + "`" + `azure_function_receiver` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "email_receiver",
 					Description: `(Optional) One or more ` + "`" + `email_receiver` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
+					Name:        "itsm_receiver",
+					Description: `(Optional) One or more ` + "`" + `itsm_receiver` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "logic_app_receiver",
+					Description: `(Optional) One or more ` + "`" + `logic_app_receiver` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "sms_receiver",
-					Description: `(Optional) One or more ` + "`" + `sms_receiver ` + "`" + ` blocks as defined below.`,
+					Description: `(Optional) One or more ` + "`" + `sms_receiver` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "voice_receiver",
+					Description: `(Optional) One or more ` + "`" + `voice_receiver` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "webhook_receiver",
-					Description: `(Optional) One or more ` + "`" + `webhook_receiver ` + "`" + ` blocks as defined below.`,
+					Description: `(Optional) One or more ` + "`" + `webhook_receiver` + "`" + ` blocks as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- ` + "`" + `email_receiver` + "`" + ` supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- ` + "`" + `arm_role_receiver` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ARM role receiver.`,
+				},
+				resource.Attribute{
+					Name:        "role_id",
+					Description: `(Required) The arm role id.`,
+				},
+				resource.Attribute{
+					Name:        "use_common_alert_schema",
+					Description: `(Optional) Enables or disables the common alert schema. --- ` + "`" + `automation_runbook_receiver` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the automation runbook receiver.`,
+				},
+				resource.Attribute{
+					Name:        "automation_account_id",
+					Description: `(Required) The automation account ID which holds this runbook and authenticates to Azure resources.`,
+				},
+				resource.Attribute{
+					Name:        "runbook_name",
+					Description: `(Required) The name for this runbook.`,
+				},
+				resource.Attribute{
+					Name:        "webhook_resource_id",
+					Description: `(Required) The resource id for webhook linked to this runbook.`,
+				},
+				resource.Attribute{
+					Name:        "is_global_runbook",
+					Description: `(Required) Indicates whether this instance is global runbook.`,
+				},
+				resource.Attribute{
+					Name:        "service_uri",
+					Description: `(Required) The URI where webhooks should be sent.`,
+				},
+				resource.Attribute{
+					Name:        "use_common_alert_schema",
+					Description: `(Optional) Enables or disables the common alert schema. --- ` + "`" + `azure_app_push_receiver` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Azure app push receiver.`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `(Required) The email address of the user signed into the mobile app who will receive push notifications from this receiver. --- ` + "`" + `azure_function_receiver` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Azure Function receiver.`,
+				},
+				resource.Attribute{
+					Name:        "function_app_resouce_id",
+					Description: `(Required) The Azure resource ID of the function app.`,
+				},
+				resource.Attribute{
+					Name:        "function_name",
+					Description: `(Required) The function name in the function app.`,
+				},
+				resource.Attribute{
+					Name:        "http_trigger_url",
+					Description: `(Required) The http trigger url where http request sent to.`,
+				},
+				resource.Attribute{
+					Name:        "use_common_alert_schema",
+					Description: `(Optional) Enables or disables the common alert schema. --- ` + "`" + `email_receiver` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -15210,7 +18153,47 @@ var (
 				},
 				resource.Attribute{
 					Name:        "email_address",
-					Description: `(Required) The email address of this receiver. --- ` + "`" + `sms_receiver` + "`" + ` supports the following:`,
+					Description: `(Required) The email address of this receiver.`,
+				},
+				resource.Attribute{
+					Name:        "use_common_alert_schema",
+					Description: `(Optional) Enables or disables the common alert schema. --- ` + "`" + `itsm_receiver` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ITSM receiver.`,
+				},
+				resource.Attribute{
+					Name:        "workspace_id",
+					Description: `(Required) The Azure Log Analytics workspace ID where this connection is defined.`,
+				},
+				resource.Attribute{
+					Name:        "connection_id",
+					Description: `(Required) The unique connection identifier of the ITSM connection.`,
+				},
+				resource.Attribute{
+					Name:        "ticket_configuration",
+					Description: `(Required) A JSON blob for the configurations of the ITSM action. CreateMultipleWorkItems option will be part of this blob as well.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region of the workspace. --- ` + "`" + `logic_app_receiver` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the logic app receiver.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) The Azure resource ID of the logic app.`,
+				},
+				resource.Attribute{
+					Name:        "callback_url",
+					Description: `(Required) The callback url where http request sent to.`,
+				},
+				resource.Attribute{
+					Name:        "use_common_alert_schema",
+					Description: `(Optional) Enables or disables the common alert schema. --- ` + "`" + `sms_receiver` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -15222,7 +18205,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "phone_number",
-					Description: `(Required) The phone number of the SMS receiver. --- ` + "`" + `webhook_receiver` + "`" + ` supports the following:`,
+					Description: `(Required) The phone number of the SMS receiver. --- ` + "`" + `voice_receiver` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the voice receiver.`,
+				},
+				resource.Attribute{
+					Name:        "country_code",
+					Description: `(Required) The country code of the voice receiver.`,
+				},
+				resource.Attribute{
+					Name:        "phone_number",
+					Description: `(Required) The phone number of the voice receiver. --- ` + "`" + `webhook_receiver` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -15230,17 +18225,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_uri",
-					Description: `(Required) The URI where webhooks should be sent. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The URI where webhooks should be sent.`,
+				},
+				resource.Attribute{
+					Name:        "use_common_alert_schema",
+					Description: `(Optional) Enables or disables the common alert schema. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Action Group. ## Import Action Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_action_group.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Insights/actionGroups/myagname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Action Group. ## Import Action Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_action_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Insights/actionGroups/myagname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Action Group. ## Import Action Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_action_group.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Insights/actionGroups/myagname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Action Group. ## Import Action Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_action_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Insights/actionGroups/myagname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -15299,7 +18298,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "category",
-					Description: `(Required) The category of the operation. Possible values are ` + "`" + `Administrative` + "`" + `, ` + "`" + `Autoscale` + "`" + `, ` + "`" + `Policy` + "`" + `, ` + "`" + `Recommendation` + "`" + `, ` + "`" + `Security` + "`" + ` and ` + "`" + `Service Health` + "`" + `.`,
+					Description: `(Required) The category of the operation. Possible values are ` + "`" + `Administrative` + "`" + `, ` + "`" + `Autoscale` + "`" + `, ` + "`" + `Policy` + "`" + `, ` + "`" + `Recommendation` + "`" + `, ` + "`" + `ResourceHealth` + "`" + `, ` + "`" + `Security` + "`" + ` and ` + "`" + `ServiceHealth` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "operation_name",
@@ -15339,13 +18338,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the activity log alert. ## Import Activity log alerts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_activity_log_alert.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/activityLogAlerts/myalertname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the activity log alert. ## Import Activity log alerts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_activity_log_alert.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/activityLogAlerts/myalertname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the activity log alert. ## Import Activity log alerts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_activity_log_alert.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/activityLogAlerts/myalertname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the activity log alert. ## Import Activity log alerts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_activity_log_alert.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/activityLogAlerts/myalertname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -15535,13 +18534,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_autoscale_setting.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_autoscale_setting.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_autoscale_setting.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the AutoScale Setting. ## Import AutoScale Setting can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_autoscale_setting.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/microsoft.insights/autoscalesettings/setting1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -15627,13 +18626,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Diagnostic Setting. ## Import Diagnostic Settings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_diagnostics.test /subscriptions/XXX/resourcegroups/resource_group/providers/microsoft.keyvault/vaults/vault|logMonitoring ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The ID of the Diagnostic Setting. ## Import Diagnostic Settings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_diagnostics.example /subscriptions/XXX/resourcegroups/resource_group/providers/microsoft.keyvault/vaults/vault|logMonitoring ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Diagnostic Setting. ## Import Diagnostic Settings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_diagnostics.test /subscriptions/XXX/resourcegroups/resource_group/providers/microsoft.keyvault/vaults/vault|logMonitoring ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The ID of the Diagnostic Setting. ## Import Diagnostic Settings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_monitor_diagnostics.example /subscriptions/XXX/resourcegroups/resource_group/providers/microsoft.keyvault/vaults/vault|logMonitoring ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -15683,13 +18682,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Log Profile resource ID. ## Import A Log Profile can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_log_profile.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/microsoft.insights/logprofiles/test ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Log Profile resource ID. ## Import A Log Profile can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_log_profile.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/microsoft.insights/logprofiles/test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Log Profile resource ID. ## Import A Log Profile can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_log_profile.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/microsoft.insights/logprofiles/test ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Log Profile resource ID. ## Import A Log Profile can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_monitor_log_profile.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/microsoft.insights/logprofiles/test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -15715,7 +18714,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scopes",
-					Description: `(Required) The resource ID at which the metric criteria should be applied.`,
+					Description: `(Required) A set of strings of resource IDs at which the metric criteria should be applied.`,
 				},
 				resource.Attribute{
 					Name:        "criteria",
@@ -15983,13 +18982,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The MsSQL Elastic Pool ID. ## Import SQL Elastic Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_elasticpool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/elasticPools/myelasticpoolname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The MsSQL Elastic Pool ID. ## Import SQL Elastic Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_elasticpool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/elasticPools/myelasticpoolname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The MsSQL Elastic Pool ID. ## Import SQL Elastic Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_elasticpool.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/elasticPools/myelasticpoolname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The MsSQL Elastic Pool ID. ## Import SQL Elastic Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mssql_elasticpool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/elasticPools/myelasticpoolname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -16199,7 +19198,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "geo_redundant_backup",
-					Description: `(Optional) Enable Geo-redundant or not for server backup. Valid values for this property are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `, not supported for the ` + "`" + `basic` + "`" + ` tier. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Enable Geo-redundant or not for server backup. Valid values for this property are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `, not supported for the ` + "`" + `basic` + "`" + ` tier.`,
+				},
+				resource.Attribute{
+					Name:        "auto_grow",
+					Description: `(Optional) Defines whether autogrow is enabled or disabled for the storage. Valid values are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -16260,6 +19263,116 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the MySQL Virtual Network Rule. ## Import MySQL Virtual Network Rules can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_mysql_virtual_network_rule.rule1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.DBforMySQL/servers/myserver/virtualNetworkRules/vnetrulename ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_netapp_account",
+			Category:         "NetApp Resources",
+			ShortDescription: `Manages a NetApp Account.`,
+			Description:      ``,
+			Keywords: []string{
+				"netapp",
+				"account",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the NetApp Account. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group where the NetApp Account should be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "active_directory",
+					Description: `(Optional) A ` + "`" + `active_directory` + "`" + ` block as defined below. --- The ` + "`" + `active_directory` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "dns_servers",
+					Description: `(Required) A list of DNS server IP addresses for the Active Directory domain. Only allows ` + "`" + `IPv4` + "`" + ` address.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Required) The name of the Active Directory domain.`,
+				},
+				resource.Attribute{
+					Name:        "smb_server_name",
+					Description: `(Required) The NetBIOS name which should be used for the NetApp SMB Server, which will be registered as a computer account in the AD and used to mount volumes.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) The Username of Active Directory Domain Administrator.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password associated with the ` + "`" + `username` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "organizational_unit",
+					Description: `(Optional) The Organizational Unit (OU) within the Active Directory Domain. --- ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the NetApp Account. --- ## Import NetApp Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_netapp_account.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.NetApp/netAppAccounts/account1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the NetApp Account. --- ## Import NetApp Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_netapp_account.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.NetApp/netAppAccounts/account1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_netapp_pool",
+			Category:         "NetApp Resources",
+			ShortDescription: `Manages a NetApp Pool.`,
+			Description:      ``,
+			Keywords: []string{
+				"netapp",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the NetApp Pool. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group where the NetApp Pool should be created. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) The name of the NetApp account in which the NetApp Pool should be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "service_level",
+					Description: `(Required) The service level of the file system. Valid values include ` + "`" + `Premium` + "`" + `, ` + "`" + `Standard` + "`" + `, or ` + "`" + `Ultra` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "size_in_tb",
+					Description: `(Required) Provisioned size of the pool in TB. Value must be between ` + "`" + `4` + "`" + ` and ` + "`" + `500` + "`" + `. --- ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the NetApp Pool. ## Import NetApp Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_netapp_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.NetApp/netAppAccounts/account1/capacityPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the NetApp Pool. ## Import NetApp Pool can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_netapp_pool.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.NetApp/netAppAccounts/account1/capacityPools/pool1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -16378,7 +19491,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_network_ids",
-					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_ddos_protection_plan.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_ddos_protection_plan.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -16388,7 +19501,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "virtual_network_ids",
-					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_ddos_protection_plan.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Resource ID list of the Virtual Networks associated with DDoS Protection Plan. ## Import Azure DDoS Protection Plan can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_ddos_protection_plan.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/ddosProtectionPlans/testddospplan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -16509,7 +19622,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "applied_dns_servers",
-					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -16535,7 +19648,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "applied_dns_servers",
-					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If the VM that uses this NIC is part of an Availability Set, then this list will have the union of all DNS servers from all NICs that are part of the Availability Set ## Import Network Interfaces can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_network_interface.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.network/networkInterfaces/nic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -16824,12 +19937,12 @@ var (
 					Description: `(Required) The name of the resource group in which to create the resource. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
-					Name:        "container_network_interface_configuration",
-					Description: `(Required) A ` + "`" + `container_network_interface_configuration` + "`" + ` block as documented below.`,
+					Name:        "container_network_interface",
+					Description: `(Required) A ` + "`" + `container_network_interface` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `container_network_interface_configuration` + "`" + ` block supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `container_network_interface` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -16909,7 +20022,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) Network protocol this rule applies to. Can be ` + "`" + `Tcp` + "`" + `, ` + "`" + `Udp` + "`" + ` or ` + "`" + ``,
+					Description: `(Required) Network protocol this rule applies to. Can be ` + "`" + `Tcp` + "`" + `, ` + "`" + `Udp` + "`" + `, ` + "`" + `Icmp` + "`" + `, or ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "source_port_range",
@@ -17005,7 +20118,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) Network protocol this rule applies to. Possible values include ` + "`" + `Tcp` + "`" + `, ` + "`" + `Udp` + "`" + ` or ` + "`" + ``,
+					Description: `(Required) Network protocol this rule applies to. Possible values include ` + "`" + `Tcp` + "`" + `, ` + "`" + `Udp` + "`" + `, ` + "`" + `Icmp` + "`" + `, or ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "source_port_range",
@@ -17553,13 +20666,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The policy definition id. ## Import Policy Definitions can be imported using the ` + "`" + `policy name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.testPolicy /subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.testPolicy /providers/Microsoft.Management/managementgroups/<MANGAGEMENT_GROUP_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The policy definition id. ## Import Policy Definitions can be imported using the ` + "`" + `policy name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.examplePolicy /subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.examplePolicy /providers/Microsoft.Management/managementgroups/<MANGAGEMENT_GROUP_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The policy definition id. ## Import Policy Definitions can be imported using the ` + "`" + `policy name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.testPolicy /subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.testPolicy /providers/Microsoft.Management/managementgroups/<MANGAGEMENT_GROUP_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The policy definition id. ## Import Policy Definitions can be imported using the ` + "`" + `policy name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.examplePolicy /subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_definition.examplePolicy /providers/Microsoft.Management/managementgroups/<MANGAGEMENT_GROUP_ID>/providers/Microsoft.Authorization/policyDefinitions/<POLICY_NAME> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -17609,13 +20722,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The policy set definition id. ## Import Policy Set Definitions can be imported using the Resource ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.test /providers/Microsoft.Management/managementgroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The policy set definition id. ## Import Policy Set Definitions can be imported using the Resource ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example/providers/Microsoft.Management/managementgroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The policy set definition id. ## Import Policy Set Definitions can be imported using the Resource ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.test /providers/Microsoft.Management/managementgroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The policy set definition id. ## Import Policy Set Definitions can be imported using the Resource ID, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ` or ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_policy_set_definition.example/providers/Microsoft.Management/managementgroups/my-mgmt-group-id/providers/Microsoft.Authorization/policySetDefinitions/testPolicySet ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -17825,7 +20938,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "geo_redundant_backup",
-					Description: `(Optional) Enable/Disable Geo-redundant for server backup. Valid values for this property are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `, not supported for the ` + "`" + `basic` + "`" + ` tier. This allows you to choose between locally redundant or geo-redundant backup storage in the General Purpose and Memory Optimized tiers. When the backups are stored in geo-redundant backup storage, they are not only stored within the region in which your server is hosted, but are also replicated to a paired data center. This provides better protection and ability to restore your server in a different region in the event of a disaster. The Basic tier only offers locally redundant backup storage. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Enable/Disable Geo-redundant for server backup. Valid values for this property are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `, not supported for the ` + "`" + `basic` + "`" + ` tier. This allows you to choose between locally redundant or geo-redundant backup storage in the General Purpose and Memory Optimized tiers. When the backups are stored in geo-redundant backup storage, they are not only stored within the region in which your server is hosted, but are also replicated to a paired data center. This provides better protection and ability to restore your server in a different region in the event of a disaster. The Basic tier only offers locally redundant backup storage.`,
+				},
+				resource.Attribute{
+					Name:        "auto_grow",
+					Description: `(Optional) Enable/Disable auto-growing of the storage. Valid values for this property are ` + "`" + `Enabled` + "`" + ` or ` + "`" + `Disabled` + "`" + `. Storage auto-grow prevents your server from running out of storage and becoming read-only. If storage auto grow is enabled, the storage automatically grows without impacting the workload. The default value if not explicitly specified is ` + "`" + `Enabled` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -17932,13 +21049,62 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Private DNS A Record ID. ## Import Private DNS A Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Private DNS A Record ID. ## Import Private DNS A Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_a_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Private DNS A Record ID. ## Import Private DNS A Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Private DNS A Record ID. ## Import Private DNS A Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_a_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/A/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_private_dns_aaaa_record",
+			Category:         "Private DNS Resources",
+			ShortDescription: `Manages a Private DNS AAAA Record.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"dns",
+				"aaaa",
+				"record",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the DNS A Record.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `(Required) Specifies the Private DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "TTL",
+					Description: `(Required) The Time To Live (TTL) of the DNS record in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "records",
+					Description: `(Required) A list of IPv6 Addresses.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Private DNS AAAA Record ID. ## Import Private DNS AAAA Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/AAAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Private DNS AAAA Record ID. ## Import Private DNS AAAA Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_a_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/AAAA/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -17981,13 +21147,127 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Private DNS CNAME Record ID. ## Import Private DNS CName Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_cname_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/CName/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Private DNS CNAME Record ID. ## Import Private DNS CName Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_cname_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/CName/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Private DNS CNAME Record ID. ## Import Private DNS CName Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_cname_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/CName/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Private DNS CNAME Record ID. ## Import Private DNS CName Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_cname_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1/CName/myrecord1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_private_dns_ptr_record",
+			Category:         "Private DNS Resources",
+			ShortDescription: `Manages a Private DNS PTR Record.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"dns",
+				"ptr",
+				"record",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the DNS PTR Record. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `(Required) Specifies the Private DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Required) The Time To Live (TTL) of the DNS record in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "records",
+					Description: `(Required) List of Fully Qualified Domain Names.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Private DNS PTR Record ID. ## Import Private DNS PTR Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_ptr_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/2.0.192.in-addr.arpa/PTR/15 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Private DNS PTR Record ID. ## Import Private DNS PTR Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_ptr_record.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/2.0.192.in-addr.arpa/PTR/15 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_private_dns_srv_record",
+			Category:         "Private DNS Resources",
+			ShortDescription: `Manages a Private DNS SRV Record.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"dns",
+				"srv",
+				"record",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the DNS SRV Record. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `(Required) Specifies the Private DNS Zone where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "record",
+					Description: `(Required) One or more ` + "`" + `record` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `(Required) The Time To Live (TTL) of the DNS record in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `record` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) The priority of the SRV record.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Required) The Weight of the SRV record.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Required) The Port the service is listening on.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) The FQDN of the service. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Private DNS PTR Record ID. ## Import Private DNS SRV Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_srv_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/contoso.com/SRV/test ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Private DNS PTR Record ID. ## Import Private DNS SRV Records can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_srv_record.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/contoso.com/SRV/test ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -18061,6 +21341,215 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_private_dns_zone_virtual_network_link",
+			Category:         "Private DNS Resources",
+			ShortDescription: `Manages a Private DNS Zone Virtual Network Link.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"dns",
+				"zone",
+				"virtual",
+				"network",
+				"link",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Private DNS Zone Virtual Network Link. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "private_dns_zone_name",
+					Description: `(Required) The name of the Private DNS zone (without a terminating dot). Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the resource group where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_network_id",
+					Description: `(Required) The Resource ID of the Virtual Network that should be linked to the DNS Zone. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "registration_enabled",
+					Description: `(Optional) Is auto-registration of virtual machine records in the virtual network in the Private DNS zone enabled? Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Private DNS Zone Virtual Network Link. ## Import Private DNS Zone Virtual Network Links can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_zone_virtual_network_link.link1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1.com/virtualNetworkLinks/myVnetLink1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Resource ID of the Private DNS Zone Virtual Network Link. ## Import Private DNS Zone Virtual Network Links can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_private_dns_zone_virtual_network_link.link1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/privateDnsZones/zone1.com/virtualNetworkLinks/myVnetLink1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_private_link_service",
+			Category:         "Network Resources",
+			ShortDescription: `Manages an Azure Private Link Service.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"private",
+				"link",
+				"service",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the private link service. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which the private link service resides. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "auto_approval_subscription_ids",
+					Description: `(Optional) A list of subscription globally unique identifiers(GUID) that will be automatically be able to use this service.`,
+				},
+				resource.Attribute{
+					Name:        "visibility_subscription_ids",
+					Description: `(Optional) A list of subscription globally unique identifiers(GUID) that will be able to see this service. If left undefined all Azure subscriptions will be able to see this service.`,
+				},
+				resource.Attribute{
+					Name:        "nat_ip_configuration",
+					Description: `(Required) A ` + "`" + `nat_ip_configuration` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_frontend_ip_configuration_ids",
+					Description: `(Required) A list of Standard Load Balancer(SLB) resource IDs. The Private Link service is tied to the frontend IP address of a SLB. All traffic destined for the private link service will reach the frontend of the SLB. You can configure SLB rules to direct this traffic to appropriate backend pools where your applications are running.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. Changing this forces a new resource to be created. --- The ` + "`" + `nat_ip_configuration` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of primary private link service NAT IP configuration. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `(Optional) The private IP address of the NAT IP configuration.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address_version",
+					Description: `(Optional) The ip address version of the ` + "`" + `ip_configuration` + "`" + `, the supported value is ` + "`" + `IPv4` + "`" + `. Defaults to ` + "`" + `IPv4` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The resource ID of the subnet to be used by the service. ->`,
+				},
+				resource.Attribute{
+					Name:        "primary",
+					Description: `(Required) Specifies if the ` + "`" + `nat_ip_configuration` + "`" + ` block is the primary ip configuration for the service or not. Valid values are ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + `. Changing this forces a new resource to be created. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "alias",
+					Description: `The alias is a globally unique name for your private link service which Azure generates for you. Your can use this alias to request a connection to your private link service.`,
+				},
+				resource.Attribute{
+					Name:        "network_interfaces",
+					Description: `A list of network interface resource ids that are being used by the service. ## Import Private Link Service can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_private_link_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/acctestRG/providers/Microsoft.Network/privateLinkServices/privatelinkservicename ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "alias",
+					Description: `The alias is a globally unique name for your private link service which Azure generates for you. Your can use this alias to request a connection to your private link service.`,
+				},
+				resource.Attribute{
+					Name:        "network_interfaces",
+					Description: `A list of network interface resource ids that are being used by the service. ## Import Private Link Service can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_private_link_service.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/acctestRG/providers/Microsoft.Network/privateLinkServices/privatelinkservicename ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_proximity_placement_group",
+			Category:         "Compute Resources",
+			ShortDescription: `Manages a proximity placement group for virtual machines, virtual machine scale sets and availability sets.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"proximity",
+				"placement",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the availability set. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group in which to create the availability set. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Proximity Placement Group ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Proximity Placement Group.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location of the Proximity Placement Group.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `The name of the resource group in which the Proximity Placement Group exists.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags attached to the Proximity Placement Group. ## Import Proximity Placement Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_proximity_placement_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Compute/proximityPlacementGroups/example-ppg ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Proximity Placement Group ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the Proximity Placement Group.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location of the Proximity Placement Group.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `The name of the resource group in which the Proximity Placement Group exists.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags attached to the Proximity Placement Group. ## Import Proximity Placement Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_proximity_placement_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Compute/proximityPlacementGroups/example-ppg ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_public_ip",
 			Category:         "Network Resources",
 			ShortDescription: `Manages a Public IP Address.`,
@@ -18109,7 +21598,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_ip_prefix_id",
-					Description: `(Optional) If specified then public IP address allocated will be provided from the public IP prefix resource. ->`,
+					Description: `(Optional) If specified then public IP address allocated will be provided from the public IP prefix resource.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -18210,6 +21699,99 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_recovery_network_mapping",
+			Category:         "Recovery Services",
+			ShortDescription: `Manages a site recovery network mapping on Azure.`,
+			Description:      ``,
+			Keywords: []string{
+				"recovery",
+				"services",
+				"network",
+				"mapping",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the network mapping.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the resource group where the vault that should be updated is located.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_vault_name",
+					Description: `(Required) The name of the vault that should be updated.`,
+				},
+				resource.Attribute{
+					Name:        "source_recovery_fabric_name",
+					Description: `(Required) Specifies the ASR fabric where mapping should be created.`,
+				},
+				resource.Attribute{
+					Name:        "target_recovery_fabric_name",
+					Description: `(Required) The Azure Site Recovery fabric object corresponding to the recovery Azure region.`,
+				},
+				resource.Attribute{
+					Name:        "source_network_id",
+					Description: `(Required) The id of the primary network.`,
+				},
+				resource.Attribute{
+					Name:        "target_network_id",
+					Description: `(Required) The id of the recovery network. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery network mapping can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_network_mapping.mymapping /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationFabrics/primary-fabric-name/replicationNetworks/azureNetwork/replicationNetworkMappings/mapping-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery network mapping can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_network_mapping.mymapping /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationFabrics/primary-fabric-name/replicationNetworks/azureNetwork/replicationNetworkMappings/mapping-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_recovery_services_fabric",
+			Category:         "Recovery Services",
+			ShortDescription: `Manages a site recovery services fabric on Azure.`,
+			Description:      ``,
+			Keywords: []string{
+				"recovery",
+				"services",
+				"fabric",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the network mapping.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the resource group where the vault that should be updated is located.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_vault_name",
+					Description: `(Required) The name of the vault that should be updated.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) In what region should the fabric be located. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_fabric.myfabric /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationFabrics/fabric-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_fabric.myfabric /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationFabrics/fabric-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_recovery_services_protected_vm",
 			Category:         "Recovery Services",
 			ShortDescription: `Manages an Recovery Services Protected VM.`,
@@ -18250,6 +21832,101 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Recovery Services Vault. ## Import Recovery Services Protected VMs can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protected_vm.item1 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.RecoveryServices/vaults/example-recovery-vault/backupFabrics/Azure/protectionContainers/iaasvmcontainer;iaasvmcontainerv2;group1;vm1/protectedItems/vm;iaasvmcontainerv2;group1;vm1" ` + "`" + `` + "`" + `` + "`" + ` Note the ID requires quoting as there are semicolons`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_recovery_services_protection_container",
+			Category:         "Recovery Services",
+			ShortDescription: `Manages a site recovery services protection container on Azure.`,
+			Description:      ``,
+			Keywords: []string{
+				"recovery",
+				"services",
+				"protection",
+				"container",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the network mapping.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the resource group where the vault that should be updated is located.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_vault_name",
+					Description: `(Required) The name of the vault that should be updated.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_fabric_name",
+					Description: `(Required) Name of fabric that should contain this protection container. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protection_container.mycontainer /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationFabrics/fabric-name/replicationProtectionContainers/protection-container-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protection_container.mycontainer /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationFabrics/fabric-name/replicationProtectionContainers/protection-container-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_recovery_services_protection_container_mapping",
+			Category:         "Recovery Services",
+			ShortDescription: `Manages a site recovery services protection container mappings on Azure.`,
+			Description:      ``,
+			Keywords: []string{
+				"recovery",
+				"services",
+				"protection",
+				"container",
+				"mapping",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the network mapping.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the resource group where the vault that should be updated is located.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_vault_name",
+					Description: `(Required) The name of the vault that should be updated.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_fabric_name",
+					Description: `(Required) Name of fabric that should contains the protection container to map.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_source_protection_container_name",
+					Description: `(Required) Name of the protection container to map.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_target_protection_container_id",
+					Description: `(Required) Id of protection container to map to.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_replication_policy_id",
+					Description: `(Required) Id of the policy to use for this mapping. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protection_container_mapping.mymapping /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/ ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protection_container_mapping.mymapping /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/ ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -18373,6 +22050,140 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_recovery_services_replicated_vm",
+			Category:         "Recovery Services",
+			ShortDescription: `Manages a site recovery services protection container mappings on Azure.`,
+			Description:      ``,
+			Keywords: []string{
+				"recovery",
+				"services",
+				"replicated",
+				"vm",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the network mapping.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the resource group where the vault that should be updated is located.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_vault_name",
+					Description: `(Required) The name of the vault that should be updated.`,
+				},
+				resource.Attribute{
+					Name:        "source_recovery_fabric_name",
+					Description: `(Required) Name of fabric that should contains this replication.`,
+				},
+				resource.Attribute{
+					Name:        "source_vm_id",
+					Description: `(Required) Id of the VM to replicate`,
+				},
+				resource.Attribute{
+					Name:        "source_recovery_protection_container_name",
+					Description: `(Required) Name of the protection container to use.`,
+				},
+				resource.Attribute{
+					Name:        "target_resource_group_id",
+					Description: `(Required) Id of resource group where the VM should be created when a failover is done.`,
+				},
+				resource.Attribute{
+					Name:        "target_recovery_fabric_id",
+					Description: `(Required) Id of fabric where the VM replication should be handled when a failover is done.`,
+				},
+				resource.Attribute{
+					Name:        "target_recovery_protection_container_id",
+					Description: `(Required) Id of protection container where the VM replication should be created when a failover is done.`,
+				},
+				resource.Attribute{
+					Name:        "target_availability_set_id",
+					Description: `(Optional) Id of availability set that the new VM should belong to when a failover is done.`,
+				},
+				resource.Attribute{
+					Name:        "managed_disk",
+					Description: `(Required) One or more ` + "`" + `managed_disk` + "`" + ` block. --- A ` + "`" + `managed_disk` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "disk_id",
+					Description: `(Required) Id of disk that should be replicated.`,
+				},
+				resource.Attribute{
+					Name:        "staging_storage_account_id",
+					Description: `(Required) Storage account that should be used for caching.`,
+				},
+				resource.Attribute{
+					Name:        "target_resource_group_id",
+					Description: `(Required) Resource group disk should belong to when a failover is done.`,
+				},
+				resource.Attribute{
+					Name:        "target_disk_type",
+					Description: `(Required) What type should the disk be when a failover is done.`,
+				},
+				resource.Attribute{
+					Name:        "target_replica_disk_type",
+					Description: `(Required) What type should the disk be that holds the replication data. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_replicated_vm.vmreplication /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationFabrics/fabric-name/replicationProtectionContainers/protection-container-name/replicationProtectedItems/vm-replication-name`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_replicated_vm.vmreplication /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationFabrics/fabric-name/replicationProtectionContainers/protection-container-name/replicationProtectedItems/vm-replication-name`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_recovery_services_replication_policy",
+			Category:         "Recovery Services",
+			ShortDescription: `Manages a site recovery services replication policy on Azure.`,
+			Description:      ``,
+			Keywords: []string{
+				"recovery",
+				"services",
+				"replication",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the network mapping.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Name of the resource group where the vault that should be updated is located.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_vault_name",
+					Description: `(Required) The name of the vault that should be updated.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_point_retention_in_minutes",
+					Description: `(Required) Retain the recovery points for given time in minutes.`,
+				},
+				resource.Attribute{
+					Name:        "application_consistent_snapshot_frequency_in_minutes",
+					Description: `(Required) Specifies the frequency(in minutes) at which to create application consistent recovery points. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protection_container.mycontainer /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationPolicies/policy-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The resource ID. ## Import Site recovery recovery vault fabric can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_recovery_services_protection_container.mycontainer /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.RecoveryServices/vaults/recovery-vault-name/replicationPolicies/policy-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_recovery_services_vault",
 			Category:         "Recovery Services",
 			ShortDescription: `Manages a Recovery Services Vault.`,
@@ -18476,7 +22287,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional) The ID of the Subnet within which the Redis Cache should be deployed. Changing this forces a new resource to be created.`,
+					Description: `(Optional)`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -18520,7 +22331,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rdb_storage_connection_string",
-					Description: `(Optional) The Connection String to the Storage Account. Only supported for Premium SKU's. In the format: ` + "`" + `DefaultEndpointsProtocol=https;BlobEndpoint=${azurerm_storage_account.test.primary_blob_endpoint};AccountName=${azurerm_storage_account.test.name};AccountKey=${azurerm_storage_account.test.primary_access_key}` + "`" + `. ~>`,
+					Description: `(Optional) The Connection String to the Storage Account. Only supported for Premium SKU's. In the format: ` + "`" + `DefaultEndpointsProtocol=https;BlobEndpoint=${azurerm_storage_account.example.primary_blob_endpoint};AccountName=${azurerm_storage_account.example.name};AccountKey=${azurerm_storage_account.example.primary_access_key}` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "notify_keyspace_events",
@@ -18803,14 +22614,26 @@ var (
 					Description: `(Required) The ID of the Principal (User, Group, Service Principal, or Application) to assign the Role Definition to. Changing this forces a new resource to be created. ~>`,
 				},
 				resource.Attribute{
+					Name:        "skip_service_principal_aad_check",
+					Description: `(Optional) If the ` + "`" + `principal_id` + "`" + ` is a newly provisioned ` + "`" + `Service Principal` + "`" + ` set this value to ` + "`" + `true` + "`" + ` to skip the ` + "`" + `Azure Active Directory` + "`" + ` check which may fail due to replication lag. This argument is only valid if the ` + "`" + `principal_id` + "`" + ` is a ` + "`" + `Service Principal` + "`" + ` identity. If it is not a ` + "`" + `Service Principal` + "`" + ` identity it will cause the role assignment to fail. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
 					Name:        "id",
-					Description: `The Role Assignment ID. ## Import Role Assignments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_assignment.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Role Assignment ID.`,
+				},
+				resource.Attribute{
+					Name:        "principal_type",
+					Description: `The type of the ` + "`" + `principal_id` + "`" + `, e.g. User, Group, Service Principal, Application, etc. ## Import Role Assignments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_assignment.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Role Assignment ID. ## Import Role Assignments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_assignment.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Role Assignment ID.`,
+				},
+				resource.Attribute{
+					Name:        "principal_type",
+					Description: `The type of the ` + "`" + `principal_id` + "`" + `, e.g. User, Group, Service Principal, Application, etc. ## Import Role Assignments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_assignment.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleAssignments/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -18868,13 +22691,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Role Definition ID. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Role Definition ID. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Role Definition ID. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.test /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Role Definition ID. ## Import Role Definitions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_role_definition.example /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -18915,13 +22738,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Route ID. ## Import Routes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route.testRoute /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1/routes/myroute1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Route ID. ## Import Routes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route.exampleRoute /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1/routes/myroute1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Route ID. ## Import Routes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route.testRoute /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1/routes/myroute1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Route ID. ## Import Routes can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route.exampleRoute /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1/routes/myroute1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -18983,7 +22806,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The collection of Subnets associated with this route table. ## Import Route Tables can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route_table.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The collection of Subnets associated with this route table. ## Import Route Tables can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route_table.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -18993,7 +22816,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnets",
-					Description: `The collection of Subnets associated with this route table. ## Import Route Tables can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route_table.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The collection of Subnets associated with this route table. ## Import Route Tables can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_route_table.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/routeTables/mytable1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -19284,7 +23107,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_search_service",
 			Category:         "Search Resources",
-			ShortDescription: `Manage a Search Service.`,
+			ShortDescription: `Manages a Search Service.`,
 			Description:      ``,
 			Keywords: []string{
 				"search",
@@ -19305,7 +23128,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `(Required) Valid values are ` + "`" + `free` + "`" + ` and ` + "`" + `standard` + "`" + `. ` + "`" + `standard2` + "`" + ` and ` + "`" + `standard3` + "`" + ` are also valid, but can only be used when it's enabled on the backend by Microsoft support. ` + "`" + `free` + "`" + ` provisions the service in shared clusters. ` + "`" + `standard` + "`" + ` provisions the service in dedicated clusters. Changing this forces a new resource to be created.`,
+					Description: `(Required) Valid values are ` + "`" + `basic` + "`" + `, ` + "`" + `free` + "`" + ` and ` + "`" + `standard` + "`" + `. ` + "`" + `standard2` + "`" + ` and ` + "`" + `standard3` + "`" + ` are also valid, but can only be used when it's enabled on the backend by Microsoft support. ` + "`" + `free` + "`" + ` provisions the service in shared clusters. ` + "`" + `standard` + "`" + ` provisions the service in dedicated clusters. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "replica_count",
@@ -19452,7 +23275,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_service_fabric_cluster",
 			Category:         "Service Fabric Resources",
-			ShortDescription: `Manage a Service Fabric Cluster.`,
+			ShortDescription: `Manages a Service Fabric Cluster.`,
 			Description:      ``,
 			Keywords: []string{
 				"service",
@@ -19730,7 +23553,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "capacity",
-					Description: `(Optional) Specifies the capacity. When ` + "`" + `sku` + "`" + ` is ` + "`" + `Premium` + "`" + ` can be ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + ` or ` + "`" + `4` + "`" + `. When ` + "`" + `sku` + "`" + ` is ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard` + "`" + ` can be ` + "`" + `0` + "`" + ` only.`,
+					Description: `(Optional) Specifies the capacity. When ` + "`" + `sku` + "`" + ` is ` + "`" + `Premium` + "`" + `, capacity can be ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + ` or ` + "`" + `8` + "`" + `. When ` + "`" + `sku` + "`" + ` is ` + "`" + `Basic` + "`" + ` or ` + "`" + `Standard` + "`" + `, capacity can be ` + "`" + `0` + "`" + ` only.`,
+				},
+				resource.Attribute{
+					Name:        "zone_redundant",
+					Description: `(Optional) Whether or not this resource is zone redundant. ` + "`" + `sku` + "`" + ` needs to be ` + "`" + `Premium` + "`" + `. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -19754,7 +23581,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secondary_key",
-					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Import Service Bus Namespace can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_namespace.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Import Service Bus Namespace can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_namespace.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -19776,7 +23603,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_secondary_key",
-					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Import Service Bus Namespace can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_namespace.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The secondary access key for the authorization rule ` + "`" + `RootManageSharedAccessKey` + "`" + `. ## Import Service Bus Namespace can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_namespace.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -19936,13 +23763,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ServiceBus Queue ID. ## Import Service Bus Queue can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_queue.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/queues/snqueue1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ServiceBus Queue ID. ## Import Service Bus Queue can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_queue.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/queues/snqueue1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ServiceBus Queue ID. ## Import Service Bus Queue can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_queue.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/queues/snqueue1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ServiceBus Queue ID. ## Import Service Bus Queue can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_queue.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/queues/snqueue1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -20094,17 +23921,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forward_to",
-					Description: `(Optional) The name of a Queue or Topic to automatically forward messages to. ### TimeSpan Format Some arguments for this resource are required in the TimeSpan format which is used to represent a length of time. The supported format is documented [here](https://msdn.microsoft.com/en-us/library/se73z7b9(v=vs.110).aspx#Anchor_2) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The name of a Queue or Topic to automatically forward messages to.`,
+				},
+				resource.Attribute{
+					Name:        "forward_dead_lettered_messages_to",
+					Description: `(Optional) The name of a Queue or Topic to automatically forward Dead Letter messages to. ### TimeSpan Format Some arguments for this resource are required in the TimeSpan format which is used to represent a length of time. The supported format is documented [here](https://msdn.microsoft.com/en-us/library/se73z7b9(v=vs.110).aspx#Anchor_2) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ServiceBus Subscription ID. ## Import Service Bus Subscriptions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ServiceBus Subscription ID. ## Import Service Bus Subscriptions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ServiceBus Subscription ID. ## Import Service Bus Subscriptions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ServiceBus Subscription ID. ## Import Service Bus Subscriptions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -20191,13 +24022,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ServiceBus Subscription Rule ID. ## Import Service Bus Subscription Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1/rules/sbrule1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ServiceBus Subscription Rule ID. ## Import Service Bus Subscription Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1/rules/sbrule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ServiceBus Subscription Rule ID. ## Import Service Bus Subscription Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription_rule.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1/rules/sbrule1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ServiceBus Subscription Rule ID. ## Import Service Bus Subscription Rule can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_subscription_rule.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1/subscriptions/sbsub1/rules/sbrule1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -20271,13 +24102,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ServiceBus Topic ID. ## Import Service Bus Topics can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_topic.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ServiceBus Topic ID. ## Import Service Bus Topics can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_topic.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ServiceBus Topic ID. ## Import Service Bus Topics can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_topic.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ServiceBus Topic ID. ## Import Service Bus Topics can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_servicebus_topic.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.servicebus/namespaces/sbns1/topics/sntopic1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -20598,8 +24429,28 @@ var (
 					Description: `A ` + "`" + `sku` + "`" + ` block as documented below.`,
 				},
 				resource.Attribute{
+					Name:        "cors",
+					Description: `(Optional) A ` + "`" + `cors` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "features",
+					Description: `(Optional) A ` + "`" + `features` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- A ` + "`" + `cors` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "allowed_origins",
+					Description: `(Required) A list of origins which should be able to make cross-origin calls. ` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "flag",
+					Description: `(Required) The kind of Feature. Possible values are ` + "`" + `EnableConnectivityLogs` + "`" + ` and ` + "`" + `ServiceMode` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) A value of a feature flag. Possible values are ` + "`" + `Classic` + "`" + `, ` + "`" + `Default` + "`" + ` and ` + "`" + `Serverless` + "`" + `. --- A ` + "`" + `sku` + "`" + ` block supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -20738,7 +24589,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `The Size of the Snapshotted Disk in GB. ## Import Snapshots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_snapshot.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/snapshots/snapshot1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Size of the Snapshotted Disk in GB. ## Import Snapshots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_snapshot.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/snapshots/snapshot1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -20748,7 +24599,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
-					Description: `The Size of the Snapshotted Disk in GB. ## Import Snapshots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_snapshot.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/snapshots/snapshot1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Size of the Snapshotted Disk in GB. ## Import Snapshots can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_snapshot.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/snapshots/snapshot1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -21104,37 +24955,53 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The failover group ID`,
+					Description: `The failover group ID.`,
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `the location of a SQL server in ` + "`" + `partner_servers` + "`" + ``,
+					Description: `the location of the failover group.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `the name of the primary SQL Database Server.`,
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `the current role of a SQL server in ` + "`" + `partner_servers` + "`" + ``,
+					Description: `local replication role of the failover group instance.`,
 				},
 				resource.Attribute{
-					Name:        "role",
-					Description: `the current role of the SQL server named in ` + "`" + `server_name` + "`" + ` ## Import SQL Failover Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/failovergroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "databases",
+					Description: `list of databases in the failover group.`,
+				},
+				resource.Attribute{
+					Name:        "partner_servers",
+					Description: `list of partner server information for the failover group. ## Import SQL Failover Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_failover_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/failovergroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The failover group ID`,
+					Description: `The failover group ID.`,
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `the location of a SQL server in ` + "`" + `partner_servers` + "`" + ``,
+					Description: `the location of the failover group.`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `the name of the primary SQL Database Server.`,
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `the current role of a SQL server in ` + "`" + `partner_servers` + "`" + ``,
+					Description: `local replication role of the failover group instance.`,
 				},
 				resource.Attribute{
-					Name:        "role",
-					Description: `the current role of the SQL server named in ` + "`" + `server_name` + "`" + ` ## Import SQL Failover Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_database.database1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/failovergroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "databases",
+					Description: `list of databases in the failover group.`,
+				},
+				resource.Attribute{
+					Name:        "partner_servers",
+					Description: `list of partner server information for the failover group. ## Import SQL Failover Groups can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_failover_group.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver/failovergroups/group1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -21220,8 +25087,16 @@ var (
 					Description: `(Required) The password associated with the ` + "`" + `administrator_login` + "`" + ` user. Needs to comply with Azure's [Password Policy](https://msdn.microsoft.com/library/ms161959.aspx)`,
 				},
 				resource.Attribute{
+					Name:        "identity",
+					Description: `(Optional) An ` + "`" + `identity` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A mapping of tags to assign to the resource. --- An ` + "`" + `identity` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the identity type of the SQL Server. At this time the only allowed value is ` + "`" + `SystemAssigned` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -21229,7 +25104,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fully_qualified_domain_name",
-					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net) ## Import SQL Servers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_server.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net) --- ` + "`" + `identity` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Identity of this SQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Server. -> You can access the Principal ID via ` + "`" + `${azurerm_sql_server.example.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_sql_server.example.identity.0.tenant_id}` + "`" + ` ## Import SQL Servers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_server.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -21239,7 +25122,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fully_qualified_domain_name",
-					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net) ## Import SQL Servers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_server.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The fully qualified domain name of the Azure SQL Server (e.g. myServerName.database.windows.net) --- ` + "`" + `identity` + "`" + ` exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Identity of this SQL Server.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this SQL Server. -> You can access the Principal ID via ` + "`" + `${azurerm_sql_server.example.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_sql_server.example.identity.0.tenant_id}` + "`" + ` ## Import SQL Servers can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_sql_server.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Sql/servers/myserver ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -21614,7 +25505,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_blob_connection_string",
-					Description: `The connection string associated with the secondary blob location.`,
+					Description: `The connection string associated with the secondary blob location. ~>`,
 				},
 				resource.Attribute{
 					Name:        "identity",
@@ -21626,7 +25517,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Identity of this Storage Account. -> You can access the Principal ID via ` + "`" + `${azurerm_storage_account.test.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_storage_account.test.identity.0.tenant_id}` + "`" + ` ## Import Storage Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_account.storageAcc1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Storage/storageAccounts/myaccount ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this Storage Account. -> You can access the Principal ID via ` + "`" + `${azurerm_storage_account.example.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_storage_account.example.identity.0.tenant_id}` + "`" + ` ## Import Storage Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_account.storageAcc1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Storage/storageAccounts/myaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -21760,7 +25651,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_blob_connection_string",
-					Description: `The connection string associated with the secondary blob location.`,
+					Description: `The connection string associated with the secondary blob location. ~>`,
 				},
 				resource.Attribute{
 					Name:        "identity",
@@ -21772,7 +25663,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `The Tenant ID for the Service Principal associated with the Identity of this Storage Account. -> You can access the Principal ID via ` + "`" + `${azurerm_storage_account.test.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_storage_account.test.identity.0.tenant_id}` + "`" + ` ## Import Storage Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_account.storageAcc1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Storage/storageAccounts/myaccount ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Tenant ID for the Service Principal associated with the Identity of this Storage Account. -> You can access the Principal ID via ` + "`" + `${azurerm_storage_account.example.identity.0.principal_id}` + "`" + ` and the Tenant ID via ` + "`" + `${azurerm_storage_account.example.identity.0.tenant_id}` + "`" + ` ## Import Storage Accounts can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_account.storageAcc1 /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourcegroup/providers/Microsoft.Storage/storageAccounts/myaccount ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -21780,7 +25671,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_storage_blob",
 			Category:         "Storage Resources",
-			ShortDescription: `Manages a Azure Storage Blob.`,
+			ShortDescription: `Manages a Blob within a Storage Container.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -21792,10 +25683,6 @@ var (
 					Description: `(Required) The name of the storage blob. Must be unique within the storage container the blob is located.`,
 				},
 				resource.Attribute{
-					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which to create the storage container. Changing this forces a new resource to be created.`,
-				},
-				resource.Attribute{
 					Name:        "storage_account_name",
 					Description: `(Required) Specifies the storage account in which to create the storage container. Changing this forces a new resource to be created.`,
 				},
@@ -21805,11 +25692,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The type of the storage blob to be created. One of either ` + "`" + `block` + "`" + ` or ` + "`" + `page` + "`" + `. When not copying from an existing blob, this becomes required.`,
+					Description: `(Required) The type of the storage blob to be created. Possible values are ` + "`" + `Append` + "`" + `, ` + "`" + `Block` + "`" + ` or ` + "`" + `Page` + "`" + `. Changing this forces a new resource to be created.`,
 				},
 				resource.Attribute{
 					Name:        "size",
 					Description: `(Optional) Used only for ` + "`" + `page` + "`" + ` blobs to specify the size in bytes of the blob to be created. Must be a multiple of 512. Defaults to 0.`,
+				},
+				resource.Attribute{
+					Name:        "access_tier",
+					Description: `(Optional) The access tier of the storage blob. Possible values are ` + "`" + `Archive` + "`" + `, ` + "`" + `Cool` + "`" + ` and ` + "`" + `Hot` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "content_type",
@@ -21817,23 +25708,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source",
-					Description: `(Optional) An absolute path to a file on the local system. Cannot be defined if ` + "`" + `source_uri` + "`" + ` is defined.`,
+					Description: `(Optional) An absolute path to a file on the local system. This field cannot be specified for Append blobs and cannot be specified if ` + "`" + `source_content` + "`" + ` or ` + "`" + `source_uri` + "`" + ` is specified.`,
+				},
+				resource.Attribute{
+					Name:        "source_content",
+					Description: `(Optional) The content for this blob which should be defined inline. This field can only be specified for Block blobs and cannot be specified if ` + "`" + `source` + "`" + ` or ` + "`" + `source_uri` + "`" + ` is specified.`,
 				},
 				resource.Attribute{
 					Name:        "source_uri",
-					Description: `(Optional) The URI of an existing blob, or a file in the Azure File service, to use as the source contents for the blob to be created. Changing this forces a new resource to be created. Cannot be defined if ` + "`" + `source` + "`" + ` is defined.`,
+					Description: `(Optional) The URI of an existing blob, or a file in the Azure File service, to use as the source contents for the blob to be created. Changing this forces a new resource to be created. This field cannot be specified for Append blobs and cannot be specified if ` + "`" + `source` + "`" + ` or ` + "`" + `source_content` + "`" + ` is specified.`,
 				},
 				resource.Attribute{
 					Name:        "parallelism",
-					Description: `(Optional) The number of workers per CPU core to run for concurrent uploads. Defaults to ` + "`" + `8` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "attempts",
-					Description: `(Optional) The number of attempts to make per page or block when uploading. Defaults to ` + "`" + `1` + "`" + `.`,
+					Description: `(Optional) The number of workers per CPU core to run for concurrent uploads. Defaults to ` + "`" + `8` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Optional) A map of custom blob metadata. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional) A map of custom blob metadata.`,
+				},
+				resource.Attribute{
+					Name:        "attempts",
+					Description: `(Optional /`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Optional /`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -21859,7 +25758,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_storage_container",
 			Category:         "Storage Resources",
-			ShortDescription: `Manage a Container within an Azure Storage Account.`,
+			ShortDescription: `Manages a Container within an Azure Storage Account.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -21919,6 +25818,124 @@ var (
 				resource.Attribute{
 					Name:        "properties",
 					Description: `(`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_storage_data_lake_gen2_filesystem",
+			Category:         "Storage Resources",
+			ShortDescription: `Manages a Data Lake Gen2 File System within an Azure Storage Account.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"data",
+				"lake",
+				"gen2",
+				"filesystem",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Data Lake Gen2 File System which should be created within the Storage Account. Must be unique within the storage account the queue is located. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_id",
+					Description: `(Required) Specifies the ID of the Storage Account in which the Data Lake Gen2 File System should exist. Changing this forces a new resource to be created. ~>`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) A mapping of Key to Base64-Encoded Values which should be assigned to this Data Lake Gen2 File System. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Data Lake Gen2 File System. ## Import Data Lake Gen2 File System's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_data_lake_gen2_filesystem.queue1 https://account1.dfs.core.windows.net/fileSystem1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Data Lake Gen2 File System. ## Import Data Lake Gen2 File System's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_data_lake_gen2_filesystem.queue1 https://account1.dfs.core.windows.net/fileSystem1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_storage_management_policy",
+			Category:         "Storage Resources",
+			ShortDescription: `Manages an Azure Storage Account Management Policy.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"management",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "storage_account_id",
+					Description: `(Required) Specifies the id of the storage account to apply the management policy to.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Optional) A ` + "`" + `rule` + "`" + ` block as documented below. ---`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A rule name can contain any combination of alpha numeric characters. Rule name is case-sensitive. It must be unique within a policy.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Boolean to specify whether the rule is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "filters",
+					Description: `A ` + "`" + `filter` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "actions",
+					Description: `An ` + "`" + `actions` + "`" + ` block as documented below. --- ` + "`" + `filters` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "prefix_match",
+					Description: `An array of strings for prefixes to be matched.`,
+				},
+				resource.Attribute{
+					Name:        "blob_types",
+					Description: `An array of predefined values. Only ` + "`" + `blockBlob` + "`" + ` is supported. --- ` + "`" + `actions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "base_blob",
+					Description: `A ` + "`" + `base_blob` + "`" + ` block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot",
+					Description: `A ` + "`" + `snapshot` + "`" + ` block as documented below. --- ` + "`" + `base_blob` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "tier_to_cool_after_days_since_modification_greater_than",
+					Description: `The age in days after last modification to tier blobs to cool storage. Supports blob currently at Hot tier. Must be at least 0.`,
+				},
+				resource.Attribute{
+					Name:        "tier_to_archive_after_days_since_modification_greater_than",
+					Description: `The age in days after last modification to tier blobs to archive storage. Supports blob currently at Hot or Cool tier. Must be at least 0.`,
+				},
+				resource.Attribute{
+					Name:        "delete_after_days_since_modification_greater_than",
+					Description: `The age in days after last modification to delete the blob. Must be at least 0. --- ` + "`" + `snapshot` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "delete_after_days_since_creation_greater_than",
+					Description: `The age in days after create to delete the snaphot. Must be at least 0. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Storage Account Management Policy. ## Import Storage Account Management Policies can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_management_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Storage/storageAccounts/myaccountname/managementPoliices/default ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Storage Account Management Policy. ## Import Storage Account Management Policies can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_management_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Storage/storageAccounts/myaccountname/managementPoliices/default ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -21986,7 +26003,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "quota",
-					Description: `(Optional) The maximum size of the share, in gigabytes. Must be greater than 0, and less than or equal to 5 TB (5120 GB) for Standard storage accounts or 100 TB (102400 GB) for Premium storage accounts. Default is 5120.`,
+					Description: `(Optional) The maximum size of the share, in gigabytes. For Standard storage accounts, this must be greater than 0 and less than 5120 GB (5 TB). For Premium FileStorage storage accounts, this must be greater than 100 GB and less than 102400 GB (100 TB). Default is 5120.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -22022,7 +26039,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The URL of the File Share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.testShare https://account1.file.core.windows.net/share1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The URL of the File Share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.exampleShare https://account1.file.core.windows.net/share1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22032,7 +26049,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The URL of the File Share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.testShare https://account1.file.core.windows.net/share1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The URL of the File Share ## Import Storage Shares can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share.exampleShare https://account1.file.core.windows.net/share1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22066,13 +26083,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Directory within the File Share. ## Import Directories within an Azure Storage File Share can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share_directory.test https://tomdevsa20.file.core.windows.net/share1/directory1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Directory within the File Share. ## Import Directories within an Azure Storage File Share can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share_directory.examplehttps://tomdevsa20.file.core.windows.net/share1/directory1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Directory within the File Share. ## Import Directories within an Azure Storage File Share can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share_directory.test https://tomdevsa20.file.core.windows.net/share1/directory1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Directory within the File Share. ## Import Directories within an Azure Storage File Share can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_share_directory.examplehttps://tomdevsa20.file.core.windows.net/share1/directory1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22080,7 +26097,7 @@ var (
 			Name:             "",
 			Type:             "azurerm_storage_table",
 			Category:         "Storage Resources",
-			ShortDescription: `Manage a Table within an Azure Storage Account.`,
+			ShortDescription: `Manages a Table within an Azure Storage Account.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -22125,13 +26142,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Table within the Storage Account. ## Import Table's within a Storage Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 https://example.table.core.windows.net/table1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Table within the Storage Account. ## Import Table's within a Storage Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 "https://example.table.core.windows.net/Tables('replace-with-table-name')" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Table within the Storage Account. ## Import Table's within a Storage Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 https://example.table.core.windows.net/table1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Table within the Storage Account. ## Import Table's within a Storage Account can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_storage_table.table1 "https://example.table.core.windows.net/Tables('replace-with-table-name')" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22227,13 +26244,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics JavaScript UDF Function. ## Import Stream Analytics JavaScript UDF Functions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics JavaScript UDF Function. ## Import Stream Analytics JavaScript UDF Functions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics JavaScript UDF Function. ## Import Stream Analytics JavaScript UDF Functions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics JavaScript UDF Function. ## Import Stream Analytics JavaScript UDF Functions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22267,23 +26284,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_locale",
-					Description: `(Required) Specifies the Data Locale of the Job, which [should be a supported .NET Culture](https://msdn.microsoft.com/en-us/library/system.globalization.culturetypes(v=vs.110).aspx).`,
+					Description: `(Optional) Specifies the Data Locale of the Job, which [should be a supported .NET Culture](https://msdn.microsoft.com/en-us/library/system.globalization.culturetypes(v=vs.110).aspx).`,
 				},
 				resource.Attribute{
 					Name:        "events_late_arrival_max_delay_in_seconds",
-					Description: `(Required) Specifies the maximum tolerable delay in seconds where events arriving late could be included. Supported range is ` + "`" + `-1` + "`" + ` (indefinite) to ` + "`" + `1814399` + "`" + ` (20d 23h 59m 59s).`,
+					Description: `(Optional) Specifies the maximum tolerable delay in seconds where events arriving late could be included. Supported range is ` + "`" + `-1` + "`" + ` (indefinite) to ` + "`" + `1814399` + "`" + ` (20d 23h 59m 59s). Default is ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "events_out_of_order_max_delay_in_seconds",
-					Description: `(Required) Specifies the maximum tolerable delay in seconds where out-of-order events can be adjusted to be back in order. Supported range is ` + "`" + `0` + "`" + ` to ` + "`" + `599` + "`" + ` (9m 59s).`,
+					Description: `(Optional) Specifies the maximum tolerable delay in seconds where out-of-order events can be adjusted to be back in order. Supported range is ` + "`" + `0` + "`" + ` to ` + "`" + `599` + "`" + ` (9m 59s). Default is ` + "`" + `5` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "events_out_of_order_policy",
-					Description: `(Required) Specifies the policy which should be applied to events which arrive out of order in the input event stream. Possible values are ` + "`" + `Adjust` + "`" + ` and ` + "`" + `Drop` + "`" + `.`,
+					Description: `(Optional) Specifies the policy which should be applied to events which arrive out of order in the input event stream. Possible values are ` + "`" + `Adjust` + "`" + ` and ` + "`" + `Drop` + "`" + `. Default is ` + "`" + `Adjust` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "output_error_policy",
-					Description: `(Required) Specifies the policy which should be applied to events which arrive at the output and cannot be written to the external storage due to being malformed (such as missing column values, column values of wrong type or size). Possible values are ` + "`" + `Drop` + "`" + ` and ` + "`" + `Stop` + "`" + `.`,
+					Description: `(Optional) Specifies the policy which should be applied to events which arrive at the output and cannot be written to the external storage due to being malformed (such as missing column values, column values of wrong type or size). Possible values are ` + "`" + `Drop` + "`" + ` and ` + "`" + `Stop` + "`" + `. Default is ` + "`" + `Drop` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "streaming_units",
@@ -22303,7 +26320,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "job_id",
-					Description: `The Job ID assigned by the Stream Analytics Job. ## Import Stream Analytics Job's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_job.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Job ID assigned by the Stream Analytics Job. ## Import Stream Analytics Job's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_job.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22313,7 +26330,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "job_id",
-					Description: `The Job ID assigned by the Stream Analytics Job. ## Import Stream Analytics Job's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_job.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Job ID assigned by the Stream Analytics Job. ## Import Stream Analytics Job's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_job.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22388,13 +26405,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Output Blob Storage. ## Import Stream Analytics Outputs to Blob Storage can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Output Blob Storage. ## Import Stream Analytics Outputs to Blob Storage can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Output Blob Storage. ## Import Stream Analytics Outputs to Blob Storage can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Output Blob Storage. ## Import Stream Analytics Outputs to Blob Storage can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_blob.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22461,13 +26478,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Output EventHub. ## Import Stream Analytics Outputs to an EventHub can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_eventhub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Output EventHub. ## Import Stream Analytics Outputs to an EventHub can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_eventhub.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Output EventHub. ## Import Stream Analytics Outputs to an EventHub can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_eventhub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Output EventHub. ## Import Stream Analytics Outputs to an EventHub can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_eventhub.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22514,13 +26531,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Output Microsoft SQL Server Database. ## Import Stream Analytics Outputs to Microsoft SQL Server Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_mssql.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Output Microsoft SQL Server Database. ## Import Stream Analytics Outputs to Microsoft SQL Server Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_mssql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Output Microsoft SQL Server Database. ## Import Stream Analytics Outputs to Microsoft SQL Server Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_mssql.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Output Microsoft SQL Server Database. ## Import Stream Analytics Outputs to Microsoft SQL Server Database can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_mssql.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22588,13 +26605,87 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Output ServiceBus Queue. ## Import Stream Analytics Output ServiceBus Queue's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_servicebus_queue.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Output ServiceBus Queue. ## Import Stream Analytics Output ServiceBus Queue's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_servicebus_queue.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Output ServiceBus Queue. ## Import Stream Analytics Output ServiceBus Queue's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_servicebus_queue.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Output ServiceBus Queue. ## Import Stream Analytics Output ServiceBus Queue's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_servicebus_queue.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_stream_analytics_output_servicebus_topic",
+			Category:         "Stream Analytics Resources",
+			ShortDescription: `Manages a Stream Analytics Output to a ServiceBus Topic.`,
+			Description:      ``,
+			Keywords: []string{
+				"stream",
+				"analytics",
+				"output",
+				"servicebus",
+				"topic",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Stream Output. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the Resource Group where the Stream Analytics Job exists. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "stream_analytics_job_name",
+					Description: `(Required) The name of the Stream Analytics Job. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "topic_name",
+					Description: `(Required) The name of the Service Bus Topic.`,
+				},
+				resource.Attribute{
+					Name:        "servicebus_namespace",
+					Description: `(Required) The namespace that is associated with the desired Event Hub, Service Bus Topic, Service Bus Topic, etc.`,
+				},
+				resource.Attribute{
+					Name:        "shared_access_policy_key",
+					Description: `(Required) The shared access policy key for the specified shared access policy.`,
+				},
+				resource.Attribute{
+					Name:        "shared_access_policy_name",
+					Description: `(Required) The shared access policy name for the Event Hub, Service Bus Queue, Service Bus Topic, etc.`,
+				},
+				resource.Attribute{
+					Name:        "serialization",
+					Description: `(Required) A ` + "`" + `serialization` + "`" + ` block as defined below. --- A ` + "`" + `serialization` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The serialization format used for outgoing data streams. Possible values are ` + "`" + `Avro` + "`" + `, ` + "`" + `Csv` + "`" + ` and ` + "`" + `Json` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "encoding",
+					Description: `(Optional) The encoding of the incoming data in the case of input and the encoding of outgoing data in the case of output. It currently can only be set to ` + "`" + `UTF8` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "field_delimiter",
+					Description: `(Optional) The delimiter that will be used to separate comma-separated value (CSV) records. Possible values are ` + "`" + ` ` + "`" + ` (space), ` + "`" + `,` + "`" + ` (comma), ` + "`" + ` ` + "`" + ` (tab), ` + "`" + `|` + "`" + ` (pipe) and ` + "`" + `;` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Specifies the format of the JSON the output will be written in. Possible values are ` + "`" + `Array` + "`" + ` and ` + "`" + `LineSeparated` + "`" + `. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Stream Analytics Output ServiceBus Topic. ## Import Stream Analytics Output ServiceBus Topic's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_servicebus_topic.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Stream Analytics Output ServiceBus Topic. ## Import Stream Analytics Output ServiceBus Topic's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_output_servicebus_topic.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/outputs/output1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22665,13 +26756,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Stream Input Blob. ## Import Stream Analytics Stream Input Blob's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Stream Input Blob. ## Import Stream Analytics Stream Input Blob's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_blob.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Stream Input Blob. ## Import Stream Analytics Stream Input Blob's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_blob.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Stream Input Blob. ## Import Stream Analytics Stream Input Blob's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_blob.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22738,13 +26829,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Stream Input EventHub. ## Import Stream Analytics Stream Input EventHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_eventhub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Stream Input EventHub. ## Import Stream Analytics Stream Input EventHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_eventhub.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Stream Input EventHub. ## Import Stream Analytics Stream Input EventHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_eventhub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Stream Input EventHub. ## Import Stream Analytics Stream Input EventHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_eventhub.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22811,13 +26902,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Stream Input IoTHub. ## Import Stream Analytics Stream Input IoTHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_iothub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Stream Input IoTHub. ## Import Stream Analytics Stream Input IoTHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_iothub.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Stream Analytics Stream Input IoTHub. ## Import Stream Analytics Stream Input IoTHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_iothub.test /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Stream Analytics Stream Input IoTHub. ## Import Stream Analytics Stream Input IoTHub's can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_stream_analytics_stream_input_iothub.example /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/group1/providers/Microsoft.StreamAnalytics/streamingjobs/job1/inputs/input1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -22849,6 +26940,10 @@ var (
 					Description: `(Required) The address prefix to use for the subnet.`,
 				},
 				resource.Attribute{
+					Name:        "enforce_private_link_service_network_policies",
+					Description: `(Optional) Enable or Disable network policies on the ` + "`" + `private link service` + "`" + ` in the subnet. Default is ` + "`" + `false` + "`" + `. ->`,
+				},
+				resource.Attribute{
 					Name:        "network_security_group_id",
 					Description: `(Optional /`,
 				},
@@ -22866,11 +26961,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of service to delegate to. Possible values include: ` + "`" + `Microsoft.BareMetal/AzureVMware` + "`" + `, ` + "`" + `Microsoft.BareMetal/CrayServers` + "`" + `, ` + "`" + `Microsoft.Batch/batchAccounts` + "`" + `, ` + "`" + `Microsoft.ContainerInstance/containerGroups` + "`" + `, ` + "`" + `Microsoft.Databricks/workspaces` + "`" + `, ` + "`" + `Microsoft.HardwareSecurityModules/dedicatedHSMs` + "`" + `, ` + "`" + `Microsoft.Logic/integrationServiceEnvironments` + "`" + `, ` + "`" + `Microsoft.Netapp/volumes` + "`" + `, ` + "`" + `Microsoft.ServiceFabricMesh/networks` + "`" + `, ` + "`" + `Microsoft.Sql/managedInstances` + "`" + `, ` + "`" + `Microsoft.Sql/servers` + "`" + `, ` + "`" + `Microsoft.Web/hostingEnvironments` + "`" + ` or ` + "`" + `Microsoft.Web/serverFarms` + "`" + `.`,
+					Description: `(Required) The name of service to delegate to. Possible values include ` + "`" + `Microsoft.BareMetal/AzureVMware` + "`" + `, ` + "`" + `Microsoft.BareMetal/CrayServers` + "`" + `, ` + "`" + `Microsoft.Batch/batchAccounts` + "`" + `, ` + "`" + `Microsoft.ContainerInstance/containerGroups` + "`" + `, ` + "`" + `Microsoft.Databricks/workspaces` + "`" + `, ` + "`" + `Microsoft.DBforPostgreSQL/serversv2` + "`" + `, ` + "`" + `Microsoft.HardwareSecurityModules/dedicatedHSMs` + "`" + `, ` + "`" + `Microsoft.Logic/integrationServiceEnvironments` + "`" + `, ` + "`" + `Microsoft.Netapp/volumes` + "`" + `, ` + "`" + `Microsoft.ServiceFabricMesh/networks` + "`" + `, ` + "`" + `Microsoft.Sql/managedInstances` + "`" + `, ` + "`" + `Microsoft.Sql/servers` + "`" + `, ` + "`" + `Microsoft.StreamAnalytics/streamingJobs` + "`" + `, ` + "`" + `Microsoft.Web/hostingEnvironments` + "`" + ` and ` + "`" + `Microsoft.Web/serverFarms` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "actions",
-					Description: `(Optional) A list of Actions which should be delegated. Possible values include: ` + "`" + `Microsoft.Network/virtualNetworks/subnets/action` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A list of Actions which should be delegated. This list is specific to the service to delegate to. Possible values include ` + "`" + `Microsoft.Network/networkinterfaces/`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -22894,7 +26989,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "address_prefix",
-					Description: `The address prefix for the subnet ## Import Subnets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet.testSubnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The address prefix for the subnet ## Import Subnets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet.exampleSubnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -22920,7 +27015,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "address_prefix",
-					Description: `The address prefix for the subnet ## Import Subnets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet.testSubnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The address prefix for the subnet ## Import Subnets can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_subnet.exampleSubnet /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/subnets/mysubnet1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -23138,13 +27233,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Traffic Manager Endpoint id. ## Import Traffic Manager Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_endpoint.testEndpoints /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1/azureEndpoints/mytrafficmanagerendpoint ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Traffic Manager Endpoint id. ## Import Traffic Manager Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_endpoint.exampleEndpoints /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1/azureEndpoints/mytrafficmanagerendpoint ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Traffic Manager Endpoint id. ## Import Traffic Manager Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_endpoint.testEndpoints /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1/azureEndpoints/mytrafficmanagerendpoint ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Traffic Manager Endpoint id. ## Import Traffic Manager Endpoints can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_endpoint.exampleEndpoints /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1/azureEndpoints/mytrafficmanagerendpoint ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -23227,7 +27322,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `The FQDN of the created Profile. ## Notes The Traffic Manager is created with the location ` + "`" + `global` + "`" + `. ## Import Traffic Manager Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_profile.testProfile /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The FQDN of the created Profile. ## Notes The Traffic Manager is created with the location ` + "`" + `global` + "`" + `. ## Import Traffic Manager Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_profile.exampleProfile /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -23237,7 +27332,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fqdn",
-					Description: `The FQDN of the created Profile. ## Notes The Traffic Manager is created with the location ` + "`" + `global` + "`" + `. ## Import Traffic Manager Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_profile.testProfile /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The FQDN of the created Profile. ## Notes The Traffic Manager is created with the location ` + "`" + `global` + "`" + `. ## Import Traffic Manager Profiles can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_traffic_manager_profile.exampleProfile /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/trafficManagerProfiles/mytrafficmanagerprofile1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -23280,7 +27375,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_id",
-					Description: `Client ID associated with the user assigned identity. ## Import User Assigned Identities can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_user_assigned_identity.testIdentity /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/acceptanceTestResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testIdentity ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Client ID associated with the user assigned identity. ## Import User Assigned Identities can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_user_assigned_identity.exampleIdentity /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/acceptanceTestResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testIdentity ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -23294,7 +27389,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_id",
-					Description: `Client ID associated with the user assigned identity. ## Import User Assigned Identities can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_user_assigned_identity.testIdentity /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/acceptanceTestResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testIdentity ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Client ID associated with the user assigned identity. ## Import User Assigned Identities can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_user_assigned_identity.exampleIdentity /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/acceptanceTestResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testIdentity ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -23347,12 +27442,16 @@ var (
 					Description: `(Optional) A ` + "`" + `boot_diagnostics` + "`" + ` block.`,
 				},
 				resource.Attribute{
+					Name:        "additional_capabilities",
+					Description: `(Optional) A ` + "`" + `additional_capabilities` + "`" + ` block.`,
+				},
+				resource.Attribute{
 					Name:        "delete_os_disk_on_termination",
-					Description: `(Optional) Should the OS Disk (either the Managed Disk / VHD Blob) be deleted when the Virtual Machine is destroyed? Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Should the OS Disk (either the Managed Disk / VHD Blob) be deleted when the Virtual Machine is destroyed? Defaults to ` + "`" + `false` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "delete_data_disks_on_termination",
-					Description: `(Optional) Should the Data Disks (either the Managed Disks / VHD Blobs) be deleted when the Virtual Machine is destroyed? Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Should the Data Disks (either the Managed Disks / VHD Blobs) be deleted when the Virtual Machine is destroyed? Defaults to ` + "`" + `false` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "identity",
@@ -23377,6 +27476,10 @@ var (
 				resource.Attribute{
 					Name:        "primary_network_interface_id",
 					Description: `(Optional) The ID of the Network Interface (which must be attached to the Virtual Machine) which should be the Primary Network Interface for this Virtual Machine.`,
+				},
+				resource.Attribute{
+					Name:        "proximity_placement_group_id",
+					Description: `(Optional) The ID of the Proximity Placement Group to which this Virtual Machine should be assigned. Changing this forces a new resource to be created`,
 				},
 				resource.Attribute{
 					Name:        "storage_data_disk",
@@ -23421,6 +27524,10 @@ var (
 				resource.Attribute{
 					Name:        "storage_uri",
 					Description: `(Required) The Storage Account's Blob Endpoint which should hold the virtual machine's diagnostic files. ~>`,
+				},
+				resource.Attribute{
+					Name:        "ultra_ssd_enabled",
+					Description: `(Required) Should Ultra SSD disk be enabled for this Virtual Machine? ->`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -23532,7 +27639,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "create_option",
-					Description: `(Required) Specifies how the data disk should be created. Possible values are ` + "`" + `Attach` + "`" + `, ` + "`" + `FromImage` + "`" + ` and ` + "`" + `Empty` + "`" + `.`,
+					Description: `(Required) Specifies how the data disk should be created. Possible values are ` + "`" + `Attach` + "`" + `, ` + "`" + `FromImage` + "`" + ` and ` + "`" + `Empty` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "disk_size_gb",
@@ -23548,7 +27655,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "managed_disk_type",
-					Description: `(Optional) Specifies the type of managed disk to create. Possible values are either ` + "`" + `Standard_LRS` + "`" + `, ` + "`" + `StandardSSD_LRS` + "`" + ` or ` + "`" + `Premium_LRS` + "`" + `.`,
+					Description: `(Optional) Specifies the type of managed disk to create. Possible values are either ` + "`" + `Standard_LRS` + "`" + `, ` + "`" + `StandardSSD_LRS` + "`" + `, ` + "`" + `Premium_LRS` + "`" + ` or ` + "`" + `UltraSSD_LRS` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "managed_disk_id",
@@ -23616,13 +27723,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Virtual Machine. ## Import Virtual Machines can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Virtual Machine.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as defined below, which contains the Managed Service Identity information for this Virtual Machine. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Managed Service Identity of this Virtual Machine. -> You can access the Principal ID via ` + "`" + `${azurerm_virtual_machine.example.identity.0.principal_id}` + "`" + ` ## Import Virtual Machines can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Virtual Machine. ## Import Virtual Machines can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Virtual Machine.`,
+				},
+				resource.Attribute{
+					Name:        "identity",
+					Description: `An ` + "`" + `identity` + "`" + ` block as defined below, which contains the Managed Service Identity information for this Virtual Machine. --- A ` + "`" + `identity` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "principal_id",
+					Description: `The Principal ID for the Service Principal associated with the Managed Service Identity of this Virtual Machine. -> You can access the Principal ID via ` + "`" + `${azurerm_virtual_machine.example.identity.0.principal_id}` + "`" + ` ## Import Virtual Machines can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -23667,13 +27790,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Virtual Machine Data Disk attachment. ## Import Virtual Machines Data Disk Attachments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_data_disk_attachment.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1/dataDisks/disk1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The ID of the Virtual Machine Data Disk attachment. ## Import Virtual Machines Data Disk Attachments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_data_disk_attachment.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1/dataDisks/disk1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Virtual Machine Data Disk attachment. ## Import Virtual Machines Data Disk Attachments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_data_disk_attachment.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1/dataDisks/disk1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
+					Description: `The ID of the Virtual Machine Data Disk attachment. ## Import Virtual Machines Data Disk Attachments can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_data_disk_attachment.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/microsoft.compute/virtualMachines/machine1/dataDisks/disk1 ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -23736,13 +27859,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Virtual Machine Extension ID. ## Import Virtual Machine Extensions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_extension.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/virtualMachines/myVM/extensions/hostname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Virtual Machine Extension ID. ## Import Virtual Machine Extensions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_extension.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/virtualMachines/myVM/extensions/hostname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Virtual Machine Extension ID. ## Import Virtual Machine Extensions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_extension.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/virtualMachines/myVM/extensions/hostname ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Virtual Machine Extension ID. ## Import Virtual Machine Extensions can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_machine_extension.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Compute/virtualMachines/myVM/extensions/hostname ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -23787,6 +27910,10 @@ var (
 				resource.Attribute{
 					Name:        "os_profile_linux_config",
 					Description: `(Required, when a linux machine) A Linux config block as documented below.`,
+				},
+				resource.Attribute{
+					Name:        "proximity_placement_group_id",
+					Description: `(Optional) The ID of the Proximity Placement Group to which this Virtual Machine should be assigned. Changing this forces a new resource to be created`,
 				},
 				resource.Attribute{
 					Name:        "sku",
@@ -23894,11 +28021,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Specifies the identity type to be assigned to the scale set. Allowable values are ` + "`" + `SystemAssigned` + "`" + `, ` + "`" + `UserAssigned` + "`" + `, and ` + "`" + `SystemAssigned, UserAssigned` + "`" + `. For the ` + "`" + `SystemAssigned` + "`" + ` identity the scale set's Service Principal ID (SPN) can be retrieved after the scale set has been created. See [documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/overview) for more information.`,
+					Description: `(Required) Specifies the identity type to be assigned to the scale set. Allowable values are ` + "`" + `SystemAssigned` + "`" + ` and ` + "`" + `UserAssigned` + "`" + `. For the ` + "`" + `SystemAssigned` + "`" + ` identity the scale set's Service Principal ID (SPN) can be retrieved after the scale set has been created. See [documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/overview) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "identity_ids",
-					Description: `(Optional) Specifies a list of user managed identity ids to be assigned to the VMSS. Required if ` + "`" + `type` + "`" + ` is ` + "`" + `UserAssigned` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl resource "azurerm_virtual_machine_scale_set" "test" { name = "vm-scaleset" resource_group_name = "${azurerm_resource_group.test.name}" location = "${azurerm_resource_group.test.location}" sku { name = "${var.vm_sku}" tier = "Standard" capacity = "${var.instance_count}" } identity { type = "systemAssigned" } extension { name = "MSILinuxExtension" publisher = "Microsoft.ManagedIdentity" type = "ManagedIdentityExtensionForLinux" type_handler_version = "1.0" settings = "{\"port\": 50342}" } # ... } output "principal_id" { value = "${lookup(azurerm_virtual_machine_scale_set.test.identity[0], "principal_id")}" } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `os_profile` + "`" + ` supports the following:`,
+					Description: `(Optional) Specifies a list of user managed identity ids to be assigned to the VMSS. Required if ` + "`" + `type` + "`" + ` is ` + "`" + `UserAssigned` + "`" + `. ` + "`" + `` + "`" + `` + "`" + `hcl resource "azurerm_virtual_machine_scale_set" "example" { name = "vm-scaleset" resource_group_name = "${azurerm_resource_group.example.name}" location = "${azurerm_resource_group.example.location}" sku { name = "${var.vm_sku}" tier = "Standard" capacity = "${var.instance_count}" } identity { type = "SystemAssigned" } extension { name = "MSILinuxExtension" publisher = "Microsoft.ManagedIdentity" type = "ManagedIdentityExtensionForLinux" type_handler_version = "1.0" settings = "{\"port\": 50342}" } # ... } output "principal_id" { value = "${lookup(azurerm_virtual_machine_scale_set.example.identity[0], "principal_id")}" } ` + "`" + `` + "`" + `` + "`" + ` ` + "`" + `os_profile` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "computer_name_prefix",
@@ -24022,15 +28149,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "application_gateway_backend_address_pool_ids",
-					Description: `(Optional) Specifies an array of references to backend address pools of application gateways. A scale set can reference backend address pools of one application gateway. Multiple scale sets cannot use the same application gateway.`,
+					Description: `(Optional) Specifies an array of references to backend address pools of application gateways. A scale set can reference backend address pools of multiple application gateways. Multiple scale sets cannot use the same application gateway.`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_backend_address_pool_ids",
-					Description: `(Optional) Specifies an array of references to backend address pools of load balancers. A scale set can reference backend address pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer.`,
+					Description: `(Optional) Specifies an array of references to backend address pools of load balancers. A scale set can reference backend address pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer. ->`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_inbound_nat_rules_ids",
-					Description: `(Optional) Specifies an array of references to inbound NAT rules for load balancers.`,
+					Description: `(Optional) Specifies an array of references to inbound NAT pools for load balancers. A scale set can reference inbound nat pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer. ->`,
 				},
 				resource.Attribute{
 					Name:        "primary",
@@ -24166,7 +28293,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "product",
-					Description: `(Required) Specifies the product of the image from the marketplace. ## Example of storage_profile_image_reference with id ` + "`" + `` + "`" + `` + "`" + `hcl resource "azurerm_image" "test" { name = "test" # ... } resource "azurerm_virtual_machine_scale_set" "test" { name = "test" # ... storage_profile_image_reference { id = "${azurerm_image.test.id}" } # ... } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) Specifies the product of the image from the marketplace. ## Example of storage_profile_image_reference with id ` + "`" + `` + "`" + `` + "`" + `hcl resource "azurerm_image" "example" { name = "test" # ... } resource "azurerm_virtual_machine_scale_set" "example" { name = "test" # ... storage_profile_image_reference { id = "${azurerm_image.example.id}" } # ... } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -24241,7 +28368,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_group",
-					Description: `(Optional) The Network Security Group to associate with the subnet. (Referenced by ` + "`" + `id` + "`" + `, ie. ` + "`" + `azurerm_network_security_group.test.id` + "`" + `) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The Network Security Group to associate with the subnet. (Referenced by ` + "`" + `id` + "`" + `, ie. ` + "`" + `azurerm_network_security_group.example.id` + "`" + `) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -24265,7 +28392,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of this subnet. ## Import Virtual Networks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network.testNetwork /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of this subnet. ## Import Virtual Networks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network.exampleNetwork /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -24291,7 +28418,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of this subnet. ## Import Virtual Networks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network.testNetwork /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of this subnet. ## Import Virtual Networks can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network.exampleNetwork /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -24341,7 +28468,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sku",
-					Description: `(Required) Configuration of the size and capacity of the virtual network gateway. Valid options are ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + `, ` + "`" + `HighPerformance` + "`" + `, ` + "`" + `UltraPerformance` + "`" + `, ` + "`" + `ErGw1AZ` + "`" + `, ` + "`" + `ErGw2AZ` + "`" + `, ` + "`" + `ErGw3AZ` + "`" + `, ` + "`" + `VpnGw1` + "`" + `, ` + "`" + `VpnGw2` + "`" + `, ` + "`" + `VpnGw3` + "`" + `, ` + "`" + `VpnGw1AZ` + "`" + `, ` + "`" + `VpnGw2AZ` + "`" + `, and ` + "`" + `VpnGw3AZ` + "`" + ` and depend on the ` + "`" + `type` + "`" + ` and ` + "`" + `vpn_type` + "`" + ` arguments. A ` + "`" + `PolicyBased` + "`" + ` gateway only supports the ` + "`" + `Basic` + "`" + ` sku. Further, the ` + "`" + `UltraPerformance` + "`" + ` sku is only supported by an ` + "`" + `ExpressRoute` + "`" + ` gateway.`,
+					Description: `(Required) Configuration of the size and capacity of the virtual network gateway. Valid options are ` + "`" + `Basic` + "`" + `, ` + "`" + `Standard` + "`" + `, ` + "`" + `HighPerformance` + "`" + `, ` + "`" + `UltraPerformance` + "`" + `, ` + "`" + `ErGw1AZ` + "`" + `, ` + "`" + `ErGw2AZ` + "`" + `, ` + "`" + `ErGw3AZ` + "`" + `, ` + "`" + `VpnGw1` + "`" + `, ` + "`" + `VpnGw2` + "`" + `, ` + "`" + `VpnGw3` + "`" + `, ` + "`" + `VpnGw1AZ` + "`" + `, ` + "`" + `VpnGw2AZ` + "`" + `, and ` + "`" + `VpnGw3AZ` + "`" + ` and depend on the ` + "`" + `type` + "`" + ` and ` + "`" + `vpn_type` + "`" + ` arguments. A ` + "`" + `PolicyBased` + "`" + ` gateway only supports the ` + "`" + `Basic` + "`" + ` sku. Further, the ` + "`" + `UltraPerformance` + "`" + ` sku is only supported by an ` + "`" + `ExpressRoute` + "`" + ` gateway. ~>`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -24385,7 +28512,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vpn_client_protocols",
-					Description: `(Optional) List of the protocols supported by the vpn client. The supported values are ` + "`" + `SSTP` + "`" + `, ` + "`" + `IkeV2` + "`" + ` and ` + "`" + `OpenVPN` + "`" + `. ->`,
+					Description: `(Optional) List of the protocols supported by the vpn client. The supported values are ` + "`" + `SSTP` + "`" + `, ` + "`" + `IkeV2` + "`" + ` and ` + "`" + `OpenVPN` + "`" + `. The ` + "`" + `bgp_settings` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "asn",
@@ -24417,13 +28544,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Virtual Network Gateway. ## Import Virtual Network Gateways can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway.testGateway /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/virtualNetworkGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Virtual Network Gateway. ## Import Virtual Network Gateways can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway.exampleGateway /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/virtualNetworkGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Virtual Network Gateway. ## Import Virtual Network Gateways can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway.testGateway /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/virtualNetworkGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Virtual Network Gateway. ## Import Virtual Network Gateways can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway.exampleGateway /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/virtualNetworkGateways/myGateway1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -24534,13 +28661,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The connection ID. ## Import Virtual Network Gateway Connections can be imported using their ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway_connection.testConnection /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/connections/myConnection1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The connection ID. ## Import Virtual Network Gateway Connections can be imported using their ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway_connection.exampleConnection /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/connections/myConnection1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The connection ID. ## Import Virtual Network Gateway Connections can be imported using their ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway_connection.testConnection /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/connections/myConnection1 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The connection ID. ## Import Virtual Network Gateway Connections can be imported using their ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import azurerm_virtual_network_gateway_connection.exampleConnection /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup1/providers/Microsoft.Network/connections/myConnection1 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -24590,13 +28717,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Virtual Network Peering resource ID. ## Note Virtual Network peerings cannot be created, updated or deleted concurrently. ## Import Virtual Network Peerings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network_peering.testPeering /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/virtualNetworkPeerings/myvnet1peering ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Virtual Network Peering resource ID. ## Note Virtual Network peerings cannot be created, updated or deleted concurrently. ## Import Virtual Network Peerings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network_peering.examplePeering /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/virtualNetworkPeerings/myvnet1peering ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Virtual Network Peering resource ID. ## Note Virtual Network peerings cannot be created, updated or deleted concurrently. ## Import Virtual Network Peerings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network_peering.testPeering /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/virtualNetworkPeerings/myvnet1peering ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Virtual Network Peering resource ID. ## Note Virtual Network peerings cannot be created, updated or deleted concurrently. ## Import Virtual Network Peerings can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_network_peering.examplePeering /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mygroup1/providers/Microsoft.Network/virtualNetworks/myvnet1/virtualNetworkPeerings/myvnet1peering ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -24650,13 +28777,115 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Virtual WAN. ## Import Virtual WAN can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_wan.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/virtualWans/testvwan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Virtual WAN. ## Import Virtual WAN can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_wan.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/virtualWans/testvwan ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Virtual WAN. ## Import Virtual WAN can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_wan.test /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/virtualWans/testvwan ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the Virtual WAN. ## Import Virtual WAN can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell terraform import azurerm_virtual_wan.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group1/providers/Microsoft.Network/virtualWans/testvwan ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_web_application_firewall_policy",
+			Category:         "Network Resources",
+			ShortDescription: `Manages a Azure Web Application Firewall Policy instance.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+				"web",
+				"application",
+				"firewall",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the policy. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The name of the resource group. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Optional) Resource location. Changing this forces a new resource to be created.`,
+				},
+				resource.Attribute{
+					Name:        "custom_rules",
+					Description: `(Optional) One or more ` + "`" + `custom_rule` + "`" + ` blocks as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "policy_settings",
+					Description: `(Optional) A ` + "`" + `policy_setting` + "`" + ` block as defined below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the Web Application Firewall Policy. --- The ` + "`" + `custom_rule` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Gets name of the resource that is unique within a policy. This name can be used to access the resource.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) Describes priority of the rule. Rules with a lower value will be evaluated before rules with a higher value`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `(Required) Describes the type of rule`,
+				},
+				resource.Attribute{
+					Name:        "match_conditions",
+					Description: `(Required) One or more ` + "`" + `match_condition` + "`" + ` block defined below.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Type of Actions --- The ` + "`" + `match_condition` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "match_variables",
+					Description: `(Required) One or more ` + "`" + `match_variable` + "`" + ` block defined below.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Required) Describes operator to be matched`,
+				},
+				resource.Attribute{
+					Name:        "negation_condition",
+					Description: `(Optional) Describes if this is negate condition or not`,
+				},
+				resource.Attribute{
+					Name:        "match_values",
+					Description: `(Required) Match value --- The ` + "`" + `match_variable` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "variable_name",
+					Description: `(Required) The name of the Match Variable`,
+				},
+				resource.Attribute{
+					Name:        "selector",
+					Description: `(Optional) Describes field of the matchVariable collection --- The ` + "`" + `policy_setting` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Describes if the policy is in enabled state or disabled state Defaults to ` + "`" + `Enabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) Describes if it is in detection mode or prevention mode at the policy level Defaults to ` + "`" + `Prevention` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Resource ID. ## Import Web Application Firewall Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_web_application_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/example-wafpolicy ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Resource ID. ## Import Web Application Firewall Policy can be imported using the ` + "`" + `resource id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `shell $ terraform import azurerm_web_application_firewall_policy.example /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/example-rg/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/example-wafpolicy ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -24671,7 +28900,7 @@ var (
 		"azurerm_api_management_api_operation_policy":                4,
 		"azurerm_api_management_api_policy":                          5,
 		"azurerm_api_management_api_schema":                          6,
-		"azurerm_api_management_version_set":                         7,
+		"azurerm_api_management_api_version_set":                     7,
 		"azurerm_api_management_authorization_server":                8,
 		"azurerm_api_management_backend":                             9,
 		"azurerm_api_management_certificate":                         10,
@@ -24688,255 +28917,305 @@ var (
 		"azurerm_api_management_user":                                21,
 		"azurerm_app_service":                                        22,
 		"azurerm_app_service_active_slot":                            23,
-		"azurerm_app_service_custom_hostname_binding":                24,
-		"azurerm_app_service_plan":                                   25,
-		"azurerm_app_service_slot":                                   26,
-		"azurerm_application_gateway":                                27,
-		"azurerm_application_insights":                               28,
-		"azurerm_application_insights_api_key":                       29,
-		"azurerm_application_insights_web_test":                      30,
-		"azurerm_application_security_group":                         31,
-		"azurerm_automation_account":                                 32,
-		"azurerm_automation_credential":                              33,
-		"azurerm_automation_dsc_configuration":                       34,
-		"azurerm_automation_dsc_nodeconfiguration":                   35,
-		"azurerm_automation_module":                                  36,
-		"azurerm_automation_runbook":                                 37,
-		"azurerm_automation_schedule":                                38,
-		"azurerm_automation_variable_bool":                           39,
-		"azurerm_automation_variable_datetime":                       40,
-		"azurerm_automation_variable_int":                            41,
-		"azurerm_automation_variable_string":                         42,
-		"azurerm_autoscale_setting":                                  43,
-		"azurerm_availability_set":                                   44,
-		"azurerm_azuread_application":                                45,
-		"azurerm_azuread_service_principal":                          46,
-		"azurerm_azuread_service_principal_password":                 47,
-		"azurerm_batch_account":                                      48,
-		"azurerm_batch_application":                                  49,
-		"azurerm_batch_certificate":                                  50,
-		"azurerm_batch_pool":                                         51,
-		"azurerm_cdn_endpoint":                                       52,
-		"azurerm_cdn_profile":                                        53,
-		"azurerm_cognitive_account":                                  54,
-		"azurerm_connection_monitor":                                 55,
-		"azurerm_container_group":                                    56,
-		"azurerm_container_registry":                                 57,
-		"azurerm_container_registry_webhook":                         58,
-		"azurerm_container_service":                                  59,
-		"azurerm_cosmosdb_account":                                   60,
-		"azurerm_cosmosdb_cassandra_keyspace":                        61,
-		"azurerm_cosmosdb_mongo_collection":                          62,
-		"azurerm_cosmosdb_mongo_database":                            63,
-		"azurerm_cosmosdb_sql_database":                              64,
-		"azurerm_cosmosdb_table":                                     65,
-		"azurerm_data_factory":                                       66,
-		"azurerm_data_factory_dataset_mysql":                         67,
-		"azurerm_data_factory_dataset_postgresql":                    68,
-		"azurerm_data_factory_dataset_sql_server_table":              69,
-		"azurerm_data_factory_linked_service_data_lake_storage_gen2": 70,
-		"azurerm_data_factory_linked_service_mysql":                  71,
-		"azurerm_data_factory_linked_service_postgresql":             72,
-		"azurerm_data_factory_linked_service_sql_server":             73,
-		"azurerm_data_factory_pipeline":                              74,
-		"azurerm_data_lake_analytics_account":                        75,
-		"azurerm_data_lake_analytics_firewall_rule":                  76,
-		"azurerm_data_lake_store":                                    77,
-		"azurerm_data_lake_store_firewall_rule":                      78,
-		"azurerm_databricks_workspace":                               79,
-		"azurerm_ddos_protection_plan":                               80,
-		"azurerm_dev_test_lab":                                       81,
-		"azurerm_dev_test_linux_virtual_machine":                     82,
-		"azurerm_dev_test_policy":                                    83,
-		"azurerm_dev_test_virtual_network":                           84,
-		"azurerm_dev_test_windows_virtual_machine":                   85,
-		"azurerm_devspace_controller":                                86,
-		"azurerm_dns_a_record":                                       87,
-		"azurerm_dns_aaaa_record":                                    88,
-		"azurerm_dns_caa_record":                                     89,
-		"azurerm_dns_cname_record":                                   90,
-		"azurerm_dns_mx_record":                                      91,
-		"azurerm_dns_ns_record":                                      92,
-		"azurerm_dns_ptr_record":                                     93,
-		"azurerm_dns_srv_record":                                     94,
-		"azurerm_dns_txt_record":                                     95,
-		"azurerm_dns_zone":                                           96,
-		"azurerm_eventgrid_domain":                                   97,
-		"azurerm_eventgrid_event_subscription":                       98,
-		"azurerm_eventgrid_topic":                                    99,
-		"azurerm_eventhub":                                           100,
-		"azurerm_eventhub_authorization_rule":                        101,
-		"azurerm_eventhub_consumer_group":                            102,
-		"azurerm_eventhub_namespace":                                 103,
-		"azurerm_eventhub_namespace_authorization_rule":              104,
-		"azurerm_express_route_circuit":                              105,
-		"azurerm_express_route_circuit_authorization":                106,
-		"azurerm_express_route_circuit_peering":                      107,
-		"azurerm_firewall":                                           108,
-		"azurerm_firewall_application_rule_collection":               109,
-		"azurerm_firewall_nat_rule_collection":                       110,
-		"azurerm_firewall_network_rule_collection":                   111,
-		"azurerm_function_app":                                       112,
-		"azurerm_hdinsight_hadoop_cluster":                           113,
-		"azurerm_hdinsight_hbase_cluster":                            114,
-		"azurerm_hdinsight_interactive_query_cluster":                115,
-		"azurerm_hdinsight_kafka_cluster":                            116,
-		"azurerm_hdinsight_ml_services_cluster":                      117,
-		"azurerm_hdinsight_rserver_cluster":                          118,
-		"azurerm_hdinsight_spark_cluster":                            119,
-		"azurerm_hdinsight_storm_cluster":                            120,
-		"azurerm_image":                                              121,
-		"azurerm_iot_dps":                                            122,
-		"azurerm_iot_dps_certificate":                                123,
-		"azurerm_iothub":                                             124,
-		"azurerm_iothub_consumer_group":                              125,
-		"azurerm_iothub_shared_access_policy":                        126,
-		"azurerm_key_vault":                                          127,
-		"azurerm_key_vault_access_policy":                            128,
-		"azurerm_key_vault_certificate":                              129,
-		"azurerm_key_vault_key":                                      130,
-		"azurerm_key_vault_secret":                                   131,
-		"azurerm_kubernetes_cluster":                                 132,
-		"azurerm_lb":                                                 133,
-		"azurerm_lb_backend_address_pool":                            134,
-		"azurerm_lb_nat_pool":                                        135,
-		"azurerm_lb_nat_rule":                                        136,
-		"azurerm_lb_outbound_rule":                                   137,
-		"azurerm_lb_probe":                                           138,
-		"azurerm_lb_rule":                                            139,
-		"azurerm_local_network_gateway":                              140,
-		"azurerm_log_analytics_linked_service":                       141,
-		"azurerm_log_analytics_solution":                             142,
-		"azurerm_log_analytics_workspace":                            143,
-		"azurerm_log_analytics_workspace_linked_service":             144,
-		"azurerm_logic_app_action_custom":                            145,
-		"azurerm_logic_app_action_http":                              146,
-		"azurerm_logic_app_trigger_custom":                           147,
-		"azurerm_logic_app_trigger_http_request":                     148,
-		"azurerm_logic_app_trigger_recurrence":                       149,
-		"azurerm_logic_app_workflow":                                 150,
-		"azurerm_managed_disk":                                       151,
-		"azurerm_management_group":                                   152,
-		"azurerm_management_lock":                                    153,
-		"azurerm_maps_account":                                       154,
-		"azurerm_mariadb_database":                                   155,
-		"azurerm_mariadb_firewall_rule":                              156,
-		"azurerm_mariadb_server":                                     157,
-		"azurerm_media_services_account":                             158,
-		"azurerm_metric_alertrule":                                   159,
-		"azurerm_monitor_action_group":                               160,
-		"azurerm_monitor_activity_log_alert":                         161,
-		"azurerm_monitor_autoscale_setting":                          162,
-		"azurerm_monitor_diagnostic_setting":                         163,
-		"azurerm_monitor_log_profile":                                164,
-		"azurerm_monitor_metric_alert":                               165,
-		"azurerm_monitor_metric_alertrule":                           166,
-		"azurerm_mssql_elasticpool":                                  167,
-		"azurerm_mysql_configuration":                                168,
-		"azurerm_mysql_database":                                     169,
-		"azurerm_mysql_firewall_rule":                                170,
-		"azurerm_mysql_server":                                       171,
-		"azurerm_mysql_virtual_network_rule":                         172,
-		"azurerm_network_connection_monitor":                         173,
-		"azurerm_network_ddos_protection_plan":                       174,
-		"azurerm_network_interface":                                  175,
-		"azurerm_network_interface_application_gateway_backend_address_pool_association": 176,
-		"azurerm_network_interface_application_security_group_association":               177,
-		"azurerm_network_interface_backend_address_pool_association":                     178,
-		"azurerm_network_interface_nat_rule_association":                                 179,
-		"azurerm_network_packet_capture":                                                 180,
-		"azurerm_network_profile":                                                        181,
-		"azurerm_network_security_group":                                                 182,
-		"azurerm_network_security_rule":                                                  183,
-		"azurerm_network_watcher":                                                        184,
-		"azurerm_notification_hub":                                                       185,
-		"azurerm_notification_hub_authorization_rule":                                    186,
-		"azurerm_notification_hub_namespace":                                             187,
-		"azurerm_packet_capture":                                                         188,
-		"azurerm_policy_assignment":                                                      189,
-		"azurerm_policy_definition":                                                      190,
-		"azurerm_policy_set_definition":                                                  191,
-		"azurerm_postgresql_configuration":                                               192,
-		"azurerm_postgresql_database":                                                    193,
-		"azurerm_postgresql_firewall_rule":                                               194,
-		"azurerm_postgresql_server":                                                      195,
-		"azurerm_postgresql_virtual_network_rule":                                        196,
-		"azurerm_private_dns_a_record":                                                   197,
-		"azurerm_private_dns_cname_record":                                               198,
-		"azurerm_private_dns_zone":                                                       199,
-		"azurerm_public_ip":                                                              200,
-		"azurerm_public_ip_prefix":                                                       201,
-		"azurerm_recovery_services_protected_vm":                                         202,
-		"azurerm_recovery_services_protection_policy_vm":                                 203,
-		"azurerm_recovery_services_vault":                                                204,
-		"azurerm_redis_cache":                                                            205,
-		"azurerm_redis_firewall_rule":                                                    206,
-		"azurerm_relay_namespace":                                                        207,
-		"azurerm_resource_group":                                                         208,
-		"azurerm_role_assignment":                                                        209,
-		"azurerm_role_definition":                                                        210,
-		"azurerm_route":                                                                  211,
-		"azurerm_route_table":                                                            212,
-		"azurerm_scheduler_job":                                                          213,
-		"azurerm_scheduler_job_collection":                                               214,
-		"azurerm_search_service":                                                         215,
-		"azurerm_security_center_contact":                                                216,
-		"azurerm_security_center_subscription_pricing":                                   217,
-		"azurerm_security_center_workspace":                                              218,
-		"azurerm_service_fabric_cluster":                                                 219,
-		"azurerm_servicebus_namespace":                                                   220,
-		"azurerm_servicebus_namespace_authorization_rule":                                221,
-		"azurerm_servicebus_queue":                                                       222,
-		"azurerm_servicebus_queue_authorization_rule":                                    223,
-		"azurerm_servicebus_subscription":                                                224,
-		"azurerm_servicebus_subscription_rule":                                           225,
-		"azurerm_servicebus_topic":                                                       226,
-		"azurerm_servicebus_topic_authorization_rule":                                    227,
-		"azurerm_shared_image":                                                           228,
-		"azurerm_shared_image_gallery":                                                   229,
-		"azurerm_shared_image_version":                                                   230,
-		"azurerm_signalr_service":                                                        231,
-		"azurerm_snapshot":                                                               232,
-		"azurerm_sql_active_directory_administrator":                                     233,
-		"azurerm_sql_database":                                                           234,
-		"azurerm_sql_elasticpool":                                                        235,
-		"azurerm_sql_failover_group":                                                     236,
-		"azurerm_sql_firewall_rule":                                                      237,
-		"azurerm_sql_server":                                                             238,
-		"azurerm_sql_virtual_network_rule":                                               239,
-		"azurerm_storage_account":                                                        240,
-		"azurerm_storage_blob":                                                           241,
-		"azurerm_storage_container":                                                      242,
-		"azurerm_storage_queue":                                                          243,
-		"azurerm_storage_share":                                                          244,
-		"azurerm_storage_share_directory":                                                245,
-		"azurerm_storage_table":                                                          246,
-		"azurerm_storage_table_entity":                                                   247,
-		"azurerm_stream_analytics_function_javascript_udf":                               248,
-		"azurerm_stream_analytics_job":                                                   249,
-		"azurerm_stream_analytics_output_blob":                                           250,
-		"azurerm_stream_analytics_output_eventhub":                                       251,
-		"azurerm_stream_analytics_output_mssql":                                          252,
-		"azurerm_stream_analytics_output_servicebus_queue":                               253,
-		"azurerm_stream_analytics_stream_input_blob":                                     254,
-		"azurerm_stream_analytics_stream_input_eventhub":                                 255,
-		"azurerm_stream_analytics_stream_input_iothub":                                   256,
-		"azurerm_subnet":                                                                 257,
-		"azurerm_subnet_network_security_group_association":                              258,
-		"azurerm_subnet_route_table_association":                                         259,
-		"azurerm_template_deployment":                                                    260,
-		"azurerm_traffic_manager_endpoint":                                               261,
-		"azurerm_traffic_manager_profile":                                                262,
-		"azurerm_user_assigned_identity":                                                 263,
-		"azurerm_virtual_machine":                                                        264,
-		"azurerm_virtual_machine_data_disk_attachment":                                   265,
-		"azurerm_virtual_machine_extension":                                              266,
-		"azurerm_virtual_machine_scale_set":                                              267,
-		"azurerm_virtual_network":                                                        268,
-		"azurerm_virtual_network_gateway":                                                269,
-		"azurerm_virtual_network_gateway_connection":                                     270,
-		"azurerm_virtual_network_peering":                                                271,
-		"azurerm_virtual_wan":                                                            272,
+		"azurerm_app_service_certificate":                            24,
+		"azurerm_app_service_certificate_order":                      25,
+		"azurerm_app_service_custom_hostname_binding":                26,
+		"azurerm_app_service_plan":                                   27,
+		"azurerm_app_service_slot":                                   28,
+		"azurerm_app_service_source_control_token":                   29,
+		"azurerm_application_gateway":                                30,
+		"azurerm_application_insights":                               31,
+		"azurerm_application_insights_analytics_item":                32,
+		"azurerm_application_insights_api_key":                       33,
+		"azurerm_application_insights_web_test":                      34,
+		"azurerm_application_security_group":                         35,
+		"azurerm_automation_account":                                 36,
+		"azurerm_automation_credential":                              37,
+		"azurerm_automation_dsc_configuration":                       38,
+		"azurerm_automation_dsc_nodeconfiguration":                   39,
+		"azurerm_automation_job_schedule":                            40,
+		"azurerm_automation_module":                                  41,
+		"azurerm_automation_runbook":                                 42,
+		"azurerm_automation_schedule":                                43,
+		"azurerm_automation_variable_bool":                           44,
+		"azurerm_automation_variable_datetime":                       45,
+		"azurerm_automation_variable_int":                            46,
+		"azurerm_automation_variable_string":                         47,
+		"azurerm_autoscale_setting":                                  48,
+		"azurerm_availability_set":                                   49,
+		"azurerm_azuread_application":                                50,
+		"azurerm_azuread_service_principal":                          51,
+		"azurerm_azuread_service_principal_password":                 52,
+		"azurerm_bastion_host":                                       53,
+		"azurerm_batch_account":                                      54,
+		"azurerm_batch_application":                                  55,
+		"azurerm_batch_certificate":                                  56,
+		"azurerm_batch_pool":                                         57,
+		"azurerm_bot_channel_email":                                  58,
+		"azurerm_bot_channel_slack":                                  59,
+		"azurerm_bot_channels_registration":                          60,
+		"azurerm_bot_connection":                                     61,
+		"azurerm_bot_web_app":                                        62,
+		"azurerm_cdn_endpoint":                                       63,
+		"azurerm_cdn_profile":                                        64,
+		"azurerm_cognitive_account":                                  65,
+		"azurerm_connection_monitor":                                 66,
+		"azurerm_container_group":                                    67,
+		"azurerm_container_registry":                                 68,
+		"azurerm_container_registry_webhook":                         69,
+		"azurerm_container_service":                                  70,
+		"azurerm_cosmosdb_account":                                   71,
+		"azurerm_cosmosdb_cassandra_keyspace":                        72,
+		"azurerm_cosmosdb_mongo_collection":                          73,
+		"azurerm_cosmosdb_mongo_database":                            74,
+		"azurerm_cosmosdb_sql_container":                             75,
+		"azurerm_cosmosdb_sql_database":                              76,
+		"azurerm_cosmosdb_table":                                     77,
+		"azurerm_dashboard":                                          78,
+		"azurerm_data_factory":                                       79,
+		"azurerm_data_factory_dataset_mysql":                         80,
+		"azurerm_data_factory_dataset_postgresql":                    81,
+		"azurerm_data_factory_dataset_sql_server_table":              82,
+		"azurerm_data_factory_integration_runtime_managed":           83,
+		"azurerm_data_factory_linked_service_data_lake_storage_gen2": 84,
+		"azurerm_data_factory_linked_service_mysql":                  85,
+		"azurerm_data_factory_linked_service_postgresql":             86,
+		"azurerm_data_factory_linked_service_sql_server":             87,
+		"azurerm_data_factory_pipeline":                              88,
+		"azurerm_data_factory_trigger_schedule":                      89,
+		"azurerm_data_lake_analytics_account":                        90,
+		"azurerm_data_lake_analytics_firewall_rule":                  91,
+		"azurerm_data_lake_store":                                    92,
+		"azurerm_data_lake_store_file":                               93,
+		"azurerm_data_lake_store_firewall_rule":                      94,
+		"azurerm_databricks_workspace":                               95,
+		"azurerm_ddos_protection_plan":                               96,
+		"azurerm_dev_test_lab":                                       97,
+		"azurerm_dev_test_linux_virtual_machine":                     98,
+		"azurerm_dev_test_policy":                                    99,
+		"azurerm_dev_test_schedule":                                  100,
+		"azurerm_dev_test_virtual_network":                           101,
+		"azurerm_dev_test_windows_virtual_machine":                   102,
+		"azurerm_devspace_controller":                                103,
+		"azurerm_dns_a_record":                                       104,
+		"azurerm_dns_aaaa_record":                                    105,
+		"azurerm_dns_caa_record":                                     106,
+		"azurerm_dns_cname_record":                                   107,
+		"azurerm_dns_mx_record":                                      108,
+		"azurerm_dns_ns_record":                                      109,
+		"azurerm_dns_ptr_record":                                     110,
+		"azurerm_dns_srv_record":                                     111,
+		"azurerm_dns_txt_record":                                     112,
+		"azurerm_dns_zone":                                           113,
+		"azurerm_eventgrid_domain":                                   114,
+		"azurerm_eventgrid_event_subscription":                       115,
+		"azurerm_eventgrid_topic":                                    116,
+		"azurerm_eventhub":                                           117,
+		"azurerm_eventhub_authorization_rule":                        118,
+		"azurerm_eventhub_consumer_group":                            119,
+		"azurerm_eventhub_namespace":                                 120,
+		"azurerm_eventhub_namespace_authorization_rule":              121,
+		"azurerm_eventhub_namespace_disaster_recovery_config":        122,
+		"azurerm_express_route_circuit":                              123,
+		"azurerm_express_route_circuit_authorization":                124,
+		"azurerm_express_route_circuit_peering":                      125,
+		"azurerm_firewall":                                           126,
+		"azurerm_firewall_application_rule_collection":               127,
+		"azurerm_firewall_nat_rule_collection":                       128,
+		"azurerm_firewall_network_rule_collection":                   129,
+		"azurerm_frontdoor":                                          130,
+		"azurerm_frontdoor_firewall_policy":                          131,
+		"azurerm_function_app":                                       132,
+		"azurerm_hdinsight_hadoop_cluster":                           133,
+		"azurerm_hdinsight_hbase_cluster":                            134,
+		"azurerm_hdinsight_interactive_query_cluster":                135,
+		"azurerm_hdinsight_kafka_cluster":                            136,
+		"azurerm_hdinsight_ml_services_cluster":                      137,
+		"azurerm_hdinsight_rserver_cluster":                          138,
+		"azurerm_hdinsight_spark_cluster":                            139,
+		"azurerm_hdinsight_storm_cluster":                            140,
+		"azurerm_healthcare_service":                                 141,
+		"azurerm_image":                                              142,
+		"azurerm_iothub":                                             143,
+		"azurerm_iothub_consumer_group":                              144,
+		"azurerm_iothub_dps":                                         145,
+		"azurerm_iothub_dps_certificate":                             146,
+		"azurerm_iothub_endpoint_eventhub":                           147,
+		"azurerm_iothub_endpoint_servicebus_queue":                   148,
+		"azurerm_iothub_endpoint_servicebus_topic":                   149,
+		"azurerm_iothub_endpoint_storage_container":                  150,
+		"azurerm_iothub_shared_access_policy":                        151,
+		"azurerm_key_vault":                                          152,
+		"azurerm_key_vault_access_policy":                            153,
+		"azurerm_key_vault_certificate":                              154,
+		"azurerm_key_vault_key":                                      155,
+		"azurerm_key_vault_secret":                                   156,
+		"azurerm_kubernetes_cluster":                                 157,
+		"azurerm_kubernetes_cluster_node_pool":                       158,
+		"azurerm_kusto_cluster":                                      159,
+		"azurerm_kusto_database":                                     160,
+		"azurerm_kusto_eventhub_data_connection":                     161,
+		"azurerm_lb":                                                 162,
+		"azurerm_lb_backend_address_pool":                            163,
+		"azurerm_lb_nat_pool":                                        164,
+		"azurerm_lb_nat_rule":                                        165,
+		"azurerm_lb_outbound_rule":                                   166,
+		"azurerm_lb_probe":                                           167,
+		"azurerm_lb_rule":                                            168,
+		"azurerm_local_network_gateway":                              169,
+		"azurerm_log_analytics_linked_service":                       170,
+		"azurerm_log_analytics_solution":                             171,
+		"azurerm_log_analytics_workspace":                            172,
+		"azurerm_log_analytics_workspace_linked_service":             173,
+		"azurerm_logic_app_action_custom":                            174,
+		"azurerm_logic_app_action_http":                              175,
+		"azurerm_logic_app_trigger_custom":                           176,
+		"azurerm_logic_app_trigger_http_request":                     177,
+		"azurerm_logic_app_trigger_recurrence":                       178,
+		"azurerm_logic_app_workflow":                                 179,
+		"azurerm_managed_disk":                                       180,
+		"azurerm_management_group":                                   181,
+		"azurerm_management_lock":                                    182,
+		"azurerm_maps_account":                                       183,
+		"azurerm_mariadb_configuration":                              184,
+		"azurerm_mariadb_database":                                   185,
+		"azurerm_mariadb_firewall_rule":                              186,
+		"azurerm_mariadb_server":                                     187,
+		"azurerm_mariadb_virtual_network_rule":                       188,
+		"azurerm_marketplace_agreement":                              189,
+		"azurerm_media_services_account":                             190,
+		"azurerm_metric_alertrule":                                   191,
+		"azurerm_monitor_action_group":                               192,
+		"azurerm_monitor_activity_log_alert":                         193,
+		"azurerm_monitor_autoscale_setting":                          194,
+		"azurerm_monitor_diagnostic_setting":                         195,
+		"azurerm_monitor_log_profile":                                196,
+		"azurerm_monitor_metric_alert":                               197,
+		"azurerm_monitor_metric_alertrule":                           198,
+		"azurerm_mssql_elasticpool":                                  199,
+		"azurerm_mysql_configuration":                                200,
+		"azurerm_mysql_database":                                     201,
+		"azurerm_mysql_firewall_rule":                                202,
+		"azurerm_mysql_server":                                       203,
+		"azurerm_mysql_virtual_network_rule":                         204,
+		"azurerm_netapp_account":                                     205,
+		"azurerm_netapp_pool":                                        206,
+		"azurerm_network_connection_monitor":                         207,
+		"azurerm_network_ddos_protection_plan":                       208,
+		"azurerm_network_interface":                                  209,
+		"azurerm_network_interface_application_gateway_backend_address_pool_association": 210,
+		"azurerm_network_interface_application_security_group_association":               211,
+		"azurerm_network_interface_backend_address_pool_association":                     212,
+		"azurerm_network_interface_nat_rule_association":                                 213,
+		"azurerm_network_packet_capture":                                                 214,
+		"azurerm_network_profile":                                                        215,
+		"azurerm_network_security_group":                                                 216,
+		"azurerm_network_security_rule":                                                  217,
+		"azurerm_network_watcher":                                                        218,
+		"azurerm_notification_hub":                                                       219,
+		"azurerm_notification_hub_authorization_rule":                                    220,
+		"azurerm_notification_hub_namespace":                                             221,
+		"azurerm_packet_capture":                                                         222,
+		"azurerm_policy_assignment":                                                      223,
+		"azurerm_policy_definition":                                                      224,
+		"azurerm_policy_set_definition":                                                  225,
+		"azurerm_postgresql_configuration":                                               226,
+		"azurerm_postgresql_database":                                                    227,
+		"azurerm_postgresql_firewall_rule":                                               228,
+		"azurerm_postgresql_server":                                                      229,
+		"azurerm_postgresql_virtual_network_rule":                                        230,
+		"azurerm_private_dns_a_record":                                                   231,
+		"azurerm_private_dns_aaaa_record":                                                232,
+		"azurerm_private_dns_cname_record":                                               233,
+		"azurerm_private_dns_ptr_record":                                                 234,
+		"azurerm_private_dns_srv_record":                                                 235,
+		"azurerm_private_dns_zone":                                                       236,
+		"azurerm_private_dns_zone_virtual_network_link":                                  237,
+		"azurerm_private_link_service":                                                   238,
+		"azurerm_proximity_placement_group":                                              239,
+		"azurerm_public_ip":                                                              240,
+		"azurerm_public_ip_prefix":                                                       241,
+		"azurerm_recovery_network_mapping":                                               242,
+		"azurerm_recovery_services_fabric":                                               243,
+		"azurerm_recovery_services_protected_vm":                                         244,
+		"azurerm_recovery_services_protection_container":                                 245,
+		"azurerm_recovery_services_protection_container_mapping":                         246,
+		"azurerm_recovery_services_protection_policy_vm":                                 247,
+		"azurerm_recovery_services_replicated_vm":                                        248,
+		"azurerm_recovery_services_replication_policy":                                   249,
+		"azurerm_recovery_services_vault":                                                250,
+		"azurerm_redis_cache":                                                            251,
+		"azurerm_redis_firewall_rule":                                                    252,
+		"azurerm_relay_namespace":                                                        253,
+		"azurerm_resource_group":                                                         254,
+		"azurerm_role_assignment":                                                        255,
+		"azurerm_role_definition":                                                        256,
+		"azurerm_route":                                                                  257,
+		"azurerm_route_table":                                                            258,
+		"azurerm_scheduler_job":                                                          259,
+		"azurerm_scheduler_job_collection":                                               260,
+		"azurerm_search_service":                                                         261,
+		"azurerm_security_center_contact":                                                262,
+		"azurerm_security_center_subscription_pricing":                                   263,
+		"azurerm_security_center_workspace":                                              264,
+		"azurerm_service_fabric_cluster":                                                 265,
+		"azurerm_servicebus_namespace":                                                   266,
+		"azurerm_servicebus_namespace_authorization_rule":                                267,
+		"azurerm_servicebus_queue":                                                       268,
+		"azurerm_servicebus_queue_authorization_rule":                                    269,
+		"azurerm_servicebus_subscription":                                                270,
+		"azurerm_servicebus_subscription_rule":                                           271,
+		"azurerm_servicebus_topic":                                                       272,
+		"azurerm_servicebus_topic_authorization_rule":                                    273,
+		"azurerm_shared_image":                                                           274,
+		"azurerm_shared_image_gallery":                                                   275,
+		"azurerm_shared_image_version":                                                   276,
+		"azurerm_signalr_service":                                                        277,
+		"azurerm_snapshot":                                                               278,
+		"azurerm_sql_active_directory_administrator":                                     279,
+		"azurerm_sql_database":                                                           280,
+		"azurerm_sql_elasticpool":                                                        281,
+		"azurerm_sql_failover_group":                                                     282,
+		"azurerm_sql_firewall_rule":                                                      283,
+		"azurerm_sql_server":                                                             284,
+		"azurerm_sql_virtual_network_rule":                                               285,
+		"azurerm_storage_account":                                                        286,
+		"azurerm_storage_blob":                                                           287,
+		"azurerm_storage_container":                                                      288,
+		"azurerm_storage_data_lake_gen2_filesystem":                                      289,
+		"azurerm_storage_management_policy":                                              290,
+		"azurerm_storage_queue":                                                          291,
+		"azurerm_storage_share":                                                          292,
+		"azurerm_storage_share_directory":                                                293,
+		"azurerm_storage_table":                                                          294,
+		"azurerm_storage_table_entity":                                                   295,
+		"azurerm_stream_analytics_function_javascript_udf":                               296,
+		"azurerm_stream_analytics_job":                                                   297,
+		"azurerm_stream_analytics_output_blob":                                           298,
+		"azurerm_stream_analytics_output_eventhub":                                       299,
+		"azurerm_stream_analytics_output_mssql":                                          300,
+		"azurerm_stream_analytics_output_servicebus_queue":                               301,
+		"azurerm_stream_analytics_output_servicebus_topic":                               302,
+		"azurerm_stream_analytics_stream_input_blob":                                     303,
+		"azurerm_stream_analytics_stream_input_eventhub":                                 304,
+		"azurerm_stream_analytics_stream_input_iothub":                                   305,
+		"azurerm_subnet":                                                                 306,
+		"azurerm_subnet_network_security_group_association":                              307,
+		"azurerm_subnet_route_table_association":                                         308,
+		"azurerm_template_deployment":                                                    309,
+		"azurerm_traffic_manager_endpoint":                                               310,
+		"azurerm_traffic_manager_profile":                                                311,
+		"azurerm_user_assigned_identity":                                                 312,
+		"azurerm_virtual_machine":                                                        313,
+		"azurerm_virtual_machine_data_disk_attachment":                                   314,
+		"azurerm_virtual_machine_extension":                                              315,
+		"azurerm_virtual_machine_scale_set":                                              316,
+		"azurerm_virtual_network":                                                        317,
+		"azurerm_virtual_network_gateway":                                                318,
+		"azurerm_virtual_network_gateway_connection":                                     319,
+		"azurerm_virtual_network_peering":                                                320,
+		"azurerm_virtual_wan":                                                            321,
+		"azurerm_web_application_firewall_policy":                                        322,
 	}
 )
 
