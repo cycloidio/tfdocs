@@ -18,7 +18,8 @@ import (
 )
 
 const (
-	iconFile = "icons.json"
+	iconFile  = "icons.json"
+	aliasFile = "aliases.json"
 )
 
 var (
@@ -28,6 +29,7 @@ var (
 func main() {
 	providersPath := filepath.Join("terraform-website", "ext", "providers")
 	assetsPath := filepath.Join("assets")
+	aliasesPath := filepath.Join("aliases")
 	fileInfos, err := ioutil.ReadDir(providersPath)
 	if err != nil {
 		panic(err)
@@ -50,6 +52,17 @@ func main() {
 				panic(err)
 			}
 		}
+
+		var aliases = make(map[string]map[string]string)
+		b, err = ioutil.ReadFile(filepath.Join(aliasesPath, provider, aliasFile))
+		if !os.IsNotExist(err) {
+			err = json.Unmarshal(b, &aliases)
+			if err != nil {
+				panic(err)
+			}
+		}
+		fmt.Println(aliases)
+
 		docsPath := filepath.Join(providersPath, provider, "website", "docs")
 		sidebarPath := filepath.Join(providersPath, provider, "website", fmt.Sprintf("%s.erb", provider))
 		secondSidebarPath := filepath.Join(providersPath, provider, "website", "layout.erb")
@@ -178,6 +191,11 @@ func main() {
 					r.Icon = ic
 				}
 				resources = append(resources, r)
+
+				if nt, ok := aliases[t][rt]; ok {
+					r.Type = nt
+					resources = append(resources, r)
+				}
 			}
 
 			buff := &bytes.Buffer{}

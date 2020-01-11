@@ -1,0 +1,15 @@
+{
+  "d": {
+    "aws_lb":              "aws_alb",
+    "aws_lb_listener":     "aws_alb_listener",
+    "aws_lb_target_group": "aws_alb_target_group"
+  },
+  "r": {
+    "aws_lb":                         "aws_alb",
+    "aws_lb_listener":                "aws_alb_listener",
+    "aws_lb_listener_certificate":    "aws_alb_listener_certificate",
+    "aws_lb_listener_rule":           "aws_alb_listener_rule",
+    "aws_lb_target_group":            "aws_alb_target_group",
+    "aws_lb_target_group_attachment": "aws_alb_target_group_attachment"
+  }
+}
