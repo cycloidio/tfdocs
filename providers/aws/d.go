@@ -7576,6 +7576,36 @@ with it, etc.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_alb",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Load Balancer data source.`,
+			Description: `
+
+~> **Note:** ` + "`" + `aws_alb` + "`" + ` is known as ` + "`" + `aws_lb` + "`" + `. The functionality is identical.
+
+Provides information about a Load Balancer.
+
+This data source can prove useful when a module accepts an LB as an input
+variable and needs to, for example, determine the security groups associated
+with it, etc.
+
+`,
+			Icon:     "Compute/Elastic-Load-Balancing-ELB.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `(Optional) The full ARN of the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The unique name of the load balancer. ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_lb_listener",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a Load Balancer Listener data source.`,
@@ -7609,7 +7639,69 @@ information specific to the listener in question.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_alb_listener",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Load Balancer Listener data source.`,
+			Description: `
+
+~> **Note:** ` + "`" + `aws_alb_listener` + "`" + ` is known as ` + "`" + `aws_lb_listener` + "`" + `. The functionality is identical.
+
+Provides information about a Load Balancer Listener.
+
+This data source can prove useful when a module accepts an LB Listener as an
+input variable and needs to know the LB it is attached to, or other
+information specific to the listener in question.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `(Optional) The arn of the listener. Required if ` + "`" + `load_balancer_arn` + "`" + ` and ` + "`" + `port` + "`" + ` is not set.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancer_arn",
+					Description: `(Optional) The arn of the load balancer. Required if ` + "`" + `arn` + "`" + ` is not set.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The port of the listener. Required if ` + "`" + `arn` + "`" + ` is not set. ## Attributes Reference See the [LB Listener Resource](/docs/providers/aws/r/lb_listener.html) for details on the returned attributes - they are identical.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_lb_target_group",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Load Balancer Target Group data source.`,
+			Description: `
+
+~> **Note:** ` + "`" + `aws_alb_target_group` + "`" + ` is known as ` + "`" + `aws_lb_target_group` + "`" + `. The functionality is identical.
+
+Provides information about a Load Balancer Target Group.
+
+This data source can prove useful when a module accepts an LB Target Group as an
+input variable and needs to know its attributes. It can also be used to get the ARN of
+an LB Target Group for use in other resources, given LB Target Group name.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `(Optional) The full ARN of the target group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The unique name of the target group. ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_alb_target_group",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a Load Balancer Target Group data source.`,
 			Description: `
@@ -11694,66 +11786,69 @@ Use this data source to get information about a WorkSpaces Bundle.
 		"aws_launch_configuration":                      88,
 		"aws_launch_template":                           89,
 		"aws_lb":                                        90,
-		"aws_lb_listener":                               91,
-		"aws_lb_target_group":                           92,
-		"aws_mq_broker":                                 93,
-		"aws_msk_cluster":                               94,
-		"aws_msk_configuration":                         95,
-		"aws_nat_gateway":                               96,
-		"aws_network_acls":                              97,
-		"aws_network_interface":                         98,
-		"aws_network_interfaces":                        99,
-		"aws_organizations_organization":                100,
-		"aws_organizations_organizational_units":        101,
-		"aws_partition":                                 102,
-		"aws_prefix_list":                               103,
-		"aws_pricing_product":                           104,
-		"aws_qldb_ledger":                               105,
-		"aws_ram_resource_share":                        106,
-		"aws_rds_cluster":                               107,
-		"aws_redshift_cluster":                          108,
-		"aws_redshift_service_account":                  109,
-		"aws_region":                                    110,
-		"aws_route":                                     111,
-		"aws_route53_delegation_set":                    112,
-		"aws_route53_resolver_rule":                     113,
-		"aws_route53_resolver_rules":                    114,
-		"aws_route53_zone":                              115,
-		"aws_route_table":                               116,
-		"aws_route_tables":                              117,
-		"aws_s3_bucket":                                 118,
-		"aws_s3_bucket_object":                          119,
-		"aws_s3_bucket_objects":                         120,
-		"aws_secretsmanager_secret":                     121,
-		"aws_secretsmanager_secret_version":             122,
-		"aws_security_group":                            123,
-		"aws_security_groups":                           124,
-		"aws_servicequotas_service":                     125,
-		"aws_servicequotas_service_quota":               126,
-		"aws_sns_topic":                                 127,
-		"aws_sqs_queue":                                 128,
-		"aws_ssm_document":                              129,
-		"aws_ssm_parameter":                             130,
-		"aws_storagegateway_local_disk":                 131,
-		"aws_subnet":                                    132,
-		"aws_subnet_ids":                                133,
-		"aws_transfer_server":                           134,
-		"aws_vpc":                                       135,
-		"aws_vpc_dhcp_options":                          136,
-		"aws_vpc_endpoint":                              137,
-		"aws_vpc_endpoint_service":                      138,
-		"aws_vpc_peering_connection":                    139,
-		"aws_vpcs":                                      140,
-		"aws_vpn_gateway":                               141,
-		"aws_waf_ipset":                                 142,
-		"aws_waf_rate_based_rule":                       143,
-		"aws_waf_rule":                                  144,
-		"aws_waf_web_acl":                               145,
-		"aws_wafregional_ipset":                         146,
-		"aws_wafregional_rate_based_rule":               147,
-		"aws_wafregional_rule":                          148,
-		"aws_wafregional_web_acl":                       149,
-		"aws_workspaces_bundle":                         150,
+		"aws_alb":                                       91,
+		"aws_lb_listener":                               92,
+		"aws_alb_listener":                              93,
+		"aws_lb_target_group":                           94,
+		"aws_alb_target_group":                          95,
+		"aws_mq_broker":                                 96,
+		"aws_msk_cluster":                               97,
+		"aws_msk_configuration":                         98,
+		"aws_nat_gateway":                               99,
+		"aws_network_acls":                              100,
+		"aws_network_interface":                         101,
+		"aws_network_interfaces":                        102,
+		"aws_organizations_organization":                103,
+		"aws_organizations_organizational_units":        104,
+		"aws_partition":                                 105,
+		"aws_prefix_list":                               106,
+		"aws_pricing_product":                           107,
+		"aws_qldb_ledger":                               108,
+		"aws_ram_resource_share":                        109,
+		"aws_rds_cluster":                               110,
+		"aws_redshift_cluster":                          111,
+		"aws_redshift_service_account":                  112,
+		"aws_region":                                    113,
+		"aws_route":                                     114,
+		"aws_route53_delegation_set":                    115,
+		"aws_route53_resolver_rule":                     116,
+		"aws_route53_resolver_rules":                    117,
+		"aws_route53_zone":                              118,
+		"aws_route_table":                               119,
+		"aws_route_tables":                              120,
+		"aws_s3_bucket":                                 121,
+		"aws_s3_bucket_object":                          122,
+		"aws_s3_bucket_objects":                         123,
+		"aws_secretsmanager_secret":                     124,
+		"aws_secretsmanager_secret_version":             125,
+		"aws_security_group":                            126,
+		"aws_security_groups":                           127,
+		"aws_servicequotas_service":                     128,
+		"aws_servicequotas_service_quota":               129,
+		"aws_sns_topic":                                 130,
+		"aws_sqs_queue":                                 131,
+		"aws_ssm_document":                              132,
+		"aws_ssm_parameter":                             133,
+		"aws_storagegateway_local_disk":                 134,
+		"aws_subnet":                                    135,
+		"aws_subnet_ids":                                136,
+		"aws_transfer_server":                           137,
+		"aws_vpc":                                       138,
+		"aws_vpc_dhcp_options":                          139,
+		"aws_vpc_endpoint":                              140,
+		"aws_vpc_endpoint_service":                      141,
+		"aws_vpc_peering_connection":                    142,
+		"aws_vpcs":                                      143,
+		"aws_vpn_gateway":                               144,
+		"aws_waf_ipset":                                 145,
+		"aws_waf_rate_based_rule":                       146,
+		"aws_waf_rule":                                  147,
+		"aws_waf_web_acl":                               148,
+		"aws_wafregional_ipset":                         149,
+		"aws_wafregional_rate_based_rule":               150,
+		"aws_wafregional_rule":                          151,
+		"aws_wafregional_web_acl":                       152,
+		"aws_workspaces_bundle":                         153,
 	}
 )
 
