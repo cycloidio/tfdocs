@@ -81,7 +81,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Required) Whether the disk is a system disk or a data disk. Option ` + "`" + `DATA` + "`" + ` indicates a data disk. option ` + "`" + `SYS` + "`" + ` indicates a system disk. The ` + "`" + `personality` + "`" + ` block supports:`,
+					Description: `(Required) Whether the disk is a system disk or a data disk. Option ` + "`" + `DATA` + "`" + ` indicates a data disk. option ` + "`" + `SYS` + "`" + ` indicates a system disk.`,
+				},
+				resource.Attribute{
+					Name:        "kms_id",
+					Description: `(Optional) The Encryption KMS ID of the data disk. The ` + "`" + `personality` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "path",
@@ -165,6 +169,10 @@ var (
 					Description: `(Optional) The ELB listener IDs. The system supports up to three ELB listeners, the IDs of which are separated using a comma (,).`,
 				},
 				resource.Attribute{
+					Name:        "lbaas_listeners",
+					Description: `(Optional) An array of one or more enhanced load balancer. The system supports the binding of up to three load balancers. The field is alternative to lb_listener_id. The lbaas_listeners object structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "available_zones",
 					Description: `(Optional) The availability zones in which to create the instances in the autoscaling group.`,
 				},
@@ -210,7 +218,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) The UUID of the security group. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The UUID of the security group. The ` + "`" + `lbaas_listeners` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `(Required) Specifies the backend ECS group ID.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required) Specifies the backend protocol, which is the port on which a backend ECS listens for traffic. The number of the port ranges from 1 to 65535.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) Specifies the weight, which determines the portion of requests a backend ECS processes compared to other backend ECSs added to the same listener. The value of this parameter ranges from 0 to 100. The default value is 1. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -9042,11 +9062,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value_specs",
-					Description: `(Optional) Map of additional options.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
-					Description: `(Optional) An availability zone is used to make network resources highly available. Used for resources with high availability so that they are scheduled on different availability zones. Changing this creates a new network. The ` + "`" + `segments` + "`" + ` block supports:`,
+					Description: `(Optional) Map of additional options. The ` + "`" + `segments` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "physical_network",
@@ -9078,10 +9094,6 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
 					Description: `See Argument Reference above. ## Import Networks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_networking_network_v2.network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -9104,10 +9116,6 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
 					Description: `See Argument Reference above. ## Import Networks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_networking_network_v2.network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -9476,11 +9484,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value_specs",
-					Description: `(Optional) Map of additional driver-specific options.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
-					Description: `(Optional) An availability zone is used to make network resources highly available. Used for resources with high availability so that they are scheduled on different availability zones. Changing this creates a new router. The ` + "`" + `external_fixed_ip` + "`" + ` block supports:`,
+					Description: `(Optional) Map of additional driver-specific options. The ` + "`" + `external_fixed_ip` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -9524,10 +9528,6 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value_specs",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
 					Description: `See Argument Reference above. ## Import Routers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_networking_router_v2.router_1 014395cd-89fc-4c9b-96b7-13d1ee79dad2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -9566,10 +9566,6 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value_specs",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
 					Description: `See Argument Reference above. ## Import Routers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_networking_router_v2.router_1 014395cd-89fc-4c9b-96b7-13d1ee79dad2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -10370,6 +10366,292 @@ var (
 				resource.Attribute{
 					Name:        "backupstrategy",
 					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_rds_instance_v3",
+			Category:         "RDS Resource",
+			ShortDescription: `instance management`,
+			Description:      ``,
+			Keywords: []string{
+				"rds",
+				"resource",
+				"instance",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Required) Specifies the AZ name. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `(Required) Specifies the database information. Structure is documented below. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "flavor",
+					Description: `(Required) Specifies the specification code.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the DB instance name. The DB instance name of the same type must be unique for the same tenant. The value must be 4 to 64 characters in length and start with a letter. It is case-sensitive and can contain only letters, digits, hyphens (-), and underscores (_). Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_id",
+					Description: `(Required) Specifies the security group which the RDS DB instance belongs to. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) Specifies the network id of a subnet. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "volume",
+					Description: `(Required) Specifies the volume information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `(Required) Specifies the VPC ID. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "backup_strategy",
+					Description: `(Optional) Specifies the advanced backup policy. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ha_replication_mode",
+					Description: `(Optional) Specifies the replication mode for the standby DB instance. For MySQL, the value is async or semisync. For PostgreSQL, the value is async or sync. For Microsoft SQL Server, the value is sync. NOTE: async indicates the asynchronous replication mode. semisync indicates the semi-synchronous replication mode. sync indicates the synchronous replication mode. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "param_group_id",
+					Description: `(Optional) Specifies the parameter group ID. Changing this parameter will create a new resource. The ` + "`" + `db` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Specifies the database password. The value cannot be empty and should contain 8 to 32 characters, including uppercase and lowercase letters, digits, and the following special characters: ~!@#%^`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Specifies the database port information. The MySQL database port ranges from 1024 to 65535 (excluding 12017 and 33071, which are occupied by the RDS system and cannot be used). The PostgreSQL database port ranges from 2100 to 9500. The Microsoft SQL Server database port can be 1433 or ranges from 2100 to 9500, excluding 5355 and 5985. If this parameter is not set, the default value is as follows: For MySQL, the default value is 3306. For PostgreSQL, the default value is 5432. For Microsoft SQL Server, the default value is 1433. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "user_name",
+					Description: `Indicates the default user name of database.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Specifies the database version. Changing this parameter will create a new resource. Available value for attributes: type | version ---- | --- MySQL| 5.6 <br>5.7 <br>8.0 <br>`,
+				},
+				resource.Attribute{
+					Name:        "disk_encryption_id",
+					Description: `(Optional) Specifies the key ID for disk encryption. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) Specifies the volume size. Its value range is from 40 GB to 4000 GB. The value must be a multiple of 10. Changing this resize the volume.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the volume type. Its value can be any of the following and is case-sensitive: ULTRAHIGH: indicates the SSD type. ULTRAHIGHPRO: indicates the ultra-high I/O (advanced), which supports ultra-high performance (advanced) DB instances. Changing this parameter will create a new resource. The ` + "`" + `backup_strategy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "keep_days",
+					Description: `(Optional) Specifies the retention days for specific backup files. The value range is from 0 to 732. If this parameter is not specified or set to 0, the automated backup policy is disabled. NOTICE: Primary/standby DB instances of Microsoft SQL Server do not support disabling the automated backup policy.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Required) Specifies the backup time window. Automated backups will be triggered during the backup time window. It must be a valid value in the &quot;hh:mm-HH:MM&quot; format. The current time is in the UTC format. The HH value must be 1 greater than the hh value. The values of mm and MM must be the same and must be set to any of the following: 00, 15, 30, or 45. Example value: 08:15-09:15 23:00-00:00. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Indicates the creation time.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the private IP address list. It is a blank string until an ECS is created.`,
+				},
+				resource.Attribute{
+					Name:        "public_ips",
+					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the AZ.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the node ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the node name.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Indicates the node type. The value can be master or slave, indicating the primary node or standby node respectively.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the node status. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. ## Import RDS instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_rds_instance_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ` But due to some attrubutes missing from the API response, it's required to ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "huaweicloud_rds_instance_v3" "instance_1" { ... lifecycle { ignore_changes = [ "db", ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created",
+					Description: `Indicates the creation time.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `Indicates the instance nodes information. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "private_ips",
+					Description: `Indicates the private IP address list. It is a blank string until an ECS is created.`,
+				},
+				resource.Attribute{
+					Name:        "public_ips",
+					Description: `Indicates the public IP address list. The ` + "`" + `nodes` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `Indicates the AZ.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Indicates the node ID.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the node name.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Indicates the node type. The value can be master or slave, indicating the primary node or standby node respectively.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates the node status. ## Timeouts This resource provides the following timeouts configuration options: - ` + "`" + `create` + "`" + ` - Default is 30 minute. ## Import RDS instance can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_rds_instance_v3.instance_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ` But due to some attrubutes missing from the API response, it's required to ignore changes as below. ` + "`" + `` + "`" + `` + "`" + ` resource "huaweicloud_rds_instance_v3" "instance_1" { ... lifecycle { ignore_changes = [ "db", ] } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_rds_parametergroup_v3",
+			Category:         "RDS Resource",
+			ShortDescription: `Manages a V3 RDS parametergroup resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"rds",
+				"resource",
+				"parametergroup",
+				"v3",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The parameter group name. It contains a maximum of 64 characters.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The parameter group description. It contains a maximum of 256 characters and cannot contain the following special characters:>!<"&'= the value is left blank by default.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Optional) Parameter group values key/value pairs defined by users based on the default parameter groups.`,
+				},
+				resource.Attribute{
+					Name:        "datastore",
+					Description: `(Required) Database object. The database object structure is documented below. Changing this creates a new parameter group. The ` + "`" + `datastore` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The DB engine. Currently, MySQL, PostgreSQL, and Microsoft SQL Server are supported. The value is case-insensitive and can be mysql, postgresql, or sqlserver.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Specifies the database version.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "configuration_parameters",
+					Description: `Indicates the parameter configuration defined by users based on the default parameters groups.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the parameter name.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Indicates the parameter value.`,
+				},
+				resource.Attribute{
+					Name:        "restart_required",
+					Description: `Indicates whether a restart is required.`,
+				},
+				resource.Attribute{
+					Name:        "readonly",
+					Description: `Indicates whether the parameter is read-only.`,
+				},
+				resource.Attribute{
+					Name:        "value_range",
+					Description: `Indicates the parameter value range.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the parameter type.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the parameter description. ## Import Parameter groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_rds_parametergroup_v3.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the parameter group.`,
+				},
+				resource.Attribute{
+					Name:        "configuration_parameters",
+					Description: `Indicates the parameter configuration defined by users based on the default parameters groups.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Indicates the parameter name.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Indicates the parameter value.`,
+				},
+				resource.Attribute{
+					Name:        "restart_required",
+					Description: `Indicates whether a restart is required.`,
+				},
+				resource.Attribute{
+					Name:        "readonly",
+					Description: `Indicates whether the parameter is read-only.`,
+				},
+				resource.Attribute{
+					Name:        "value_range",
+					Description: `Indicates the parameter value range.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Indicates the parameter type.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Indicates the parameter description. ## Import Parameter groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_rds_parametergroup_v3.pg_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -12379,28 +12661,30 @@ var (
 		"huaweicloud_networking_vip_associate_v2":        75,
 		"huaweicloud_networking_vip_v2":                  76,
 		"huaweicloud_rds_instance_v1":                    77,
-		"huaweicloud_rts_software_config_v1":             78,
-		"huaweicloud_rts_stack_v1":                       79,
-		"huaweicloud_s3_bucket":                          80,
-		"huaweicloud_s3_bucket_object":                   81,
-		"huaweicloud_s3_object_policy":                   82,
-		"huaweicloud_sfs_file_system_v2":                 83,
-		"huaweicloud_smn_subscription_v2":                84,
-		"huaweicloud_smn_topic_v2":                       85,
-		"huaweicloud-vbs-backup-policy-v2":               86,
-		"huaweicloud-vbs-backup-v2":                      87,
-		"huaweicloud_vpc_bandwidth_v2":                   88,
-		"huaweicloud_vpc_eip_v1":                         89,
-		"huaweicloud_vpc_peering_connection_accepter_v2": 90,
-		"huaweicloud_vpc_peering_connection_v2":          91,
-		"huaweicloud_vpc_route_v2":                       92,
-		"huaweicloud_vpc_subnet_v1":                      93,
-		"huaweicloud_vpc_v1":                             94,
-		"huaweicloud_vpnaas_endpoint_group_v2":           95,
-		"huaweicloud_vpnaas_ike_policy_v2":               96,
-		"huaweicloud_vpnaas_ipsec_policy_v2":             97,
-		"huaweicloud_vpnaas_service_v2":                  98,
-		"huaweicloud_vpnaas_site_connection_v2":          99,
+		"huaweicloud_rds_instance_v3":                    78,
+		"huaweicloud_rds_parametergroup_v3":              79,
+		"huaweicloud_rts_software_config_v1":             80,
+		"huaweicloud_rts_stack_v1":                       81,
+		"huaweicloud_s3_bucket":                          82,
+		"huaweicloud_s3_bucket_object":                   83,
+		"huaweicloud_s3_object_policy":                   84,
+		"huaweicloud_sfs_file_system_v2":                 85,
+		"huaweicloud_smn_subscription_v2":                86,
+		"huaweicloud_smn_topic_v2":                       87,
+		"huaweicloud-vbs-backup-policy-v2":               88,
+		"huaweicloud-vbs-backup-v2":                      89,
+		"huaweicloud_vpc_bandwidth_v2":                   90,
+		"huaweicloud_vpc_eip_v1":                         91,
+		"huaweicloud_vpc_peering_connection_accepter_v2": 92,
+		"huaweicloud_vpc_peering_connection_v2":          93,
+		"huaweicloud_vpc_route_v2":                       94,
+		"huaweicloud_vpc_subnet_v1":                      95,
+		"huaweicloud_vpc_v1":                             96,
+		"huaweicloud_vpnaas_endpoint_group_v2":           97,
+		"huaweicloud_vpnaas_ike_policy_v2":               98,
+		"huaweicloud_vpnaas_ipsec_policy_v2":             99,
+		"huaweicloud_vpnaas_service_v2":                  100,
+		"huaweicloud_vpnaas_site_connection_v2":          101,
 	}
 )
 

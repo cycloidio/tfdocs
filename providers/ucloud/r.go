@@ -454,7 +454,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "isolation_group",
-					Description: `(Optional) The ID of the associated isolation group. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The ID of the associated isolation group.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `(Optional) The private IP address assigned to the instance. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "auto_renew",
@@ -479,10 +483,6 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Instance current status. Possible values are ` + "`" + `Initializing` + "`" + `, ` + "`" + `Starting` + "`" + `, ` + "`" + `Running` + "`" + `, ` + "`" + `Stopping` + "`" + `, ` + "`" + `Stopped` + "`" + `, ` + "`" + `Install Fail` + "`" + `, ` + "`" + `ResizeFail` + "`" + ` and ` + "`" + `Rebooting` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "private_ip",
-					Description: `The private IP address assigned to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "ip_set",
@@ -541,10 +541,6 @@ var (
 				resource.Attribute{
 					Name:        "status",
 					Description: `Instance current status. Possible values are ` + "`" + `Initializing` + "`" + `, ` + "`" + `Starting` + "`" + `, ` + "`" + `Running` + "`" + `, ` + "`" + `Stopping` + "`" + `, ` + "`" + `Stopped` + "`" + `, ` + "`" + `Install Fail` + "`" + `, ` + "`" + `ResizeFail` + "`" + ` and ` + "`" + `Rebooting` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "private_ip",
-					Description: `The private IP address assigned to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "ip_set",

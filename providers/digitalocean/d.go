@@ -655,6 +655,38 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "digitalocean_kubernetes_versions",
+			Category:         "Data Sources",
+			ShortDescription: `Get available DigitalOcean Kubernetes versions.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "version_prefix",
+					Description: `(Optional) If provided, Terraform will only return versions that match the string prefix. For example, ` + "`" + `1.15.` + "`" + ` will match all 1.15.x series releases. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "valid_versions",
+					Description: `A list of available versions.`,
+				},
+				resource.Attribute{
+					Name:        "latest_version",
+					Description: `The most recent version available.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "valid_versions",
+					Description: `A list of available versions.`,
+				},
+				resource.Attribute{
+					Name:        "latest_version",
+					Description: `The most recent version available.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "digitalocean_loadbalancer",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a loadbalancer.`,
@@ -865,6 +897,10 @@ var (
 					Name:        "droplet_ids",
 					Description: `A list of associated Droplet ids.`,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of the tags associated to the Volume.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -886,6 +922,10 @@ var (
 				resource.Attribute{
 					Name:        "droplet_ids",
 					Description: `A list of associated Droplet ids.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of the tags associated to the Volume.`,
 				},
 			},
 		},
@@ -933,6 +973,10 @@ var (
 					Name:        "size",
 					Description: `The billable size of the volume snapshot in gigabytes.`,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of the tags associated to the volume snapshot.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -955,28 +999,33 @@ var (
 					Name:        "size",
 					Description: `The billable size of the volume snapshot in gigabytes.`,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A list of the tags associated to the volume snapshot.`,
+				},
 			},
 		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"digitalocean_account":            0,
-		"digitalocean_certificate":        1,
-		"digitalocean_database_cluster":   2,
-		"digitalocean_domain":             3,
-		"digitalocean_droplet":            4,
-		"digitalocean_droplet_snapshot":   5,
-		"digitalocean_floating_ip":        6,
-		"digitalocean_image":              7,
-		"digitalocean_kubernetes_cluster": 8,
-		"digitalocean_loadbalancer":       9,
-		"digitalocean_record":             10,
-		"digitalocean_sizes":              11,
-		"digitalocean_ssh_key":            12,
-		"digitalocean_tag":                13,
-		"digitalocean_volume":             14,
-		"digitalocean_volume_snapshot":    15,
+		"digitalocean_account":             0,
+		"digitalocean_certificate":         1,
+		"digitalocean_database_cluster":    2,
+		"digitalocean_domain":              3,
+		"digitalocean_droplet":             4,
+		"digitalocean_droplet_snapshot":    5,
+		"digitalocean_floating_ip":         6,
+		"digitalocean_image":               7,
+		"digitalocean_kubernetes_cluster":  8,
+		"digitalocean_kubernetes_versions": 9,
+		"digitalocean_loadbalancer":        10,
+		"digitalocean_record":              11,
+		"digitalocean_sizes":               12,
+		"digitalocean_ssh_key":             13,
+		"digitalocean_tag":                 14,
+		"digitalocean_volume":              15,
+		"digitalocean_volume_snapshot":     16,
 	}
 )
 

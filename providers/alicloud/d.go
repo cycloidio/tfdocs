@@ -232,6 +232,14 @@ var (
 					Name:        "zone_id",
 					Description: `The ID of attaching zone to instance.`,
 				},
+				resource.Attribute{
+					Name:        "paid_type",
+					Description: `The paid type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "spec_type",
+					Description: `The spec type of the instance.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -297,6 +305,158 @@ var (
 				resource.Attribute{
 					Name:        "zone_id",
 					Description: `The ID of attaching zone to instance.`,
+				},
+				resource.Attribute{
+					Name:        "paid_type",
+					Description: `The paid type of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "spec_type",
+					Description: `The spec type of the instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_alikafka_sasl_acls",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of alikafka sasl acls available to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) ID of the ALIKAFKA Instance that owns the sasl acls.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Get results for the specified username.`,
+				},
+				resource.Attribute{
+					Name:        "acl_resource_type",
+					Description: `(Required) Get results for the specified resource type.`,
+				},
+				resource.Attribute{
+					Name:        "acl_resource_name",
+					Description: `(Required) Get results for the specified resource name.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "acls",
+					Description: `A list of sasl acls. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The username of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "acl_resource_type",
+					Description: `The resource type of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "acl_resource_name",
+					Description: `The resource name of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "acl_resource_pattern_type",
+					Description: `The resource pattern type of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The host of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "acl_operation_type",
+					Description: `The operation type of the sasl acl.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "acls",
+					Description: `A list of sasl acls. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The username of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "acl_resource_type",
+					Description: `The resource type of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "acl_resource_name",
+					Description: `The resource name of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "acl_resource_pattern_type",
+					Description: `The resource pattern type of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The host of the sasl acl.`,
+				},
+				resource.Attribute{
+					Name:        "acl_operation_type",
+					Description: `The operation type of the sasl acl.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_alikafka_sasl_users",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of alikafka sasl users available to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) ID of the ALIKAFKA Instance that owns the sasl users.`,
+				},
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional) A regex string to filter results by the username.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of sasl usernames.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `A list of sasl users. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The username of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the user.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `A list of sasl usernames.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `A list of sasl users. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The username of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the user.`,
 				},
 			},
 		},
@@ -713,6 +873,33 @@ var (
 				resource.Attribute{
 					Name:        "illegal_status",
 					Description: `Locking in invalid state. - NORMAL: The API group is normal. - LOCKED: Locked due to illegality.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_caller_identity",
+			Category:         "Data Sources",
+			ShortDescription: `Provides the identity of the current Alibaba Cloud user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Principal ID.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Alibaba Cloud Resource Name (ARN) of the user making the call.`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `Account ID.`,
+				},
+				resource.Attribute{
+					Name:        "identity_type",
+					Description: `The type of the princiapal. RAMUser for users.`,
 				},
 			},
 		},
@@ -4525,7 +4712,7 @@ var (
 					Description: `A list of scaling configuration names.`,
 				},
 				resource.Attribute{
-					Name:        "scaling_configurations",
+					Name:        "configurations",
 					Description: `A list of scaling rules. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
@@ -4615,7 +4802,7 @@ var (
 					Description: `A list of scaling configuration names.`,
 				},
 				resource.Attribute{
-					Name:        "scaling_configurations",
+					Name:        "configurations",
 					Description: `A list of scaling rules. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
@@ -4725,7 +4912,7 @@ var (
 					Description: `A list of scaling group names.`,
 				},
 				resource.Attribute{
-					Name:        "scaling_groups",
+					Name:        "groups",
 					Description: `A list of scaling groups. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
@@ -4811,7 +4998,7 @@ var (
 					Description: `A list of scaling group names.`,
 				},
 				resource.Attribute{
-					Name:        "scaling_groups",
+					Name:        "groups",
 					Description: `A list of scaling groups. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
@@ -4925,7 +5112,7 @@ var (
 					Description: `A list of scaling rule names.`,
 				},
 				resource.Attribute{
-					Name:        "scaling_rules",
+					Name:        "rules",
 					Description: `A list of scaling rules. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
@@ -4975,7 +5162,7 @@ var (
 					Description: `A list of scaling rule names.`,
 				},
 				resource.Attribute{
-					Name:        "scaling_rules",
+					Name:        "rules",
 					Description: `A list of scaling rules. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
@@ -6514,7 +6701,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_id",
-					Description: `(Optional, ForceNew, Available in 1.57.0+) The Id of resource group which the key pair belongs. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional, ForceNew, Available in 1.57.0+) The Id of resource group which the key pair belongs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.66.0+) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "names",
@@ -6567,6 +6758,10 @@ var (
 				resource.Attribute{
 					Name:        "resource_group_id",
 					Description: `The Id of resource group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.66.0+) A mapping of tags to assign to the resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6621,6 +6816,42 @@ var (
 				resource.Attribute{
 					Name:        "resource_group_id",
 					Description: `The Id of resource group.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.66.0+) A mapping of tags to assign to the resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_kms_ciphertext",
+			Category:         "Data Sources",
+			ShortDescription: `Encrypt data with KMS.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `The plaintext to be encrypted which must be encoded in Base64.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `The globally unique ID of the CMK.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_context",
+					Description: `(Optional) The Encryption context. If you specify this parameter here, it is also required when you call the Decrypt API operation. For more information, see [Encryption Context](https://www.alibabacloud.com/help/doc-detail/42975.htm). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ciphertext_blob",
+					Description: `The ciphertext of the data key encrypted with the primary CMK version.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ciphertext_blob",
+					Description: `The ciphertext of the data key encrypted with the primary CMK version.`,
 				},
 			},
 		},
@@ -6726,6 +6957,42 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_kms_plaintext",
+			Category:         "Data Sources",
+			ShortDescription: `Decrypt a ciphertext encrypted with KMS.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "encryption_context",
+					Description: `(Optional) The Encryption context. If you specify this parameter in the Encrypt or GenerateDataKey API operation, it is also required when you call the Decrypt API operation. For more information, see [Encryption Context](https://www.alibabacloud.com/help/doc-detail/42975.htm).`,
+				},
+				resource.Attribute{
+					Name:        "ciphertext_blob",
+					Description: `The ciphertext to be decrypted. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `The decrypted plaintext.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `The globally unique ID of the CMK. It is the ID of the CMK used to decrypt ciphertext.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "plaintext",
+					Description: `The decrypted plaintext.`,
+				},
+				resource.Attribute{
+					Name:        "key_id",
+					Description: `The globally unique ID of the CMK. It is the ID of the CMK used to decrypt ciphertext.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_kvstore_instance_classes",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of KVStore instacne classes info.`,
@@ -6754,11 +7021,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "performance_type",
-					Description: `(Optional) The KVStore instance performance type required by the user. Valid values: ` + "`" + `standard_performance_type` + "`" + ` and ` + "`" + `enhance_performance_type` + "`" + `.`,
+					Description: `(Optional, Deprecated) It has been deprecated from 1.68.0.`,
 				},
 				resource.Attribute{
 					Name:        "storage_type",
-					Description: `(Optional) The KVStore instance storage space required by the user. Valid values: ` + "`" + `inmemory` + "`" + ` and ` + "`" + `hybrid` + "`" + `.`,
+					Description: `(Optional, Deprecated) It has been deprecated from 1.68.0.`,
 				},
 				resource.Attribute{
 					Name:        "node_type",
@@ -6766,21 +7033,49 @@ var (
 				},
 				resource.Attribute{
 					Name:        "package_type",
-					Description: `(Optional) The KVStore instance package type required by the user. Valid values: ` + "`" + `standard` + "`" + ` and ` + "`" + `customized` + "`" + `.`,
+					Description: `(Optional, Deprecated) It has been deprecated from 1.68.0.`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
-					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform apply` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform apply` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "edition_type",
+					Description: `(Optional, Available in 1.68.0+) The KVStore instance edition type required by the user. Valid values: ` + "`" + `Community` + "`" + ` and ` + "`" + `Enterprise` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "series_type",
+					Description: `(Optional, Available in 1.68.0+) The KVStore instance series type required by the user. Valid values: ` + "`" + `enhanced_performance_type` + "`" + ` and ` + "`" + `hybrid_storage` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "shard_number",
+					Description: `(Optional, Available in 1.68.0+) The number of shard.Valid values: ` + "`" + `1` + "`" + `, ` + "`" + `2` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `8` + "`" + `, ` + "`" + `16` + "`" + `, ` + "`" + `32` + "`" + `, ` + "`" + `64` + "`" + `, ` + "`" + `128` + "`" + `, ` + "`" + `256` + "`" + `. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "instance_classes",
 					Description: `A list of KVStore available instance classes.`,
+				},
+				resource.Attribute{
+					Name:        "classes",
+					Description: `A list of KVStore available instance classes when the ` + "`" + `sorted_by` + "`" + ` is "Price". include:`,
+				},
+				resource.Attribute{
+					Name:        "instance_class",
+					Description: `KVStore available instance class.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_classes",
 					Description: `A list of KVStore available instance classes.`,
+				},
+				resource.Attribute{
+					Name:        "classes",
+					Description: `A list of KVStore available instance classes when the ` + "`" + `sorted_by` + "`" + ` is "Price". include:`,
+				},
+				resource.Attribute{
+					Name:        "instance_class",
+					Description: `KVStore available instance class.`,
 				},
 			},
 		},
@@ -7054,6 +7349,178 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_market_products",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of Market product items.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name_regex",
+					Description: `(Optional, Available 1.66.0+) A regex string to apply to the product name.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional, Available 1.66.0+) A list of product code.`,
+				},
+				resource.Attribute{
+					Name:        "sort",
+					Description: `(Optional, ForceNew) This field determines how to sort the filtered results, Valid values: ` + "`" + `user_count-desc` + "`" + `, ` + "`" + `created_on-desc` + "`" + `, ` + "`" + `price-desc` + "`" + ` and ` + "`" + `score-desc` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "category_id",
+					Description: `(Optional, ForceNew) The Category ID of products. For more information, see [DescribeProducts](https://help.aliyun.com/document_detail/89834.htm).`,
+				},
+				resource.Attribute{
+					Name:        "product_type",
+					Description: `(Optional, ForceNew) The type of products, Valid values: ` + "`" + `APP` + "`" + `, ` + "`" + `SERVICE` + "`" + `, ` + "`" + `MIRROR` + "`" + `, ` + "`" + `DOWNLOAD` + "`" + ` and ` + "`" + `API_SERVICE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of product codes.`,
+				},
+				resource.Attribute{
+					Name:        "products",
+					Description: `A list of products. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `The code of the product.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the product.`,
+				},
+				resource.Attribute{
+					Name:        "category_id",
+					Description: `The category id of the product.`,
+				},
+				resource.Attribute{
+					Name:        "supplier_id",
+					Description: `The supplier id of the product.`,
+				},
+				resource.Attribute{
+					Name:        "supplier_name",
+					Description: `The supplier name of the product.`,
+				},
+				resource.Attribute{
+					Name:        "short_description",
+					Description: `The short description of the product.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags of the product.`,
+				},
+				resource.Attribute{
+					Name:        "suggested_price",
+					Description: `The suggested price of the product.`,
+				},
+				resource.Attribute{
+					Name:        "target_url",
+					Description: `The detail page URL of the product.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `The image URL of the product.`,
+				},
+				resource.Attribute{
+					Name:        "score",
+					Description: `The rating information of the product.`,
+				},
+				resource.Attribute{
+					Name:        "operation_system",
+					Description: `The operation system of the product.`,
+				},
+				resource.Attribute{
+					Name:        "warranty_date",
+					Description: `The warranty date of the product.`,
+				},
+				resource.Attribute{
+					Name:        "delivery_date",
+					Description: `The delivery date of the product.`,
+				},
+				resource.Attribute{
+					Name:        "delivery_way",
+					Description: `The delivery way of the product.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of product codes.`,
+				},
+				resource.Attribute{
+					Name:        "products",
+					Description: `A list of products. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "code",
+					Description: `The code of the product.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the product.`,
+				},
+				resource.Attribute{
+					Name:        "category_id",
+					Description: `The category id of the product.`,
+				},
+				resource.Attribute{
+					Name:        "supplier_id",
+					Description: `The supplier id of the product.`,
+				},
+				resource.Attribute{
+					Name:        "supplier_name",
+					Description: `The supplier name of the product.`,
+				},
+				resource.Attribute{
+					Name:        "short_description",
+					Description: `The short description of the product.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `The tags of the product.`,
+				},
+				resource.Attribute{
+					Name:        "suggested_price",
+					Description: `The suggested price of the product.`,
+				},
+				resource.Attribute{
+					Name:        "target_url",
+					Description: `The detail page URL of the product.`,
+				},
+				resource.Attribute{
+					Name:        "image_url",
+					Description: `The image URL of the product.`,
+				},
+				resource.Attribute{
+					Name:        "score",
+					Description: `The rating information of the product.`,
+				},
+				resource.Attribute{
+					Name:        "operation_system",
+					Description: `The operation system of the product.`,
+				},
+				resource.Attribute{
+					Name:        "warranty_date",
+					Description: `The warranty date of the product.`,
+				},
+				resource.Attribute{
+					Name:        "delivery_date",
+					Description: `The delivery date of the product.`,
+				},
+				resource.Attribute{
+					Name:        "delivery_way",
+					Description: `The delivery way of the product.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_mns_queues",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of mns queues available to the user.`,
@@ -7319,6 +7786,10 @@ var (
 				resource.Attribute{
 					Name:        "availability_zone",
 					Description: `(Optional) Instance availability zone.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.66.0+) A mapping of tags to assign to the resource.`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
@@ -9265,6 +9736,430 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_polardb_clusters",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a collection of PolarDB clusters according to the specified filters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description_regex",
+					Description: `(Optional) A regex string to filter results by cluster description.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of PolarDB cluster IDs.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_type",
+					Description: `(Optional) Database type. Options are ` + "`" + `MySQL` + "`" + `, ` + "`" + `Oracle` + "`" + ` and ` + "`" + `PostgreSQL` + "`" + `. If no value is specified, all types are returned.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.68.0+) A mapping of tags to assign to the resource. - Key: It can be up to 64 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It cannot be a null string. - Value: It can be up to 128 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It can be a null string.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name where to save data source results (after running ` + "`" + `terraform plan` + "`" + `). ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of RDS cluster IDs.`,
+				},
+				resource.Attribute{
+					Name:        "descriptions",
+					Description: `A list of RDS cluster descriptions.`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `A list of PolarDB clusters. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Billing method. Value options: ` + "`" + `PostPaid` + "`" + ` for Pay-As-You-Go and ` + "`" + `PrePaid` + "`" + ` for subscription.`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `The DBClusterNetworkType of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `Region ID the cluster belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `The ZoneId of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Expiration time. Pay-As-You-Go clusters never expire.`,
+				},
+				resource.Attribute{
+					Name:        "expired",
+					Description: `The expired of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `Database type. Options are ` + "`" + `MySQL` + "`" + `, ` + "`" + `Oracle` + "`" + ` and ` + "`" + `PostgreSQL` + "`" + `. If no value is specified, all types are returned.`,
+				},
+				resource.Attribute{
+					Name:        "db_type",
+					Description: `` + "`" + `Primary` + "`" + ` for primary cluster, ` + "`" + `ReadOnly` + "`" + ` for read-only cluster, ` + "`" + `Guard` + "`" + ` for disaster recovery cluster, and ` + "`" + `Temp` + "`" + ` for temporary cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_version",
+					Description: `The DBVersion of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "lock_mode",
+					Description: `The LockMode of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_lock",
+					Description: `The DeleteLock of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The CreateTime of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the VPC the cluster belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_number",
+					Description: `The DBNodeNumber of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_class",
+					Description: `The DBNodeClass of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "storage_used",
+					Description: `The StorageUsed of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_nodes",
+					Description: `The DBNodes of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_class",
+					Description: `The db_node_class of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "max_iops",
+					Description: `The max_iops of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The region_id of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_role",
+					Description: `The db_node_role of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "max_connections",
+					Description: `The max_connections of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `The zone_id of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_status",
+					Description: `The db_node_status of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_id",
+					Description: `The db_node_id of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create_time of the db_nodes.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ids",
+					Description: `A list of RDS cluster IDs.`,
+				},
+				resource.Attribute{
+					Name:        "descriptions",
+					Description: `A list of RDS cluster descriptions.`,
+				},
+				resource.Attribute{
+					Name:        "clusters",
+					Description: `A list of PolarDB clusters. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `Billing method. Value options: ` + "`" + `PostPaid` + "`" + ` for Pay-As-You-Go and ` + "`" + `PrePaid` + "`" + ` for subscription.`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `The DBClusterNetworkType of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `Region ID the cluster belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `The ZoneId of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `Expiration time. Pay-As-You-Go clusters never expire.`,
+				},
+				resource.Attribute{
+					Name:        "expired",
+					Description: `The expired of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "engine",
+					Description: `Database type. Options are ` + "`" + `MySQL` + "`" + `, ` + "`" + `Oracle` + "`" + ` and ` + "`" + `PostgreSQL` + "`" + `. If no value is specified, all types are returned.`,
+				},
+				resource.Attribute{
+					Name:        "db_type",
+					Description: `` + "`" + `Primary` + "`" + ` for primary cluster, ` + "`" + `ReadOnly` + "`" + ` for read-only cluster, ` + "`" + `Guard` + "`" + ` for disaster recovery cluster, and ` + "`" + `Temp` + "`" + ` for temporary cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_version",
+					Description: `The DBVersion of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "lock_mode",
+					Description: `The LockMode of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "delete_lock",
+					Description: `The DeleteLock of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The CreateTime of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the VPC the cluster belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_number",
+					Description: `The DBNodeNumber of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_class",
+					Description: `The DBNodeClass of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "storage_used",
+					Description: `The StorageUsed of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_nodes",
+					Description: `The DBNodes of the PolarDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_class",
+					Description: `The db_node_class of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "max_iops",
+					Description: `The max_iops of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "region_id",
+					Description: `The region_id of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_role",
+					Description: `The db_node_role of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "max_connections",
+					Description: `The max_connections of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `The zone_id of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_status",
+					Description: `The db_node_status of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_id",
+					Description: `The db_node_id of the db_nodes.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The create_time of the db_nodes.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_polardb_endpoints",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a collection of PolarDB endpoints according to the specified filters.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "db_cluster_id",
+					Description: `(Required, ForceNew) PolarDB cluster ID.`,
+				},
+				resource.Attribute{
+					Name:        "db_endpoint_id",
+					Description: `(Optional) endpoint of the cluster. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `A list of PolarDB cluster endpoints. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "db_endpoint_id",
+					Description: `The endpoint ID.`,
+				},
+				resource.Attribute{
+					Name:        "auto_add_new_nodes",
+					Description: `Whether the new node is automatically added to the default cluster address.Options are ` + "`" + `Enable` + "`" + ` and ` + "`" + `Disable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_config",
+					Description: `The Endpoint configuration. ` + "`" + `ConsistLevel` + "`" + `: session consistency level, value:` + "`" + `0` + "`" + `: final consistency,` + "`" + `1` + "`" + `: session consistency;` + "`" + `LoadBalanceStrategy` + "`" + `: load balancing strategy. Based on the automatic scheduling of load, the value is: ` + "`" + `load` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_type",
+					Description: `Cluster address type.` + "`" + `Cluster` + "`" + `: the default address of the Cluster.` + "`" + `Primary` + "`" + `: Primary address.` + "`" + `Custom` + "`" + `: Custom cluster addresses.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `A list of nodes that connect to the address configuration.`,
+				},
+				resource.Attribute{
+					Name:        "read_write_mode",
+					Description: `Read-write mode:` + "`" + `ReadWrite` + "`" + `: readable and writable (automatic read-write separation).` + "`" + `ReadOnly` + "`" + `: ReadOnly.`,
+				},
+				resource.Attribute{
+					Name:        "address_items",
+					Description: `A list of endpoint addresses. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "net_type",
+					Description: `IP network type:` + "`" + `Public` + "`" + ` or ` + "`" + `Private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `Connection instance string.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Intranet connection port.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the VPC the instance belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `ID of the VSwitch the cluster belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The ip address of connection string.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `A list of PolarDB cluster endpoints. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "db_endpoint_id",
+					Description: `The endpoint ID.`,
+				},
+				resource.Attribute{
+					Name:        "auto_add_new_nodes",
+					Description: `Whether the new node is automatically added to the default cluster address.Options are ` + "`" + `Enable` + "`" + ` and ` + "`" + `Disable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_config",
+					Description: `The Endpoint configuration. ` + "`" + `ConsistLevel` + "`" + `: session consistency level, value:` + "`" + `0` + "`" + `: final consistency,` + "`" + `1` + "`" + `: session consistency;` + "`" + `LoadBalanceStrategy` + "`" + `: load balancing strategy. Based on the automatic scheduling of load, the value is: ` + "`" + `load` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_type",
+					Description: `Cluster address type.` + "`" + `Cluster` + "`" + `: the default address of the Cluster.` + "`" + `Primary` + "`" + `: Primary address.` + "`" + `Custom` + "`" + `: Custom cluster addresses.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `A list of nodes that connect to the address configuration.`,
+				},
+				resource.Attribute{
+					Name:        "read_write_mode",
+					Description: `Read-write mode:` + "`" + `ReadWrite` + "`" + `: readable and writable (automatic read-write separation).` + "`" + `ReadOnly` + "`" + `: ReadOnly.`,
+				},
+				resource.Attribute{
+					Name:        "address_items",
+					Description: `A list of endpoint addresses. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "net_type",
+					Description: `IP network type:` + "`" + `Public` + "`" + ` or ` + "`" + `Private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "connection_string",
+					Description: `Connection instance string.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Intranet connection port.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `ID of the VPC the instance belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `ID of the VSwitch the cluster belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The ip address of connection string.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_pvtz_zone_records",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a list of Private Zone Records which owned by an Alibaba Cloud account.`,
@@ -10751,7 +11646,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_id",
-					Description: `(Optional, ForceNew, Available in 1.60.0+) The Id of resource group which acl belongs. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional, ForceNew, Available in 1.60.0+) The Id of resource group which acl belongs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.66.0+) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "ids",
@@ -10779,7 +11678,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "related_listeners",
-					Description: `A list of listener are attached by the acl. Each listener contains four sub-fields as ` + "`" + `Listener Block` + "`" + ` follows. ## Entry Block The entry mapping supports the following:`,
+					Description: `A list of listener are attached by the acl. Each listener contains four sub-fields as ` + "`" + `Listener Block` + "`" + ` follows.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_id",
+					Description: `Resource group ID. ## Entry Block The entry mapping supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -10821,7 +11728,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "related_listeners",
-					Description: `A list of listener are attached by the acl. Each listener contains four sub-fields as ` + "`" + `Listener Block` + "`" + ` follows. ## Entry Block The entry mapping supports the following:`,
+					Description: `A list of listener are attached by the acl. Each listener contains four sub-fields as ` + "`" + `Listener Block` + "`" + ` follows.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_id",
+					Description: `Resource group ID. ## Entry Block The entry mapping supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "comment",
@@ -10963,7 +11878,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_id",
-					Description: `(Optional, ForceNew, Available in 1.60.0+) The Id of resource group which ca certificates belongs. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional, ForceNew, Available in 1.60.0+) The Id of resource group which ca certificates belongs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.66.0+) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "ids",
@@ -11016,6 +11935,10 @@ var (
 				resource.Attribute{
 					Name:        "region_id",
 					Description: `The region Id of CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Available in v1.66.0+) A mapping of tags to assign to the resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11070,6 +11993,10 @@ var (
 				resource.Attribute{
 					Name:        "region_id",
 					Description: `The region Id of CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Available in v1.66.0+) A mapping of tags to assign to the resource.`,
 				},
 			},
 		},
@@ -11527,7 +12454,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_backup",
-					Description: `Determine if the server is executing.`,
+					Description: `(Removed from v1.63.0) Determine if the server is executing.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11573,7 +12500,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_backup",
-					Description: `Determine if the server is executing.`,
+					Description: `(Removed from v1.63.0) Determine if the server is executing.`,
 				},
 			},
 		},
@@ -11695,7 +12622,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "resource_group_id",
-					Description: `(Optional, ForceNew, Available in 1.58.0+) The Id of resource group which the slb server certificates belongs. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional, ForceNew, Available in 1.58.0+) The Id of resource group which the slb server certificates belongs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.66.0+) A mapping of tags to assign to the resource. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "ids",
@@ -11752,6 +12683,10 @@ var (
 				resource.Attribute{
 					Name:        "resource_group_id",
 					Description: `The Id of resource group which the slb server certificates belongs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Available in v1.66.0+) A mapping of tags to assign to the resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -11810,6 +12745,10 @@ var (
 				resource.Attribute{
 					Name:        "resource_group_id",
 					Description: `The Id of resource group which the slb server certificates belongs.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Available in v1.66.0+) A mapping of tags to assign to the resource.`,
 				},
 			},
 		},
@@ -13282,9 +14221,9 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "alicloud_yundun_dbaudit_instances",
+			Type:             "alicloud_yundun_bastionhost_instances",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a list of cloud DBaudit(yundun_dbaudit) instances available to the user.`,
+			ShortDescription: `Provides a list of cloud Bastionhost(yundun_bastionhost) instances available to the user.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -13302,7 +14241,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "descriptions",
-					Description: `(Optional) Descriptions to filter data source result. ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+					Description: `(Optional) Descriptions to filter data source result.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.67.0+) A map of tags assigned to the bastionhost instance. It must be in the format: ` + "`" + `` + "`" + `` + "`" + ` data "alicloud_yundun_bastionhost_instances" "instance" { tags = { tagKey1 = "tagValue1" } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
 				},
 				resource.Attribute{
 					Name:        "instances",
@@ -13335,6 +14278,14 @@ var (
 				resource.Attribute{
 					Name:        "public_network_access",
 					Description: `The instance's public network access configuration.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `The instance's security group configuration.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags assigned to the bastionhost instance.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -13369,6 +14320,118 @@ var (
 				resource.Attribute{
 					Name:        "public_network_access",
 					Description: `The instance's public network access configuration.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `The instance's security group configuration.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags assigned to the bastionhost instance.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_yundun_dbaudit_instances",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a list of cloud DBaudit(yundun_dbaudit) instances available to the user.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description_regex",
+					Description: `(Optional) A regex string to filter results by the instance description.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) Matched instance IDs to filter data source result.`,
+				},
+				resource.Attribute{
+					Name:        "output_file",
+					Description: `(Optional) File name to persist data source output.`,
+				},
+				resource.Attribute{
+					Name:        "descriptions",
+					Description: `(Optional) Descriptions to filter data source result.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional, Available in v1.67.0+) A map of tags assigned to the dbaudit instance. It must be in the format: ` + "`" + `` + "`" + `` + "`" + ` data "alicloud_yundun_dbaudit_instances" "instance" { tags = { tagKey1 = "tagValue1" } } ` + "`" + `` + "`" + `` + "`" + ` ## Attributes Reference The following attributes are exported in addition to the arguments listed above:`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of apis. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The instance's id.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The instance's remark.`,
+				},
+				resource.Attribute{
+					Name:        "user_vswitch_id",
+					Description: `The instance's vSwitch ID.`,
+				},
+				resource.Attribute{
+					Name:        "private_domain",
+					Description: `The instance's private domain name.`,
+				},
+				resource.Attribute{
+					Name:        "public_domain",
+					Description: `The instance's public domain name.`,
+				},
+				resource.Attribute{
+					Name:        "instance_status",
+					Description: `The instance's status.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_access",
+					Description: `The instance's public network access configuration.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags assigned to the dbaudit instance.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instances",
+					Description: `A list of apis. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The instance's id.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The instance's remark.`,
+				},
+				resource.Attribute{
+					Name:        "user_vswitch_id",
+					Description: `The instance's vSwitch ID.`,
+				},
+				resource.Attribute{
+					Name:        "private_domain",
+					Description: `The instance's private domain name.`,
+				},
+				resource.Attribute{
+					Name:        "public_domain",
+					Description: `The instance's public domain name.`,
+				},
+				resource.Attribute{
+					Name:        "instance_status",
+					Description: `The instance's status.`,
+				},
+				resource.Attribute{
+					Name:        "public_network_access",
+					Description: `The instance's public network access configuration.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A map of tags assigned to the dbaudit instance.`,
 				},
 			},
 		},
@@ -13508,115 +14571,124 @@ var (
 		"alicloud_actiontrails":                      1,
 		"alicloud_alikafka_consumer_groups":          2,
 		"alicloud_alikafka_instances":                3,
-		"alicloud_alikafka_topics":                   4,
-		"alicloud_api_gateway_apis":                  5,
-		"alicloud_api_gateway_apps":                  6,
-		"alicloud_api_gateway_groups":                7,
-		"alicloud_cas_certificates":                  8,
-		"alicloud_cen_bandwidth_limits":              9,
-		"alicloud_cen_bandwidth_packages":            10,
-		"alicloud_cen_instances":                     11,
-		"alicloud_cen_region_route_entries":          12,
-		"alicloud_cen_route_entries":                 13,
-		"alicloud_cloud_connect_networks":            14,
-		"alicloud_common_bandwidth_packages":         15,
-		"alicloud_cr_namespaces":                     16,
-		"alicloud_cr_repos":                          17,
-		"alicloud_cs_kubernetes_clusters":            18,
-		"alicloud_cs_managed_kubernetes_clusters":    19,
-		"alicloud_cs_serverless_kubernetes_clusters": 20,
-		"alicloud_db_instance_classes":               21,
-		"alicloud_db_instance_engines":               22,
-		"alicloud_db_instances":                      23,
-		"alicloud_ddosbgp_instances":                 24,
-		"alicloud_ddoscoo_instances":                 25,
-		"alicloud_disks":                             26,
-		"alicloud_dns_domain_groups":                 27,
-		"alicloud_dns_domain_records":                28,
-		"alicloud_dns_domains":                       29,
-		"alicloud_dns_groups":                        30,
-		"alicloud_dns_records":                       31,
-		"alicloud_resolution_lines":                  32,
-		"alicloud_drds_instances":                    33,
-		"alicloud_eips":                              34,
-		"alicloud_elasticsearch_instances":           35,
-		"alicloud_emr_disk_types":                    36,
-		"alicloud_emr_instance_types":                37,
-		"alicloud_emr_main_versions":                 38,
-		"alicloud_ess_scaling_configurations":        39,
-		"alicloud_ess_scaling_groups":                40,
-		"alicloud_ess_scaling_rules":                 41,
-		"alicloud_fc_functions":                      42,
-		"alicloud_fc_services":                       43,
-		"alicloud_fc_triggers":                       44,
-		"alicloud_file_crc64_checksum":               45,
-		"alicloud_forward_entries":                   46,
-		"alicloud_gpdb_instances":                    47,
-		"alicloud_images":                            48,
-		"alicloud_instance_type_families":            49,
-		"alicloud_instance_types":                    50,
-		"alicloud_instances":                         51,
-		"alicloud_key_pairs":                         52,
-		"alicloud_kms_keys":                          53,
-		"alicloud_kvstore_instance_classes":          54,
-		"alicloud_kvstore_instance_engines":          55,
-		"alicloud_kvstore_instances":                 56,
-		"alicloud_mns_queues":                        57,
-		"alicloud_mns_topic_subscriptions":           58,
-		"alicloud_mns_topics":                        59,
-		"alicloud_mongodb_instances":                 60,
-		"alicloud_nas_access_groups":                 61,
-		"alicloud_nas_access_rules":                  62,
-		"alicloud_nas_file_systems":                  63,
-		"alicloud_nas_mount_targets":                 64,
-		"alicloud_nas_protocols":                     65,
-		"alicloud_nat_gateways":                      66,
-		"alicloud_network_interfaces":                67,
-		"alicloud_ons_groups":                        68,
-		"alicloud_ons_instances":                     69,
-		"alicloud_ons_topics":                        70,
-		"alicloud_oss_bucket_objects":                71,
-		"alicloud_oss_buckets":                       72,
-		"alicloud_ots_instance_attachments":          73,
-		"alicloud_ots_instances":                     74,
-		"alicloud_ots_tables":                        75,
-		"alicloud_pvtz_zone_records":                 76,
-		"alicloud_pvtz_zones":                        77,
-		"alicloud_ram_account_aliases":               78,
-		"alicloud_ram_account_alias":                 79,
-		"alicloud_ram_groups":                        80,
-		"alicloud_ram_policies":                      81,
-		"alicloud_ram_roles":                         82,
-		"alicloud_ram_users":                         83,
-		"alicloud_regions":                           84,
-		"alicloud_route_entries":                     85,
-		"alicloud_route_tables":                      86,
-		"alicloud_router_interfaces":                 87,
-		"alicloud_sag_acls":                          88,
-		"alicloud_security_group_rules":              89,
-		"alicloud_security_groups":                   90,
-		"alicloud_slb_acls":                          91,
-		"alicloud_slb_attachments":                   92,
-		"alicloud_slb_backend_servers":               93,
-		"alicloud_slb_ca_certificates":               94,
-		"alicloud_slb_domain_extensions":             95,
-		"alicloud_slb_listeners":                     96,
-		"alicloud_slb_master_slave_server_groups":    97,
-		"alicloud_slb_rules":                         98,
-		"alicloud_slb_server_certificates":           99,
-		"alicloud_slb_server_groups":                 100,
-		"alicloud_slbs":                              101,
-		"alicloud_snapshots":                         102,
-		"alicloud_snat_entries":                      103,
-		"alicloud_ssl_vpn_client_certs":              104,
-		"alicloud_ssl_vpn_servers":                   105,
-		"alicloud_vpcs":                              106,
-		"alicloud_vpn_connections":                   107,
-		"alicloud_vpn_customer_gateways":             108,
-		"alicloud_vpn_gateways":                      109,
-		"alicloud_vswitches":                         110,
-		"alicloud_yundun_dbaudit_instances":          111,
-		"alicloud_zones":                             112,
+		"alicloud_alikafka_sasl_acls":                4,
+		"alicloud_alikafka_sasl_users":               5,
+		"alicloud_alikafka_topics":                   6,
+		"alicloud_api_gateway_apis":                  7,
+		"alicloud_api_gateway_apps":                  8,
+		"alicloud_api_gateway_groups":                9,
+		"alicloud_caller_identity":                   10,
+		"alicloud_cas_certificates":                  11,
+		"alicloud_cen_bandwidth_limits":              12,
+		"alicloud_cen_bandwidth_packages":            13,
+		"alicloud_cen_instances":                     14,
+		"alicloud_cen_region_route_entries":          15,
+		"alicloud_cen_route_entries":                 16,
+		"alicloud_cloud_connect_networks":            17,
+		"alicloud_common_bandwidth_packages":         18,
+		"alicloud_cr_namespaces":                     19,
+		"alicloud_cr_repos":                          20,
+		"alicloud_cs_kubernetes_clusters":            21,
+		"alicloud_cs_managed_kubernetes_clusters":    22,
+		"alicloud_cs_serverless_kubernetes_clusters": 23,
+		"alicloud_db_instance_classes":               24,
+		"alicloud_db_instance_engines":               25,
+		"alicloud_db_instances":                      26,
+		"alicloud_ddosbgp_instances":                 27,
+		"alicloud_ddoscoo_instances":                 28,
+		"alicloud_disks":                             29,
+		"alicloud_dns_domain_groups":                 30,
+		"alicloud_dns_domain_records":                31,
+		"alicloud_dns_domains":                       32,
+		"alicloud_dns_groups":                        33,
+		"alicloud_dns_records":                       34,
+		"alicloud_resolution_lines":                  35,
+		"alicloud_drds_instances":                    36,
+		"alicloud_eips":                              37,
+		"alicloud_elasticsearch_instances":           38,
+		"alicloud_emr_disk_types":                    39,
+		"alicloud_emr_instance_types":                40,
+		"alicloud_emr_main_versions":                 41,
+		"alicloud_ess_scaling_configurations":        42,
+		"alicloud_ess_scaling_groups":                43,
+		"alicloud_ess_scaling_rules":                 44,
+		"alicloud_fc_functions":                      45,
+		"alicloud_fc_services":                       46,
+		"alicloud_fc_triggers":                       47,
+		"alicloud_file_crc64_checksum":               48,
+		"alicloud_forward_entries":                   49,
+		"alicloud_gpdb_instances":                    50,
+		"alicloud_images":                            51,
+		"alicloud_instance_type_families":            52,
+		"alicloud_instance_types":                    53,
+		"alicloud_instances":                         54,
+		"alicloud_key_pairs":                         55,
+		"alicloud_kms_ciphertext":                    56,
+		"alicloud_kms_keys":                          57,
+		"alicloud_kms_plaintext":                     58,
+		"alicloud_kvstore_instance_classes":          59,
+		"alicloud_kvstore_instance_engines":          60,
+		"alicloud_kvstore_instances":                 61,
+		"alicloud_market_products":                   62,
+		"alicloud_mns_queues":                        63,
+		"alicloud_mns_topic_subscriptions":           64,
+		"alicloud_mns_topics":                        65,
+		"alicloud_mongodb_instances":                 66,
+		"alicloud_nas_access_groups":                 67,
+		"alicloud_nas_access_rules":                  68,
+		"alicloud_nas_file_systems":                  69,
+		"alicloud_nas_mount_targets":                 70,
+		"alicloud_nas_protocols":                     71,
+		"alicloud_nat_gateways":                      72,
+		"alicloud_network_interfaces":                73,
+		"alicloud_ons_groups":                        74,
+		"alicloud_ons_instances":                     75,
+		"alicloud_ons_topics":                        76,
+		"alicloud_oss_bucket_objects":                77,
+		"alicloud_oss_buckets":                       78,
+		"alicloud_ots_instance_attachments":          79,
+		"alicloud_ots_instances":                     80,
+		"alicloud_ots_tables":                        81,
+		"alicloud_polardb_clusters":                  82,
+		"alicloud_polardb_endpoints":                 83,
+		"alicloud_pvtz_zone_records":                 84,
+		"alicloud_pvtz_zones":                        85,
+		"alicloud_ram_account_aliases":               86,
+		"alicloud_ram_account_alias":                 87,
+		"alicloud_ram_groups":                        88,
+		"alicloud_ram_policies":                      89,
+		"alicloud_ram_roles":                         90,
+		"alicloud_ram_users":                         91,
+		"alicloud_regions":                           92,
+		"alicloud_route_entries":                     93,
+		"alicloud_route_tables":                      94,
+		"alicloud_router_interfaces":                 95,
+		"alicloud_sag_acls":                          96,
+		"alicloud_security_group_rules":              97,
+		"alicloud_security_groups":                   98,
+		"alicloud_slb_acls":                          99,
+		"alicloud_slb_attachments":                   100,
+		"alicloud_slb_backend_servers":               101,
+		"alicloud_slb_ca_certificates":               102,
+		"alicloud_slb_domain_extensions":             103,
+		"alicloud_slb_listeners":                     104,
+		"alicloud_slb_master_slave_server_groups":    105,
+		"alicloud_slb_rules":                         106,
+		"alicloud_slb_server_certificates":           107,
+		"alicloud_slb_server_groups":                 108,
+		"alicloud_slbs":                              109,
+		"alicloud_snapshots":                         110,
+		"alicloud_snat_entries":                      111,
+		"alicloud_ssl_vpn_client_certs":              112,
+		"alicloud_ssl_vpn_servers":                   113,
+		"alicloud_vpcs":                              114,
+		"alicloud_vpn_connections":                   115,
+		"alicloud_vpn_customer_gateways":             116,
+		"alicloud_vpn_gateways":                      117,
+		"alicloud_vswitches":                         118,
+		"alicloud_yundun_bastionhost_instances":      119,
+		"alicloud_yundun_dbaudit_instances":          120,
+		"alicloud_zones":                             121,
 	}
 )
 

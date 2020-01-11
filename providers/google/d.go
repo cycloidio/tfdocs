@@ -2021,6 +2021,10 @@ var (
 					Name:        "name_servers",
 					Description: `The list of nameservers that will be authoritative for this domain. Use NS records to redirect from your DNS provider to these names, thus making Google Cloud DNS authoritative for this zone.`,
 				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -2034,6 +2038,10 @@ var (
 				resource.Attribute{
 					Name:        "name_servers",
 					Description: `The list of nameservers that will be authoritative for this domain. Use NS records to redirect from your DNS provider to these names, thus making Google Cloud DNS authoritative for this zone.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.`,
 				},
 			},
 		},
@@ -2662,13 +2670,13 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ciphertext",
-					Description: `Contains the result of encrypting the provided plaintext, encoded in base64.`,
+					Description: `Contains the result of encrypting the provided plaintext, encoded in base64. ## User Project Overrides This data source supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ciphertext",
-					Description: `Contains the result of encrypting the provided plaintext, encoded in base64.`,
+					Description: `Contains the result of encrypting the provided plaintext, encoded in base64. ## User Project Overrides This data source supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -2681,7 +2689,7 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
+					Name:        "org_id",
 					Description: `The Organization ID.`,
 				},
 				resource.Attribute{
@@ -2703,7 +2711,7 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
+					Name:        "org_id",
 					Description: `The Organization ID.`,
 				},
 				resource.Attribute{

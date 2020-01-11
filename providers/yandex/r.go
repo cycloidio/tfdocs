@@ -680,7 +680,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "stabilization_duration",
-					Description: `(Optional) The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "custom_rule",
+					Description: `(Optional) A list of custom rules. The structure is documented below. --- The ` + "`" + `custom_rule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `(Required) Rule type: ` + "`" + `UTILIZATION` + "`" + ` - This type means that the metric applies to one instance. First, Instance Groups calculates the average metric value for each instance, then averages the values for instances in one availability zone. This type of metric must have the ` + "`" + `instance_id` + "`" + ` label. ` + "`" + `WORKLOAD` + "`" + ` - This type means that the metric applies to instances in one availability zone. This type of metric must have the ` + "`" + `zone_id` + "`" + ` label.`,
+				},
+				resource.Attribute{
+					Name:        "metric_type",
+					Description: `(Required) Metric type, ` + "`" + `GAUGE` + "`" + ` or ` + "`" + `COUNTER` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `(Required) The name of metric.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Target metric value level. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -904,7 +924,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `(Optional) Folder that the resource belongs to. If a value is not provided, the default provider folder is used`,
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1721,7 +1741,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Type of the network load balancer. Only external network load balancers are currently available. The default is 'external'.`,
+					Description: `(Optional) Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.`,
 				},
 				resource.Attribute{
 					Name:        "attached_target_group",
@@ -1797,15 +1817,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_address_spec",
-					Description: `(Optional) External IP address specification. The structure is documented below. --- The ` + "`" + `external_address_spec` + "`" + ` block supports:`,
+					Description: `(Optional) External IP address specification. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "internal_address_spec",
+					Description: `(Optional) Internal IP address specification. The structure is documented below. ~>`,
 				},
 				resource.Attribute{
 					Name:        "address",
-					Description: `(Optional) Public IP address for a listener. IP address will be allocated if it wasn't been set.`,
+					Description: `(Optional) External IP address for a listener. IP address will be allocated if it wasn't been set.`,
 				},
 				resource.Attribute{
 					Name:        "ip_version",
-					Description: `(Optional) IP version of the addresses that the load balancer works with. Only ipv4 is currently available. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) IP version of the external addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4. --- The ` + "`" + `internal_address_spec` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) ID of the subnet to which the internal IP address belongs.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Optional) Internal IP address for a listener. IP address will be allocated if it wasn't been set.`,
+				},
+				resource.Attribute{
+					Name:        "ip_version",
+					Description: `(Optional) IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1890,6 +1926,386 @@ var (
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `The target group creation timestamp. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 5 minute. - ` + "`" + `update` + "`" + ` - Default is 5 minute. - ` + "`" + `delete` + "`" + ` - Default is 5 minute. ## Import A target group can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_lb_target_group.default target_group_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_clickhouse_cluster",
+			Category:         "Yandex Managed Service for Database Resources",
+			ShortDescription: `Manages a ClickHouse cluster within Yandex.Cloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"managed",
+				"service",
+				"for",
+				"database",
+				"mdb",
+				"clickhouse",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the ClickHouse cluster. Provided by the client when the cluster is created.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) ID of the network, to which the ClickHouse cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Required) Deployment environment of the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "clickhouse",
+					Description: `(Required) Configuration of the ClickHouse subcluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) A user of the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) A database of the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) A host of the ClickHouse cluster. The structure is documented below. - - -`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Version of the ClickHouse server software.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A set of key/value label pairs to assign to the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `(Optional) Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `(Optional) Access policy to the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "zookeeper",
+					Description: `(Optional) Configuration of the ZooKeeper subcluster. The structure is documented below. - - - The ` + "`" + `clickhouse` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Resources allocated to hosts of the ClickHouse subcluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `(Required) The ID of the preset for computational resources available to a ClickHouse host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Required) Volume of the storage available to a ClickHouse host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `(Required) Type of the storage of ClickHouse hosts. The ` + "`" + `zookeeper` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `(Optional) The ID of the preset for computational resources available to a ZooKeeper host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `(Optional) Type of the storage of ZooKeeper hosts. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `(Optional) Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `(Required) The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the database. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `(Computed) The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the host to be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) The availability zone where the ClickHouse host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `(Optional) The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `(Optional) The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "web_sql",
+					Description: `(Optional) Allow access for DataLens.`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `(Optional) Allow access for Web SQL. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_clickhouse_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_clickhouse_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_mongodb_cluster",
+			Category:         "Yandex Managed Service for Database Resources",
+			ShortDescription: `Manages a MongoDB cluster within Yandex.Cloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"managed",
+				"service",
+				"for",
+				"database",
+				"mdb",
+				"mongodb",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the MongoDB cluster. Provided by the client when the cluster is created.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) ID of the network, to which the MongoDB cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Required) Deployment environment of the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `(Required) Configuration of the MongoDB subcluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) A user of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) A database of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) A host of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Resources allocated to hosts of the MongoDB cluster. The structure is documented below. - - -`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Version of the MongoDB server software.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A set of key/value label pairs to assign to the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `(Optional) Access policy to the MongoDB cluster. The structure is documented below. - - - The ` + "`" + `cluster_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Version of MongoDB (either 4.2, 4.0 or 3.6).`,
+				},
+				resource.Attribute{
+					Name:        "feature_compatibility_version",
+					Description: `(Optional) Feature compatibility version of MongoDB. If not provided version is taken.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `(Optional) Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `(Optional) Shows whether cluster has access to data lens. The structure is documented below. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `(Optional) The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `(Optional) The minute at which backup will be started. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `(Required) The ID of the preset for computational resources available to a MongoDB host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Required) Volume of the storage available to a MongoDB host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `(Required) Type of the storage of MongoDB hosts. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `(Optional) Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `(Required) The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the database. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Computed) The fully qualified domain name of the host. Computed on server side.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The availability zone where the MongoDB host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Optional) The role of the cluster (either PRIMARY or SECONDARY).`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `(Computed) The health of the host.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "shard_name",
+					Description: `(Optional) The name of the shard to which the host belongs.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) type of mongo daemon which runs on this host (mongod, mongos or monogcfg). Defaults to mongod. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `(Optional) Allow access for DataLens. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "sharded",
+					Description: `MongoDB Cluster mode enabled/disabled. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_mongodb_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `The ID of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "sharded",
+					Description: `MongoDB Cluster mode enabled/disabled. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_mongodb_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2169,11 +2585,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_key",
-					Description: `(Optional) The access key to use when applying changes. If omitted, ` + "`" + `storage_access_key` + "`" + ` specified in config is used.`,
+					Description: `(Optional) The access key to use when applying changes. If omitted, ` + "`" + `storage_access_key` + "`" + ` specified in provider config is used.`,
 				},
 				resource.Attribute{
 					Name:        "secret_key",
-					Description: `(Optional) The secret key to use when applying changes. If omitted, ` + "`" + `storage_secret_key` + "`" + ` specified in config is used.`,
+					Description: `(Optional) The secret key to use when applying changes. If omitted, ` + "`" + `storage_secret_key` + "`" + ` specified in provider config is used.`,
 				},
 				resource.Attribute{
 					Name:        "acl",
@@ -2461,17 +2877,19 @@ var (
 		"yandex_kubernetes_node_group":                 14,
 		"yandex_lb_network_load_balancer":              15,
 		"yandex_lb_target_group":                       16,
-		"yandex_mdb_redis_cluster":                     17,
-		"yandex_resourcemanager_cloud_iam_binding":     18,
-		"yandex_resourcemanager_cloud_iam_member":      19,
-		"yandex_resourcemanager_folder_iam_binding":    20,
-		"yandex_resourcemanager_folder_iam_member":     21,
-		"yandex_resourcemanager_folder_iam_policy":     22,
-		"yandex_storage_bucket":                        23,
-		"yandex_storage_object":                        24,
-		"yandex_vpc_network":                           25,
-		"yandex_vpc_route_table":                       26,
-		"yandex_vpc_subnet":                            27,
+		"yandex_mdb_clickhouse_cluster":                17,
+		"yandex_mdb_mongodb_cluster":                   18,
+		"yandex_mdb_redis_cluster":                     19,
+		"yandex_resourcemanager_cloud_iam_binding":     20,
+		"yandex_resourcemanager_cloud_iam_member":      21,
+		"yandex_resourcemanager_folder_iam_binding":    22,
+		"yandex_resourcemanager_folder_iam_member":     23,
+		"yandex_resourcemanager_folder_iam_policy":     24,
+		"yandex_storage_bucket":                        25,
+		"yandex_storage_object":                        26,
+		"yandex_vpc_network":                           27,
+		"yandex_vpc_route_table":                       28,
+		"yandex_vpc_subnet":                            29,
 	}
 )
 

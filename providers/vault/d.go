@@ -39,6 +39,78 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vault_auth_backend",
+			Category:         "Data Sources",
+			ShortDescription: `Lookup an Auth Backend from Vault`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) The auth backend mount point. ## Attributes Reference In addition to the fields above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The name of the auth method type.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the auth method.`,
+				},
+				resource.Attribute{
+					Name:        "default_lease_ttl_seconds",
+					Description: `The default lease duration in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "max_lease_ttl_seconds",
+					Description: `The maximum lease duration in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "listing_visibility",
+					Description: `Speficies whether to show this mount in the UI-specific listing endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `Specifies if the auth method is local only.`,
+				},
+				resource.Attribute{
+					Name:        "accessor",
+					Description: `The accessor for this auth method`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "type",
+					Description: `The name of the auth method type.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the auth method.`,
+				},
+				resource.Attribute{
+					Name:        "default_lease_ttl_seconds",
+					Description: `The default lease duration in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "max_lease_ttl_seconds",
+					Description: `The maximum lease duration in seconds.`,
+				},
+				resource.Attribute{
+					Name:        "listing_visibility",
+					Description: `Speficies whether to show this mount in the UI-specific listing endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "local",
+					Description: `Specifies if the auth method is local only.`,
+				},
+				resource.Attribute{
+					Name:        "accessor",
+					Description: `The accessor for this auth method`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vault_aws_access_credentials",
 			Category:         "Data Sources",
 			ShortDescription: `Reads AWS credentials from an AWS secret backend in Vault`,
@@ -589,6 +661,10 @@ var (
 					Name:        "pem_keys",
 					Description: `Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.`,
 				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `Optional JWT issuer. If no issuer is specified, ` + "`" + `kubernetes.io/serviceaccount` + "`" + ` will be used as the default issuer.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -602,6 +678,10 @@ var (
 				resource.Attribute{
 					Name:        "pem_keys",
 					Description: `Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.`,
+				},
+				resource.Attribute{
+					Name:        "issuer",
+					Description: `Optional JWT issuer. If no issuer is specified, ` + "`" + `kubernetes.io/serviceaccount` + "`" + ` will be used as the default issuer.`,
 				},
 			},
 		},
@@ -628,6 +708,10 @@ var (
 				resource.Attribute{
 					Name:        "bound_service_account_namespaces",
 					Description: `List of namespaces allowed to access this role. If set to "`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience claim to verify in the JWT. ### Common Token Attributes These attributes are common across several Authentication Token resources since Vault 1.2.`,
 				},
 				resource.Attribute{
 					Name:        "token_ttl",
@@ -674,6 +758,10 @@ var (
 				resource.Attribute{
 					Name:        "bound_service_account_namespaces",
 					Description: `List of namespaces allowed to access this role. If set to "`,
+				},
+				resource.Attribute{
+					Name:        "audience",
+					Description: `(Optional) Audience claim to verify in the JWT. ### Common Token Attributes These attributes are common across several Authentication Token resources since Vault 1.2.`,
 				},
 				resource.Attribute{
 					Name:        "token_ttl",
@@ -778,13 +866,14 @@ var (
 	dataSourcesMap = map[string]int{
 
 		"vault_approle_auth_backend_role_id":   0,
-		"vault_aws_access_credentials":         1,
-		"vault_generic_secret":                 2,
-		"vault_identity_entity":                3,
-		"vault_identity_group":                 4,
-		"vault_kubernetes_auth_backend_config": 5,
-		"vault_kubernetes_auth_backend_role":   6,
-		"vault_policy_document":                7,
+		"vault_auth_backend":                   1,
+		"vault_aws_access_credentials":         2,
+		"vault_generic_secret":                 3,
+		"vault_identity_entity":                4,
+		"vault_identity_group":                 5,
+		"vault_kubernetes_auth_backend_config": 6,
+		"vault_kubernetes_auth_backend_role":   7,
+		"vault_policy_document":                8,
 	}
 )
 

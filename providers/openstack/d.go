@@ -231,6 +231,198 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "openstack_blockstorage_volume_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an OpenStack Volume.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Block Storage client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) Metadata key/value pairs associated with the volume. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found volume. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `The type of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "bootable",
+					Description: `Indicates if the volume is bootable.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the volume in GBs.`,
+				},
+				resource.Attribute{
+					Name:        "source_volume_id",
+					Description: `The ID of the volume from which the current volume was created.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `The type of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "bootable",
+					Description: `Indicates if the volume is bootable.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the volume in GBs.`,
+				},
+				resource.Attribute{
+					Name:        "source_volume_id",
+					Description: `The ID of the volume from which the current volume was created.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_blockstorage_volume_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an OpenStack Volume.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V3 Block Storage client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Optional) The status of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) Metadata key/value pairs associated with the volume. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found volume. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `The type of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "bootable",
+					Description: `Indicates if the volume is bootable.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the volume in GBs.`,
+				},
+				resource.Attribute{
+					Name:        "source_volume_id",
+					Description: `The ID of the volume from which the current volume was created.`,
+				},
+				resource.Attribute{
+					Name:        "multiattach",
+					Description: `Indicates if the volume can be attached to more then one server.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "volume_type",
+					Description: `The type of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "bootable",
+					Description: `Indicates if the volume is bootable.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `The size of the volume in GBs.`,
+				},
+				resource.Attribute{
+					Name:        "source_volume_id",
+					Description: `The ID of the volume from which the current volume was created.`,
+				},
+				resource.Attribute{
+					Name:        "multiattach",
+					Description: `Indicates if the volume can be attached to more then one server.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "openstack_compute_availability_zones_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get a list of availability zones from OpenStack`,
@@ -466,6 +658,14 @@ var (
 					Description: `The number of nodes for the cluster.`,
 				},
 				resource.Attribute{
+					Name:        "fixed_network",
+					Description: `The fixed network that is attached to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_subnet",
+					Description: `The fixed subnet that is attached to the cluster.`,
+				},
+				resource.Attribute{
 					Name:        "master_addresses",
 					Description: `IP addresses of the master node of the cluster.`,
 				},
@@ -550,6 +750,14 @@ var (
 				resource.Attribute{
 					Name:        "node_count",
 					Description: `The number of nodes for the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_network",
+					Description: `The fixed network that is attached to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "fixed_subnet",
+					Description: `The fixed subnet that is attached to the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "master_addresses",
@@ -4159,41 +4367,43 @@ var (
 		"openstack_blockstorage_availability_zones_v3":       0,
 		"openstack_blockstorage_snapshot_v2":                 1,
 		"openstack_blockstorage_snapshot_v3":                 2,
-		"openstack_compute_availability_zones_v2":            3,
-		"openstack_compute_flavor_v2":                        4,
-		"openstack_compute_keypair_v2":                       5,
-		"openstack_containerinfra_cluster_v1":                6,
-		"openstack_containerinfra_clustertemplate_v1":        7,
-		"openstack_dns_zone_v2":                              8,
-		"openstack_fw_policy_v1":                             9,
-		"openstack_identity_auth_scope_v3":                   10,
-		"openstack_identity_endpoint_v3":                     11,
-		"openstack_identity_group_v3":                        12,
-		"openstack_identity_project_v3":                      13,
-		"openstack_identity_role_v3":                         14,
-		"openstack_identity_service_v3":                      15,
-		"openstack_identity_user_v3":                         16,
-		"openstack_images_image_v2":                          17,
-		"openstack_keymanager_container_v1":                  18,
-		"openstack_keymanager_secret_v1":                     19,
-		"openstack_networking_addressscope_v2":               20,
-		"openstack_networking_floatingip_v2":                 21,
-		"openstack_networking_network_v2":                    22,
-		"openstack_networking_port_ids_v2":                   23,
-		"openstack_networking_port_v2":                       24,
-		"openstack_networking_qos_bandwidth_limit_rule_v2":   25,
-		"openstack_networking_qos_dscp_marking_rule_v2":      26,
-		"openstack_networking_qos_minimum_bandwidth_rule_v2": 27,
-		"openstack_networking_qos_policy_v2":                 28,
-		"openstack_networking_router_v2":                     29,
-		"openstack_networking_secgroup_v2":                   30,
-		"openstack_networking_subnet_v2":                     31,
-		"openstack_networking_subnetpool_v2":                 32,
-		"openstack_networking_trunk_v2":                      33,
-		"openstack_sharedfilesystem_availability_zones_v2":   34,
-		"openstack_sharedfilesystem_share_v2":                35,
-		"openstack_sharedfilesystem_sharenetwork_v2":         36,
-		"openstack_sharedfilesystem_snapshot_v2":             37,
+		"openstack_blockstorage_volume_v2":                   3,
+		"openstack_blockstorage_volume_v3":                   4,
+		"openstack_compute_availability_zones_v2":            5,
+		"openstack_compute_flavor_v2":                        6,
+		"openstack_compute_keypair_v2":                       7,
+		"openstack_containerinfra_cluster_v1":                8,
+		"openstack_containerinfra_clustertemplate_v1":        9,
+		"openstack_dns_zone_v2":                              10,
+		"openstack_fw_policy_v1":                             11,
+		"openstack_identity_auth_scope_v3":                   12,
+		"openstack_identity_endpoint_v3":                     13,
+		"openstack_identity_group_v3":                        14,
+		"openstack_identity_project_v3":                      15,
+		"openstack_identity_role_v3":                         16,
+		"openstack_identity_service_v3":                      17,
+		"openstack_identity_user_v3":                         18,
+		"openstack_images_image_v2":                          19,
+		"openstack_keymanager_container_v1":                  20,
+		"openstack_keymanager_secret_v1":                     21,
+		"openstack_networking_addressscope_v2":               22,
+		"openstack_networking_floatingip_v2":                 23,
+		"openstack_networking_network_v2":                    24,
+		"openstack_networking_port_ids_v2":                   25,
+		"openstack_networking_port_v2":                       26,
+		"openstack_networking_qos_bandwidth_limit_rule_v2":   27,
+		"openstack_networking_qos_dscp_marking_rule_v2":      28,
+		"openstack_networking_qos_minimum_bandwidth_rule_v2": 29,
+		"openstack_networking_qos_policy_v2":                 30,
+		"openstack_networking_router_v2":                     31,
+		"openstack_networking_secgroup_v2":                   32,
+		"openstack_networking_subnet_v2":                     33,
+		"openstack_networking_subnetpool_v2":                 34,
+		"openstack_networking_trunk_v2":                      35,
+		"openstack_sharedfilesystem_availability_zones_v2":   36,
+		"openstack_sharedfilesystem_share_v2":                37,
+		"openstack_sharedfilesystem_sharenetwork_v2":         38,
+		"openstack_sharedfilesystem_snapshot_v2":             39,
 	}
 )
 

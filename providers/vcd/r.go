@@ -243,7 +243,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_networks",
-					Description: `(Required) An array of external network names.`,
+					Description: `(Deprecated, Optional) An array of external network names. This supports simple external networks with one subnet only.`,
+				},
+				resource.Attribute{
+					Name:        "external_network",
+					Description: `(Optional,`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
@@ -251,7 +255,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "default_gateway_network",
-					Description: `(Optional) Name of the external network to be used as default gateway. It must be included in the list of ` + "`" + `external_networks` + "`" + `. Providing an empty string or omitting the argument will create the edge gateway without a default gateway.`,
+					Description: `(Deprecated, Optional) Name of the external network to be used as default gateway. It must be included in the list of ` + "`" + `external_networks` + "`" + `. Providing an empty string or omitting the argument will create the edge gateway without a default gateway.`,
 				},
 				resource.Attribute{
 					Name:        "advanced",
@@ -264,6 +268,14 @@ var (
 				resource.Attribute{
 					Name:        "distributed_routing",
 					Description: `(Optional) If advanced networking enabled, also enable distributed routing. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "fips_mode_enabled",
+					Description: `(Optional) When FIPS mode is enabled, any secure communication to or from the NSX Edge uses cryptographic algorithms or protocols that are allowed by United States Federal Information Processing Standards (FIPS). FIPS mode turns on the cipher suites that comply with FIPS. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "use_default_route_for_dns_relay",
+					Description: `(Optional) When default route is set, it will be used for gateways' default routing and DNS forwarding. Default is ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "lb_enabled",
@@ -613,6 +625,50 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxv_ip_set",
+			Category:         "Resources",
+			ShortDescription: `Provides an IP set resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxv",
+				"ip",
+				"set",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique IP set name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description for IP set.`,
+				},
+				resource.Attribute{
+					Name:        "ip_addresses",
+					Description: `(Required) A set of IP addresses, CIDRs and ranges as strings.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of IP set ## Importing ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of IP set ## Importing ~>`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1083,6 +1139,10 @@ var (
 					Description: `(Required) A unique name for the network`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional`,
+				},
+				resource.Attribute{
 					Name:        "external_network",
 					Description: `(Required) The name of the external network.`,
 				},
@@ -1135,6 +1195,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) A unique name for the network`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional`,
 				},
 				resource.Attribute{
 					Name:        "netmask",
@@ -1207,6 +1271,14 @@ var (
 					Description: `(Required) A unique name for the network`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional`,
+				},
+				resource.Attribute{
+					Name:        "interface_type",
+					Description: `(Optional`,
+				},
+				resource.Attribute{
 					Name:        "edge_gateway",
 					Description: `(Required) The name of the edge gateway`,
 				},
@@ -1253,6 +1325,57 @@ var (
 				resource.Attribute{
 					Name:        "max_lease_time",
 					Description: `(Optional) The maximum DHCP lease time to use. Defaults to ` + "`" + `7200` + "`" + `. ## Importing Supported in provider`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_nsxv_dhcp_relay",
+			Category:         "Resources",
+			ShortDescription: `Provides an NSX edge gateway DHCP relay configuration resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"nsxv",
+				"dhcp",
+				"relay",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which DHCP relay is to be configured.`,
+				},
+				resource.Attribute{
+					Name:        "ip_addresses",
+					Description: `(Optional) A set of IP addresses.`,
+				},
+				resource.Attribute{
+					Name:        "domain_names",
+					Description: `(Optional) A set of domain names.`,
+				},
+				resource.Attribute{
+					Name:        "ip_sets",
+					Description: `(Optional) A set of IP set names.`,
+				},
+				resource.Attribute{
+					Name:        "relay_agent",
+					Description: `(Required) One or more blocks to define Org network and optional IP address of edge gateway interfaces from which DHCP messages are to be relayed to the external DHCP relay server(s). See [Relay Agent](#relay-agent) and example for usage details. <a id="relay-agent"></a> ## Relay Agent`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `(Required) An existing Org network name from which DHCP messages are to be relayed.`,
+				},
+				resource.Attribute{
+					Name:        "gateway_ip_address",
+					Description: `(Optional) IP address on edge gateway to be used for relaying messages. Primary address of edge gateway interface will be picked if not specified. ## Importing ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1418,7 +1541,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "org_networks",
-					Description: `(Optional) A set of org network names. <a id="service"></a> ## Service`,
+					Description: `(Optional) A set of org network names.`,
+				},
+				resource.Attribute{
+					Name:        "ip_sets",
+					Description: `(Optional) A set of existing IP set names (either created manually or configured using ` + "`" + `vcd_nsxv_ip_set` + "`" + ` resource) <a id="service"></a> ## Service`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -1676,7 +1803,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_vdc_name",
-					Description: `(Required) A name of the Provider VDC from which this organization VDC is provisioned.`,
+					Description: `(Required, System Admin) Name of the Provider VDC from which this organization VDC is provisioned.`,
 				},
 				resource.Attribute{
 					Name:        "allocation_model",
@@ -1704,19 +1831,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_profile",
-					Description: `(Required) Storage profiles supported by this VDC. See [Storage Profile](#storageprofile) below for details.`,
+					Description: `(Required, System Admin) Storage profiles supported by this VDC. See [Storage Profile](#storageprofile) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "memory_guaranteed",
-					Description: `(Optional) Percentage of allocated memory resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. When Allocation model is AllocationPool minimum value is 0.2. If left empty, vCD sets a value.`,
+					Description: `(Optional, System Admin) Percentage of allocated memory resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. When Allocation model is AllocationPool minimum value is 0.2. If left empty, vCD sets a value.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_guaranteed",
-					Description: `(Optional) Percentage of allocated CPU resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. If left empty, vCD sets a value.`,
+					Description: `(Optional, System Admin) Percentage of allocated CPU resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. If left empty, vCD sets a value.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_speed",
-					Description: `(Optional) Specifies the clock frequency, in Megahertz, for any virtual CPU that is allocated to a VM. A VM with 2 vCPUs will consume twice as much of this value. Ignored for ReservationPool. Required when AllocationModel is AllocationVApp or AllocationPool, and may not be less than 256 MHz. Defaults to 1000 MHz if value isn't provided.`,
+					Description: `(Optional, System Admin) Specifies the clock frequency, in Megahertz, for any virtual CPU that is allocated to a VM. A VM with 2 vCPUs will consume twice as much of this value. Ignored for ReservationPool. Required when AllocationModel is AllocationVApp or AllocationPool, and may not be less than 256 MHz. Defaults to 1000 MHz if value isn't provided.`,
 				},
 				resource.Attribute{
 					Name:        "metadata",
@@ -1724,15 +1851,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_thin_provisioning",
-					Description: `(Optional) Boolean to request thin provisioning. Request will be honored only if the underlying data store supports it. Thin provisioning saves storage space by committing it on demand. This allows over-allocation of storage.`,
+					Description: `(Optional, System Admin) Boolean to request thin provisioning. Request will be honored only if the underlying data store supports it. Thin provisioning saves storage space by committing it on demand. This allows over-allocation of storage.`,
 				},
 				resource.Attribute{
 					Name:        "enable_fast_provisioning",
-					Description: `(Optional) Request fast provisioning. Request will be honored only if the underlying datastore supports it. Fast provisioning can reduce the time it takes to create virtual machines by using vSphere linked clones. If you disable fast provisioning, all provisioning operations will result in full clones.`,
+					Description: `(Optional, System Admin) Request fast provisioning. Request will be honored only if the underlying datastore supports it. Fast provisioning can reduce the time it takes to create virtual machines by using vSphere linked clones. If you disable fast provisioning, all provisioning operations will result in full clones.`,
 				},
 				resource.Attribute{
 					Name:        "network_pool_name",
-					Description: `(Optional) Reference to a network pool in the Provider VDC. Required if this VDC will contain routed or isolated networks.`,
+					Description: `(Optional, System Admin) Reference to a network pool in the Provider VDC. Required if this VDC will contain routed or isolated networks.`,
 				},
 				resource.Attribute{
 					Name:        "allow_over_commit",
@@ -1849,10 +1976,6 @@ var (
 					Description: `(Optional) A boolean value stating if this vApp should be powered on. Default is ` + "`" + `true` + "`" + ``,
 				},
 				resource.Attribute{
-					Name:        "storage_profile",
-					Description: `(Optional) Storage profile to override the default one.`,
-				},
-				resource.Attribute{
 					Name:        "metadata",
 					Description: `(Optional) Key value map of metadata to assign to this vApp. Key and value can be any string. (Since`,
 				},
@@ -1882,6 +2005,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "memory",
+					Description: `(Optional;`,
+				},
+				resource.Attribute{
+					Name:        "storage_profile",
 					Description: `(Optional;`,
 				},
 				resource.Attribute{
@@ -2002,11 +2129,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vapp_name",
-					Description: `(Required) The vApp this VM should belong to.`,
+					Description: `(Required) The vApp this VM belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) A unique name for the VM`,
+					Description: `(Required) A name for the VM, unique within the vApp`,
 				},
 				resource.Attribute{
 					Name:        "computer_name",
@@ -2026,7 +2153,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cpus",
-					Description: `(Optional) The number of virtual CPUs to allocate to the VM. Socket count is a result of: virtual logical processors/cores per socket`,
+					Description: `(Optional) The number of virtual CPUs to allocate to the VM. Socket count is a result of: virtual logical processors/cores per socket. The default is 1`,
 				},
 				resource.Attribute{
 					Name:        "cpu_cores",
@@ -2050,7 +2177,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "power_on",
-					Description: `(Optional) A boolean value stating if this vApp should be powered on. Default is ` + "`" + `true` + "`" + ``,
+					Description: `(Optional) A boolean value stating if this VM should be powered on. Default is ` + "`" + `true` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "accept_all_eulas",
@@ -2125,25 +2252,27 @@ var (
 		"vcd_firewall_rules":     7,
 		"vcd_independent_disk":   8,
 		"vcd_inserted_media":     9,
-		"vcd_lb_app_profile":     10,
-		"vcd_lb_app_rule":        11,
-		"vcd_lb_server_pool":     12,
-		"vcd_lb_service_monitor": 13,
-		"vcd_lb_virtual_server":  14,
-		"vcd_network":            15,
-		"vcd_network_direct":     16,
-		"vcd_network_isolated":   17,
-		"vcd_network_routed":     18,
-		"vcd_nsxv_dnat":          19,
-		"vcd_nsxv_firewall_rule": 20,
-		"vcd_nsxv_snat":          21,
-		"vcd_org":                22,
-		"vcd_org_user":           23,
-		"vcd_org_vdc":            24,
-		"vcd_snat":               25,
-		"vcd_vapp":               26,
-		"vcd_vapp_network":       27,
-		"vcd_vapp_vm":            28,
+		"vcd_nsxv_ip_set":        10,
+		"vcd_lb_app_profile":     11,
+		"vcd_lb_app_rule":        12,
+		"vcd_lb_server_pool":     13,
+		"vcd_lb_service_monitor": 14,
+		"vcd_lb_virtual_server":  15,
+		"vcd_network":            16,
+		"vcd_network_direct":     17,
+		"vcd_network_isolated":   18,
+		"vcd_network_routed":     19,
+		"vcd_nsxv_dhcp_relay":    20,
+		"vcd_nsxv_dnat":          21,
+		"vcd_nsxv_firewall_rule": 22,
+		"vcd_nsxv_snat":          23,
+		"vcd_org":                24,
+		"vcd_org_user":           25,
+		"vcd_org_vdc":            26,
+		"vcd_snat":               27,
+		"vcd_vapp":               28,
+		"vcd_vapp_network":       29,
+		"vcd_vapp_vm":            30,
 	}
 )
 

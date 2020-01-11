@@ -285,6 +285,10 @@ var (
 					Description: `(Required) The name of the [zone][zone] to create the Elastic IP into.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Elastic IP.`,
+				},
+				resource.Attribute{
 					Name:        "healthcheck_mode",
 					Description: `The healthcheck probing mode (must be either ` + "`" + `tcp` + "`" + ` or ` + "`" + `http` + "`" + `).`,
 				},
@@ -318,13 +322,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The Elastic IP address. ## Import An existing Elastic IP can be imported as a resource by address or ID: ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_ipaddress.myip 159.100.251.224 # By ID $ terraform import exoscale_ipaddress.myip eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Elastic IP address. ## Import An existing Elastic IP can be imported as a resource by address or ID: ` + "`" + `` + "`" + `` + "`" + `console # By address $ terraform import exoscale_ipaddress.myip 159.100.251.224 # By ID $ terraform import exoscale_ipaddress.myip eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `The Elastic IP address. ## Import An existing Elastic IP can be imported as a resource by address or ID: ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_ipaddress.myip 159.100.251.224 # By ID $ terraform import exoscale_ipaddress.myip eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Elastic IP address. ## Import An existing Elastic IP can be imported as a resource by address or ID: ` + "`" + `` + "`" + `` + "`" + `console # By address $ terraform import exoscale_ipaddress.myip 159.100.251.224 # By ID $ terraform import exoscale_ipaddress.myip eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -349,10 +353,6 @@ var (
 				resource.Attribute{
 					Name:        "display_text",
 					Description: `A free-form text describing the Private Network purpose.`,
-				},
-				resource.Attribute{
-					Name:        "network_offering",
-					Description: `(Required) The Private Nnetwork offering name (` + "`" + `PrivNet` + "`" + ` is the only supported value).`,
 				},
 				resource.Attribute{
 					Name:        "start_ip",

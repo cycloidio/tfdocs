@@ -174,7 +174,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `(Required) Database droplet size associated with the cluster (ex. ` + "`" + `db-s-1vcpu-1gb` + "`" + `).`,
+					Description: `(Required) Database Droplet size associated with the cluster (ex. ` + "`" + `db-s-1vcpu-1gb` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -191,6 +191,14 @@ var (
 				resource.Attribute{
 					Name:        "tags",
 					Description: `(Optional) A list of tag names to be applied to the database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "eviction_policy",
+					Description: `(Optional) A string specifying the eviction policy for a Redis cluster. Valid values are: ` + "`" + `noeviction` + "`" + `, ` + "`" + `allkeys_lru` + "`" + `, ` + "`" + `allkeys_random` + "`" + `, ` + "`" + `volatile_lru` + "`" + `, ` + "`" + `volatile_random` + "`" + `, or ` + "`" + `volatile_ttl` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sql_mode",
+					Description: `(Optional) A comma separated string specifying the SQL modes for a MySQL cluster.`,
 				},
 				resource.Attribute{
 					Name:        "maintenance_window",
@@ -405,6 +413,45 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "digitalocean_database_firewall",
+			Category:         "Resources",
+			ShortDescription: `Provides a DigitalOcean database firewall resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"firewall",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) The ID of the target database cluster.`,
+				},
+				resource.Attribute{
+					Name:        "rule",
+					Description: `(Required) A rule specifying a resource allowed to access the database cluster. The following arguments must be specified: - ` + "`" + `type` + "`" + ` - (Required) The type of resource that the firewall rule allows to access the database cluster. The possible values are: ` + "`" + `droplet` + "`" + `, ` + "`" + `k8s` + "`" + `, ` + "`" + `ip_addr` + "`" + `, or ` + "`" + `tag` + "`" + `. - ` + "`" + `value` + "`" + ` - (Required) The ID of the specific resource, the name of a tag applied to a group of resources, or the IP address that the firewall rule allows to access the database cluster. ## Attributes Reference In addition to the above arguments, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `A unique identifier for the firewall rule.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time when the firewall rule was created. ## Import Database firewalls can be imported using the ` + "`" + `id` + "`" + ` of the target database cluster For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_firewall.example-fw 5f55c6cd-863b-4907-99b8-7e09b0275d54 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `A unique identifier for the firewall rule.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date and time when the firewall rule was created. ## Import Database firewalls can be imported using the ` + "`" + `id` + "`" + ` of the target database cluster For example: ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_database_firewall.example-fw 5f55c6cd-863b-4907-99b8-7e09b0275d54 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1412,7 +1459,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `the date and time when the project was last updated, (ISO8601)`,
+					Description: `the date and time when the project was last updated, (ISO8601) ## Import Projects can be imported using the ` + "`" + `id` + "`" + ` returned from DigitalOcean, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_project.myproject 245bcfd0-7f31-4ce6-a2bc-475a116cca97 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1434,7 +1481,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `the date and time when the project was last updated, (ISO8601)`,
+					Description: `the date and time when the project was last updated, (ISO8601) ## Import Projects can be imported using the ` + "`" + `id` + "`" + ` returned from DigitalOcean, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import digitalocean_project.myproject 245bcfd0-7f31-4ce6-a2bc-475a116cca97 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1712,7 +1759,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "initial_filesystem_label",
-					Description: `(Optional) Initial filesystem label for the block storage volume. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Initial filesystem label for the block storage volume.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of the tags to be applied to this Volume. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1798,7 +1849,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_id",
-					Description: `(Required) The ID of the volume from which the volume snapshot originated. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The ID of the volume from which the volume snapshot originated.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of the tags to be applied to this volume snapshot. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -1845,25 +1900,26 @@ var (
 		"digitalocean_database_cluster":         2,
 		"digitalocean_database_connection_pool": 3,
 		"digitalocean_database_db":              4,
-		"digitalocean_database_replica":         5,
-		"digitalocean_database_user":            6,
-		"digitalocean_domain":                   7,
-		"digitalocean_droplet":                  8,
-		"digitalocean_droplet_snapshot":         9,
-		"digitalocean_firewall":                 10,
-		"digitalocean_floating_ip":              11,
-		"digitalocean_floating_ip_assignment":   12,
-		"digitalocean_kubernetes_cluster":       13,
-		"digitalocean_kubernetes_node_pool":     14,
-		"digitalocean_loadbalancer":             15,
-		"digitalocean_project":                  16,
-		"digitalocean_record":                   17,
-		"digitalocean_spaces_bucket":            18,
-		"digitalocean_ssh_key":                  19,
-		"digitalocean_tag":                      20,
-		"digitalocean_volume":                   21,
-		"digitalocean_volume_attachment":        22,
-		"digitalocean_volume_snapshot":          23,
+		"digitalocean_database_firewall":        5,
+		"digitalocean_database_replica":         6,
+		"digitalocean_database_user":            7,
+		"digitalocean_domain":                   8,
+		"digitalocean_droplet":                  9,
+		"digitalocean_droplet_snapshot":         10,
+		"digitalocean_firewall":                 11,
+		"digitalocean_floating_ip":              12,
+		"digitalocean_floating_ip_assignment":   13,
+		"digitalocean_kubernetes_cluster":       14,
+		"digitalocean_kubernetes_node_pool":     15,
+		"digitalocean_loadbalancer":             16,
+		"digitalocean_project":                  17,
+		"digitalocean_record":                   18,
+		"digitalocean_spaces_bucket":            19,
+		"digitalocean_ssh_key":                  20,
+		"digitalocean_tag":                      21,
+		"digitalocean_volume":                   22,
+		"digitalocean_volume_attachment":        23,
+		"digitalocean_volume_snapshot":          24,
 	}
 )
 

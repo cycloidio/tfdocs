@@ -248,7 +248,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) The UUID of the security group. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The UUID of the security group. The ` + "`" + `lbaas_listeners` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `(Required) Specifies the backend ECS group ID.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required) Specifies the backend protocol, which is the port on which a backend ECS listens for traffic. The number of the port ranges from 1 to 65535.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) Specifies the weight, which determines the portion of requests a backend ECS processes compared to other backend ECSs added to the same listener. The value of this parameter ranges from 0 to 100. The default value is 1. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "scaling_group_name",
@@ -836,7 +848,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "eip",
-					Description: `(Optional) EIP address of the cluster. Changing this parameter will create a new cluster resource. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
+					Description: `(Optional) EIP address of the cluster. ## Attributes Reference All above argument parameters can be exported as attribute parameters along with attribute reference.`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4283,6 +4295,14 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `(Optional, Default:false) Specifies the shared EVS disk information. Changing this creates a new volume.`,
 				},
 				resource.Attribute{
+					Name:        "kms_id",
+					Description: `(Optional) The Encryption KMS ID to create the volume. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `(Optional) The device type of volume to create. Valid options are VBD and SCSI. Defaults to VBD. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
 					Name:        "cascade",
 					Description: `(Optional, Default:false) Specifies to delete all snapshots associated with the EVS disk. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -4327,8 +4347,20 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "kms_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "attachment",
-					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_evs_volume_v3.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it.`,
+				},
+				resource.Attribute{
+					Name:        "wwn",
+					Description: `Specifies the unique identifier used for mounting the EVS disk. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_evs_volume_v3.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4373,8 +4405,20 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "kms_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "device_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "attachment",
-					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_evs_volume_v3.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `If a volume is attached to an instance, this attribute will display the Attachment ID, Instance ID, and the Device as the Instance sees it.`,
+				},
+				resource.Attribute{
+					Name:        "wwn",
+					Description: `Specifies the unique identifier used for mounting the EVS disk. ## Import Volumes can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_evs_volume_v3.volume_1 14a80bc7-c12c-4fe0-a38a-cb77eeac9bd6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -6453,6 +6497,81 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_lb_whitelist_v2",
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages an Enhanced LB whitelist resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"enhanced",
+				"load",
+				"balancer",
+				"lb",
+				"whitelist",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the whitelist. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Required) The Listener ID that the whitelist will be associated with. Changing this creates a new whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `(Optional) Specify whether to enable access control.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `(Optional) Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple IP addresses. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
 					Description: `See Argument Reference above.`,
 				},
 			},
@@ -10193,6 +10312,778 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_vpnaas_endpoint_group_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 Endpoint Group resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"endpoint",
+				"group",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an endpoint group. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the group. Changing this updates the name of the existing group.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the group. Required if admin wants to create an endpoint group for another project. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the group. Changing this updates the description of the existing group.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the endpoints in the group. A valid value is subnet, cidr, network, router, or vlan. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `List of endpoints of the same type, for the endpoint group. The values will depend on the type. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_endpoint_group_v2.group_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "endpoints",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_endpoint_group_v2.group_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_vpnaas_ike_policy_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 IKE policy resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"ike",
+				"policy",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a VPN service. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new service.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the policy. Changing this updates the name of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the policy. Required if admin wants to create a service for another policy. Changing this creates a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the policy. Changing this updates the description of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `(Optional) The authentication hash algorithm. Valid values are md5, sha1, sha2-256, sha2-384, sha2-512. Default is sha1. Changing this updates the algorithm of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `(Optional) The encryption algorithm. Valid values are 3des, aes-128, aes-192 and so on. The default value is aes-128. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `(Optional) The perfect forward secrecy mode. Valid values are Group2, Group5 and Group14. Default is Group5. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "phase1_negotiation_mode",
+					Description: `(Optional) The IKE mode. A valid value is main, which is the default. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "ike_version",
+					Description: `(Optional) The IKE mode. A valid value is v1 or v2. Default is v1. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `(Optional) The lifetime of the security association. Consists of Unit and Value. - ` + "`" + `unit` + "`" + ` - (Optional) The units for the lifetime of the security association. Can be either seconds or kilobytes. Default is seconds. - ` + "`" + `value` + "`" + ` - (Optional) The value for the lifetime of the security association. Must be a positive integer. Default is 3600.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `See Argument Reference above. - ` + "`" + `unit` + "`" + ` - See Argument Reference above. - ` + "`" + `value` + "`" + ` - See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_ike_policy_v2.policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `See Argument Reference above. - ` + "`" + `unit` + "`" + ` - See Argument Reference above. - ` + "`" + `value` + "`" + ` - See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_ike_policy_v2.policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_vpnaas_ipsec_policy_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 IPSec policy resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"ipsec",
+				"policy",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an IPSec policy. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the policy. Changing this updates the name of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the policy. Required if admin wants to create a policy for another project. Changing this creates a new policy.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the policy. Changing this updates the description of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `(Optional) The authentication hash algorithm. Valid values are md5, sha1, sha2-256, sha2-384, sha2-512. Default is sha1. Changing this updates the algorithm of the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `(Optional) The encapsulation mode. Valid values are tunnel and transport. Default is tunnel. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `(Optional) The encryption algorithm. Valid values are 3des, aes-128, aes-192 and so on. The default value is aes-128. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `(Optional) The perfect forward secrecy mode. Valid values are Group2, Group5 and Group14. Default is Group5. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `(Optional) The transform protocol. Valid values are ESP, AH and AH-ESP. Changing this updates the existing policy. Default is ESP.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `(Optional) The lifetime of the security association. Consists of Unit and Value. - ` + "`" + `unit` + "`" + ` - (Optional) The units for the lifetime of the security association. Can be either seconds or kilobytes. Default is seconds. - ` + "`" + `value` + "`" + ` - (Optional) The value for the lifetime of the security association. Must be a positive integer. Default is 3600.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `See Argument Reference above. - ` + "`" + `unit` + "`" + ` - See Argument Reference above. - ` + "`" + `value` + "`" + ` - See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_ipsec_policy_v2.policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "auth_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encapsulation_mode",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_algorithm",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pfs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "transform_protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lifetime",
+					Description: `See Argument Reference above. - ` + "`" + `unit` + "`" + ` - See Argument Reference above. - ` + "`" + `value` + "`" + ` - See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_ipsec_policy_v2.policy_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_vpnaas_service_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 VPN service resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"service",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a VPN service. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new service.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the service. Changing this updates the name of the existing service.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the service. Required if admin wants to create a service for another project. Changing this creates a new service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the service. Changing this updates the description of the existing service.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the resource. Can either be up(true) or down(false). Changing this updates the administrative state of the existing service.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) SubnetID is the ID of the subnet. Default is null.`,
+				},
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `(Required) The ID of the router. Changing this creates a new service.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates whether IPsec VPN service is currently operational. Values are ACTIVE, DOWN, BUILD, ERROR, PENDING_CREATE, PENDING_UPDATE, or PENDING_DELETE.`,
+				},
+				resource.Attribute{
+					Name:        "external_v6_ip",
+					Description: `The read-only external (public) IPv6 address that is used for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "external_v4_ip",
+					Description: `The read-only external (public) IPv4 address that is used for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_service_v2.service_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "router_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Indicates whether IPsec VPN service is currently operational. Values are ACTIVE, DOWN, BUILD, ERROR, PENDING_CREATE, PENDING_UPDATE, or PENDING_DELETE.`,
+				},
+				resource.Attribute{
+					Name:        "external_v6_ip",
+					Description: `The read-only external (public) IPv6 address that is used for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "external_v4_ip",
+					Description: `The read-only external (public) IPv4 address that is used for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Services can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_service_v2.service_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_vpnaas_site_connection_v2",
+			Category:         "VPNaaS Resources",
+			ShortDescription: `Manages a V2 IPSec site connection resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"vpnaas",
+				"site",
+				"connection",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an IPSec site connection. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new site connection.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the connection. Changing this updates the name of the existing connection.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) The owner of the connection. Required if admin wants to create a connection for another project. Changing this creates a new connection.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The human-readable description for the connection. Changing this updates the description of the existing connection.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the resource. Can either be up(true) or down(false). Changing this updates the administrative state of the existing connection.`,
+				},
+				resource.Attribute{
+					Name:        "ikepolicy_id",
+					Description: `(Required) The ID of the IKE policy. Changing this creates a new connection.`,
+				},
+				resource.Attribute{
+					Name:        "vpnservice_id",
+					Description: `(Required) The ID of the VPN service. Changing this creates a new connection.`,
+				},
+				resource.Attribute{
+					Name:        "local_ep_group_id",
+					Description: `(Optional) The ID for the endpoint group that contains private subnets for the local side of the connection. You must specify this parameter with the peer_ep_group_id parameter unless in backward- compatible mode where peer_cidrs is provided with a subnet_id for the VPN service. Changing this updates the existing connection.`,
+				},
+				resource.Attribute{
+					Name:        "ipsecpolicy_id",
+					Description: `(Required) The ID of the IPsec policy. Changing this creates a new connection.`,
+				},
+				resource.Attribute{
+					Name:        "peer_id",
+					Description: `(Required) The peer router identity for authentication. A valid value is an IPv4 address, IPv6 address, e-mail address, key ID, or FQDN. Typically, this value matches the peer_address value. Changing this updates the existing policy.`,
+				},
+				resource.Attribute{
+					Name:        "peer_ep_group_id",
+					Description: `(Optional) The ID for the endpoint group that contains private CIDRs in the form < net_address > / < prefix > for the peer side of the connection. You must specify this parameter with the local_ep_group_id parameter unless in backward-compatible mode where peer_cidrs is provided with a subnet_id for the VPN service.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `(Optional) An ID to be used instead of the external IP address for a virtual router used in traffic between instances on different networks in east-west traffic. Most often, local ID would be domain name, email address, etc. If this is not configured then the external IP address will be used as the ID.`,
+				},
+				resource.Attribute{
+					Name:        "peer_address",
+					Description: `(Required) The peer gateway public IPv4 or IPv6 address or FQDN.`,
+				},
+				resource.Attribute{
+					Name:        "psk",
+					Description: `(Required) The pre-shared key. A valid value is any string.`,
+				},
+				resource.Attribute{
+					Name:        "initiator",
+					Description: `(Optional) A valid value is response-only or bi-directional. Default is bi-directional.`,
+				},
+				resource.Attribute{
+					Name:        "peer_cidrs",
+					Description: `(Optional) Unique list of valid peer private CIDRs in the form < net_address > / < prefix > .`,
+				},
+				resource.Attribute{
+					Name:        "dpd",
+					Description: `(Optional) A dictionary with dead peer detection (DPD) protocol controls. - ` + "`" + `action` + "`" + ` - (Optional) The dead peer detection (DPD) action. A valid value is clear, hold, restart, disabled, or restart-by-peer. Default value is hold. - ` + "`" + `timeout` + "`" + ` - (Optional) The dead peer detection (DPD) timeout in seconds. A valid value is a positive integer that is greater than the DPD interval value. Default is 120. - ` + "`" + `interval` + "`" + ` - (Optional) The dead peer detection (DPD) interval, in seconds. A valid value is a positive integer. Default is 30.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) The maximum transmission unit (MTU) value to address fragmentation. Minimum value is 68 for IPv4, and 1280 for IPv6.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dpd",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "psk",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "initiator",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_cidrs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_ep_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ipsecpolicy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpnservice_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ikepolicy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Site Connections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_site_connection_v2.conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dpd",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "psk",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "initiator",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_cidrs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "local_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "peer_ep_group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ipsecpolicy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vpnservice_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ikepolicy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value_specs",
+					Description: `See Argument Reference above. ## Import Site Connections can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_vpnaas_site_connection_v2.conn_1 832cb7f3-59fe-40cf-8f64-8350ffc03272 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_waf_ccattackprotection_rule_v1",
 			Category:         "WAF Resources",
 			ShortDescription: `Manages a V1 WAF CC Attack Protection Rule resource within OpenTelekomCloud.`,
@@ -10884,54 +11775,60 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		"opentelekomcloud_lb_member_v2":                       48,
 		"opentelekomcloud_lb_monitor_v2":                      49,
 		"opentelekomcloud_lb_pool_v2":                         50,
-		"opentelekomcloud_maas_task_v1":                       51,
-		"opentelekomcloud_mrs_cluster_v1":                     52,
-		"opentelekomcloud_mrs_job_v1":                         53,
-		"opentelekomcloud_nat_gateway_v2":                     54,
-		"opentelekomcloud_nat_snat_rule_v2":                   55,
-		"opentelekomcloud_networking_floatingip_associate_v2": 56,
-		"opentelekomcloud_networking_floatingip_v2":           57,
-		"opentelekomcloud_networking_network_v2":              58,
-		"opentelekomcloud_networking_port_v2":                 59,
-		"opentelekomcloud_networking_router_interface_v2":     60,
-		"opentelekomcloud_networking_router_route_v2":         61,
-		"opentelekomcloud_networking_router_v2":               62,
-		"opentelekomcloud_networking_secgroup_rule_v2":        63,
-		"opentelekomcloud_networking_secgroup_v2":             64,
-		"opentelekomcloud_networking_subnet_v2":               65,
-		"opentelekomcloud_networking_vip_associate_v2":        66,
-		"opentelekomcloud_networking_vip_v2":                  67,
-		"opentelekomcloud_rds_instance_v1":                    68,
-		"opentelekomcloud_rds_instance_v3":                    69,
-		"opentelekomcloud_rds_parametergroup_v3":              70,
-		"opentelekomcloud_rts_software_config_v1":             71,
-		"opentelekomcloud_rts_software_deployment_v1":         72,
-		"opentelekomcloud-resource-rts-stack-v1":              73,
-		"opentelekomcloud_s3_bucket":                          74,
-		"opentelekomcloud_s3-bucket-object":                   75,
-		"opentelekomcloud_s3_bucket_policy":                   76,
-		"opentelekomcloud_sdrs_protectiongroup_v1":            77,
-		"opentelekomcloud_sfs_file_system_v2":                 78,
-		"opentelekomcloud_smn_subscription_v2":                79,
-		"opentelekomcloud_smn_topic_v2":                       80,
-		"opentelekomcloud-vbs-backup-policy-v2":               81,
-		"opentelekomcloud-vbs-backup-share-v2":                82,
-		"opentelekomcloud-vbs-backup-v2":                      83,
-		"opentelekomcloud_vpc_eip_v1":                         84,
-		"opentelekomcloud_vpc_peering_connection_accepter_v2": 85,
-		"opentelekomcloud_vpc_peering_connection_v2":          86,
-		"opentelekomcloud_vpc_route_v2":                       87,
-		"opentelekomcloud_vpc_subnet_v1":                      88,
-		"opentelekomcloud_vpc_v1":                             89,
-		"opentelekomcloud_waf_ccattackprotection_rule_v1":     90,
-		"opentelekomcloud_waf_certificate_v1":                 91,
-		"opentelekomcloud_waf_datamasking_rule_v1":            92,
-		"opentelekomcloud_waf_domain_v1":                      93,
-		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      94,
-		"opentelekomcloud_waf_policy_v1":                      95,
-		"opentelekomcloud_waf_preciseprotection_rule_v1":      96,
-		"opentelekomcloud_waf_webtamperprotection_rule_v1":    97,
-		"opentelekomcloud_waf_whiteblackip_rule_v1":           98,
+		"opentelekomcloud_lb_whitelist_v2":                    51,
+		"opentelekomcloud_maas_task_v1":                       52,
+		"opentelekomcloud_mrs_cluster_v1":                     53,
+		"opentelekomcloud_mrs_job_v1":                         54,
+		"opentelekomcloud_nat_gateway_v2":                     55,
+		"opentelekomcloud_nat_snat_rule_v2":                   56,
+		"opentelekomcloud_networking_floatingip_associate_v2": 57,
+		"opentelekomcloud_networking_floatingip_v2":           58,
+		"opentelekomcloud_networking_network_v2":              59,
+		"opentelekomcloud_networking_port_v2":                 60,
+		"opentelekomcloud_networking_router_interface_v2":     61,
+		"opentelekomcloud_networking_router_route_v2":         62,
+		"opentelekomcloud_networking_router_v2":               63,
+		"opentelekomcloud_networking_secgroup_rule_v2":        64,
+		"opentelekomcloud_networking_secgroup_v2":             65,
+		"opentelekomcloud_networking_subnet_v2":               66,
+		"opentelekomcloud_networking_vip_associate_v2":        67,
+		"opentelekomcloud_networking_vip_v2":                  68,
+		"opentelekomcloud_rds_instance_v1":                    69,
+		"opentelekomcloud_rds_instance_v3":                    70,
+		"opentelekomcloud_rds_parametergroup_v3":              71,
+		"opentelekomcloud_rts_software_config_v1":             72,
+		"opentelekomcloud_rts_software_deployment_v1":         73,
+		"opentelekomcloud-resource-rts-stack-v1":              74,
+		"opentelekomcloud_s3_bucket":                          75,
+		"opentelekomcloud_s3-bucket-object":                   76,
+		"opentelekomcloud_s3_bucket_policy":                   77,
+		"opentelekomcloud_sdrs_protectiongroup_v1":            78,
+		"opentelekomcloud_sfs_file_system_v2":                 79,
+		"opentelekomcloud_smn_subscription_v2":                80,
+		"opentelekomcloud_smn_topic_v2":                       81,
+		"opentelekomcloud-vbs-backup-policy-v2":               82,
+		"opentelekomcloud-vbs-backup-share-v2":                83,
+		"opentelekomcloud-vbs-backup-v2":                      84,
+		"opentelekomcloud_vpc_eip_v1":                         85,
+		"opentelekomcloud_vpc_peering_connection_accepter_v2": 86,
+		"opentelekomcloud_vpc_peering_connection_v2":          87,
+		"opentelekomcloud_vpc_route_v2":                       88,
+		"opentelekomcloud_vpc_subnet_v1":                      89,
+		"opentelekomcloud_vpc_v1":                             90,
+		"opentelekomcloud_vpnaas_endpoint_group_v2":           91,
+		"opentelekomcloud_vpnaas_ike_policy_v2":               92,
+		"opentelekomcloud_vpnaas_ipsec_policy_v2":             93,
+		"opentelekomcloud_vpnaas_service_v2":                  94,
+		"opentelekomcloud_vpnaas_site_connection_v2":          95,
+		"opentelekomcloud_waf_ccattackprotection_rule_v1":     96,
+		"opentelekomcloud_waf_certificate_v1":                 97,
+		"opentelekomcloud_waf_datamasking_rule_v1":            98,
+		"opentelekomcloud_waf_domain_v1":                      99,
+		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      100,
+		"opentelekomcloud_waf_policy_v1":                      101,
+		"opentelekomcloud_waf_preciseprotection_rule_v1":      102,
+		"opentelekomcloud_waf_webtamperprotection_rule_v1":    103,
+		"opentelekomcloud_waf_whiteblackip_rule_v1":           104,
 	}
 )
 

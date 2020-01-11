@@ -67,7 +67,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "web_url",
-					Description: `Web URL of the group. [doc]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
+					Description: `Web URL of the group.`,
+				},
+				resource.Attribute{
+					Name:        "runners_token",
+					Description: `The group level registration token to use during runner setup. [doc]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -113,7 +117,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "web_url",
-					Description: `Web URL of the group. [doc]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
+					Description: `Web URL of the group.`,
+				},
+				resource.Attribute{
+					Name:        "runners_token",
+					Description: `The group level registration token to use during runner setup. [doc]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
 				},
 			},
 		},
@@ -146,6 +154,10 @@ var (
 					Description: `The default branch for the project.`,
 				},
 				resource.Attribute{
+					Name:        "request_access_enabled",
+					Description: `Allow users to request member access.`,
+				},
+				resource.Attribute{
 					Name:        "issues_enabled",
 					Description: `Enable issue tracking for the project.`,
 				},
@@ -154,12 +166,20 @@ var (
 					Description: `Enable merge requests for the project.`,
 				},
 				resource.Attribute{
+					Name:        "pipelines_enabled",
+					Description: `Enable pipelines for the project.`,
+				},
+				resource.Attribute{
 					Name:        "wiki_enabled",
 					Description: `Enable wiki for the project.`,
 				},
 				resource.Attribute{
 					Name:        "snippets_enabled",
 					Description: `Enable snippets for the project.`,
+				},
+				resource.Attribute{
+					Name:        "lfs_enabled",
+					Description: `Enable LFS for the project.`,
 				},
 				resource.Attribute{
 					Name:        "visibility_level",
@@ -208,6 +228,10 @@ var (
 					Description: `The default branch for the project.`,
 				},
 				resource.Attribute{
+					Name:        "request_access_enabled",
+					Description: `Allow users to request member access.`,
+				},
+				resource.Attribute{
 					Name:        "issues_enabled",
 					Description: `Enable issue tracking for the project.`,
 				},
@@ -216,12 +240,20 @@ var (
 					Description: `Enable merge requests for the project.`,
 				},
 				resource.Attribute{
+					Name:        "pipelines_enabled",
+					Description: `Enable pipelines for the project.`,
+				},
+				resource.Attribute{
 					Name:        "wiki_enabled",
 					Description: `Enable wiki for the project.`,
 				},
 				resource.Attribute{
 					Name:        "snippets_enabled",
 					Description: `Enable snippets for the project.`,
+				},
+				resource.Attribute{
+					Name:        "lfs_enabled",
+					Description: `Enable LFS for the project.`,
 				},
 				resource.Attribute{
 					Name:        "visibility_level",

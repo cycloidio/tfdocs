@@ -262,6 +262,10 @@ var (
 					Description: `(Optional) When true, use the existing schema if it exists. (Default: true)`,
 				},
 				resource.Attribute{
+					Name:        "drop_cascade",
+					Description: `(Optional) When true, will also drop all the objects that are contained in the schema. (Default: false)`,
+				},
+				resource.Attribute{
 					Name:        "policy",
 					Description: `(Optional) Can be specified multiple times for each policy. Each policy block supports fields documented below. The ` + "`" + `policy` + "`" + ` block supports:`,
 				},

@@ -14,7 +14,11 @@ var (
 			Type:             "newrelic_alert_channel",
 			Category:         "Resources",
 			ShortDescription: `Create and manage a notification channel for alerts in New Relic.`,
-			Description:      ``,
+			Description: `\_alert\_channel
+
+Use this resource to create and manage New Relic alert policies.
+
+`,
 			Keywords: []string{
 				"alert",
 				"channel",
@@ -26,21 +30,109 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of channel. One of: ` + "`" + `campfire` + "`" + `, ` + "`" + `email` + "`" + `, ` + "`" + `hipchat` + "`" + `, ` + "`" + `opsgenie` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `victorops` + "`" + `, or ` + "`" + `webhook` + "`" + `.`,
+					Description: `(Required) The type of channel. One of: ` + "`" + `email` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `opsgenie` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `victorops` + "`" + `, or ` + "`" + `webhook` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "configuration",
-					Description: `(Required) A map of key / value pairs with channel type specific values. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) A map of key / value pairs with channel type specific values. See [channel configurations](#channel-configurations) for specific configurations for the different channel types. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the channel. ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_channel.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the channel. ## Channel Configurations Each supported channel supports a particular set of configuration arguments.`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Required) Comma delimited list of email addresses.`,
+				},
+				resource.Attribute{
+					Name:        "include_json_attachment",
+					Description: `(Optional) ` + "`" + `0` + "`" + ` or ` + "`" + `1` + "`" + `. Flag for whether or not to attach a JSON document containing information about the associated alert to the email that is sent to recipients. Default: ` + "`" + `0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Your organization's Slack URL.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `(Required) The Slack channel for which to send notifications.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `(Required) Your OpsGenie API key.`,
+				},
+				resource.Attribute{
+					Name:        "teams",
+					Description: `(Optional) Comma delimited list of teams.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Comma delimited list of tags.`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Optional) Comma delimited list of email addresses.`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `(Required) Your PagerDuty service key.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Your VictorOps key.`,
+				},
+				resource.Attribute{
+					Name:        "route_key",
+					Description: `(Required) The route for which to send notifications. ## Additional Examples ##### Slack ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "slack-example" type = "slack" configuration = { url = "https://<YourOrganization>.slack.com" channel = "example-alerts-channel" } } ` + "`" + `` + "`" + `` + "`" + ` ##### OpsGenie ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "opsgenie-example" type = "opsgenie" configuration = { api_key = "abc123" teams = "team1, team2" tags = "tag1, tag2" recipients = "user1@domain.com, user2@domain.com" } } ` + "`" + `` + "`" + `` + "`" + ` ##### PagerDuty ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "pagerduty-example" type = "pagerduty" configuration = { service_key = "abc123" } } ` + "`" + `` + "`" + `` + "`" + ` ##### VictorOps ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "victorops-example" type = "victorops" configuration = { key = "abc123" route_key = "/example" } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import newrelic_alert_channel.main <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the channel. ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_channel.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the channel. ## Channel Configurations Each supported channel supports a particular set of configuration arguments.`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Required) Comma delimited list of email addresses.`,
+				},
+				resource.Attribute{
+					Name:        "include_json_attachment",
+					Description: `(Optional) ` + "`" + `0` + "`" + ` or ` + "`" + `1` + "`" + `. Flag for whether or not to attach a JSON document containing information about the associated alert to the email that is sent to recipients. Default: ` + "`" + `0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) Your organization's Slack URL.`,
+				},
+				resource.Attribute{
+					Name:        "channel",
+					Description: `(Required) The Slack channel for which to send notifications.`,
+				},
+				resource.Attribute{
+					Name:        "api_key",
+					Description: `(Required) Your OpsGenie API key.`,
+				},
+				resource.Attribute{
+					Name:        "teams",
+					Description: `(Optional) Comma delimited list of teams.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Comma delimited list of tags.`,
+				},
+				resource.Attribute{
+					Name:        "recipients",
+					Description: `(Optional) Comma delimited list of email addresses.`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `(Required) Your PagerDuty service key.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Your VictorOps key.`,
+				},
+				resource.Attribute{
+					Name:        "route_key",
+					Description: `(Required) The route for which to send notifications. ## Additional Examples ##### Slack ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "slack-example" type = "slack" configuration = { url = "https://<YourOrganization>.slack.com" channel = "example-alerts-channel" } } ` + "`" + `` + "`" + `` + "`" + ` ##### OpsGenie ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "opsgenie-example" type = "opsgenie" configuration = { api_key = "abc123" teams = "team1, team2" tags = "tag1, tag2" recipients = "user1@domain.com, user2@domain.com" } } ` + "`" + `` + "`" + `` + "`" + ` ##### PagerDuty ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "pagerduty-example" type = "pagerduty" configuration = { service_key = "abc123" } } ` + "`" + `` + "`" + `` + "`" + ` ##### VictorOps ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "victorops-example" type = "victorops" configuration = { key = "abc123" route_key = "/example" } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import newrelic_alert_channel.main <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -48,8 +140,12 @@ var (
 			Name:             "",
 			Type:             "newrelic_alert_condition",
 			Category:         "Resources",
-			ShortDescription: `Create and manage an alert condition for a policy in New Relic.`,
-			Description:      ``,
+			ShortDescription: `Create and manage alert conditions for APM, Browser, and Mobile in New Relic.`,
+			Description: `\_alert\_condition
+
+Use this resource to create and manage alert conditions for APM, Browser, and Mobile in New Relic.
+
+`,
 			Keywords: []string{
 				"alert",
 				"condition",
@@ -121,7 +217,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "time_function",
-					Description: `(Required) ` + "`" + `all` + "`" + ` or ` + "`" + `any` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) ` + "`" + `all` + "`" + ` or ` + "`" + `any` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -140,7 +236,11 @@ var (
 			Type:             "newrelic_alert_policy",
 			Category:         "Resources",
 			ShortDescription: `Create and manage alert policies in New Relic.`,
-			Description:      ``,
+			Description: `\_alert\_policy
+
+Use this resource to create and manage New Relic alert policies.
+
+`,
 			Keywords: []string{
 				"alert",
 				"policy",
@@ -152,7 +252,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "incident_preference",
-					Description: `(Optional) The rollup strategy for the policy. Options include: ` + "`" + `PER_POLICY` + "`" + `, ` + "`" + `PER_CONDITION` + "`" + `, or ` + "`" + `PER_CONDITION_AND_TARGET` + "`" + `. The default is ` + "`" + `PER_POLICY` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The rollup strategy for the policy. Options include: ` + "`" + `PER_POLICY` + "`" + `, ` + "`" + `PER_CONDITION` + "`" + `, or ` + "`" + `PER_CONDITION_AND_TARGET` + "`" + `. The default is ` + "`" + `PER_POLICY` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -187,7 +287,11 @@ var (
 			Type:             "newrelic_alert_policy_channel",
 			Category:         "Resources",
 			ShortDescription: `Map alert policies to alert channels in New Relic.`,
-			Description:      ``,
+			Description: `\_alert\_policy\_channel
+
+Use this resource to map alert policies to alert channels in New Relic.
+
+`,
 			Keywords: []string{
 				"alert",
 				"policy",
@@ -210,7 +314,11 @@ var (
 			Type:             "newrelic_dashboard",
 			Category:         "Resources",
 			ShortDescription: `Create and manage dashboards in New Relic.`,
-			Description:      ``,
+			Description: `\_dashboard
+
+Use this resource to create and manage New Relic dashboards.
+
+`,
 			Keywords: []string{
 				"dashboard",
 			},
@@ -237,7 +345,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Optional) A nested block that describes a dashboard filter. Exactly one nested ` + "`" + `filter` + "`" + ` block is allowed. See [Nested filter block](#nested-` + "`" + `filter` + "`" + `-block) below for details. ### Nested ` + "`" + `widget` + "`" + ` blocks All nested ` + "`" + `widget` + "`" + ` blocks support the following common arguments:`,
+					Description: `(Optional) A nested block that describes a dashboard filter. Exactly one nested ` + "`" + `filter` + "`" + ` block is allowed. See [Nested filter block](#nested-` + "`" + `filter` + "`" + `-block) below for details. ## Attribute Refence In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_url",
+					Description: `The URL for viewing the dashboard. ### Nested ` + "`" + `widget` + "`" + ` blocks All nested ` + "`" + `widget` + "`" + ` blocks support the following common arguments:`,
 				},
 				resource.Attribute{
 					Name:        "title",
@@ -355,7 +467,11 @@ var (
 			Type:             "newrelic_infra_alert_condition",
 			Category:         "Resources",
 			ShortDescription: `Create and manage an Infrastructure alert condition for a policy in New Relic.`,
-			Description:      ``,
+			Description: `\_infra_alert\_condition
+
+Use this resource to create and manage Infrastructure alert conditions in New Relic.
+
+`,
 			Keywords: []string{
 				"infra",
 				"alert",
@@ -371,48 +487,52 @@ var (
 					Description: `(Required) The Infrastructure alert condition's name.`,
 				},
 				resource.Attribute{
-					Name:        "enabled",
-					Description: `(Optional) Set whether to enable the alert condition. Defaults to ` + "`" + `true` + "`" + `.`,
-				},
-				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of Infrastructure alert condition: "infra_process_running", "infra_metric", or "infra_host_not_reporting".`,
+					Description: `(Required) The type of Infrastructure alert condition. Valid values are ` + "`" + `infra_process_running` + "`" + `, ` + "`" + `infra_metric` + "`" + `, and ` + "`" + `infra_host_not_reporting` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "event",
-					Description: `(Required) The metric event; for example, system metrics, process metrics, storage metrics, or network metrics.`,
+					Description: `(Required) The metric event; for example, ` + "`" + `SystemSample` + "`" + ` or ` + "`" + `StorageSample` + "`" + `. Supported by the ` + "`" + `infra_metric` + "`" + ` condition type.`,
 				},
 				resource.Attribute{
 					Name:        "select",
-					Description: `(Required) The attribute name to identify the type of metric condition; for example, "network", "process", "system", or "storage".`,
+					Description: `(Required) The attribute name to identify the metric being targeted; for example, ` + "`" + `cpuPercent` + "`" + `, ` + "`" + `diskFreePercent` + "`" + `, or ` + "`" + `memoryResidentSizeBytes` + "`" + `. The underlying API will automatically populate this value for Infrastructure integrations (for example ` + "`" + `diskFreePercent` + "`" + `), so make sure to explicitly include this value to avoid diff issues. Supported by the ` + "`" + `infra_metric` + "`" + ` condition type.`,
 				},
 				resource.Attribute{
 					Name:        "comparison",
-					Description: `(Required) The operator used to evaluate the threshold value; "above", "below", "equal".`,
+					Description: `(Required) The operator used to evaluate the threshold value. Valid values are ` + "`" + `above` + "`" + `, ` + "`" + `below` + "`" + `, and ` + "`" + `equal` + "`" + `. Supported by the ` + "`" + `infra_metric` + "`" + ` and ` + "`" + `infra_process_running` + "`" + ` condition types.`,
 				},
 				resource.Attribute{
 					Name:        "critical",
-					Description: `(Required) Identifies the critical threshold parameters for triggering an alert notification. See [Thresholds](#thresholds) below for details.`,
+					Description: `(Required) Identifies the threshold parameters for opening a critial alert violation. See [Thresholds](#thresholds) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "warning",
-					Description: `(Optional) Identifies the warning threshold parameters. See [Thresholds](#thresholds) below for details.`,
+					Description: `(Optional) Identifies the threshold parameters for opening a warning alert violation. See [Thresholds](#thresholds) below for details.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Whether the condition is turned on or off. Valid values are ` + "`" + `true` + "`" + ` and ` + "`" + `false` + "`" + `. Defaults to ` + "`" + `true` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "where",
-					Description: `(Optional) Infrastructure host filter for the alert condition.`,
+					Description: `(Optional) If applicable, this identifies any Infrastructure host filters used; for example: ` + "`" + `hostname LIKE '%cassandra%'` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "process_where",
-					Description: `(Optional) Any filters applied to processes; for example: ` + "`" + `"commandName = 'java'"` + "`" + `.`,
+					Description: `(Optional) Any filters applied to processes; for example: ` + "`" + `commandName = 'java'` + "`" + `. Supported by the ` + "`" + `infra_process_running` + "`" + ` condition type.`,
 				},
 				resource.Attribute{
 					Name:        "integration_provider",
-					Description: `(Optional) For alerts on integrations, use this instead of ` + "`" + `event` + "`" + `.`,
+					Description: `(Optional) For alerts on integrations, use this instead of ` + "`" + `event` + "`" + `. Supported by the ` + "`" + `infra_metric` + "`" + ` condition type.`,
 				},
 				resource.Attribute{
 					Name:        "runbook_url",
-					Description: `(Optional) Runbook URL to display in notifications. ## Thresholds The ` + "`" + `critical` + "`" + ` and ` + "`" + `warning` + "`" + ` threshold mapping supports the following arguments:`,
+					Description: `(Optional) Runbook URL to display in notifications. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Infrastructure alert condition. ## Thresholds The ` + "`" + `critical` + "`" + ` and ` + "`" + `warning` + "`" + ` threshold mapping supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "duration",
@@ -420,30 +540,88 @@ var (
 				},
 				resource.Attribute{
 					Name:        "value",
-					Description: `(Optional) Threshold value, computed against the ` + "`" + `comparison` + "`" + ` operator. Supported by "infra_metric" and "infra_process_running" alert condition types.`,
+					Description: `(Optional) Threshold value, computed against the ` + "`" + `comparison` + "`" + ` operator. Supported by ` + "`" + `infra_metric` + "`" + ` and ` + "`" + `infra_process_running` + "`" + ` alert condition types.`,
 				},
 				resource.Attribute{
 					Name:        "time_function",
-					Description: `(Optional) Indicates if the condition needs to be sustained or to just break the threshold once; ` + "`" + `all` + "`" + ` or ` + "`" + `any` + "`" + `. Supported by the "infra_metric" alert condition type. ## Attributes Reference The following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the Infrastructure alert condition.`,
+					Description: `(Optional) Indicates if the condition needs to be sustained or to just break the threshold once; ` + "`" + `all` + "`" + ` or ` + "`" + `any` + "`" + `. Supported by the ` + "`" + `infra_metric` + "`" + ` alert condition type.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Infrastructure alert condition.`,
+					Description: `The ID of the Infrastructure alert condition. ## Thresholds The ` + "`" + `critical` + "`" + ` and ` + "`" + `warning` + "`" + ` threshold mapping supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Identifies the number of minutes the threshold must be passed or met for the alert to trigger. Threshold durations must be between 1 and 60 minutes (inclusive).`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) Threshold value, computed against the ` + "`" + `comparison` + "`" + ` operator. Supported by ` + "`" + `infra_metric` + "`" + ` and ` + "`" + `infra_process_running` + "`" + ` alert condition types.`,
+				},
+				resource.Attribute{
+					Name:        "time_function",
+					Description: `(Optional) Indicates if the condition needs to be sustained or to just break the threshold once; ` + "`" + `all` + "`" + ` or ` + "`" + `any` + "`" + `. Supported by the ` + "`" + `infra_metric` + "`" + ` alert condition type.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "newrelic_insights_event",
+			Category:         "Resources",
+			ShortDescription: `Create one or more Insights events.`,
+			Description: `\_insights\_event
+
+Use this resource to create one or more Insights events during a terraform run.
+
+`,
+			Keywords: []string{
+				"insights",
+				"event",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "event",
+					Description: `(Required) An event to insert into Insights. Multiple event blocks can be defined. See [Events](#events) below for details. ## Events The ` + "`" + `event` + "`" + ` mapping supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The event's name. Can be a combination of alphanumeric characters, underscores, and colons.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `(Optional) Must be a Unix epoch timestamp. You can define timestamps either in seconds or in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "attribute",
+					Description: `(Required) An attribute to include in your event payload. Multiple attribute blocks can be defined for an event. See [Attributes](#attributes) below for details. ### Attributes The ` + "`" + `attribute` + "`" + ` mapping supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The name of the attribute.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the attribute.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) Specify the type for the attribute value. This is useful when passing integer or float values to Insights. Allowed values are ` + "`" + `string` + "`" + `, ` + "`" + `int` + "`" + `, or ` + "`" + `float` + "`" + `. Defaults to ` + "`" + `string` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "newrelic_nrql_alert_condition",
 			Category:         "Resources",
 			ShortDescription: `Create and manage a NRQL alert condition for a policy in New Relic.`,
-			Description:      ``,
+			Description: `
+
+Use this resource to create and manage NRQL alert conditions in New Relic.
+
+`,
 			Keywords: []string{
 				"nrql",
 				"alert",
@@ -454,10 +632,90 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "newrelic_plugins_alert_condition",
+			Category:         "Resources",
+			ShortDescription: `Create and manage a Plugins alert condition for a policy in New Relic.`,
+			Description: `\_plugins\_alert\_condition
+
+Use this resource to create and manage plugins alert conditions in New Relic.
+
+`,
+			Keywords: []string{
+				"plugins",
+				"alert",
+				"condition",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Required) The ID of the policy where this condition should be used.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The title of the condition. Must be between 1 and 64 characters, inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Required) The metric field accepts parameters based on the ` + "`" + `type` + "`" + ` set.`,
+				},
+				resource.Attribute{
+					Name:        "plugin_id",
+					Description: `(Required) The ID of the installed plugin instance which produces the metric.`,
+				},
+				resource.Attribute{
+					Name:        "plugin_guid",
+					Description: `(Required) The GUID of the plugin which produces the metric.`,
+				},
+				resource.Attribute{
+					Name:        "runbook_url",
+					Description: `(Optional) Runbook URL to display in notifications.`,
+				},
+				resource.Attribute{
+					Name:        "term",
+					Description: `(Required) A list of terms for this condition. See [Terms](#terms) below for details. ## Terms The ` + "`" + `term` + "`" + ` mapping supports the following arguments:`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) In minutes, must be in the range of ` + "`" + `5` + "`" + ` to ` + "`" + `120` + "`" + `, inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Optional) ` + "`" + `above` + "`" + `, ` + "`" + `below` + "`" + `, or ` + "`" + `equal` + "`" + `. Defaults to ` + "`" + `equal` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) ` + "`" + `critical` + "`" + ` or ` + "`" + `warning` + "`" + `. Defaults to ` + "`" + `critical` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `(Required) Must be 0 or greater.`,
+				},
+				resource.Attribute{
+					Name:        "time_function",
+					Description: `(Required) ` + "`" + `all` + "`" + ` or ` + "`" + `any` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_plugins_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_plugins_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "newrelic_synthetics_alert_condition",
 			Category:         "Resources",
 			ShortDescription: `Create and manage a Synthetics alert condition for a policy in New Relic.`,
-			Description:      ``,
+			Description: `\_synthetics\_alert\_condition
+
+Use this resource to create and manage synthetics alert conditions in New Relic.
+
+`,
 			Keywords: []string{
 				"synthetics",
 				"alert",
@@ -482,7 +740,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enabled",
-					Description: `(Optional) Set whether to enable the alert condition. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Set whether to enable the alert condition. Defaults to ` + "`" + `true` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -513,7 +771,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The monitor type (i.e. SIMPLE, BROWSER, SCRIPT_API, SCRIPT_BROWSER).`,
+					Description: `(Required) The monitor type. Valid values are ` + "`" + `SIMPLE` + "`" + `, ` + "`" + `BROWSER` + "`" + `, ` + "`" + `SCRIPT_BROWSER` + "`" + `, and ` + "`" + `SCRIPT_API` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "frequency",
@@ -521,7 +779,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `(Required) The monitor status (i.e. ENABLED, MUTED, DISABLED)`,
+					Description: `(Required) The monitor status (i.e. ` + "`" + `ENABLED` + "`" + `, ` + "`" + `MUTED` + "`" + `, ` + "`" + `DISABLED` + "`" + `)`,
 				},
 				resource.Attribute{
 					Name:        "locations",
@@ -529,7 +787,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sla_threshold",
-					Description: `(Optional) The base threshold for the SLA report. For SIMPLE and BROWSER monitor types, the following arguments are also supported:`,
+					Description: `(Optional) The base threshold for the SLA report. The ` + "`" + `SIMPLE` + "`" + ` monitor type supports the following additional arguments:`,
 				},
 				resource.Attribute{
 					Name:        "uri",
@@ -549,17 +807,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "treat_redirect_as_failure",
-					Description: `(Optional) Fail the monitor check if redirected. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Fail the monitor check if redirected. The ` + "`" + `BROWSER` + "`" + ` monitor type supports the following additional arguments:`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required) The URI for the monitor to hit.`,
+				},
+				resource.Attribute{
+					Name:        "validation_string",
+					Description: `(Optional) The string to validate against in the response.`,
+				},
+				resource.Attribute{
+					Name:        "verify_ssl",
+					Description: `(Optional) Verify SSL. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Synthetics monitor.`,
+					Description: `The ID of the Synthetics monitor. ## Additional Examples Type: ` + "`" + `BROWSER` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_synthetics_monitor" "foo" { name = "foo" type = "BROWSER" frequency = 5 status = "ENABLED" locations = ["AWS_US_EAST_1"] uri = "https://example.com" # required for type "SIMPLE" and "BROWSER" validation_string = "add example validation check here" # optional for type "SIMPLE" and "BROWSER" verify_ssl = true # optional for type "SIMPLE" and "BROWSER" bypass_head_request = true # Note: optional for type "BROWSER" only treat_redirect_as_failure = true # Note: optional for type "BROWSER" only } ` + "`" + `` + "`" + `` + "`" + ` Type: ` + "`" + `SCRIPT_BROWSER` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_synthetics_monitor" "foo" { name = "foo" type = "SCRIPT_BROWSER" frequency = 5 status = "ENABLED" locations = ["AWS_US_EAST_1"] } ` + "`" + `` + "`" + `` + "`" + ` Type: ` + "`" + `SCRIPT_API` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_synthetics_monitor" "foo" { name = "foo" type = "SCRIPT_API" frequency = 5 status = "ENABLED" locations = ["AWS_US_EAST_1"] } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Synthetics monitor.`,
+					Description: `The ID of the Synthetics monitor. ## Additional Examples Type: ` + "`" + `BROWSER` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_synthetics_monitor" "foo" { name = "foo" type = "BROWSER" frequency = 5 status = "ENABLED" locations = ["AWS_US_EAST_1"] uri = "https://example.com" # required for type "SIMPLE" and "BROWSER" validation_string = "add example validation check here" # optional for type "SIMPLE" and "BROWSER" verify_ssl = true # optional for type "SIMPLE" and "BROWSER" bypass_head_request = true # Note: optional for type "BROWSER" only treat_redirect_as_failure = true # Note: optional for type "BROWSER" only } ` + "`" + `` + "`" + `` + "`" + ` Type: ` + "`" + `SCRIPT_BROWSER` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_synthetics_monitor" "foo" { name = "foo" type = "SCRIPT_BROWSER" frequency = 5 status = "ENABLED" locations = ["AWS_US_EAST_1"] } ` + "`" + `` + "`" + `` + "`" + ` Type: ` + "`" + `SCRIPT_API` + "`" + ` ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_synthetics_monitor" "foo" { name = "foo" type = "SCRIPT_API" frequency = 5 status = "ENABLED" locations = ["AWS_US_EAST_1"] } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -568,7 +838,11 @@ var (
 			Type:             "newrelic_synthetics_monitor_script",
 			Category:         "Resources",
 			ShortDescription: `Update and manage a Synthetics monitor script in New Relic.`,
-			Description:      ``,
+			Description: `\_synthetics\_monitor\_script
+
+Use this resource to update a synthetics monitor script in New Relic.
+
+`,
 			Keywords: []string{
 				"synthetics",
 				"monitor",
@@ -581,7 +855,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "text",
-					Description: `(Required) plaintext of the monitor script. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) plaintext of the monitor script. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -605,10 +879,12 @@ var (
 		"newrelic_alert_policy_channel":       3,
 		"newrelic_dashboard":                  4,
 		"newrelic_infra_alert_condition":      5,
-		"newrelic_nrql_alert_condition":       6,
-		"newrelic_synthetics_alert_condition": 7,
-		"newrelic_synthetics_monitor":         8,
-		"newrelic_synthetics_monitor_script":  9,
+		"newrelic_insights_event":             6,
+		"newrelic_nrql_alert_condition":       7,
+		"newrelic_plugins_alert_condition":    8,
+		"newrelic_synthetics_alert_condition": 9,
+		"newrelic_synthetics_monitor":         10,
+		"newrelic_synthetics_monitor_script":  11,
 	}
 )
 

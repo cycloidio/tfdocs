@@ -1249,6 +1249,75 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vsphere_host",
+			Category:         "Host and Cluster Management Resources",
+			ShortDescription: `Provides a VMware vSphere host resource. This represents an ESXi host that can be used either as part of a Compute Cluster or Standalone.`,
+			Description:      ``,
+			Keywords: []string{
+				"host",
+				"and",
+				"cluster",
+				"management",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `(Required) FQDN or IP address of the host to be added.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Required) Username that will be used by vSphere to authenticate to the host.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) Password that will be used by vSphere to authenticate to the host.`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `(Optional) The ID of the datacenter this host should be added to. This should not be set if ` + "`" + `cluster` + "`" + ` is set.`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `(Optional) The ID of the Compute Cluster this host should be added to. This should not be set if ` + "`" + `datacenter` + "`" + ` is set.`,
+				},
+				resource.Attribute{
+					Name:        "thumbprint",
+					Description: `(Optional) Host's certificate SHA-1 thumbprint. If not set the the CA that signed the host's certificate should be trusted. If the CA is not trusted and no thumbprint is set then the operation will fail.`,
+				},
+				resource.Attribute{
+					Name:        "license",
+					Description: `(Optional) The license key that will be applied to the host. The license key is expected to be present in vSphere.`,
+				},
+				resource.Attribute{
+					Name:        "force",
+					Description: `(Optional) If set to true then it will force the host to be added, even if the host is already connected to a different vSphere instance. Default is ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "connected",
+					Description: `(Optional) If set to false then the host will be disconected. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance",
+					Description: `(Optional) Set the management state of the host. Default is ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "lockdown",
+					Description: `(Optional) Set the lockdown state of the host. Valid options are ` + "`" + `disabled` + "`" + `, ` + "`" + `normal` + "`" + `, and ` + "`" + `strict` + "`" + `. Default is ` + "`" + `disabled` + "`" + `. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the host. ## Importing An existing host can be [imported][docs-import] into this resource via supplying the host's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host.vm host-123 ` + "`" + `` + "`" + `` + "`" + ` The above would import the host with ID ` + "`" + `host-123` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the host. ## Importing An existing host can be [imported][docs-import] into this resource via supplying the host's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_host.vm host-123 ` + "`" + `` + "`" + `` + "`" + ` The above would import the host with ID ` + "`" + `host-123` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vsphere_host_port_group",
 			Category:         "Networking Resources",
 			ShortDescription: `Provides a vSphere Host Port Group Resource. This can be used to configure port groups direct on an ESXi host.`,
@@ -2158,7 +2227,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ignored_guest_ips",
-					Description: `(Optional) List of IP addresses to ignore while waiting for an available IP address using either of the waiters. Any IP addresses in this list will be ignored if they show up so that the waiter will continue to wait for a real IP address. Default: [].`,
+					Description: `(Optional) List of IP addresses and CIDR networks to ignore while waiting for an available IP address using either of the waiters. Any IP addresses in this list will be ignored if they show up so that the waiter will continue to wait for a real IP address. Default: [].`,
 				},
 				resource.Attribute{
 					Name:        "shutdown_wait_timeout",
@@ -2655,6 +2724,96 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vsphere_vnic",
+			Category:         "Host and Cluster Management Resources",
+			ShortDescription: `Provides a VMware vSphere vnic resource..`,
+			Description:      ``,
+			Keywords: []string{
+				"host",
+				"and",
+				"cluster",
+				"management",
+				"vnic",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "portgroup",
+					Description: `(Optional) Portgroup to attach the nic to. Do not set if you set distributed_switch_port.`,
+				},
+				resource.Attribute{
+					Name:        "distributed_switch_port",
+					Description: `(Optional) UUID of the DVSwitch the nic will be attached to. Do not set if you set portgroup.`,
+				},
+				resource.Attribute{
+					Name:        "distributed_port_group",
+					Description: `(Optional) Key of the distributed portgroup the nic will connect to.`,
+				},
+				resource.Attribute{
+					Name:        "ipv4",
+					Description: `(Optional) IPv4 settings. Either this or ` + "`" + `ipv6` + "`" + ` needs to be set. See [ipv4 options](#ipv4-options) below.`,
+				},
+				resource.Attribute{
+					Name:        "ipv6",
+					Description: `(Optional) IPv6 settings. Either this or ` + "`" + `ipv6` + "`" + ` needs to be set. See [ipv6 options](#ipv6-options) below.`,
+				},
+				resource.Attribute{
+					Name:        "mac",
+					Description: `(Optional) MAC address of the interface.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) MTU of the interface.`,
+				},
+				resource.Attribute{
+					Name:        "netstack",
+					Description: `(Optional) TCP/IP stack setting for this interface. Possible values are 'defaultTcpipStack', 'vmotion', 'vSphereProvisioning'. Changing this will force the creation of a new interface since it's not possible to change the stack once it gets created. (Default: ` + "`" + `defaultTcpipStack` + "`" + `) ### ipv4 options Configures the IPv4 settings of the network interface. Either DHCP or Static IP has to be set.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Use DHCP to configure the interface's IPv4 stack.`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `Address of the interface, if DHCP is not set.`,
+				},
+				resource.Attribute{
+					Name:        "netmask",
+					Description: `Netmask of the interface, if DHCP is not set.`,
+				},
+				resource.Attribute{
+					Name:        "gw",
+					Description: `IP address of the default gateway, if DHCP is not set. ### ipv6 options Configures the IPv6 settings of the network interface. Either DHCP or Autoconfig or Static IP has to be set.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp",
+					Description: `Use DHCP to configure the interface's IPv4 stack.`,
+				},
+				resource.Attribute{
+					Name:        "autoconfig",
+					Description: `Use IPv6 Autoconfiguration (RFC2462).`,
+				},
+				resource.Attribute{
+					Name:        "addresses",
+					Description: `List of IPv6 addresses`,
+				},
+				resource.Attribute{
+					Name:        "gw",
+					Description: `IP address of the default gateway, if DHCP or autoconfig is not set. ## Attribute Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the vNic. ## Importing An existing vNic can be [imported][docs-import] into this resource via supplying the vNic's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vnic.v1 host-123_vmk2 ` + "`" + `` + "`" + `` + "`" + ` The above would import the the vnic ` + "`" + `vmk2` + "`" + ` from host with ID ` + "`" + `host-123` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the vNic. ## Importing An existing vNic can be [imported][docs-import] into this resource via supplying the vNic's ID. An example is below: [docs-import]: /docs/import/index.html ` + "`" + `` + "`" + `` + "`" + ` terraform import vsphere_vnic.v1 host-123_vmk2 ` + "`" + `` + "`" + `` + "`" + ` The above would import the the vnic ` + "`" + `vmk2` + "`" + ` from host with ID ` + "`" + `host-123` + "`" + `.`,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -2677,20 +2836,22 @@ var (
 		"vsphere_file":                                    15,
 		"vsphere_folder":                                  16,
 		"vsphere_ha_vm_override":                          17,
-		"vsphere_host_port_group":                         18,
-		"vsphere_host_virtual_switch":                     19,
-		"vsphere_license":                                 20,
-		"vsphere_nas_datastore":                           21,
-		"vsphere_resource_pool":                           22,
-		"vsphere_storage_drs_vm_override":                 23,
-		"vsphere_tag":                                     24,
-		"vsphere_tag_category":                            25,
-		"vsphere_vapp_container":                          26,
-		"vsphere_vapp_entity":                             27,
-		"vsphere_virtual_disk":                            28,
-		"vsphere_virtual_machine":                         29,
-		"vsphere_virtual_machine_snapshot":                30,
-		"vsphere_vmfs_datastore":                          31,
+		"vsphere_host":                                    18,
+		"vsphere_host_port_group":                         19,
+		"vsphere_host_virtual_switch":                     20,
+		"vsphere_license":                                 21,
+		"vsphere_nas_datastore":                           22,
+		"vsphere_resource_pool":                           23,
+		"vsphere_storage_drs_vm_override":                 24,
+		"vsphere_tag":                                     25,
+		"vsphere_tag_category":                            26,
+		"vsphere_vapp_container":                          27,
+		"vsphere_vapp_entity":                             28,
+		"vsphere_virtual_disk":                            29,
+		"vsphere_virtual_machine":                         30,
+		"vsphere_virtual_machine_snapshot":                31,
+		"vsphere_vmfs_datastore":                          32,
+		"vsphere_vnic":                                    33,
 	}
 )
 

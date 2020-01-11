@@ -73,7 +73,7 @@ SignalFx AWS CloudWatch integrations using Role ARNs. For help with this integra
 
 **Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
 
-~> **WARNING** This resource implements a part of a workflow. You must use it with one of either ` + "`" + `signalfx_aws_integration` + "`" + `. Check with SignalFx support for your realm's AWS account id.
+~> **WARNING** This resource implements a part of a workflow. You must use it with ` + "`" + `signalfx_aws_integration` + "`" + `. Check with SignalFx support for your realm's AWS account id.
 
 `,
 			Keywords: []string{
@@ -223,7 +223,7 @@ SignalFx AWS CloudWatch integrations using security tokens. For help with this i
 
 **Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider.
 
-~> **WARNING** This resource implements a part of a workflow. You must use it with one of either ` + "`" + `signalfx_aws_integration` + "`" + `.
+~> **WARNING** This resource implements a part of a workflow. You must use it with ` + "`" + `signalfx_aws_integration` + "`" + `.
 
 `,
 			Keywords: []string{
@@ -621,12 +621,92 @@ In the SignalFx web UI, a [dashboard group](https://developers.signalfx.com/v2/d
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "signalfx_data_link",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx data link`,
+			Description: `
+
+Manage SignalFx [Data Links](https://docs.signalfx.com/en/latest/managing/data-links.html).
+
+`,
+			Keywords: []string{
+				"data",
+				"link",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "property_name",
+					Description: `(Optional) Name (key) of the metadata that's the trigger of a data link. If you specify ` + "`" + `property_value` + "`" + `, you must specify ` + "`" + `property_name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "property_value",
+					Description: `(Optional) Value of the metadata that's the trigger of a data link. If you specify this property, you must also specify ` + "`" + `property_name` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_id",
+					Description: `(Optional) If provided, scopes this data link to the supplied dashobard id. If omitted then the link will be global.`,
+				},
+				resource.Attribute{
+					Name:        "target_external_url",
+					Description: `(Optional) Link to an external URL`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Optional) Flag that designates a target as the default for a data link object. ` + "`" + `true` + "`" + ` by default.`,
+				},
+				resource.Attribute{
+					Name:        "time_format",
+					Description: `(Optional) [Designates the format](https://developers.signalfx.com/administration/data_links_overview.html#_minimum_time_window) of ` + "`" + `minimum_time_window` + "`" + ` in the same data link target object. Must be on of ` + "`" + `"ISO8601"` + "`" + ` or ` + "`" + `"Epoch"` + "`" + ` Defaults to ` + "`" + `"ISO8601"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "minimum_time_window",
+					Description: `(Optional) The [minimum time window](https://developers.signalfx.com/administration/data_links_overview.html#_minimum_time_window) for a search sent to an external site. Defaults to ` + "`" + `6000` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "property_key_mapping",
+					Description: `Describes the relationship between SignalFx metadata keys and external system properties when the key names are different.`,
+				},
+				resource.Attribute{
+					Name:        "target_signalfx_dashboard",
+					Description: `(Optional) Link to a SignalFx dashboard`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Optional) Flag that designates a target as the default for a data link object. ` + "`" + `true` + "`" + ` by default`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_id",
+					Description: `(Required) SignalFx-assigned ID of the dashboard link target`,
+				},
+				resource.Attribute{
+					Name:        "dashboard_group_id",
+					Description: `(Required) SignalFx-assigned ID of the dashboard link target's dashboard group`,
+				},
+				resource.Attribute{
+					Name:        "target_splunk",
+					Description: `(Optional) Link to an external URL`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Optional) Flag that designates a target as the default for a data link object. ` + "`" + `true` + "`" + ` by default`,
+				},
+				resource.Attribute{
+					Name:        "property_key_mapping",
+					Description: `Describes the relationship between SignalFx metadata keys and external system properties when the key names are different.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "signalfx_detector",
 			Category:         "Resources",
 			ShortDescription: `Allows Terraform to create and manage SignalFx Dashboards`,
 			Description: `
 
 Provides a SignalFx detector resource. This can be used to create and manage detectors.
+
+~> **NOTE** If you're interested in using SignalFx detector features such as Historical Anomaly, Resource Running Out, or others then consider building them in the UI first then using the "Show SignalFlow" feature to extract the value for ` + "`" + `program_text` + "`" + `. You may also consult the [documentation for detector functions in signalflow-library](https://github.com/signalfx/signalflow-library/tree/master/library/signalfx/detectors).
 
 `,
 			Keywords: []string{
@@ -696,6 +776,10 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				resource.Attribute{
 					Name:        "severity",
 					Description: `(Required) The severity of the rule, must be one of: ` + "`" + `"Critical"` + "`" + `, ` + "`" + `"Major"` + "`" + `, ` + "`" + `"Minor"` + "`" + `, ` + "`" + `"Warning"` + "`" + `, ` + "`" + `"Info"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description for the rule. Displays as the alert condition in the Alert Rules tab of the detector editor in the web UI.`,
 				},
 				resource.Attribute{
 					Name:        "disabled",
@@ -803,7 +887,7 @@ SignalFx GCP Integration
 				},
 				resource.Attribute{
 					Name:        "poll_rate",
-					Description: `(Required) GCP integration poll rate in milliseconds. Can be set to either 60000 or 300000 (1 minute or 5 minutes).`,
+					Description: `(Required) GCP integration poll rate in seconds. Can be set to either 60 or 300 (1 minute or 5 minutes).`,
 				},
 				resource.Attribute{
 					Name:        "services",
@@ -1735,21 +1819,22 @@ SignalFx VictorOps integration.
 		"signalfx_azure_integration":        4,
 		"signalfx_dashboard":                5,
 		"signalfx_dashboard_group":          6,
-		"signalfx_detector":                 7,
-		"signalfx_event_feed_chart":         8,
-		"signalfx_gcp_integration":          9,
-		"signalfx_heatmap_chart":            10,
-		"signalfx_jira_integration":         11,
-		"signalfx_list_chart":               12,
-		"signalfx_opsgenie_integration":     13,
-		"signalfx_org_token":                14,
-		"signalfx_pagerduty_integration":    15,
-		"signalfx_single_value_chart":       16,
-		"signalfx_slack_integration":        17,
-		"signalfx_team":                     18,
-		"signalfx_text_chart":               19,
-		"signalfx_time_chart":               20,
-		"signalfx_victor_ops_integration":   21,
+		"signalfx_data_link":                7,
+		"signalfx_detector":                 8,
+		"signalfx_event_feed_chart":         9,
+		"signalfx_gcp_integration":          10,
+		"signalfx_heatmap_chart":            11,
+		"signalfx_jira_integration":         12,
+		"signalfx_list_chart":               13,
+		"signalfx_opsgenie_integration":     14,
+		"signalfx_org_token":                15,
+		"signalfx_pagerduty_integration":    16,
+		"signalfx_single_value_chart":       17,
+		"signalfx_slack_integration":        18,
+		"signalfx_team":                     19,
+		"signalfx_text_chart":               20,
+		"signalfx_time_chart":               21,
+		"signalfx_victor_ops_integration":   22,
 	}
 )
 

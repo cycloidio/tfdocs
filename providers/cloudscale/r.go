@@ -74,6 +74,72 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudscale_network",
+			Category:         "Resources",
+			ShortDescription: `Provides a cloudscale.ch Network resource. This can be used to create, modify, and delete networks.`,
+			Description:      ``,
+			Keywords: []string{
+				"network",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the new network.`,
+				},
+				resource.Attribute{
+					Name:        "zone_slug",
+					Description: `(Optional) You can specify a zone slug. Options include ` + "`" + `lpg1` + "`" + ` and ` + "`" + `rma1` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "mtu",
+					Description: `(Optional) ` + "`" + `You can specify the MTU size for the network, defaults to 9000. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current network.`,
+				},
+				resource.Attribute{
+					Name:        "subnets",
+					Description: `A list of subnet objects that are used in this network. Each subnet object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `The CIDR notation of the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of this subnet.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID of this subnet.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of the current network.`,
+				},
+				resource.Attribute{
+					Name:        "subnets",
+					Description: `A list of subnet objects that are used in this network. Each subnet object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `The CIDR notation of the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The cloudscale.ch API URL of this subnet.`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `The UUID of this subnet.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudscale_server",
 			Category:         "Resources",
 			ShortDescription: `Provides a cloudscale.ch Server resource. This can be used to create, modify, and delete servers.`,
@@ -96,7 +162,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssh_keys",
-					Description: `(Required) A list of SSH public keys. Use the full content of your \`,
+					Description: `(Optional) A list of SSH public keys. Use the full content of your \`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) The password of the default user of the new server. When omitted, no password will be set.`,
 				},
 				resource.Attribute{
 					Name:        "zone_slug",
@@ -104,7 +174,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_size_gb",
-					Description: `(Optional) The size in GB of the SSD root volume of the new server. If this parameter is not specified, the value will be set to 10. Valid values are either 10 or multiples of 50.`,
+					Description: `(Optional) The size in GB of the SSD root volume of the new server. If this parameter is not specified, the value will be set to 10. The minimum value is 10.`,
 				},
 				resource.Attribute{
 					Name:        "bulk_volume_size_gb",
@@ -112,15 +182,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "use_public_network",
-					Description: `(Optional) Attach/detach the public network interface to/from the new server. Can be ` + "`" + `true` + "`" + ` (default) or ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Attach the public network interface to the new server. Can be ` + "`" + `true` + "`" + ` (default) or ` + "`" + `false` + "`" + `. Use [` + "`" + `interfaces` + "`" + `](#interfaces) option for advanced setups.`,
 				},
 				resource.Attribute{
 					Name:        "use_private_network",
-					Description: `(Optional) Attach/detach the private network interface to/from the new server. Can be ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` (default).`,
+					Description: `(Optional) Attach the ` + "`" + `default` + "`" + ` private network interface to the new server. Can be ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` (default). Use [` + "`" + `interfaces` + "`" + `](#interfaces) option for advanced setups.`,
 				},
 				resource.Attribute{
 					Name:        "use_ipv6",
 					Description: `(Optional) Enable/disable IPv6 on the public network interface of the new server. Can be ` + "`" + `true` + "`" + ` (default) or ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `(Optional) A list of interface configuration objects (see [example](network.html)). Each interface object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the interface. Can be ` + "`" + `public` + "`" + ` or ` + "`" + `private` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -135,8 +213,24 @@ var (
 					Description: `(Optional) If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail. The following arguments are supported when updating servers:`,
 				},
 				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the new server. The name has to be a valid host name or a fully qualified domain name (FQDN).`,
+				},
+				resource.Attribute{
+					Name:        "volume_size_gb",
+					Description: `The size in GB of the SSD root volume of the new server.`,
+				},
+				resource.Attribute{
+					Name:        "interfaces",
+					Description: `A list of interface configuration objects. Each interface object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of the iinterface. Can be ` + "`" + `public` + "`" + ` or ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "status",
-					Description: `(Optional) The desired state of a server. Can be ` + "`" + `running` + "`" + ` (default) or ` + "`" + `stopped` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `The desired state of a server. Can be ` + "`" + `running` + "`" + ` (default) or ` + "`" + `stopped` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -184,7 +278,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "interfaces",
-					Description: `A list of interface objects attached to this server. Each interface object has two attributes:`,
+					Description: `A list of interface objects attached to this server. Each interface object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `The UUID of the network the interface is attatched to.`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `The name of the network the interface is attatched to.`,
+				},
+				resource.Attribute{
+					Name:        "network_href",
+					Description: `The cloudscale.ch API URL of the network the interface is attatched to.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -262,7 +368,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "interfaces",
-					Description: `A list of interface objects attached to this server. Each interface object has two attributes:`,
+					Description: `A list of interface objects attached to this server. Each interface object has the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "network_uuid",
+					Description: `The UUID of the network the interface is attatched to.`,
+				},
+				resource.Attribute{
+					Name:        "network_name",
+					Description: `The name of the network the interface is attatched to.`,
+				},
+				resource.Attribute{
+					Name:        "network_href",
+					Description: `The cloudscale.ch API URL of the network the interface is attatched to.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -376,9 +494,10 @@ var (
 	resourcesMap = map[string]int{
 
 		"cloudscale_floating_ip":  0,
-		"cloudscale_server":       1,
-		"cloudscale_server_group": 2,
-		"cloudscale_volume":       3,
+		"cloudscale_network":      1,
+		"cloudscale_server":       2,
+		"cloudscale_server_group": 3,
+		"cloudscale_volume":       4,
 	}
 )
 

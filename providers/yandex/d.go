@@ -147,7 +147,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `(Optional) Folder that the resource belongs to. If a value is not provided, the default provider folder is used. ~>`,
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ~>`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -239,15 +239,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) Name of the instance. ~>`,
+					Description: `(Optional) Name of the instance.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ~>`,
 				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the instance.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the instance belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "fqdn",
@@ -418,10 +418,6 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the instance.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the instance belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "fqdn",
@@ -599,7 +595,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "instance_group_id",
-					Description: `(Required) The ID of a specific instance group. ## Attributes Reference`,
+					Description: `The ID of a specific instance group. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -671,7 +667,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scale",
-					Description: `(Optional) The auto scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `The auto scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -679,31 +675,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "initial_size",
-					Description: `(Required) The initial number of instances in the instance group.`,
+					Description: `The initial number of instances in the instance group.`,
 				},
 				resource.Attribute{
 					Name:        "measurement_duration",
-					Description: `(Required) The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
+					Description: `The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
 				},
 				resource.Attribute{
 					Name:        "min_zone_size",
-					Description: `(Optional) The minimum number of virtual machines in a single availability zone.`,
+					Description: `The minimum number of virtual machines in a single availability zone.`,
 				},
 				resource.Attribute{
 					Name:        "max_size",
-					Description: `(Optional) The maximum number of virtual machines in the group.`,
+					Description: `The maximum number of virtual machines in the group.`,
 				},
 				resource.Attribute{
 					Name:        "warmup_duration",
-					Description: `(Optional) The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
+					Description: `The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
 				},
 				resource.Attribute{
 					Name:        "stabilization_duration",
-					Description: `(Optional) The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
+					Description: `The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_utilization_target",
-					Description: `(Optional) Target CPU load level. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `Target CPU load level.`,
+				},
+				resource.Attribute{
+					Name:        "custom_rule",
+					Description: `A list of custom rules. The structure is documented below. --- The ` + "`" + `custom_rule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `Rule type: ` + "`" + `UTILIZATION` + "`" + ` - This type means that the metric applies to one instance. First, Instance Groups calculates the average metric value for each instance, then averages the values for instances in one availability zone. This type of metric must have the ` + "`" + `instance_id` + "`" + ` label. ` + "`" + `WORKLOAD` + "`" + ` - This type means that the metric applies to instances in one availability zone. This type of metric must have the ` + "`" + `zone_id` + "`" + ` label.`,
+				},
+				resource.Attribute{
+					Name:        "metric_type",
+					Description: `Metric type, ` + "`" + `GAUGE` + "`" + ` or ` + "`" + `COUNTER` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `The name of metric.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Target metric value level. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1045,7 +1061,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_scale",
-					Description: `(Optional) The auto scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `The auto scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1053,31 +1069,51 @@ var (
 				},
 				resource.Attribute{
 					Name:        "initial_size",
-					Description: `(Required) The initial number of instances in the instance group.`,
+					Description: `The initial number of instances in the instance group.`,
 				},
 				resource.Attribute{
 					Name:        "measurement_duration",
-					Description: `(Required) The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
+					Description: `The amount of time, in seconds, that metrics are averaged for. If the average value at the end of the interval is higher than the ` + "`" + `cpu_utilization_target` + "`" + `, the instance group will increase the number of virtual machines in the group.`,
 				},
 				resource.Attribute{
 					Name:        "min_zone_size",
-					Description: `(Optional) The minimum number of virtual machines in a single availability zone.`,
+					Description: `The minimum number of virtual machines in a single availability zone.`,
 				},
 				resource.Attribute{
 					Name:        "max_size",
-					Description: `(Optional) The maximum number of virtual machines in the group.`,
+					Description: `The maximum number of virtual machines in the group.`,
 				},
 				resource.Attribute{
 					Name:        "warmup_duration",
-					Description: `(Optional) The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
+					Description: `The warm-up time of the virtual machine, in seconds. During this time, traffic is fed to the virtual machine, but load metrics are not taken into account.`,
 				},
 				resource.Attribute{
 					Name:        "stabilization_duration",
-					Description: `(Optional) The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
+					Description: `The minimum time interval, in seconds, to monitor the load before an instance group can reduce the number of virtual machines in the group. During this time, the group will not decrease even if the average load falls below the value of ` + "`" + `cpu_utilization_target` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "cpu_utilization_target",
-					Description: `(Optional) Target CPU load level. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `Target CPU load level.`,
+				},
+				resource.Attribute{
+					Name:        "custom_rule",
+					Description: `A list of custom rules. The structure is documented below. --- The ` + "`" + `custom_rule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "rule_type",
+					Description: `Rule type: ` + "`" + `UTILIZATION` + "`" + ` - This type means that the metric applies to one instance. First, Instance Groups calculates the average metric value for each instance, then averages the values for instances in one availability zone. This type of metric must have the ` + "`" + `instance_id` + "`" + ` label. ` + "`" + `WORKLOAD` + "`" + ` - This type means that the metric applies to instances in one availability zone. This type of metric must have the ` + "`" + `zone_id` + "`" + ` label.`,
+				},
+				resource.Attribute{
+					Name:        "metric_type",
+					Description: `Metric type, ` + "`" + `GAUGE` + "`" + ` or ` + "`" + `COUNTER` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `The name of metric.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `Target metric value level. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1451,15 +1487,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "registry_id",
-					Description: `(Required) The ID of a specific registry. ## Attributes Reference`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the registry belongs to.`,
+					Description: `(Optional) The ID of a specific registry.`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `Name of the registry.`,
+					Description: `(Optional) Name of the registry.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "status",
@@ -1475,14 +1511,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the registry belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the registry.`,
-				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `Status of the registry.`,
@@ -1600,12 +1628,12 @@ var (
 					Description: `(Optional) Name of a specific Kubernetes cluster. ~>`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `A description of the Kubernetes cluster.`,
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference`,
 				},
 				resource.Attribute{
-					Name:        "folder_id",
-					Description: `The ID of the folder that the Kubernetes cluster belongs to.`,
+					Name:        "description",
+					Description: `A description of the Kubernetes cluster.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1704,10 +1732,6 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `A description of the Kubernetes cluster.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `The ID of the folder that the Kubernetes cluster belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -1818,6 +1842,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of a specific Kubernetes node group. ~>`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -2097,19 +2125,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) - Name of the betwork load balancer. ~>`,
+					Description: `(Optional) - Name of the network load balancer. ~>`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the network load balancer.`,
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the network load balancer.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2189,25 +2213,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_address_spec.0.address",
-					Description: `Public IP address of a listener.`,
+					Description: `External IP address of a listener.`,
 				},
 				resource.Attribute{
 					Name:        "external_address_spec.0.ip_version",
-					Description: `IP version of the addresses. [Load Balancer Network Load Balancers]: https://cloud.yandex.com/docs/load-balancer/concepts/`,
+					Description: `IP version of the external addresses.`,
+				},
+				resource.Attribute{
+					Name:        "internal_address_spec.0.subnet_id",
+					Description: `Subnet ID to which the internal IP address belongs`,
+				},
+				resource.Attribute{
+					Name:        "internal_address_spec.0.address",
+					Description: `Internal IP address of a listener.`,
+				},
+				resource.Attribute{
+					Name:        "internal_address_spec.0.ip_version",
+					Description: `IP version of the internal addresses. [Load Balancer Network Load Balancers]: https://cloud.yandex.com/docs/load-balancer/concepts/`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the network load balancer.`,
-				},
-				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the network load balancer.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2287,11 +2315,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "external_address_spec.0.address",
-					Description: `Public IP address of a listener.`,
+					Description: `External IP address of a listener.`,
 				},
 				resource.Attribute{
 					Name:        "external_address_spec.0.ip_version",
-					Description: `IP version of the addresses. [Load Balancer Network Load Balancers]: https://cloud.yandex.com/docs/load-balancer/concepts/`,
+					Description: `IP version of the external addresses.`,
+				},
+				resource.Attribute{
+					Name:        "internal_address_spec.0.subnet_id",
+					Description: `Subnet ID to which the internal IP address belongs`,
+				},
+				resource.Attribute{
+					Name:        "internal_address_spec.0.address",
+					Description: `Internal IP address of a listener.`,
+				},
+				resource.Attribute{
+					Name:        "internal_address_spec.0.ip_version",
+					Description: `IP version of the internal addresses. [Load Balancer Network Load Balancers]: https://cloud.yandex.com/docs/load-balancer/concepts/`,
 				},
 			},
 		},
@@ -2308,16 +2348,12 @@ var (
 					Description: `(Optional) - Name of the Target Group. ~>`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the target group.`,
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the target group.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2338,16 +2374,8 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `Name of the target group.`,
-				},
-				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the target group.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2364,6 +2392,606 @@ var (
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `Creation timestamp of this target group. [Load Balancer Target Groups]: https://cloud.yandex.com/docs/load-balancer/concepts/target-resources`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_clickhouse_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Managed ClickHouse cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) The ID of the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the ClickHouse cluster. ~>`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the ClickHouse cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "clickhouse",
+					Description: `Configuration of the ClickHouse subcluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `A user of the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `A database of the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `Access policy to the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "zookeeper",
+					Description: `Configuration of the ZooKeeper subcluster. The structure is documented below. The ` + "`" + `clickhouse` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the ClickHouse subcluster. The structure is documented below. The ` + "`" + `zookeeper` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a ClickHouse or ZooKeeper host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `Type of the storage of ClickHouse or ZooKeeper hosts. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the database. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the host to be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The availability zone where the ClickHouse host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "shard_name",
+					Description: `The name of the shard to which the host belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `Sets whether the host should get a public IP address on creation. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "web_sql",
+					Description: `Allow access for DataLens.`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `Allow access for Web SQL.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the ClickHouse cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the ClickHouse cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "clickhouse",
+					Description: `Configuration of the ClickHouse subcluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `A user of the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `A database of the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `Access policy to the ClickHouse cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "zookeeper",
+					Description: `Configuration of the ZooKeeper subcluster. The structure is documented below. The ` + "`" + `clickhouse` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the ClickHouse subcluster. The structure is documented below. The ` + "`" + `zookeeper` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a ClickHouse or ZooKeeper host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `Type of the storage of ClickHouse or ZooKeeper hosts. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the database. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the host to be deployed.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The availability zone where the ClickHouse host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "shard_name",
+					Description: `The name of the shard to which the host belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `Sets whether the host should get a public IP address on creation. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "web_sql",
+					Description: `Allow access for DataLens.`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `Allow access for Web SQL.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_mongodb_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Managed MongoDB cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) The ID of the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the MongoDB cluster. ~>`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the MongoDB cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "sharded",
+					Description: `MongoDB Cluster mode enabled/disabled.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `Configuration of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `A user of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `A database of the MongoDB cluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage) The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `The availability zone where the MongoDB host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `The role of the cluster (either PRIMARY or SECONDARY).`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `The health of the host.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `Has assigned public IP.`,
+				},
+				resource.Attribute{
+					Name:        "shard_name",
+					Description: `The name of the shard to which the host belongs.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `type of mongo demon which runs on this host (mongod, mongos or monogcfg). The ` + "`" + `cluster_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of MongoDB (either 4.2, 4.0 or 3.6).`,
+				},
+				resource.Attribute{
+					Name:        "feature_compatibility_version",
+					Description: `Feature compatibility version of MongoDB.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `Access policy to MongoDB cluster. The structure is documented below. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `Shows whether cluster has access to data lens. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the database.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the MongoDB cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the MongoDB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "sharded",
+					Description: `MongoDB Cluster mode enabled/disabled.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `Configuration of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `A user of the MongoDB cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `A database of the MongoDB cluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage) The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `The availability zone where the MongoDB host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `The role of the cluster (either PRIMARY or SECONDARY).`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `The health of the host.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `Has assigned public IP.`,
+				},
+				resource.Attribute{
+					Name:        "shard_name",
+					Description: `The name of the shard to which the host belongs.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `type of mongo demon which runs on this host (mongod, mongos or monogcfg). The ` + "`" + `cluster_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of MongoDB (either 4.2, 4.0 or 3.6).`,
+				},
+				resource.Attribute{
+					Name:        "feature_compatibility_version",
+					Description: `Feature compatibility version of MongoDB.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `Access policy to MongoDB cluster. The structure is documented below. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `Shows whether cluster has access to data lens. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the database.`,
 				},
 			},
 		},
@@ -2385,7 +3013,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "folder_id",
-					Description: `The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -2465,10 +3093,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
-				},
 				resource.Attribute{
 					Name:        "network_id",
 					Description: `ID of the network, to which the Redis cluster belongs.`,
@@ -2601,7 +3225,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "cloud_id",
-					Description: `(Optional) Cloud that the resource belongs to. If a value is not provided, the default provider cloud is used. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Cloud that the resource belongs to. If value is omitted, the default provider cloud is used. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -2656,12 +3280,12 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the network.`,
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
+					Name:        "description",
+					Description: `Description of the network.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2676,10 +3300,6 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the network.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2704,12 +3324,12 @@ var (
 					Description: `(Optional) - Name of the route table. ~>`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the route table.`,
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
+					Name:        "description",
+					Description: `Description of the route table.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -2740,10 +3360,6 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the route table.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -2784,12 +3400,12 @@ var (
 					Description: `(Optional) - Name of the subnet. ~>`,
 				},
 				resource.Attribute{
-					Name:        "description",
-					Description: `Description of the subnet.`,
+					Name:        "folder_id",
+					Description: `(Optional) Folder that the resource belongs to. If value is omitted, the default provider folder is used. ## Attributes Reference The following attribute is exported:`,
 				},
 				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
+					Name:        "description",
+					Description: `Description of the subnet.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -2824,10 +3440,6 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of the subnet.`,
-				},
-				resource.Attribute{
-					Name:        "folder_id",
-					Description: `ID of the folder that the resource belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -2877,12 +3489,14 @@ var (
 		"yandex_kubernetes_node_group":    11,
 		"yandex_lb_network_load_balancer": 12,
 		"yandex_lb_target_group":          13,
-		"yandex_mdb_redis_cluster":        14,
-		"yandex_resourcemanager_cloud":    15,
-		"yandex_resourcemanager_folder":   16,
-		"yandex_vpc_network":              17,
-		"yandex_vpc_route_table":          18,
-		"yandex_vpc_subnet":               19,
+		"yandex_mdb_clickhouse_cluster":   14,
+		"yandex_mdb_mongodb_cluster":      15,
+		"yandex_mdb_redis_cluster":        16,
+		"yandex_resourcemanager_cloud":    17,
+		"yandex_resourcemanager_folder":   18,
+		"yandex_vpc_network":              19,
+		"yandex_vpc_route_table":          20,
+		"yandex_vpc_subnet":               21,
 	}
 )
 

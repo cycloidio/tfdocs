@@ -103,7 +103,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional) The directory's permission mode. Note that the mode can be specified as a decimal value (i.e. 0755 -> 493) or an octal value(i.e 0755).`,
+					Description: `(Optional) The directory's permission mode. Note that the mode can be specified as either an octal value (e.g 0755) or a decimal value (i.e. 493 as equivalent to the octal 0755).`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -114,14 +114,14 @@ var (
 					Description: `(Optional) The group ID of the owner. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},
@@ -166,14 +166,14 @@ var (
 					Description: `(Optional) The GPT [partition type GUID](http://en.wikipedia.org/wiki/GUID_Partition_Table#Partition_type_GUIDs). If omitted, the default will be _0FC63DAF-8483-4772-8E79-3D69D8477DE4_ (Linux filesystem data). ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},
@@ -203,7 +203,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mode",
-					Description: `(Optional) The file's permission mode. The mode must be properly specified as a decimal value (i.e. 0644 -> 420).`,
+					Description: `(Optional) The file's permission mode. Note that the mode can be specified as either an octal value (e.g 0755) or a decimal value (i.e. 493 as equivalent to the octal 0755).`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -234,14 +234,14 @@ var (
 					Description: `(Optional) The hash of the config, in the form _\<type\>-\<value\>_ where type is sha512. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_. [rfc2397]: https://tools.ietf.org/html/rfc2397`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_. [rfc2397]: https://tools.ietf.org/html/rfc2397`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_. [rfc2397]: https://tools.ietf.org/html/rfc2397`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_. [rfc2397]: https://tools.ietf.org/html/rfc2397`,
 				},
 			},
 		},
@@ -290,14 +290,14 @@ var (
 					Description: `(Optional) Any additional options to be passed to the format-specific mkfs utility. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},
@@ -322,14 +322,14 @@ var (
 					Description: `(Optional) The group ID of the new account. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},
@@ -366,14 +366,14 @@ var (
 					Description: `(Optional) The group ID of the owner. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},
@@ -394,14 +394,14 @@ var (
 					Description: `(Required) The contents of the networkd file. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},
@@ -430,14 +430,14 @@ var (
 					Description: `(Optional) The number of spares (if applicable) in the array. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},
@@ -478,14 +478,14 @@ var (
 					Description: `(Optional) The contents of the drop-in. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},
@@ -550,14 +550,14 @@ var (
 					Description: `(Optional) Whether or not to make the account a system account. This only has an effect if the account doesn't exist yet. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "id",
-					Description: `ID used to reference this resource in _ignition_config_.`,
+					Name:        "rendered",
+					Description: `The rendered template to reference this resource in _ignition_config_.`,
 				},
 			},
 		},

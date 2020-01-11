@@ -29,7 +29,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "teams",
-					Description: `(Required) The teams that the apikey belongs to.`,
+					Description: `(Optional) The teams that the apikey belongs to.`,
 				},
 				resource.Attribute{
 					Name:        "dns_view_zones",
@@ -286,11 +286,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Required) The zone the record belongs to.`,
+					Description: `(Required) The zone the record belongs to. Cannot have leading or trailing dots (".") - see the example above.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
-					Description: `(Required) The records' domain.`,
+					Description: `(Required) The records' domain. Cannot have leading or trailing dots - see the example above.`,
 				},
 				resource.Attribute{
 					Name:        "type",

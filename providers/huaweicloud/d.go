@@ -474,6 +474,30 @@ The HuaweiCloud Antiddos data source allows to query the status of EIP, regardle
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloud_compute_availability_zones_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get a list of availability zones from HuaweiCloud`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) The ` + "`" + `state` + "`" + ` of the availability zones to match, default ("available"). ## Attributes Reference ` + "`" + `id` + "`" + ` is set to hash of the returned zone list. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "names",
+					Description: `The names of the availability zones, ordered alphanumerically, that match the queried ` + "`" + `state` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `The names of the availability zones, ordered alphanumerically, that match the queried ` + "`" + `state` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloud_csbs_backup_policy_v1",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific Backup Policy.`,
@@ -1512,7 +1536,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 			Name:             "",
 			Type:             "huaweicloud_images_image_v2",
 			Category:         "Data Sources",
-			ShortDescription: `Get information on an HuaweiCloud Image.`,
+			ShortDescription: `Get information on a HuaweiCloud Image.`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -1533,10 +1557,6 @@ CTS Tracker data source allows access of Cloud Tracker.
 					Description: `(Optional) The owner (UUID) of the image.`,
 				},
 				resource.Attribute{
-					Name:        "properties",
-					Description: `(Optional) a map of key/value pairs to match an image with. All specified properties must be matched.`,
-				},
-				resource.Attribute{
 					Name:        "size_min",
 					Description: `(Optional) The minimum size (in bytes) of the image to return.`,
 				},
@@ -1550,7 +1570,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "sort_key",
-					Description: `(Optional) Sort images based on a certain key. Defaults to ` + "`" + `name` + "`" + `.`,
+					Description: `(Optional) Sort images based on a certain key. Must be one of "name", "container_format", "disk_format", "status", "id" or "size". Defaults to ` + "`" + `name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tag",
@@ -1558,7 +1578,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "visibility",
-					Description: `(Optional) The visibility of the image. Must be one of "public", "private", "community", or "shared". Defaults to "private". ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found image. In addition, the following attributes are exported:`,
+					Description: `(Optional) The visibility of the image. Must be one of "public", "private", "community", or "shared". Defaults to ` + "`" + `private` + "`" + `. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found image. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "checksum",
@@ -1574,7 +1594,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `The metadata associated with the image. Image metadata allow for meaningfully define the image properties and tags. See http://docs.huaweicloud.org/developer/glance/metadefs-concepts.html.`,
+					Description: `The metadata associated with the image. Image metadata allow for meaningfully define the image properties and tags.`,
 				},
 				resource.Attribute{
 					Name:        "min_disk_gb",
@@ -1624,7 +1644,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `The metadata associated with the image. Image metadata allow for meaningfully define the image properties and tags. See http://docs.huaweicloud.org/developer/glance/metadefs-concepts.html.`,
+					Description: `The metadata associated with the image. Image metadata allow for meaningfully define the image properties and tags.`,
 				},
 				resource.Attribute{
 					Name:        "min_disk_gb",
@@ -1850,11 +1870,7 @@ CTS Tracker data source allows access of Cloud Tracker.
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) The owner of the network.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
-					Description: `(Optional) The availability zone candidates for the network. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found network. In addition, the following attributes are exported:`,
+					Description: `(Optional) The owner of the network. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found network. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
@@ -1871,10 +1887,6 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "shared",
 					Description: `(Optional) Specifies whether the network resource can be accessed by any tenant or not.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
-					Description: `(Optional) The availability zone candidates for the network.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1893,10 +1905,6 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "shared",
 					Description: `(Optional) Specifies whether the network resource can be accessed by any tenant or not.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
-					Description: `(Optional) The availability zone candidates for the network.`,
 				},
 			},
 		},
@@ -2257,6 +2265,70 @@ CTS Tracker data source allows access of Cloud Tracker.
 				resource.Attribute{
 					Name:        "ram",
 					Description: `The name of the rds flavor.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_rds_flavors_v3",
+			Category:         "Data Sources",
+			ShortDescription: `Get the flavor information on an HuaweiCloud rds service.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "db_type",
+					Description: `(Required) Specifies the DB engine. Value: MySQL, PostgreSQL, SQLServer.`,
+				},
+				resource.Attribute{
+					Name:        "db_version",
+					Description: `(Required) Specifies the database version. Available value: type | version ---- | --- MySQL| 5.6 <br>5.7 <br>8.0 PostgreSQL | 9.5 <br> 9.6 <br>10 <br>11 SQLServer| 2008_R2_EE <br>2008_R2_WEB <br>2012_SE <br>2014_SE <br>2016_SE <br>2017_SE <br>2012_EE <br>2014_EE <br>2016_EE <br>2017_EE <br>2012_WEB <br>2014_WEB <br>2016_WEB <br>2017_WEB`,
+				},
+				resource.Attribute{
+					Name:        "instance_mode",
+					Description: `(Required) The mode of instance. Value: ha(indicates primary/standby instance), single(indicates single instance) ## Attributes Reference In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the rds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `Indicates the CPU size.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Indicates the memory size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See 'instance_mode' above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "flavors",
+					Description: `Indicates the flavors information. Structure is documented below. The ` + "`" + `flavors` + "`" + ` block contains:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the rds flavor.`,
+				},
+				resource.Attribute{
+					Name:        "vcpus",
+					Description: `Indicates the CPU size.`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `Indicates the memory size in GB.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `See 'instance_mode' above.`,
 				},
 			},
 		},
@@ -3215,42 +3287,44 @@ VPC that the subnet belongs to.
 
 	dataSourcesMap = map[string]int{
 
-		"huaweicloud_antiddos_v1":               0,
-		"huaweicloud_cce_cluster_v3":            1,
-		"huaweicloud_cce_nodes_v3":              2,
-		"huaweicloud_cdm_flavors_v1":            3,
-		"huaweicloud_csbs_backup_policy_v1":     4,
-		"huaweicloud_csbs_backup_v1":            5,
-		"huaweicloud_cts_tracker_v1":            6,
-		"huaweicloud_dcs_az_v1":                 7,
-		"huaweicloud_dcs_maintainwindow_v1":     8,
-		"huaweicloud_dcs_product_v1":            9,
-		"huaweicloud_dis_partition_v2":          10,
-		"huaweicloud_dms_az_v1":                 11,
-		"huaweicloud_dms_maintainwindow_v1":     12,
-		"huaweicloud_dms_product_v1":            13,
-		"huaweicloud_identity_role_v3":          14,
-		"huaweicloud_images_image_v2":           15,
-		"huaweicloud_kms_data_key_v1":           16,
-		"huaweicloud_kms_key_v1":                17,
-		"huaweicloud_networking_network_v2":     18,
-		"huaweicloud_networking_port_v2":        19,
-		"huaweicloud_networking_secgroup_v2":    20,
-		"huaweicloud_networking_subnet_v2":      21,
-		"huaweicloud_rds_flavors_v1":            22,
-		"huaweicloud_rts_software_config_v1":    23,
-		"huaweicloud_rts_stack_resource_v1":     24,
-		"huaweicloud_rts_stack_v1":              25,
-		"huaweicloud_s3_bucket_object":          26,
-		"huaweicloud_sfs_file_sharing_v2":       27,
-		"huaweicloud_vbs_backup_policy_v2":      28,
-		"huaweicloud_vbs_backup_v2":             29,
-		"huaweicloud_vpc_peering_connection_v2": 30,
-		"huaweicloud_vpc_route_ids_v2":          31,
-		"huaweicloud_vpc_route_v2":              32,
-		"huaweicloud_vpc_subnet_ids_v1":         33,
-		"huaweicloud_vpc_subnet_v1":             34,
-		"huaweicloud_vpc_v1":                    35,
+		"huaweicloud_antiddos_v1":                   0,
+		"huaweicloud_cce_cluster_v3":                1,
+		"huaweicloud_cce_nodes_v3":                  2,
+		"huaweicloud_cdm_flavors_v1":                3,
+		"huaweicloud_compute_availability_zones_v2": 4,
+		"huaweicloud_csbs_backup_policy_v1":         5,
+		"huaweicloud_csbs_backup_v1":                6,
+		"huaweicloud_cts_tracker_v1":                7,
+		"huaweicloud_dcs_az_v1":                     8,
+		"huaweicloud_dcs_maintainwindow_v1":         9,
+		"huaweicloud_dcs_product_v1":                10,
+		"huaweicloud_dis_partition_v2":              11,
+		"huaweicloud_dms_az_v1":                     12,
+		"huaweicloud_dms_maintainwindow_v1":         13,
+		"huaweicloud_dms_product_v1":                14,
+		"huaweicloud_identity_role_v3":              15,
+		"huaweicloud_images_image_v2":               16,
+		"huaweicloud_kms_data_key_v1":               17,
+		"huaweicloud_kms_key_v1":                    18,
+		"huaweicloud_networking_network_v2":         19,
+		"huaweicloud_networking_port_v2":            20,
+		"huaweicloud_networking_secgroup_v2":        21,
+		"huaweicloud_networking_subnet_v2":          22,
+		"huaweicloud_rds_flavors_v1":                23,
+		"huaweicloud_rds_flavors_v3":                24,
+		"huaweicloud_rts_software_config_v1":        25,
+		"huaweicloud_rts_stack_resource_v1":         26,
+		"huaweicloud_rts_stack_v1":                  27,
+		"huaweicloud_s3_bucket_object":              28,
+		"huaweicloud_sfs_file_sharing_v2":           29,
+		"huaweicloud_vbs_backup_policy_v2":          30,
+		"huaweicloud_vbs_backup_v2":                 31,
+		"huaweicloud_vpc_peering_connection_v2":     32,
+		"huaweicloud_vpc_route_ids_v2":              33,
+		"huaweicloud_vpc_route_v2":                  34,
+		"huaweicloud_vpc_subnet_ids_v1":             35,
+		"huaweicloud_vpc_subnet_v1":                 36,
+		"huaweicloud_vpc_v1":                        37,
 	}
 )
 

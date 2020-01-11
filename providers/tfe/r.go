@@ -88,8 +88,12 @@ var (
 					Description: `(Required) The token string you were given by your VCS provider.`,
 				},
 				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required for ` + "`" + `ado_server` + "`" + `) The text of the private key associated with your Azure DevOps Server account`,
+				},
+				resource.Attribute{
 					Name:        "service_provider",
-					Description: `(Required) The VCS provider being connected with. Valid options are ` + "`" + `github` + "`" + `, ` + "`" + `github_enterprise` + "`" + `, ` + "`" + `bitbucket_hosted` + "`" + `, ` + "`" + `gitlab_hosted` + "`" + `, ` + "`" + `gitlab_community_edition` + "`" + `, or ` + "`" + `gitlab_enterprise_edition` + "`" + `. ## Attributes Reference`,
+					Description: `(Required) The VCS provider being connected with. Valid options are ` + "`" + `ado_server` + "`" + `, ` + "`" + `ado_services` + "`" + `, ` + "`" + `github` + "`" + `, ` + "`" + `github_enterprise` + "`" + `, ` + "`" + `gitlab_hosted` + "`" + `, ` + "`" + `gitlab_community_edition` + "`" + `, or ` + "`" + `gitlab_enterprise_edition` + "`" + `. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -561,11 +565,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "terraform_version",
-					Description: `(Optional) The version of Terraform to use for this`,
+					Description: `(Optional) The version of Terraform to use for this workspace. Defaults to the latest available version.`,
 				},
 				resource.Attribute{
 					Name:        "trigger_prefixes",
-					Description: `(Optional) List of repository-root-relative paths which describe all locations to be tracked for changes. workspace. Defaults to the latest available version.`,
+					Description: `(Optional) List of repository-root-relative paths which describe all locations to be tracked for changes.`,
 				},
 				resource.Attribute{
 					Name:        "working_directory",

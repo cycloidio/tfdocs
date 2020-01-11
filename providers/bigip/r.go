@@ -24,8 +24,8 @@ var (
 					Description: `(Required) Name of the of the Declarative AS3 JSON file`,
 				},
 				resource.Attribute{
-					Name:        "tenant_name",
-					Description: `(Required) This is the partition name where the application services will be configured.`,
+					Name:        "config_name",
+					Description: `(Required) This is the arbitrary name used to set the terraform state changes for as3 resource`,
 				},
 				resource.Attribute{
 					Name:        "example.json",
@@ -100,8 +100,8 @@ var (
 					Description: `(Required) Name of the of the Declarative DO JSON file`,
 				},
 				resource.Attribute{
-					Name:        "tenant_name",
-					Description: `(Required) This is the partition name where the application services will be configured.`,
+					Name:        "config_name",
+					Description: `(Required) This is the arbitrary name used to set the terraform state changes for DO resource.`,
 				},
 				resource.Attribute{
 					Name:        "example.json",
@@ -222,8 +222,20 @@ var (
 					Description: `(Optional)`,
 				},
 				resource.Attribute{
+					Name:        "database",
+					Description: `(Optional) Specifies the database in which the user is created`,
+				},
+				resource.Attribute{
 					Name:        "destination",
 					Description: `(Optional) Specify an alias address for monitoring`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) Specifies the user name if the monitored target requires authentication`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Specifies the password if the monitored target requires authentication`,
 				},
 				resource.Attribute{
 					Name:        "compatibility",
@@ -443,12 +455,16 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) the ` + "`" + `id` + "`" + ` of the resource is a combination of the pool and node member full path, joined by a hyphen (e.g. "/Common/terraform-pool-/Common/node1:80")`,
+				},
+				resource.Attribute{
 					Name:        "pool",
 					Description: `(Required) Name of the pool in /Partition/Name format`,
 				},
 				resource.Attribute{
 					Name:        "node",
-					Description: `(Required) Node to add to the pool in /Partition/NodeName:Port format (e.g. /Common/Node01:80)`,
+					Description: `(Required) Node to add to the pool in /Partition/NodeName:Port format (e.g. /Common/Node01:80) ## Importing An existing pool attachment (i.e. pool membership) can be imported into this resource by supplying both the pool full path, and the node full path with the relevant port. If the pool or node membership is not found, an error will be returned. An example is below: ` + "`" + `` + "`" + `` + "`" + `sh $ terraform import bigip_ltm_pool_attachment.node-pool-attach \ '{"pool": "/Common/terraform-pool", "node": "/Common/node1:80"}'`,
 				},
 			},
 			Attributes: []resource.Attribute{},

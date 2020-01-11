@@ -4688,7 +4688,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "comparison",
-					Description: `(Optional) Metric rule comparison. Supported values : ` + "`" + `"equal" | "greater-or-equal" | "greater-than" | "less-or-equal" | "less-than" | "not-equal"` + "`" + `. Default: ` + "`" + `equal` + "`" + ` (string)`,
+					Description: `(Optional) Metric rule comparison. Supported values : ` + "`" + `"equal" | "greater-or-equal" | "greater-than" | "less-or-equal" | "less-than" | "not-equal" | "has-value"` + "`" + `. Default: ` + "`" + `equal` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -4746,7 +4746,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "comparison",
-					Description: `(Optional) Metric rule comparison. Supported values : ` + "`" + `"equal" | "greater-or-equal" | "greater-than" | "less-or-equal" | "less-than" | "not-equal"` + "`" + `. Default: ` + "`" + `equal` + "`" + ` (string)`,
+					Description: `(Optional) Metric rule comparison. Supported values : ` + "`" + `"equal" | "greater-or-equal" | "greater-than" | "less-or-equal" | "less-than" | "not-equal" | "has-value"` + "`" + `. Default: ` + "`" + `equal` + "`" + ` (string)`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -6815,12 +6815,32 @@ var (
 					Description: `(Optional) vSphere vm configuration parameters (used for guestinfo) (list)`,
 				},
 				resource.Attribute{
+					Name:        "clone_from",
+					Description: `(Optional) If you choose creation type clone a name of what you want to clone is required. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "cloud_config",
+					Description: `(Optional) Filepath to a cloud-config yaml file to put into the ISO user-data. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
 					Name:        "cloudinit",
 					Description: `(Optional) vSphere cloud-init file or url to set in the guestinfo (string)`,
 				},
 				resource.Attribute{
+					Name:        "content_library",
+					Description: `(Optional) If you choose to clone from a content library template specify the name of the library. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
 					Name:        "cpu_count",
 					Description: `(Optional) vSphere CPU number for docker VM. Default ` + "`" + `2` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "creation_type",
+					Description: `(Optional) Creation type when creating a new virtual machine. Supported values: vm, template, library, legacy. Default ` + "`" + `legacy` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "custom_attributes",
+					Description: `(Optional) vSphere custom attributes, format key/value e.g. ` + "`" + `200=my custom value` + "`" + `. From Rancher v2.3.3 (List)`,
 				},
 				resource.Attribute{
 					Name:        "datacenter",
@@ -6829,6 +6849,10 @@ var (
 				resource.Attribute{
 					Name:        "datastore",
 					Description: `(Optional) vSphere datastore for docker VM (string)`,
+				},
+				resource.Attribute{
+					Name:        "datastore_cluster",
+					Description: `(Optional) vSphere datastore cluster for virtual machine. From Rancher v2.3.3 (string)`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
@@ -6859,6 +6883,26 @@ var (
 					Description: `(Optional) vSphere resource pool for docker VM (string)`,
 				},
 				resource.Attribute{
+					Name:        "ssh_password",
+					Description: `(Optional) If using a non-B2D image you can specify the ssh password. Default ` + "`" + `tcuser` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_port",
+					Description: `(Optional) If using a non-B2D image you can specify the ssh port. Default ` + "`" + `22` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_user",
+					Description: `(Optional) If using a non-B2D image you can specify the ssh user. Default ` + "`" + `docker` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_user_group",
+					Description: `(Optional) If using a non-B2D image the uploaded keys will need chown'ed. Default ` + "`" + `staff` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) vSphere tags id e.g. ` + "`" + `urn:xxx` + "`" + `. From Rancher v2.3.3 (list)`,
+				},
+				resource.Attribute{
 					Name:        "username",
 					Description: `(Optional/Sensitive) vSphere username. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
@@ -6884,7 +6928,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcenter_port",
-					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ` ## Upgrading to Rancher v2.3.3 Due to [this feature](https://github.com/rancher/rancher/pull/23718) included on Rancher v2.3.3, ` + "`" + `rancher2_node_template` + "`" + ` are now global scope objects with RBAC around them, instead of user scope objects as they were. This means that existing node templates ` + "`" + `id` + "`" + ` field is changing on upgrade. Because the Terraform provider can not find the old ` + "`" + `id` + "`" + `, it will try to recreate them. As a workaround, if you are upgrading Rancher from previous releases to v2.3.3, you need to get node templates new id from Rancher API, refresh tfstate and import ` + "`" + `rancher2_node_template` + "`" + ` resources with new id. ` + "`" + `` + "`" + `` + "`" + ` $ curl -sk -X GET -H "Authorization: Bearer ${RANCHER_TOKEN_KEY}" ${RANCHER_URL}/v3/nodeTemplates | jq .data $ terraform refresh $ terraform import rancher2_node_template.<name> <new_id> $ terraform apply ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7297,12 +7341,32 @@ var (
 					Description: `(Optional) vSphere vm configuration parameters (used for guestinfo) (list)`,
 				},
 				resource.Attribute{
+					Name:        "clone_from",
+					Description: `(Optional) If you choose creation type clone a name of what you want to clone is required. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "cloud_config",
+					Description: `(Optional) Filepath to a cloud-config yaml file to put into the ISO user-data. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
 					Name:        "cloudinit",
 					Description: `(Optional) vSphere cloud-init file or url to set in the guestinfo (string)`,
 				},
 				resource.Attribute{
+					Name:        "content_library",
+					Description: `(Optional) If you choose to clone from a content library template specify the name of the library. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
 					Name:        "cpu_count",
 					Description: `(Optional) vSphere CPU number for docker VM. Default ` + "`" + `2` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "creation_type",
+					Description: `(Optional) Creation type when creating a new virtual machine. Supported values: vm, template, library, legacy. Default ` + "`" + `legacy` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "custom_attributes",
+					Description: `(Optional) vSphere custom attributes, format key/value e.g. ` + "`" + `200=my custom value` + "`" + `. From Rancher v2.3.3 (List)`,
 				},
 				resource.Attribute{
 					Name:        "datacenter",
@@ -7311,6 +7375,10 @@ var (
 				resource.Attribute{
 					Name:        "datastore",
 					Description: `(Optional) vSphere datastore for docker VM (string)`,
+				},
+				resource.Attribute{
+					Name:        "datastore_cluster",
+					Description: `(Optional) vSphere datastore cluster for virtual machine. From Rancher v2.3.3 (string)`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
@@ -7341,6 +7409,26 @@ var (
 					Description: `(Optional) vSphere resource pool for docker VM (string)`,
 				},
 				resource.Attribute{
+					Name:        "ssh_password",
+					Description: `(Optional) If using a non-B2D image you can specify the ssh password. Default ` + "`" + `tcuser` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_port",
+					Description: `(Optional) If using a non-B2D image you can specify the ssh port. Default ` + "`" + `22` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_user",
+					Description: `(Optional) If using a non-B2D image you can specify the ssh user. Default ` + "`" + `docker` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "ssh_user_group",
+					Description: `(Optional) If using a non-B2D image the uploaded keys will need chown'ed. Default ` + "`" + `staff` + "`" + `. From Rancher v2.3.3 (string)`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) vSphere tags id e.g. ` + "`" + `urn:xxx` + "`" + `. From Rancher v2.3.3 (list)`,
+				},
+				resource.Attribute{
 					Name:        "username",
 					Description: `(Optional/Sensitive) vSphere username. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x (string)`,
 				},
@@ -7366,7 +7454,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vcenter_port",
-					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional/Sensitive) vSphere Port for vCenter. Mandatory on Rancher v2.0.x and v2.1.x. Use ` + "`" + `rancher2_cloud_credential` + "`" + ` from Rancher v2.2.x. Default ` + "`" + `443` + "`" + ` (string) ## Timeouts ` + "`" + `rancher2_node_template` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for creating node templates. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for node template modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `10 minutes` + "`" + `) Used for deleting node templates. ## Import Node Template can be imported using the Rancher Node Template ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import rancher2_node_template.foo <node_template_id> ` + "`" + `` + "`" + `` + "`" + ` ## Upgrading to Rancher v2.3.3 Due to [this feature](https://github.com/rancher/rancher/pull/23718) included on Rancher v2.3.3, ` + "`" + `rancher2_node_template` + "`" + ` are now global scope objects with RBAC around them, instead of user scope objects as they were. This means that existing node templates ` + "`" + `id` + "`" + ` field is changing on upgrade. Because the Terraform provider can not find the old ` + "`" + `id` + "`" + `, it will try to recreate them. As a workaround, if you are upgrading Rancher from previous releases to v2.3.3, you need to get node templates new id from Rancher API, refresh tfstate and import ` + "`" + `rancher2_node_template` + "`" + ` resources with new id. ` + "`" + `` + "`" + `` + "`" + ` $ curl -sk -X GET -H "Authorization: Bearer ${RANCHER_TOKEN_KEY}" ${RANCHER_URL}/v3/nodeTemplates | jq .data $ terraform refresh $ terraform import rancher2_node_template.<name> <new_id> $ terraform apply ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

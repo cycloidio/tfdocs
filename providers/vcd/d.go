@@ -200,6 +200,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxv_ip_set",
+			Category:         "Data Sources",
+			ShortDescription: `Provides an IP set data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) IP set name for identifying the exact IP set ## Attribute Reference All the attributes defined in [` + "`" + `vcd_nsxv_ip_set` + "`" + `](/docs/providers/vcd/r/ipset.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_lb_app_profile",
 			Category:         "Data Sources",
 			ShortDescription: `Provides an NSX edge gateway load balancer application profile data source.`,
@@ -421,6 +444,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "vcd_nsxv_dhcp_relay",
+			Category:         "Data Sources",
+			ShortDescription: `Provides an NSX edge gateway DHCP relay configuration data source.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations.`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level.`,
+				},
+				resource.Attribute{
+					Name:        "edge_gateway",
+					Description: `(Required) The name of the edge gateway on which DHCP relay is to be configured. ## Attribute Reference All the attributes defined in [` + "`" + `vcd_nsxv_dhcp_relay` + "`" + `](/docs/providers/vcd/r/nsxv_dhcp_relay.html) resource are available.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "vcd_nsxv_dnat",
 			Category:         "Data Sources",
 			ShortDescription: `Provides a vCloud Director DNAT data source for advanced edge gateways (NSX-V). This can be used to read existing rule by ID and use its attributes in other resources.`,
@@ -586,195 +632,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) Organization VDC name ## Attribute Reference`,
-				},
-				resource.Attribute{
-					Name:        "description",
-					Description: `VDC friendly description`,
-				},
-				resource.Attribute{
-					Name:        "allocation_model",
-					Description: `The allocation model used by this VDC; must be one of {AllocationVApp ("Pay as you go"), AllocationPool ("Allocation pool"), ReservationPool ("Reservation pool")}`,
-				},
-				resource.Attribute{
-					Name:        "compute_capacity",
-					Description: `The compute capacity allocated to this VDC. See [Compute Capacity](#computecapacity) below for details.`,
-				},
-				resource.Attribute{
-					Name:        "nic_quota",
-					Description: `Maximum number of virtual NICs allowed in this VDC. Defaults to 0, which specifies an unlimited number.`,
-				},
-				resource.Attribute{
-					Name:        "network_quota",
-					Description: `Maximum number of network objects that can be deployed in this VDC. Defaults to 0, which means no networks can be deployed.`,
-				},
-				resource.Attribute{
-					Name:        "vm_quota",
-					Description: `The maximum number of VMs that can be created in this VDC. Includes deployed and undeployed VMs in vApps and vApp templates. Defaults to 0, which specifies an unlimited number.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `True if this VDC is enabled for use by the organization VDCs. Default is true.`,
-				},
-				resource.Attribute{
-					Name:        "storage_profile",
-					Description: `Storage profiles supported by this VDC. See [Storage Profile](#storageprofile) below for details.`,
-				},
-				resource.Attribute{
-					Name:        "memory_guaranteed",
-					Description: `Percentage of allocated memory resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. When Allocation model is AllocationPool minimum value is 0.2. If left empty, vCD sets a value.`,
-				},
-				resource.Attribute{
-					Name:        "cpu_guaranteed",
-					Description: `Percentage of allocated CPU resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. If left empty, vCD sets a value.`,
-				},
-				resource.Attribute{
-					Name:        "cpu_speed",
-					Description: `Specifies the clock frequency, in Megahertz, for any virtual CPU that is allocated to a VM. A VM with 2 vCPUs will consume twice as much of this value. Ignored for ReservationPool. Required when AllocationModel is AllocationVApp or AllocationPool, and may not be less than 256 MHz. Defaults to 1000 MHz if value isn't provided.`,
-				},
-				resource.Attribute{
-					Name:        "metadata",
-					Description: `Key value map of metadata to assign to this VDC`,
-				},
-				resource.Attribute{
-					Name:        "enable_thin_provisioning",
-					Description: `Boolean to request thin provisioning. Request will be honored only if the underlying data store supports it. Thin provisioning saves storage space by committing it on demand. This allows over-allocation of storage.`,
-				},
-				resource.Attribute{
-					Name:        "enable_fast_provisioning",
-					Description: `(Request fast provisioning. Request will be honored only if the underlying datastore supports it. Fast provisioning can reduce the time it takes to create virtual machines by using vSphere linked clones. If you disable fast provisioning, all provisioning operations will result in full clones.`,
-				},
-				resource.Attribute{
-					Name:        "network_pool_name",
-					Description: `Reference to a network pool in the Provider VDC. Required if this VDC will contain routed or isolated networks.`,
-				},
-				resource.Attribute{
-					Name:        "allow_over_commit",
-					Description: `Set to false to disallow creation of the VDC if the AllocationModel is AllocationPool or ReservationPool and the ComputeCapacity you specified is greater than what the backing Provider VDC can supply. Default is true.`,
-				},
-				resource.Attribute{
-					Name:        "enable_vm_discovery",
-					Description: `If true, discovery of vCenter VMs is enabled for resource pools backing this VDC. If false, discovery is disabled. If left unspecified, the actual behaviour depends on enablement at the organization level and at the system level. <a id="storageprofile"></a> ## Storage Profile`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of Provider VDC storage profile.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `True if this storage profile is enabled for use in the VDC. Default is true.`,
-				},
-				resource.Attribute{
-					Name:        "limit",
-					Description: `Maximum number of MB allocated for this storage profile. A value of 0 specifies unlimited MB.`,
-				},
-				resource.Attribute{
-					Name:        "default",
-					Description: `True if this is default storage profile for this VDC. The default storage profile is used when an object that can specify a storage profile is created with no storage profile specified. <a id="computecapacity"></a> ## Compute Capacity Capacity must be specified twice, once for ` + "`" + `memory` + "`" + ` and another for ` + "`" + `cpu` + "`" + `. Each has the same structure:`,
-				},
-				resource.Attribute{
-					Name:        "allocated",
-					Description: `Capacity that is committed to be available. Value in MB or MHz. Used with AllocationPool ("Allocation pool") and ReservationPool ("Reservation pool").`,
-				},
-				resource.Attribute{
-					Name:        "limit",
-					Description: `Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go").`,
+					Description: `(Required) Organization VDC name ## Attribute reference All attributes defined in [organization VDC resource](/docs/providers/vcd/r/org_vdc.html#attribute-reference) are supported.`,
 				},
 			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "description",
-					Description: `VDC friendly description`,
-				},
-				resource.Attribute{
-					Name:        "allocation_model",
-					Description: `The allocation model used by this VDC; must be one of {AllocationVApp ("Pay as you go"), AllocationPool ("Allocation pool"), ReservationPool ("Reservation pool")}`,
-				},
-				resource.Attribute{
-					Name:        "compute_capacity",
-					Description: `The compute capacity allocated to this VDC. See [Compute Capacity](#computecapacity) below for details.`,
-				},
-				resource.Attribute{
-					Name:        "nic_quota",
-					Description: `Maximum number of virtual NICs allowed in this VDC. Defaults to 0, which specifies an unlimited number.`,
-				},
-				resource.Attribute{
-					Name:        "network_quota",
-					Description: `Maximum number of network objects that can be deployed in this VDC. Defaults to 0, which means no networks can be deployed.`,
-				},
-				resource.Attribute{
-					Name:        "vm_quota",
-					Description: `The maximum number of VMs that can be created in this VDC. Includes deployed and undeployed VMs in vApps and vApp templates. Defaults to 0, which specifies an unlimited number.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `True if this VDC is enabled for use by the organization VDCs. Default is true.`,
-				},
-				resource.Attribute{
-					Name:        "storage_profile",
-					Description: `Storage profiles supported by this VDC. See [Storage Profile](#storageprofile) below for details.`,
-				},
-				resource.Attribute{
-					Name:        "memory_guaranteed",
-					Description: `Percentage of allocated memory resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. When Allocation model is AllocationPool minimum value is 0.2. If left empty, vCD sets a value.`,
-				},
-				resource.Attribute{
-					Name:        "cpu_guaranteed",
-					Description: `Percentage of allocated CPU resources guaranteed to vApps deployed in this VDC. For example, if this value is 0.75, then 75% of allocated resources are guaranteed. Required when AllocationModel is AllocationVApp or AllocationPool. If left empty, vCD sets a value.`,
-				},
-				resource.Attribute{
-					Name:        "cpu_speed",
-					Description: `Specifies the clock frequency, in Megahertz, for any virtual CPU that is allocated to a VM. A VM with 2 vCPUs will consume twice as much of this value. Ignored for ReservationPool. Required when AllocationModel is AllocationVApp or AllocationPool, and may not be less than 256 MHz. Defaults to 1000 MHz if value isn't provided.`,
-				},
-				resource.Attribute{
-					Name:        "metadata",
-					Description: `Key value map of metadata to assign to this VDC`,
-				},
-				resource.Attribute{
-					Name:        "enable_thin_provisioning",
-					Description: `Boolean to request thin provisioning. Request will be honored only if the underlying data store supports it. Thin provisioning saves storage space by committing it on demand. This allows over-allocation of storage.`,
-				},
-				resource.Attribute{
-					Name:        "enable_fast_provisioning",
-					Description: `(Request fast provisioning. Request will be honored only if the underlying datastore supports it. Fast provisioning can reduce the time it takes to create virtual machines by using vSphere linked clones. If you disable fast provisioning, all provisioning operations will result in full clones.`,
-				},
-				resource.Attribute{
-					Name:        "network_pool_name",
-					Description: `Reference to a network pool in the Provider VDC. Required if this VDC will contain routed or isolated networks.`,
-				},
-				resource.Attribute{
-					Name:        "allow_over_commit",
-					Description: `Set to false to disallow creation of the VDC if the AllocationModel is AllocationPool or ReservationPool and the ComputeCapacity you specified is greater than what the backing Provider VDC can supply. Default is true.`,
-				},
-				resource.Attribute{
-					Name:        "enable_vm_discovery",
-					Description: `If true, discovery of vCenter VMs is enabled for resource pools backing this VDC. If false, discovery is disabled. If left unspecified, the actual behaviour depends on enablement at the organization level and at the system level. <a id="storageprofile"></a> ## Storage Profile`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `Name of Provider VDC storage profile.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `True if this storage profile is enabled for use in the VDC. Default is true.`,
-				},
-				resource.Attribute{
-					Name:        "limit",
-					Description: `Maximum number of MB allocated for this storage profile. A value of 0 specifies unlimited MB.`,
-				},
-				resource.Attribute{
-					Name:        "default",
-					Description: `True if this is default storage profile for this VDC. The default storage profile is used when an object that can specify a storage profile is created with no storage profile specified. <a id="computecapacity"></a> ## Compute Capacity Capacity must be specified twice, once for ` + "`" + `memory` + "`" + ` and another for ` + "`" + `cpu` + "`" + `. Each has the same structure:`,
-				},
-				resource.Attribute{
-					Name:        "allocated",
-					Description: `Capacity that is committed to be available. Value in MB or MHz. Used with AllocationPool ("Allocation pool") and ReservationPool ("Reservation pool").`,
-				},
-				resource.Attribute{
-					Name:        "limit",
-					Description: `Capacity limit relative to the value specified for Allocation. It must not be less than that value. If it is greater than that value, it implies over provisioning. A value of 0 specifies unlimited units. Value in MB or MHz. Used with AllocationVApp ("Pay as you go").`,
-				},
-			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -805,10 +666,6 @@ var (
 					Description: `Key value map of metadata to assign to this vApp. Key and value can be any string.`,
 				},
 				resource.Attribute{
-					Name:        "power_on",
-					Description: `A boolean value stating if this vApp should be powered on. Default is ` + "`" + `true` + "`" + ``,
-				},
-				resource.Attribute{
 					Name:        "guest_properties",
 					Description: `Key value map of vApp guest properties.`,
 				},
@@ -823,6 +680,77 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "vcd_vapp_vm",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a vCloud Director VM data source. This can be used to access VMs within a vApp.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org",
+					Description: `(Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations`,
+				},
+				resource.Attribute{
+					Name:        "vdc",
+					Description: `(Optional) The name of VDC to use, optional if defined at provider level`,
+				},
+				resource.Attribute{
+					Name:        "vapp_name",
+					Description: `(Required) The vApp this VM belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A name for the VM, unique within the vApp ## Attribute reference`,
+				},
+				resource.Attribute{
+					Name:        "computer_name",
+					Description: `Computer name to assign to this virtual machine.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_name",
+					Description: `The catalog name in which to find the given vApp Template`,
+				},
+				resource.Attribute{
+					Name:        "template_name",
+					Description: `The name of the vApp Template to use`,
+				},
+				resource.Attribute{
+					Name:        "memory",
+					Description: `The amount of RAM (in MB) allocated to the VM`,
+				},
+				resource.Attribute{
+					Name:        "cpus",
+					Description: `The number of virtual CPUs allocated to the VM`,
+				},
+				resource.Attribute{
+					Name:        "cpu_cores",
+					Description: `The number of cores per socket`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `Key value map of metadata assigned to this VM`,
+				},
+				resource.Attribute{
+					Name:        "disk",
+					Description: `Independent disk attachment configuration.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `A block defining a network interface. Multiple can be used.`,
+				},
+				resource.Attribute{
+					Name:        "guest_properties",
+					Description: `Key value map of guest properties`,
+				},
+				resource.Attribute{
+					Name:        "expose_hardware_virtualization",
+					Description: `Expose hardware-assisted CPU virtualization to guest OS See [VM resource](/docs/providers/vcd/r/vapp_vm.html#attribute-reference) for more info about VM attributes.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
@@ -833,20 +761,23 @@ var (
 		"vcd_edgegateway":        3,
 		"vcd_external_network":   4,
 		"vcd_independent_disk":   5,
-		"vcd_lb_app_profile":     6,
-		"vcd_lb_app_rule":        7,
-		"vcd_lb_server_pool":     8,
-		"vcd_lb_service_monitor": 9,
-		"vcd_lb_virtual_server":  10,
-		"vcd_network_direct":     11,
-		"vcd_network_isolated":   12,
-		"vcd_network_routed":     13,
-		"vcd_nsxv_dnat":          14,
-		"vcd_nsxv_firewall_rule": 15,
-		"vcd_nsxv_snat":          16,
-		"vcd_org":                17,
-		"vcd_org_vdc":            18,
-		"vcd_vapp":               19,
+		"vcd_nsxv_ip_set":        6,
+		"vcd_lb_app_profile":     7,
+		"vcd_lb_app_rule":        8,
+		"vcd_lb_server_pool":     9,
+		"vcd_lb_service_monitor": 10,
+		"vcd_lb_virtual_server":  11,
+		"vcd_network_direct":     12,
+		"vcd_network_isolated":   13,
+		"vcd_network_routed":     14,
+		"vcd_nsxv_dhcp_relay":    15,
+		"vcd_nsxv_dnat":          16,
+		"vcd_nsxv_firewall_rule": 17,
+		"vcd_nsxv_snat":          18,
+		"vcd_org":                19,
+		"vcd_org_vdc":            20,
+		"vcd_vapp":               21,
+		"vcd_vapp_vm":            22,
 	}
 )
 

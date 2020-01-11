@@ -77,7 +77,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `(Required) The disk type, which must be the same as the disk type available in the system. The options include ` + "`" + `SATA` + "`" + ` (common I/O disk type) and ` + "`" + `SSD` + "`" + ` (ultra-high I/O disk type).`,
+					Description: `(Required) The disk type, which must be the same as the disk type available in the system. The available types are ` + "`" + `SSD` + "`" + `, ` + "`" + `SAS` + "`" + `, ` + "`" + `SATA` + "`" + ` or other types defined in CCS.`,
 				},
 				resource.Attribute{
 					Name:        "disk_type",
@@ -162,7 +162,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lb_listener_id",
-					Description: `(Optional) The ELB listener IDs. The system supports up to three ELB listeners, the IDs of which are separated using a comma (,).`,
+					Description: `(Optional) The ELB (classic) listener IDs. The system supports up to three ELB listeners, the IDs of which are separated using a comma (,). This argument is deprecated, using ` + "`" + `lbaas_listeners` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "lbaas_listeners",
+					Description: `(Optional) An array of one or more ELB (enhanced). The system supports the binding of up to three load balancers. The field is alternative to lb_listener_id. The lbaas_listeners object structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "available_zones",
@@ -210,7 +214,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `(Required) The UUID of the security group. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The UUID of the security group. The ` + "`" + `lbaas_listeners` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Required) Specifies the ELB listener ID.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required) Specifies the backend protocol, which is the port on which a backend ECS listens for traffic. The number of the port ranges from 1 to 65535.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) Specifies the weight, which determines the portion of requests a backend ECS processes compared to other backend ECSs added to the same listener. The value of this parameter ranges from 0 to 100. The default value is 1. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -219,6 +235,14 @@ var (
 				resource.Attribute{
 					Name:        "scaling_group_name",
 					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "scaling_group_status",
+					Description: `The status of the AS group.`,
+				},
+				resource.Attribute{
+					Name:        "current_instance_number",
+					Description: `The number of current instances in the AS group.`,
 				},
 				resource.Attribute{
 					Name:        "desire_instance_number",
@@ -238,6 +262,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lb_listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lbaas_listeners",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -279,6 +307,14 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "scaling_group_status",
+					Description: `The status of the AS group.`,
+				},
+				resource.Attribute{
+					Name:        "current_instance_number",
+					Description: `The number of current instances in the AS group.`,
+				},
+				resource.Attribute{
 					Name:        "desire_instance_number",
 					Description: `See Argument Reference above.`,
 				},
@@ -296,6 +332,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lb_listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lbaas_listeners",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -771,7 +811,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Required) The availability zone in which to create the server. Changing this creates a new server.`,
+					Description: `(Optional) The availability zone in which to create the server. Changing this creates a new server.`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -1092,11 +1132,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_key",
-					Description: `(Required) A pregenerated OpenSSH-formatted public key. Changing this creates a new keypair.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) A pregenerated OpenSSH-formatted public key. Changing this creates a new keypair. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1148,11 +1184,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policies",
-					Description: `(Required) The set of policies for the server group. Only two two policies are available right now, and both are mutually exclusive. See the Policies section for more information. Changing this creates a new server group.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `(Optional) Map of additional options. ## Policies`,
+					Description: `(Required) The set of policies for the server group. Only two two policies are available right now, and both are mutually exclusive. See the Policies section for more information. Changing this creates a new server group. ## Policies`,
 				},
 				resource.Attribute{
 					Name:        "affinity",
@@ -1265,6 +1297,1093 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloudstack_lb_certificate_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages a V2 certificate resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"certificate",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an LB certificate. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new LB certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the Certificate. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) The domain of the Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The private encrypted key of the Certificate, PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required) The public encrypted key of the Certificate, PEM format. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Indicates the update time.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Indicates the creation time.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Indicates the update time.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Indicates the creation time.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_lb_l7policy_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages a V2 L7 Policy resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"l7policy",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the L7 Policy. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the L7 Policy. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Optional) The L7 Policy action. The value can only be REDIRECT\_TO\_POOL.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Required) The Listener on which the L7 Policy will be associated with. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "position",
+					Description: `(Optional) The position of this policy on the listener. Positions start at 1. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_pool_id",
+					Description: `(Required) Requests matching this policy will be redirected to the pool with this ID.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the L7 Policy. This value can only be true (UP). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "position",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_pool_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above. ## Import Load Balancer L7 Policy can be imported using the L7 Policy ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_lb_l7policy_v2.l7policy_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "position",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_pool_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above. ## Import Load Balancer L7 Policy can be imported using the L7 Policy ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_lb_l7policy_v2.l7policy_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_lb_l7rule_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages a V2 l7rule resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"l7rule",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the L7 Rule. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The L7 Rule type - can either be HOST\_NAME or PATH. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "compare_type",
+					Description: `(Required) The comparison type for the L7 rule - can either be STARTS\_WITH, EQUAL_TO or REGEX`,
+				},
+				resource.Attribute{
+					Name:        "l7policy_id",
+					Description: `(Required) The ID of the L7 Policy to query. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value to use for the comparison. For example, the file type to compare.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The key to use for the comparison. For example, the name of the cookie to evaluate. Valid when ` + "`" + `type` + "`" + ` is set to COOKIE or HEADER. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the L7 Rule. The value can only be true (UP). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "compare_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "l7policy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "invert",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `The ID of the Listener owning this resource. ## Import Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_lb_l7rule_v2.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "compare_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "l7policy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "invert",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `The ID of the Listener owning this resource. ## Import Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_lb_l7rule_v2.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_lb_listener_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages a V2 listener resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"listener",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new Listener.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) The listening protocol. Converged ELB in Region Type I and Region Type II supports TCP, UDP, HTTP, and TERMINATED_HTTPS. Non-converged ELB in Region Type II supports TCP and HTTP. Changing this creates a new Listener.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required) The port on which to listen for client traffic. Must be an integer in the range of 1-65535. Changing this creates a new Listener.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the Listener. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new Listener.`,
+				},
+				resource.Attribute{
+					Name:        "loadbalancer_id",
+					Description: `(Required) The load balancer on which to provision this Listener. Changing this creates a new Listener.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the Listener. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "default_pool_id",
+					Description: `(Optional) The ID of the default pool with which the Listener is associated. Changing this creates a new Listener.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the Listener.`,
+				},
+				resource.Attribute{
+					Name:        "connection_limit",
+					Description: `(Optional) The maximum number of connections allowed for the Listener. A valid value is from -1 to 2147483647. The default value for this attribute will be -1, indicating an infinite limit.`,
+				},
+				resource.Attribute{
+					Name:        "default_tls_container_ref",
+					Description: `(Optional) A reference to a Barbican Secrets container which stores TLS information. This is required if the protocol is ` + "`" + `TERMINATED_HTTPS` + "`" + `. For converged ELB in Region Type I and Region Type II, enter a certificate ID.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the Listener. A valid value is true (UP) or false (DOWN). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the Listener.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_port_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "connection_limit",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_tls_container_ref",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the Listener.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_port_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "connection_limit",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_tls_container_ref",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_lb_loadbalancer_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages a V2 loadbalancer resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"loadbalancer",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "vip_subnet_id",
+					Description: `(Required) The network on which to allocate the Loadbalancer's address. A tenant can only create Loadbalancers on networks authorized by policy (e.g. networks that belong to them or networks that are shared). Changing this creates a new loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the Loadbalancer. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the Loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the Loadbalancer. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "vip_address",
+					Description: `(Optional) The ip address of the load balancer. Changing this creates a new loadbalancer.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the Loadbalancer. A valid value is true (UP) or false (DOWN).`,
+				},
+				resource.Attribute{
+					Name:        "loadbalancer_provider",
+					Description: `(Optional) The name of the provider. For Region Type I, only VLB is supported. For Region Type II, VLB, native load balancers, and load balancers of third-party providers are supported. Changing this creates a new loadbalancer. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "loadbalancer_provider",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_id",
+					Description: `The Port ID of the Load Balancer IP.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "loadbalancer_provider",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_port_id",
+					Description: `The Port ID of the Load Balancer IP.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_lb_member_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages a V2 member resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"member",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `(Required) The id of the pool that this member will be assigned to.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The subnet in which to access the member`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the member.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) The IP address of the member to receive traffic from the load balancer. Changing this creates a new member.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required) The port on which to listen for client traffic. Changing this creates a new member.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) A positive integer value that indicates the relative portion of traffic that this member should receive from the pool. For example, a member with a weight of 10 receives five times as much traffic as a member with a weight of 2.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the member. A valid value is true (UP) or false (DOWN). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the member.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the member.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_lb_monitor_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages a V2 monitor resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"monitor",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `(Required) The id of the pool that this monitor will be assigned to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The Name of the Monitor.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of protocol. Converged ELB in Region Type I and Region Type II supports TCP, UDP_CONNECT, or HTTP. Non-converged ELB in Region Type II supports TCP, PING, or HTTP. For Region Type I, if protocol of the listener is set to UDP, type of the health check must be set to UDP_CONNECT. Changing this creates a new monitor.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `(Required) The interval in seconds between health check. A valid value is from 1 to 50.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Required) Maximum number of seconds for a monitor to wait for a ping reply before it times out. The value must be less than the delay value.`,
+				},
+				resource.Attribute{
+					Name:        "max_retries",
+					Description: `(Required) Number of permissible ping failures before changing the member's status to INACTIVE. Must be a number between 1 and 10.`,
+				},
+				resource.Attribute{
+					Name:        "url_path",
+					Description: `(Optional) Required for HTTP types. URI path that will be accessed if monitor type is HTTP.`,
+				},
+				resource.Attribute{
+					Name:        "expected_codes",
+					Description: `(Optional) Required for HTTP types. Expected HTTP codes for a passing HTTP(S) monitor. You can either specify a single status like "200", or a range like "200-202".`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the monitor. A valid value is true (UP) or false (DOWN). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the monitor.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_retries",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "url_path",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "http_method",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "expected_codes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the monitor.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_retries",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "url_path",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "http_method",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "expected_codes",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_lb_pool_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages a V2 pool resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"pool",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the pool.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the pool.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) The IP protocol, can either be TCP, HTTP or UDP. Changing this creates a new pool.`,
+				},
+				resource.Attribute{
+					Name:        "loadbalancer_id",
+					Description: `(Optional) The load balancer on which to provision this pool. Changing this creates a new pool. Note: One of LoadbalancerID or ListenerID must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Optional) The Listener on which the members of the pool will be associated with. Changing this creates a new pool. Note: One of LoadbalancerID or ListenerID must be provided.`,
+				},
+				resource.Attribute{
+					Name:        "lb_method",
+					Description: `(Required) The load balancing algorithm to distribute traffic to the pool's members. Must be one of ROUND_ROBIN, LEAST_CONNECTIONS, or SOURCE_IP.`,
+				},
+				resource.Attribute{
+					Name:        "persistence",
+					Description: `Omit this field to prevent session persistence. Indicates whether connections in the same session will be processed by the same Pool member or not. Changing this creates a new pool.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the pool. A valid value is true (UP) or false (DOWN). The ` + "`" + `persistence` + "`" + ` argument supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of persistence mode. The current specification supports SOURCE_IP, HTTP_COOKIE, and APP_COOKIE.`,
+				},
+				resource.Attribute{
+					Name:        "cookie_name",
+					Description: `(Optional) The name of the cookie if persistence mode is set appropriately. It's only supported in the ` + "`" + `APP_COOKIE` + "`" + ` type. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the pool.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lb_method",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "persistence",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the pool.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "lb_method",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "persistence",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloudstack_lb_whitelist_v2",
+			Category:         "Elastic Load Balancer Resources",
+			ShortDescription: `Manages an ELB whitelist resource within HuaweiCloudStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balancer",
+				"lb",
+				"whitelist",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the whitelist. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Required) The Listener ID that the whitelist will be associated with. Changing this creates a new whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `(Optional) Specify whether to enable access control.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `(Optional) Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple IP addresses. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloudstack_networking_floatingip_associate_v2",
 			Category:         "Networking Resources",
 			ShortDescription: `Associates a Floating IP to a Port`,
@@ -1346,11 +2465,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fixed_ip",
-					Description: `Fixed IP of the port to associate with this floating IP. Required if the port has multiple fixed IPs.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `(Optional) Map of additional options. ## Attributes Reference The following attributes are exported:`,
+					Description: `Fixed IP of the port to associate with this floating IP. Required if the port has multiple fixed IPs. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1434,19 +2549,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `(Optional) The administrative state of the network. Acceptable values are "true" and "false". Changing this value updates the state of the existing network.`,
+					Description: `(Optional) The administrative state of the network. The value must be "true".`,
 				},
 				resource.Attribute{
 					Name:        "segments",
-					Description: `(Optional) An array of one or more provider segment objects.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `(Optional) Map of additional options.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
-					Description: `(Optional) An availability zone is used to make network resources highly available. Used for resources with high availability so that they are scheduled on different availability zones. Changing this creates a new network. The ` + "`" + `segments` + "`" + ` block supports:`,
+					Description: `(Optional) An array of one or more provider segment objects. The ` + "`" + `segments` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "physical_network",
@@ -1478,10 +2585,6 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
 					Description: `See Argument Reference above. ## Import Networks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_networking_network_v2.network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -1504,10 +2607,6 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
 					Description: `See Argument Reference above. ## Import Networks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_networking_network_v2.network_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -1570,15 +2669,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allowed_address_pairs",
-					Description: `(Optional) An IP/MAC Address pair of additional IP addresses that can be active on this port. The structure is described below.`,
-				},
-				resource.Attribute{
-					Name:        "extra_dhcp_option",
-					Description: `(Optional) An extra DHCP option that needs to be configured on the port. The structure is described below. Can be specified multiple times.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `(Optional) Map of additional options. The ` + "`" + `fixed_ip` + "`" + ` block supports:`,
+					Description: `(Optional) An IP/MAC Address pair of additional IP addresses that can be active on this port. The structure is described below. The ` + "`" + `fixed_ip` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
@@ -1594,19 +2685,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mac_address",
-					Description: `(Optional) The additional MAC address. The ` + "`" + `extra_dhcp_option` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) Name of the DHCP option.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) Value of the DHCP option.`,
-				},
-				resource.Attribute{
-					Name:        "ip_version",
-					Description: `(Optional) IP protocol version. Defaults to 4. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The additional MAC address. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1646,11 +2725,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "all_security_group_ids",
-					Description: `The collection of Security Group IDs on the port which have been explicitly and implicitly added.`,
-				},
-				resource.Attribute{
-					Name:        "extra_dhcp_option",
-					Description: `See Argument Reference above. ## Import Ports can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_networking_port_v2.port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1 ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### Ports and Instances There are some notes to consider when connecting Instances to networks using Ports. Please see the ` + "`" + `huaweicloudstack_compute_instance_v2` + "`" + ` documentation for further documentation.`,
+					Description: `The collection of Security Group IDs on the port which have been explicitly and implicitly added. ## Import Ports can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_networking_port_v2.port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1 ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### Ports and Instances There are some notes to consider when connecting Instances to networks using Ports. Please see the ` + "`" + `huaweicloudstack_compute_instance_v2` + "`" + ` documentation for further documentation.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1692,11 +2767,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "all_security_group_ids",
-					Description: `The collection of Security Group IDs on the port which have been explicitly and implicitly added.`,
-				},
-				resource.Attribute{
-					Name:        "extra_dhcp_option",
-					Description: `See Argument Reference above. ## Import Ports can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_networking_port_v2.port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1 ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### Ports and Instances There are some notes to consider when connecting Instances to networks using Ports. Please see the ` + "`" + `huaweicloudstack_compute_instance_v2` + "`" + ` documentation for further documentation.`,
+					Description: `The collection of Security Group IDs on the port which have been explicitly and implicitly added. ## Import Ports can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_networking_port_v2.port_1 eae26a3e-1c33-4cc1-9c31-0cd729c438a1 ` + "`" + `` + "`" + `` + "`" + ` ## Notes ### Ports and Instances There are some notes to consider when connecting Instances to networks using Ports. Please see the ` + "`" + `huaweicloudstack_compute_instance_v2` + "`" + ` documentation for further documentation.`,
 				},
 			},
 		},
@@ -1867,28 +2938,8 @@ var (
 					Description: `(Optional) Enable Source NAT for the router. Valid values are "true" or "false". An ` + "`" + `external_network_id` + "`" + ` has to be set in order to set this property. Changing this updates the ` + "`" + `enable_snat` + "`" + ` of the router.`,
 				},
 				resource.Attribute{
-					Name:        "external_fixed_ip",
-					Description: `(Optional) An external fixed IP for the router. This can be repeated. The structure is described below. An ` + "`" + `external_network_id` + "`" + ` has to be set in order to set this property. Changing this updates the external fixed IPs of the router.`,
-				},
-				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) The owner of the floating IP. Required if admin wants to create a router for another tenant. Changing this creates a new router.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `(Optional) Map of additional driver-specific options.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
-					Description: `(Optional) An availability zone is used to make network resources highly available. Used for resources with high availability so that they are scheduled on different availability zones. Changing this creates a new router. The ` + "`" + `external_fixed_ip` + "`" + ` block supports:`,
-				},
-				resource.Attribute{
-					Name:        "subnet_id",
-					Description: `(Optional) Subnet in which the fixed IP belongs to.`,
-				},
-				resource.Attribute{
-					Name:        "ip_address",
-					Description: `(Optional) The IP address to set on the router. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The owner of the floating IP. Required if admin wants to create a router for another tenant. Changing this creates a new router. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1915,19 +2966,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "external_fixed_ip",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
 					Description: `See Argument Reference above. ## Import Routers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_networking_router_v2.router_1 014395cd-89fc-4c9b-96b7-13d1ee79dad2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -1957,19 +2996,7 @@ var (
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
-					Name:        "external_fixed_ip",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `See Argument Reference above.`,
-				},
-				resource.Attribute{
-					Name:        "availability_zone_hints",
 					Description: `See Argument Reference above. ## Import Routers can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloudstack_networking_router_v2.router_1 014395cd-89fc-4c9b-96b7-13d1ee79dad2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -2237,11 +3264,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "host_routes",
-					Description: `(Optional) An array of routes that should be used by devices with IPs from this subnet (not including local subnet route). The host_route object structure is documented below. Changing this updates the host routes for the existing subnet.`,
-				},
-				resource.Attribute{
-					Name:        "value_specs",
-					Description: `(Optional) Map of additional options. The ` + "`" + `allocation_pools` + "`" + ` block supports:`,
+					Description: `(Optional) An array of routes that should be used by devices with IPs from this subnet (not including local subnet route). The host_route object structure is documented below. Changing this updates the host routes for the existing subnet. The ` + "`" + `allocation_pools` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "start",
@@ -2518,18 +3541,27 @@ var (
 		"huaweicloudstack_compute_keypair_v2":                 7,
 		"huaweicloudstack_compute_servergroup_v2":             8,
 		"huaweicloudstack_compute_volume_attach_v2":           9,
-		"huaweicloudstack_networking_floatingip_associate_v2": 10,
-		"huaweicloudstack_networking_floatingip_v2":           11,
-		"huaweicloudstack_networking_network_v2":              12,
-		"huaweicloudstack_networking_port_v2":                 13,
-		"huaweicloudstack_networking_router_interface_v2":     14,
-		"huaweicloudstack_networking_router_route_v2":         15,
-		"huaweicloudstack_networking_router_v2":               16,
-		"huaweicloudstack_networking_secgroup_rule_v2":        17,
-		"huaweicloudstack_networking_secgroup_v2":             18,
-		"huaweicloudstack_networking_subnet_v2":               19,
-		"huaweicloudstack_networking_vip_associate_v2":        20,
-		"huaweicloudstack_networking_vip_v2":                  21,
+		"huaweicloudstack_lb_certificate_v2":                  10,
+		"huaweicloudstack_lb_l7policy_v2":                     11,
+		"huaweicloudstack_lb_l7rule_v2":                       12,
+		"huaweicloudstack_lb_listener_v2":                     13,
+		"huaweicloudstack_lb_loadbalancer_v2":                 14,
+		"huaweicloudstack_lb_member_v2":                       15,
+		"huaweicloudstack_lb_monitor_v2":                      16,
+		"huaweicloudstack_lb_pool_v2":                         17,
+		"huaweicloudstack_lb_whitelist_v2":                    18,
+		"huaweicloudstack_networking_floatingip_associate_v2": 19,
+		"huaweicloudstack_networking_floatingip_v2":           20,
+		"huaweicloudstack_networking_network_v2":              21,
+		"huaweicloudstack_networking_port_v2":                 22,
+		"huaweicloudstack_networking_router_interface_v2":     23,
+		"huaweicloudstack_networking_router_route_v2":         24,
+		"huaweicloudstack_networking_router_v2":               25,
+		"huaweicloudstack_networking_secgroup_rule_v2":        26,
+		"huaweicloudstack_networking_secgroup_v2":             27,
+		"huaweicloudstack_networking_subnet_v2":               28,
+		"huaweicloudstack_networking_vip_associate_v2":        29,
+		"huaweicloudstack_networking_vip_v2":                  30,
 	}
 )
 

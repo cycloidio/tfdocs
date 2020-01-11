@@ -1673,10 +1673,10 @@ Use this data source to access information about an existing Application Securit
 			Name:             "",
 			Type:             "azurerm_automation_account",
 			Category:         "Data Sources",
-			ShortDescription: `Gets information about an existing Automation Account Registration Information.`,
+			ShortDescription: `Gets information about an existing Automation Account.`,
 			Description: `
 
-Use this data source to access information about an existing Automation Account Registration Information.
+Use this data source to access information about an existing Automation Account.
 
 `,
 			Keywords: []string{},
@@ -1695,15 +1695,15 @@ Use this data source to access information about an existing Automation Account 
 				},
 				resource.Attribute{
 					Name:        "primary_key",
-					Description: `The primary key for the Automation Account Registration information`,
+					Description: `The Primary Access Key for the Automation Account.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_key",
-					Description: `The primary key for the Automation Account Registration information`,
+					Description: `The Secondary Access Key for the Automation Account.`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `The Assigned Automation Account Registration endpoint`,
+					Description: `The Endpoint for this Auomation Account.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1713,15 +1713,15 @@ Use this data source to access information about an existing Automation Account 
 				},
 				resource.Attribute{
 					Name:        "primary_key",
-					Description: `The primary key for the Automation Account Registration information`,
+					Description: `The Primary Access Key for the Automation Account.`,
 				},
 				resource.Attribute{
 					Name:        "secondary_key",
-					Description: `The primary key for the Automation Account Registration information`,
+					Description: `The Secondary Access Key for the Automation Account.`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
-					Description: `The Assigned Automation Account Registration endpoint`,
+					Description: `The Endpoint for this Auomation Account.`,
 				},
 			},
 		},
@@ -4762,6 +4762,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `The ID of the Kubernetes Managed Cluster.`,
 				},
 				resource.Attribute{
+					Name:        "api_server_authorized_ip_ranges",
+					Description: `The IP ranges to whitelist for incoming traffic to the masters. ->`,
+				},
+				resource.Attribute{
 					Name:        "addon_profile",
 					Description: `A ` + "`" + `addon_profile` + "`" + ` block as documented below.`,
 				},
@@ -4776,6 +4780,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 				resource.Attribute{
 					Name:        "fqdn",
 					Description: `The FQDN of the Azure Kubernetes Managed Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_fqdn",
+					Description: `The FQDN of this Kubernetes Cluster when private link has been enabled. This name is only resolvable inside the Virtual Network where the Azure Kubernetes Service is located ->`,
 				},
 				resource.Attribute{
 					Name:        "kube_admin_config",
@@ -4796,6 +4804,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 				resource.Attribute{
 					Name:        "kubernetes_version",
 					Description: `The version of Kubernetes used on the managed Kubernetes Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_link_enabled",
+					Description: `Does this Kubernetes Cluster have the Kubernetes API exposed via Private Link? ->`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -5016,6 +5028,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 					Description: `The ID of the Kubernetes Managed Cluster.`,
 				},
 				resource.Attribute{
+					Name:        "api_server_authorized_ip_ranges",
+					Description: `The IP ranges to whitelist for incoming traffic to the masters. ->`,
+				},
+				resource.Attribute{
 					Name:        "addon_profile",
 					Description: `A ` + "`" + `addon_profile` + "`" + ` block as documented below.`,
 				},
@@ -5030,6 +5046,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 				resource.Attribute{
 					Name:        "fqdn",
 					Description: `The FQDN of the Azure Kubernetes Managed Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_fqdn",
+					Description: `The FQDN of this Kubernetes Cluster when private link has been enabled. This name is only resolvable inside the Virtual Network where the Azure Kubernetes Service is located ->`,
 				},
 				resource.Attribute{
 					Name:        "kube_admin_config",
@@ -5050,6 +5070,10 @@ Use this data source to access information about an existing Managed Kubernetes 
 				resource.Attribute{
 					Name:        "kubernetes_version",
 					Description: `The version of Kubernetes used on the managed Kubernetes Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "private_link_enabled",
+					Description: `Does this Kubernetes Cluster have the Kubernetes API exposed via Private Link? ->`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -6507,6 +6531,96 @@ Use this data source to access information about an existing SQL elastic pool.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_nat_gateway",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing NAT Gateway`,
+			Description: `
+
+Use this data source to access information about an existing NAT Gateway.
+
+-> **NOTE:** The Azure NAT Gateway service is currently in private preview. Your subscription must be on the NAT Gateway private preview whitelist for this resource to be provisioned correctly. If you attempt to provision this resource and receive an ` + "`" + `InvalidResourceType` + "`" + ` error may mean that your subscription is not part of the NAT Gateway private preview or you are using a region which does not yet support the NAT Gateway private preview service. The NAT Gateway private preview service is currently available in a limited set of regions. Private preview resources may have multiple breaking changes over their lifecycle until they GA. You can opt into the Private Preview by contacting your Microsoft Representative.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the Name of the NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the name of the Resource Group where the NAT Gateway exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location where the NAT Gateway exists.`,
+				},
+				resource.Attribute{
+					Name:        "idle_timeout_in_minutes",
+					Description: `The idle timeout in minutes which is used for the NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address_ids",
+					Description: `A list of existing Public IP Address resource IDs which the NAT Gateway is using.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_prefix_ids",
+					Description: `A list of existing Public IP Prefix resource IDs which the NAT Gateway is using.`,
+				},
+				resource.Attribute{
+					Name:        "resource_guid",
+					Description: `The Resource GUID of the NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The SKU used by the NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of Availability Zones which the NAT Gateway exists in.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `The location where the NAT Gateway exists.`,
+				},
+				resource.Attribute{
+					Name:        "idle_timeout_in_minutes",
+					Description: `The idle timeout in minutes which is used for the NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_address_ids",
+					Description: `A list of existing Public IP Address resource IDs which the NAT Gateway is using.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip_prefix_ids",
+					Description: `A list of existing Public IP Prefix resource IDs which the NAT Gateway is using.`,
+				},
+				resource.Attribute{
+					Name:        "resource_guid",
+					Description: `The Resource GUID of the NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "sku_name",
+					Description: `The SKU used by the NAT Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "zones",
+					Description: `A list of Availability Zones which the NAT Gateway exists in.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_netapp_account",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about an existing NetApp Account`,
@@ -6587,6 +6701,122 @@ Uses this data source to access information about an existing NetApp Pool.
 				resource.Attribute{
 					Name:        "size_in_tb",
 					Description: `Provisioned size of the pool in TB. ---`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_netapp_snapshot",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing NetApp Snapshot`,
+			Description: `
+
+Uses this data source to access information about an existing NetApp Snapshot.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the NetApp Snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) The name of the NetApp Account where the NetApp Pool exists.`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `(Required) The name of the NetApp Pool where the NetApp Volume exists.`,
+				},
+				resource.Attribute{
+					Name:        "volume_name",
+					Description: `(Required) The name of the NetApp Volume where the NetApp Snapshot exists.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The Name of the Resource Group where the NetApp Snapshot exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the NetApp Snapshot exists.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the NetApp Snapshot exists.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_netapp_volume",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing NetApp Volume`,
+			Description: `
+
+Uses this data source to access information about an existing NetApp Volume.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the NetApp Volume.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The Name of the Resource Group where the NetApp Volume exists.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required) The name of the NetApp account where the NetApp pool exists.`,
+				},
+				resource.Attribute{
+					Name:        "pool_name",
+					Description: `(Required) The name of the NetApp pool where the NetApp volume exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the NetApp Volume exists.`,
+				},
+				resource.Attribute{
+					Name:        "volume_path",
+					Description: `The unique file path of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "service_level",
+					Description: `The service level of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of a Subnet in which the NetApp Volume resides.`,
+				},
+				resource.Attribute{
+					Name:        "storage_quota_in_gb",
+					Description: `The maximum Storage Quota in Gigabytes allowed for a file system.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the NetApp Volume exists.`,
+				},
+				resource.Attribute{
+					Name:        "volume_path",
+					Description: `The unique file path of the volume.`,
+				},
+				resource.Attribute{
+					Name:        "service_level",
+					Description: `The service level of the file system.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of a Subnet in which the NetApp Volume resides.`,
+				},
+				resource.Attribute{
+					Name:        "storage_quota_in_gb",
+					Description: `The maximum Storage Quota in Gigabytes allowed for a file system.`,
 				},
 			},
 		},
@@ -7452,6 +7682,154 @@ Use this data source to access information about an existing PostgreSQL Azure Da
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_private_endpoint_connection",
+			Category:         "Data Sources",
+			ShortDescription: `Gets the connecton status information about an existing Private Endpoint`,
+			Description: `
+
+Use this data source to access the connection status information about an existing Private Endpoint.
+
+-> **NOTE** Private Endpoint is currently in Public Preview.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the Name of the private endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the Name of the Resource Group within which the private endpoint exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Azure resource ID of the Prviate Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The supported Azure location where the resource exists. A ` + "`" + `private_service_connection` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the private endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the private endpoint request, possible values will be ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + `, ` + "`" + `Rejected` + "`" + `, or ` + "`" + `Disconnected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The private IP address associated with the private endpoint, note that you will have a private IP address assigned to the private endpoint even if the connection request was ` + "`" + `Rejected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "request_response",
+					Description: `Possible values are as follows: Value | Meaning -- | -- ` + "`" + `Auto-Approved` + "`" + ` | The remote resource owner has added you to the ` + "`" + `Auto-Approved` + "`" + ` RBAC permission list for the remote resource, all private endpoint connection requests will be automatically ` + "`" + `Approved` + "`" + `. ` + "`" + `Deleted state` + "`" + ` | The resource owner has ` + "`" + `Rejected` + "`" + ` the private endpoint connection request and has removed your private endpoint request from the remote resource. ` + "`" + `request/response message` + "`" + ` | If you submitted a manual private endpoint connection request, while in the ` + "`" + `Pending` + "`" + ` status the ` + "`" + `request_response` + "`" + ` will display the same text from your ` + "`" + `request_message` + "`" + ` in the ` + "`" + `private_service_connection` + "`" + ` block above. If the private endpoint connection request was ` + "`" + `Rejected` + "`" + ` by the owner of the remote resource, the text for the rejection will be displayed as the ` + "`" + `request_response` + "`" + ` text, if the private endpoint connection request was ` + "`" + `Approved` + "`" + ` by the owner of the remote resource, the text for the approval will be displayed as the ` + "`" + `request_response` + "`" + ` text`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Azure resource ID of the Prviate Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The supported Azure location where the resource exists. A ` + "`" + `private_service_connection` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the private endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the private endpoint request, possible values will be ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + `, ` + "`" + `Rejected` + "`" + `, or ` + "`" + `Disconnected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The private IP address associated with the private endpoint, note that you will have a private IP address assigned to the private endpoint even if the connection request was ` + "`" + `Rejected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "request_response",
+					Description: `Possible values are as follows: Value | Meaning -- | -- ` + "`" + `Auto-Approved` + "`" + ` | The remote resource owner has added you to the ` + "`" + `Auto-Approved` + "`" + ` RBAC permission list for the remote resource, all private endpoint connection requests will be automatically ` + "`" + `Approved` + "`" + `. ` + "`" + `Deleted state` + "`" + ` | The resource owner has ` + "`" + `Rejected` + "`" + ` the private endpoint connection request and has removed your private endpoint request from the remote resource. ` + "`" + `request/response message` + "`" + ` | If you submitted a manual private endpoint connection request, while in the ` + "`" + `Pending` + "`" + ` status the ` + "`" + `request_response` + "`" + ` will display the same text from your ` + "`" + `request_message` + "`" + ` in the ` + "`" + `private_service_connection` + "`" + ` block above. If the private endpoint connection request was ` + "`" + `Rejected` + "`" + ` by the owner of the remote resource, the text for the rejection will be displayed as the ` + "`" + `request_response` + "`" + ` text, if the private endpoint connection request was ` + "`" + `Approved` + "`" + ` by the owner of the remote resource, the text for the approval will be displayed as the ` + "`" + `request_response` + "`" + ` text`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_private_link_endpoint_connection",
+			Category:         "Data Sources",
+			ShortDescription: `Gets the connecton status information about an existing Private Link Endpoint`,
+			Description: `
+
+Use this data source to access the connection status information about an existing Private Link Endpoint.
+
+-> **NOTE** Private Link is currently in Public Preview.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the Name of the private link endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the Name of the Resource Group within which the private link endpoint exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Azure resource ID of the Prviate Link Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The supported Azure location where the resource exists. A ` + "`" + `private_service_connection` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the private linke endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the private link endpoint request, possible values will be ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + `, ` + "`" + `Rejected` + "`" + `, or ` + "`" + `Disconnected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The private IP address associated with the private link endpoint, note that you will have a private IP address assigned to the private link endpoint even if the connection request was ` + "`" + `Rejected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "request_response",
+					Description: `Possible values are as follows: Value | Meaning -- | -- ` + "`" + `Auto-Approved` + "`" + ` | The remote resource owner has added you to the ` + "`" + `Auto-Approved` + "`" + ` RBAC permission list for the remote resource, all private link endpoint connection requests will be automatically ` + "`" + `Approved` + "`" + `. ` + "`" + `Deleted state` + "`" + ` | The resource owner has ` + "`" + `Rejected` + "`" + ` the private link endpoint connection request and has removed your private link endpoint request from the remote resource. ` + "`" + `request/response message` + "`" + ` | If you submitted a manual private link endpoint connection request, while in the ` + "`" + `Pending` + "`" + ` status the ` + "`" + `request_response` + "`" + ` will display the same text from your ` + "`" + `request_message` + "`" + ` in the ` + "`" + `private_service_connection` + "`" + ` block above. If the private link endpoint connection request was ` + "`" + `Rejected` + "`" + ` by the owner of the remote resource, the text for the rejection will be displayed as the ` + "`" + `request_response` + "`" + ` text, if the private link endpoint connection request was ` + "`" + `Approved` + "`" + ` by the owner of the remote resource, the text for the approval will be displayed as the ` + "`" + `request_response` + "`" + ` text`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Azure resource ID of the Prviate Link Endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The supported Azure location where the resource exists. A ` + "`" + `private_service_connection` + "`" + ` block exports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the private linke endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The current status of the private link endpoint request, possible values will be ` + "`" + `Pending` + "`" + `, ` + "`" + `Approved` + "`" + `, ` + "`" + `Rejected` + "`" + `, or ` + "`" + `Disconnected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip_address",
+					Description: `The private IP address associated with the private link endpoint, note that you will have a private IP address assigned to the private link endpoint even if the connection request was ` + "`" + `Rejected` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "request_response",
+					Description: `Possible values are as follows: Value | Meaning -- | -- ` + "`" + `Auto-Approved` + "`" + ` | The remote resource owner has added you to the ` + "`" + `Auto-Approved` + "`" + ` RBAC permission list for the remote resource, all private link endpoint connection requests will be automatically ` + "`" + `Approved` + "`" + `. ` + "`" + `Deleted state` + "`" + ` | The resource owner has ` + "`" + `Rejected` + "`" + ` the private link endpoint connection request and has removed your private link endpoint request from the remote resource. ` + "`" + `request/response message` + "`" + ` | If you submitted a manual private link endpoint connection request, while in the ` + "`" + `Pending` + "`" + ` status the ` + "`" + `request_response` + "`" + ` will display the same text from your ` + "`" + `request_message` + "`" + ` in the ` + "`" + `private_service_connection` + "`" + ` block above. If the private link endpoint connection request was ` + "`" + `Rejected` + "`" + ` by the owner of the remote resource, the text for the rejection will be displayed as the ` + "`" + `request_response` + "`" + ` text, if the private link endpoint connection request was ` + "`" + `Approved` + "`" + ` by the owner of the remote resource, the text for the approval will be displayed as the ` + "`" + `request_response` + "`" + ` text`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_private_link_service",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to access information about an existing Private Link Service.`,
@@ -7459,6 +7837,7 @@ Use this data source to access information about an existing PostgreSQL Azure Da
 
 Use this data source to access information about an existing Private Link Service.
 
+-> **NOTE** Private Link is currently in Public Preview.
 
 `,
 			Keywords: []string{},
@@ -7472,8 +7851,8 @@ Use this data source to access information about an existing Private Link Servic
 					Description: `(Required) The name of the resource group in which the private link service resides. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "location",
-					Description: `The supported Azure location where the resource exists.`,
+					Name:        "id",
+					Description: `The Azure resource ID of the Private Link Service.`,
 				},
 				resource.Attribute{
 					Name:        "alias",
@@ -7484,24 +7863,28 @@ Use this data source to access information about an existing Private Link Servic
 					Description: `The list of subscription(s) globally unique identifiers that will be auto approved to use the private link service.`,
 				},
 				resource.Attribute{
-					Name:        "visibility_subscription_ids",
-					Description: `The list of subscription(s) globally unique identifiers(GUID) that will be able to see the private link service.`,
-				},
-				resource.Attribute{
-					Name:        "nat_ip_configuration",
-					Description: `The ` + "`" + `nat_ip_configuration` + "`" + ` block as defined below.`,
+					Name:        "enable_proxy_protocol",
+					Description: `Does the Private Link Service support the Proxy Protocol?`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_frontend_ip_configuration_ids",
 					Description: `The list of Standard Load Balancer(SLB) resource IDs. The Private Link service is tied to the frontend IP address of a SLB. All traffic destined for the private link service will reach the frontend of the SLB. You can configure SLB rules to direct this traffic to appropriate backend pools where your applications are running.`,
 				},
 				resource.Attribute{
-					Name:        "network_interfaces",
-					Description: `The list of network interface resource ids that are being used by the service.`,
+					Name:        "location",
+					Description: `The supported Azure location where the resource exists.`,
+				},
+				resource.Attribute{
+					Name:        "nat_ip_configuration",
+					Description: `The ` + "`" + `nat_ip_configuration` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the resource. --- The ` + "`" + `nat_ip_configuration` + "`" + ` block exports the following:`,
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "visibility_subscription_ids",
+					Description: `The list of subscription(s) globally unique identifiers(GUID) that will be able to see the private link service. --- The ` + "`" + `nat_ip_configuration` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -7513,11 +7896,11 @@ Use this data source to access information about an existing Private Link Servic
 				},
 				resource.Attribute{
 					Name:        "private_ip_address_version",
-					Description: `The ip address version of the ` + "`" + `ip_configuration` + "`" + `.`,
+					Description: `The version of the IP Protocol.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `The resource ID of the subnet to be used by the service.`,
+					Description: `The ID of the subnet to be used by the service.`,
 				},
 				resource.Attribute{
 					Name:        "primary",
@@ -7526,8 +7909,8 @@ Use this data source to access information about an existing Private Link Servic
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "location",
-					Description: `The supported Azure location where the resource exists.`,
+					Name:        "id",
+					Description: `The Azure resource ID of the Private Link Service.`,
 				},
 				resource.Attribute{
 					Name:        "alias",
@@ -7538,24 +7921,28 @@ Use this data source to access information about an existing Private Link Servic
 					Description: `The list of subscription(s) globally unique identifiers that will be auto approved to use the private link service.`,
 				},
 				resource.Attribute{
-					Name:        "visibility_subscription_ids",
-					Description: `The list of subscription(s) globally unique identifiers(GUID) that will be able to see the private link service.`,
-				},
-				resource.Attribute{
-					Name:        "nat_ip_configuration",
-					Description: `The ` + "`" + `nat_ip_configuration` + "`" + ` block as defined below.`,
+					Name:        "enable_proxy_protocol",
+					Description: `Does the Private Link Service support the Proxy Protocol?`,
 				},
 				resource.Attribute{
 					Name:        "load_balancer_frontend_ip_configuration_ids",
 					Description: `The list of Standard Load Balancer(SLB) resource IDs. The Private Link service is tied to the frontend IP address of a SLB. All traffic destined for the private link service will reach the frontend of the SLB. You can configure SLB rules to direct this traffic to appropriate backend pools where your applications are running.`,
 				},
 				resource.Attribute{
-					Name:        "network_interfaces",
-					Description: `The list of network interface resource ids that are being used by the service.`,
+					Name:        "location",
+					Description: `The supported Azure location where the resource exists.`,
+				},
+				resource.Attribute{
+					Name:        "nat_ip_configuration",
+					Description: `The ` + "`" + `nat_ip_configuration` + "`" + ` block as defined below.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `A mapping of tags to assign to the resource. --- The ` + "`" + `nat_ip_configuration` + "`" + ` block exports the following:`,
+					Description: `A mapping of tags to assign to the resource.`,
+				},
+				resource.Attribute{
+					Name:        "visibility_subscription_ids",
+					Description: `The list of subscription(s) globally unique identifiers(GUID) that will be able to see the private link service. --- The ` + "`" + `nat_ip_configuration` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -7567,11 +7954,11 @@ Use this data source to access information about an existing Private Link Servic
 				},
 				resource.Attribute{
 					Name:        "private_ip_address_version",
-					Description: `The ip address version of the ` + "`" + `ip_configuration` + "`" + `.`,
+					Description: `The version of the IP Protocol.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `The resource ID of the subnet to be used by the service.`,
+					Description: `The ID of the subnet to be used by the service.`,
 				},
 				resource.Attribute{
 					Name:        "primary",
@@ -7588,17 +7975,22 @@ Use this data source to access information about an existing Private Link Servic
 
 Use this data source to access endpoint connection information about an existing Private Link Service.
 
+-> **NOTE** Private Link is currently in Public Preview.
 
 `,
 			Keywords: []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the private link service.`,
+					Name:        "service_id",
+					Description: `(Required) The resource ID of the private link service.`,
 				},
 				resource.Attribute{
 					Name:        "resource_group_name",
-					Description: `(Required) The name of the resource group in which the private link service resides. ## Attributes Reference The ` + "`" + `private_endpoint_connections` + "`" + ` block exports the following:`,
+					Description: `(Required) The name of the resource group in which the private link service resides. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The name of the private link service. The ` + "`" + `private_endpoint_connections` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "connection_id",
@@ -7630,6 +8022,10 @@ Use this data source to access endpoint connection information about an existing
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `The name of the private link service. The ` + "`" + `private_endpoint_connections` + "`" + ` block exports the following:`,
+				},
 				resource.Attribute{
 					Name:        "connection_id",
 					Description: `The resource id of the private link service connection between the private link service and the private link endpoint.`,
@@ -8314,53 +8710,53 @@ Use this data source to access information about existing resources.
 				},
 				resource.Attribute{
 					Name:        "resources",
-					Description: `One or more ` + "`" + `resource` + "`" + ` blocks as defined below. --- The ` + "`" + `resource` + "`" + ` block contains:`,
+					Description: `One or more ` + "`" + `resource` + "`" + ` blocks as defined below. --- The ` + "`" + `resource` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of this resource.`,
+					Description: `The name of this Resource.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of this resource.`,
+					Description: `The ID of this Resource.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of this resoource.`,
+					Description: `The type of this Resource. (e.g. ` + "`" + `Microsoft.Network/virtualNetworks` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `The location of this resource.`,
+					Description: `The Azure Region in which this Resource exists.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `The type of resource that this is, such as ` + "`" + `Microsoft.Network/virtualNetworks` + "`" + `.`,
+					Description: `A map of tags assigned to this Resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "resources",
-					Description: `One or more ` + "`" + `resource` + "`" + ` blocks as defined below. --- The ` + "`" + `resource` + "`" + ` block contains:`,
+					Description: `One or more ` + "`" + `resource` + "`" + ` blocks as defined below. --- The ` + "`" + `resource` + "`" + ` block exports the following:`,
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `The name of this resource.`,
+					Description: `The name of this Resource.`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The Resource ID of this resource.`,
+					Description: `The ID of this Resource.`,
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `The type of this resoource.`,
+					Description: `The type of this Resource. (e.g. ` + "`" + `Microsoft.Network/virtualNetworks` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "location",
-					Description: `The location of this resource.`,
+					Description: `The Azure Region in which this Resource exists.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `The type of resource that this is, such as ` + "`" + `Microsoft.Network/virtualNetworks` + "`" + `.`,
+					Description: `A map of tags assigned to this Resource.`,
 				},
 			},
 		},
@@ -8764,7 +9160,7 @@ Use this data source to access information about an existing ServiceBus Namespac
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the the ServiceBus Namespace Authorization Rule.`,
+					Description: `The id of the ServiceBus Namespace Authorization Rule.`,
 				},
 				resource.Attribute{
 					Name:        "primary_connection_string",
@@ -8786,7 +9182,7 @@ Use this data source to access information about an existing ServiceBus Namespac
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The id of the the ServiceBus Namespace Authorization Rule.`,
+					Description: `The id of the ServiceBus Namespace Authorization Rule.`,
 				},
 				resource.Attribute{
 					Name:        "primary_connection_string",
@@ -9046,6 +9442,10 @@ Use this data source to access information about an existing Version of a Shared
 					Name:        "regional_replica_count",
 					Description: `The number of replicas of the Image Version to be created per region.`,
 				},
+				resource.Attribute{
+					Name:        "storage_account_type",
+					Description: `The storage account type for the image version.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -9079,6 +9479,114 @@ Use this data source to access information about an existing Version of a Shared
 				resource.Attribute{
 					Name:        "regional_replica_count",
 					Description: `The number of replicas of the Image Version to be created per region.`,
+				},
+				resource.Attribute{
+					Name:        "storage_account_type",
+					Description: `The storage account type for the image version.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "azurerm_signalr_service",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Azure SignalR service.`,
+			Description: `
+
+Use this data source to access information about an existing Azure SignalR service.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) Specifies the name of the resource group the SignalR service is located in. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The FQDN of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The publicly accessible IP of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Specifies the supported Azure location where the SignalR service exists.`,
+				},
+				resource.Attribute{
+					Name:        "public_port",
+					Description: `The publicly accessible port of the SignalR service which is designed for browser/client use.`,
+				},
+				resource.Attribute{
+					Name:        "server_port",
+					Description: `The publicly accessible port of the SignalR service which is designed for customer server side use.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The primary access key of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "primary_connection_string",
+					Description: `The primary connection string of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The secondary access key of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_connection_string",
+					Description: `The secondary connection string of the SignalR service.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The FQDN of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "ip_address",
+					Description: `The publicly accessible IP of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `Specifies the supported Azure location where the SignalR service exists.`,
+				},
+				resource.Attribute{
+					Name:        "public_port",
+					Description: `The publicly accessible port of the SignalR service which is designed for browser/client use.`,
+				},
+				resource.Attribute{
+					Name:        "server_port",
+					Description: `The publicly accessible port of the SignalR service which is designed for customer server side use.`,
+				},
+				resource.Attribute{
+					Name:        "primary_access_key",
+					Description: `The primary access key of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "primary_connection_string",
+					Description: `The primary connection string of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_access_key",
+					Description: `The secondary access key of the SignalR service.`,
+				},
+				resource.Attribute{
+					Name:        "secondary_connection_string",
+					Description: `The secondary connection string of the SignalR service.`,
 				},
 			},
 		},
@@ -10301,6 +10809,14 @@ Use this data source to access information about an existing Subnet within a Vir
 					Name:        "service_endpoints",
 					Description: `A list of Service Endpoints within this subnet.`,
 				},
+				resource.Attribute{
+					Name:        "enforce_private_link_endpoint_network_policies",
+					Description: `Enable or Disable network policies for the private link endpoint on the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "enforce_private_link_service_network_policies",
+					Description: `Enable or Disable network policies for the private link service on the subnet.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -10330,6 +10846,14 @@ Use this data source to access information about an existing Subnet within a Vir
 				resource.Attribute{
 					Name:        "service_endpoints",
 					Description: `A list of Service Endpoints within this subnet.`,
+				},
+				resource.Attribute{
+					Name:        "enforce_private_link_endpoint_network_policies",
+					Description: `Enable or Disable network policies for the private link endpoint on the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "enforce_private_link_service_network_policies",
+					Description: `Enable or Disable network policies for the private link service on the subnet.`,
 				},
 			},
 		},
@@ -10599,6 +11123,62 @@ Use this data source to access information about an existing User Assigned Ident
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "azurerm_virtual_hub",
+			Category:         "Data Sources",
+			ShortDescription: `Gets information about an existing Virtual Hub`,
+			Description: `
+
+Uses this data source to access information about an existing Virtual Hub.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Virtual Hub.`,
+				},
+				resource.Attribute{
+					Name:        "resource_group_name",
+					Description: `(Required) The Name of the Resource Group where the Virtual Hub exists. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Virtual Hub exists.`,
+				},
+				resource.Attribute{
+					Name:        "address_prefix",
+					Description: `The Address Prefix used for this Virtual Hub.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Virtual Hub.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_wan_id",
+					Description: `The ID of the Virtual WAN within which the Virtual Hub exists.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `The Azure Region where the Virtual Hub exists.`,
+				},
+				resource.Attribute{
+					Name:        "address_prefix",
+					Description: `The Address Prefix used for this Virtual Hub.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags assigned to the Virtual Hub.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_wan_id",
+					Description: `The ID of the Virtual WAN within which the Virtual Hub exists.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "azurerm_virtual_machine",
 			Category:         "Data Sources",
 			ShortDescription: `Gets information about an existing Virtual Machine.`,
@@ -10754,6 +11334,10 @@ Use this data source to access information about an existing Virtual Network Gat
 					Description: `Configuration of the size and capacity of the Virtual Network Gateway.`,
 				},
 				resource.Attribute{
+					Name:        "generation",
+					Description: `The Generation of the Virtual Network Gateway.`,
+				},
+				resource.Attribute{
 					Name:        "ip_configuration",
 					Description: `One or two ` + "`" + `ip_configuration` + "`" + ` blocks documented below.`,
 				},
@@ -10866,6 +11450,10 @@ Use this data source to access information about an existing Virtual Network Gat
 				resource.Attribute{
 					Name:        "sku",
 					Description: `Configuration of the size and capacity of the Virtual Network Gateway.`,
+				},
+				resource.Attribute{
+					Name:        "generation",
+					Description: `The Generation of the Virtual Network Gateway.`,
 				},
 				resource.Attribute{
 					Name:        "ip_configuration",
@@ -11208,53 +11796,60 @@ Use this data source to access information about an existing Virtual Network Gat
 		"azurerm_monitor_diagnostic_categories":             52,
 		"azurerm_monitor_log_profile":                       53,
 		"azurerm_mssql_elasticpool":                         54,
-		"azurerm_netapp_account":                            55,
-		"azurerm_netapp_pool":                               56,
-		"azurerm_network_ddos_protection_plan":              57,
-		"azurerm_network_interface":                         58,
-		"azurerm_network_security_group":                    59,
-		"azurerm_network_watcher":                           60,
-		"azurerm_notification_hub":                          61,
-		"azurerm_notification_hub_namespace":                62,
-		"azurerm_platform_image":                            63,
-		"azurerm_policy_definition":                         64,
-		"azurerm_postgresql_server":                         65,
-		"azurerm_private_link_service":                      66,
-		"azurerm_private_link_service_endpoint_connections": 67,
-		"azurerm_proximity_placement_group":                 68,
-		"azurerm_public_ip":                                 69,
-		"azurerm_public_ip_prefix":                          70,
-		"azurerm_public_ips":                                71,
-		"azurerm_recovery_services_protection_policy_vm":    72,
-		"azurerm_recovery_services_vault":                   73,
-		"azurerm_redis_cache":                               74,
-		"azurerm_resource_group":                            75,
-		"azurerm_resources":                                 76,
-		"azurerm_role_definition":                           77,
-		"azurerm_route_table":                               78,
-		"azurerm_scheduler_job_collection":                  79,
-		"azurerm_servicebus_namespace":                      80,
-		"azurerm_servicebus_namespace_authorization_rule":   81,
-		"azurerm_shared_image":                              82,
-		"azurerm_shared_image_gallery":                      83,
-		"azurerm_shared_image_version":                      84,
-		"azurerm_snapshot":                                  85,
-		"azurerm_sql_database":                              86,
-		"azurerm_sql_server":                                87,
-		"azurerm_storage_account":                           88,
-		"azurerm_storage_account_blob_container_sas":        89,
-		"azurerm_storage_account_sas":                       90,
-		"azurerm_storage_management_policy":                 91,
-		"azurerm_stream_analytics_job":                      92,
-		"azurerm_subnet":                                    93,
-		"azurerm_subscription":                              94,
-		"azurerm_subscriptions":                             95,
-		"azurerm_traffic_manager_geographical_location":     96,
-		"azurerm_user_assigned_identity":                    97,
-		"azurerm_virtual_machine":                           98,
-		"azurerm_virtual_network":                           99,
-		"azurerm_virtual_network_gateway":                   100,
-		"azurerm_virtual_network_gateway_connection":        101,
+		"azurerm_nat_gateway":                               55,
+		"azurerm_netapp_account":                            56,
+		"azurerm_netapp_pool":                               57,
+		"azurerm_netapp_snapshot":                           58,
+		"azurerm_netapp_volume":                             59,
+		"azurerm_network_ddos_protection_plan":              60,
+		"azurerm_network_interface":                         61,
+		"azurerm_network_security_group":                    62,
+		"azurerm_network_watcher":                           63,
+		"azurerm_notification_hub":                          64,
+		"azurerm_notification_hub_namespace":                65,
+		"azurerm_platform_image":                            66,
+		"azurerm_policy_definition":                         67,
+		"azurerm_postgresql_server":                         68,
+		"azurerm_private_endpoint_connection":               69,
+		"azurerm_private_link_endpoint_connection":          70,
+		"azurerm_private_link_service":                      71,
+		"azurerm_private_link_service_endpoint_connections": 72,
+		"azurerm_proximity_placement_group":                 73,
+		"azurerm_public_ip":                                 74,
+		"azurerm_public_ip_prefix":                          75,
+		"azurerm_public_ips":                                76,
+		"azurerm_recovery_services_protection_policy_vm":    77,
+		"azurerm_recovery_services_vault":                   78,
+		"azurerm_redis_cache":                               79,
+		"azurerm_resource_group":                            80,
+		"azurerm_resources":                                 81,
+		"azurerm_role_definition":                           82,
+		"azurerm_route_table":                               83,
+		"azurerm_scheduler_job_collection":                  84,
+		"azurerm_servicebus_namespace":                      85,
+		"azurerm_servicebus_namespace_authorization_rule":   86,
+		"azurerm_shared_image":                              87,
+		"azurerm_shared_image_gallery":                      88,
+		"azurerm_shared_image_version":                      89,
+		"azurerm_signalr_service":                           90,
+		"azurerm_snapshot":                                  91,
+		"azurerm_sql_database":                              92,
+		"azurerm_sql_server":                                93,
+		"azurerm_storage_account":                           94,
+		"azurerm_storage_account_blob_container_sas":        95,
+		"azurerm_storage_account_sas":                       96,
+		"azurerm_storage_management_policy":                 97,
+		"azurerm_stream_analytics_job":                      98,
+		"azurerm_subnet":                                    99,
+		"azurerm_subscription":                              100,
+		"azurerm_subscriptions":                             101,
+		"azurerm_traffic_manager_geographical_location":     102,
+		"azurerm_user_assigned_identity":                    103,
+		"azurerm_virtual_hub":                               104,
+		"azurerm_virtual_machine":                           105,
+		"azurerm_virtual_network":                           106,
+		"azurerm_virtual_network_gateway":                   107,
+		"azurerm_virtual_network_gateway_connection":        108,
 	}
 )
 

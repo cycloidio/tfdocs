@@ -37,7 +37,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "records",
-					Description: `(Required) A string list of records. ### Attribute Reference The id of the resource is a composite of the record name and record type, joined by a separator - ` + "`" + `:::` + "`" + `. For example, record ` + "`" + `foo.test.com.` + "`" + ` of type ` + "`" + `A` + "`" + ` will be represented with the following ` + "`" + `id` + "`" + `: ` + "`" + `foo.test.com.:::A` + "`" + ` ### Importing An existing record can be imported into this resource by supplying both the record id and zone name it belongs to. If the record or zone is not found, or if the record is of a different type or in a different zone, an error will be returned. For example: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import powerdns_record.test-a '{"zone": "test.com.", "id": "foo.test.com.:::A"}' ` + "`" + `` + "`" + `` + "`" + ` For more information on how to use terraform's ` + "`" + `import` + "`" + ` command, please refer to terraform's [core documentation](https://www.terraform.io/docs/import/index.html#currently-state-only).`,
+					Description: `(Required) A string list of records.`,
+				},
+				resource.Attribute{
+					Name:        "set_ptr",
+					Description: `(Optional) [`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -62,7 +66,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nameservers",
-					Description: `(Required) The zone nameservers. ## Importing An existing zone can be imported into this resource by supplying the zone name. If the zone is not found, an error will be returned. For example, to import zone ` + "`" + `test.com.` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import powerdns_zone.test test.com. ` + "`" + `` + "`" + `` + "`" + ` For more information on how to use terraform's ` + "`" + `import` + "`" + ` command, please refer to terraform's [core documentation](https://www.terraform.io/docs/import/index.html#currently-state-only).`,
+					Description: `(Required) The zone nameservers.`,
+				},
+				resource.Attribute{
+					Name:        "soa_edit_api",
+					Description: `(Optional) This should map to one of the [supported API values](https://doc.powerdns.com/authoritative/dnsupdate.html#soa-edit-dnsupdate-settings)`,
 				},
 			},
 			Attributes: []resource.Attribute{},

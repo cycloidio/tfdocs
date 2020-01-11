@@ -41,6 +41,64 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_access_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare Access Group resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"access",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Required) The ID of the account the group is associated with.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Friendly name of the Access Group.`,
+				},
+				resource.Attribute{
+					Name:        "require",
+					Description: `(Optional) A series of access conditions, see below for full list.`,
+				},
+				resource.Attribute{
+					Name:        "exclude",
+					Description: `(Optional) A series of access conditions, see below for full list.`,
+				},
+				resource.Attribute{
+					Name:        "include",
+					Description: `(Required) A series of access conditions, see below for full list. ## Conditions ` + "`" + `require` + "`" + `, ` + "`" + `exclude` + "`" + ` and ` + "`" + `include` + "`" + ` arguments share the available conditions which can be applied. The conditions are:`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `(Optional) A list of IP addresses or ranges. Example: ` + "`" + `ip = ["1.2.3.4", "10.0.0.0/2"]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "email",
+					Description: `(Optional) A list of email addresses. Example: ` + "`" + `email = ["test@example.com"]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "email_domain",
+					Description: `(Optional) A list of email domains. Example: ` + "`" + `email_domain = ["example.com"]` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "everyone",
+					Description: `(Optional) Boolean indicating permitting access for all requests. Example: ` + "`" + `everyone = true` + "`" + ` ## Import Access Groups can be imported using a composite ID formed of account ID and group ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_group.staging 975ecf5a45e3bcb680dba0722a420ad9/67ea780ce4982c1cfbe6b7293afc765d ` + "`" + `` + "`" + `` + "`" + ` where`,
+				},
+				resource.Attribute{
+					Name:        "975ecf5a45e3bcb680dba0722a420ad9",
+					Description: `Account ID`,
+				},
+				resource.Attribute{
+					Name:        "67ea780ce4982c1cfbe6b7293afc765d",
+					Description: `Access Group ID`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_access_policy",
 			Category:         "Resources",
 			ShortDescription: `Provides a Cloudflare Access Policy resource.`,
@@ -142,7 +200,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Required) The request property to target. Allowed values: "ip", "ip_range", "asn", "country"`,
+					Description: `(Required) The request property to target. Allowed values: "ip", "ip6", "ip_range", "asn", "country"`,
 				},
 				resource.Attribute{
 					Name:        "value",
@@ -482,7 +540,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `Firewall Rule identifier. ## Import Firewall Rule can be imported using a composite ID formed of zone ID and rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `Firewall Rule identifier. ## Import Firewall Rule can be imported using a composite ID formed of zone ID and rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_firewall_rule.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -496,7 +554,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `Firewall Rule identifier. ## Import Firewall Rule can be imported using a composite ID formed of zone ID and rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_filter.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `Firewall Rule identifier. ## Import Firewall Rule can be imported using a composite ID formed of zone ID and rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_firewall_rule.default d41d8cd98f00b204e9800998ecf8427e/9e107d9d372bb6826bd81d3542a419d6 ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "d41d8cd98f00b204e9800998ecf8427e",
@@ -625,7 +683,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "expected_body",
-					Description: `(Optional) A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy. Only valid and required if ` + "`" + `type` + "`" + ` is "http" or "https".`,
+					Description: `(Optional) A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy. Only valid if ` + "`" + `type` + "`" + ` is "http" or "https". Default: "".`,
 				},
 				resource.Attribute{
 					Name:        "expected_codes",
@@ -832,6 +890,58 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_origin_ca_certificate",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare Origin CA certificate resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"origin",
+				"ca",
+				"certificate",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "hostnames",
+					Description: `(Required) An array of hostnames or wildcard names bound to the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "request_type",
+					Description: `(Required) The signature type desired on the certificate.`,
+				},
+				resource.Attribute{
+					Name:        "requested_validity",
+					Description: `(Required) The number of days for which the certificate should be valid. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The x509 serial number of the Origin CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The Origin CA certificate`,
+				},
+				resource.Attribute{
+					Name:        "expires_on",
+					Description: `The datetime when the certificate will expire. ## Import Origin CA certificate resource can be imported using an ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_origin_ca_certificate.example 276266538771611802607153687288146423901027769273 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The x509 serial number of the Origin CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The Origin CA certificate`,
+				},
+				resource.Attribute{
+					Name:        "expires_on",
+					Description: `The datetime when the certificate will expire. ## Import Origin CA certificate resource can be imported using an ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_origin_ca_certificate.example 276266538771611802607153687288146423901027769273 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1301,6 +1411,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Required) The DNS zone ID to add the application to`,
+				},
+				resource.Attribute{
 					Name:        "dns",
 					Description: `(Required) The name and type of DNS record for the Spectrum application. Fields documented below.`,
 				},
@@ -1326,7 +1440,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "proxy_protocol",
-					Description: `(Optional) Enables Proxy Protocol v1 to the origin. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Enables a proxy protocol to the origin. Valid values are: ` + "`" + `off` + "`" + `, ` + "`" + `v1` + "`" + `, ` + "`" + `v2` + "`" + `, and ` + "`" + `simple` + "`" + `. Defaults to ` + "`" + `off` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "traffic_type",
@@ -1478,6 +1592,10 @@ var (
 					Description: `(Required) The WAF Rule ID.`,
 				},
 				resource.Attribute{
+					Name:        "package_id",
+					Description: `(Optional) The ID of the WAF Rule Package that contains the rule.`,
+				},
+				resource.Attribute{
 					Name:        "mode",
 					Description: `(Required) The mode of the rule, can be one of ["block", "challenge", "default", "disable", "simulate"]. ## Attributes Reference The following attributes are exported:`,
 				},
@@ -1487,7 +1605,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "package_id",
-					Description: `The ID of the WAF Rule Package that contains the rule. ## Import Rules can be imported using a composite ID formed of zone ID and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 ae36f999674d196762efcc5abb06b345/100000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the WAF Rule Package that contains the rule.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `The ID of the WAF Rule Group that contains the rule. ## Import Rules can be imported using a composite ID formed of zone ID and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 ae36f999674d196762efcc5abb06b345/100000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1497,7 +1619,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "package_id",
-					Description: `The ID of the WAF Rule Package that contains the rule. ## Import Rules can be imported using a composite ID formed of zone ID and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 ae36f999674d196762efcc5abb06b345/100000 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the WAF Rule Package that contains the rule.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `The ID of the WAF Rule Group that contains the rule. ## Import Rules can be imported using a composite ID formed of zone ID and the WAF Rule ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_waf_rule.100000 ae36f999674d196762efcc5abb06b345/100000 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1548,11 +1674,38 @@ var (
 				},
 				resource.Attribute{
 					Name:        "content",
-					Description: `(Required) The script content. ## Import To import a script, use a script name, e.g. ` + "`" + `script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
+					Description: `(Required) The script content.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name for the binding.`,
+				},
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `(Required) ID of KV namespace. ## Import To import a script, use a script name, e.g. ` + "`" + `script_name` + "`" + ` ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_worker_script.default script_name ` + "`" + `` + "`" + `` + "`" + ` where:`,
 				},
 				resource.Attribute{
 					Name:        "script_name",
 					Description: `the script name`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_workers_kv_namespace",
+			Category:         "Resources",
+			ShortDescription: `Provides the ability to manage Cloudflare Workers KV Namespace features.`,
+			Description:      ``,
+			Keywords: []string{
+				"workers",
+				"kv",
+				"namespace",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Required) The name of the namespace you wish to create. ## Import Workers KV Namespace settings can be imported using it's ID ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_workers_kv_namespace.example beaeb6716c9443eaa4deef11763ccca6 ` + "`" + `` + "`" + `` + "`" + ` where: - ` + "`" + `beaeb6716c9443eaa4deef11763ccca6` + "`" + ` is the ID of the namespace`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1791,31 +1944,34 @@ var (
 	resourcesMap = map[string]int{
 
 		"cloudflare_access_application":     0,
-		"cloudflare_access_policy":          1,
-		"cloudflare_access_rule":            2,
-		"cloudflare_access_service_token":   3,
-		"cloudflare_account_member":         4,
-		"cloudflare_argo":                   5,
-		"cloudflare_custom_pages":           6,
-		"cloudflare_custom_ssl":             7,
-		"cloudflare_filter":                 8,
-		"cloudflare_firewall_rule":          9,
-		"cloudflare_load_balancer":          10,
-		"cloudflare_load_balancer_monitor":  11,
-		"cloudflare_load_balancer_pool":     12,
-		"cloudflare_logpush_job":            13,
-		"cloudflare_page_rule":              14,
-		"cloudflare_rate_limit":             15,
-		"cloudflare_record":                 16,
-		"cloudflare_spectrum_application":   17,
-		"cloudflare_waf_group":              18,
-		"cloudflare_waf_package":            19,
-		"cloudflare_waf_rule":               20,
-		"cloudflare_worker_route":           21,
-		"cloudflare_worker_script":          22,
-		"cloudflare_zone":                   23,
-		"cloudflare_zone_lockdown":          24,
-		"cloudflare_zone_settings_override": 25,
+		"cloudflare_access_group":           1,
+		"cloudflare_access_policy":          2,
+		"cloudflare_access_rule":            3,
+		"cloudflare_access_service_token":   4,
+		"cloudflare_account_member":         5,
+		"cloudflare_argo":                   6,
+		"cloudflare_custom_pages":           7,
+		"cloudflare_custom_ssl":             8,
+		"cloudflare_filter":                 9,
+		"cloudflare_firewall_rule":          10,
+		"cloudflare_load_balancer":          11,
+		"cloudflare_load_balancer_monitor":  12,
+		"cloudflare_load_balancer_pool":     13,
+		"cloudflare_logpush_job":            14,
+		"cloudflare_origin_ca_certificate":  15,
+		"cloudflare_page_rule":              16,
+		"cloudflare_rate_limit":             17,
+		"cloudflare_record":                 18,
+		"cloudflare_spectrum_application":   19,
+		"cloudflare_waf_group":              20,
+		"cloudflare_waf_package":            21,
+		"cloudflare_waf_rule":               22,
+		"cloudflare_worker_route":           23,
+		"cloudflare_worker_script":          24,
+		"cloudflare_workers_kv_namespace":   25,
+		"cloudflare_zone":                   26,
+		"cloudflare_zone_lockdown":          27,
+		"cloudflare_zone_settings_override": 28,
 	}
 )
 

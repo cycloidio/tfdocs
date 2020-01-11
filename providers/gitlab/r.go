@@ -144,7 +144,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "web_url",
-					Description: `Web URL of the group. ## Importing groups You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_group.example example [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
+					Description: `Web URL of the group.`,
+				},
+				resource.Attribute{
+					Name:        "runners_token",
+					Description: `The group level registration token to use during runner setup. ## Importing groups You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_group.example example [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -162,7 +166,104 @@ var (
 				},
 				resource.Attribute{
 					Name:        "web_url",
-					Description: `Web URL of the group. ## Importing groups You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_group.example example [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
+					Description: `Web URL of the group.`,
+				},
+				resource.Attribute{
+					Name:        "runners_token",
+					Description: `The group level registration token to use during runner setup. ## Importing groups You can import a group state using ` + "`" + `terraform import <resource> <id>` + "`" + `. The ` + "`" + `id` + "`" + ` can be whatever the [details of a group][details_of_a_group] api takes for its ` + "`" + `:id` + "`" + ` value, so for example: terraform import gitlab_group.example example [details_of_a_group]: https://docs.gitlab.com/ee/api/groups.html#details-of-a-group`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gitlab_group_cluster",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages group clusters for GitLab groups`,
+			Description:      ``,
+			Keywords: []string{
+				"group",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group",
+					Description: `(Required, string) The id of the group to add the cluster to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required, string) The name of cluster.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional, string) The base domain of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional, boolean) Determines if cluster is active or not. Defaults to ` + "`" + `true` + "`" + `. This attribute cannot be read.`,
+				},
+				resource.Attribute{
+					Name:        "managed",
+					Description: `(Optional, boolean) Determines if cluster is managed by gitlab or not. Defaults to ` + "`" + `true` + "`" + `. This attribute cannot be read.`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_api_url",
+					Description: `(Required, string) The URL to access the Kubernetes API.`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_token",
+					Description: `(Required, string) The token to authenticate against Kubernetes.`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_ca_cert",
+					Description: `(Optional, string) TLS certificate (needed if API is using a self-signed TLS certificate).`,
+				},
+				resource.Attribute{
+					Name:        "kubernetes_authorization_type",
+					Description: `(Optional, string) The cluster authorization type. Valid values are ` + "`" + `rbac` + "`" + `, ` + "`" + `abac` + "`" + `, ` + "`" + `unknown_authorization` + "`" + `. Defaults to ` + "`" + `rbac` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "environment_scope",
+					Description: `(Optional, string) The associated environment to the cluster. Defaults to ` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "gitlab_group_label",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages labels for GitLab groups`,
+			Description:      ``,
+			Keywords: []string{
+				"group",
+				"label",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group",
+					Description: `(Required) The name or id of the group to add the label to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the label.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Required) The color of the label given in 6-digit hex notation with leading '#' sign (e.g. #FFAABB) or one of the [CSS color names](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#Color_keywords).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the label. ## Attributes Reference The resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique id assigned to the label by the GitLab server (the name of the label).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique id assigned to the label by the GitLab server (the name of the label).`,
 				},
 			},
 		},
@@ -187,7 +288,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "access_level",
-					Description: `(Required) Acceptable values are: guest, reporter, developer, master, owner.`,
+					Description: `(Required) Acceptable values are: guest, reporter, developer, maintainer, owner.`,
 				},
 				resource.Attribute{
 					Name:        "expires_at",
@@ -308,6 +409,37 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "gitlab_pipeline_schedule_variable",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages pipeline schedule variables for GitLab projects`,
+			Description:      ``,
+			Keywords: []string{
+				"pipeline",
+				"schedule",
+				"variable",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Required, string) The id of the project to add the schedule to.`,
+				},
+				resource.Attribute{
+					Name:        "pipeline_schedule_id",
+					Description: `(Required, string) The id of the pipeline schedule.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required, string) Name of the variable.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required, string) Value of the variable.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "gitlab_pipeline_trigger",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages pipeline triggers for GitLab projects`,
@@ -363,12 +495,20 @@ var (
 					Description: `(Optional) The default branch for the project.`,
 				},
 				resource.Attribute{
+					Name:        "request_access_enabled",
+					Description: `Allow users to request member access.`,
+				},
+				resource.Attribute{
 					Name:        "issues_enabled",
 					Description: `(Optional) Enable issue tracking for the project.`,
 				},
 				resource.Attribute{
 					Name:        "merge_requests_enabled",
 					Description: `(Optional) Enable merge requests for the project.`,
+				},
+				resource.Attribute{
+					Name:        "pipelines_enabled",
+					Description: `(Optional) Enable pipelines for the project.`,
 				},
 				resource.Attribute{
 					Name:        "approvals_before_merge",
@@ -385,6 +525,10 @@ var (
 				resource.Attribute{
 					Name:        "container_registry_enabled",
 					Description: `(Optional) Enable container registry for the project.`,
+				},
+				resource.Attribute{
+					Name:        "lfs_enabled",
+					Description: `(Optional) Enable LFS for the project.`,
 				},
 				resource.Attribute{
 					Name:        "visibility_level",
@@ -984,7 +1128,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_external",
-					Description: `(Optional) Boolean, defaults to false. Whether a user has access only to some internal or private projects. External users can only access projects to which they are explicitly granted access. ## Attributes Reference The resource exports the following attributes:`,
+					Description: `(Optional) Boolean, defaults to false. Whether a user has access only to some internal or private projects. External users can only access projects to which they are explicitly granted access.`,
+				},
+				resource.Attribute{
+					Name:        "reset_password",
+					Description: `(Optional) Boolean, defaults to false. Send user password reset link. ## Attributes Reference The resource exports the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1002,26 +1150,29 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"gitlab_branch_protection":   0,
-		"gitlab_deploy_key":          1,
-		"gitlab_deploy_key_enable":   2,
-		"gitlab_group":               3,
-		"gitlab_group_membership":    4,
-		"gitlab_group_variable":      5,
-		"gitlab_label":               6,
-		"gitlab_pipeline_schedule":   7,
-		"gitlab_pipeline_trigger":    8,
-		"gitlab_project":             9,
-		"gitlab_project_cluster":     10,
-		"gitlab_project_hook":        11,
-		"gitlab_project_membership":  12,
-		"gitlab_project_push_rules":  13,
-		"gitlab_project_share_group": 14,
-		"gitlab_project_variable":    15,
-		"gitlab_service_jira":        16,
-		"gitlab_service_slack":       17,
-		"gitlab_tag_protection":      18,
-		"gitlab_user":                19,
+		"gitlab_branch_protection":          0,
+		"gitlab_deploy_key":                 1,
+		"gitlab_deploy_key_enable":          2,
+		"gitlab_group":                      3,
+		"gitlab_group_cluster":              4,
+		"gitlab_group_label":                5,
+		"gitlab_group_membership":           6,
+		"gitlab_group_variable":             7,
+		"gitlab_label":                      8,
+		"gitlab_pipeline_schedule":          9,
+		"gitlab_pipeline_schedule_variable": 10,
+		"gitlab_pipeline_trigger":           11,
+		"gitlab_project":                    12,
+		"gitlab_project_cluster":            13,
+		"gitlab_project_hook":               14,
+		"gitlab_project_membership":         15,
+		"gitlab_project_push_rules":         16,
+		"gitlab_project_share_group":        17,
+		"gitlab_project_variable":           18,
+		"gitlab_service_jira":               19,
+		"gitlab_service_slack":              20,
+		"gitlab_tag_protection":             21,
+		"gitlab_user":                       22,
 	}
 )
 

@@ -657,7 +657,7 @@ var (
 			Name:             "",
 			Type:             "tencentcloud_cam_group_memberships",
 			Category:         "Data Sources",
-			ShortDescription: `Use this data source to query detailed information of CAM groups`,
+			ShortDescription: `Use this data source to query detailed information of CAM group memberships`,
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
@@ -751,7 +751,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_type",
-					Description: `Type of the policy strategy. 'Group' means customer strategy and 'QCS' means preset strategy.`,
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -781,7 +781,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_type",
-					Description: `Type of the policy strategy. 'Group' means customer strategy and 'QCS' means preset strategy.`,
+					Description: `Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
 				},
 			},
 		},
@@ -803,7 +803,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) Description of the cam group.`,
+					Description: `(Optional) Description of the cam group to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -854,10 +854,6 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "policy_id",
-					Description: `(Required) Id of CAM policy to be queried to be queried.`,
-				},
-				resource.Attribute{
 					Name:        "create_mode",
 					Description: `(Optional) Mode of creation of policy strategy. 1 means policy was created with console, and 2 means it was created by strategies.`,
 				},
@@ -868,6 +864,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the CAM policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) Id of CAM policy to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -967,7 +967,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "policy_type",
-					Description: `(Optional) Type of the policy strategy. 'User' means customer strategy and 'QCS' means preset strategy.`,
+					Description: `(Optional) Type of the policy strategy. Valid values are 'User', 'QCS', '', 'User' means customer strategy and 'QCS' means preset strategy.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -1386,6 +1386,102 @@ var (
 				resource.Attribute{
 					Name:        "uin",
 					Description: `Uin of the CAM user.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_cbs_snapshot_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of CBS snapshot policies.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_policy_id",
+					Description: `(Optional) ID of the snapshot policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_policy_name",
+					Description: `(Optional) Name of the snapshot policy to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_policy_list",
+					Description: `A list of snapshot policy. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "attached_storage_ids",
+					Description: `Storage ids that the snapshot policy attached.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the snapshot policy.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_hours",
+					Description: `Trigger hours of periodic snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_weekdays",
+					Description: `Trigger days of periodic snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "retention_days",
+					Description: `Retention days of the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_policy_id",
+					Description: `ID of the snapshot policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_policy_name",
+					Description: `Name of the snapshot policy.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the snapshot policy.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "snapshot_policy_list",
+					Description: `A list of snapshot policy. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "attached_storage_ids",
+					Description: `Storage ids that the snapshot policy attached.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the snapshot policy.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_hours",
+					Description: `Trigger hours of periodic snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "repeat_weekdays",
+					Description: `Trigger days of periodic snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "retention_days",
+					Description: `Retention days of the snapshot.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_policy_id",
+					Description: `ID of the snapshot policy.`,
+				},
+				resource.Attribute{
+					Name:        "snapshot_policy_name",
+					Description: `Name of the snapshot policy.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the snapshot policy.`,
 				},
 			},
 		},
@@ -2135,7 +2231,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "attachment_list",
-					Description: `A list of cloud load redirection configurations. Each element contains the following attributes:`,
+					Description: `A list of cloud load balancer attachment configurations. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "clb_id",
@@ -2143,7 +2239,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listener_id",
-					Description: `ID of the CLB listener.`,
+					Description: `Id of the CLB listener.`,
 				},
 				resource.Attribute{
 					Name:        "protocol_type",
@@ -2173,7 +2269,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "attachment_list",
-					Description: `A list of cloud load redirection configurations. Each element contains the following attributes:`,
+					Description: `A list of cloud load balancer attachment configurations. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "clb_id",
@@ -2181,7 +2277,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listener_id",
-					Description: `ID of the CLB listener.`,
+					Description: `Id of the CLB listener.`,
 				},
 				resource.Attribute{
 					Name:        "protocol_type",
@@ -2267,7 +2363,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_groups",
-					Description: `Id of the security groups.`,
+					Description: `Id set of the security groups.`,
 				},
 				resource.Attribute{
 					Name:        "status_time",
@@ -2329,7 +2425,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_groups",
-					Description: `Id of the security groups.`,
+					Description: `Id set of the security groups.`,
 				},
 				resource.Attribute{
 					Name:        "status_time",
@@ -2559,7 +2655,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Optional) Type of protocol within the listener, and available values include 'TCP', 'UDP', 'HTTP', 'HTTPS' and 'TCP_SSL'.`,
+					Description: `(Optional) Type of protocol within the listener, and available values are 'TCP', 'UDP', 'HTTP', 'HTTPS' and 'TCP_SSL'.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -2603,7 +2699,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health_check_unhealth_num",
-					Description: `Unhealth threshold of health check, and the default is 3. If a success result is returned for the health check three consecutive times, the CVM is identified as unhealthy. The value range is 2-10. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
+					Description: `Unhealthy threshold of health check, and the default is 3. If a success result is returned for the health check three consecutive times, the CVM is identified as unhealthy. The value range is 2-10. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
@@ -2623,7 +2719,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheduler",
-					Description: `Scheduling method of the CLB listener, and available values include 'WRR' and 'LEAST_CONN'. The default is 'WRR'. NOTES: The listener of 'HTTP' and 'HTTPS' protocol additionally supports the 'IP HASH' method. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
+					Description: `Scheduling method of the CLB listener, and available values are 'WRR' and 'LEAST_CONN'. The default is 'WRR'. NOTES: The listener of 'HTTP' and 'HTTPS' protocol additionally supports the 'IP HASH' method. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
 				},
 				resource.Attribute{
 					Name:        "session_expire_time",
@@ -2673,7 +2769,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health_check_unhealth_num",
-					Description: `Unhealth threshold of health check, and the default is 3. If a success result is returned for the health check three consecutive times, the CVM is identified as unhealthy. The value range is 2-10. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
+					Description: `Unhealthy threshold of health check, and the default is 3. If a success result is returned for the health check three consecutive times, the CVM is identified as unhealthy. The value range is 2-10. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
@@ -2693,7 +2789,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheduler",
-					Description: `Scheduling method of the CLB listener, and available values include 'WRR' and 'LEAST_CONN'. The default is 'WRR'. NOTES: The listener of 'HTTP' and 'HTTPS' protocol additionally supports the 'IP HASH' method. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
+					Description: `Scheduling method of the CLB listener, and available values are 'WRR' and 'LEAST_CONN'. The default is 'WRR'. NOTES: The listener of 'HTTP' and 'HTTPS' protocol additionally supports the 'IP HASH' method. NOTES: TCP/UDP/TCP_SSL listener allows direct configuration, HTTP/HTTPS listener needs to be configured in tencentcloud_clb_listener_rule.`,
 				},
 				resource.Attribute{
 					Name:        "session_expire_time",
@@ -2739,7 +2835,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "redirection_list",
-					Description: `A list of cloud load redirection configurations. Each element contains the following attributes:`,
+					Description: `A list of cloud load balancer redirection configurations. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "clb_id",
@@ -2765,7 +2861,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "redirection_list",
-					Description: `A list of cloud load redirection configurations. Each element contains the following attributes:`,
+					Description: `A list of cloud load balancer redirection configurations. Each element contains the following attributes:`,
 				},
 				resource.Attribute{
 					Name:        "clb_id",
@@ -3831,7 +3927,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nat_id",
-					Description: `(Optional) Id of the NAT.`,
+					Description: `(Optional) Id of the NAT gateway.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -4375,6 +4471,106 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_gaap_domain_error_pages",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query custom GAAP HTTP domain error page info list.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Required) HTTP domain to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Required) ID of the layer7 listener to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) List of the error page info ID to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "error_page_info_list",
+					Description: `An information list of error page info detail. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "body",
+					Description: `New response body.`,
+				},
+				resource.Attribute{
+					Name:        "clear_headers",
+					Description: `Response headers to be removed.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `HTTP domain.`,
+				},
+				resource.Attribute{
+					Name:        "error_codes",
+					Description: `Original error codes.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the error page info.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `ID of the layer7 listener.`,
+				},
+				resource.Attribute{
+					Name:        "new_error_codes",
+					Description: `New error code.`,
+				},
+				resource.Attribute{
+					Name:        "set_headers",
+					Description: `Response headers to be set.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "error_page_info_list",
+					Description: `An information list of error page info detail. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "body",
+					Description: `New response body.`,
+				},
+				resource.Attribute{
+					Name:        "clear_headers",
+					Description: `Response headers to be removed.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `HTTP domain.`,
+				},
+				resource.Attribute{
+					Name:        "error_codes",
+					Description: `Original error codes.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the error page info.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `ID of the layer7 listener.`,
+				},
+				resource.Attribute{
+					Name:        "new_error_codes",
+					Description: `New error code.`,
+				},
+				resource.Attribute{
+					Name:        "set_headers",
+					Description: `Response headers to be set.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_gaap_http_domains",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to query forward domain of layer7 listeners.`,
@@ -4411,7 +4607,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_certificate_id",
-					Description: `ID of the client certificate.`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_ids",
+					Description: `ID list of the client certificate.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -4435,7 +4635,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "realserver_certificate_id",
-					Description: `CA certificate ID of the realserver.`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "realserver_certificate_ids",
+					Description: `CA certificate ID list of the realserver.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4457,7 +4661,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_certificate_id",
-					Description: `ID of the client certificate.`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_ids",
+					Description: `ID list of the client certificate.`,
 				},
 				resource.Attribute{
 					Name:        "domain",
@@ -4481,7 +4689,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "realserver_certificate_id",
-					Description: `CA certificate ID of the realserver.`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "realserver_certificate_ids",
+					Description: `CA certificate ID list of the realserver.`,
 				},
 			},
 		},
@@ -4698,10 +4910,6 @@ var (
 					Description: `(Required) Protocol of the layer4 listener to be queried, and the available values include ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "proxy_id",
-					Description: `(Required) ID of the GAAP proxy to be queried.`,
-				},
-				resource.Attribute{
 					Name:        "listener_id",
 					Description: `(Optional) ID of the layer4 listener to be queried.`,
 				},
@@ -4712,6 +4920,10 @@ var (
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Optional) Port of the layer4 listener to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_id",
+					Description: `(Optional) ID of the GAAP proxy to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -4830,10 +5042,6 @@ var (
 					Description: `(Required) Protocol of the layer7 listener to be queried, and the available values include ` + "`" + `HTTP` + "`" + ` and ` + "`" + `HTTPS` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "proxy_id",
-					Description: `(Required) ID of the GAAP proxy to be queried.`,
-				},
-				resource.Attribute{
 					Name:        "listener_id",
 					Description: `(Optional) ID of the layer7 listener to be queried.`,
 				},
@@ -4844,6 +5052,10 @@ var (
 				resource.Attribute{
 					Name:        "port",
 					Description: `(Optional) Port of the layer7 listener to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_id",
+					Description: `(Optional) ID of the GAAP proxy to be queried.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -4863,7 +5075,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_certificate_id",
-					Description: `ID of the client certificate.`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_ids",
+					Description: `ID list of the client certificate.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -4909,7 +5125,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "client_certificate_id",
-					Description: `ID of the client certificate.`,
+					Description: `(`,
+				},
+				resource.Attribute{
+					Name:        "client_certificate_ids",
+					Description: `ID list of the client certificate.`,
 				},
 				resource.Attribute{
 					Name:        "create_time",
@@ -9055,6 +9275,390 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_tcaplus_applications",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query tcaplus applications`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Optional) Id of the tcapplus application to be query.`,
+				},
+				resource.Attribute{
+					Name:        "app_name",
+					Description: `(Optional) Name of the tcapplus application to be query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of tcaplus application. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "api_access_id",
+					Description: `Access id of the tcapplus application.For TcaplusDB SDK connect.`,
+				},
+				resource.Attribute{
+					Name:        "api_access_ip",
+					Description: `Access ip of the tcapplus application.For TcaplusDB SDK connect.`,
+				},
+				resource.Attribute{
+					Name:        "api_access_port",
+					Description: `Access port of the tcapplus application.For TcaplusDB SDK connect.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "idl_type",
+					Description: `Idl type of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `Network type of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "old_password_expire_time",
+					Description: `This field will display the old password expiration time,if password_status is ` + "`" + `unmodifiable` + "`" + ` means the old password has not yet expired, otherwise ` + "`" + `-` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "password_status",
+					Description: `Password status of the tcapplus application.` + "`" + `unmodifiable` + "`" + ` means:can not change password now,` + "`" + `modifiable` + "`" + ` means:can change password now.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Subnet id of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC id of the tcapplus application.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of tcaplus application. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "api_access_id",
+					Description: `Access id of the tcapplus application.For TcaplusDB SDK connect.`,
+				},
+				resource.Attribute{
+					Name:        "api_access_ip",
+					Description: `Access ip of the tcapplus application.For TcaplusDB SDK connect.`,
+				},
+				resource.Attribute{
+					Name:        "api_access_port",
+					Description: `Access port of the tcapplus application.For TcaplusDB SDK connect.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "idl_type",
+					Description: `Idl type of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "network_type",
+					Description: `Network type of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "old_password_expire_time",
+					Description: `This field will display the old password expiration time,if password_status is ` + "`" + `unmodifiable` + "`" + ` means the old password has not yet expired, otherwise ` + "`" + `-` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "password_status",
+					Description: `Password status of the tcapplus application.` + "`" + `unmodifiable` + "`" + ` means:can not change password now,` + "`" + `modifiable` + "`" + ` means:can change password now.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `Password of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `Subnet id of the tcapplus application.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_id",
+					Description: `VPC id of the tcapplus application.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_tcaplus_idls",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query tcaplus idl files`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) Id of the tcapplus application to be query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of tcaplus idls. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "idl_id",
+					Description: `Id of this idl.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of tcaplus idls. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "idl_id",
+					Description: `Id of this idl.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_tcaplus_tables",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query tcaplus tables`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) Id of the tcapplus application to be query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "table_id",
+					Description: `(Optional) Table id to be query.`,
+				},
+				resource.Attribute{
+					Name:        "table_name",
+					Description: `(Optional) Table name to be query.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) Zone id to be query. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of tcaplus zones. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the tcapplus table.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of this table.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `Show if this table create error.`,
+				},
+				resource.Attribute{
+					Name:        "idl_id",
+					Description: `Idl file id for this table.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_read_qps",
+					Description: `Table reserved read QPS.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_volume",
+					Description: `Table reserved capacity(GB).`,
+				},
+				resource.Attribute{
+					Name:        "reserved_write_qps",
+					Description: `Table reserved write QPS.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of this table.`,
+				},
+				resource.Attribute{
+					Name:        "table_id",
+					Description: `Id of this table.`,
+				},
+				resource.Attribute{
+					Name:        "table_idl_type",
+					Description: `Type of this table idl.`,
+				},
+				resource.Attribute{
+					Name:        "table_name",
+					Description: `Name of this table.`,
+				},
+				resource.Attribute{
+					Name:        "table_size",
+					Description: `Size of this table.`,
+				},
+				resource.Attribute{
+					Name:        "table_type",
+					Description: `Type of this table.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Zone of this table belongs.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of tcaplus zones. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the tcapplus table.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of this table.`,
+				},
+				resource.Attribute{
+					Name:        "error",
+					Description: `Show if this table create error.`,
+				},
+				resource.Attribute{
+					Name:        "idl_id",
+					Description: `Idl file id for this table.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_read_qps",
+					Description: `Table reserved read QPS.`,
+				},
+				resource.Attribute{
+					Name:        "reserved_volume",
+					Description: `Table reserved capacity(GB).`,
+				},
+				resource.Attribute{
+					Name:        "reserved_write_qps",
+					Description: `Table reserved write QPS.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of this table.`,
+				},
+				resource.Attribute{
+					Name:        "table_id",
+					Description: `Id of this table.`,
+				},
+				resource.Attribute{
+					Name:        "table_idl_type",
+					Description: `Type of this table idl.`,
+				},
+				resource.Attribute{
+					Name:        "table_name",
+					Description: `Name of this table.`,
+				},
+				resource.Attribute{
+					Name:        "table_size",
+					Description: `Size of this table.`,
+				},
+				resource.Attribute{
+					Name:        "table_type",
+					Description: `Type of this table.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Zone of this table belongs.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_tcaplus_zones",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query tcaplus zones`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "app_id",
+					Description: `(Required) Id of the tcapplus application to be query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) Zone id to be query.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `(Optional) Zone name to be query. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of tcaplus zones. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the tcapplus zone.`,
+				},
+				resource.Attribute{
+					Name:        "table_count",
+					Description: `Number of tables.`,
+				},
+				resource.Attribute{
+					Name:        "total_size",
+					Description: `The total storage(MB).`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Id of the tcapplus zone.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `Name of the tcapplus zone.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of tcaplus zones. Each element contains the following attributes.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the tcapplus zone.`,
+				},
+				resource.Attribute{
+					Name:        "table_count",
+					Description: `Number of tables.`,
+				},
+				resource.Attribute{
+					Name:        "total_size",
+					Description: `The total storage(MB).`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `Id of the tcapplus zone.`,
+				},
+				resource.Attribute{
+					Name:        "zone_name",
+					Description: `Name of the tcapplus zone.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_vpc",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a specific VPC.`,
@@ -9105,6 +9709,10 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Optional) Filter default or no default vpcs.`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the VPC to be queried.`,
@@ -9353,6 +9961,14 @@ var (
 			Description:      ``,
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "availability_zone",
+					Description: `(Optional) Zone of the subnet to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Optional) Filter default or no default subnets.`,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) Name of the subnet to be queried.`,
@@ -10054,75 +10670,81 @@ var (
 		"tencentcloud_cam_saml_providers":           10,
 		"tencentcloud_cam_user_policy_attachments":  11,
 		"tencentcloud_cam_users":                    12,
-		"tencentcloud_cbs_snapshots":                13,
-		"tencentcloud_cbs_storages":                 14,
-		"tencentcloud_ccn_bandwidth_limits":         15,
-		"tencentcloud_ccn_instances":                16,
-		"tencentcloud_cfs_access_groups":            17,
-		"tencentcloud_cfs_access_rules":             18,
-		"tencentcloud_cfs_file_systems":             19,
-		"tencentcloud_clb_attachments":              20,
-		"tencentcloud_clb_instances":                21,
-		"tencentcloud_clb_listener_rules":           22,
-		"tencentcloud_clb_listeners":                23,
-		"tencentcloud_clb_redirections":             24,
-		"tencentcloud_container_cluster_instances":  25,
-		"tencentcloud_container_clusters":           26,
-		"tencentcloud_cos_bucket_object":            27,
-		"tencentcloud_cos_buckets":                  28,
-		"tencentcloud_dc_gateway_ccn_routes":        29,
-		"tencentcloud_dc_gateway_instances":         30,
-		"tencentcloud_dc_instances":                 31,
-		"tencentcloud_dcx_instances":                32,
-		"tencentcloud_dnats":                        33,
-		"tencentcloud_eip":                          34,
-		"tencentcloud_eips":                         35,
-		"tencentcloud_enis":                         36,
-		"tencentcloud_gaap_certificates":            37,
-		"tencentcloud_gaap_http_domains":            38,
-		"tencentcloud_gaap_http_rules":              39,
-		"tencentcloud_gaap_layer4_listeners":        40,
-		"tencentcloud_gaap_layer7_listeners":        41,
-		"tencentcloud_gaap_proxies":                 42,
-		"tencentcloud_gaap_realservers":             43,
-		"tencentcloud_gaap_security_policies":       44,
-		"tencentcloud_gaap_security_rules":          45,
-		"tencentcloud_ha_vip_eip_attachments":       46,
-		"tencentcloud_ha_vips":                      47,
-		"tencentcloud_image":                        48,
-		"tencentcloud_images":                       49,
-		"tencentcloud_instance_types":               50,
-		"tencentcloud_instances":                    51,
-		"tencentcloud_key_pairs":                    52,
-		"tencentcloud_kubernetes_clusters":          53,
-		"tencentcloud_mongodb_instances":            54,
-		"tencentcloud_mongodb_zone_config":          55,
-		"tencentcloud_mysql_backup_list":            56,
-		"tencentcloud_mysql_instance":               57,
-		"tencentcloud_mysql_parameter_list":         58,
-		"tencentcloud_mysql_zone_config":            59,
-		"tencentcloud_nat_gateways":                 60,
-		"tencentcloud_nats":                         61,
-		"tencentcloud_placement_groups":             62,
-		"tencentcloud_redis_instances":              63,
-		"tencentcloud_redis_zone_config":            64,
-		"tencentcloud_reserved_instance_configs":    65,
-		"tencentcloud_reserved_instances":           66,
-		"tencentcloud_route_table":                  67,
-		"tencentcloud_scf_functions":                68,
-		"tencentcloud_scf_logs":                     69,
-		"tencentcloud_scf_namespaces":               70,
-		"tencentcloud_security_group":               71,
-		"tencentcloud_security_groups":              72,
-		"tencentcloud_ssl_certificates":             73,
-		"tencentcloud_subnet":                       74,
-		"tencentcloud_vpc":                          75,
-		"tencentcloud_vpc_instances":                76,
-		"tencentcloud_vpc_route_tables":             77,
-		"tencentcloud_vpc_subnets":                  78,
-		"tencentcloud_vpn_connections":              79,
-		"tencentcloud_vpn_customer_gateways":        80,
-		"tencentcloud_vpn_gateways":                 81,
+		"tencentcloud_cbs_snapshot_policies":        13,
+		"tencentcloud_cbs_snapshots":                14,
+		"tencentcloud_cbs_storages":                 15,
+		"tencentcloud_ccn_bandwidth_limits":         16,
+		"tencentcloud_ccn_instances":                17,
+		"tencentcloud_cfs_access_groups":            18,
+		"tencentcloud_cfs_access_rules":             19,
+		"tencentcloud_cfs_file_systems":             20,
+		"tencentcloud_clb_attachments":              21,
+		"tencentcloud_clb_instances":                22,
+		"tencentcloud_clb_listener_rules":           23,
+		"tencentcloud_clb_listeners":                24,
+		"tencentcloud_clb_redirections":             25,
+		"tencentcloud_container_cluster_instances":  26,
+		"tencentcloud_container_clusters":           27,
+		"tencentcloud_cos_bucket_object":            28,
+		"tencentcloud_cos_buckets":                  29,
+		"tencentcloud_dc_gateway_ccn_routes":        30,
+		"tencentcloud_dc_gateway_instances":         31,
+		"tencentcloud_dc_instances":                 32,
+		"tencentcloud_dcx_instances":                33,
+		"tencentcloud_dnats":                        34,
+		"tencentcloud_eip":                          35,
+		"tencentcloud_eips":                         36,
+		"tencentcloud_enis":                         37,
+		"tencentcloud_gaap_certificates":            38,
+		"tencentcloud_gaap_domain_error_pages":      39,
+		"tencentcloud_gaap_http_domains":            40,
+		"tencentcloud_gaap_http_rules":              41,
+		"tencentcloud_gaap_layer4_listeners":        42,
+		"tencentcloud_gaap_layer7_listeners":        43,
+		"tencentcloud_gaap_proxies":                 44,
+		"tencentcloud_gaap_realservers":             45,
+		"tencentcloud_gaap_security_policies":       46,
+		"tencentcloud_gaap_security_rules":          47,
+		"tencentcloud_ha_vip_eip_attachments":       48,
+		"tencentcloud_ha_vips":                      49,
+		"tencentcloud_image":                        50,
+		"tencentcloud_images":                       51,
+		"tencentcloud_instance_types":               52,
+		"tencentcloud_instances":                    53,
+		"tencentcloud_key_pairs":                    54,
+		"tencentcloud_kubernetes_clusters":          55,
+		"tencentcloud_mongodb_instances":            56,
+		"tencentcloud_mongodb_zone_config":          57,
+		"tencentcloud_mysql_backup_list":            58,
+		"tencentcloud_mysql_instance":               59,
+		"tencentcloud_mysql_parameter_list":         60,
+		"tencentcloud_mysql_zone_config":            61,
+		"tencentcloud_nat_gateways":                 62,
+		"tencentcloud_nats":                         63,
+		"tencentcloud_placement_groups":             64,
+		"tencentcloud_redis_instances":              65,
+		"tencentcloud_redis_zone_config":            66,
+		"tencentcloud_reserved_instance_configs":    67,
+		"tencentcloud_reserved_instances":           68,
+		"tencentcloud_route_table":                  69,
+		"tencentcloud_scf_functions":                70,
+		"tencentcloud_scf_logs":                     71,
+		"tencentcloud_scf_namespaces":               72,
+		"tencentcloud_security_group":               73,
+		"tencentcloud_security_groups":              74,
+		"tencentcloud_ssl_certificates":             75,
+		"tencentcloud_subnet":                       76,
+		"tencentcloud_tcaplus_applications":         77,
+		"tencentcloud_tcaplus_idls":                 78,
+		"tencentcloud_tcaplus_tables":               79,
+		"tencentcloud_tcaplus_zones":                80,
+		"tencentcloud_vpc":                          81,
+		"tencentcloud_vpc_instances":                82,
+		"tencentcloud_vpc_route_tables":             83,
+		"tencentcloud_vpc_subnets":                  84,
+		"tencentcloud_vpn_connections":              85,
+		"tencentcloud_vpn_customer_gateways":        86,
+		"tencentcloud_vpn_gateways":                 87,
 	}
 )
 

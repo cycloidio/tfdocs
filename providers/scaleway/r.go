@@ -219,12 +219,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "scaleway_lb_backend_beta",
-			Category:         "Load-Balencer Resources (Beta)",
+			Category:         "Load-Balancer Resources (Beta)",
 			ShortDescription: `Manages Scaleway Load-Balancer Backends.`,
 			Description:      ``,
 			Keywords: []string{
 				"load",
-				"balencer",
+				"balancer",
 				"beta",
 				"lb",
 				"backend",
@@ -235,12 +235,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "scaleway_lb_beta",
-			Category:         "Load-Balencer Resources (Beta)",
+			Category:         "Load-Balancer Resources (Beta)",
 			ShortDescription: `Manages Scaleway Load-Balancers.`,
 			Description:      ``,
 			Keywords: []string{
 				"load",
-				"balencer",
+				"balancer",
 				"beta",
 				"lb",
 			},
@@ -250,12 +250,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "scaleway_lb_frontend_beta",
-			Category:         "Load-Balencer Resources (Beta)",
+			Category:         "Load-Balancer Resources (Beta)",
 			ShortDescription: `Manages Scaleway Load-Balancer Frontends.`,
 			Description:      ``,
 			Keywords: []string{
 				"load",
-				"balencer",
+				"balancer",
 				"beta",
 				"lb",
 				"frontend",
@@ -278,9 +278,24 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the bucket. ## Import Buckets can be imported using the ` + "`" + `{region}/{id}` + "`" + ` identifier, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import scaleway_object_bucket.some_bucket fr-par/11111111-1111-1111-1111-111111111111 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The unique name of the bucket. ## Import Buckets can be imported using the ` + "`" + `{region}/{bucketName}` + "`" + ` identifier, e.g. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import scaleway_object_bucket.some_bucket fr-par/some-bucket ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "scaleway_rdb_instance_beta",
+			Category:         "Database Resources (Beta)",
+			ShortDescription: `Manages Scaleway Database Instances.`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+				"beta",
+				"rdb",
+				"instance",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -692,14 +707,15 @@ var (
 		"scaleway_lb_beta":                  12,
 		"scaleway_lb_frontend_beta":         13,
 		"scaleway_object_bucket":            14,
-		"scaleway_security_group":           15,
-		"scaleway_security_group_rule":      16,
-		"scaleway_server":                   17,
-		"scaleway_ssh_key":                  18,
-		"scaleway_token":                    19,
-		"scaleway_user_data":                20,
-		"scaleway_volume":                   21,
-		"scaleway_volume_attachment":        22,
+		"scaleway_rdb_instance_beta":        15,
+		"scaleway_security_group":           16,
+		"scaleway_security_group_rule":      17,
+		"scaleway_server":                   18,
+		"scaleway_ssh_key":                  19,
+		"scaleway_token":                    20,
+		"scaleway_user_data":                21,
+		"scaleway_volume":                   22,
+		"scaleway_volume_attachment":        23,
 	}
 )
 

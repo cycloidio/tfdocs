@@ -607,7 +607,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance",
-					Description: `Name of the virtual machine instance created on the cluster.`,
+					Description: `(Deprecated) Name of the virtual machine instance created on the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "uid",
@@ -641,7 +641,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance",
-					Description: `Name of the virtual machine instance created on the cluster.`,
+					Description: `(Deprecated) Name of the virtual machine instance created on the cluster.`,
 				},
 				resource.Attribute{
 					Name:        "uid",

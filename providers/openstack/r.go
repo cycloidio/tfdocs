@@ -3300,8 +3300,28 @@ var (
 					Description: `(Optional) A collection of one or more role names, which this application credential has to be associated with its project. If omitted, all the current user's roles within the scoped project will be inherited by a new application credential. Changing this creates a new application credential.`,
 				},
 				resource.Attribute{
+					Name:        "access_rules",
+					Description: `(Optional) A collection of one or more access rules, which this application credential allows to follow. The structure is described below. Changing this creates a new application credential.`,
+				},
+				resource.Attribute{
 					Name:        "expires_at",
-					Description: `(Optional) The expiration time of the application credential in the RFC3339 timestamp format (e.g. ` + "`" + `2019-03-09T12:58:49Z` + "`" + `). If omitted, an application credential will never expire. Changing this creates a new application credential. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The expiration time of the application credential in the RFC3339 timestamp format (e.g. ` + "`" + `2019-03-09T12:58:49Z` + "`" + `). If omitted, an application credential will never expire. Changing this creates a new application credential. The ` + "`" + `access_rules` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the existing access rule. The access rule ID of another application credential can be provided.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) The API path that the application credential is permitted to access. May use named wildcards such as`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Optional) The service type identifier for the service that the application credential is granted to access. Must be a service type that is listed in the service catalog and not a code name for a service. E.g.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Optional) The request method that the application credential is permitted to use for a given API endpoint. Allowed values: ` + "`" + `POST` + "`" + `, ` + "`" + `GET` + "`" + `, ` + "`" + `HEAD` + "`" + `, ` + "`" + `PATCH` + "`" + `, ` + "`" + `PUT` + "`" + ` and ` + "`" + `DELETE` + "`" + `. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -3325,6 +3345,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "access_rules",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -3359,6 +3383,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "roles",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "access_rules",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -5549,7 +5577,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_retries",
-					Description: `(Required) Number of permissible ping failures before changing the member's status to INACTIVE. Must be a number between 1 and 10..`,
+					Description: `(Required) Number of permissible ping failures before changing the member's status to INACTIVE. Must be a number between 1 and 10.`,
+				},
+				resource.Attribute{
+					Name:        "max_retries_down",
+					Description: `(Optional) Number of permissible ping failures befor changing the member's status to ERROR. Must be a number between 1 and 10 (supported only in Octavia). Changing this updates the max_retries_down of the existing monitor.`,
 				},
 				resource.Attribute{
 					Name:        "url_path",
@@ -5585,6 +5617,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_retries",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_retries_down",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -5627,6 +5663,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_retries",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "max_retries_down",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -7711,7 +7751,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_snat",
-					Description: `(Optional) Enable Source NAT for the router. Valid values are "true" or "false". An ` + "`" + `external_network_id` + "`" + ` has to be set in order to set this property. Changing this updates the ` + "`" + `enable_snat` + "`" + ` of the router.`,
+					Description: `(Optional) Enable Source NAT for the router. Valid values are "true" or "false". An ` + "`" + `external_network_id` + "`" + ` has to be set in order to set this property. Changing this updates the ` + "`" + `enable_snat` + "`" + ` of the router. Setting this value`,
 				},
 				resource.Attribute{
 					Name:        "external_fixed_ip",
@@ -9226,6 +9266,166 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "openstack_orchestration_stack_v1",
+			Category:         "Orchestration Resources",
+			ShortDescription: `Manages a V1 stack resource within OpenStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"orchestration",
+				"stack",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to create the stack. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new stack.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the stack. It must start with an alphabetic character. Changing this updates the stack's name.`,
+				},
+				resource.Attribute{
+					Name:        "template_opts",
+					Description: `(Required) Template key/value pairs to associate with the stack which contains either the template file or url. Allowed keys: Bin, URL, Files. Changing this updates the existing stack Template Opts.`,
+				},
+				resource.Attribute{
+					Name:        "environment_opts",
+					Description: `(Optional) Environment key/value pairs to associate with the stack which contains details for the environment of the stack. Allowed keys: Bin, URL, Files. Changing this updates the existing stack Environment Opts.`,
+				},
+				resource.Attribute{
+					Name:        "disable_rollback",
+					Description: `(Optional) Enables or disables deletion of all stack resources when a stack creation fails. Default is true, meaning all resources are not deleted when stack creation fails.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) User-defined key/value pairs as parameters to pass to the template. Changing this updates the existing stack parameters.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) The timeout for stack action in minutes.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of tags to assosciate with the Stack ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "disable_rollback",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "capabilities",
+					Description: `List of stack capabilities for stack.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the stack resource.`,
+				},
+				resource.Attribute{
+					Name:        "notification_topics",
+					Description: `List of notification topics for stack.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the stack.`,
+				},
+				resource.Attribute{
+					Name:        "status_reason",
+					Description: `The reason for the current status of the stack.`,
+				},
+				resource.Attribute{
+					Name:        "template_description",
+					Description: `The description of the stack template.`,
+				},
+				resource.Attribute{
+					Name:        "outputs",
+					Description: `A list of stack outputs.`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `The date and time when the resource was created. The date and time stamp format is ISO 8601: CCYY-MM-DDThh:mm:ss±hh:mm For example, 2015-08-27T09:49:58-05:00. The ±hh:mm value, if included, is the time zone as an offset from UTC.`,
+				},
+				resource.Attribute{
+					Name:        "updated_time",
+					Description: `The date and time when the resource was updated. The date and time stamp format is ISO 8601: CCYY-MM-DDThh:mm:ss±hh:mm For example, 2015-08-27T09:49:58-05:00. The ±hh:mm value, if included, is the time zone as an offset from UTC. ## Import stacks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_orchestration_stack_v1.stack_1 ea257959-eeb1-4c10-8d33-26f0409a755d ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "disable_rollback",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "capabilities",
+					Description: `List of stack capabilities for stack.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the stack resource.`,
+				},
+				resource.Attribute{
+					Name:        "notification_topics",
+					Description: `List of notification topics for stack.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the stack.`,
+				},
+				resource.Attribute{
+					Name:        "status_reason",
+					Description: `The reason for the current status of the stack.`,
+				},
+				resource.Attribute{
+					Name:        "template_description",
+					Description: `The description of the stack template.`,
+				},
+				resource.Attribute{
+					Name:        "outputs",
+					Description: `A list of stack outputs.`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `The date and time when the resource was created. The date and time stamp format is ISO 8601: CCYY-MM-DDThh:mm:ss±hh:mm For example, 2015-08-27T09:49:58-05:00. The ±hh:mm value, if included, is the time zone as an offset from UTC.`,
+				},
+				resource.Attribute{
+					Name:        "updated_time",
+					Description: `The date and time when the resource was updated. The date and time stamp format is ISO 8601: CCYY-MM-DDThh:mm:ss±hh:mm For example, 2015-08-27T09:49:58-05:00. The ±hh:mm value, if included, is the time zone as an offset from UTC. ## Import stacks can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_orchestration_stack_v1.stack_1 ea257959-eeb1-4c10-8d33-26f0409a755d ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "openstack_sharedfilesystem_securityservice_v2",
 			Category:         "Shared File System Resources",
 			ShortDescription: `Configure a Shared File System security service.`,
@@ -10681,15 +10881,16 @@ var (
 		"openstack_objectstorage_container_v1":               73,
 		"openstack_objectstorage_object_v1":                  74,
 		"openstack_objectstorage_tempurl_v1":                 75,
-		"openstack_sharedfilesystem_securityservice_v2":      76,
-		"openstack_sharedfilesystem_share_access_v2":         77,
-		"openstack_sharedfilesystem_share_v2":                78,
-		"openstack_sharedfilesystem_sharenetwork_v2":         79,
-		"openstack_vpnaas_endpoint_group_v2":                 80,
-		"openstack_vpnaas_ike_policy_v2":                     81,
-		"openstack_vpnaas_ipsec_policy_v2":                   82,
-		"openstack_vpnaas_service_v2":                        83,
-		"openstack_vpnaas_site_connection_v2":                84,
+		"openstack_orchestration_stack_v1":                   76,
+		"openstack_sharedfilesystem_securityservice_v2":      77,
+		"openstack_sharedfilesystem_share_access_v2":         78,
+		"openstack_sharedfilesystem_share_v2":                79,
+		"openstack_sharedfilesystem_sharenetwork_v2":         80,
+		"openstack_vpnaas_endpoint_group_v2":                 81,
+		"openstack_vpnaas_ike_policy_v2":                     82,
+		"openstack_vpnaas_ipsec_policy_v2":                   83,
+		"openstack_vpnaas_service_v2":                        84,
+		"openstack_vpnaas_site_connection_v2":                85,
 	}
 )
 
