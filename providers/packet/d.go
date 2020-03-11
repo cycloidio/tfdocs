@@ -487,7 +487,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bgp_config",
-					Description: `Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp). The ` + "`" + `bgp_config` + "`" + ` block contains:`,
+					Description: `Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/). The ` + "`" + `bgp_config` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "asn",
@@ -537,7 +537,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bgp_config",
-					Description: `Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp). The ` + "`" + `bgp_config` + "`" + ` block contains:`,
+					Description: `Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/). The ` + "`" + `bgp_config` + "`" + ` block contains:`,
 				},
 				resource.Attribute{
 					Name:        "asn",

@@ -155,6 +155,20 @@ Provides information about a Linode domain.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_domain_record",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a Linode Domain Record.`,
+			Description: `
+
+Provides information about a Linode Domain Record.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_image",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a Linode image.`,
@@ -458,6 +472,97 @@ Provides information about a Linode profile.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "linode_stackscript",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a Linode StackScript.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Required) The unique numeric ID of the StackScript to query. ## Attributes This resource exports the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `The StackScript's label is for display purposes only.`,
+				},
+				resource.Attribute{
+					Name:        "script",
+					Description: `The script to execute when provisioning a new Linode with this StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description for the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "rev_note",
+					Description: `This field allows you to add notes for the set of revisions made to this StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private.`,
+				},
+				resource.Attribute{
+					Name:        "images",
+					Description: `An array of Image IDs representing the Images that this StackScript is compatible for deploying with.`,
+				},
+				resource.Attribute{
+					Name:        "deployments_active",
+					Description: `Count of currently active, deployed Linodes created from this StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "user_gravatar_id",
+					Description: `The Gravatar ID for the User who created the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "deployments_total",
+					Description: `The total number of times this StackScript has been deployed.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `The User who created the StackScript.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date this StackScript was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `The date this StackScript was updated.`,
+				},
+				resource.Attribute{
+					Name:        "user_defined_fields",
+					Description: `This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `A human-readable label for the field that will serve as the input prompt for entering the value during deployment.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the field.`,
+				},
+				resource.Attribute{
+					Name:        "example",
+					Description: `An example value for the field.`,
+				},
+				resource.Attribute{
+					Name:        "one_of",
+					Description: `A list of acceptable single values for the field.`,
+				},
+				resource.Attribute{
+					Name:        "many_of",
+					Description: `A list of acceptable values for the field in any quantity, combination or order.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `The default value. If not specified, this value will be used. ## Import Linodes StackScripts can be imported using the Linode StackScript ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `sh terraform import linode_stackscript.mystackscript 1234567 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "linode_user",
 			Category:         "Data Sources",
 			ShortDescription: `Provides details about a Linode user.`,
@@ -487,20 +592,37 @@ Provides information about a Linode user
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "linode_volume",
+			Category:         "Data Sources",
+			ShortDescription: `Provides details about a Linode Volume.`,
+			Description: `
+
+Provides information about a Linode Volume.
+
+`,
+			Keywords:   []string{},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
 		"linode_account":                0,
 		"linode_domain":                 1,
-		"linode_image":                  2,
-		"linode_instance_type":          3,
-		"linode_networking_ip":          4,
-		"linode_object_storage_cluster": 5,
-		"linode_profile":                6,
-		"linode_region":                 7,
-		"linode_sshkey":                 8,
-		"linode_user":                   9,
+		"linode_domain_record":          2,
+		"linode_image":                  3,
+		"linode_instance_type":          4,
+		"linode_networking_ip":          5,
+		"linode_object_storage_cluster": 6,
+		"linode_profile":                7,
+		"linode_region":                 8,
+		"linode_sshkey":                 9,
+		"linode_stackscript":            10,
+		"linode_user":                   11,
+		"linode_volume":                 12,
 	}
 )
 

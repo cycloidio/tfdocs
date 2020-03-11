@@ -600,7 +600,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `(Optional) The type of volume to create. Changing this creates a new volume.`,
+					Description: `(Optional) Currently, the value can be ` + "`" + `SSD` + "`" + ` (ultra-high I/O disk type), ` + "`" + `SAS` + "`" + ` (high I/O disk type), ` + "`" + `SATA` + "`" + ` (common I/O disk type), ` + "`" + `co-p1` + "`" + ` (Exclusive HPC/ SAP HANA: high I/O, performance optimized), or ` + "`" + `uh-l1` + "`" + ` (Exclusive HPC/ SAP HANA: ultra-high-I/O, latency optimized), Read Note for ` + "`" + `uh-l1` + "`" + ` and ` + "`" + `co-p1` + "`" + `: [OTC-API](https://docs.otc.t-systems.com/en-us/api/ecs/en-us_topic_0065817708.html). Changing this creates a new volume.`,
 				},
 				resource.Attribute{
 					Name:        "device_type",
@@ -1033,6 +1033,14 @@ var (
 				resource.Attribute{
 					Name:        "public_key",
 					Description: `(Optional) The Public key. Changing this parameter will create a new cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "preinstall",
+					Description: `(Optional) Script required before installation. The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "postinstall",
+					Description: `(Optional) Script required after installation. The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -4110,7 +4118,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `(Optional) Specifies the bandwidth (Mbit/s). This parameter is mandatory when type is set to External, and it is invalid when type is set to Internal. The value ranges from 1 to 300.`,
+					Description: `(Optional) Specifies the bandwidth (Mbit/s). This parameter is mandatory when type is set to External, and it is invalid when type is set to Internal. The value ranges from 1 to 1000.`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -5856,6 +5864,403 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_lb_certificate_v2",
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages a V2 certificate resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"enhanced",
+				"load",
+				"balancer",
+				"lb",
+				"certificate",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an LB certificate. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new LB certificate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the Certificate. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) The domain of the Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `(Required) The private encrypted key of the Certificate, PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `(Required) The public encrypted key of the Certificate, PEM format. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Indicates the update time.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Indicates the creation time.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Indicates the update time.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Indicates the creation time.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_lb_l7policy_v2",
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages a V2 L7 Policy resource within OpentelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"enhanced",
+				"load",
+				"balancer",
+				"lb",
+				"l7policy",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the L7 Policy. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the L7 Policy. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) The L7 Policy action - can either be REDIRECT\_TO\_POOL, or REDIRECT\_TO\_LISTENER. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Required) The Listener on which the L7 Policy will be associated with. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "position",
+					Description: `(Optional) The position of this policy on the listener. Positions start at 1. Changing this creates a new L7 Policy.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_pool_id",
+					Description: `(Optional) Requests matching this policy will be redirected to the pool with this ID. Only valid if action is REDIRECT\_TO\_POOL.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_listener_id",
+					Description: `(Optional) Requests matching this policy will be redirected to the listener with this ID. Only valid if action is REDIRECT\_TO\_LISTENER.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the L7 Policy. This value can only be true (UP). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the L7 policy.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "position",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_pool_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above. ## Import Load Balancer L7 Policy can be imported using the L7 Policy ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_lb_l7policy_v2.l7policy_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the L7 policy.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "position",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_pool_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above. ## Import Load Balancer L7 Policy can be imported using the L7 Policy ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_lb_l7policy_v2.l7policy_1 8a7a79c2-cf17-4e65-b2ae-ddc8bfcf6c74 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_lb_l7rule_v2",
+			Category:         "Enhanced Load Balancer Resources",
+			ShortDescription: `Manages a V2 l7rule resource within OpentelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"enhanced",
+				"load",
+				"balancer",
+				"lb",
+				"l7rule",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the L7 Rule. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The L7 Rule type - can either be HOST\_NAME or PATH. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "compare_type",
+					Description: `(Required) The comparison type for the L7 rule - can either be STARTS\_WITH, EQUAL_TO or REGEX`,
+				},
+				resource.Attribute{
+					Name:        "l7policy_id",
+					Description: `(Required) The ID of the L7 Policy to query. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value to use for the comparison. For example, the file type to compare.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The key to use for the comparison. For example, the name of the cookie to evaluate. Valid when ` + "`" + `type` + "`" + ` is set to COOKIE or HEADER. Changing this creates a new L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the L7 Rule. The value can only be true (UP). ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "compare_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "l7policy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "invert",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `The ID of the Listener owning this resource. ## Import Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_lb_l7rule_v2.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the L7 Rule.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "compare_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "l7policy_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "invert",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `The ID of the Listener owning this resource. ## Import Load Balancer L7 Rule can be imported using the L7 Policy ID and L7 Rule ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_lb_l7rule_v2.l7rule_1 e0bd694a-abbe-450e-b329-0931fd1cc5eb/4086b0c9-b18c-4d1c-b6b8-4c56c3ad2a9e ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_lb_listener_v2",
 			Category:         "Enhanced Load Balancer Resources",
 			ShortDescription: `Manages an Enhanced LB listener resource within OpenTelekomCloud.`,
@@ -6268,7 +6673,7 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of probe, which is PING, TCP, HTTP, or HTTPS, that is sent by the load balancer to verify the member state. Changing this creates a new monitor.`,
+					Description: `(Required) The type of probe, which is TCP, UDP_CONNECT, or HTTP, that is sent by the load balancer to verify the member state. Changing this creates a new monitor.`,
 				},
 				resource.Attribute{
 					Name:        "delay",
@@ -6280,15 +6685,15 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "max_retries",
-					Description: `(Required) Number of permissible ping failures before changing the member's status to INACTIVE. Must be a number between 1 and 10..`,
+					Description: `(Required) Number of permissible ping failures before changing the member's status to INACTIVE. Must be a number between 1 and 10.`,
 				},
 				resource.Attribute{
 					Name:        "url_path",
-					Description: `(Optional) Required for HTTP(S) types. URI path that will be accessed if monitor type is HTTP or HTTPS.`,
+					Description: `(Optional) Required for HTTP types. URI path that will be accessed if monitor type is HTTP.`,
 				},
 				resource.Attribute{
 					Name:        "expected_codes",
-					Description: `(Optional) Required for HTTP(S) types. Expected HTTP codes for a passing HTTP(S) monitor. You can either specify a single status like "200", or a range like "200-202".`,
+					Description: `(Optional) Required for HTTP types. Expected HTTP codes for a passing HTTP monitor. You can either specify a single status like "200", or a list like "200,202".`,
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
@@ -6578,6 +6983,106 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_logtank_group_v2",
+			Category:         "LogTank Resources",
+			ShortDescription: `log group management`,
+			Description:      ``,
+			Keywords: []string{
+				"logtank",
+				"group",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `(Required) Specifies the log group name. Changing this parameter will create a new resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The log group ID.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl_in_days",
+					Description: `Specifies the log expiration time. The value is fixed to 7 days. ## Import Log group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_logtank_group_v2.group_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The log group ID.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ttl_in_days",
+					Description: `Specifies the log expiration time. The value is fixed to 7 days. ## Import Log group can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_logtank_group_v2.group_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_logtank_topic_v2",
+			Category:         "LogTank Resources",
+			ShortDescription: `log topic management`,
+			Description:      ``,
+			Keywords: []string{
+				"logtank",
+				"topic",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Specifies the ID of a created log group. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "topic_name",
+					Description: `(Required) Specifies the log topic name. Changing this parameter will create a new resource. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The log topic ID.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "topic_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "index_enabled",
+					Description: `Specifies the search switch. When index is enabled, the topic allows you to search for logs by keyword. ## Import Log topic can be imported using the logtank group ID and topic ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_logtank_topic_v2.topic_1 393f2bfd-2244-11ea-adb7-286ed488c87f/72855918-20b1-11ea-80e0-286ed488c880 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The log topic ID.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "topic_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "index_enabled",
+					Description: `Specifies the search switch. When index is enabled, the topic allows you to search for logs by keyword. ## Import Log topic can be imported using the logtank group ID and topic ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_logtank_topic_v2.topic_1 393f2bfd-2244-11ea-adb7-286ed488c87f/72855918-20b1-11ea-80e0-286ed488c880 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_maas_task_v1",
 			Category:         "MAAS Resources",
 			ShortDescription: `Manages resource task within OpenTelekomCloud MAAS.`,
@@ -6838,7 +7343,15 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "add_jobs",
-					Description: `(Optional) You can submit a job when you create a cluster to save time and use MRS easily. Only one job can be added. The ` + "`" + `component_list` + "`" + ` block supports:`,
+					Description: `(Optional) You can submit a job when you create a cluster to save time and use MRS easily. Only one job can be added.`,
+				},
+				resource.Attribute{
+					Name:        "bootstrap_scripts",
+					Description: `(Optional) Bootstrap action scripts. For details, see bootstrap_scripts block below. MRS 1.7.2 or later supports this parameter.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags key/value pairs to associate with the cluster. The ` + "`" + `component_list` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "component_name",
@@ -6906,7 +7419,35 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 				resource.Attribute{
 					Name:        "hive_script_path",
-					Description: `(Optional) SQL program path This parameter is needed by Spark Script and Hive Script jobs only and must meet the following requirements: Contains a maximum of 1023 characters, excluding special characters such as ;|&><'$. The address cannot be empty or full of spaces. Starts with / or s3a://. Ends with .sql. sql is case-insensitive. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) SQL program path This parameter is needed by Spark Script and Hive Script jobs only and must meet the following requirements: Contains a maximum of 1023 characters, excluding special characters such as ;|&><'$. The address cannot be empty or full of spaces. Starts with / or s3a://. Ends with .sql. sql is case-insensitive. The ` + "`" + `bootstrap_scripts` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of a bootstrap action script.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required) Path of the shell script. Set this parameter to an OBS bucket path or a local VM path.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) Bootstrap action script parameters.`,
+				},
+				resource.Attribute{
+					Name:        "nodes",
+					Description: `(Required) Type of a node where the bootstrap action script is executed, including master, core, and task.`,
+				},
+				resource.Attribute{
+					Name:        "active_master",
+					Description: `(Optional) Whether the bootstrap action script runs only on active Master nodes.`,
+				},
+				resource.Attribute{
+					Name:        "before_component_start",
+					Description: `(Optional) Time when the bootstrap action script is executed. Currently, the script can be executed before and after the component is started.`,
+				},
+				resource.Attribute{
+					Name:        "fail_action",
+					Description: `(Required) Whether to continue to execute subsequent scripts and create a cluster after the bootstrap action script fails to be executed.`,
 				},
 				resource.Attribute{
 					Name:        "billing_type",
@@ -7465,6 +8006,75 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				resource.Attribute{
 					Name:        "is_public",
 					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opentelekomcloud_nat_dnat_rule_v2",
+			Category:         "Nat Resources",
+			ShortDescription: `Manages a V2 dnat rule resource within OpentelekomCloud Nat.`,
+			Description:      ``,
+			Keywords: []string{
+				"nat",
+				"dnat",
+				"rule",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "floating_ip_id",
+					Description: `(Required) Specifies the ID of the floating IP address. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "internal_service_port",
+					Description: `(Required) Specifies port used by ECSs or BMSs to provide services for external systems. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "nat_gateway_id",
+					Description: `(Required) ID of the nat gateway this dnat rule belongs to. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `(Optional) Specifies the port ID of an ECS or a BMS. This parameter and private_ip are alternative. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `(Optional) Specifies the private IP address of a user, for example, the IP address of a VPC for dedicated connection. This parameter and port_id are alternative. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) Specifies the protocol type. Currently, TCP, UDP, and ANY are supported. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "external_service_port",
+					Description: `(Required) Specifies port used by ECSs or BMSs to provide services for external systems. Changing this creates a new dnat rule. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Dnat rule creation time.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dnat rule status.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_address",
+					Description: `The actual floating IP address. ## Import Dnat can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Dnat rule creation time.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dnat rule status.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_address",
+					Description: `The actual floating IP address. ## Import Dnat can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import opentelekomcloud_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -8194,6 +8804,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A description of the rule. Changing this creates a new security group rule.`,
+				},
+				resource.Attribute{
 					Name:        "direction",
 					Description: `(Required) The direction of the rule, valid values are __ingress__ or __egress__. Changing this creates a new security group rule.`,
 				},
@@ -8228,6 +8842,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				resource.Attribute{
 					Name:        "tenant_id",
 					Description: `(Optional) The owner of the security group. Required if admin wants to create a port for another tenant. Changing this creates a new security group rule. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
 					Name:        "direction",
@@ -8267,6 +8885,10 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
 				resource.Attribute{
 					Name:        "direction",
 					Description: `See Argument Reference above.`,
@@ -10111,6 +10733,22 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opentelekomcloud_vpc_flow_log_v1",
+			Category:         "Networking Resources",
+			ShortDescription: `Manages a VPC flow log resource within OpenTelekomCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"networking",
+				"vpc",
+				"flow",
+				"log",
+				"v1",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opentelekomcloud_vpc_peering_connection_accepter_v2",
 			Category:         "Networking Resources",
 			ShortDescription: `Manage the accepter's side of a VPC Peering Connection.`,
@@ -11770,65 +12408,72 @@ Allocates a Dedicated Host to a tenant and set minimum required parameters for t
 		"opentelekomcloud_ims_data_image_v2":                  43,
 		"opentelekomcloud_ims_image_v2":                       44,
 		"opentelekomcloud_kms_key_v1":                         45,
-		"opentelekomcloud_lb_listener_v2":                     46,
-		"opentelekomcloud_lb_loadbalancer_v2":                 47,
-		"opentelekomcloud_lb_member_v2":                       48,
-		"opentelekomcloud_lb_monitor_v2":                      49,
-		"opentelekomcloud_lb_pool_v2":                         50,
-		"opentelekomcloud_lb_whitelist_v2":                    51,
-		"opentelekomcloud_maas_task_v1":                       52,
-		"opentelekomcloud_mrs_cluster_v1":                     53,
-		"opentelekomcloud_mrs_job_v1":                         54,
-		"opentelekomcloud_nat_gateway_v2":                     55,
-		"opentelekomcloud_nat_snat_rule_v2":                   56,
-		"opentelekomcloud_networking_floatingip_associate_v2": 57,
-		"opentelekomcloud_networking_floatingip_v2":           58,
-		"opentelekomcloud_networking_network_v2":              59,
-		"opentelekomcloud_networking_port_v2":                 60,
-		"opentelekomcloud_networking_router_interface_v2":     61,
-		"opentelekomcloud_networking_router_route_v2":         62,
-		"opentelekomcloud_networking_router_v2":               63,
-		"opentelekomcloud_networking_secgroup_rule_v2":        64,
-		"opentelekomcloud_networking_secgroup_v2":             65,
-		"opentelekomcloud_networking_subnet_v2":               66,
-		"opentelekomcloud_networking_vip_associate_v2":        67,
-		"opentelekomcloud_networking_vip_v2":                  68,
-		"opentelekomcloud_rds_instance_v1":                    69,
-		"opentelekomcloud_rds_instance_v3":                    70,
-		"opentelekomcloud_rds_parametergroup_v3":              71,
-		"opentelekomcloud_rts_software_config_v1":             72,
-		"opentelekomcloud_rts_software_deployment_v1":         73,
-		"opentelekomcloud-resource-rts-stack-v1":              74,
-		"opentelekomcloud_s3_bucket":                          75,
-		"opentelekomcloud_s3-bucket-object":                   76,
-		"opentelekomcloud_s3_bucket_policy":                   77,
-		"opentelekomcloud_sdrs_protectiongroup_v1":            78,
-		"opentelekomcloud_sfs_file_system_v2":                 79,
-		"opentelekomcloud_smn_subscription_v2":                80,
-		"opentelekomcloud_smn_topic_v2":                       81,
-		"opentelekomcloud-vbs-backup-policy-v2":               82,
-		"opentelekomcloud-vbs-backup-share-v2":                83,
-		"opentelekomcloud-vbs-backup-v2":                      84,
-		"opentelekomcloud_vpc_eip_v1":                         85,
-		"opentelekomcloud_vpc_peering_connection_accepter_v2": 86,
-		"opentelekomcloud_vpc_peering_connection_v2":          87,
-		"opentelekomcloud_vpc_route_v2":                       88,
-		"opentelekomcloud_vpc_subnet_v1":                      89,
-		"opentelekomcloud_vpc_v1":                             90,
-		"opentelekomcloud_vpnaas_endpoint_group_v2":           91,
-		"opentelekomcloud_vpnaas_ike_policy_v2":               92,
-		"opentelekomcloud_vpnaas_ipsec_policy_v2":             93,
-		"opentelekomcloud_vpnaas_service_v2":                  94,
-		"opentelekomcloud_vpnaas_site_connection_v2":          95,
-		"opentelekomcloud_waf_ccattackprotection_rule_v1":     96,
-		"opentelekomcloud_waf_certificate_v1":                 97,
-		"opentelekomcloud_waf_datamasking_rule_v1":            98,
-		"opentelekomcloud_waf_domain_v1":                      99,
-		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      100,
-		"opentelekomcloud_waf_policy_v1":                      101,
-		"opentelekomcloud_waf_preciseprotection_rule_v1":      102,
-		"opentelekomcloud_waf_webtamperprotection_rule_v1":    103,
-		"opentelekomcloud_waf_whiteblackip_rule_v1":           104,
+		"opentelekomcloud_lb_certificate_v2":                  46,
+		"opentelekomcloud_lb_l7policy_v2":                     47,
+		"opentelekomcloud_lb_l7rule_v2":                       48,
+		"opentelekomcloud_lb_listener_v2":                     49,
+		"opentelekomcloud_lb_loadbalancer_v2":                 50,
+		"opentelekomcloud_lb_member_v2":                       51,
+		"opentelekomcloud_lb_monitor_v2":                      52,
+		"opentelekomcloud_lb_pool_v2":                         53,
+		"opentelekomcloud_lb_whitelist_v2":                    54,
+		"opentelekomcloud_logtank_group_v2":                   55,
+		"opentelekomcloud_logtank_topic_v2":                   56,
+		"opentelekomcloud_maas_task_v1":                       57,
+		"opentelekomcloud_mrs_cluster_v1":                     58,
+		"opentelekomcloud_mrs_job_v1":                         59,
+		"opentelekomcloud_nat_dnat_rule_v2":                   60,
+		"opentelekomcloud_nat_gateway_v2":                     61,
+		"opentelekomcloud_nat_snat_rule_v2":                   62,
+		"opentelekomcloud_networking_floatingip_associate_v2": 63,
+		"opentelekomcloud_networking_floatingip_v2":           64,
+		"opentelekomcloud_networking_network_v2":              65,
+		"opentelekomcloud_networking_port_v2":                 66,
+		"opentelekomcloud_networking_router_interface_v2":     67,
+		"opentelekomcloud_networking_router_route_v2":         68,
+		"opentelekomcloud_networking_router_v2":               69,
+		"opentelekomcloud_networking_secgroup_rule_v2":        70,
+		"opentelekomcloud_networking_secgroup_v2":             71,
+		"opentelekomcloud_networking_subnet_v2":               72,
+		"opentelekomcloud_networking_vip_associate_v2":        73,
+		"opentelekomcloud_networking_vip_v2":                  74,
+		"opentelekomcloud_rds_instance_v1":                    75,
+		"opentelekomcloud_rds_instance_v3":                    76,
+		"opentelekomcloud_rds_parametergroup_v3":              77,
+		"opentelekomcloud_rts_software_config_v1":             78,
+		"opentelekomcloud_rts_software_deployment_v1":         79,
+		"opentelekomcloud-resource-rts-stack-v1":              80,
+		"opentelekomcloud_s3_bucket":                          81,
+		"opentelekomcloud_s3-bucket-object":                   82,
+		"opentelekomcloud_s3_bucket_policy":                   83,
+		"opentelekomcloud_sdrs_protectiongroup_v1":            84,
+		"opentelekomcloud_sfs_file_system_v2":                 85,
+		"opentelekomcloud_smn_subscription_v2":                86,
+		"opentelekomcloud_smn_topic_v2":                       87,
+		"opentelekomcloud-vbs-backup-policy-v2":               88,
+		"opentelekomcloud-vbs-backup-share-v2":                89,
+		"opentelekomcloud-vbs-backup-v2":                      90,
+		"opentelekomcloud_vpc_eip_v1":                         91,
+		"opentelekomcloud_vpc_flow_log_v1":                    92,
+		"opentelekomcloud_vpc_peering_connection_accepter_v2": 93,
+		"opentelekomcloud_vpc_peering_connection_v2":          94,
+		"opentelekomcloud_vpc_route_v2":                       95,
+		"opentelekomcloud_vpc_subnet_v1":                      96,
+		"opentelekomcloud_vpc_v1":                             97,
+		"opentelekomcloud_vpnaas_endpoint_group_v2":           98,
+		"opentelekomcloud_vpnaas_ike_policy_v2":               99,
+		"opentelekomcloud_vpnaas_ipsec_policy_v2":             100,
+		"opentelekomcloud_vpnaas_service_v2":                  101,
+		"opentelekomcloud_vpnaas_site_connection_v2":          102,
+		"opentelekomcloud_waf_ccattackprotection_rule_v1":     103,
+		"opentelekomcloud_waf_certificate_v1":                 104,
+		"opentelekomcloud_waf_datamasking_rule_v1":            105,
+		"opentelekomcloud_waf_domain_v1":                      106,
+		"opentelekomcloud_waf_falsealarmmasking_rule_v1":      107,
+		"opentelekomcloud_waf_policy_v1":                      108,
+		"opentelekomcloud_waf_preciseprotection_rule_v1":      109,
+		"opentelekomcloud_waf_webtamperprotection_rule_v1":    110,
+		"opentelekomcloud_waf_whiteblackip_rule_v1":           111,
 	}
 )
 

@@ -2086,6 +2086,10 @@ var (
 					Description: `(Optional) Map of custom attribute ids to attribute value strings to set for virtual machine. See [here][docs-setting-custom-attributes] for a reference on how to set values for custom attributes. [docs-setting-custom-attributes]: /docs/providers/vsphere/r/custom_attribute.html#using-custom-attributes-in-a-supported-resource ~>`,
 				},
 				resource.Attribute{
+					Name:        "storage_policy_id",
+					Description: `(Optional) The UUID of the storage policy to assign to VM home directory. ### CPU and memory options The following options control CPU and memory settings on the virtual machine:`,
+				},
+				resource.Attribute{
 					Name:        "num_cpus",
 					Description: `(Optional) The total number of virtual processor cores to assign to this virtual machine. Default: ` + "`" + `1` + "`" + `.`,
 				},
@@ -2311,7 +2315,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "io_share_count",
-					Description: `(Optional) The share count for this disk when the share level is ` + "`" + `custom` + "`" + `. #### Computed disk attributes`,
+					Description: `(Optional) The share count for this disk when the share level is ` + "`" + `custom` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "storage_policy_id",
+					Description: `(Optional) The UUID of the storage policy to assign to this disk. #### Computed disk attributes`,
 				},
 				resource.Attribute{
 					Name:        "uuid",

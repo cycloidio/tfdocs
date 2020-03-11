@@ -53,7 +53,71 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shutdown_at_time",
-					Description: `(Optional) The date and time that the environment will be automatically shut down. Format: yyyy/mm/dd hh:mm:ss. By default, the suspend time uses the UTC offset for the time zone defined in your user account settings. Optionally, a different UTC offset can be supplied (for example: 2018/07/20 14:20:00 -0000). The value in the API response is converted to your time zone. ~>`,
+					Description: `(Optional) The date and time that the environment will be automatically shut down. Format: yyyy/mm/dd hh:mm:ss. By default, the suspend time uses the UTC offset for the time zone defined in your user account settings. Optionally, a different UTC offset can be supplied (for example: 2018/07/20 14:20:00 -0000). The value in the API response is converted to your time zone.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) List of environment tags.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) Set of labels for the instance. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) Environment user data, available from the metadata server and the skytap api The ` + "`" + `label` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Required) Label category that provide contextual meaning.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Label value to be use for reporting ~>`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "skytap_icnr_tunnel",
+			Category:         "Resources",
+			ShortDescription: `Provides ICNR Tunnel resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"icnr",
+				"tunnel",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required, Force New) Source network from where the connection was initiated. This network does not need to be “tunnelable” (visible to other networks).`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required, Force New) Target network to which the connection was made. The network needs to be “tunnelable” (visible to other networks) ## Attributes Reference The following attributes are exported:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "skytap_label_category",
+			Category:         "Resources",
+			ShortDescription: `Provides a Skytap Label Category resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"label",
+				"category",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) User-defined label category name.`,
+				},
+				resource.Attribute{
+					Name:        "single_value",
+					Description: `(Required) With single value labels can have only one value for a category, with false labels can have multiple values. ## Attributes Reference The following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -204,7 +268,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "internal_port",
-					Description: `(Required, Force New) The port that is exposed on the interface. Typically this will be dictated by standard usage (e.g., port 80 for http traffic, port 22 for SSH). ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required, Force New) The port that is exposed on the interface. Typically this will be dictated by standard usage (e.g., port 80 for http traffic, port 22 for SSH).`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) VM user data, available from the metadata server and the skytap api`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) Set of labels for the instance. Structure is documented below. The ` + "`" + `label` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "category",
+					Description: `(Required) Label category that provide contextual meaning.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Label value to be use for reporting ## Attributes Reference The following attributes are exported:`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -213,10 +293,12 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"skytap_environment": 0,
-		"skytap_network":     1,
-		"skytap_project":     2,
-		"skytap_vm":          3,
+		"skytap_environment":    0,
+		"skytap_icnr_tunnel":    1,
+		"skytap_label_category": 2,
+		"skytap_network":        3,
+		"skytap_project":        4,
+		"skytap_vm":             5,
 	}
 )
 

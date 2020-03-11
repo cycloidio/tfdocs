@@ -217,6 +217,44 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rabbitmq_topic_permissions",
+			Category:         "Resources",
+			ShortDescription: `Creates and manages a user's topic permissions on a RabbitMQ server.`,
+			Description:      ``,
+			Keywords: []string{
+				"topic",
+				"permissions",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) The user to apply the permissions to.`,
+				},
+				resource.Attribute{
+					Name:        "vhost",
+					Description: `(Required) The vhost to create the resource in.`,
+				},
+				resource.Attribute{
+					Name:        "permissions",
+					Description: `(Required) The settings of the permissions. The structure is described below. The ` + "`" + `permissions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "exchange",
+					Description: `(Required) The exchange to set the permissions for.`,
+				},
+				resource.Attribute{
+					Name:        "write",
+					Description: `(Required) The "write" ACL.`,
+				},
+				resource.Attribute{
+					Name:        "read",
+					Description: `(Required) The "read" ACL. ## Attributes Reference No further attributes are exported. ## Import Permissions can be imported using the ` + "`" + `id` + "`" + ` which is composed of ` + "`" + `user@vhost` + "`" + `. E.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import rabbitmq_topic_permissions.test user@vhost ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rabbitmq_user",
 			Category:         "Resources",
 			ShortDescription: `Creates and manages a user on a RabbitMQ server.`,
@@ -261,13 +299,14 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"rabbitmq_binding":     0,
-		"rabbitmq_exchange":    1,
-		"rabbitmq_permissions": 2,
-		"rabbitmq_policy":      3,
-		"rabbitmq_queue":       4,
-		"rabbitmq_user":        5,
-		"rabbitmq_vhost":       6,
+		"rabbitmq_binding":           0,
+		"rabbitmq_exchange":          1,
+		"rabbitmq_permissions":       2,
+		"rabbitmq_policy":            3,
+		"rabbitmq_queue":             4,
+		"rabbitmq_topic_permissions": 5,
+		"rabbitmq_user":              6,
+		"rabbitmq_vhost":             7,
 	}
 )
 

@@ -1538,6 +1538,14 @@ var (
 					Description: `(Computed) The prefix for created nodes of the Node Pool (string)`,
 				},
 				resource.Attribute{
+					Name:        "delete_not_ready_after_secs",
+					Description: `(Computed) Delete not ready node after secs. Default ` + "`" + `0` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `(Computed) Node taints (List)`,
+				},
+				resource.Attribute{
 					Name:        "quantity",
 					Description: `(Computed) The number of nodes to create on Node Pool (int)`,
 				},
@@ -1570,6 +1578,14 @@ var (
 				resource.Attribute{
 					Name:        "hostname_prefix",
 					Description: `(Computed) The prefix for created nodes of the Node Pool (string)`,
+				},
+				resource.Attribute{
+					Name:        "delete_not_ready_after_secs",
+					Description: `(Computed) Delete not ready node after secs. Default ` + "`" + `0` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `(Computed) Node taints (List)`,
 				},
 				resource.Attribute{
 					Name:        "quantity",
@@ -1750,6 +1766,10 @@ var (
 					Description: `(Computed) The notifier description (string)`,
 				},
 				resource.Attribute{
+					Name:        "send_resolved",
+					Description: `(Computed) If the notifier sends resolved notifications (bool)`,
+				},
+				resource.Attribute{
 					Name:        "pagerduty_config",
 					Description: `(Computed) Pagerduty config for notifier (list maxitems:1)`,
 				},
@@ -1786,6 +1806,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Computed) The notifier description (string)`,
+				},
+				resource.Attribute{
+					Name:        "send_resolved",
+					Description: `(Computed) If the notifier sends resolved notifications (bool)`,
 				},
 				resource.Attribute{
 					Name:        "pagerduty_config",
@@ -2386,8 +2410,16 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "is_external",
+					Description: `(Optional) Set is the user if the user is external. Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the user (string)`,
+				},
+				resource.Attribute{
 					Name:        "username",
-					Description: `(Required) The name of the user (string) ## Attributes Reference`,
+					Description: `(Optional) The username of the user (string) ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "id",

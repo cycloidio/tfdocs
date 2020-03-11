@@ -1368,6 +1368,10 @@ var (
 					Description: `(Optional) Delete the volume / block device upon termination of the instance. Defaults to false. Changing this creates a new server.`,
 				},
 				resource.Attribute{
+					Name:        "volume_type",
+					Description: `(Optional) The volume type that will be used, for example SSD or HDD storage. The available options depend on how your specific OpenStack cloud is configured and what classes of storage are provided. Changing this creates a new server.`,
+				},
+				resource.Attribute{
 					Name:        "device_type",
 					Description: `(Optional) The low-level device type that will be used. Most common thing is to leave this empty. Changing this creates a new server.`,
 				},
@@ -4231,7 +4235,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_refs",
-					Description: `(Optional) A set of dictionaries containing references to secrets. The structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
+					Description: `(Optional) A set of dictionaries containing references to secrets. The structure is described below.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) Allows to control an access to a container. Currently only the ` + "`" + `read` + "`" + ` operation is supported. If not specified, the container is accessible project wide. The ` + "`" + `read` + "`" + ` structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -4239,7 +4247,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
-					Description: `(Required) The secret reference / where to find the secret, URL. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The secret reference / where to find the secret, URL. The ` + "`" + `acl` + "`" + ` ` + "`" + `read` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_access",
+					Description: `(Optional) Whether the container is accessible project wide. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `(Optional) The list of user IDs, which are allowed to access the container, when ` + "`" + `project_access` + "`" + ` is set to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Computed) The date the container ACL was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `(Computed) The date the container ACL was last updated. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "container_ref",
@@ -4259,6 +4283,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_refs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -4309,6 +4337,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secret_refs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -4397,7 +4429,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metadata",
-					Description: `(Optional) Additional Metadata for the secret. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Additional Metadata for the secret.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) Allows to control an access to a secret. Currently only the ` + "`" + `read` + "`" + ` operation is supported. If not specified, the secret is accessible project wide. The ` + "`" + `acl` + "`" + ` ` + "`" + `read` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_access",
+					Description: `(Optional) Whether the secret is accessible project wide. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `(Optional) The list of user IDs, which are allowed to access the secret, when ` + "`" + `project_access` + "`" + ` is set to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Computed) The date the secret ACL was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `(Computed) The date the secret ACL was last updated. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "secret_ref",
@@ -4433,6 +4485,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "payload_content_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -4503,6 +4559,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "payload_content_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -4595,7 +4655,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The unique ID for the L7 {olicy.`,
+					Description: `The unique ID for the L7 Policy.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -4641,7 +4701,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The unique ID for the L7 {olicy.`,
+					Description: `The unique ID for the L7 Policy.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -4907,7 +4967,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `(Optional) The administrative state of the Listener. A valid value is true (UP) or false (DOWN). ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The administrative state of the Listener. A valid value is true (UP) or false (DOWN).`,
+				},
+				resource.Attribute{
+					Name:        "insert_headers",
+					Description: `(Optional) The list of key value pairs representing headers to insert into the request before it is sent to the backend members. Changing this updates the headers of the existing listener. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -4967,6 +5031,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "insert_headers",
 					Description: `See Argument Reference above. ## Import Load Balancer Listener can be imported using the Listener ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_listener_v2.listener_1 b67ce64e-8b26-405d-afeb-4a078901f15a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -5029,6 +5097,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "insert_headers",
 					Description: `See Argument Reference above. ## Import Load Balancer Listener can be imported using the Listener ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_listener_v2.listener_1 b67ce64e-8b26-405d-afeb-4a078901f15a ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},

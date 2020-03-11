@@ -4458,11 +4458,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_ttl",
-					Description: `(Optional) Specifies the Time To Live value.`,
+					Description: `(Optional) Specifies the maximum Time To Live value.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
-					Description: `(Optional) Specifies the maximum Time To Live value. ## Attributes Reference No additional attributes are exposed by this resource. ## Import SSH secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ssh_secret_backend_role.foo ssh/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) Specifies the Time To Live value. ## Attributes Reference No additional attributes are exposed by this resource. ## Import SSH secret backend roles can be imported using the ` + "`" + `path` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import vault_ssh_secret_backend_role.foo ssh/roles/my-role ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},

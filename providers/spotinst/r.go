@@ -12,7 +12,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "elastigroup_aws",
-			Category:         "Spotinst Resources",
+			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst AWS group resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -870,7 +870,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "update_level",
-					Description: `(Required) - Level to update Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_beanstalk { environment_id = "e-3tkmbj7hzc" deployment_preferences { automatic_roll = true batch_size_percentage = 100 grace_period = 90 strategy { action = "REPLACE_SERVER" should_drain_instance = true } } managed_actions { platform_update { perform_at = "timeWindow" field_name = "Mon:23:50-Tue:00:20" update_level = "minorAndPatch" } } } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+					Description: `(Required) - Level to update Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_beanstalk { environment_id = "e-3tkmbj7hzc" deployment_preferences { automatic_roll = true batch_size_percentage = 100 grace_period = 90 strategy { action = "REPLACE_SERVER" should_drain_instances = true } } managed_actions { platform_update { perform_at = "timeWindow" time_window = "Mon:23:50-Tue:00:20" update_level = "minorAndPatch" } } } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
 				},
 				resource.Attribute{
 					Name:        "update_policy",
@@ -943,7 +943,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "elastigroup_aws_beanstalk",
-			Category:         "Spotinst Resources",
+			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst AWS group resource using Elastic Beanstalk.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1038,7 +1038,67 @@ var (
 				},
 				resource.Attribute{
 					Name:        "update_level",
-					Description: `(Required) - Level to update`,
+					Description: `(Required) - Level to update <a id="scheduled-task"></a> ## Scheduled Tasks Each ` + "`" + `scheduled_task` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "task_type",
+					Description: `(Required) The task type to run. Supported task types are: ` + "`" + `"scale"` + "`" + `, ` + "`" + `"backup_ami"` + "`" + `, ` + "`" + `"roll"` + "`" + `, ` + "`" + `"scaleUp"` + "`" + `, ` + "`" + `"percentageScaleUp"` + "`" + `, ` + "`" + `"scaleDown"` + "`" + `, ` + "`" + `"percentageScaleDown"` + "`" + `, ` + "`" + `"statefulUpdateCapacity"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "cron_expression",
+					Description: `(Optional; Required if not using ` + "`" + `frequency` + "`" + `) A valid cron expression. The cron is running in UTC time zone and is in [Unix cron format](https://en.wikipedia.org/wiki/Cron).`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional; Format: ISO 8601) Set a start time for one time tasks.`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `(Optional; Required if not using ` + "`" + `cron_expression` + "`" + `) The recurrence frequency to run this task. Supported values are ` + "`" + `"hourly"` + "`" + `, ` + "`" + `"daily"` + "`" + `, ` + "`" + `"weekly"` + "`" + ` and ` + "`" + `"continuous"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scale_target_capacity",
+					Description: `(Optional) The desired number of instances the group should have.`,
+				},
+				resource.Attribute{
+					Name:        "scale_min_capacity",
+					Description: `(Optional) The minimum number of instances the group should have.`,
+				},
+				resource.Attribute{
+					Name:        "scale_max_capacity",
+					Description: `(Optional) The maximum number of instances the group should have.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Setting the task to being enabled or disabled.`,
+				},
+				resource.Attribute{
+					Name:        "target_capacity",
+					Description: `(Optional; Only valid for statefulUpdateCapacity) The desired number of instances the group should have.`,
+				},
+				resource.Attribute{
+					Name:        "min_capacity",
+					Description: `(Optional; Only valid for statefulUpdateCapacity) The minimum number of instances the group should have.`,
+				},
+				resource.Attribute{
+					Name:        "max_capacity",
+					Description: `(Optional; Only valid for statefulUpdateCapacity) The maximum number of instances the group should have.`,
+				},
+				resource.Attribute{
+					Name:        "batch_size_percentage",
+					Description: `(Optional; Required when the ` + "`" + `task_type` + "`" + ` is ` + "`" + `"roll"` + "`" + `.) The percentage size of each batch in the scheduled deployment roll.`,
+				},
+				resource.Attribute{
+					Name:        "grace_period",
+					Description: `(Optional) The period of time (seconds) to wait before checking a batch's health after it's deployment.`,
+				},
+				resource.Attribute{
+					Name:        "adjustment",
+					Description: `(Optional; Min 1) The number of instances to add or remove.`,
+				},
+				resource.Attribute{
+					Name:        "adjustment_percentage",
+					Description: `(Optional; Min 1) The percentage of instances to add or remove. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl scheduled_task { task_type = "backup_ami" cron_expression = "" start_time = "1970-01-01T01:00:00Z" frequency = "hourly" scale_target_capacity = 5 scale_min_capacity = 0 scale_max_capacity = 10 is_enabled = false target_capacity = 5 min_capacity = 0 max_capacity = 10 batch_size_percentage = 33 grace_period = 300 } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1046,7 +1106,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "elastigroup_azure",
-			Category:         "Spotinst Resources",
+			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst elastigroup resource for Microsoft Azure.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1404,7 +1464,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "elastigroup_gcp",
-			Category:         "Spotinst Resources",
+			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst elastigroup resource for Google Cloud.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1754,7 +1814,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "elastigroup_gke",
-			Category:         "Spotinst Resources",
+			Category:         "Elastigroup",
 			ShortDescription: `Provides a Spotinst elastigroup resource for Google Cloud using the Google Kubernetes Engine.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1839,11 +1899,271 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "managed_instance",
+			Category:         "Managed Instance",
+			ShortDescription: `Provides a Spotinst AWS managed instance resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"managed",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The ManagedInstance name.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The ManagedInstance description.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The AWS region your group will be created in.`,
+				},
+				resource.Attribute{
+					Name:        "life_cycle",
+					Description: `(Optional) Set lifecycle, valid values: ` + "`" + `“spot”` + "`" + `, ` + "`" + `“on_demand”` + "`" + `. Default ` + "`" + `"spot"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "orientation",
+					Description: `(Optional) Select a prediction strategy. Valid values: ` + "`" + `"balanced"` + "`" + `, ` + "`" + `"costOriented"` + "`" + `, ` + "`" + `"availabilityOriented"` + "`" + `, ` + "`" + `"cheapest"` + "`" + `. Default: ` + "`" + `"availabilityOriented"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "draining_timeout",
+					Description: `(Optional) The time in seconds to allow the instance be drained from incoming TCP connections and detached from ELB before terminating it, during a scale down operation.`,
+				},
+				resource.Attribute{
+					Name:        "fallback_to_ondemand",
+					Description: `(Optional) In case of no spots available, Managed Instance will launch an On-demand instance instead. Default: ` + "`" + `"true"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "utilize_reserved_instances",
+					Description: `(Optional) In case of any available Reserved Instances, Managed Instance will utilize them before purchasing Spot instances. Default: ` + "`" + `"false"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "optimization_windows",
+					Description: `(Optional) When performAt is 'timeWindow': must specify a list of 'timeWindows' with at least one time window Each string is in the format of - ddd:hh:mm-ddd:hh:mm ddd = day of week = Sun | Mon | Tue | Wed | Thu | Fri | Sat hh = hour 24 = 0 -23 mm = minute = 0 - 59.`,
+				},
+				resource.Attribute{
+					Name:        "perform_at",
+					Description: `(Optional) Valid values: “always”, “never”, "timeWindow". Default ` + "`" + `"never"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "persist_private_ip",
+					Description: `(Optional) Should the instance maintain its private IP.`,
+				},
+				resource.Attribute{
+					Name:        "persist_block_devices",
+					Description: `(Optional) Should the instance maintain its Data volumes.`,
+				},
+				resource.Attribute{
+					Name:        "persist_root_device",
+					Description: `(Optional) Should the instance maintain its root device volumes.`,
+				},
+				resource.Attribute{
+					Name:        "block_devices_mode",
+					Description: `(Optional) Determine the way we attach the data volumes to the data devices. Valid values: ` + "`" + `"reattach"` + "`" + `, ` + "`" + `"onLaunch"` + "`" + `. Default: ` + "`" + `"onLaunch"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_type",
+					Description: `(Optional) The service to use for the health check. Valid values: ` + "`" + `“EC2”` + "`" + `, ` + "`" + `“ELB”` + "`" + `, ` + "`" + `“TARGET_GROUP”` + "`" + `, ` + "`" + `“MULTAI_TARGET_SET”` + "`" + `. Default: ` + "`" + `“EC2”` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auto_healing",
+					Description: `(Optional) Enable the auto healing which auto replaces the instance in case the health check fails, default: ` + "`" + `“true”` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "grace_period",
+					Description: `(Optional) The amount of time, in seconds, after the instance has launched to starts and check its health, default ` + "`" + `“120"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "unhealthy_duration",
+					Description: `(Optional) The amount of time, in seconds, an existing instance should remain active after becoming unhealthy. After the set time out the instance will be replaced, default ` + "`" + `“120"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `(Required) A comma-separated list of subnet identifiers for your instance.`,
+				},
+				resource.Attribute{
+					Name:        "vpcId",
+					Description: `(Required) VPC id for your instance.`,
+				},
+				resource.Attribute{
+					Name:        "elastic_ip",
+					Description: `(Optional) Elastic IP Allocation Id to associate to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `(Optional) Private IP Allocation Id to associate to the instance.`,
+				},
+				resource.Attribute{
+					Name:        "product",
+					Description: `(Required) Operation system type. Valid values: ` + "`" + `"Linux/UNIX"` + "`" + `, ` + "`" + `"SUSE Linux"` + "`" + `, ` + "`" + `"Windows"` + "`" + `, ` + "`" + `"Red Hat Enterprise Linux"` + "`" + `, ` + "`" + `"Linux/UNIX (Amazon VPC)"` + "`" + `, ` + "`" + `"SUSE Linux (Amazon VPC)"` + "`" + `, ` + "`" + `"Windows (Amazon VPC)"` + "`" + `, ` + "`" + `"Red Hat Enterprise Linux (Amazon VPC)"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "instance_types",
+					Description: `(Required) Comma separated list of available instance types for instance.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_type",
+					Description: `(Required) Preferred instance types for the instance. We will automatically select optional similar instance types to ensure optimized cost efficiency`,
+				},
+				resource.Attribute{
+					Name:        "ebs_optimized",
+					Description: `(Optional) Enable EBS optimization for supported instance which is not enabled by default. Note - additional charges will be applied. Default: false`,
+				},
+				resource.Attribute{
+					Name:        "enable_monitoring",
+					Description: `(Optional) Describes whether instance Enhanced Monitoring is enabled. Default: false`,
+				},
+				resource.Attribute{
+					Name:        "placement_tenancy",
+					Description: `(Optional) Valid values: "default", "dedicated" Default: default`,
+				},
+				resource.Attribute{
+					Name:        "iam_instance_profile",
+					Description: `(Optional) Set IAM profile to instance. Set only one of ARN or Name.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional) One or more security group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) The ID of the image used to launch the instance.`,
+				},
+				resource.Attribute{
+					Name:        "key_pair",
+					Description: `(Optional) Specify a Key Pair to attach to the instances.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Set tags for the instance. Items should be unique.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Tag's key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Tag's name.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) The Base64-encoded MIME user data to make available to the instances.`,
+				},
+				resource.Attribute{
+					Name:        "shutdown_script",
+					Description: `(Optional) The Base64-encoded shutdown script to execute prior to instance termination.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_credits",
+					Description: `(Optional) cpuCredits can have one of two values: “unlimited”, “standard”. Default: unlimited <a id="network-interface"></a> ## Network Interface - (Optional) List of network interfaces in an EC2 instance.`,
+				},
+				resource.Attribute{
+					Name:        "device_index",
+					Description: `(Optional) The position of the network interface in the attachment order. A primary network interface has a device index of 0. If you specify a network interface when launching an instance, you must specify the device index.`,
+				},
+				resource.Attribute{
+					Name:        "associate_public_ip_address",
+					Description: `(Optional) Indicates whether to assign a public IPv4 address to an instance you launch in a VPC. The public IP address can only be assigned to a network interface for eth0, and can only be assigned to a new network interface, not an existing one. You cannot specify more than one network interface in the request. If launching into a default subnet, the default value is true.`,
+				},
+				resource.Attribute{
+					Name:        "associate_ipv6_address",
+					Description: `(Optional) Indicates whether to assign an IPv6 address. Amazon EC2 chooses the IPv6 addresses from the range of the subnet. Default: false Usage: ` + "`" + `` + "`" + `` + "`" + `hcl network_interface { device_index = 0 associate_public_ip_address = "false" associate_ipv6_address = "true" } ` + "`" + `` + "`" + `` + "`" + ` <a id="scheduled-task"></a> ## Scheduled Tasks Each ` + "`" + `scheduled_task` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional) Describes whether the task is enabled. When true the task should run when false it should not run.`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `(Optional) Set frequency for the task. Valid values: "hourly", "daily", "weekly", "continuous".`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional) DATETIME in ISO-8601 format. Sets a start time for scheduled actions. If "frequency" or "cronExpression" are not used - the task will run only once at the start time and will then be deleted from the instance configuration. Example: 2019-05-23T10:55:09Z`,
+				},
+				resource.Attribute{
+					Name:        "cron_expression",
+					Description: `(Optional) A valid cron expression. For example : "`,
+				},
+				resource.Attribute{
+					Name:        "loadBalancersConfig",
+					Description: `(Optional) LB integration object.`,
+				},
+				resource.Attribute{
+					Name:        "load_balancers",
+					Description: `(Optional) List of load balancers configs.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The AWS resource name. Required for Classic Load Balancer. Optional for Application Load Balancer.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The AWS resource ARN (Required only for ALB target groups).`,
+				},
+				resource.Attribute{
+					Name:        "balancer_id",
+					Description: `The Multai load balancer ID. Default: lb-123456`,
+				},
+				resource.Attribute{
+					Name:        "target_set_id",
+					Description: `The Multai load target set ID. Default: ts-123456`,
+				},
+				resource.Attribute{
+					Name:        "auto_weight",
+					Description: `“Auto Weight” will automatically provide a higher weight for instances that are larger as appropriate. For example, if you have configured your Elastigroup with m4.large and m4.xlarge instances the m4.large will have half the weight of an m4.xlarge. This ensures that larger instances receive a higher number of MLB requests.`,
+				},
+				resource.Attribute{
+					Name:        "zone_awareness",
+					Description: `“AZ Awareness” will ensure that instances within the same AZ are using the corresponding MLB runtime instance in the same AZ. This feature reduces multi-zone data transfer fees.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The resource type. Valid Values: CLASSIC, TARGET_GROUP, MULTAI_TARGET_SET. Usage: ` + "`" + `` + "`" + `` + "`" + `hcl load_balancers { arn = "arn" type = "CLASSIC" balancer_id = "lb-123" target_set_id = "ts-123" auto_weight = "true" az_awareness = "true" } ` + "`" + `` + "`" + `` + "`" + ` <a id="route53"></a> ## route53`,
+				},
+				resource.Attribute{
+					Name:        "integration_route53",
+					Description: `(Optional) Describes the [Route53](https://aws.amazon.com/documentation/route53/?id=docs_gateway) integration.`,
+				},
+				resource.Attribute{
+					Name:        "domains",
+					Description: `(Required) Route 53 Domain configurations.`,
+				},
+				resource.Attribute{
+					Name:        "hosted_zone_id",
+					Description: `(Required) The Route 53 Hosted Zone Id for the registered Domain.`,
+				},
+				resource.Attribute{
+					Name:        "spotinst_acct_id",
+					Description: `(Optional) The Spotinst account ID that is linked to the AWS account that holds the Route 53 hosted Zone Id. The default is the user Spotinst account provided as a URL parameter.`,
+				},
+				resource.Attribute{
+					Name:        "record_sets",
+					Description: `(Required) List of record sets`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The record set name.`,
+				},
+				resource.Attribute{
+					Name:        "use_public_ip",
+					Description: `(Optional) Usage: ` + "`" + `` + "`" + `` + "`" + `hcl integration_route53 { domains { hosted_zone_id = "id_update" record_sets { name = "test_update" use_public_ip = true } record_sets { name = "test_update_two" use_public_ip = false } record_sets { name = "test_update_three" use_public_ip = false } } domains { hosted_zone_id = "new_domain_on_update" record_sets { name = "new_set" use_public_ip = true } record_sets { name = "test_update_default_ip" } } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mrscaler_aws",
-			Category:         "Spotinst Resources",
+			Category:         "Mr Scaler",
 			ShortDescription: `Provides a Spotinst MrScaler resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"mr",
+				"scaler",
 				"mrscaler",
 				"aws",
 			},
@@ -2242,310 +2562,8 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "multai_balancer",
-			Category:         "Spotinst Resources",
-			ShortDescription: `Provides a Spotinst Multai Balancer.`,
-			Description:      ``,
-			Keywords: []string{
-				"multai",
-				"balancer",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The balancer name. May contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen.`,
-				},
-				resource.Attribute{
-					Name:        "scheme",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "dns_cname_aliases",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "connection_timeouts",
-					Description: `(Optional)`,
-				},
-				resource.Attribute{
-					Name:        "idle",
-					Description: `(Optional) The idle timeout value, in seconds. (range: 1 - 3600).`,
-				},
-				resource.Attribute{
-					Name:        "draining",
-					Description: `(Optional) The time for the load balancer to keep connections alive before reporting the target as de-registered, in seconds (range: 1 - 3600).`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A list of key:value paired tags.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Required) The tag's key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) The tag's value.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "multai_deployment",
-			Category:         "Spotinst Resources",
-			ShortDescription: `Provides a Spotinst Multai Deployment.`,
-			Description:      ``,
-			Keywords: []string{
-				"multai",
-				"deployment",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The deployment name.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "multai_listener",
-			Category:         "Spotinst Resources",
-			ShortDescription: `Provides a Spotinst Multai Listener.`,
-			Description:      ``,
-			Keywords: []string{
-				"multai",
-				"listener",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "balancer_id",
-					Description: `(Required) The ID of the balancer.`,
-				},
-				resource.Attribute{
-					Name:        "protocol",
-					Description: `(Required) The protocol to allow connections to the load balancer.`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required) The port on which the load balancer is listening.`,
-				},
-				resource.Attribute{
-					Name:        "tls_config",
-					Description: `(Optional) Describes the TLSConfig configuration.`,
-				},
-				resource.Attribute{
-					Name:        "min_version",
-					Description: `(Required) MinVersion contains the minimum SSL/TLS version that is acceptable (1.0 is the minimum).`,
-				},
-				resource.Attribute{
-					Name:        "max_version",
-					Description: `(Required) MaxVersion contains the maximum SSL/TLS version that is acceptable.`,
-				},
-				resource.Attribute{
-					Name:        "certificate_ids",
-					Description: `(Optional) Contains one or more certificate chains to present to the other side of the connection.`,
-				},
-				resource.Attribute{
-					Name:        "cipher_suites",
-					Description: `(Optional) List of supported cipher suites. If cipherSuites is nil, TLS uses a list of suites supported by the implementation.`,
-				},
-				resource.Attribute{
-					Name:        "prefer_server_cipher_suites",
-					Description: `(Optional) Controls whether the server selects the client’s most preferred ciphersuite, or the server’s most preferred ciphersuite.`,
-				},
-				resource.Attribute{
-					Name:        "session_tickets_disabled",
-					Description: `(Optional) May be set to true to disable session ticket (resumption) support.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A list of key:value paired tags.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Required) The tag's key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) The tag's value.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "multai_routing_rule",
-			Category:         "Spotinst Resources",
-			ShortDescription: `Provides a Spotinst Multai Balancer.`,
-			Description:      ``,
-			Keywords: []string{
-				"multai",
-				"routing",
-				"rule",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "balancer_id",
-					Description: `(Required) The ID of the balancer.`,
-				},
-				resource.Attribute{
-					Name:        "listener_id",
-					Description: `(Required) The ID of the listener.`,
-				},
-				resource.Attribute{
-					Name:        "route",
-					Description: `(Required) Route defines a simple language for matching HTTP requests and route the traffic accordingly. Route provides series of matchers that follow the syntax: Path matcher: — Path("/foo/bar") // trie-based PathRegexp(“/foo/.`,
-				},
-				resource.Attribute{
-					Name:        "strategy",
-					Description: `(Optional) Balancing strategy. Valid values: ` + "`" + `ROUNDROBIN` + "`" + `, ` + "`" + `RANDOM` + "`" + `, ` + "`" + `LEASTCONN` + "`" + `, ` + "`" + `IPHASH` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A list of key:value paired tags.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Required) The tag's key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) The tag's value.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "multai_target",
-			Category:         "Spotinst Resources",
-			ShortDescription: `Provides a Spotinst Multai target.`,
-			Description:      ``,
-			Keywords: []string{
-				"multai",
-				"target",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "balancer_id",
-					Description: `(Required) The ID of the balancer.`,
-				},
-				resource.Attribute{
-					Name:        "target_set_id",
-					Description: `(Required) The ID of the target set.`,
-				},
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the Target . Must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen.`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required) The port the target will register to.`,
-				},
-				resource.Attribute{
-					Name:        "host",
-					Description: `(Required) The address (IP or URL) of the targets to register`,
-				},
-				resource.Attribute{
-					Name:        "weight",
-					Description: `(Required) Defines how traffic is distributed between targets.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A list of key:value paired tags.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Required) The tag's key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) The tag's value.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "multai_target_set",
-			Category:         "Spotinst Resources",
-			ShortDescription: `Provides a Spotinst Multai Target Set.`,
-			Description:      ``,
-			Keywords: []string{
-				"multai",
-				"target",
-				"set",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "name",
-					Description: `(Required) The name of the Target Set. Must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen.`,
-				},
-				resource.Attribute{
-					Name:        "balancer_id",
-					Description: `(Required) The id of the balancer.`,
-				},
-				resource.Attribute{
-					Name:        "deployment_id",
-					Description: `(Required) The id of the deployment.`,
-				},
-				resource.Attribute{
-					Name:        "protocol",
-					Description: `(Required) The protocol to allow connections to the target.`,
-				},
-				resource.Attribute{
-					Name:        "weight",
-					Description: `(Required) Defines how traffic is distributed between the Target Set.`,
-				},
-				resource.Attribute{
-					Name:        "protocol",
-					Description: `(Required) The protocol to allow connections to the target for the health check.`,
-				},
-				resource.Attribute{
-					Name:        "path",
-					Description: `(Required) The path to perform the health check.`,
-				},
-				resource.Attribute{
-					Name:        "port",
-					Description: `(Required) The port on which the load balancer is listening.`,
-				},
-				resource.Attribute{
-					Name:        "interval",
-					Description: `(Required) The interval for the health check.`,
-				},
-				resource.Attribute{
-					Name:        "timeout",
-					Description: `(Required) The time out for the health check.`,
-				},
-				resource.Attribute{
-					Name:        "healthy_threshold",
-					Description: `(Required) Total number of allowed healthy Targets.`,
-				},
-				resource.Attribute{
-					Name:        "unhealthy_threshold",
-					Description: `(Required) Total number of allowed unhealthy Targets.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) A list of key:value paired tags.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Required) The tag's key.`,
-				},
-				resource.Attribute{
-					Name:        "value",
-					Description: `(Required) The tag's value.`,
-				},
-			},
-			Attributes: []resource.Attribute{},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "ocean_aws",
-			Category:         "Spotinst Resources",
+			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean resource using AWS.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2698,6 +2716,10 @@ var (
 					Description: `(Optional) Auto Scaling scale down operations.`,
 				},
 				resource.Attribute{
+					Name:        "max_scale_down_percentage",
+					Description: `(Optional) Would represent the maximum % to scale-down. Number between 1-100.`,
+				},
+				resource.Attribute{
 					Name:        "evaluation_periods",
 					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) The number of evaluation periods that should accumulate before a scale down action takes place.`,
 				},
@@ -2711,7 +2733,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_memory_gib",
-					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 gpu_per_unit = 1 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { autoscale_is_enabled = false autoscale_is_auto_config = false autoscale_cooldown = 300 autoscale_headroom { cpu_per_unit = 1024 gpu_per_unit = 1 memory_per_unit = 512 num_of_units = 2 } autoscale_down { evaluation_periods = 300 max_scale_down_percentage = 10 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -2747,7 +2769,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ocean_aws_launch_spec",
-			Category:         "Spotinst Resources",
+			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean Launch Spec resource using AWS.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2772,6 +2794,18 @@ var (
 				resource.Attribute{
 					Name:        "iam_instance_profile",
 					Description: `(Optional) The ARN or name of an IAM instance profile to associate with launched instances.`,
+				},
+				resource.Attribute{
+					Name:        "security_groups",
+					Description: `(Optional) Optionally adds security group IDs.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `(Optional) Set subnets in launchSpec. Each element in array should be subnet ID.`,
+				},
+				resource.Attribute{
+					Name:        "root_volume_size",
+					Description: `(Optional) Set root volume size (in GB).`,
 				},
 				resource.Attribute{
 					Name:        "labels",
@@ -2801,13 +2835,255 @@ var (
 					Name:        "effect",
 					Description: `(Required) The effect of the taint. Valid values: ` + "`" + `"NoSchedule"` + "`" + `, ` + "`" + `"PreferNoSchedule"` + "`" + `, ` + "`" + `"NoExecute"` + "`" + `.`,
 				},
+				resource.Attribute{
+					Name:        "autoscale_headrooms",
+					Description: `(Optional) Set custom headroom per launch spec. provide list of headrooms object.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Required) The number of units to retain as headroom, where each unit has the defined headroom CPU, memory and GPU.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Optionally configure the number of CPUs to allocate for each headroom unit. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_per_unit",
+					Description: `(Optional) Optionally configure the number of GPUS to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ocean_ecs",
+			Category:         "Ocean",
+			ShortDescription: `Provides a Spotinst Ocean ECS resource using AWS.`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"ecs",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The Ocean cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_name",
+					Description: `(Required) The ocean cluster name.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The region the cluster will run in.`,
+				},
+				resource.Attribute{
+					Name:        "max_size",
+					Description: `(Optional, Default: ` + "`" + `1000` + "`" + `) The upper limit of instances the cluster can scale up to.`,
+				},
+				resource.Attribute{
+					Name:        "min_size",
+					Description: `(Optional) The lower limit of instances the cluster can scale down to.`,
+				},
+				resource.Attribute{
+					Name:        "desired_capacity",
+					Description: `(Optional) The number of instances to launch and maintain in the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_ids",
+					Description: `(Required) A comma-separated list of subnet identifiers for the Ocean cluster. Subnet IDs should be configured with auto assign public ip. ` + "`" + `` + "`" + `` + "`" + `hcl region = "us-west-2" name = "terraform-ecs-cluster" cluster_name = "terraform-ecs-cluster" max_size = 2 min_size = 1 desired_capacity = 2 subnet_ids = ["subnet-12345"] ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `(Optional) Instance types allowed in the Ocean cluster. ` + "`" + `` + "`" + `` + "`" + `hcl whitelist = ["t1.micro", "m1.small"] // blacklist = ["t1.micro", "m1.small"] ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) Base64-encoded MIME user data to make available to the instances.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Required) ID of the image used to launch the instances.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Required) One or more security group ids.`,
+				},
+				resource.Attribute{
+					Name:        "key_pair",
+					Description: `(Optional) The key pair to attach the instances.`,
+				},
+				resource.Attribute{
+					Name:        "iam_instance_profile",
+					Description: `(Optional) The instance profile iam role.`,
+				},
+				resource.Attribute{
+					Name:        "associate_public_ip_address",
+					Description: `(Optional, Default: ` + "`" + `false` + "`" + `) Configure public IP address allocation.`,
+				},
+				resource.Attribute{
+					Name:        "draining_timeout",
+					Description: `(Optional) The time in seconds, the instance is allowed to run while detached from the ELB. This is to allow the instance time to be drained from incoming TCP connections before terminating it, during a scale down operation.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring",
+					Description: `(Optional) Enable detailed monitoring for cluster. Flag will enable Cloud Watch detailed detailed monitoring (one minute increments). Note: there are additional hourly costs for this service based on the region used.`,
+				},
+				resource.Attribute{
+					Name:        "ebs_optimized",
+					Description: `(Optional) Enable EBS optimized for cluster. Flag will enable optimized capacity for high bandwidth connectivity to the EB service for non EBS optimized instance types. For instances that are EBS optimized this flag will be ignored. ` + "`" + `` + "`" + `` + "`" + `hcl image_id = "ami-79826301" security_group_ids = ["sg-042d658b3ee907848"] key_name = "fake key" user_data = "echo hello world" iam_instance_profile = "iam-profile" associate_public_ip_address = true draining_timeout = 120 monitoring = true ebs_optimized = true ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "autoscaler",
+					Description: `(Optional) Describes the Ocean ECS autoscaler.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Enable the Ocean ECS autoscaler.`,
+				},
+				resource.Attribute{
+					Name:        "is_auto_config",
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Automatically configure and optimize headroom resources.`,
+				},
+				resource.Attribute{
+					Name:        "cooldown",
+					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) Cooldown period between scaling actions.`,
+				},
+				resource.Attribute{
+					Name:        "headroom",
+					Description: `(Optional) Spare resource capacity management enabling fast assignment of tasks without waiting for new resources to launch.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Optionally configure the number of CPUs to allocate the headroom. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
+					Description: `(Optional) Optionally configure the amount of memory (MB) to allocate the headroom.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Optional) The number of units to retain as headroom, where each unit has the defined headroom CPU and memory.`,
+				},
+				resource.Attribute{
+					Name:        "down",
+					Description: `(Optional) Auto Scaling scale down operations.`,
+				},
+				resource.Attribute{
+					Name:        "evaluation_periods",
+					Description: `(Optional, Default: ` + "`" + `null` + "`" + `) The number of evaluation periods that should accumulate before a scale down action takes place.`,
+				},
+				resource.Attribute{
+					Name:        "max_scale_down_percentage",
+					Description: `(Optional) Would represent the maximum % to scale-down. Number between 1-100`,
+				},
+				resource.Attribute{
+					Name:        "resource_limits",
+					Description: `(Optional) Optionally set upper and lower bounds on the resource usage of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "max_vcpu",
+					Description: `(Optional) The maximum cpu in vCPU units that can be allocated to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "max_memory_gib",
+					Description: `(Optional) The maximum memory in GiB units that can be allocated to the cluster. ` + "`" + `` + "`" + `` + "`" + `hcl autoscaler { is_enabled = false is_auto_config = false cooldown = 300 headroom { cpu_per_unit = 1024 memory_per_unit = 512 num_of_units = 2 } down { max_scale_down_percentage = 20 } resource_limits { max_vcpu = 1024 max_memory_gib = 20 } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Optionally adds tags to instances launched in an Ocean cluster.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) The tag key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) The tag value. ` + "`" + `` + "`" + `` + "`" + `hcl tags { key = "fakeKey" value = "fakeValue" } ` + "`" + `` + "`" + `` + "`" + ` <a id="update-policy"></a> ## Update Policy`,
+				},
+				resource.Attribute{
+					Name:        "update_policy",
+					Description: `(Optional) While used, you can control whether the group should perform a deployment after an update to the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "should_roll",
+					Description: `(Required) Enables the roll.`,
+				},
+				resource.Attribute{
+					Name:        "roll_config",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "batch_size_percentage",
+					Description: `(Required) Sets the percentage of the instances to deploy in each batch. ` + "`" + `` + "`" + `` + "`" + `hcl update_policy { should_roll = false roll_config { batch_size_percentage = 33 } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ocean_ecs_launch_spec",
+			Category:         "Ocean",
+			ShortDescription: `Provides a Spotinst Ocean ECS Launch Spec resource using AWS.`,
+			Description:      ``,
+			Keywords: []string{
+				"ocean",
+				"ecs",
+				"launch",
+				"spec",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) Base64-encoded MIME user data to make available to the instances.`,
+				},
+				resource.Attribute{
+					Name:        "iam_instance_profile",
+					Description: `(Optional) The ARN or name of an IAM instance profile to associate with launched instances.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional) One or more security group ids.`,
+				},
+				resource.Attribute{
+					Name:        "attributes",
+					Description: `(Optional) Optionally adds labels to instances launched in an Ocean cluster.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The label key.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The label value.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_headrooms",
+					Description: `(Optional) Set custom headroom per launch spec. provide list of headrooms object.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Required) The number of units to retain as headroom, where each unit has the defined headroom CPU and memory.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Optionally configure the number of CPUs to allocate for each headroom unit. CPUs are denoted in CPU units, where 1024 units = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
+					Description: `(Optional) Optionally configure the amount of memory (MiB) to allocate for each headroom unit.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "ocean_gke_import",
-			Category:         "Spotinst Resources",
+			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean resource using gke.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2870,7 +3146,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ocean_gke_launch_spec",
-			Category:         "Spotinst Resources",
+			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean Launch Spec resource using GKE.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2879,13 +3155,54 @@ var (
 				"launch",
 				"spec",
 			},
-			Arguments:  []resource.Attribute{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "ocean_id",
+					Description: `(Required) The Ocean cluster ID required for launchSpec create.`,
+				},
+				resource.Attribute{
+					Name:        "source_image",
+					Description: `(Required) Image URL.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Required) Cluster's metadata.`,
+				},
+				resource.Attribute{
+					Name:        "taints",
+					Description: `(Optional) Cluster's taints.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Cluster's labels.`,
+				},
+				resource.Attribute{
+					Name:        "autoscale_headrooms",
+					Description: `(Optional) Set custom headroom per launch spec. provide list of headrooms object.`,
+				},
+				resource.Attribute{
+					Name:        "num_of_units",
+					Description: `(Required) The number of units to retain as headroom, where each unit has the defined headroom CPU, memory and GPU.`,
+				},
+				resource.Attribute{
+					Name:        "cpu_per_unit",
+					Description: `(Optional) Optionally configure the number of CPUs to allocate for each headroom unit. CPUs are denoted in millicores, where 1000 millicores = 1 vCPU.`,
+				},
+				resource.Attribute{
+					Name:        "gpu_per_unit",
+					Description: `(Optional) Optionally configure the number of GPUS to allocate for each headroom unit.`,
+				},
+				resource.Attribute{
+					Name:        "memory_per_unit",
+					Description: `(Optional) Optionally configure the amount of memory (MB) to allocate for each headroom unit.`,
+				},
+			},
 			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "ocean_gke_launch_spec_import",
-			Category:         "Spotinst Resources",
+			Category:         "Ocean",
 			ShortDescription: `Provides a Spotinst Ocean Launch Spec Import resource using GKE.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2906,7 +3223,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "subscription",
-			Category:         "Spotinst Resources",
+			Category:         "Subscription",
 			ShortDescription: `Provides a Spotinst subscription resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -2954,19 +3271,16 @@ var (
 		"elastigroup_azure":            2,
 		"elastigroup_gcp":              3,
 		"elastigroup_gke":              4,
-		"mrscaler_aws":                 5,
-		"multai_balancer":              6,
-		"multai_deployment":            7,
-		"multai_listener":              8,
-		"multai_routing_rule":          9,
-		"multai_target":                10,
-		"multai_target_set":            11,
-		"ocean_aws":                    12,
-		"ocean_aws_launch_spec":        13,
-		"ocean_gke_import":             14,
-		"ocean_gke_launch_spec":        15,
-		"ocean_gke_launch_spec_import": 16,
-		"subscription":                 17,
+		"managed_instance":             5,
+		"mrscaler_aws":                 6,
+		"ocean_aws":                    7,
+		"ocean_aws_launch_spec":        8,
+		"ocean_ecs":                    9,
+		"ocean_ecs_launch_spec":        10,
+		"ocean_gke_import":             11,
+		"ocean_gke_launch_spec":        12,
+		"ocean_gke_launch_spec_import": 13,
+		"subscription":                 14,
 	}
 )
 

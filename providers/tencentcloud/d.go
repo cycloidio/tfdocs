@@ -267,7 +267,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forward_balancer_ids",
-					Description: `A lsit of application clb ids.`,
+					Description: `A list of application clb ids.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
@@ -299,7 +299,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_ids",
-					Description: `A lsit of traditional clb ids which the CVM instances attached to.`,
+					Description: `A list of traditional clb ids which the CVM instances attached to.`,
 				},
 				resource.Attribute{
 					Name:        "max_size",
@@ -373,7 +373,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "forward_balancer_ids",
-					Description: `A lsit of application clb ids.`,
+					Description: `A list of application clb ids.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
@@ -405,7 +405,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "load_balancer_ids",
-					Description: `A lsit of traditional clb ids which the CVM instances attached to.`,
+					Description: `A list of traditional clb ids which the CVM instances attached to.`,
 				},
 				resource.Attribute{
 					Name:        "max_size",
@@ -818,6 +818,10 @@ var (
 					Description: `Create time of the CAM group.`,
 				},
 				resource.Attribute{
+					Name:        "group_id",
+					Description: `Id of the CAM group.`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Name of CAM group.`,
 				},
@@ -834,6 +838,10 @@ var (
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Create time of the CAM group.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Id of the CAM group.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -902,6 +910,10 @@ var (
 					Description: `Name of CAM policy.`,
 				},
 				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of the policy strategy.`,
+				},
+				resource.Attribute{
 					Name:        "service_type",
 					Description: `Name of attached products.`,
 				},
@@ -934,6 +946,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `Name of CAM policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of the policy strategy.`,
 				},
 				resource.Attribute{
 					Name:        "service_type",
@@ -3383,6 +3399,1322 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tencentcloud_dayu_cc_http_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query dayu CC http policies`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) Id of the resource that the CC http policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) Type of the resource that the CC http policy works for, valid values are ` + "`" + `bgpip` + "`" + `, ` + "`" + `bgp` + "`" + `, ` + "`" + `bgp-multip` + "`" + ` and ` + "`" + `net` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the CC http policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) Id of the CC http policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of CC http policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action mode.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CC self-define http policy.`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `Max frequency per minute.`,
+				},
+				resource.Attribute{
+					Name:        "ip_list",
+					Description: `Ip of the CC self-define http policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the CC self-define http policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of the CC self-define http policy.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `ID of the resource that the CC self-define http policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource that the CC self-define http policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "smode",
+					Description: `Match mode.`,
+				},
+				resource.Attribute{
+					Name:        "switch",
+					Description: `Indicate the CC self-define http policy takes effect or not.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of CC http policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action mode.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CC self-define http policy.`,
+				},
+				resource.Attribute{
+					Name:        "frequency",
+					Description: `Max frequency per minute.`,
+				},
+				resource.Attribute{
+					Name:        "ip_list",
+					Description: `Ip of the CC self-define http policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the CC self-define http policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of the CC self-define http policy.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `ID of the resource that the CC self-define http policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource that the CC self-define http policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "smode",
+					Description: `Match mode.`,
+				},
+				resource.Attribute{
+					Name:        "switch",
+					Description: `Indicate the CC self-define http policy takes effect or not.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_dayu_cc_https_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query dayu CC https policies`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) Id of the resource that the CC https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) Type of the resource that the CC https policy works for, valid value is ` + "`" + `bgpip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the CC https policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) Id of the CC https policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of CC https policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action mode.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CC self-define https policy.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain that the CC self-define https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "ip_list",
+					Description: `Ip of the CC self-define https policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the CC self-define https policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of the CC self-define https policy.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `ID of the resource that the CC self-define https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource that the CC self-define https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Rule id of the domain that the CC self-define https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "switch",
+					Description: `Indicate the CC self-define https policy takes effect or not.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of CC https policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action mode.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the CC self-define https policy.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain that the CC self-define https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "ip_list",
+					Description: `Ip of the CC self-define https policy.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the CC self-define https policy.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of the CC self-define https policy.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `ID of the resource that the CC self-define https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource that the CC self-define https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Rule id of the domain that the CC self-define https policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "switch",
+					Description: `Indicate the CC self-define https policy takes effect or not.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_dayu_ddos_policies",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query dayu DDoS policies`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) Type of the resource that the DDoS policy works for, valid values are ` + "`" + `bgpip` + "`" + `, ` + "`" + `bgp` + "`" + `, ` + "`" + `bgp-multip` + "`" + ` and ` + "`" + `net` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) Id of the DDoS policy to be query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of DDoS policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the DDoS policy.`,
+				},
+				resource.Attribute{
+					Name:        "drop_options",
+					Description: `Option list of abnormal check of the DDoS policy.`,
+				},
+				resource.Attribute{
+					Name:        "bad_conn_threshold",
+					Description: `The number of new connections based on destination IP that trigger suppression of connections.`,
+				},
+				resource.Attribute{
+					Name:        "check_sync_conn",
+					Description: `Indicate whether to check null connection or not.`,
+				},
+				resource.Attribute{
+					Name:        "conn_timeout",
+					Description: `Connection timeout of abnormal connection check.`,
+				},
+				resource.Attribute{
+					Name:        "d_conn_limit",
+					Description: `The limit of concurrent connections based on destination IP.`,
+				},
+				resource.Attribute{
+					Name:        "d_new_limit",
+					Description: `The limit of new connections based on destination IP.`,
+				},
+				resource.Attribute{
+					Name:        "drop_icmp",
+					Description: `Indicate whether to drop ICMP protocol or not.`,
+				},
+				resource.Attribute{
+					Name:        "drop_other",
+					Description: `Indicate whether to drop other protocols(exclude TCP/UDP/ICMP) or not.`,
+				},
+				resource.Attribute{
+					Name:        "drop_tcp",
+					Description: `Indicate whether to drop TCP protocol or not.`,
+				},
+				resource.Attribute{
+					Name:        "drop_udp",
+					Description: `Indicate to drop UDP protocol or not.`,
+				},
+				resource.Attribute{
+					Name:        "icmp_mbps_limit",
+					Description: `The limit of ICMP traffic rate.`,
+				},
+				resource.Attribute{
+					Name:        "null_conn_enable",
+					Description: `Indicate to enable null connection or not.`,
+				},
+				resource.Attribute{
+					Name:        "other_mbps_limit",
+					Description: `The limit of other protocols(exclude TCP/UDP/ICMP) traffic rate.`,
+				},
+				resource.Attribute{
+					Name:        "s_conn_limit",
+					Description: `The limit of concurrent connections based on source IP.`,
+				},
+				resource.Attribute{
+					Name:        "s_new_limit",
+					Description: `The limit of new connections based on source IP.`,
+				},
+				resource.Attribute{
+					Name:        "syn_limit",
+					Description: `The limit of syn of abnormal connection check.`,
+				},
+				resource.Attribute{
+					Name:        "syn_rate",
+					Description: `The percentage of syn in ack of abnormal connection check.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_mbps_limit",
+					Description: `The limit of TCP traffic.`,
+				},
+				resource.Attribute{
+					Name:        "udp_mbps_limit",
+					Description: `The limit of UDP traffic rate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the DDoS policy.`,
+				},
+				resource.Attribute{
+					Name:        "packet_filters",
+					Description: `Message filter options list.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action of port to take.`,
+				},
+				resource.Attribute{
+					Name:        "d_end_port",
+					Description: `End port of the destination.`,
+				},
+				resource.Attribute{
+					Name:        "d_start_port",
+					Description: `Start port of the destination.`,
+				},
+				resource.Attribute{
+					Name:        "depth",
+					Description: `The depth of match.`,
+				},
+				resource.Attribute{
+					Name:        "is_include",
+					Description: `Indicate whether to include the key word/regular expression or not.`,
+				},
+				resource.Attribute{
+					Name:        "match_begin",
+					Description: `Indicate whether to check load or not.`,
+				},
+				resource.Attribute{
+					Name:        "match_str",
+					Description: `The key word or regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `Match type.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `The offset of match.`,
+				},
+				resource.Attribute{
+					Name:        "pkt_length_max",
+					Description: `The max length of the packet.`,
+				},
+				resource.Attribute{
+					Name:        "pkt_length_min",
+					Description: `The minimum length of the packet.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol.`,
+				},
+				resource.Attribute{
+					Name:        "s_end_port",
+					Description: `End port of the source.`,
+				},
+				resource.Attribute{
+					Name:        "s_start_port",
+					Description: `Start port of the source.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of policy.`,
+				},
+				resource.Attribute{
+					Name:        "port_filters",
+					Description: `Port limits of abnormal check of the DDoS policy.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action of port to take.`,
+				},
+				resource.Attribute{
+					Name:        "end_port",
+					Description: `End port.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `The type of forbidden port, and valid values are 0, 1, 2. 0 for destination port, 1 for source port and 2 for both destination and source posts.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol.`,
+				},
+				resource.Attribute{
+					Name:        "start_port",
+					Description: `Start port.`,
+				},
+				resource.Attribute{
+					Name:        "scene_id",
+					Description: `Id of policy case that the DDoS policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "watermark_filters",
+					Description: `Watermark policy options, and only support one watermark policy at most.`,
+				},
+				resource.Attribute{
+					Name:        "auto_remove",
+					Description: `Indicate whether to auto-remove the watermark or not.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `The offset of watermark.`,
+				},
+				resource.Attribute{
+					Name:        "open_switch",
+					Description: `Indicate whether to open watermark or not.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_port_list",
+					Description: `Port range of TCP.`,
+				},
+				resource.Attribute{
+					Name:        "udp_port_list",
+					Description: `Port range of TCP.`,
+				},
+				resource.Attribute{
+					Name:        "watermark_key",
+					Description: `Watermark content.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `Content of the watermark.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the watermark.`,
+				},
+				resource.Attribute{
+					Name:        "open_switch",
+					Description: `Indicate whether to auto-remove the watermark or not.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of DDoS policies. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the DDoS policy.`,
+				},
+				resource.Attribute{
+					Name:        "drop_options",
+					Description: `Option list of abnormal check of the DDoS policy.`,
+				},
+				resource.Attribute{
+					Name:        "bad_conn_threshold",
+					Description: `The number of new connections based on destination IP that trigger suppression of connections.`,
+				},
+				resource.Attribute{
+					Name:        "check_sync_conn",
+					Description: `Indicate whether to check null connection or not.`,
+				},
+				resource.Attribute{
+					Name:        "conn_timeout",
+					Description: `Connection timeout of abnormal connection check.`,
+				},
+				resource.Attribute{
+					Name:        "d_conn_limit",
+					Description: `The limit of concurrent connections based on destination IP.`,
+				},
+				resource.Attribute{
+					Name:        "d_new_limit",
+					Description: `The limit of new connections based on destination IP.`,
+				},
+				resource.Attribute{
+					Name:        "drop_icmp",
+					Description: `Indicate whether to drop ICMP protocol or not.`,
+				},
+				resource.Attribute{
+					Name:        "drop_other",
+					Description: `Indicate whether to drop other protocols(exclude TCP/UDP/ICMP) or not.`,
+				},
+				resource.Attribute{
+					Name:        "drop_tcp",
+					Description: `Indicate whether to drop TCP protocol or not.`,
+				},
+				resource.Attribute{
+					Name:        "drop_udp",
+					Description: `Indicate to drop UDP protocol or not.`,
+				},
+				resource.Attribute{
+					Name:        "icmp_mbps_limit",
+					Description: `The limit of ICMP traffic rate.`,
+				},
+				resource.Attribute{
+					Name:        "null_conn_enable",
+					Description: `Indicate to enable null connection or not.`,
+				},
+				resource.Attribute{
+					Name:        "other_mbps_limit",
+					Description: `The limit of other protocols(exclude TCP/UDP/ICMP) traffic rate.`,
+				},
+				resource.Attribute{
+					Name:        "s_conn_limit",
+					Description: `The limit of concurrent connections based on source IP.`,
+				},
+				resource.Attribute{
+					Name:        "s_new_limit",
+					Description: `The limit of new connections based on source IP.`,
+				},
+				resource.Attribute{
+					Name:        "syn_limit",
+					Description: `The limit of syn of abnormal connection check.`,
+				},
+				resource.Attribute{
+					Name:        "syn_rate",
+					Description: `The percentage of syn in ack of abnormal connection check.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_mbps_limit",
+					Description: `The limit of TCP traffic.`,
+				},
+				resource.Attribute{
+					Name:        "udp_mbps_limit",
+					Description: `The limit of UDP traffic rate.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the DDoS policy.`,
+				},
+				resource.Attribute{
+					Name:        "packet_filters",
+					Description: `Message filter options list.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action of port to take.`,
+				},
+				resource.Attribute{
+					Name:        "d_end_port",
+					Description: `End port of the destination.`,
+				},
+				resource.Attribute{
+					Name:        "d_start_port",
+					Description: `Start port of the destination.`,
+				},
+				resource.Attribute{
+					Name:        "depth",
+					Description: `The depth of match.`,
+				},
+				resource.Attribute{
+					Name:        "is_include",
+					Description: `Indicate whether to include the key word/regular expression or not.`,
+				},
+				resource.Attribute{
+					Name:        "match_begin",
+					Description: `Indicate whether to check load or not.`,
+				},
+				resource.Attribute{
+					Name:        "match_str",
+					Description: `The key word or regular expression.`,
+				},
+				resource.Attribute{
+					Name:        "match_type",
+					Description: `Match type.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `The offset of match.`,
+				},
+				resource.Attribute{
+					Name:        "pkt_length_max",
+					Description: `The max length of the packet.`,
+				},
+				resource.Attribute{
+					Name:        "pkt_length_min",
+					Description: `The minimum length of the packet.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol.`,
+				},
+				resource.Attribute{
+					Name:        "s_end_port",
+					Description: `End port of the source.`,
+				},
+				resource.Attribute{
+					Name:        "s_start_port",
+					Description: `Start port of the source.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of policy.`,
+				},
+				resource.Attribute{
+					Name:        "port_filters",
+					Description: `Port limits of abnormal check of the DDoS policy.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `Action of port to take.`,
+				},
+				resource.Attribute{
+					Name:        "end_port",
+					Description: `End port.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `The type of forbidden port, and valid values are 0, 1, 2. 0 for destination port, 1 for source port and 2 for both destination and source posts.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol.`,
+				},
+				resource.Attribute{
+					Name:        "start_port",
+					Description: `Start port.`,
+				},
+				resource.Attribute{
+					Name:        "scene_id",
+					Description: `Id of policy case that the DDoS policy works for.`,
+				},
+				resource.Attribute{
+					Name:        "watermark_filters",
+					Description: `Watermark policy options, and only support one watermark policy at most.`,
+				},
+				resource.Attribute{
+					Name:        "auto_remove",
+					Description: `Indicate whether to auto-remove the watermark or not.`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `The offset of watermark.`,
+				},
+				resource.Attribute{
+					Name:        "open_switch",
+					Description: `Indicate whether to open watermark or not.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_port_list",
+					Description: `Port range of TCP.`,
+				},
+				resource.Attribute{
+					Name:        "udp_port_list",
+					Description: `Port range of TCP.`,
+				},
+				resource.Attribute{
+					Name:        "watermark_key",
+					Description: `Watermark content.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `Content of the watermark.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the watermark.`,
+				},
+				resource.Attribute{
+					Name:        "open_switch",
+					Description: `Indicate whether to auto-remove the watermark or not.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_dayu_ddos_policy_attachments",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query detailed information of dayu DDoS policy attachments`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) Type of the resource that the DDoS policy works for, valid values are ` + "`" + `bgpip` + "`" + `, ` + "`" + `bgp` + "`" + `, ` + "`" + `bgp-multip` + "`" + ` and ` + "`" + `net` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `(Optional) Id of the policy to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Optional) Id of the attached resource to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "dayu_ddos_policy_attachment_list",
+					Description: `A list of dayu DDoS policy attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `Id of the attached resource.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource that the DDoS policy works for.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "dayu_ddos_policy_attachment_list",
+					Description: `A list of dayu DDoS policy attachments. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "policy_id",
+					Description: `Id of the policy.`,
+				},
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `Id of the attached resource.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource that the DDoS policy works for.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_dayu_ddos_policy_cases",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query dayu DDoS policy cases`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) Type of the resource that the DDoS policy case works for, valid values are ` + "`" + `bgpip` + "`" + `, ` + "`" + `bgp` + "`" + `, ` + "`" + `bgp-multip` + "`" + ` and ` + "`" + `net` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "scene_id",
+					Description: `(Required) Id of the DDoS policy case to be query.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of DDoS policy cases. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "app_protocols",
+					Description: `App protocol set of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "app_type",
+					Description: `App type of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "has_abroad",
+					Description: `Indicate whether the service involves overseas or not.`,
+				},
+				resource.Attribute{
+					Name:        "has_initiate_tcp",
+					Description: `Indicate whether the service actively initiates TCP requests or not.`,
+				},
+				resource.Attribute{
+					Name:        "has_initiate_udp",
+					Description: `Indicate whether the actively initiate UDP requests or not.`,
+				},
+				resource.Attribute{
+					Name:        "has_vpn",
+					Description: `Indicate whether the service involves VPN service or not.`,
+				},
+				resource.Attribute{
+					Name:        "max_tcp_package_len",
+					Description: `The max length of TCP message package.`,
+				},
+				resource.Attribute{
+					Name:        "max_udp_package_len",
+					Description: `The max length of UDP message package.`,
+				},
+				resource.Attribute{
+					Name:        "min_tcp_package_len",
+					Description: `The minimum length of TCP message package.`,
+				},
+				resource.Attribute{
+					Name:        "min_udp_package_len",
+					Description: `The minimum length of UDP message package.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "peer_tcp_port",
+					Description: `The port that actively initiates TCP requests.`,
+				},
+				resource.Attribute{
+					Name:        "peer_udp_port",
+					Description: `The port that actively initiates UDP requests.`,
+				},
+				resource.Attribute{
+					Name:        "platform_types",
+					Description: `Platform set of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource that the DDoS policy case works for.`,
+				},
+				resource.Attribute{
+					Name:        "scene_id",
+					Description: `Id of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_end_port",
+					Description: `End port of the TCP service.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_footprint",
+					Description: `The fixed signature of TCP protocol load.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_start_port",
+					Description: `Start port of the TCP service.`,
+				},
+				resource.Attribute{
+					Name:        "udp_end_port",
+					Description: `End port of the UDP service.`,
+				},
+				resource.Attribute{
+					Name:        "udp_footprint",
+					Description: `The fixed signature of TCP protocol load.`,
+				},
+				resource.Attribute{
+					Name:        "udp_start_port",
+					Description: `Start port of the UDP service.`,
+				},
+				resource.Attribute{
+					Name:        "web_api_urls",
+					Description: `Web API url set.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of DDoS policy cases. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "app_protocols",
+					Description: `App protocol set of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "app_type",
+					Description: `App type of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Create time of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "has_abroad",
+					Description: `Indicate whether the service involves overseas or not.`,
+				},
+				resource.Attribute{
+					Name:        "has_initiate_tcp",
+					Description: `Indicate whether the service actively initiates TCP requests or not.`,
+				},
+				resource.Attribute{
+					Name:        "has_initiate_udp",
+					Description: `Indicate whether the actively initiate UDP requests or not.`,
+				},
+				resource.Attribute{
+					Name:        "has_vpn",
+					Description: `Indicate whether the service involves VPN service or not.`,
+				},
+				resource.Attribute{
+					Name:        "max_tcp_package_len",
+					Description: `The max length of TCP message package.`,
+				},
+				resource.Attribute{
+					Name:        "max_udp_package_len",
+					Description: `The max length of UDP message package.`,
+				},
+				resource.Attribute{
+					Name:        "min_tcp_package_len",
+					Description: `The minimum length of TCP message package.`,
+				},
+				resource.Attribute{
+					Name:        "min_udp_package_len",
+					Description: `The minimum length of UDP message package.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "peer_tcp_port",
+					Description: `The port that actively initiates TCP requests.`,
+				},
+				resource.Attribute{
+					Name:        "peer_udp_port",
+					Description: `The port that actively initiates UDP requests.`,
+				},
+				resource.Attribute{
+					Name:        "platform_types",
+					Description: `Platform set of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `Type of the resource that the DDoS policy case works for.`,
+				},
+				resource.Attribute{
+					Name:        "scene_id",
+					Description: `Id of the DDoS policy case.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_end_port",
+					Description: `End port of the TCP service.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_footprint",
+					Description: `The fixed signature of TCP protocol load.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_start_port",
+					Description: `Start port of the TCP service.`,
+				},
+				resource.Attribute{
+					Name:        "udp_end_port",
+					Description: `End port of the UDP service.`,
+				},
+				resource.Attribute{
+					Name:        "udp_footprint",
+					Description: `The fixed signature of TCP protocol load.`,
+				},
+				resource.Attribute{
+					Name:        "udp_start_port",
+					Description: `Start port of the UDP service.`,
+				},
+				resource.Attribute{
+					Name:        "web_api_urls",
+					Description: `Web API url set.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_dayu_l4_rules",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query dayu layer 4 rules`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) Id of the resource that the layer 4 rule works for.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) Type of the resource that the layer 4 rule works for, valid values are ` + "`" + `bgpip` + "`" + `, ` + "`" + `bgp` + "`" + `, ` + "`" + `bgp-multip` + "`" + ` and ` + "`" + `net` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the layer 4 rule to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `(Optional) Id of the layer 4 rule to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of layer 4 rules. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "d_port",
+					Description: `The destination port of the layer 4 rule.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_health_num",
+					Description: `Health threshold of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_interval",
+					Description: `Interval time of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_switch",
+					Description: `Indicates whether health check is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_timeout",
+					Description: `HTTP Status Code. 1 means the return value '1xx' is health. 2 means the return value '2xx' is health. 4 means the return value '3xx' is health. 8 means the return value '4xx' is health. 16 means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_unhealth_num",
+					Description: `Unhealthy threshold of health check.`,
+				},
+				resource.Attribute{
+					Name:        "lb_type",
+					Description: `LB type of the rule, 1 for weight cycling and 2 for IP hash.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Id of the 4 layer rule.`,
+				},
+				resource.Attribute{
+					Name:        "s_port",
+					Description: `The source port of the layer 4 rule.`,
+				},
+				resource.Attribute{
+					Name:        "session_switch",
+					Description: `Indicate that the session will keep or not.`,
+				},
+				resource.Attribute{
+					Name:        "session_time",
+					Description: `Session keep time, only valid when ` + "`" + `session_switch` + "`" + ` is true, the available value ranges from 1 to 300 and unit is second.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `Source type, 1 for source of host, 2 for source of ip.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of layer 4 rules. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "d_port",
+					Description: `The destination port of the layer 4 rule.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_health_num",
+					Description: `Health threshold of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_interval",
+					Description: `Interval time of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_switch",
+					Description: `Indicates whether health check is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_timeout",
+					Description: `HTTP Status Code. 1 means the return value '1xx' is health. 2 means the return value '2xx' is health. 4 means the return value '3xx' is health. 8 means the return value '4xx' is health. 16 means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_unhealth_num",
+					Description: `Unhealthy threshold of health check.`,
+				},
+				resource.Attribute{
+					Name:        "lb_type",
+					Description: `LB type of the rule, 1 for weight cycling and 2 for IP hash.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Id of the 4 layer rule.`,
+				},
+				resource.Attribute{
+					Name:        "s_port",
+					Description: `The source port of the layer 4 rule.`,
+				},
+				resource.Attribute{
+					Name:        "session_switch",
+					Description: `Indicate that the session will keep or not.`,
+				},
+				resource.Attribute{
+					Name:        "session_time",
+					Description: `Session keep time, only valid when ` + "`" + `session_switch` + "`" + ` is true, the available value ranges from 1 to 300 and unit is second.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `Source type, 1 for source of host, 2 for source of ip.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tencentcloud_dayu_l7_rules",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to query dayu layer 7 rules`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource_id",
+					Description: `(Required) Id of the resource that the layer 7 rule works for.`,
+				},
+				resource.Attribute{
+					Name:        "resource_type",
+					Description: `(Required) Type of the resource that the layer 7 rule works for, valid value is ` + "`" + `bgpip` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) Domain of the layer 7 rule to be queried.`,
+				},
+				resource.Attribute{
+					Name:        "result_output_file",
+					Description: `(Optional) Used to save results.`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `(Optional) Id of the layer 7 rule to be queried. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of layer 7 rules. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain that the 7 layer rule works for.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_code",
+					Description: `HTTP Status Code. 1 means the return value '1xx' is health. 2 means the return value '2xx' is health. 4 means the return value '3xx' is health. 8 means the return value '4xx' is health. 16 means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_health_num",
+					Description: `Health threshold of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_interval",
+					Description: `Interval time of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_method",
+					Description: `Methods of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_path",
+					Description: `Path of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_switch",
+					Description: `Indicates whether health check is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_unhealth_num",
+					Description: `Unhealthy threshold of health check.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Id of the 7 layer rule.`,
+				},
+				resource.Attribute{
+					Name:        "source_list",
+					Description: `Source list of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `Source type, 1 for source of host, 2 for source of ip.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_id",
+					Description: `SSL id.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the rule. 0 for create/modify success, 2 for create/modify fail, 3 for delete success, 5 for waiting to be created/modified, 7 for waiting to be deleted and 8 for waiting to get SSL id.`,
+				},
+				resource.Attribute{
+					Name:        "switch",
+					Description: `Indicate the rule will take effect or not.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `Threshold of the rule.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "list",
+					Description: `A list of layer 7 rules. Each element contains the following attributes:`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain that the 7 layer rule works for.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_code",
+					Description: `HTTP Status Code. 1 means the return value '1xx' is health. 2 means the return value '2xx' is health. 4 means the return value '3xx' is health. 8 means the return value '4xx' is health. 16 means the return value '5xx' is health. If you want multiple return codes to indicate health, need to add the corresponding values.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_health_num",
+					Description: `Health threshold of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_interval",
+					Description: `Interval time of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_method",
+					Description: `Methods of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_path",
+					Description: `Path of health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_switch",
+					Description: `Indicates whether health check is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_unhealth_num",
+					Description: `Unhealthy threshold of health check.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `Protocol of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "rule_id",
+					Description: `Id of the 7 layer rule.`,
+				},
+				resource.Attribute{
+					Name:        "source_list",
+					Description: `Source list of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "source_type",
+					Description: `Source type, 1 for source of host, 2 for source of ip.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_id",
+					Description: `SSL id.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the rule. 0 for create/modify success, 2 for create/modify fail, 3 for delete success, 5 for waiting to be created/modified, 7 for waiting to be deleted and 8 for waiting to get SSL id.`,
+				},
+				resource.Attribute{
+					Name:        "switch",
+					Description: `Indicate the rule will take effect or not.`,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `Threshold of the rule.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tencentcloud_dc_gateway_ccn_routes",
 			Category:         "Data Sources",
 			ShortDescription: `Use this data source to query detailed information of direct connect gateway route entries.`,
@@ -4391,7 +5723,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) Type of the certificate to be queried. Available values include: ` + "`" + `BASIC` + "`" + `,` + "`" + `CLIENT` + "`" + `,` + "`" + `SERVER` + "`" + `,` + "`" + `REALSERVER` + "`" + ` and ` + "`" + `PROXY` + "`" + `; ` + "`" + `BASIC` + "`" + ` means basic certificate; ` + "`" + `CLIENT` + "`" + ` means client CA certificate; ` + "`" + `SERVER` + "`" + ` means server SSL certificate; ` + "`" + `REALSERVER` + "`" + ` means realserver CA certificate; ` + "`" + `PROXY` + "`" + ` means proxy SSL certificate. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Type of the certificate to be queried, the available values include ` + "`" + `BASIC` + "`" + `, ` + "`" + `CLIENT` + "`" + `, ` + "`" + `SERVER` + "`" + `, ` + "`" + `REALSERVER` + "`" + ` and ` + "`" + `PROXY` + "`" + `; ` + "`" + `BASIC` + "`" + ` means basic certificate; ` + "`" + `CLIENT` + "`" + ` means client CA certificate; ` + "`" + `SERVER` + "`" + ` means server SSL certificate; ` + "`" + `REALSERVER` + "`" + ` means realserver CA certificate; ` + "`" + `PROXY` + "`" + ` means proxy SSL certificate. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "certificates",
@@ -4735,7 +6067,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "domain",
-					Description: `Forward domain of the layer7 listener.`,
+					Description: `Forward domain of the forward rule.`,
 				},
 				resource.Attribute{
 					Name:        "forward_host",
@@ -4807,7 +6139,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheduler",
-					Description: `Scheduling policy of the layer4 listener.`,
+					Description: `Scheduling policy of the forward rule.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4821,7 +6153,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "domain",
-					Description: `Forward domain of the layer7 listener.`,
+					Description: `Forward domain of the forward rule.`,
 				},
 				resource.Attribute{
 					Name:        "forward_host",
@@ -4893,7 +6225,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheduler",
-					Description: `Scheduling policy of the layer4 listener.`,
+					Description: `Scheduling policy of the forward rule.`,
 				},
 			},
 		},
@@ -4907,7 +6239,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) Protocol of the layer4 listener to be queried, and the available values include ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `.`,
+					Description: `(Required) Protocol of the layer4 listener to be queried, the available values include ` + "`" + `TCP` + "`" + ` and ` + "`" + `UDP` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
@@ -5039,7 +6371,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Required) Protocol of the layer7 listener to be queried, and the available values include ` + "`" + `HTTP` + "`" + ` and ` + "`" + `HTTPS` + "`" + `.`,
+					Description: `(Required) Protocol of the layer7 listener to be queried, the available values include ` + "`" + `HTTP` + "`" + ` and ` + "`" + `HTTPS` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "listener_id",
@@ -5175,7 +6507,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) ID of the GAAP proxy to be queried. Conflict with ` + "`" + `project_id` + "`" + `,` + "`" + `access_region` + "`" + `,` + "`" + `realserver_region` + "`" + `.`,
+					Description: `(Optional) ID of the GAAP proxy to be queried. Conflict with ` + "`" + `project_id` + "`" + `, ` + "`" + `access_region` + "`" + ` and ` + "`" + `realserver_region` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -5239,7 +6571,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `ID of the project within the GAAP proxy, '0' means is Default Project.`,
+					Description: `ID of the project within the GAAP proxy, '0' means is default project.`,
 				},
 				resource.Attribute{
 					Name:        "realserver_region",
@@ -5313,7 +6645,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `ID of the project within the GAAP proxy, '0' means is Default Project.`,
+					Description: `ID of the project within the GAAP proxy, '0' means is default project.`,
 				},
 				resource.Attribute{
 					Name:        "realserver_region",
@@ -5363,7 +6695,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Optional) ID of the project within the GAAP realserver to be queried, default is '-1' means all projects.`,
+					Description: `(Optional) ID of the project within the GAAP realserver to be queried, default value is ` + "`" + `-1` + "`" + `, no set means all projects.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -5767,7 +7099,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "os_name",
-					Description: `(Optional) A string to apply with fuzzy match to the os_name atrribute on the image list returned by TencentCloud.`,
+					Description: `(Optional) A string to apply with fuzzy match to the os_name attribute on the image list returned by TencentCloud.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -5823,7 +7155,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "os_name",
-					Description: `(Optional) A string to apply with fuzzy match to the os_name atrribute on the image list returned by TencentCloud, conflict with 'image_name_regex'.`,
+					Description: `(Optional) A string to apply with fuzzy match to the os_name attribute on the image list returned by TencentCloud, conflict with 'image_name_regex'.`,
 				},
 				resource.Attribute{
 					Name:        "result_output_file",
@@ -6347,7 +7679,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "key_name",
-					Description: `(Optional) Name of the key pair to be queried.`,
+					Description: `(Optional) Name of the key pair to be queried. Support regular expression search, only ` + "`" + `^` + "`" + ` and ` + "`" + `$` + "`" + ` are supported.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -7131,7 +8463,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dr_instance_ids",
-					Description: `ID list of disaster-recovory type associated with the current instance.`,
+					Description: `ID list of disaster-recovery type associated with the current instance.`,
 				},
 				resource.Attribute{
 					Name:        "engine_version",
@@ -7245,7 +8577,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "dr_instance_ids",
-					Description: `ID list of disaster-recovory type associated with the current instance.`,
+					Description: `ID list of disaster-recovery type associated with the current instance.`,
 				},
 				resource.Attribute{
 					Name:        "engine_version",
@@ -10687,64 +12019,71 @@ var (
 		"tencentcloud_container_clusters":           27,
 		"tencentcloud_cos_bucket_object":            28,
 		"tencentcloud_cos_buckets":                  29,
-		"tencentcloud_dc_gateway_ccn_routes":        30,
-		"tencentcloud_dc_gateway_instances":         31,
-		"tencentcloud_dc_instances":                 32,
-		"tencentcloud_dcx_instances":                33,
-		"tencentcloud_dnats":                        34,
-		"tencentcloud_eip":                          35,
-		"tencentcloud_eips":                         36,
-		"tencentcloud_enis":                         37,
-		"tencentcloud_gaap_certificates":            38,
-		"tencentcloud_gaap_domain_error_pages":      39,
-		"tencentcloud_gaap_http_domains":            40,
-		"tencentcloud_gaap_http_rules":              41,
-		"tencentcloud_gaap_layer4_listeners":        42,
-		"tencentcloud_gaap_layer7_listeners":        43,
-		"tencentcloud_gaap_proxies":                 44,
-		"tencentcloud_gaap_realservers":             45,
-		"tencentcloud_gaap_security_policies":       46,
-		"tencentcloud_gaap_security_rules":          47,
-		"tencentcloud_ha_vip_eip_attachments":       48,
-		"tencentcloud_ha_vips":                      49,
-		"tencentcloud_image":                        50,
-		"tencentcloud_images":                       51,
-		"tencentcloud_instance_types":               52,
-		"tencentcloud_instances":                    53,
-		"tencentcloud_key_pairs":                    54,
-		"tencentcloud_kubernetes_clusters":          55,
-		"tencentcloud_mongodb_instances":            56,
-		"tencentcloud_mongodb_zone_config":          57,
-		"tencentcloud_mysql_backup_list":            58,
-		"tencentcloud_mysql_instance":               59,
-		"tencentcloud_mysql_parameter_list":         60,
-		"tencentcloud_mysql_zone_config":            61,
-		"tencentcloud_nat_gateways":                 62,
-		"tencentcloud_nats":                         63,
-		"tencentcloud_placement_groups":             64,
-		"tencentcloud_redis_instances":              65,
-		"tencentcloud_redis_zone_config":            66,
-		"tencentcloud_reserved_instance_configs":    67,
-		"tencentcloud_reserved_instances":           68,
-		"tencentcloud_route_table":                  69,
-		"tencentcloud_scf_functions":                70,
-		"tencentcloud_scf_logs":                     71,
-		"tencentcloud_scf_namespaces":               72,
-		"tencentcloud_security_group":               73,
-		"tencentcloud_security_groups":              74,
-		"tencentcloud_ssl_certificates":             75,
-		"tencentcloud_subnet":                       76,
-		"tencentcloud_tcaplus_applications":         77,
-		"tencentcloud_tcaplus_idls":                 78,
-		"tencentcloud_tcaplus_tables":               79,
-		"tencentcloud_tcaplus_zones":                80,
-		"tencentcloud_vpc":                          81,
-		"tencentcloud_vpc_instances":                82,
-		"tencentcloud_vpc_route_tables":             83,
-		"tencentcloud_vpc_subnets":                  84,
-		"tencentcloud_vpn_connections":              85,
-		"tencentcloud_vpn_customer_gateways":        86,
-		"tencentcloud_vpn_gateways":                 87,
+		"tencentcloud_dayu_cc_http_policies":        30,
+		"tencentcloud_dayu_cc_https_policies":       31,
+		"tencentcloud_dayu_ddos_policies":           32,
+		"tencentcloud_dayu_ddos_policy_attachments": 33,
+		"tencentcloud_dayu_ddos_policy_cases":       34,
+		"tencentcloud_dayu_l4_rules":                35,
+		"tencentcloud_dayu_l7_rules":                36,
+		"tencentcloud_dc_gateway_ccn_routes":        37,
+		"tencentcloud_dc_gateway_instances":         38,
+		"tencentcloud_dc_instances":                 39,
+		"tencentcloud_dcx_instances":                40,
+		"tencentcloud_dnats":                        41,
+		"tencentcloud_eip":                          42,
+		"tencentcloud_eips":                         43,
+		"tencentcloud_enis":                         44,
+		"tencentcloud_gaap_certificates":            45,
+		"tencentcloud_gaap_domain_error_pages":      46,
+		"tencentcloud_gaap_http_domains":            47,
+		"tencentcloud_gaap_http_rules":              48,
+		"tencentcloud_gaap_layer4_listeners":        49,
+		"tencentcloud_gaap_layer7_listeners":        50,
+		"tencentcloud_gaap_proxies":                 51,
+		"tencentcloud_gaap_realservers":             52,
+		"tencentcloud_gaap_security_policies":       53,
+		"tencentcloud_gaap_security_rules":          54,
+		"tencentcloud_ha_vip_eip_attachments":       55,
+		"tencentcloud_ha_vips":                      56,
+		"tencentcloud_image":                        57,
+		"tencentcloud_images":                       58,
+		"tencentcloud_instance_types":               59,
+		"tencentcloud_instances":                    60,
+		"tencentcloud_key_pairs":                    61,
+		"tencentcloud_kubernetes_clusters":          62,
+		"tencentcloud_mongodb_instances":            63,
+		"tencentcloud_mongodb_zone_config":          64,
+		"tencentcloud_mysql_backup_list":            65,
+		"tencentcloud_mysql_instance":               66,
+		"tencentcloud_mysql_parameter_list":         67,
+		"tencentcloud_mysql_zone_config":            68,
+		"tencentcloud_nat_gateways":                 69,
+		"tencentcloud_nats":                         70,
+		"tencentcloud_placement_groups":             71,
+		"tencentcloud_redis_instances":              72,
+		"tencentcloud_redis_zone_config":            73,
+		"tencentcloud_reserved_instance_configs":    74,
+		"tencentcloud_reserved_instances":           75,
+		"tencentcloud_route_table":                  76,
+		"tencentcloud_scf_functions":                77,
+		"tencentcloud_scf_logs":                     78,
+		"tencentcloud_scf_namespaces":               79,
+		"tencentcloud_security_group":               80,
+		"tencentcloud_security_groups":              81,
+		"tencentcloud_ssl_certificates":             82,
+		"tencentcloud_subnet":                       83,
+		"tencentcloud_tcaplus_applications":         84,
+		"tencentcloud_tcaplus_idls":                 85,
+		"tencentcloud_tcaplus_tables":               86,
+		"tencentcloud_tcaplus_zones":                87,
+		"tencentcloud_vpc":                          88,
+		"tencentcloud_vpc_instances":                89,
+		"tencentcloud_vpc_route_tables":             90,
+		"tencentcloud_vpc_subnets":                  91,
+		"tencentcloud_vpn_connections":              92,
+		"tencentcloud_vpn_customer_gateways":        93,
+		"tencentcloud_vpn_gateways":                 94,
 	}
 )
 

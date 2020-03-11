@@ -49,8 +49,8 @@ var (
 					Description: `(Optional) Owner team id of the integration.`,
 				},
 				resource.Attribute{
-					Name:        "responder",
-					Description: `(Optional) User, schedule, teams or escalation names to calculate which users will receive the notifications of the alert. ` + "`" + `responder` + "`" + ` supports the following:`,
+					Name:        "responders",
+					Description: `(Optional) User, schedule, teams or escalation names to calculate which users will receive the notifications of the alert. ` + "`" + `responders` + "`" + ` supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "type",
@@ -302,6 +302,197 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "opsgenie_notification_policy",
+			Category:         "Resources",
+			ShortDescription: `Manages a Notification Policy within Opsgenie.`,
+			Description:      ``,
+			Keywords: []string{
+				"notification",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the notification policy`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Required) Id of team that this policy belons to.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) If policy should be enabled. Default: true`,
+				},
+				resource.Attribute{
+					Name:        "policy_description",
+					Description: `(Optional) Description of the policy. This can be max 512 characters.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Required) A notification filter which will be applied. This filter can be empty: filter {} - this means 'match-all'. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "time_restriction",
+					Description: `(Optional) Time restrictions specified in this field must be met for this policy to work. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "auto_close_action",
+					Description: `(Optional) Auto Restart Action of the policy. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "auto_restart_action",
+					Description: `(Optional) Auto Restart Action of the policy. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "de_duplication_action",
+					Description: `(Optional) Deduplication Action of the policy. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "delay_action",
+					Description: `(Optional) Delay notifications. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "suppress",
+					Description: `(Optional) Suppress value of the policy. Values are: true, false. Default: false The ` + "`" + `filter` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `(Required) Specifies which alert field will be used in condition. Possible values are "message", "alias", "description", "source", "entity", "tags", "actions", "details", "extra-properties", "recipients", "teams", "priority"`,
+				},
+				resource.Attribute{
+					Name:        "operation",
+					Description: `(Required) It is the operation that will be executed for the given field and key. Possible operations are "matches", "contains", "starts-with", "ends-with", "equals", "contains-key", "contains-value", "greater-than", "less-than", "is-empty", "equals-ignore-whitespace".`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) If ` + "`" + `field` + "`" + ` is set as extra-properties, key could be used for key-value pair`,
+				},
+				resource.Attribute{
+					Name:        "not",
+					Description: `(Optional) Indicates behaviour of the given operation. Default: false`,
+				},
+				resource.Attribute{
+					Name:        "expected_value",
+					Description: `(Optional) User defined value that will be compared with alert field according to the operation. Default: empty string`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) Order of the condition in conditions list The ` + "`" + `time_restriction` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Defines if restriction should apply daily on given hours or on certain days and hours. Possible values are: "time-of-day", "weekday-and-time-of-day"`,
+				},
+				resource.Attribute{
+					Name:        "restrictions",
+					Description: `(Optional) List of days and hours definitions for field type = "weekday-and-time-of-day". This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "restriction",
+					Description: `(Optional) A definition of hourly definition applied daily, this has to be used with combination: type = "time-of-day". This is a block, structure is documented below. The ` + "`" + `restrictions` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_day",
+					Description: `(Required) Starting day of restriction (eg. "monday")`,
+				},
+				resource.Attribute{
+					Name:        "end_day",
+					Description: `(Required) Ending day of restriction (eg. "wednesday)`,
+				},
+				resource.Attribute{
+					Name:        "start_hour",
+					Description: `(Required) Starting hour of restriction on defined ` + "`" + `start_day` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "end_hour",
+					Description: `(Required) Ending hour of restriction on defined ` + "`" + `end_day` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "start_minute",
+					Description: `(Required) Staring minute of restriction on defined ` + "`" + `start_hour` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "end_minute",
+					Description: `(Required) Ending minute of restriction on defined ` + "`" + `end_hour` + "`" + ` The ` + "`" + `restriction` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_hour",
+					Description: `(Required) Starting hour of restriction.`,
+				},
+				resource.Attribute{
+					Name:        "end_hour",
+					Description: `(Required) Ending hour of restriction.`,
+				},
+				resource.Attribute{
+					Name:        "start_minute",
+					Description: `(Required) Staring minute of restriction on defined ` + "`" + `start_hour` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "end_minute",
+					Description: `(Required) Ending minute of restriction on defined ` + "`" + `end_hour` + "`" + ` The ` + "`" + `auto_close_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Duration of this action. This is a block, structure is documented below. The ` + "`" + `auto_restart_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Duration of this action. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "max_repeat_count",
+					Description: `(Required) How many times to repeat. This is a integer attribute. The ` + "`" + `de_duplication_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Required) Duration of this action. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "de_duplication_action_type",
+					Description: `(Required) Deduplication type. Possible values are: "value-based", "frequency-based"`,
+				},
+				resource.Attribute{
+					Name:        "count",
+					Description: `(Required) - Count The ` + "`" + `delay_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "delay_option",
+					Description: `(Required) Defines until what day to delay or for what duration. Possible values are: "for-duration", "next-time", "next-weekday", "next-monday", "next-tuesday", "next-wednesday", "next-thursday", "next-friday", "next-saturday", "next-sunday"`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Optional) Duration of this action. If ` + "`" + `delay_option` + "`" + ` = "for-duration" this has to be set. This is a block, structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "until_hour",
+					Description: `(Optional) Until what hour notifications will be delayed. If ` + "`" + `delay_option` + "`" + ` is set to antyhing else then "for-duration" this has to be set.`,
+				},
+				resource.Attribute{
+					Name:        "until_minute",
+					Description: `(Optional) Until what minute on ` + "`" + `until_hour` + "`" + ` notifications will be delayed. If ` + "`" + `delay_option` + "`" + ` is set to antyhing else then "for-duration" this has to be set. The ` + "`" + `duration` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "time_unit",
+					Description: `(Optional) Valid time units are: "minutes", "hours", "days". Default: minutes`,
+				},
+				resource.Attribute{
+					Name:        "time_amount",
+					Description: `(Required) A amount of time in ` + "`" + `time_units` + "`" + `. This is a integer attribute. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Notification Policy. ## Import Notification policies can be imported using the ` + "`" + `team id` + "`" + ` and ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test teamId/Id` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Notification Policy Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_notification_policy.test c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Notification Policy. ## Import Notification policies can be imported using the ` + "`" + `team id` + "`" + ` and ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_notification_policy.test teamId/Id` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Notification Policy Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_notification_policy.test c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "opsgenie_schedule",
 			Category:         "Resources",
 			ShortDescription: `Manages a Schedule within Opsgenie.`,
@@ -423,13 +614,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule_rotation.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + ` and ` + "`" + `schedule_id` + "`" + `, e.g.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_schedule_rotation.test 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+					Description: `The ID of the Opsgenie Schedule Rotation ## Import Schedule Rotations can be imported using the ` + "`" + `id` + "`" + ` and ` + "`" + `schedule_id` + "`" + `, e.g.`,
 				},
 			},
 		},
@@ -472,6 +663,98 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the Opsgenie Team. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team.team1 812be1a1-32c8-4666-a7fb-03ecc385106c` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "opsgenie_team_routing_rule",
+			Category:         "Resources",
+			ShortDescription: `Manages a Team Routing Rule within Opsgenie.`,
+			Description:      ``,
+			Keywords: []string{
+				"team",
+				"routing",
+				"rule",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the team routing rule`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) The order of the team routing rule within the rules. order value is actually the index of the team routing rule whose minimum value is 0 and whose maximum value is n-1 (number of team routing rules is n)`,
+				},
+				resource.Attribute{
+					Name:        "timezone",
+					Description: `(Optional) Timezone of team routing rule. If timezone field is not given, account timezone is used as default.You can refer to Supported Locale IDs for available timezones`,
+				},
+				resource.Attribute{
+					Name:        "criteria",
+					Description: `(Optional) You can refer Criteria for detailed information about criteria and its fields`,
+				},
+				resource.Attribute{
+					Name:        "timeRestriction",
+					Description: `(Optional) You can refer Time Restriction for detailed information about time restriction and its fields.`,
+				},
+				resource.Attribute{
+					Name:        "notify",
+					Description: `(Optional) Target entity of schedule, escalation, or the reserved word none which will be notified in routing rule. The possible values for notify type : schedule, escalation, none ` + "`" + `notify` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) ` + "`" + `criteria` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of the operation will be applied on conditions. Should be one of match-all, match-any-condition or match-all-conditions.`,
+				},
+				resource.Attribute{
+					Name:        "conditions",
+					Description: `(Optional) List of conditions will be checked before applying team routing rule. ` + "`" + `conditions` + "`" + ` supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `(Required) Specifies which alert field will be used in condition. Possible values are message, alias, description, source, entity, tags, actions, extra-properties, recipients, teams or priority.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) If field is set as extra-properties, key could be used for key-value pair.`,
+				},
+				resource.Attribute{
+					Name:        "not",
+					Description: `(Optional) Indicates behaviour of the given operation. Default value is false.`,
+				},
+				resource.Attribute{
+					Name:        "operation",
+					Description: `(true) It is the operation that will be executed for the given field and key. Possible operations are matches, contains, starts-with, ends-with, equals, contains-key, contains-value, greater-than, less-than, is-empty and equals-ignore-whitespace.`,
+				},
+				resource.Attribute{
+					Name:        "expectedValue",
+					Description: `(Optional) User defined value that will be compared with alert field according to the operation. Default value is empty string.`,
+				},
+				resource.Attribute{
+					Name:        "order",
+					Description: `(Optional) Order of the condition in conditions list. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest teamId/routingRuleId` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Routing Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the Opsgenie Team Routing Rule. ## Import Teams can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest teamId/routingRuleId` + "`" + ` For this example: - Team Id = ` + "`" + `c827c472-31f2-497b-9ec6-8ec855d7d94c` + "`" + ` - Routing Rule Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_team_routing_rule.ruletest c827c472-31f2-497b-9ec6-8ec855d7d94c/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
 				},
 			},
 		},
@@ -546,13 +829,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact da4faf16-5546-41e4-8330-4d0002b74048` + "`" + ``,
+					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact username/contactId` + "`" + ` For this example: - Username = ` + "`" + `genie@awesometeam.com` + "`" + ` - Contact Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_user_contact.testcontact genie@awesometeam.com/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact da4faf16-5546-41e4-8330-4d0002b74048` + "`" + ``,
+					Description: `The ID of the Opsgenie Contact. ## Import Users can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `$ terraform import opsgenie_user_contact.testcontact username/contactId` + "`" + ` For this example: - Username = ` + "`" + `genie@awesometeam.com` + "`" + ` - Contact Id = ` + "`" + `2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ` ` + "`" + `$ terraform import opsgenie_user_contact.testcontact genie@awesometeam.com/2d1a78d0-c13e-47d3-af0a-8b6d0cc2b7b1` + "`" + ``,
 				},
 			},
 		},
@@ -560,16 +843,18 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"opsgenie_api_integration":   0,
-		"opsgenie_email_integration": 1,
-		"opsgenie_escalation":        2,
-		"opsgenie_heartbeat":         3,
-		"opsgenie_maintenance":       4,
-		"opsgenie_schedule":          5,
-		"opsgenie_schedule_rotation": 6,
-		"opsgenie_team":              7,
-		"opsgenie_user":              8,
-		"opsgenie_user_contact":      9,
+		"opsgenie_api_integration":     0,
+		"opsgenie_email_integration":   1,
+		"opsgenie_escalation":          2,
+		"opsgenie_heartbeat":           3,
+		"opsgenie_maintenance":         4,
+		"opsgenie_notification_policy": 5,
+		"opsgenie_schedule":            6,
+		"opsgenie_schedule_rotation":   7,
+		"opsgenie_team":                8,
+		"opsgenie_team_routing_rule":   9,
+		"opsgenie_user":                10,
+		"opsgenie_user_contact":        11,
 	}
 )
 

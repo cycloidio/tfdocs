@@ -435,7 +435,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cache_condition",
-					Description: `(Optional) Name of already defined ` + "`" + `condition` + "`" + ` controlling when this gzip configuration applies. This ` + "`" + `condition` + "`" + ` must be of type ` + "`" + `CACHE` + "`" + `. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals]. The ` + "`" + `Header` + "`" + ` block supports adding, removing, or modifying Request and Response headers. See Fastly's documentation on [Adding or modifying headers on HTTP requests and responses](https://docs.fastly.com/guides/basic-configuration/adding-or-modifying-headers-on-http-requests-and-responses#field-description-table) for more detailed information on any of the properties below.`,
+					Description: `(Optional) Name of already defined ` + "`" + `condition` + "`" + ` controlling when this gzip configuration applies. This ` + "`" + `condition` + "`" + ` must be of type ` + "`" + `CACHE` + "`" + `. For detailed information about Conditionals, see [Fastly's Documentation on Conditionals][fastly-conditionals]. The ` + "`" + `header` + "`" + ` block supports adding, removing, or modifying Request and Response headers. See Fastly's documentation on [Adding or modifying headers on HTTP requests and responses](https://docs.fastly.com/guides/basic-configuration/adding-or-modifying-headers-on-http-requests-and-responses#field-description-table) for more detailed information on any of the properties below.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -531,7 +531,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The domain for this request setting.`,
+					Description: `(Required) Unique name to refer to this Request Setting.`,
 				},
 				resource.Attribute{
 					Name:        "request_condition",
@@ -807,7 +807,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tls_ca_cert",
-					Description: `(Optional) A secure certificate to authenticate the server with.`,
+					Description: `(Optional) A secure certificate to authenticate the server with. Must be in PEM format. You can provide this certificate via an environment variable, ` + "`" + `FASTLY_SYSLOG_CA_CERT` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tls_client_cert",
+					Description: `(Optional) The client certificate used to make authenticated requests. Must be in PEM format. You can provide this certificate via an environment variable, ` + "`" + `FASTLY_SYSLOG_CLIENT_CERT` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "tls_client_key",
+					Description: `(Optional) The client private key used to make authenticated requests. Must be in PEM format. You can provide this key via an environment variable, ` + "`" + `FASTLY_SYSLOG_CLIENT_KEY` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "response_condition",

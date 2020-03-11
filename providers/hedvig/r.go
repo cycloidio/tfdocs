@@ -95,6 +95,10 @@ var (
 					Description: `(Required) The name to be used by the Vdisk for identification.`,
 				},
 				resource.Attribute{
+					Name:        "residence",
+					Description: `(Optional) Disk residence; can be either ` + "`" + `HDD` + "`" + ` or ` + "`" + `Flash` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) The size of the disk in GB.`,
 				},

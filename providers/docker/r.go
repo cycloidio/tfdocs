@@ -79,7 +79,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional, map of strings) Key/value pairs to set as labels on the container.`,
+					Description: `(Optional, block) See [Labels](#labels-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "links",
@@ -239,7 +239,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "group_add",
-					Description: `(Optional, set of strings) Add additional groups to run as. <a id="capabilities-1"></a> ### Capabilities ` + "`" + `capabilities` + "`" + ` is a block within the configuration that allows you to add or drop linux capabilities. For more information about what capabilities you can add and drop please visit the docker run documentation.`,
+					Description: `(Optional, set of strings) Add additional groups to run as. <a id="labels-1"></a> #### Labels ` + "`" + `labels` + "`" + ` is a block within the configuration that can be repeated to specify additional label name and value data to the container. Each ` + "`" + `labels` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required, string) Name of the label`,
 				},
 				resource.Attribute{
 					Name:        "add",
@@ -347,11 +351,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "content",
-					Description: `(Optional, string, conflicts with ` + "`" + `content_base64` + "`" + `) Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.`,
+					Description: `(Optional, string, conflicts with ` + "`" + `content_base64` + "`" + ` & ` + "`" + `source` + "`" + `) Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.`,
 				},
 				resource.Attribute{
 					Name:        "content_base64",
-					Description: `(Optional, string, conflicts with ` + "`" + `content` + "`" + `) Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for larger binary content such as the result of the ` + "`" + `base64encode` + "`" + ` interpolation function. See [here](https://github.com/terraform-providers/terraform-provider-docker/issues/48#issuecomment-374174588) for the reason.`,
+					Description: `(Optional, string, conflicts with ` + "`" + `content` + "`" + ` & ` + "`" + `source` + "`" + `) Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for larger binary content such as the result of the ` + "`" + `base64encode` + "`" + ` interpolation function. See [here](https://github.com/terraform-providers/terraform-provider-docker/issues/48#issuecomment-374174588) for the reason.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional, string, conflicts with ` + "`" + `content` + "`" + ` & ` + "`" + `content_base64` + "`" + `) A filename that references a file which will be uploaded as the object content. This allows for large file uploads that do not get stored in state.`,
+				},
+				resource.Attribute{
+					Name:        "source_hash",
+					Description: `(Optional, string) If using ` + "`" + `source` + "`" + `, this will force an update if the file content has updated but the filename has not.`,
 				},
 				resource.Attribute{
 					Name:        "file",
@@ -522,7 +534,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional, map of string/string key/value pairs) User-defined key/value metadata.`,
+					Description: `(Optional, block) See [Labels](#labels-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "check_duplicate",
@@ -558,7 +570,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipam_config",
-					Description: `(Optional, block) See [IPAM config](#ipam_config-1) below for details. <a id="ipam_config-1"></a> ### IPAM config Configuration of the custom IP scheme of the network. The ` + "`" + `ipam_config` + "`" + ` block supports:`,
+					Description: `(Optional, block) See [IPAM config](#ipam_config-1) below for details. <a id="labels-1"></a> #### Labels ` + "`" + `labels` + "`" + ` is a block within the configuration that can be repeated to specify additional label name and value data to the container. Each ` + "`" + `labels` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required, string) Name of the label`,
 				},
 				resource.Attribute{
 					Name:        "subnet",
@@ -600,7 +616,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional, map of string/string key/value pairs) User-defined key/value metadata. ## Attributes Reference The following attributes are exported in addition to the above configuration:`,
+					Description: `(Optional, block) See [Labels](#labels-1) below for details. <a id="labels-1"></a> #### Labels ` + "`" + `labels` + "`" + ` is a block within the configuration that can be repeated to specify additional label name and value data to the container. Each ` + "`" + `labels` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required, string) Name of the label`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -674,7 +694,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional, map of string/string key/value pairs) User-defined key/value metadata.`,
+					Description: `(Optional, block) See [Labels](#labels-1) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "command",
@@ -750,7 +770,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "isolation",
-					Description: `(Optional, string) Isolation technology of the containers running the service. (Windows only). Valid values are: ` + "`" + `default|process|hyperv` + "`" + ` <a id="privileges-1"></a> #### Privileges ` + "`" + `privileges` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Optional, string) Isolation technology of the containers running the service. (Windows only). Valid values are: ` + "`" + `default|process|hyperv` + "`" + ` <a id="labels-1"></a> #### Labels ` + "`" + `labels` + "`" + ` is a block within the configuration that can be repeated to specify additional label name and value data to the container. Each ` + "`" + `labels` + "`" + ` block supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required, string) Name of the label`,
 				},
 				resource.Attribute{
 					Name:        "credential_spec",
@@ -822,7 +846,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional, map of key/value pairs) Adding labels.`,
+					Description: `(Optional, block) See [Labels](#labels-1) above for details.`,
 				},
 				resource.Attribute{
 					Name:        "driver_config",
@@ -890,7 +914,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_name",
-					Description: `(Required, string) Represents the final filename in the filesystem. The specific target file that the secret data is written within the docker container, e.g. ` + "`" + `/root/secret/secret.json` + "`" + ` <a id="configs-1"></a> ### Configs ` + "`" + `configs` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `configs` + "`" + ` is a reference to a secret that is exposed to the service and supports the following:`,
+					Description: `(Required, string) Represents the final filename in the filesystem. The specific target file that the secret data is written within the docker container, e.g. ` + "`" + `/root/secret/secret.json` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "file_uid",
+					Description: `(Optional, string) Represents the file UID. Defaults: ` + "`" + `0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "file_gid",
+					Description: `(Optional, string) Represents the file GID. Defaults: ` + "`" + `0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "file_mode",
+					Description: `(Optional, int) Represents the FileMode of the file. Defaults: ` + "`" + `0444` + "`" + ` <a id="configs-1"></a> ### Configs ` + "`" + `configs` + "`" + ` is a block within the configuration that can be repeated to specify the extra mount mappings for the container. Each ` + "`" + `configs` + "`" + ` is a reference to a secret that is exposed to the service and supports the following:`,
 				},
 				resource.Attribute{
 					Name:        "config_id",
@@ -902,7 +938,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "file_name",
-					Description: `(Required, string) Represents the final filename in the filesystem. The specific target file that the config data is written within the docker container, e.g. ` + "`" + `/root/config/config.json` + "`" + ` <!-- end task-container-spec --> <!-- start task-resources-spec --> <a id="resources-1"></a> #### Resources ` + "`" + `resources` + "`" + ` is a block within the configuration that can be repeated only`,
+					Description: `(Required, string) Represents the final filename in the filesystem. The specific target file that the config data is written within the docker container, e.g. ` + "`" + `/root/config/config.json` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "file_uid",
+					Description: `(Optional, string) Represents the file UID. Defaults: ` + "`" + `0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "file_gid",
+					Description: `(Optional, string) Represents the file GID. Defaults: ` + "`" + `0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "file_mode",
+					Description: `(Optional, int) Represents the FileMode of the file. Defaults: ` + "`" + `0444` + "`" + ` <!-- end task-container-spec --> <!-- start task-resources-spec --> <a id="resources-1"></a> #### Resources ` + "`" + `resources` + "`" + ` is a block within the configuration that can be repeated only`,
 				},
 				resource.Attribute{
 					Name:        "limits",

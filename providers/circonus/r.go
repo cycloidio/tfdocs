@@ -40,6 +40,10 @@ var (
 					Description: `(Optional) A native Consul check. See below for details on how to configure a ` + "`" + `consul` + "`" + ` check.`,
 				},
 				resource.Attribute{
+					Name:        "dns",
+					Description: `(Optional) A DNS check. See below for details on how to configure a ` + "`" + `dns` + "`" + ` check.`,
+				},
+				resource.Attribute{
 					Name:        "http",
 					Description: `(Optional) A poll-based HTTP check. See below for details on how to configure the ` + "`" + `http` + "`" + ` check.`,
 				},
@@ -82,6 +86,10 @@ var (
 				resource.Attribute{
 					Name:        "postgresql",
 					Description: `(Optional) A PostgreSQL check. See below for details on how to configure the ` + "`" + `postgresql` + "`" + ` check.`,
+				},
+				resource.Attribute{
+					Name:        "redis",
+					Description: `(Optional) A Redis check. See below for details on how to configure the ` + "`" + `redis` + "`" + ` check.`,
 				},
 				resource.Attribute{
 					Name:        "statsd",
@@ -213,7 +221,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "state",
-					Description: `(Optional) A Circonus check to monitor Consul checks across the entire Consul cluster. This value may be either ` + "`" + `passing` + "`" + `, ` + "`" + `warning` + "`" + `, or ` + "`" + `critical` + "`" + `. This ` + "`" + `consul` + "`" + ` check mode is intended to act as the cluster check of last resort. This check type is useful when first starting and is intended to act as a check of last resort before transitioning to explicitly defined checks for individual services or nodes. The metrics returned from check will be sorted based on the ` + "`" + `CreateIndex` + "`" + ` of the entry in order to have a stable set of metrics in the array of returned values. See also the ` + "`" + `service_blacklist` + "`" + `, ` + "`" + `node_blacklist` + "`" + `, and ` + "`" + `check_blacklist` + "`" + ` attributes. This attribute conflicts with the ` + "`" + `node` + "`" + ` and ` + "`" + `state` + "`" + ` attributes. Available metrics depend on the consul check being performed (` + "`" + `node` + "`" + `, ` + "`" + `service` + "`" + `, or ` + "`" + `state` + "`" + `). In addition to the data avilable from the endpoints, the ` + "`" + `consul` + "`" + ` check also returns a set of metrics that are a variant of: ` + "`" + `{Num,Pct}{,Passing,Warning,Critical}{Checks,Nodes,Services}` + "`" + ` (see the ` + "`" + `GLOB_BRACE` + "`" + ` section of your local ` + "`" + `glob(3)` + "`" + ` documentation). Example Consul check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "consul_server" { active = true name = "%s" period = "60s" collector { # Collector ID must be an Enterprise broker able to reach the Consul agent # listed in ` + "`" + `http_addr` + "`" + `. id = "/broker/2110" } consul { service = "consul" # Other consul check modes: # node = "consul1" # state = "critical" } metric { name = "NumNodes" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" } metric { name = "LastContact" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" unit = "seconds" } metric { name = "Index" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" unit = "transactions" } metric { name = "KnownLeader" tags = [ "source:consul", "lifecycle:unittest" ] type = "text" } tags = [ "source:consul", "lifecycle:unittest" ] } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `http` + "`" + ` Check Type Attributes`,
+					Description: `(Optional) A Circonus check to monitor Consul checks across the entire Consul cluster. This value may be either ` + "`" + `passing` + "`" + `, ` + "`" + `warning` + "`" + `, or ` + "`" + `critical` + "`" + `. This ` + "`" + `consul` + "`" + ` check mode is intended to act as the cluster check of last resort. This check type is useful when first starting and is intended to act as a check of last resort before transitioning to explicitly defined checks for individual services or nodes. The metrics returned from check will be sorted based on the ` + "`" + `CreateIndex` + "`" + ` of the entry in order to have a stable set of metrics in the array of returned values. See also the ` + "`" + `service_blacklist` + "`" + `, ` + "`" + `node_blacklist` + "`" + `, and ` + "`" + `check_blacklist` + "`" + ` attributes. This attribute conflicts with the ` + "`" + `node` + "`" + ` and ` + "`" + `state` + "`" + ` attributes. Available metrics depend on the consul check being performed (` + "`" + `node` + "`" + `, ` + "`" + `service` + "`" + `, or ` + "`" + `state` + "`" + `). In addition to the data avilable from the endpoints, the ` + "`" + `consul` + "`" + ` check also returns a set of metrics that are a variant of: ` + "`" + `{Num,Pct}{,Passing,Warning,Critical}{Checks,Nodes,Services}` + "`" + ` (see the ` + "`" + `GLOB_BRACE` + "`" + ` section of your local ` + "`" + `glob(3)` + "`" + ` documentation). Example Consul check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "consul_server" { active = true name = "%s" period = "60s" collector { # Collector ID must be an Enterprise broker able to reach the Consul agent # listed in ` + "`" + `http_addr` + "`" + `. id = "/broker/2110" } consul { service = "consul" # Other consul check modes: # node = "consul1" # state = "critical" } metric { name = "NumNodes" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" } metric { name = "LastContact" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" unit = "seconds" } metric { name = "Index" tags = [ "source:consul", "lifecycle:unittest" ] type = "numeric" unit = "transactions" } metric { name = "KnownLeader" tags = [ "source:consul", "lifecycle:unittest" ] type = "text" } tags = [ "source:consul", "lifecycle:unittest" ] } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `dns` + "`" + ` Check Type Attributes`,
+				},
+				resource.Attribute{
+					Name:        "ctype",
+					Description: `(Optional) The DNS class of the query. IN: Internet, CH: Chaos, HS: Hesoid. Defaults to "IN".`,
+				},
+				resource.Attribute{
+					Name:        "nameserver",
+					Description: `(Optional) For non-"IN" ctype checks, the nameserver you want to use.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Required) The name to query.`,
+				},
+				resource.Attribute{
+					Name:        "rtype",
+					Description: `(Required) The DNS resource record type of the query. Default is A. Available metrics include: ` + "`" + `answer` + "`" + `, ` + "`" + `rtt` + "`" + `, and ` + "`" + `ttl` + "`" + `. See the [` + "`" + `dns` + "`" + ` check type](https://login.circonus.com/resources/api/calls/check_bundle) for additional details. Example DNS check (partial metrics collection): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_check" "dns_google_mx" { active = true name = "%s" period = "60s" collector { id = "/broker/1" } dns { query = "google.com" rtype = "MX" } metric { name = "answer" type = "text" } metric { name = "rtt" type = "numeric" unit = "milliseconds" } metric { name = "ttl" type = "numeric" unit = "seconds" } tags = [ "source:consul", "lifecycle:unittest" ] } ` + "`" + `` + "`" + `` + "`" + ` ### ` + "`" + `http` + "`" + ` Check Type Attributes`,
 				},
 				resource.Attribute{
 					Name:        "auth_method",
@@ -373,7 +397,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "query",
-					Description: `(Required) The SQL query to execute. Available metric names are dependent on the output of the ` + "`" + `query` + "`" + ` being run. ### ` + "`" + `statsd` + "`" + ` Check Type Attributes`,
+					Description: `(Required) The SQL query to execute. Available metric names are dependent on the output of the ` + "`" + `query` + "`" + ` being run. ### ` + "`" + `redis` + "`" + ` Check Type Attributes`,
+				},
+				resource.Attribute{
+					Name:        "command",
+					Description: `(Optional) String value specifies the redis command to run to gather metrics. Default: "INFO"`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Optional) Sensitive String Specify the password to use with the redis instance.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) Integer The port to communicate on. Default 6379`,
+				},
+				resource.Attribute{
+					Name:        "db_index",
+					Description: `(Optional) Integer Which of the redis databases to gather metrics about. Default 0 ### ` + "`" + `statsd` + "`" + ` Check Type Attributes`,
 				},
 				resource.Attribute{
 					Name:        "source_ip",
@@ -638,6 +678,215 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "circonus_dashboard",
+			Category:         "Resources",
+			ShortDescription: `Manages a Circonus dashboard.`,
+			Description:      ``,
+			Keywords: []string{
+				"dashboard",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Required) String. The title of the dashboard`,
+				},
+				resource.Attribute{
+					Name:        "shared",
+					Description: `(Optional) Boolean. Whether this dash is shared with everyone in the Circonus account or private to the user.`,
+				},
+				resource.Attribute{
+					Name:        "account_default",
+					Description: `(Optional) Boolean. Whether this dash is set as the default for the account`,
+				},
+				resource.Attribute{
+					Name:        "grid_layout",
+					Description: `(Required) Map. Has members ` + "`" + `width` + "`" + ` and ` + "`" + `height` + "`" + ` to control the dimensions of the dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "options",
+					Description: `(Required) Set of 1. The options for the dashboard, see below for description.`,
+				},
+				resource.Attribute{
+					Name:        "widget",
+					Description: `(Required) Set of N. The widgets that make up the dashboard. See below for the description ## ` + "`" + `options` + "`" + ` Configuration These options control rendering and other global settings about the dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "full_screen_hide_title",
+					Description: `(Optional) Boolean. Set the dashboard to fullscreen mode.`,
+				},
+				resource.Attribute{
+					Name:        "hide_grid",
+					Description: `(Optional) Boolean. Hides the grid lines when rendering the dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "scale_text",
+					Description: `(Optional) Boolean. Scale the text up and down with the count of widgets. Defaults to ` + "`" + `true` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "text_size",
+					Description: `(Optional) Integer. The point size of the text in the dashboard (titles and such) Defaults to ` + "`" + `12` + "`" + `. ## ` + "`" + `widget` + "`" + ` Configuration`,
+				},
+				resource.Attribute{
+					Name:        "active",
+					Description: `(Optional) Boolean. Is this widget active. Default to true`,
+				},
+				resource.Attribute{
+					Name:        "height",
+					Description: `(Required) Integer. The number of dashboard rows this widget consumes.`,
+				},
+				resource.Attribute{
+					Name:        "width",
+					Description: `(Required) Integer. The number of dashboard columns this widget consumes.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) String. The name of the widget. One of: ` + "`" + `Graph` + "`" + `, ` + "`" + `Chart` + "`" + `, ` + "`" + `Gauge` + "`" + `, ` + "`" + `Text` + "`" + `, ` + "`" + `Cluster` + "`" + `, ` + "`" + `HTML` + "`" + `, ` + "`" + `Status` + "`" + `, ` + "`" + `List` + "`" + `, ` + "`" + `Alerts` + "`" + `, ` + "`" + `Forecast` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) String. The type of the widget. This is duplicative of ` + "`" + `name` + "`" + ` but must be one of: ` + "`" + `graph` + "`" + `, ` + "`" + `chart` + "`" + `, ` + "`" + `gauge` + "`" + `, ` + "`" + `text` + "`" + `, ` + "`" + `cluster` + "`" + `, ` + "`" + `html` + "`" + `, ` + "`" + `status` + "`" + `, ` + "`" + `list` + "`" + `, ` + "`" + `alerts` + "`" + `, ` + "`" + `forecast` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "origin",
+					Description: `(Required) String. The cell ID of the left top corner of this widget. Where cell ID is the columnar letter (a->z lower case) followed by by the row number (zero indexed). "a0" would mean first column, first row (top-left most cell). "c3" would mean the 3rd column, 4th row.`,
+				},
+				resource.Attribute{
+					Name:        "settings",
+					Description: `(Required) Set. The settings specific to this widget type. See below for descriptions.`,
+				},
+				resource.Attribute{
+					Name:        "widget_id",
+					Description: `(Required) String. Widget ID for this widget. Must be unique to this dashboard. A common convention is to use 'w' + integer. ## ` + "`" + `widget.settings` + "`" + ` Configuration These settings are all optional in practice but some are marked Required here because they are required by the Circonus API. ### ` + "`" + `Alert` + "`" + ` type settings`,
+				},
+				resource.Attribute{
+					Name:        "account_id",
+					Description: `(Optional) String. To access alert widgets from other circonus accounts supply the account_id here.`,
+				},
+				resource.Attribute{
+					Name:        "acknowledged",
+					Description: `(Optional) String. Show ack'd alerts. "y", "n", or "all"`,
+				},
+				resource.Attribute{
+					Name:        "cleared",
+					Description: `(Optional) String. Show cleared alerts. "y", "n", or "all"`,
+				},
+				resource.Attribute{
+					Name:        "dependents",
+					Description: `(Optional) String. Show dependent alerts. "y", "n", or "all"`,
+				},
+				resource.Attribute{
+					Name:        "display",
+					Description: `(Optional) String. Method to use when displaying. "list", "bar", or "sunburst"`,
+				},
+				resource.Attribute{
+					Name:        "maintenance",
+					Description: `(Optional) String. Show alerts in maintenance. "y", "n", or "all"`,
+				},
+				resource.Attribute{
+					Name:        "min_age",
+					Description: `(Optional) String. Show alerts of a certain age. A string matching the following regex: "(?:0|\d+[mhdwMy])"`,
+				},
+				resource.Attribute{
+					Name:        "search",
+					Description: `(Optional) String. A search string to use when displaying alerts.`,
+				},
+				resource.Attribute{
+					Name:        "severity",
+					Description: `(Optional) String. A string matching the following regex: "[1-5]{1,5}"`,
+				},
+				resource.Attribute{
+					Name:        "time_window",
+					Description: `(Optional) String. A string matching the following regex: "(?:0|\d+[mhdwMy])"`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Optional) String. The title of the widget. ### ` + "`" + `Chart` + "`" + ` type settings`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Optional) String. The title of the widget.`,
+				},
+				resource.Attribute{
+					Name:        "chart_type",
+					Description: `(Optional) String. One of: "pie", "bar"`,
+				},
+				resource.Attribute{
+					Name:        "datapoints",
+					Description: `(Optional) Set of N. Consisting of:`,
+				},
+				resource.Attribute{
+					Name:        "_metric_type",
+					Description: `(Required) String.`,
+				},
+				resource.Attribute{
+					Name:        "_check_id",
+					Description: `(Required) Integer.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) String.`,
+				},
+				resource.Attribute{
+					Name:        "metric",
+					Description: `(Required) String. ### ` + "`" + `Graph` + "`" + ` type settings`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Optional) String. The title of the widget.`,
+				},
+				resource.Attribute{
+					Name:        "date_window",
+					Description: `(Optional) String. 'global' (follow the page datetool settings) | <time_interval> (e.g. '30m', '6h', '2d', '1w', etc.) | <dual_time_intervals> (e.g. '6h:12h', '1w:1w', etc.)`,
+				},
+				resource.Attribute{
+					Name:        "graph_uuid",
+					Description: `(Required) String. The uuid of the graph.`,
+				},
+				resource.Attribute{
+					Name:        "hide_xaxis",
+					Description: `(Optional) Boolean. Whether to hide the x-axis labels.`,
+				},
+				resource.Attribute{
+					Name:        "hide_yaxis",
+					Description: `(Optional) Boolean. Whether to hide the y-axis labels.`,
+				},
+				resource.Attribute{
+					Name:        "key_inline",
+					Description: `(Optional) Boolean. Whether to show the legend when hovering.`,
+				},
+				resource.Attribute{
+					Name:        "key_loc",
+					Description: `(Optional) String. Whether to show a persistent legend key beside the graph and where to position it. 'noop' (don't show key) - 'in-tl' (inside graph, top left corner) - 'out-r' (outside graph, on the right) - 'out-b' (outside graph, on the bottom)`,
+				},
+				resource.Attribute{
+					Name:        "key_size",
+					Description: `(Optional) Integer. The size of the persistent legend key (if ` + "`" + `key_loc` + "`" + ` is 'in-tl' or 'out-r', this controls key width; if ` + "`" + `key_loc` + "`" + ` is 'out-b', this controls key height)`,
+				},
+				resource.Attribute{
+					Name:        "key_wrap",
+					Description: `(Optional) Boolean. Whether to wrap text within the persistent legend key.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Optional) String. The label to show at the top of the widget if you want it to show something other than the graph title`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) Integer. Realtime streaming update period, in milliseconds`,
+				},
+				resource.Attribute{
+					Name:        "real_time",
+					Description: `(Optional) Boolean. Whether to plot streaming data in realtime instead of showing recent stored data`,
+				},
+				resource.Attribute{
+					Name:        "show_flags",
+					Description: `(Optional) Boolean. Whether to show the legend upon mouse hover`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "circonus_graph",
 			Category:         "Resources",
 			ShortDescription: `Manages a Circonus graph.`,
@@ -649,6 +898,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) Description of what the graph is for.`,
+				},
+				resource.Attribute{
+					Name:        "guide",
+					Description: `(Optional) A list of guide lines to draw on the graph. See below for options.`,
 				},
 				resource.Attribute{
 					Name:        "graph_style",
@@ -684,7 +937,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) A list of tags assigned to this graph. ## ` + "`" + `metric` + "`" + ` Configuration An individual metric stream is the underlying source of data points used for visualization in a graph. Either a ` + "`" + `caql` + "`" + ` attribute is required or a ` + "`" + `check` + "`" + ` and ` + "`" + `metric` + "`" + ` must be set. The ` + "`" + `metric` + "`" + ` attribute can have the following options set.`,
+					Description: `(Optional) A list of tags assigned to this graph. ## ` + "`" + `guide` + "`" + ` Configuration A line to draw on the graph as a visual indicator of some level.`,
+				},
+				resource.Attribute{
+					Name:        "hidden",
+					Description: `(Optional) Whether or not this guide is hidden, defaults to ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) The color of this guide line in hex RGB.`,
+				},
+				resource.Attribute{
+					Name:        "formula",
+					Description: `(Optional) The formula to use for this line.`,
+				},
+				resource.Attribute{
+					Name:        "legend_formula",
+					Description: `(Optional) The formula to use in the legend for this guide line.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The human readable name for the legend for this guide line. ## ` + "`" + `metric` + "`" + ` Configuration An individual metric stream is the underlying source of data points used for visualization in a graph. Either a ` + "`" + `caql` + "`" + ` attribute is required or a ` + "`" + `check` + "`" + ` and ` + "`" + `metric` + "`" + ` must be set. The ` + "`" + `metric` + "`" + ` attribute can have the following options set.`,
 				},
 				resource.Attribute{
 					Name:        "active",
@@ -700,7 +973,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "caql",
-					Description: `(Optional) A CAQL formula. Conflicts with the ` + "`" + `check` + "`" + ` and ` + "`" + `metric` + "`" + ` attributes.`,
+					Description: `(Optional) A CAQL formula. Conflicts with the ` + "`" + `check` + "`" + ` and ` + "`" + `metric` + "`" + ` and ` + "`" + `search` + "`" + ` attributes.`,
+				},
+				resource.Attribute{
+					Name:        "search",
+					Description: `(Optional) A metric search. Conflicts with the ` + "`" + `check` + "`" + ` and ` + "`" + `metric` + "`" + ` and ` + "`" + `caql` + "`" + ` attributes.`,
 				},
 				resource.Attribute{
 					Name:        "check",
@@ -761,6 +1038,51 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) A name which will appear in the graph legend for this metric cluster. ## Import Example ` + "`" + `circonus_graph` + "`" + ` supports importing resources. Supposing the following Terraform (and that the referenced [` + "`" + `circonus_metric` + "`" + `](metric.html) and [` + "`" + `circonus_check` + "`" + `](check.html) have already been imported): ` + "`" + `` + "`" + `` + "`" + `text resource "circonus_graph" "icmp-graph" { name = "Test graph" graph_style = "line" line_style = "stepped" metric { check = "${circonus_check.api_latency.checks[0]}" metric_name = "maximum" metric_type = "numeric" name = "Maximum Latency" axis = "left" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_graph` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_graph.icmp-graph ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the graph (e.g. ` + "`" + `/graph/bd72aabc-90b9-4039-cc30-c9ab838c18f5` + "`" + `) and ` + "`" + `circonus_graph.icmp-graph` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "circonus_maintenance",
+			Category:         "Resources",
+			ShortDescription: `Manages a Circonus maintenance window.`,
+			Description:      ``,
+			Keywords: []string{
+				"maintenance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account",
+					Description: `(Optional) A string referencing the account CID to have maintenance on, mutually exclusive with ` + "`" + `check` + "`" + `, ` + "`" + `rule_set` + "`" + `, and ` + "`" + `target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "check",
+					Description: `(Optional) A string referencing the check CID to have maintenance on, mutually exclusive with ` + "`" + `account` + "`" + `, ` + "`" + `rule_set` + "`" + `, and ` + "`" + `target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rule_set",
+					Description: `(Optional) A string referencing the rule_set CID to have maintenance on, mutually exclusive with ` + "`" + `account` + "`" + `, ` + "`" + `check` + "`" + `, and ` + "`" + `target` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Optional) A string referencing the check target (host) to have maintenance on, mutually exclusive with ` + "`" + `account` + "`" + `, ` + "`" + `rule_set` + "`" + `, and ` + "`" + `check` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "severities",
+					Description: `(Required) A list of strings determining which severities to put into maintenance. Must be in the range: "1"-"5"`,
+				},
+				resource.Attribute{
+					Name:        "start",
+					Description: `(Required) An RFC3339 timestamp string which indicates the start of the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "stop",
+					Description: `(Required) An RFC3339 timestamp string which indicates the end of the maintenance window.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A list of tags assigned to the maintenance window. ## Import Example ` + "`" + `circonus_maintenance` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "circonus" { alias = "b8fec159-f9e5-4fe6-ad2c-dc1ec6751586" } resource "circonus_maintenance" "mine" { account = "/account/12345" notes = "shutting sev1 alerts for the account for the weekend" severities = ["1"] start = "2020-01-25T19:00:00-05:00" stop = "2020-01-27T19:00:00-05:00" tags = { author = "terraform" source = "circonus" } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_maintenance` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_maintenance.mine ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the CID of the matching maintenance window.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -948,6 +1270,61 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "circonus_rule_set_group",
+			Category:         "Resources",
+			ShortDescription: `Manages a Circonus rule set group.`,
+			Description:      ``,
+			Keywords: []string{
+				"rule",
+				"set",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the rule set group, must be unique across all rule set groups within the account.`,
+				},
+				resource.Attribute{
+					Name:        "notify",
+					Description: `(Required) The list of contact groups to notify should the expression evaluate to true. See below for details on the structure of a ` + "`" + `notify` + "`" + ` configuration clause.`,
+				},
+				resource.Attribute{
+					Name:        "formula",
+					Description: `(Required) Instructions for how to compare the member rule sets for trigger notification. See below for details on the structure of a ` + "`" + `formula` + "`" + ` configuration clause.`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Required) The rule set reference and condition levels to watch. See below for details on the structure of a ` + "`" + `condition` + "`" + ` configuration clause. ## ` + "`" + `notify` + "`" + ` Configuration The ` + "`" + `notify` + "`" + ` configuration block is a listing of contact groups separated by severity that should be notified when the ` + "`" + `formula` + "`" + ` evaluates to true based on the ` + "`" + `raise_severity` + "`" + ` in the ` + "`" + `formula` + "`" + `. There are 5 severity levels supported and each one is a list of strings. Each list contains the CID of the contact group to notify at that severity level. ` + "`" + `sev1` + "`" + `, ` + "`" + `sev2` + "`" + `, ` + "`" + `sev3` + "`" + `, ` + "`" + `sev4` + "`" + `, ` + "`" + `sev5` + "`" + `: are the names of the ` + "`" + `notify` + "`" + ` lists. ### ` + "`" + `formula` + "`" + ` Configuration A ` + "`" + `formula` + "`" + ` block contains 3 fields that indicate how to combine the member rule sets specified in the ` + "`" + `condition` + "`" + ` blocks. There can be only 1 ` + "`" + `formula` + "`" + ` block. It has 3 fields:`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) The expression that combines the ` + "`" + `condition` + "`" + `s into a boolean logical expression. See Formulas [here](https://login.circonus.com/resources/docs/user/Alerting/RuleGroups/Configure.html)`,
+				},
+				resource.Attribute{
+					Name:        "raise_severity",
+					Description: `(Required) The severity level to raise (see ` + "`" + `notify` + "`" + ` for who would be contacted), when the ` + "`" + `expression` + "`" + ` is true.`,
+				},
+				resource.Attribute{
+					Name:        "wait",
+					Description: `(Required) How long to wait before sending out the alert. ### ` + "`" + `condition` + "`" + ` Configuration A ` + "`" + `condition` + "`" + ` block contains 3 fields that indicate what rule set, it's position in the expression, and which severities of the original ruleset to pay attention to. It has 3 fields:`,
+				},
+				resource.Attribute{
+					Name:        "index",
+					Description: `(Required) The position this condition has in the ` + "`" + `formula` + "`" + `.` + "`" + `expression` + "`" + `. A value of ` + "`" + `1` + "`" + ` maps to ` + "`" + `A` + "`" + `, a value of ` + "`" + `2` + "`" + ` maps to ` + "`" + `B` + "`" + `, etc..`,
+				},
+				resource.Attribute{
+					Name:        "rule_set",
+					Description: `(Required) The CID of the rule set to pay attention to.`,
+				},
+				resource.Attribute{
+					Name:        "matching_severities",
+					Description: `(Required) The list(string) of severities from that rule set to watch. ## Import Example ` + "`" + `circonus_rule_set_group` + "`" + ` supports importing resources. Supposing the following Terraform (and that the referenced [` + "`" + `circonus_rule_set` + "`" + `](rule_set.html)s and [` + "`" + `circonus_contact_group` + "`" + `](contact_group.html) have already been imported): ` + "`" + `` + "`" + `` + "`" + `hcl resource "circonus_rule_set_group" "myrulesetgroup" { name = "Test Rule Set Group 1" notify { sev3 = [ "${circonus_contact_group.myapp-owners.id}" ] } formula { expression = "A and B" raise_severity = 4 wait = 0 } condition { index = 1 rule_set = circonus_rule_set.myapp-cert-ttl-alert.id matching_severities = ["3"] } condition { index = 2 rule_set = circonus_rule_set.myapp-healthy-alert.id matching_severities = ["3"] } } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `circonus_rule_set_group` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import circonus_rule_set_group.myrulesetgroup ID ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `ID` + "`" + ` is the ` + "`" + `_cid` + "`" + ` or Circonus ID of the Rule Set Group (e.g. ` + "`" + `/rule_set_group/201285` + "`" + `) and ` + "`" + `circonus_rule_set_group.myrulesetgroup` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "circonus_worksheet",
 			Category:         "Resources",
 			ShortDescription: `Manages a Circonus worksheet.`,
@@ -1001,11 +1378,14 @@ var (
 
 		"circonus_check":          0,
 		"circonus_contact_group":  1,
-		"circonus_graph":          2,
-		"circonus_metric":         3,
-		"circonus_metric_cluster": 4,
-		"circonus_rule_set":       5,
-		"circonus_worksheet":      6,
+		"circonus_dashboard":      2,
+		"circonus_graph":          3,
+		"circonus_maintenance":    4,
+		"circonus_metric":         5,
+		"circonus_metric_cluster": 6,
+		"circonus_rule_set":       7,
+		"circonus_rule_set_group": 8,
+		"circonus_worksheet":      9,
 	}
 )
 

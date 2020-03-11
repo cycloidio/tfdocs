@@ -32,6 +32,14 @@ var (
 					Description: `(Optional) The teams that the apikey belongs to.`,
 				},
 				resource.Attribute{
+					Name:        "ip_whitelist",
+					Description: `(Optional) The IP addresses to whitelist for this key.`,
+				},
+				resource.Attribute{
+					Name:        "ip_whitelist_strict",
+					Description: `(Optional) Sets exclusivity on this IP whitelist.`,
+				},
+				resource.Attribute{
 					Name:        "dns_view_zones",
 					Description: `(Optional) Whether the apikey can view the accounts zones.`,
 				},
@@ -105,7 +113,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring_view_jobs",
-					Description: `(Optional) Whether the apikey can view monitoring jobs. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Optional) Whether the apikey can view monitoring jobs.`,
+				},
+				resource.Attribute{
+					Name:        "security_manage_global_2fa",
+					Description: `(Optional) Whether the apikey can manage global two factor authentication.`,
+				},
+				resource.Attribute{
+					Name:        "security_manage_active_directory",
+					Description: `(Optional) Whether the apikey can manage global active directory. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_manage_dhcp",
+					Description: `(Optional) Whether the apikey can manage DHCP. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_view_dhcp",
+					Description: `(Optional) Whether the apikey can view DHCP. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "ipam_manage_ipam",
+					Description: `(Optional) Whether the apikey can manage IPAM. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "ipam_view_ipam",
+					Description: `(Optional) Whether the apikey can view IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -374,6 +406,10 @@ var (
 					Description: `(Required) The free form name of the team.`,
 				},
 				resource.Attribute{
+					Name:        "ip_whitelist",
+					Description: `(Optional) The IP addresses to whitelist for this key.`,
+				},
+				resource.Attribute{
 					Name:        "dns_view_zones",
 					Description: `(Optional) Whether the team can view the accounts zones.`,
 				},
@@ -447,7 +483,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring_view_jobs",
-					Description: `(Optional) Whether the team can view monitoring jobs. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Optional) Whether the team can view monitoring jobs.`,
+				},
+				resource.Attribute{
+					Name:        "security_manage_global_2fa",
+					Description: `(Optional) Whether the team can manage global two factor authentication.`,
+				},
+				resource.Attribute{
+					Name:        "security_manage_active_directory",
+					Description: `(Optional) Whether the team can manage global active directory. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_manage_dhcp",
+					Description: `(Optional) Whether the team can manage DHCP. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_view_dhcp",
+					Description: `(Optional) Whether the team can view DHCP. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "ipam_manage_ipam",
+					Description: `(Optional) Whether the team can manage IPAM. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "ipam_view_ipam",
+					Description: `(Optional) Whether the team can view IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -481,6 +541,14 @@ var (
 				resource.Attribute{
 					Name:        "teams",
 					Description: `(Required) The teams that the user belongs to.`,
+				},
+				resource.Attribute{
+					Name:        "ip_whitelist",
+					Description: `(Optional) The IP addresses to whitelist for this key.`,
+				},
+				resource.Attribute{
+					Name:        "ip_whitelist_strict",
+					Description: `(Optional) Sets exclusivity on this IP whitelist.`,
 				},
 				resource.Attribute{
 					Name:        "dns_view_zones",
@@ -556,7 +624,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring_view_jobs",
-					Description: `(Optional) Whether the user can view monitoring jobs. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
+					Description: `(Optional) Whether the user can view monitoring jobs.`,
+				},
+				resource.Attribute{
+					Name:        "security_manage_global_2fa",
+					Description: `(Optional) Whether the user can manage global two factor authentication.`,
+				},
+				resource.Attribute{
+					Name:        "security_manage_active_directory",
+					Description: `(Optional) Whether the user can manage global active directory. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_manage_dhcp",
+					Description: `(Optional) Whether the user can manage DHCP. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "dhcp_view_dhcp",
+					Description: `(Optional) Whether the user can view DHCP. Only relevant for the DDI product.`,
+				},
+				resource.Attribute{
+					Name:        "ipam_manage_ipam",
+					Description: `(Optional) Whether the user can manage IPAM. Only relevant for the DDI product. ## Attributes Reference All of the arguments listed above are exported as attributes, with no additions.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -581,11 +669,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "primary",
-					Description: `(Optional) The primary zones' IP. This makes the zone a secondary. Conflicts with ` + "`" + `secondaries` + "`" + `.`,
+					Description: `(Optional) The primary zones' IPv4 address. This makes the zone a secondary. Conflicts with ` + "`" + `secondaries` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "additional_primaries",
-					Description: `(Optional) List of additional IPs for the primary zone. Conflicts with ` + "`" + `secondaries` + "`" + `.`,
+					Description: `(Optional) List of additional IPv4 addresses for the primary zone. Conflicts with ` + "`" + `secondaries` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",

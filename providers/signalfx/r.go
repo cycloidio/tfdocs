@@ -94,6 +94,10 @@ SignalFx AWS CloudWatch integrations using Role ARNs. For help with this integra
 					Name:        "external_id",
 					Description: `The external ID to use with your IAM role and with ` + "`" + `signalfx_aws_integration` + "`" + `.`,
 				},
+				resource.Attribute{
+					Name:        "signalfx_aws_account",
+					Description: `The AWS Account ARN to use with your policies/roles, provided by SignalFx.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -103,6 +107,10 @@ SignalFx AWS CloudWatch integrations using Role ARNs. For help with this integra
 				resource.Attribute{
 					Name:        "external_id",
 					Description: `The external ID to use with your IAM role and with ` + "`" + `signalfx_aws_integration` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "signalfx_aws_account",
+					Description: `The AWS Account ARN to use with your policies/roles, provided by SignalFx.`,
 				},
 			},
 		},
@@ -147,15 +155,15 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 				},
 				resource.Attribute{
 					Name:        "default_action",
-					Description: `(Required) Controls the SignalFx default behavior for processing data from an AWS namespace. If you do specify a filter, use this property to control how SignalFx treats data that doesn't match the filter. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
+					Description: `(Optional) Controls the SignalFx default behavior for processing data from an AWS namespace. If you do specify a filter, use this property to control how SignalFx treats data that doesn't match the filter. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "filter_action",
-					Description: `(Required) Controls how SignalFx processes data from a custom AWS namespace. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
+					Description: `(Optional) Controls how SignalFx processes data from a custom AWS namespace. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "filter_source",
-					Description: `(Required) Expression that selects the data that SignalFx should sync for the custom namespace associated with this sync rule. The expression uses the syntax defined for the SignalFlow ` + "`" + `filter()` + "`" + ` function; it can be any valid SignalFlow filter expression.`,
+					Description: `(Optional) Expression that selects the data that SignalFx should sync for the custom namespace associated with this sync rule. The expression uses the syntax defined for the SignalFlow ` + "`" + `filter()` + "`" + ` function; it can be any valid SignalFlow filter expression.`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -167,15 +175,15 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 				},
 				resource.Attribute{
 					Name:        "default_action",
-					Description: `(Required) Controls the SignalFx default behavior for processing data from an AWS namespace. If you do specify a filter, use this property to control how SignalFx treats data that doesn't match the filter. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
+					Description: `(Optional) Controls the SignalFx default behavior for processing data from an AWS namespace. If you do specify a filter, use this property to control how SignalFx treats data that doesn't match the filter. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "filter_action",
-					Description: `(Required) Controls how SignalFx processes data from a custom AWS namespace. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
+					Description: `(Optional) Controls how SignalFx processes data from a custom AWS namespace. The available actions are one of ` + "`" + `"Include"` + "`" + ` or ` + "`" + `"Exclude"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "filter_source",
-					Description: `(Required) Expression that selects the data that SignalFx should sync for the custom namespace associated with this sync rule. The expression uses the syntax defined for the SignalFlow ` + "`" + `filter()` + "`" + ` function; it can be any valid SignalFlow filter expression.`,
+					Description: `(Optional) Expression that selects the data that SignalFx should sync for the custom namespace associated with this sync rule. The expression uses the syntax defined for the SignalFlow ` + "`" + `filter()` + "`" + ` function; it can be any valid SignalFlow filter expression.`,
 				},
 				resource.Attribute{
 					Name:        "namespace",
@@ -209,6 +217,10 @@ SignalFx AWS CloudWatch integrations. For help with this integration see [Monito
 					Name:        "poll_rate",
 					Description: `(Optional) AWS poll rate (in seconds). One of ` + "`" + `60` + "`" + ` or ` + "`" + `300` + "`" + `.`,
 				},
+				resource.Attribute{
+					Name:        "use_get_metric_data_method",
+					Description: `(Optional) Enable the use of Amazon's ` + "`" + `GetMetricData` + "`" + ` for collecting metrics. Note that this requires the inclusion of the ` + "`" + `"cloudwatch:GetMetricData"` + "`" + ` permission.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},
@@ -240,11 +252,19 @@ SignalFx AWS CloudWatch integrations using security tokens. For help with this i
 					Name:        "id",
 					Description: `The ID of the integration to use with ` + "`" + `signalfx_aws_integration` + "`" + ``,
 				},
+				resource.Attribute{
+					Name:        "signalfx_aws_account",
+					Description: `The AWS Account ARN to use with your policies/roles, provided by SignalFx.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `The ID of the integration to use with ` + "`" + `signalfx_aws_integration` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "signalfx_aws_account",
+					Description: `The AWS Account ARN to use with your policies/roles, provided by SignalFx.`,
 				},
 			},
 		},
@@ -643,8 +663,8 @@ Manage SignalFx [Data Links](https://docs.signalfx.com/en/latest/managing/data-l
 					Description: `(Optional) Value of the metadata that's the trigger of a data link. If you specify this property, you must also specify ` + "`" + `property_name` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "dashboard_id",
-					Description: `(Optional) If provided, scopes this data link to the supplied dashobard id. If omitted then the link will be global.`,
+					Name:        "context_dashboard_id",
+					Description: `(Optional) If provided, scopes this data link to the supplied dashboard id. If omitted then the link will be global.`,
 				},
 				resource.Attribute{
 					Name:        "target_external_url",
@@ -656,7 +676,7 @@ Manage SignalFx [Data Links](https://docs.signalfx.com/en/latest/managing/data-l
 				},
 				resource.Attribute{
 					Name:        "time_format",
-					Description: `(Optional) [Designates the format](https://developers.signalfx.com/administration/data_links_overview.html#_minimum_time_window) of ` + "`" + `minimum_time_window` + "`" + ` in the same data link target object. Must be on of ` + "`" + `"ISO8601"` + "`" + ` or ` + "`" + `"Epoch"` + "`" + ` Defaults to ` + "`" + `"ISO8601"` + "`" + `.`,
+					Description: `(Optional) [Designates the format](https://developers.signalfx.com/administration/data_links_overview.html#_minimum_time_window) of ` + "`" + `minimum_time_window` + "`" + ` in the same data link target object. Must be one of ` + "`" + `"ISO8601"` + "`" + `, ` + "`" + `"EpochSeconds"` + "`" + ` or ` + "`" + `"Epoch"` + "`" + ` (which is milliseconds). Defaults to ` + "`" + `"ISO8601"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "minimum_time_window",
@@ -727,7 +747,7 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "authorized_writer_teams",
-					Description: `(Optional) Team IDs that have write access to this detector. Remember to use an admin's token if using this feature and to include that admin's team (or user id in ` + "`" + `authorized_writer_teams` + "`" + `).`,
+					Description: `(Optional) Team IDs that have write access to this detector. Remember to use an admin's token if using this feature and to include that admin's team id (or user id in ` + "`" + `authorized_writer_users` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "authorized_writer_users",
@@ -735,11 +755,11 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "max_delay",
-					Description: `(Optional) How long (in seconds) to wait for late datapoints. See <https://signalfx-product-docs.readthedocs-hosted.com/en/latest/charts/chart-builder.html#delayed-datapoints> for more info. Max value is ` + "`" + `900` + "`" + ` seconds (15 minutes).`,
+					Description: `(Optional) How long (in seconds) to wait for late datapoints. See <https://signalfx-product-docs.readthedocs-hosted.com/en/latest/charts/chart-builder.html#delayed-datapoints> for more info. Max value is ` + "`" + `900` + "`" + ` seconds (15 minutes). ` + "`" + `Auto` + "`" + ` (as little as possible) by default.`,
 				},
 				resource.Attribute{
 					Name:        "show_data_markers",
-					Description: `(Optional) When ` + "`" + `true` + "`" + `, markers will be drawn for each datapoint within the visualization. ` + "`" + `false` + "`" + ` by default.`,
+					Description: `(Optional) When ` + "`" + `true` + "`" + `, markers will be drawn for each datapoint within the visualization. ` + "`" + `true` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "show_event_lines",
@@ -751,7 +771,7 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 				},
 				resource.Attribute{
 					Name:        "time_range",
-					Description: `(Optional) Seconds to display in the visualization. This is a rolling range from the current time. Example: 3600 = ` + "`" + `-1h` + "`" + `. Defaults to 3600.`,
+					Description: `(Optional) Seconds to display in the visualization. This is a rolling range from the current time. Example: ` + "`" + `3600` + "`" + ` corresponds to ` + "`" + `-1h` + "`" + ` in web UI. ` + "`" + `3600` + "`" + ` by default.`,
 				},
 				resource.Attribute{
 					Name:        "start_time",
@@ -806,14 +826,34 @@ Provides a SignalFx detector resource. This can be used to create and manage det
 					Description: `(Optional) Plain text suggested first course of action, such as a command line to execute. This can be used with custom notification messages.`,
 				},
 				resource.Attribute{
+					Name:        "viz_options",
+					Description: `(Optional) Plot-level customization options, associated with a publish statement.`,
+				},
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) Label used in the publish statement that displays the plot (metric time series data) you want to customize.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) Specifies an alternate value for the Plot Name column of the Data Table associated with the chart.`,
+				},
+				resource.Attribute{
+					Name:        "color",
+					Description: `(Optional) Color to use : gray, blue, azure, navy, brown, orange, yellow, iris, magenta, pink, purple, violet, lilac, emerald, green, aquamarine.`,
+				},
+				resource.Attribute{
+					Name:        "value_unit",
+					Description: `(Optional) A unit to attach to this plot. Units support automatic scaling (eg thousands of bytes will be displayed as kilobytes). Values values are ` + "`" + `Bit, Kilobit, Megabit, Gigabit, Terabit, Petabit, Exabit, Zettabit, Yottabit, Byte, Kibibyte, Mebibyte, Gigibyte, Tebibyte, Pebibyte, Exbibyte, Zebibyte, Yobibyte, Nanosecond, Microsecond, Millisecond, Second, Minute, Hour, Day, Week` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the SignalFx detector ## Import Downtimes can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the SignalFx detector ## Import Detectors can be imported using their string ID (recoverable from URL: ` + "`" + `/#/detector/v2/abc123/edit` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the SignalFx detector ## Import Downtimes can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the SignalFx detector ## Import Detectors can be imported using their string ID (recoverable from URL: ` + "`" + `/#/detector/v2/abc123/edit` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import signalfx_detector.application_delay abc123 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1183,6 +1223,18 @@ The name of each value in the chart reflects the name of the plot and any associ
 				resource.Attribute{
 					Name:        "sort_by",
 					Description: `(Optional) The property to use when sorting the elements. Use ` + "`" + `value` + "`" + ` if you want to sort by value. Must be prepended with ` + "`" + `+` + "`" + ` for ascending or ` + "`" + `-` + "`" + ` for descending (e.g. ` + "`" + `-foo` + "`" + `). Note there are some special values for some of the options provided in the UX: ` + "`" + `"value"` + "`" + ` for Value, ` + "`" + `"sf_originatingMetric"` + "`" + ` for Metric, and ` + "`" + `"sf_metric"` + "`" + ` for plot.`,
+				},
+				resource.Attribute{
+					Name:        "time_range",
+					Description: `(Optional) How many seconds ago from which to display data. For example, the last hour would be ` + "`" + `3600` + "`" + `, etc. Conflicts with ` + "`" + `start_time` + "`" + ` and ` + "`" + `end_time` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional) Seconds since epoch. Used for visualization. Conflicts with ` + "`" + `time_range` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Optional) Seconds since epoch. Used for visualization. Conflicts with ` + "`" + `time_range` + "`" + `.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1808,6 +1860,54 @@ SignalFx VictorOps integration.
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "signalfx_webhook_integration",
+			Category:         "Resources",
+			ShortDescription: `Allows Terraform to create and manage SignalFx Webhook Integrations`,
+			Description: `
+
+SignalFx Webhook integration.
+
+**Note:** When managing integrations you'll need to use an admin token to authenticate the SignalFx provider. Otherwise you'll receive a 4xx error.
+
+`,
+			Keywords: []string{
+				"webhook",
+				"integration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the integration.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Whether the integration is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL to request`,
+				},
+				resource.Attribute{
+					Name:        "shared_secret",
+					Description: `(Optional)`,
+				},
+				resource.Attribute{
+					Name:        "headers",
+					Description: `(Optional) A header to send with the request`,
+				},
+				resource.Attribute{
+					Name:        "header_key",
+					Description: `(Required) The key of the header to send`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) The value of the header to send`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
 	}
 
 	resourcesMap = map[string]int{
@@ -1835,6 +1935,7 @@ SignalFx VictorOps integration.
 		"signalfx_text_chart":               20,
 		"signalfx_time_chart":               21,
 		"signalfx_victor_ops_integration":   22,
+		"signalfx_webhook_integration":      23,
 	}
 )
 

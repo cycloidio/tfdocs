@@ -317,7 +317,7 @@ var (
 					Description: `(Optional) The Organizational Unit that this cloud account will be attached to ### Credentials ` + "`" + `credentials` + "`" + ` has the following arguments:`,
 				},
 				resource.Attribute{
-					Name:        "ARN",
+					Name:        "arn",
 					Description: `(Required) AWS Role ARN (to be assumed by Dome9)`,
 				},
 				resource.Attribute{
@@ -339,6 +339,10 @@ var (
 				resource.Attribute{
 					Name:        "region",
 					Description: `(Required) AWS region, in AWS format (e.g., "us-east-1") ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the account in Dome9.`,
 				},
 				resource.Attribute{
 					Name:        "vendor",
@@ -398,6 +402,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the account in Dome9.`,
+				},
 				resource.Attribute{
 					Name:        "vendor",
 					Description: `The cloud provider ("AWS").`,
@@ -1223,7 +1231,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cloud_vendor",
-					Description: `(Required) Cloud vendor that the ruleset is associated with.`,
+					Description: `(Required) Cloud vendor that the ruleset is associated with, can be one of the following: ` + "`" + `aws` + "`" + `, ` + "`" + `azure` + "`" + ` or ` + "`" + `google` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "language",

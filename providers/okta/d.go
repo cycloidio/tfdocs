@@ -42,6 +42,41 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "okta_app_metadata_saml",
+			Category:         "Data Sources",
+			ShortDescription: `Get a SAML application's metadata from Okta.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `raw metadata of application.`,
+				},
+				resource.Attribute{
+					Name:        "http_redirect_binding",
+					Description: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect location from the SAML metadata.`,
+				},
+				resource.Attribute{
+					Name:        "http_post_binding",
+					Description: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Post location from the SAML metadata.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `public certificate from application metadata.`,
+				},
+				resource.Attribute{
+					Name:        "want_authn_requests_signed",
+					Description: `Whether authn requests are signed.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `Entity URL for instance ` + "`" + `https://www.okta.com/saml2/service-provider/sposcfdmlybtwkdcgtuf` + "`" + `.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "okta_app_saml",
 			Category:         "Data Sources",
 			ShortDescription: `Get a SAML application from Okta.`,
@@ -189,41 +224,6 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "okta_app_saml_metadata",
-			Category:         "Data Sources",
-			ShortDescription: `Get a SAML application's metadata from Okta.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "metadata",
-					Description: `raw metadata of application.`,
-				},
-				resource.Attribute{
-					Name:        "http_redirect_binding",
-					Description: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect location from the SAML metadata.`,
-				},
-				resource.Attribute{
-					Name:        "http_post_binding",
-					Description: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Post location from the SAML metadata.`,
-				},
-				resource.Attribute{
-					Name:        "certificate",
-					Description: `public certificate from application metadata.`,
-				},
-				resource.Attribute{
-					Name:        "want_authn_requests_signed",
-					Description: `Whether authn requests are signed.`,
-				},
-				resource.Attribute{
-					Name:        "entity_id",
-					Description: `Entity URL for instance ` + "`" + `https://www.okta.com/saml2/service-provider/sposcfdmlybtwkdcgtuf` + "`" + `.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
 			Type:             "okta_auth_server",
 			Category:         "Data Sources",
 			ShortDescription: `Get an auth server from Okta.`,
@@ -332,6 +332,49 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "okta_idp_metadata_saml",
+			Category:         "Data Sources",
+			ShortDescription: `Get SAML IdP metadata from Okta.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "assertions_signed",
+					Description: `whether assertions are signed.`,
+				},
+				resource.Attribute{
+					Name:        "authn_request_signed",
+					Description: `whether authn requests are signed.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_certificate",
+					Description: `SAML request encryption certificate.`,
+				},
+				resource.Attribute{
+					Name:        "entity_id",
+					Description: `Entity URL for instance ` + "`" + `https://www.okta.com/saml2/service-provider/sposcfdmlybtwkdcgtuf` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "http_post_binding",
+					Description: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Post location from the SAML metadata.`,
+				},
+				resource.Attribute{
+					Name:        "http_redirect_binding",
+					Description: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect location from the SAML metadata.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `raw IdP metadata.`,
+				},
+				resource.Attribute{
+					Name:        "signing_certificate",
+					Description: `SAML request signing certificate.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "okta_idp_saml",
 			Category:         "Data Sources",
 			ShortDescription: `Get a SAML IdP from Okta.`,
@@ -394,49 +437,6 @@ var (
 				resource.Attribute{
 					Name:        "kid",
 					Description: `Key ID reference to the IdP's X.509 signature certificate.`,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "okta_idp_saml_metadata",
-			Category:         "Data Sources",
-			ShortDescription: `Get SAML IdP metadata from Okta.`,
-			Description:      ``,
-			Keywords:         []string{},
-			Arguments:        []resource.Attribute{},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "assertions_signed",
-					Description: `whether assertions are signed.`,
-				},
-				resource.Attribute{
-					Name:        "authn_request_signed",
-					Description: `whether authn requests are signed.`,
-				},
-				resource.Attribute{
-					Name:        "encryption_certificate",
-					Description: `SAML request encryption certificate.`,
-				},
-				resource.Attribute{
-					Name:        "entity_id",
-					Description: `Entity URL for instance ` + "`" + `https://www.okta.com/saml2/service-provider/sposcfdmlybtwkdcgtuf` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "http_post_binding",
-					Description: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Post location from the SAML metadata.`,
-				},
-				resource.Attribute{
-					Name:        "http_redirect_binding",
-					Description: `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect location from the SAML metadata.`,
-				},
-				resource.Attribute{
-					Name:        "metadata",
-					Description: `raw IdP metadata.`,
-				},
-				resource.Attribute{
-					Name:        "signing_certificate",
-					Description: `SAML request signing certificate.`,
 				},
 			},
 		},
@@ -616,6 +616,29 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "okta_user_profile_mapping_source",
+			Category:         "Data Sources",
+			ShortDescription: `Get the base user Profile Mapping source or target from Okta.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `id of the source.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `name of source.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `type of source.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "okta_users",
 			Category:         "Data Sources",
 			ShortDescription: `Get a list of users from Okta.`,
@@ -773,18 +796,19 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"okta_app":               0,
-		"okta_app_saml":          1,
-		"okta_app_saml_metadata": 2,
-		"okta_auth_server":       3,
-		"okta_default_policy":    4,
-		"okta_everyone_group":    5,
-		"okta_group":             6,
-		"okta_idp_saml":          7,
-		"okta_idp_saml_metadata": 8,
-		"okta_policy":            9,
-		"okta_user":              10,
-		"okta_users":             11,
+		"okta_app":                         0,
+		"okta_app_metadata_saml":           1,
+		"okta_app_saml":                    2,
+		"okta_auth_server":                 3,
+		"okta_default_policy":              4,
+		"okta_everyone_group":              5,
+		"okta_group":                       6,
+		"okta_idp_metadata_saml":           7,
+		"okta_idp_saml":                    8,
+		"okta_policy":                      9,
+		"okta_user":                        10,
+		"okta_user_profile_mapping_source": 11,
+		"okta_users":                       12,
 	}
 )
 

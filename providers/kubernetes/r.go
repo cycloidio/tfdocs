@@ -746,6 +746,10 @@ var (
 					Description: `(Optional) Security options the pod should run with. For more info see http://releases.k8s.io/HEAD/docs/design/security_context.md`,
 				},
 				resource.Attribute{
+					Name:        "startup_probe",
+					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
+				},
+				resource.Attribute{
 					Name:        "stdin",
 					Description: `(Optional) Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF.`,
 				},
@@ -2017,6 +2021,10 @@ var (
 				resource.Attribute{
 					Name:        "security_context",
 					Description: `(Optional) Security options the pod should run with. For more info see http://releases.k8s.io/HEAD/docs/design/security_context.md`,
+				},
+				resource.Attribute{
+					Name:        "startup_probe",
+					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
 				},
 				resource.Attribute{
 					Name:        "stdin",
@@ -3653,7 +3661,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_class_name",
-					Description: `(Optional) The name of the persistent volume's storage class. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class) ### ` + "`" + `node_affinity` + "`" + ` #### Arguments`,
+					Description: `(Optional) The name of the persistent volume's storage class. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#class)`,
+				},
+				resource.Attribute{
+					Name:        "mount_options",
+					Description: `(Options) A Kubernetes administrator can specify additional mount options for when a Persistent Volume is mounted on a node.`,
 				},
 				resource.Attribute{
 					Name:        "required",
@@ -4482,6 +4494,10 @@ var (
 				resource.Attribute{
 					Name:        "security_context",
 					Description: `(Optional) Security options the pod should run with. For more info see http://releases.k8s.io/HEAD/docs/design/security_context.md`,
+				},
+				resource.Attribute{
+					Name:        "startup_probe",
+					Description: `(Optional) StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes`,
 				},
 				resource.Attribute{
 					Name:        "stdin",
@@ -5678,7 +5694,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "hard",
-					Description: `(Optional) The set of desired hard limits for each named resource. For more info see http://releases.k8s.io/HEAD/docs/design/admission_control_resource_quota.md#admissioncontrol-plugin-resourcequota`,
+					Description: `(Optional) The set of desired hard limits for each named resource. For more info see [Kubernetes reference](https://kubernetes.io/docs/concepts/policy/resource-quotas)`,
 				},
 				resource.Attribute{
 					Name:        "scopes",
@@ -6266,7 +6282,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_volume_expansion",
-					Description: `(Optional) Indicates whether the storage class allow volume expand, default true ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
+					Description: `(Optional) Indicates whether the storage class allow volume expand, default true.`,
+				},
+				resource.Attribute{
+					Name:        "mount_options",
+					Description: `(Optional) Persistent Volumes that are dynamically created by a storage class will have the mount options specified. ## Nested Blocks ### ` + "`" + `metadata` + "`" + ` #### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "annotations",

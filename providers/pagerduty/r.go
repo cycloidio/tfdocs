@@ -122,22 +122,26 @@ var (
 					Description: `(Optional) Contains a list of specific conditions including ` + "`" + `active-between` + "`" + `,` + "`" + `scheduled-weekly` + "`" + `, and ` + "`" + `frequency-over` + "`" + `. The first element in the list is the label for the condition, followed by a list of values for the specific condition. For more details on these conditions see [Advanced Condition](https://v2.developer.pagerduty.com/docs/global-event-rules-api#section-advanced-condition) in the PagerDuty API documentation.`,
 				},
 				resource.Attribute{
-					Name:        "catch_all",
-					Description: `(Optional) A boolean that indicates whether the rule is a catch all for the account.`,
-				},
-				resource.Attribute{
 					Name:        "depends_on",
 					Description: `(Optional) A [Terraform meta-parameter](https://www.terraform.io/docs/configuration-0-11/resources.html#depends_on) that ensures that the ` + "`" + `event_rule` + "`" + ` specified is created before the current rule. This is important because Event Rules in PagerDuty are executed in order. ` + "`" + `depends_on` + "`" + ` ensures that the rules are created in the order specified. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the event rule. ## Import Escalation policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the event rule.`,
+				},
+				resource.Attribute{
+					Name:        "catch_all",
+					Description: `A boolean that indicates whether the rule is a catch all for the account. This field is read-only through the PagerDuty API. ## Import Escalation policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the event rule. ## Import Escalation policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the event rule.`,
+				},
+				resource.Attribute{
+					Name:        "catch_all",
+					Description: `A boolean that indicates whether the rule is a catch all for the account. This field is read-only through the PagerDuty API. ## Import Escalation policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import pagerduty_event_rule.main 19acac92-027a-4ea0-b06c-bbf516519601 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -157,7 +161,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "endpoint_url",
-					Description: `(Optional) The url of the extension.`,
+					Description: `(Required|Optional) The url of the extension.`,
 				},
 				resource.Attribute{
 					Name:        "extension_schema",
@@ -340,7 +344,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "alert_grouping",
-					Description: `(Optional) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident; If value is set to ` + "`" + `time` + "`" + `: All alerts within a specified duration will be grouped into the same incident. This duration is set in the ` + "`" + `alert_grouping_timeout` + "`" + ` setting (described below). Available on Standard, Enterprise, and Event Intelligence plans; If value is set to "intelligent" - Alerts will be intelligently grouped based on a machine learning model that looks at the alert summary, timing, and the history of grouped alerts. Available on Enterprise and Event Intelligence plan.`,
+					Description: `(Optional) Defines how alerts on this service will be automatically grouped into incidents. Note that the alert grouping features are available only on certain plans. If not set, each alert will create a separate incident; If value is set to ` + "`" + `time` + "`" + `: All alerts within a specified duration will be grouped into the same incident. This duration is set in the ` + "`" + `alert_grouping_timeout` + "`" + ` setting (described below). Available on Standard, Enterprise, and Event Intelligence plans; If value is set to ` + "`" + `intelligent` + "`" + ` - Alerts will be intelligently grouped based on a machine learning model that looks at the alert summary, timing, and the history of grouped alerts. Available on Enterprise and Event Intelligence plan.`,
 				},
 				resource.Attribute{
 					Name:        "alert_grouping_timeout",
@@ -586,7 +590,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "role",
-					Description: `(Optional) The user role. Account must have the ` + "`" + `read_only_users` + "`" + ` ability to set a user as a ` + "`" + `read_only_user` + "`" + `. Can be ` + "`" + `admin` + "`" + `, ` + "`" + `limited_user` + "`" + `, ` + "`" + `owner` + "`" + `, ` + "`" + `read_only_user` + "`" + `, ` + "`" + `team_responder` + "`" + ` or ` + "`" + `user` + "`" + ``,
+					Description: `(Optional) The user role. Account must have the ` + "`" + `read_only_users` + "`" + ` ability to set a user as a ` + "`" + `read_only_user` + "`" + `. Can be ` + "`" + `admin` + "`" + `, ` + "`" + `limited_user` + "`" + `, ` + "`" + `observer` + "`" + `, ` + "`" + `owner` + "`" + `, ` + "`" + `read_only_user` + "`" + ` or ` + "`" + `user` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "job_title",

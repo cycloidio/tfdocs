@@ -1228,6 +1228,10 @@ var (
 					Description: `(Optional/ForceNew) The project id of the catalog. Mandatory if ` + "`" + `scope = project` + "`" + ` (string)`,
 				},
 				resource.Attribute{
+					Name:        "refresh",
+					Description: `(Optional) Catalog will wait for refresh after tf creation and on every tf read. Default ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
 					Name:        "scope",
 					Description: `(Optional) The scope of the catalog. ` + "`" + `cluster` + "`" + `, ` + "`" + `global` + "`" + `, and ` + "`" + `project` + "`" + ` are supported. Default ` + "`" + `global` + "`" + ` (string)`,
 				},
@@ -1508,7 +1512,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_template_answers",
-					Description: `(Optional) Cluster template answers. Just for Rancher v2.3.x and above (list maxitems:1)`,
+					Description: `(Optional/Computed) Cluster template answers. Just for Rancher v2.3.x and above (list maxitems:1)`,
 				},
 				resource.Attribute{
 					Name:        "cluster_template_id",
@@ -1560,7 +1564,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional/Computed) Labels for Node Pool object (map) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional/Computed) Labels for Node Pool object (map)`,
+				},
+				resource.Attribute{
+					Name:        "windows_prefered_cluster",
+					Description: `(Optional) Windows preferred cluster. Default: ` + "`" + `false` + "`" + ` (bool) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1657,6 +1665,10 @@ var (
 				resource.Attribute{
 					Name:        "ssh_agent_auth",
 					Description: `(Optional) Use ssh agent auth. Default ` + "`" + `false` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ssh_cert_path",
+					Description: `(Optional/Computed) Cluster level SSH certificate path (string)`,
 				},
 				resource.Attribute{
 					Name:        "ssh_key_path",
@@ -2151,6 +2163,10 @@ var (
 					Description: `(Optional/Computed) DNS add-on upstream nameservers (list) #### ` + "`" + `ingress` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "dns_policy",
+					Description: `(Optional/Computed) Ingress controller DNS policy. ` + "`" + `ClusterFirstWithHostNet` + "`" + `, ` + "`" + `ClusterFirst` + "`" + `, ` + "`" + `Default` + "`" + `, and ` + "`" + `None` + "`" + ` are supported. [K8S dns Policy](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy) (string)`,
+				},
+				resource.Attribute{
 					Name:        "extra_args",
 					Description: `(Optional/Computed) Extra arguments for RKE Ingress (map)`,
 				},
@@ -2376,7 +2392,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "s3_backup_config",
-					Description: `(Optional) S3 config options for etcd backup (list maxitems:1) ###### ` + "`" + `s3_backup_config` + "`" + ` ###### Arguments`,
+					Description: `(Optional) S3 config options for etcd backup (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "safe_timestamp",
+					Description: `(Optional) Safe timestamp for etcd backup. Default: ` + "`" + `false` + "`" + ` (bool) ###### ` + "`" + `s3_backup_config` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -2407,8 +2427,20 @@ var (
 					Description: `(Optional/Sensitive) Secret key for S3 service (string) ##### ` + "`" + `kube_api` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "admission_configuration",
+					Description: `(Optional) Admission configuration (map)`,
+				},
+				resource.Attribute{
 					Name:        "always_pull_images",
 					Description: `(Optional) Enable [AlwaysPullImages](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#alwayspullimages) Admission controller plugin. [Rancher docs](https://rancher.com/docs/rke/latest/en/config-options/services/#kubernetes-api-server-options) Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "audit_log",
+					Description: `(Optional) K8s audit log configuration. (list maxitem: 1)`,
+				},
+				resource.Attribute{
+					Name:        "event_rate_limit",
+					Description: `(Optional) K8s event rate limit configuration. (list maxitem: 1)`,
 				},
 				resource.Attribute{
 					Name:        "extra_args",
@@ -2431,12 +2463,64 @@ var (
 					Description: `(Optional) Pod Security Policy option for kube API service. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
+					Name:        "secrets_encryption_config",
+					Description: `(Optional) [Encrypt k8s secret data configration](https://rancher.com/docs/rke/latest/en/config-options/secrets-encryption/). (list maxitem: 1)`,
+				},
+				resource.Attribute{
 					Name:        "service_cluster_ip_range",
 					Description: `(Optional/Computed) Service Cluster IP Range option for kube API service (string)`,
 				},
 				resource.Attribute{
 					Name:        "service_node_port_range",
-					Description: `(Optional/Computed) Service Node Port Range option for kube API service (string) ##### ` + "`" + `kube_controller` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Service Node Port Range option for kube API service (string) ###### ` + "`" + `audit_log` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Audit log configuration. (list maxtiem: 1)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable audit log. Default: ` + "`" + `false` + "`" + ` (bool) ###### ` + "`" + `configuration` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Audit log format. Default: 'json' (string)`,
+				},
+				resource.Attribute{
+					Name:        "max_age",
+					Description: `(Optional) Audit log max age. Default: ` + "`" + `30` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "max_backup",
+					Description: `(Optional) Audit log max backup. Default: ` + "`" + `10` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "max_size",
+					Description: `(Optional) Audit log max size. Default: ` + "`" + `100` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) (Optional) Audit log path. Default: ` + "`" + `/var/log/kube-audit/audit-log.json` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Optional) Audit log policy json formated string. ` + "`" + `omitStages` + "`" + ` and ` + "`" + `rules` + "`" + ` json fields are supported. Example: ` + "`" + `policy = jsonencode({"rules":[{"level": "Metadata"}]})` + "`" + ` (string) ###### ` + "`" + `event_rate_limit` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Event rate limit configuration. (map)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable event rate limit. Default: ` + "`" + `false` + "`" + ` (bool) ###### ` + "`" + `secrets_encryption_config` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "custom_config",
+					Description: `(Optional) Secrets encryption configuration. (map)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable secrets encryption. Default: ` + "`" + `false` + "`" + ` (bool) ##### ` + "`" + `kube_controller` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "cluster_cidr",
@@ -3133,6 +3217,10 @@ var (
 					Description: `(Optional) Use ssh agent auth. Default ` + "`" + `false` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "ssh_cert_path",
+					Description: `(Optional/Computed) Cluster level SSH certificate path (string)`,
+				},
+				resource.Attribute{
 					Name:        "ssh_key_path",
 					Description: `(Optional/Computed) Cluster level SSH private key path (string) #### ` + "`" + `authentication` + "`" + ` ##### Arguments`,
 				},
@@ -3625,6 +3713,10 @@ var (
 					Description: `(Optional/Computed) DNS add-on upstream nameservers (list) #### ` + "`" + `ingress` + "`" + ` ##### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "dns_policy",
+					Description: `(Optional/Computed) Ingress controller DNS policy. ` + "`" + `ClusterFirstWithHostNet` + "`" + `, ` + "`" + `ClusterFirst` + "`" + `, ` + "`" + `Default` + "`" + `, and ` + "`" + `None` + "`" + ` are supported. [K8S dns Policy](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy) (string)`,
+				},
+				resource.Attribute{
 					Name:        "extra_args",
 					Description: `(Optional/Computed) Extra arguments for RKE Ingress (map)`,
 				},
@@ -3850,7 +3942,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "s3_backup_config",
-					Description: `(Optional) S3 config options for etcd backup (list maxitems:1) ###### ` + "`" + `s3_backup_config` + "`" + ` ###### Arguments`,
+					Description: `(Optional) S3 config options for etcd backup (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "safe_timestamp",
+					Description: `(Optional) Safe timestamp for etcd backup. Default: ` + "`" + `false` + "`" + ` (bool) ###### ` + "`" + `s3_backup_config` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "access_key",
@@ -3881,8 +3977,20 @@ var (
 					Description: `(Optional/Sensitive) Secret key for S3 service (string) ##### ` + "`" + `kube_api` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
+					Name:        "admission_configuration",
+					Description: `(Optional) Admission configuration (map)`,
+				},
+				resource.Attribute{
 					Name:        "always_pull_images",
 					Description: `(Optional) Enable [AlwaysPullImages](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#alwayspullimages) Admission controller plugin. [Rancher docs](https://rancher.com/docs/rke/latest/en/config-options/services/#kubernetes-api-server-options) Default: ` + "`" + `false` + "`" + ` (bool)`,
+				},
+				resource.Attribute{
+					Name:        "audit_log",
+					Description: `(Optional) K8s audit log configuration. (list maxitem: 1)`,
+				},
+				resource.Attribute{
+					Name:        "event_rate_limit",
+					Description: `(Optional) K8s event rate limit configuration. (list maxitem: 1)`,
 				},
 				resource.Attribute{
 					Name:        "extra_args",
@@ -3905,12 +4013,64 @@ var (
 					Description: `(Optional) Pod Security Policy option for kube API service. Default ` + "`" + `false` + "`" + ` (bool)`,
 				},
 				resource.Attribute{
+					Name:        "secrets_encryption_config",
+					Description: `(Optional) [Encrypt k8s secret data configration](https://rancher.com/docs/rke/latest/en/config-options/secrets-encryption/). (list maxitem: 1)`,
+				},
+				resource.Attribute{
 					Name:        "service_cluster_ip_range",
 					Description: `(Optional/Computed) Service Cluster IP Range option for kube API service (string)`,
 				},
 				resource.Attribute{
 					Name:        "service_node_port_range",
-					Description: `(Optional/Computed) Service Node Port Range option for kube API service (string) ##### ` + "`" + `kube_controller` + "`" + ` ###### Arguments`,
+					Description: `(Optional/Computed) Service Node Port Range option for kube API service (string) ###### ` + "`" + `audit_log` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Audit log configuration. (list maxtiem: 1)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable audit log. Default: ` + "`" + `false` + "`" + ` (bool) ###### ` + "`" + `configuration` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional) Audit log format. Default: 'json' (string)`,
+				},
+				resource.Attribute{
+					Name:        "max_age",
+					Description: `(Optional) Audit log max age. Default: ` + "`" + `30` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "max_backup",
+					Description: `(Optional) Audit log max backup. Default: ` + "`" + `10` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "max_size",
+					Description: `(Optional) Audit log max size. Default: ` + "`" + `100` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional) (Optional) Audit log path. Default: ` + "`" + `/var/log/kube-audit/audit-log.json` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Optional) Audit log policy json formated string. ` + "`" + `omitStages` + "`" + ` and ` + "`" + `rules` + "`" + ` json fields are supported. Example: ` + "`" + `policy = jsonencode({"rules":[{"level": "Metadata"}]})` + "`" + ` (string) ###### ` + "`" + `event_rate_limit` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) Event rate limit configuration. (map)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable event rate limit. Default: ` + "`" + `false` + "`" + ` (bool) ###### ` + "`" + `secrets_encryption_config` + "`" + ` ###### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "custom_config",
+					Description: `(Optional) Secrets encryption configuration. (map)`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) Enable secrets encryption. Default: ` + "`" + `false` + "`" + ` (bool) ##### ` + "`" + `kube_controller` + "`" + ` ###### Arguments`,
 				},
 				resource.Attribute{
 					Name:        "cluster_cidr",
@@ -5347,6 +5507,61 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "rancher2_cluster_sync",
+			Category:         "Resources",
+			ShortDescription: `Provides a Rancher v2 Cluster Sync dummy resource. This can be used to create a Cluster Sync to wait for a Rancher v2 Cluster resource ` + "`" + `active` + "`" + ` state.`,
+			Description:      ``,
+			Keywords: []string{
+				"cluster",
+				"sync",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required/ForceNew) The cluster ID that is syncing (string)`,
+				},
+				resource.Attribute{
+					Name:        "node_pool_ids",
+					Description: `(Optional) The node pool IDs used by the cluster id (list) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource. Same as ` + "`" + `cluster_id` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_project_id",
+					Description: `(Computed) Default project ID for the cluster sync (string)`,
+				},
+				resource.Attribute{
+					Name:        "kube_config",
+					Description: `(Computed) Kube Config generated for the cluster sync (string)`,
+				},
+				resource.Attribute{
+					Name:        "system_project_id",
+					Description: `(Computed) System project ID for the cluster sync (string) ## Timeouts ` + "`" + `rancher2_cluster_sync` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating cluster sync. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster sync modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting cluster sync.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) The ID of the resource. Same as ` + "`" + `cluster_id` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "default_project_id",
+					Description: `(Computed) Default project ID for the cluster sync (string)`,
+				},
+				resource.Attribute{
+					Name:        "kube_config",
+					Description: `(Computed) Kube Config generated for the cluster sync (string)`,
+				},
+				resource.Attribute{
+					Name:        "system_project_id",
+					Description: `(Computed) System project ID for the cluster sync (string) ## Timeouts ` + "`" + `rancher2_cluster_sync` + "`" + ` provides the following [Timeouts](https://www.terraform.io/docs/configuration/resources.html#operation-timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for creating cluster sync. - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for cluster sync modifications. - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for deleting cluster sync.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "rancher2_cluster_template",
 			Category:         "Resources",
 			ShortDescription: `Provides a Rancher v2 Cluster Template resource. This can be used to create Cluster Templates for Rancher v2 RKE clusters and retrieve their information.`,
@@ -6280,6 +6495,14 @@ var (
 					Description: `(Required) The Node Template ID to use for node creation (string)`,
 				},
 				resource.Attribute{
+					Name:        "delete_not_ready_after_secs",
+					Description: `(Optional) Delete not ready node after secs. For Rancher v2.3.3 or above. Default ` + "`" + `0` + "`" + ` (int)`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `(Required) Node taints. For Rancher v2.3.3 or above (List)`,
+				},
+				resource.Attribute{
 					Name:        "control_plane",
 					Description: `(Optional) RKE control plane role for created nodes (bool)`,
 				},
@@ -6301,7 +6524,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "labels",
-					Description: `(Optional/Computed) Labels for Node Pool object (map) ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional/Computed) Labels for Node Pool object (map) ## Nested blocks ### ` + "`" + `node_taints` + "`" + ` #### Arguments`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Taint key (string)`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Taint value (string)`,
+				},
+				resource.Attribute{
+					Name:        "effect",
+					Description: `(Optional) Taint effect. Supported values : ` + "`" + `"NoExecute" | "NoSchedule" | "PreferNoSchedule"` + "`" + ` (string)`,
+				},
+				resource.Attribute{
+					Name:        "time_added",
+					Description: `(Optional) Taint time added (string) ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -6357,6 +6596,10 @@ var (
 				resource.Attribute{
 					Name:        "digitalocean_config",
 					Description: `(Optional) Digitalocean config for the Node Template (list maxitems:1)`,
+				},
+				resource.Attribute{
+					Name:        "driver_id",
+					Description: `(Optional/Computed) The node driver id used by the node template. It's required if the node driver isn't built in Rancher (string)`,
 				},
 				resource.Attribute{
 					Name:        "engine_env",
@@ -8607,7 +8850,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "data",
-					Description: `(Required) Secret key/value data. Base64 encoding required for values (map)`,
+					Description: `(Required/Sensitive) Secret key/value data. Base64 encoding required for values (map)`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
@@ -8859,24 +9102,25 @@ var (
 		"rancher2_cluster_driver":                17,
 		"rancher2_cluster_logging":               18,
 		"rancher2_cluster_role_template_binding": 19,
-		"rancher2_cluster_template":              20,
-		"rancher2_etcd_backup":                   21,
-		"rancher2_global_role_binding":           22,
-		"rancher2_multi_cluster_app":             23,
-		"rancher2_namespace":                     24,
-		"rancher2_node_driver":                   25,
-		"rancher2_node_pool":                     26,
-		"rancher2_node_template":                 27,
-		"rancher2_notifier":                      28,
-		"rancher2_project":                       29,
-		"rancher2_project_logging":               30,
-		"rancher2_project_role_template_binding": 31,
-		"rancher2_registry":                      32,
-		"rancher2_role_template":                 33,
-		"rancher2_secret":                        34,
-		"rancher2_setting":                       35,
-		"rancher2_token":                         36,
-		"rancher2_user":                          37,
+		"rancher2_cluster_sync":                  20,
+		"rancher2_cluster_template":              21,
+		"rancher2_etcd_backup":                   22,
+		"rancher2_global_role_binding":           23,
+		"rancher2_multi_cluster_app":             24,
+		"rancher2_namespace":                     25,
+		"rancher2_node_driver":                   26,
+		"rancher2_node_pool":                     27,
+		"rancher2_node_template":                 28,
+		"rancher2_notifier":                      29,
+		"rancher2_project":                       30,
+		"rancher2_project_logging":               31,
+		"rancher2_project_role_template_binding": 32,
+		"rancher2_registry":                      33,
+		"rancher2_role_template":                 34,
+		"rancher2_secret":                        35,
+		"rancher2_setting":                       36,
+		"rancher2_token":                         37,
+		"rancher2_user":                          38,
 	}
 )
 

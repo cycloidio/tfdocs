@@ -141,11 +141,11 @@ should use a resource.
 				},
 				resource.Attribute{
 					Name:        "primary",
-					Description: `The primary ip.`,
+					Description: `The primary zones' IPv4 address.`,
 				},
 				resource.Attribute{
 					Name:        "additional_primaries",
-					Description: `List of additional IPs for the primary zone.`,
+					Description: `List of additional IPv4 addresses for the primary zone.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",
@@ -211,11 +211,11 @@ should use a resource.
 				},
 				resource.Attribute{
 					Name:        "primary",
-					Description: `The primary ip.`,
+					Description: `The primary zones' IPv4 address.`,
 				},
 				resource.Attribute{
 					Name:        "additional_primaries",
-					Description: `List of additional IPs for the primary zone.`,
+					Description: `List of additional IPv4 addresses for the primary zone.`,
 				},
 				resource.Attribute{
 					Name:        "ttl",

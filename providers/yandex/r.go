@@ -239,7 +239,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allow_stopping_for_update",
-					Description: `(Optional) If true, allows Terraform to stop the instance in order to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail. --- The ` + "`" + `resources` + "`" + ` block supports:`,
+					Description: `(Optional) If true, allows Terraform to stop the instance in order to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail.`,
+				},
+				resource.Attribute{
+					Name:        "network_acceleration_type",
+					Description: `(Optional) Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software-accelerated` + "`" + ` --- The ` + "`" + `resources` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "cores",
@@ -315,7 +319,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nat",
-					Description: `(Optional) Provide a public address, for instance, to access the internet over NAT. The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
+					Description: `(Optional) Provide a public address, for instance, to access the internet over NAT.`,
+				},
+				resource.Attribute{
+					Name:        "nat_ip_address",
+					Description: `(Optional) Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI. The ` + "`" + `secondary_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "disk_id",
@@ -700,7 +708,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Required) Target metric value level. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) Target metric value level.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A map of labels of metric. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -951,6 +963,135 @@ var (
 				resource.Attribute{
 					Name:        "created_at",
 					Description: `Creation timestamp of the registry. ## Import A registry can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_container_registry.default registry_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_dataproc_cluster",
+			Category:         "Yandex Data Proc Resources",
+			ShortDescription: `Manages a Data Proc cluster within Yandex.Cloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"proc",
+				"dataproc",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of a specific Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `(Required) Configuration and resources for hosts that should be created with the cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_id",
+					Description: `(Required) Service account to be used by the Data Proc agent to access resources of Yandex.Cloud. Selected service account should have ` + "`" + `mdb.dataproc.agent` + "`" + ` role on the folder where the Data Proc cluster will be located. ---`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) ID of the folder to create a cluster in. If it is not provided, the default provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Optional) Name of the Object Storage bucket to use for Data Proc jobs. Data Proc Agent saves output of job driver's process to specified bucket. In order for this to work service account (specified by the ` + "`" + `service_account_id` + "`" + ` argument) should be given permission to create objects within this bucket.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A set of key/value label pairs to assign to the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) ID of the availability zone to create cluster in. If it is not provided, the default provider zone is used. --- The ` + "`" + `cluster_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `(Required) Version of Data Proc image.`,
+				},
+				resource.Attribute{
+					Name:        "hadoop",
+					Description: `(Optional) Data Proc specific options. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "subcluster_spec",
+					Description: `(Required) Configuration of the Data Proc subcluster. The structure is documented below. --- The ` + "`" + `hadoop` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Optional) List of services to run on Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) A set of key/value pairs that are used to configure cluster services.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_public_keys",
+					Description: `(Optional) List of SSH public keys to put to the hosts of the cluster. For information on how to connect to the cluster, see [the official documentation](https://cloud.yandex.com/docs/data-proc/operations/connect). --- The ` + "`" + `subcluster_spec` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Data Proc subcluster.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) Role of the subcluster in the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Resources allocated to each host of the Data Proc subcluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) The ID of the subnet, to which hosts of the subcluster belong. Subnets of all the subclusters must belong to the same VPC network.`,
+				},
+				resource.Attribute{
+					Name:        "hosts_count",
+					Description: `(Required) Number of hosts within Data Proc subcluster. --- The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resource_preset_id",
+					Description: `(Required) The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Required) Volume of the storage available to a host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `(Optional) Type of the storage of a host. One of ` + "`" + `network-hdd` + "`" + ` (default) or ` + "`" + `network-ssd` + "`" + `. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) ID of a new Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Computed) The Data Proc cluster creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config.0.subcluster_spec.X.id",
+					Description: `(Computed) ID of the subcluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_dataproc_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Computed) ID of a new Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Computed) The Data Proc cluster creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config.0.subcluster_spec.X.id",
+					Description: `(Computed) ID of the subcluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_dataproc_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1308,6 +1449,72 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_kms_symmetric_key",
+			Category:         "Yandex Key Management Service Resources",
+			ShortDescription: `Creates a Yandex KMS symmetric key that can be used for cryptographic operation.`,
+			Description:      ``,
+			Keywords: []string{
+				"key",
+				"management",
+				"service",
+				"kms",
+				"symmetric",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the key.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the key.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A set of key/value label pairs to assign to the key.`,
+				},
+				resource.Attribute{
+					Name:        "default_algorithm",
+					Description: `(Optional) Encryption algorithm to be used with a new key version, generated with the next rotation. The default value is ` + "`" + `AES_128` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "rotation_period",
+					Description: `(Optional) Interval between automatic rotations. To disable automatic rotation, omit this parameter. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the key.`,
+				},
+				resource.Attribute{
+					Name:        "rotated_at",
+					Description: `Last rotation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key. ## Timeouts ` + "`" + `yandex_kms_symmetric_key` + "`" + ` provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default 1 minute - ` + "`" + `update` + "`" + ` - Default 1 minute - ` + "`" + `delete` + "`" + ` - Default 1 minute ## Import A KMS symmetric key can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kms_symmetric_key.top-secret kms_key_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the key.`,
+				},
+				resource.Attribute{
+					Name:        "rotated_at",
+					Description: `Last rotation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key. ## Timeouts ` + "`" + `yandex_kms_symmetric_key` + "`" + ` provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default 1 minute - ` + "`" + `update` + "`" + ` - Default 1 minute - ` + "`" + `delete` + "`" + ` - Default 1 minute ## Import A KMS symmetric key can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kms_symmetric_key.top-secret kms_key_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_kubernetes_cluster",
 			Category:         "Yandex Managed Service for Kubernetes Resources",
 			ShortDescription: ``,
@@ -1361,8 +1568,12 @@ var (
 					Description: `Cluster release channel.`,
 				},
 				resource.Attribute{
+					Name:        "network_policy_provider",
+					Description: `(Optional) Network policy provider for the cluster. Possible values: ` + "`" + `CALICO` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "master",
-					Description: `IP allocation policy of the Kubernetes cluster. The structure is documented below. ## Attributes Reference`,
+					Description: `Kubernetes master configuration options. The structure is documented below. ## Attributes Reference`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -1387,6 +1598,10 @@ var (
 				resource.Attribute{
 					Name:        "public_ip",
 					Description: `(Optional) (Computed) Boolean flag. When ` + "`" + `true` + "`" + `, Kubernetes master will have visible ipv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `(Optional) (Computed) Maintenance policy for Kubernetes master. If policy is omitted, automatic revision upgrades of the kubernetes master are enabled and could happen at any time. Revision upgrades are performed only within the same minor version, e.g. 1.13. Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "zonal",
@@ -1418,7 +1633,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_ca_certificate",
-					Description: `(Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
+					Description: `(Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster. --- The ` + "`" + `maintenance_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_upgrade",
+					Description: `(Required) Boolean flag that specifies if master can be upgraded automatically. When omitted, default value is TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `(Optional) (Computed) This structure specifies maintenance window, when update for master is allowed. When omitted, it defaults to any time. To specify time of day interval, for all days, one element should be provided, with two fields set, ` + "`" + `start_time` + "`" + ` and ` + "`" + `duration` + "`" + `. Please see ` + "`" + `zonal_cluster_resource_name` + "`" + ` config example. To allow maintenance only on specific days of week, please provide list of elements, with all fields set. Only one time interval (` + "`" + `duration` + "`" + `) is allowed for each day of week. Please see ` + "`" + `regional_cluster_resource_name` + "`" + ` config example. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -1454,7 +1677,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `Boolean flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 15 minute. - ` + "`" + `update` + "`" + ` - Default is 5 minute. - ` + "`" + `delete` + "`" + ` - Default is 5 minute. ## Import A Managed Kubernetes cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_cluster.default cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Boolean flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `update` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import A Managed Kubernetes cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_cluster.default cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1483,6 +1706,10 @@ var (
 					Description: `(Optional) (Computed) Boolean flag. When ` + "`" + `true` + "`" + `, Kubernetes master will have visible ipv4 address.`,
 				},
 				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `(Optional) (Computed) Maintenance policy for Kubernetes master. If policy is omitted, automatic revision upgrades of the kubernetes master are enabled and could happen at any time. Revision upgrades are performed only within the same minor version, e.g. 1.13. Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "zonal",
 					Description: `(Optional) Initialize parameters for Zonal Master (one node master). The structure is documented below.`,
 				},
@@ -1512,7 +1739,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_ca_certificate",
-					Description: `(Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
+					Description: `(Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster. --- The ` + "`" + `maintenance_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_upgrade",
+					Description: `(Required) Boolean flag that specifies if master can be upgraded automatically. When omitted, default value is TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `(Optional) (Computed) This structure specifies maintenance window, when update for master is allowed. When omitted, it defaults to any time. To specify time of day interval, for all days, one element should be provided, with two fields set, ` + "`" + `start_time` + "`" + ` and ` + "`" + `duration` + "`" + `. Please see ` + "`" + `zonal_cluster_resource_name` + "`" + ` config example. To allow maintenance only on specific days of week, please provide list of elements, with all fields set. Only one time interval (` + "`" + `duration` + "`" + `) is allowed for each day of week. Please see ` + "`" + `regional_cluster_resource_name` + "`" + ` config example. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -1548,7 +1783,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `Boolean flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 15 minute. - ` + "`" + `update` + "`" + ` - Default is 5 minute. - ` + "`" + `delete` + "`" + ` - Default is 5 minute. ## Import A Managed Kubernetes cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_cluster.default cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `Boolean flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 30 minute. - ` + "`" + `update` + "`" + ` - Default is 20 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import A Managed Kubernetes cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_cluster.default cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1605,7 +1840,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "maintenance_policy",
-					Description: `(Computed) Information about maintenance policy for this Kubernetes node group. The structure is documented below.`,
+					Description: `(Optional) (Computed) Maintenance policy for this Kubernetes node group. If policy is omitted, automatic revision upgrades are enabled and could happen at any time. Revision upgrades are performed only within the same minor version, e.g. 1.13. Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "node_labels",
+					Description: `(Optional, Forces new resource) A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `(Optional, Forces new resource) A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_unsafe_sysctls",
+					Description: `(Optional, Forces new resource) A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).`,
 				},
 				resource.Attribute{
 					Name:        "version_info",
@@ -1641,15 +1888,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "scheduling_policy",
-					Description: `The scheduling policy for the instances in node group. The structure is documented below.`,
-				},
-				resource.Attribute{
-					Name:        "status",
-					Description: `(Computed) Status of the Kubernetes node group.`,
-				},
-				resource.Attribute{
-					Name:        "created_at",
-					Description: `(Computed) The Kubernetes node group creation timestamp. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
+					Description: `The scheduling policy for the instances in node group. The structure is documented below. --- The ` + "`" + `boot_disk` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -1665,11 +1904,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fixed_scale",
-					Description: `The fixed scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `Scale policy for a fixed scale node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scale",
+					Description: `Scale policy for an autoscaled node group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `The number of instances in the node group. --- The ` + "`" + `allocation_policy` + "`" + ` block supports:`,
+					Description: `The number of instances in the node group. --- The ` + "`" + `auto_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `Minimum number of instances in the node group.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `Maximum number of instances in the node group.`,
+				},
+				resource.Attribute{
+					Name:        "initial",
+					Description: `Initial number of instances in the node group. --- The ` + "`" + `allocation_policy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -1685,7 +1940,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_upgrade",
-					Description: `Boolean flag.`,
+					Description: `(Required) Boolean flag that specifies if node group can be upgraded automatically. When omitted, default value is TRUE.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `(Optional) (Computed) Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time. To specify time of day interval, for all days, one element should be provided, with two fields set, ` + "`" + `start_time` + "`" + ` and ` + "`" + `duration` + "`" + `. To allow maintenance only on specific days of week, please provide list of elements, with all fields set. Only one time interval is allowed for each day of week. Please see ` + "`" + `my_node_group` + "`" + ` config example. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "current_version",
@@ -1701,10 +1960,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_deprecated",
-					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Import A Yandex Kubernetes Node Group can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_node_group.default node_group_id ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `True/false flag. The current version is on the deprecation schedule, component (master or node group) should be upgraded. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Computed) Status of the Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Computed) The Kubernetes node group creation timestamp. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 60 minute. - ` + "`" + `update` + "`" + ` - Default is 60 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import A Yandex Kubernetes Node Group can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_node_group.default node_group_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "status",
+					Description: `(Computed) Status of the Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `(Computed) The Kubernetes node group creation timestamp. ## Timeouts This resource provides the following configuration options for [timeouts](/docs/configuration/resources.html#timeouts): - ` + "`" + `create` + "`" + ` - Default is 60 minute. - ` + "`" + `update` + "`" + ` - Default is 60 minute. - ` + "`" + `delete` + "`" + ` - Default is 20 minute. ## Import A Yandex Kubernetes Node Group can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_kubernetes_node_group.default node_group_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1813,7 +2089,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Optional) Protocol for incoming traffic. Only tcp network load balancers are currently available.`,
+					Description: `(Optional) Protocol for incoming traffic. TCP or UDP and the default is TCP.`,
 				},
 				resource.Attribute{
 					Name:        "external_address_spec",
@@ -2079,11 +2355,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "data_lens",
-					Description: `(Optional) Allow access for Web SQL. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Allow access for Web SQL.`,
+				},
+				resource.Attribute{
+					Name:        "metrika",
+					Description: `(Optional) Allow access for Yandex.Metrika. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Creation timestamp of the key.`,
+					Description: `Timestamp of cluster creation.`,
 				},
 				resource.Attribute{
 					Name:        "health",
@@ -2097,7 +2377,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "created_at",
-					Description: `Creation timestamp of the key.`,
+					Description: `Timestamp of cluster creation.`,
 				},
 				resource.Attribute{
 					Name:        "health",
@@ -2306,6 +2586,366 @@ var (
 				resource.Attribute{
 					Name:        "sharded",
 					Description: `MongoDB Cluster mode enabled/disabled. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_mongodb_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_mysql_cluster",
+			Category:         "Yandex Managed Service for Database Resources",
+			ShortDescription: `Manages a MySQL cluster within Yandex.Cloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"managed",
+				"service",
+				"for",
+				"database",
+				"mdb",
+				"mysql",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the MySQL cluster. Provided by the client when the cluster is created.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) ID of the network, to which the MySQL cluster uses.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Required) Deployment environment of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Version of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Resources allocated to hosts of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) A user of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) A database of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) A host of the MySQL cluster. The structure is documented below. - - -`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A set of key/value label pairs to assign to the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `(Optional) Time to start the daily backup, in the UTC. The structure is documented below. - - - The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `(Required) The ID of the preset for computational resources available to a MySQL host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mysql/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Required) Volume of the storage available to a MySQL host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `(Required) Type of the storage of MySQL hosts. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `(Optional) The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `(Optional) The minute at which backup will be started. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `(Optional) Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `(Required) The name of the database that the permission grants access to.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `(Optional) List user's roles in the database. Allowed roles: ` + "`" + `ALL` + "`" + `,` + "`" + `ALTER` + "`" + `,` + "`" + `ALTER_ROUTINE` + "`" + `,` + "`" + `CREATE` + "`" + `,` + "`" + `CREATE_ROUTINE` + "`" + `,` + "`" + `CREATE_TEMPORARY_TABLES` + "`" + `, ` + "`" + `CREATE_VIEW` + "`" + `,` + "`" + `DELETE` + "`" + `,` + "`" + `DROP` + "`" + `,` + "`" + `EVENT` + "`" + `,` + "`" + `EXECUTE` + "`" + `,` + "`" + `INDEX` + "`" + `,` + "`" + `INSERT` + "`" + `,` + "`" + `LOCK_TABLES` + "`" + `,` + "`" + `SELECT` + "`" + `,` + "`" + `SHOW_VIEW` + "`" + `,` + "`" + `TRIGGER` + "`" + `,` + "`" + `UPDATE` + "`" + `. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the database. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `(Computed) The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) The availability zone where the MySQL host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `(Optional) Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_mysql_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_mysql_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_postgresql_cluster",
+			Category:         "Yandex Managed Service for Database Resources",
+			ShortDescription: `Manages a PostgreSQL cluster within Yandex.Cloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"managed",
+				"service",
+				"for",
+				"database",
+				"mdb",
+				"postgresql",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) Configuration of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) A database of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `(Required) Deployment environment of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) A host of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the PostgreSQL cluster. Provided by the client when the cluster is created.`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `(Required) ID of the network, to which the PostgreSQL cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `(Required) A user of the PostgreSQL cluster. The structure is documented below. - - -`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) A set of key/value label pairs to assign to the PostgreSQL cluster. - - - The ` + "`" + `config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Required) Version of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `(Optional) Access policy to the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "autofailover",
+					Description: `(Optional) Configuration setting which enables/disables autofailover in cluster.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `(Optional) Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "pooler_config",
+					Description: `(Optional) Configuration of the connection pooler. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `(Required) Volume of the storage available to a PostgreSQL host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `(Required) Type of the storage of PostgreSQL hosts.`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `(Required) The ID of the preset for computational resources available to a PostgreSQL host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/concepts/instance-types). The ` + "`" + `pooler_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "pool_discard",
+					Description: `(Optional) Setting ` + "`" + `server_reset_query_always` + "`" + ` [parameter in PgBouncer](https://www.pgbouncer.org/config.html).`,
+				},
+				resource.Attribute{
+					Name:        "pooling_mode",
+					Description: `(Optional) Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for PgBouncer](https://pgbouncer.github.io/usage). The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `(Optional) The hour at which backup will be started (UTC).`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `(Optional) The minute at which backup will be started (UTC). The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `(Optional) Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens). The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `(Required) The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "grants",
+					Description: `(Optional) List of the user's grants.`,
+				},
+				resource.Attribute{
+					Name:        "login",
+					Description: `(Optional) User's ability to login.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `(Optional) Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `(Required) The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the database.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Required) Name of the user assigned as the owner of the database.`,
+				},
+				resource.Attribute{
+					Name:        "extension",
+					Description: `(Optional) Set of database extensions. The structure is documented below`,
+				},
+				resource.Attribute{
+					Name:        "lc_collate",
+					Description: `(Optional) POSIX locale for string sorting order. Forbidden to change in an existing database.`,
+				},
+				resource.Attribute{
+					Name:        "lc_type",
+					Description: `(Optional) POSIX locale for character classification. Forbidden to change in an existing database. The ` + "`" + `extension` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Version of the extension. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) The availability zone where the PostgreSQL host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `(Optional) Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `(Computed) The fully qualified domain name of the host. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Timestamp of cluster creation.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_postgresql_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Timestamp of cluster creation.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster. ## Import A cluster can be imported using the ` + "`" + `id` + "`" + ` of the resource, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import yandex_mdb_postgresql_cluster.foo cluster_id ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2866,30 +3506,34 @@ var (
 		"yandex_compute_instance_group":                3,
 		"yandex_compute_snapshot":                      4,
 		"yandex_cr_container_registry":                 5,
-		"yandex_iam_service_account":                   6,
-		"yandex_iam_service_account_api_key":           7,
-		"yandex_iam_service_account_iam_binding":       8,
-		"yandex_iam_service_account_iam_member":        9,
-		"yandex_iam_service_account_iam_policy":        10,
-		"yandex_iam_service_account_key":               11,
-		"yandex_iam_service_account_static_access_key": 12,
-		"yandex_kubernetes_cluster":                    13,
-		"yandex_kubernetes_node_group":                 14,
-		"yandex_lb_network_load_balancer":              15,
-		"yandex_lb_target_group":                       16,
-		"yandex_mdb_clickhouse_cluster":                17,
-		"yandex_mdb_mongodb_cluster":                   18,
-		"yandex_mdb_redis_cluster":                     19,
-		"yandex_resourcemanager_cloud_iam_binding":     20,
-		"yandex_resourcemanager_cloud_iam_member":      21,
-		"yandex_resourcemanager_folder_iam_binding":    22,
-		"yandex_resourcemanager_folder_iam_member":     23,
-		"yandex_resourcemanager_folder_iam_policy":     24,
-		"yandex_storage_bucket":                        25,
-		"yandex_storage_object":                        26,
-		"yandex_vpc_network":                           27,
-		"yandex_vpc_route_table":                       28,
-		"yandex_vpc_subnet":                            29,
+		"yandex_dataproc_cluster":                      6,
+		"yandex_iam_service_account":                   7,
+		"yandex_iam_service_account_api_key":           8,
+		"yandex_iam_service_account_iam_binding":       9,
+		"yandex_iam_service_account_iam_member":        10,
+		"yandex_iam_service_account_iam_policy":        11,
+		"yandex_iam_service_account_key":               12,
+		"yandex_iam_service_account_static_access_key": 13,
+		"yandex_kms_symmetric_key":                     14,
+		"yandex_kubernetes_cluster":                    15,
+		"yandex_kubernetes_node_group":                 16,
+		"yandex_lb_network_load_balancer":              17,
+		"yandex_lb_target_group":                       18,
+		"yandex_mdb_clickhouse_cluster":                19,
+		"yandex_mdb_mongodb_cluster":                   20,
+		"yandex_mdb_mysql_cluster":                     21,
+		"yandex_mdb_postgresql_cluster":                22,
+		"yandex_mdb_redis_cluster":                     23,
+		"yandex_resourcemanager_cloud_iam_binding":     24,
+		"yandex_resourcemanager_cloud_iam_member":      25,
+		"yandex_resourcemanager_folder_iam_binding":    26,
+		"yandex_resourcemanager_folder_iam_member":     27,
+		"yandex_resourcemanager_folder_iam_policy":     28,
+		"yandex_storage_bucket":                        29,
+		"yandex_storage_object":                        30,
+		"yandex_vpc_network":                           31,
+		"yandex_vpc_route_table":                       32,
+		"yandex_vpc_subnet":                            33,
 	}
 )
 

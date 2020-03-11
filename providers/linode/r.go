@@ -87,7 +87,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of this Record. This field's actual usage depends on the type of record this represents. For A and AAAA records, this is the subdomain being associated with an IP address.`,
+					Description: `(`,
 				},
 				resource.Attribute{
 					Name:        "domain_id",

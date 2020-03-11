@@ -33,12 +33,8 @@ Use this resource to create and manage New Relic alert policies.
 					Description: `(Required) The type of channel. One of: ` + "`" + `email` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `opsgenie` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `victorops` + "`" + `, or ` + "`" + `webhook` + "`" + `.`,
 				},
 				resource.Attribute{
-					Name:        "configuration",
-					Description: `(Required) A map of key / value pairs with channel type specific values. See [channel configurations](#channel-configurations) for specific configurations for the different channel types. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "id",
-					Description: `The ID of the channel. ## Channel Configurations Each supported channel supports a particular set of configuration arguments.`,
+					Name:        "config",
+					Description: `(Optional) A nested block that describes an alert channel configuration. Only one config block is permitted per alert channel definition. See [Nested config blocks](#nested-` + "`" + `config` + "`" + `-blocks) below for details.`,
 				},
 				resource.Attribute{
 					Name:        "recipients",
@@ -46,7 +42,55 @@ Use this resource to create and manage New Relic alert policies.
 				},
 				resource.Attribute{
 					Name:        "include_json_attachment",
-					Description: `(Optional) ` + "`" + `0` + "`" + ` or ` + "`" + `1` + "`" + `. Flag for whether or not to attach a JSON document containing information about the associated alert to the email that is sent to recipients. Default: ` + "`" + `0` + "`" + ``,
+					Description: `(Optional) ` + "`" + `0` + "`" + ` or ` + "`" + `1` + "`" + `. Flag for whether or not to attach a JSON document containing information about the associated alert to the email that is sent to recipients.`,
+				},
+				resource.Attribute{
+					Name:        "base_url",
+					Description: `(Required) The base URL of the webhook destination.`,
+				},
+				resource.Attribute{
+					Name:        "auth_password",
+					Description: `(Optional) Specifies an authentication password for use with a channel. Supported by the ` + "`" + `webhook` + "`" + ` channel type.`,
+				},
+				resource.Attribute{
+					Name:        "auth_type",
+					Description: `(Optional) Specifies an authentication method for use with a channel. Supported by the ` + "`" + `webhook` + "`" + ` channel type. Only HTTP basic authentication is currently supported via the value ` + "`" + `BASIC` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auth_username",
+					Description: `(Optional) Specifies an authentication username for use with a channel. Supported by the ` + "`" + `webhook` + "`" + ` channel type.`,
+				},
+				resource.Attribute{
+					Name:        "headers",
+					Description: `(Optional) A map of key/value pairs that represents extra HTTP headers to be sent along with the webhook payload.`,
+				},
+				resource.Attribute{
+					Name:        "headers_string",
+					Description: `(Optional) Use instead of ` + "`" + `headers` + "`" + ` if the desired payload is more complex than a list of key/value pairs (e.g. a set of headers that makes use of nested objects). The value provided should be a valid JSON string with escaped double quotes. Conflicts with ` + "`" + `headers` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "payload",
+					Description: `(Optional) A map of key/value pairs that represents the webhook payload. Must provide ` + "`" + `payload_type` + "`" + ` if setting this argument.`,
+				},
+				resource.Attribute{
+					Name:        "payload_string",
+					Description: `(Optional) Use instead of ` + "`" + `payload` + "`" + ` if the desired payload is more complex than a list of key/value pairs (e.g. a payload that makes use of nested objects). The value provided should be a valid JSON string with escaped double quotes. Conflicts with ` + "`" + `payload` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "payload_type",
+					Description: `(Optional) Can either be ` + "`" + `application/json` + "`" + ` or ` + "`" + `application/x-www-form-urlencoded` + "`" + `. The ` + "`" + `payload_type` + "`" + ` argument is _required_ if ` + "`" + `payload` + "`" + ` is set.`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `(Required) Specifies the service key for integrating with Pagerduty.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key for integrating with VictorOps.`,
+				},
+				resource.Attribute{
+					Name:        "route_key",
+					Description: `(Required) The route key for integrating with VictorOps.`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -54,85 +98,37 @@ Use this resource to create and manage New Relic alert policies.
 				},
 				resource.Attribute{
 					Name:        "channel",
-					Description: `(Required) The Slack channel for which to send notifications.`,
+					Description: `(Optional) The Slack channel to send notifications to.`,
 				},
 				resource.Attribute{
 					Name:        "api_key",
-					Description: `(Required) Your OpsGenie API key.`,
+					Description: `(Required) The API key for integrating with OpsGenie.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) The data center region to store your data. Valid values are ` + "`" + `US` + "`" + ` and ` + "`" + `EU` + "`" + `. Default is ` + "`" + `US` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "teams",
-					Description: `(Optional) Comma delimited list of teams.`,
+					Description: `(Optional) A set of teams for targeting notifications. Multiple values are comma separated.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Comma delimited list of tags.`,
+					Description: `(Optional) A set of tags for targeting notifications. Multiple values are comma separated.`,
 				},
 				resource.Attribute{
 					Name:        "recipients",
-					Description: `(Optional) Comma delimited list of email addresses.`,
+					Description: `(Optional) A set of recipients for targeting notifications. Multiple values are comma separated. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "service_key",
-					Description: `(Required) Your PagerDuty service key.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Required) Your VictorOps key.`,
-				},
-				resource.Attribute{
-					Name:        "route_key",
-					Description: `(Required) The route for which to send notifications. ## Additional Examples ##### Slack ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "slack-example" type = "slack" configuration = { url = "https://<YourOrganization>.slack.com" channel = "example-alerts-channel" } } ` + "`" + `` + "`" + `` + "`" + ` ##### OpsGenie ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "opsgenie-example" type = "opsgenie" configuration = { api_key = "abc123" teams = "team1, team2" tags = "tag1, tag2" recipients = "user1@domain.com, user2@domain.com" } } ` + "`" + `` + "`" + `` + "`" + ` ##### PagerDuty ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "pagerduty-example" type = "pagerduty" configuration = { service_key = "abc123" } } ` + "`" + `` + "`" + `` + "`" + ` ##### VictorOps ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "victorops-example" type = "victorops" configuration = { key = "abc123" route_key = "/example" } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import newrelic_alert_channel.main <id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "id",
+					Description: `The ID of the channel. ## Additional Examples ##### Slack ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "slack-example" type = "slack" config { url = "https://<YourOrganization>.slack.com" channel = "example-alerts-channel" } } ` + "`" + `` + "`" + `` + "`" + ` ##### OpsGenie ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "opsgenie-example" type = "opsgenie" config { api_key = "abc123" teams = "team1, team2" tags = "tag1, tag2" recipients = "user1@domain.com, user2@domain.com" } } ` + "`" + `` + "`" + `` + "`" + ` ##### PagerDuty ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "pagerduty-example" type = "pagerduty" config { service_key = "abc123" } } ` + "`" + `` + "`" + `` + "`" + ` ##### VictorOps ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "victorops-example" type = "victorops" config { key = "abc123" route_key = "/example" } } ` + "`" + `` + "`" + `` + "`" + ` ##### Webhook ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "webhook-example" type = "webhook" config { base_url = "http://www.test.com" payload_type = "application/json" payload = { condition_name = "$CONDITION_NAME" policy_name = "$POLICY_NAME" } headers = { header1 = value1 header2 = value2 } } } ` + "`" + `` + "`" + `` + "`" + ` ##### Webhook with complex payload ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "webhook-example" type = "webhook" config { base_url = "http://www.test.com" payload_type = "application/json" payload_string = <<EOF { "my_custom_values": { "condition_name": "$CONDITION_NAME", "policy_name": "$POLICY_NAME" } } EOF } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import newrelic_alert_channel.main <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the channel. ## Channel Configurations Each supported channel supports a particular set of configuration arguments.`,
-				},
-				resource.Attribute{
-					Name:        "recipients",
-					Description: `(Required) Comma delimited list of email addresses.`,
-				},
-				resource.Attribute{
-					Name:        "include_json_attachment",
-					Description: `(Optional) ` + "`" + `0` + "`" + ` or ` + "`" + `1` + "`" + `. Flag for whether or not to attach a JSON document containing information about the associated alert to the email that is sent to recipients. Default: ` + "`" + `0` + "`" + ``,
-				},
-				resource.Attribute{
-					Name:        "url",
-					Description: `(Required) Your organization's Slack URL.`,
-				},
-				resource.Attribute{
-					Name:        "channel",
-					Description: `(Required) The Slack channel for which to send notifications.`,
-				},
-				resource.Attribute{
-					Name:        "api_key",
-					Description: `(Required) Your OpsGenie API key.`,
-				},
-				resource.Attribute{
-					Name:        "teams",
-					Description: `(Optional) Comma delimited list of teams.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `(Optional) Comma delimited list of tags.`,
-				},
-				resource.Attribute{
-					Name:        "recipients",
-					Description: `(Optional) Comma delimited list of email addresses.`,
-				},
-				resource.Attribute{
-					Name:        "service_key",
-					Description: `(Required) Your PagerDuty service key.`,
-				},
-				resource.Attribute{
-					Name:        "key",
-					Description: `(Required) Your VictorOps key.`,
-				},
-				resource.Attribute{
-					Name:        "route_key",
-					Description: `(Required) The route for which to send notifications. ## Additional Examples ##### Slack ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "slack-example" type = "slack" configuration = { url = "https://<YourOrganization>.slack.com" channel = "example-alerts-channel" } } ` + "`" + `` + "`" + `` + "`" + ` ##### OpsGenie ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "opsgenie-example" type = "opsgenie" configuration = { api_key = "abc123" teams = "team1, team2" tags = "tag1, tag2" recipients = "user1@domain.com, user2@domain.com" } } ` + "`" + `` + "`" + `` + "`" + ` ##### PagerDuty ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "pagerduty-example" type = "pagerduty" configuration = { service_key = "abc123" } } ` + "`" + `` + "`" + `` + "`" + ` ##### VictorOps ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "victorops-example" type = "victorops" configuration = { key = "abc123" route_key = "/example" } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import newrelic_alert_channel.main <id> ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the channel. ## Additional Examples ##### Slack ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "slack-example" type = "slack" config { url = "https://<YourOrganization>.slack.com" channel = "example-alerts-channel" } } ` + "`" + `` + "`" + `` + "`" + ` ##### OpsGenie ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "opsgenie-example" type = "opsgenie" config { api_key = "abc123" teams = "team1, team2" tags = "tag1, tag2" recipients = "user1@domain.com, user2@domain.com" } } ` + "`" + `` + "`" + `` + "`" + ` ##### PagerDuty ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "pagerduty-example" type = "pagerduty" config { service_key = "abc123" } } ` + "`" + `` + "`" + `` + "`" + ` ##### VictorOps ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "victorops-example" type = "victorops" config { key = "abc123" route_key = "/example" } } ` + "`" + `` + "`" + `` + "`" + ` ##### Webhook ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "webhook-example" type = "webhook" config { base_url = "http://www.test.com" payload_type = "application/json" payload = { condition_name = "$CONDITION_NAME" policy_name = "$POLICY_NAME" } headers = { header1 = value1 header2 = value2 } } } ` + "`" + `` + "`" + `` + "`" + ` ##### Webhook with complex payload ` + "`" + `` + "`" + `` + "`" + `hcl resource "newrelic_alert_channel" "foo" { name = "webhook-example" type = "webhook" config { base_url = "http://www.test.com" payload_type = "application/json" payload_string = <<EOF { "my_custom_values": { "condition_name": "$CONDITION_NAME", "policy_name": "$POLICY_NAME" } } EOF } } ` + "`" + `` + "`" + `` + "`" + ` ## Import Alert channels can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + `bash $ terraform import newrelic_alert_channel.main <id> ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -169,11 +165,11 @@ Use this resource to create and manage alert conditions for APM, Browser, and Mo
 				},
 				resource.Attribute{
 					Name:        "metric",
-					Description: `(Required) The metric field accepts parameters based on the ` + "`" + `type` + "`" + ` set.`,
+					Description: `(Required) The metric field accepts parameters based on the ` + "`" + `type` + "`" + ` set. One of these metrics based on ` + "`" + `type` + "`" + `:`,
 				},
 				resource.Attribute{
 					Name:        "condition_scope",
-					Description: `(Required) ` + "`" + `application` + "`" + ` or ` + "`" + `instance` + "`" + `. Choose ` + "`" + `application` + "`" + ` for most scenarios. If you are using the JVM plugin in New Relic, the ` + "`" + `instance` + "`" + ` setting allows your condition to trigger [for specific app instances](https://docs.newrelic.com/docs/alerts/new-relic-alerts/defining-conditions/scope-alert-thresholds-specific-instances).`,
+					Description: `(Required for some types) ` + "`" + `application` + "`" + ` or ` + "`" + `instance` + "`" + `. Choose ` + "`" + `application` + "`" + ` for most scenarios. If you are using the JVM plugin in New Relic, the ` + "`" + `instance` + "`" + ` setting allows your condition to trigger [for specific app instances](https://docs.newrelic.com/docs/alerts/new-relic-alerts/defining-conditions/scope-alert-thresholds-specific-instances).`,
 				},
 				resource.Attribute{
 					Name:        "gc_metric",
@@ -221,13 +217,13 @@ Use this resource to create and manage alert conditions for APM, Browser, and Mo
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the alert condition. ## Import Alert conditions can be imported using notation ` + "`" + `alert_policy_id:alert_condition_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_condition.main 123456:6789012345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the alert condition. ## Import Alert conditions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_condition.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the alert condition. ## Import Alert conditions can be imported using notation ` + "`" + `alert_policy_id:alert_condition_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_condition.main 123456:6789012345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -252,7 +248,11 @@ Use this resource to create and manage New Relic alert policies.
 				},
 				resource.Attribute{
 					Name:        "incident_preference",
-					Description: `(Optional) The rollup strategy for the policy. Options include: ` + "`" + `PER_POLICY` + "`" + `, ` + "`" + `PER_CONDITION` + "`" + `, or ` + "`" + `PER_CONDITION_AND_TARGET` + "`" + `. The default is ` + "`" + `PER_POLICY` + "`" + `. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The rollup strategy for the policy. Options include: ` + "`" + `PER_POLICY` + "`" + `, ` + "`" + `PER_CONDITION` + "`" + `, or ` + "`" + `PER_CONDITION_AND_TARGET` + "`" + `. The default is ` + "`" + `PER_POLICY` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "channel_ids",
+					Description: `(Optional) An array of channel IDs (integers) to assign to the policy. Adding or removing channel IDs from this array will result in a new alert policy resource being created and the old one being destroyed. Also note that channel IDs _cannot_ be imported via ` + "`" + `terraform import` + "`" + ` (see [Import](#import) for info). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -264,7 +264,7 @@ Use this resource to create and manage New Relic alert policies.
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `The time the policy was last updated. ## Import Alert policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_policy.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The time the policy was last updated. ## Additional Examples ##### Provision multiple notification channels and add those channels to a policy ` + "`" + `` + "`" + `` + "`" + `hcl # Provision a Slack notification channel. resource "newrelic_alert_channel" "slack_channel" { name = "slack-example" type = "slack" config { url = "https://hooks.slack.com/services/<`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -278,7 +278,7 @@ Use this resource to create and manage New Relic alert policies.
 				},
 				resource.Attribute{
 					Name:        "updated_at",
-					Description: `The time the policy was last updated. ## Import Alert policies can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_alert_policy.main 12345 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The time the policy was last updated. ## Additional Examples ##### Provision multiple notification channels and add those channels to a policy ` + "`" + `` + "`" + `` + "`" + `hcl # Provision a Slack notification channel. resource "newrelic_alert_channel" "slack_channel" { name = "slack-example" type = "slack" config { url = "https://hooks.slack.com/services/<`,
 				},
 			},
 		},
@@ -287,7 +287,7 @@ Use this resource to create and manage New Relic alert policies.
 			Type:             "newrelic_alert_policy_channel",
 			Category:         "Resources",
 			ShortDescription: `Map alert policies to alert channels in New Relic.`,
-			Description: `\_alert\_policy\_channel
+			Description: `
 
 Use this resource to map alert policies to alert channels in New Relic.
 
@@ -297,14 +297,39 @@ Use this resource to map alert policies to alert channels in New Relic.
 				"policy",
 				"channel",
 			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "newrelic_application_label",
+			Category:         "Resources",
+			ShortDescription: `Create and manage an Application label in New Relic.`,
+			Description:      ``,
+			Keywords: []string{
+				"application",
+				"label",
+			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "policy_id",
-					Description: `(Required) The ID of the policy.`,
+					Name:        "category",
+					Description: `(Required) A string representing the label key/category.`,
 				},
 				resource.Attribute{
-					Name:        "channel_id",
-					Description: `(Required) The ID of the channel.`,
+					Name:        "name",
+					Description: `(Required) A string that will be assigned to the label.`,
+				},
+				resource.Attribute{
+					Name:        "links",
+					Description: `(Required) The resources to which label should be assigned to. At least one of the following attributes must be set.`,
+				},
+				resource.Attribute{
+					Name:        "applications",
+					Description: `An array of application IDs.`,
+				},
+				resource.Attribute{
+					Name:        "servers",
+					Description: `An array of server IDs.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -377,7 +402,7 @@ Use this resource to create and manage New Relic dashboards.
 				},
 				resource.Attribute{
 					Name:        "notes",
-					Description: `(Optional) Description of the widget. Each visualization type supports an additional set of arguments:`,
+					Description: `(Optional) Description of the widget. Each ` + "`" + `visualization` + "`" + ` type supports an additional set of arguments:`,
 				},
 				resource.Attribute{
 					Name:        "nrql",
@@ -449,7 +474,11 @@ Use this resource to create and manage New Relic dashboards.
 				},
 				resource.Attribute{
 					Name:        "limit",
-					Description: `(Optional) The limit of distinct data series to display. ### Nested ` + "`" + `filter` + "`" + ` block The optional filter block supports the following arguments:`,
+					Description: `(Optional) The limit of distinct data series to display.`,
+				},
+				resource.Attribute{
+					Name:        "entity_ids",
+					Description: `(Required) A collection of entity IDs to display data. These are typically application IDs. ### Nested ` + "`" + `filter` + "`" + ` block The optional filter block supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "event_types",
@@ -756,6 +785,41 @@ Use this resource to create and manage synthetics alert conditions in New Relic.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "newrelic_synthetics_label",
+			Category:         "Resources",
+			ShortDescription: `Create and manage a Synthetics label in New Relic.`,
+			Description:      ``,
+			Keywords: []string{
+				"synthetics",
+				"label",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "monitor_id",
+					Description: `(Required) The ID of the monitor that will be assigned the label.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) A string representing the label key/category.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) A string representing the label value. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "href",
+					Description: `The URL of the Synthetics label. ## Import Synthetics labels can be imported using an ID in the format ` + "`" + `<monitor_id>:<type>:<value>` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_synthetics_labels.foo 1a272364-f204-4cd3-ae2a-2d15a2bedadd:MyCategory:MyValue ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "href",
+					Description: `The URL of the Synthetics label. ## Import Synthetics labels can be imported using an ID in the format ` + "`" + `<monitor_id>:<type>:<value>` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_synthetics_labels.foo 1a272364-f204-4cd3-ae2a-2d15a2bedadd:MyCategory:MyValue ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "newrelic_synthetics_monitor",
 			Category:         "Resources",
 			ShortDescription: `Create and manage a Synthetics monitor in New Relic.`,
@@ -869,22 +933,73 @@ Use this resource to update a synthetics monitor script in New Relic.
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "newrelic_synthetics_secure_credential",
+			Category:         "Resources",
+			ShortDescription: `Create and manage Synthetics secure credentials in New Relic.`,
+			Description: `\_synthetics\_secure\_credential
+
+Use this resource to create and manage New Relic Synthetic secure credentials.
+
+`,
+			Keywords: []string{
+				"synthetics",
+				"secure",
+				"credential",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The secure credential's key name. Regardless of the case used in the configuration, the provider will provide an upcased key to the underlying API.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The secure credential's value.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The secure credential's description. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time the secure credential was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The time the secure credential was last updated. ## Import A Synthetics secure credential can be imported using its ` + "`" + `key` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_synthetics_secure_credential.foo MY_KEY ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time the secure credential was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The time the secure credential was last updated. ## Import A Synthetics secure credential can be imported using its ` + "`" + `key` + "`" + `: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import newrelic_synthetics_secure_credential.foo MY_KEY ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"newrelic_alert_channel":              0,
-		"newrelic_alert_condition":            1,
-		"newrelic_alert_policy":               2,
-		"newrelic_alert_policy_channel":       3,
-		"newrelic_dashboard":                  4,
-		"newrelic_infra_alert_condition":      5,
-		"newrelic_insights_event":             6,
-		"newrelic_nrql_alert_condition":       7,
-		"newrelic_plugins_alert_condition":    8,
-		"newrelic_synthetics_alert_condition": 9,
-		"newrelic_synthetics_monitor":         10,
-		"newrelic_synthetics_monitor_script":  11,
+		"newrelic_alert_channel":                0,
+		"newrelic_alert_condition":              1,
+		"newrelic_alert_policy":                 2,
+		"newrelic_alert_policy_channel":         3,
+		"newrelic_application_label":            4,
+		"newrelic_dashboard":                    5,
+		"newrelic_infra_alert_condition":        6,
+		"newrelic_insights_event":               7,
+		"newrelic_nrql_alert_condition":         8,
+		"newrelic_plugins_alert_condition":      9,
+		"newrelic_synthetics_alert_condition":   10,
+		"newrelic_synthetics_label":             11,
+		"newrelic_synthetics_monitor":           12,
+		"newrelic_synthetics_monitor_script":    13,
+		"newrelic_synthetics_secure_credential": 14,
 	}
 )
 

@@ -54,20 +54,17 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "exoscale_compute",
-			Category:         "Resources",
+			Category:         "Resources Data",
 			ShortDescription: `Provides an Exoscale Compute instance resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"data",
 				"compute",
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "zone",
 					Description: `(Required) The name of the [zone][zone] to deploy the Compute instance into.`,
-				},
-				resource.Attribute{
-					Name:        "display_name",
-					Description: `(Required) The displayed name of the Compute instance. Note: This value is also used to set the OS'`,
 				},
 				resource.Attribute{
 					Name:        "template",
@@ -86,8 +83,16 @@ var (
 					Description: `(Required) The Compute instance root disk size in GiB (at least ` + "`" + `10` + "`" + `).`,
 				},
 				resource.Attribute{
+					Name:        "display_name",
+					Description: `The displayed name of the Compute instance. Note: if the ` + "`" + `hostname` + "`" + ` attribute is not set, this attribute is also used to set the OS'`,
+				},
+				resource.Attribute{
+					Name:        "hostname",
+					Description: `The Compute instance hostname, must contain only alphanumeric and hyphen ("-") characters. If neither ` + "`" + `display_name` + "`" + ` or ` + "`" + `hostname` + "`" + ` attributes are set, a random value will be generated automatically server-side. Note: updating this attribute's value requires to reboot the instance.`,
+				},
+				resource.Attribute{
 					Name:        "key_pair",
-					Description: `(Required) The name of the [SSH key pair][sshkeypair] to be installed.`,
+					Description: `The name of the [SSH key pair][sshkeypair] to be installed.`,
 				},
 				resource.Attribute{
 					Name:        "user_data",
@@ -130,10 +135,6 @@ var (
 					Description: `A dictionary of tags (key/value). [template]: https://www.exoscale.com/templates/ [zone]: https://www.exoscale.com/datacenters/ [size]: https://www.exoscale.com/pricing/#/compute/ [sshkeypair]: https://community.exoscale.com/documentation/compute/ssh-keypairs/ [cloudinit]: http://cloudinit.readthedocs.io/en/latest/ [aag]: affinity.html [sg]: security_group.html [compute_template]: ../d/compute_template.html ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the Compute instance (`,
-				},
-				resource.Attribute{
 					Name:        "username",
 					Description: `The user to use to connect to the Compute instance with SSH. If you've referenced a`,
 				},
@@ -147,15 +148,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip6_address",
-					Description: `The IPv6 address of the Compute instance main network interface. [compute_template]: ../d/compute_template.html ## ` + "`" + `remote-exec` + "`" + ` provisioner usage If you wish to log to a ` + "`" + `exoscale_compute` + "`" + ` resource using the [` + "`" + `remote-exec` + "`" + `][rexec] provisioner, make sure to explicity set the SSH ` + "`" + `user` + "`" + ` setting to connect to the instance to the actual template username returned by the [` + "`" + `exoscale_compute_template` + "`" + `][compute_template] data source: ` + "`" + `` + "`" + `` + "`" + `hcl data "exoscale_compute_template" "ubuntu" { zone = "ch-gva-2" name = "Linux Ubuntu 18.04 LTS 64-bit" } resource "exoscale_compute" "mymachine" { zone = "ch-gva-2" display_name = "mymachine" template_id = "${data.exoscale_compute_template.ubuntu.id}" size = "Medium" disk_size = 10 key_pair = "me@mymachine" state = "Running" provisioner "remote-exec" { connection { type = "ssh" host = "${self.ip_address}" user = "${data.exoscale_compute_template.ubuntu.username}" } } } ` + "`" + `` + "`" + `` + "`" + ` [rexec]: https://www.terraform.io/docs/provisioners/remote-exec.html [compute_template]: ../d/compute_template.html ## Import An existing Compute instance can be imported as a resource by name or ID. Importing a Compute instance imports the ` + "`" + `exoscale_compute` + "`" + ` resource as well as related [` + "`" + `exoscale_secondary_ipaddress` + "`" + `][secip] and [` + "`" + `exoscale_nic` + "`" + `][nic] resources. [secip]: secondary_ipaddress.html [nic]: nic.html ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_compute.vm1 vm1 # By ID $ terraform import exoscale_compute.vm1 eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The IPv6 address of the Compute instance main network interface. [compute_template]: ../d/compute_template.html ## ` + "`" + `remote-exec` + "`" + ` provisioner usage If you wish to log to a ` + "`" + `exoscale_compute` + "`" + ` resource using the [` + "`" + `remote-exec` + "`" + `][rexec] provisioner, make sure to explicity set the SSH ` + "`" + `user` + "`" + ` setting to connect to the instance to the actual template username returned by the [` + "`" + `exoscale_compute_template` + "`" + `][compute_template] data source: ` + "`" + `` + "`" + `` + "`" + `hcl data "exoscale_compute_template" "ubuntu" { zone = "ch-gva-2" name = "Linux Ubuntu 18.04 LTS 64-bit" } resource "exoscale_compute" "mymachine" { zone = "ch-gva-2" display_name = "mymachine" template_id = data.exoscale_compute_template.ubuntu.id size = "Medium" disk_size = 10 key_pair = "me@mymachine" state = "Running" provisioner "remote-exec" { connection { type = "ssh" host = self.ip_address user = data.exoscale_compute_template.ubuntu.username } } } ` + "`" + `` + "`" + `` + "`" + ` [rexec]: https://www.terraform.io/docs/provisioners/remote-exec.html [compute_template]: ../d/compute_template.html ## Import An existing Compute instance can be imported as a resource by name or ID. Importing a Compute instance imports the ` + "`" + `exoscale_compute` + "`" + ` resource as well as related [` + "`" + `exoscale_secondary_ipaddress` + "`" + `][secip] and [` + "`" + `exoscale_nic` + "`" + `][nic] resources. [secip]: secondary_ipaddress.html [nic]: nic.html ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_compute.vm1 vm1 # By ID $ terraform import exoscale_compute.vm1 eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "name",
-					Description: `The name of the Compute instance (`,
-				},
-				resource.Attribute{
 					Name:        "username",
 					Description: `The user to use to connect to the Compute instance with SSH. If you've referenced a`,
 				},
@@ -169,17 +166,18 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip6_address",
-					Description: `The IPv6 address of the Compute instance main network interface. [compute_template]: ../d/compute_template.html ## ` + "`" + `remote-exec` + "`" + ` provisioner usage If you wish to log to a ` + "`" + `exoscale_compute` + "`" + ` resource using the [` + "`" + `remote-exec` + "`" + `][rexec] provisioner, make sure to explicity set the SSH ` + "`" + `user` + "`" + ` setting to connect to the instance to the actual template username returned by the [` + "`" + `exoscale_compute_template` + "`" + `][compute_template] data source: ` + "`" + `` + "`" + `` + "`" + `hcl data "exoscale_compute_template" "ubuntu" { zone = "ch-gva-2" name = "Linux Ubuntu 18.04 LTS 64-bit" } resource "exoscale_compute" "mymachine" { zone = "ch-gva-2" display_name = "mymachine" template_id = "${data.exoscale_compute_template.ubuntu.id}" size = "Medium" disk_size = 10 key_pair = "me@mymachine" state = "Running" provisioner "remote-exec" { connection { type = "ssh" host = "${self.ip_address}" user = "${data.exoscale_compute_template.ubuntu.username}" } } } ` + "`" + `` + "`" + `` + "`" + ` [rexec]: https://www.terraform.io/docs/provisioners/remote-exec.html [compute_template]: ../d/compute_template.html ## Import An existing Compute instance can be imported as a resource by name or ID. Importing a Compute instance imports the ` + "`" + `exoscale_compute` + "`" + ` resource as well as related [` + "`" + `exoscale_secondary_ipaddress` + "`" + `][secip] and [` + "`" + `exoscale_nic` + "`" + `][nic] resources. [secip]: secondary_ipaddress.html [nic]: nic.html ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_compute.vm1 vm1 # By ID $ terraform import exoscale_compute.vm1 eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The IPv6 address of the Compute instance main network interface. [compute_template]: ../d/compute_template.html ## ` + "`" + `remote-exec` + "`" + ` provisioner usage If you wish to log to a ` + "`" + `exoscale_compute` + "`" + ` resource using the [` + "`" + `remote-exec` + "`" + `][rexec] provisioner, make sure to explicity set the SSH ` + "`" + `user` + "`" + ` setting to connect to the instance to the actual template username returned by the [` + "`" + `exoscale_compute_template` + "`" + `][compute_template] data source: ` + "`" + `` + "`" + `` + "`" + `hcl data "exoscale_compute_template" "ubuntu" { zone = "ch-gva-2" name = "Linux Ubuntu 18.04 LTS 64-bit" } resource "exoscale_compute" "mymachine" { zone = "ch-gva-2" display_name = "mymachine" template_id = data.exoscale_compute_template.ubuntu.id size = "Medium" disk_size = 10 key_pair = "me@mymachine" state = "Running" provisioner "remote-exec" { connection { type = "ssh" host = self.ip_address user = data.exoscale_compute_template.ubuntu.username } } } ` + "`" + `` + "`" + `` + "`" + ` [rexec]: https://www.terraform.io/docs/provisioners/remote-exec.html [compute_template]: ../d/compute_template.html ## Import An existing Compute instance can be imported as a resource by name or ID. Importing a Compute instance imports the ` + "`" + `exoscale_compute` + "`" + ` resource as well as related [` + "`" + `exoscale_secondary_ipaddress` + "`" + `][secip] and [` + "`" + `exoscale_nic` + "`" + `][nic] resources. [secip]: secondary_ipaddress.html [nic]: nic.html ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_compute.vm1 vm1 # By ID $ terraform import exoscale_compute.vm1 eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "exoscale_domain",
-			Category:         "Resources",
+			Category:         "Resources Data",
 			ShortDescription: `Provides an Exoscale DNS Domain resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"data",
 				"domain",
 			},
 			Arguments: []resource.Attribute{
@@ -226,10 +224,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "exoscale_domain_record",
-			Category:         "Resources",
+			Category:         "Resources Data",
 			ShortDescription: `Provides an Exoscale DNS Domain Record resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"data",
 				"domain",
 				"record",
 			},
@@ -269,6 +268,64 @@ var (
 					Description: `The DNS Domain Record's`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "exoscale_instance_pool",
+			Category:         "Resources",
+			ShortDescription: `Provides an Exoscale Instance Pool resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"instance",
+				"pool",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) The name of the [zone][zone] to deploy the Instance Pool into.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the Instance Pool.`,
+				},
+				resource.Attribute{
+					Name:        "template_id",
+					Description: `(Required) (Required) The ID of the instance [template][template] to use when creating Compute instances. Usage of the [` + "`" + `compute_template` + "`" + `][compute_template] data source is recommended.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Required) The number of Compute instance members the Instance Pool manages.`,
+				},
+				resource.Attribute{
+					Name:        "service_offering",
+					Description: `(Required) The managed Compute instances [size][size], e.g. ` + "`" + `Tiny` + "`" + `, ` + "`" + `Small` + "`" + `, ` + "`" + `Medium` + "`" + `, ` + "`" + `Large` + "`" + ` etc.`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `The managed Compute instances disk size.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the Instance Pool.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `A [cloud-init][cloudinit] configuration to apply when creating Compute instances. Whenever possible don't base64-encode neither gzip it yourself, as this will be automatically taken care of on your behalf by the provider.`,
+				},
+				resource.Attribute{
+					Name:        "key_pair",
+					Description: `The name of the [SSH key pair][sshkeypair] to install when creating Compute instances.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `A list of [Security Group][sg] IDs.`,
+				},
+				resource.Attribute{
+					Name:        "network_ids",
+					Description: `A list of [Private Network][net] IDs. [template]: https://www.exoscale.com/templates/ [zone]: https://www.exoscale.com/datacenters/ [size]: https://www.exoscale.com/pricing/#/compute/ [sshkeypair]: https://community.exoscale.com/documentation/compute/ssh-keypairs/ [cloudinit]: http://cloudinit.readthedocs.io/en/latest/ [compute_template]: ../d/compute_template.html [net]: https://community.exoscale.com/documentation/compute/private-networks/ ## Import An existing Instance Pool can be imported as a resource by name or ID. Importing an Instance Pool imports the ` + "`" + `exoscale_instance_pool` + "`" + ` resource. ` + "`" + `` + "`" + `` + "`" + `console # By name $ terraform import exoscale_instance_pool.pool mypool # By ID $ terraform import exoscale_instance_pool.pool eb556678-ec59-4be6-8c54-0406ae0f6da6 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -659,14 +716,15 @@ var (
 		"exoscale_compute":              1,
 		"exoscale_domain":               2,
 		"exoscale_domain_record":        3,
-		"exoscale_ipaddress":            4,
-		"exoscale_network":              5,
-		"exoscale_nic":                  6,
-		"exoscale_secondary_ipaddress":  7,
-		"exoscale_security_group":       8,
-		"exoscale_security_group_rule":  9,
-		"exoscale_security_group_rules": 10,
-		"exoscale_ssh_keypair":          11,
+		"exoscale_instance_pool":        4,
+		"exoscale_ipaddress":            5,
+		"exoscale_network":              6,
+		"exoscale_nic":                  7,
+		"exoscale_secondary_ipaddress":  8,
+		"exoscale_security_group":       9,
+		"exoscale_security_group_rule":  10,
+		"exoscale_security_group_rules": 11,
+		"exoscale_ssh_keypair":          12,
 	}
 )
 

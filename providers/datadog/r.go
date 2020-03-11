@@ -446,6 +446,26 @@ var (
 					Description: `(Optional, default = false) If the processor is enabled or not.`,
 				},
 				resource.Attribute{
+					Name:        "sources",
+					Description: `(Required) List of source attributes.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Name of the parent attribute that contains all the extracted details from the ` + "`" + `sources` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Name of the processor.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "samples",
+					Description: `(Optional) List of sample logs for this parser. It can save up to 5 samples. Each sample takes up to 5000 characters.`,
+				},
+				resource.Attribute{
 					Name:        "source",
 					Description: `(Required) Name of the log attribute to parse.`,
 				},
@@ -520,6 +540,26 @@ var (
 				resource.Attribute{
 					Name:        "is_enabled",
 					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) The name of the attribute that contains the result of the template.`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Required) The formula with one or more attributes and raw text.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the processor.`,
+				},
+				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `(Optional, default = false) If the processor is enabled or not.`,
+				},
+				resource.Attribute{
+					Name:        "is_replace_missing",
+					Description: `(Optional, default = false) If it replaces all missing attributes of ` + "`" + `template` + "`" + ` by an empty string.`,
 				},
 				resource.Attribute{
 					Name:        "sources",
@@ -750,7 +790,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) The type of the monitor. The mapping from these types to the types found in the Datadog Web UI can be found in the Datadog API [documentation](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) page. Available options to choose from are:`,
+					Description: `(Required) The type of the monitor. The mapping from these types to the types found in the Datadog Web UI can be found in the Datadog API [documentation](https://docs.datadoghq.com/api/?lang=python#create-a-monitor) page. The available options are below.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -859,11 +899,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitor_ids",
-					Description: `(Optional) A list of numeric monitor IDs for which to use as SLIs. Their tags will be auto-imported into ` + "`" + `monitor_tags` + "`" + ` field in the API resource. At least 1 of ` + "`" + `monitor_ids` + "`" + ` or ` + "`" + `monitor_search` + "`" + ` must be provided.`,
-				},
-				resource.Attribute{
-					Name:        "monitor_search",
-					Description: `(Optional) The monitor query search used on the monitor search API to add monitor_ids by searching. Their tags will be auto-imported into ` + "`" + `monitor_tags` + "`" + ` field in the API resource. At least 1 of ` + "`" + `monitor_ids` + "`" + ` or ` + "`" + `monitor_search` + "`" + ` must be provided.`,
+					Description: `(Required) A list of numeric monitor IDs for which to use as SLIs. Their tags will be auto-imported into ` + "`" + `monitor_tags` + "`" + ` field in the API resource.`,
 				},
 				resource.Attribute{
 					Name:        "groups",
@@ -871,13 +907,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the Datadog service level objective ## Import Service Level Objectives can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_service_level_objective.12345678901234567890123456789012 "baz" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the Datadog service level objective ## Import Service Level Objectives can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_service_level_objective.baz 12345678901234567890123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `ID of the Datadog service level objective ## Import Service Level Objectives can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_service_level_objective.12345678901234567890123456789012 "baz" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `ID of the Datadog service level objective ## Import Service Level Objectives can be imported using their string ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import datadog_service_level_objective.baz 12345678901234567890123456789012 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},

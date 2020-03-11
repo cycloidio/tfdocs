@@ -288,11 +288,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "archived",
-					Description: `(Optional) Specifies if the repository should be archived. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Specifies if the repository should be archived. Defaults to ` + "`" + `false` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "topics",
-					Description: `(Optional) The list of topics of the repository. ~>`,
+					Description: `(Optional) The list of topics of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) Use a template repository to create this resource. See [Template Repositories](#template-repositories) below for details. ### Template Repositories ` + "`" + `template` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "full_name",
@@ -587,7 +591,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "permission",
-					Description: `(Optional) The permissions of team members regarding the repository. Must be one of ` + "`" + `pull` + "`" + `, ` + "`" + `push` + "`" + `, or ` + "`" + `admin` + "`" + `. Defaults to ` + "`" + `pull` + "`" + `. ## Import GitHub Team Repository can be imported using an id made up of ` + "`" + `teamid:repository` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_team_repository.terraform_repo 1234567:terraform ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The permissions of team members regarding the repository. Must be one of ` + "`" + `pull` + "`" + `, ` + "`" + `triage` + "`" + `, ` + "`" + `push` + "`" + `, ` + "`" + `maintain` + "`" + `, or ` + "`" + `admin` + "`" + `. Defaults to ` + "`" + `pull` + "`" + `. ## Import GitHub Team Repository can be imported using an id made up of ` + "`" + `teamid:repository` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import github_team_repository.terraform_repo 1234567:terraform ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{},

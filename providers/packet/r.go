@@ -55,15 +55,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "operating_system",
-					Description: `(Required) The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/#operatingsystems), set your API auth token in the top of the page and see JSON from the API response.`,
+					Description: `(Required) The operating system slug. To find the slug, or visit [Operating Systems API docs](https://www.packet.com/developers/api/operatingsystems), set your API auth token in the top of the page and see JSON from the API response.`,
 				},
 				resource.Attribute{
 					Name:        "facilities",
-					Description: `List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or ` + "`" + `any` + "`" + ` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/#facilities), set your API auth token in the top of the page and see JSON from the API response.`,
+					Description: `List of facility codes with deployment preferences. Packet API will go through the list and will deploy your device to first facility with free capacity. List items must be facility codes or ` + "`" + `any` + "`" + ` (a wildcard). To find the facility code, visit [Facilities API docs](https://www.packet.com/developers/api/facilities), set your API auth token in the top of the page and see JSON from the API response.`,
 				},
 				resource.Attribute{
 					Name:        "plan",
-					Description: `(Required) The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/#plans), set your auth token in the top of the page and see JSON from the API response.`,
+					Description: `(Required) The device plan slug. To find the plan slug, visit [Device plans API docs](https://www.packet.com/developers/api/plans), set your auth token in the top of the page and see JSON from the API response.`,
 				},
 				resource.Attribute{
 					Name:        "billing_cycle",
@@ -79,7 +79,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_ssh_key_ids",
-					Description: `Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][packet_project_ssh_key.html] resource.`,
+					Description: `Array of IDs of the project SSH keys which should be added to the device. If you omit this, SSH keys of all the members of the parent project will be added to the device. If you specify this array, only the listed project SSH keys will be added. Project SSH keys can be created with the [packet_project_ssh_key][https://www.terraform.io/docs/providers/packet/r/project_ssh_key.html] resource.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `One of [` + "`" + `private_ipv4` + "`" + `, ` + "`" + `public_ipv4` + "`" + `, ` + "`" + `public_ipv6` + "`" + `]`,
+				},
+				resource.Attribute{
+					Name:        "cidr",
+					Description: `CIDR suffix for IP address block to be assigned, i.e. amount of addresses.`,
+				},
+				resource.Attribute{
+					Name:        "reservation_ids",
+					Description: `String of UUID of [IP block reservations](https://www.terraform.io/docs/providers/packet/r/reserved_ip_block.html) from which the public IPv4 address should be taken. You can supply one ` + "`" + `ip_address` + "`" + ` block per IP address type. If you use the ` + "`" + `ip_address` + "`" + ` you must always pass a block for ` + "`" + `private_ipv4` + "`" + `. To learn more about using the reserved IP addresses for new devices, see the examples in the [packet_reserved_ip_block](https://www.terraform.io/docs/providers/packet/r/reserved_ip_block.html) documentation. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_private_ipv4",
@@ -565,11 +577,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backend_transfer",
-					Description: `Enable or disable [Backend Transfer](https://support.packet.com/kb/articles/backend-transfer), default is false`,
+					Description: `Enable or disable [Backend Transfer](https://www.packet.com/developers/docs/network/basic/backend-transfer/), default is false`,
 				},
 				resource.Attribute{
 					Name:        "bgp_config",
-					Description: `Optional BGP settings. Refer to [Packet guide for BGP](https://support.packet.com/kb/articles/bgp). Once you set the BGP config in a project, it can't be removed (due to a limitation in the Packet API). It can be updated. The ` + "`" + `bgp_config` + "`" + ` block supports:`,
+					Description: `Optional BGP settings. Refer to [Packet guide for BGP](https://www.packet.com/developers/docs/network/advanced/local-and-global-bgp/). Once you set the BGP config in a project, it can't be removed (due to a limitation in the Packet API). It can be updated. The ` + "`" + `bgp_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "asn",
@@ -817,7 +829,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first /32 address from a reserved block might look like ` + "`" + `"${cidrhost(packet_reserved_ip_block.test.cidr_notation,0)}/32"` + "`" + `.`,
+					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first /32 address from a reserved block might look like ` + "`" + `join("/", [cidrhost(packet_reserved_ip_block.myblock.cidr_notation,0), "32"]) ` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -863,7 +875,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "global",
-					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first /32 address from a reserved block might look like ` + "`" + `"${cidrhost(packet_reserved_ip_block.test.cidr_notation,0)}/32"` + "`" + `.`,
+					Description: `boolean flag whether addresses from a block are global (i.e. can be assigned in any facility) Idempotent reference to a first /32 address from a reserved block might look like ` + "`" + `join("/", [cidrhost(packet_reserved_ip_block.myblock.cidr_notation,0), "32"]) ` + "`" + ``,
 				},
 			},
 		},

@@ -2131,7 +2131,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "consumers",
-					Description: `The list of the container consumers. The structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
+					Description: `The list of the container consumers. The structure is described below.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `The list of ACLs assigned to a container. The ` + "`" + `read` + "`" + ` structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2147,7 +2151,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The consumer URL.`,
+					Description: `The consumer URL. The ` + "`" + `acl` + "`" + ` ` + "`" + `read` + "`" + ` attribute supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_access",
+					Description: `Whether the container is accessible project wide.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `The list of user IDs, which are allowed to access the container, when ` + "`" + `project_access` + "`" + ` is set to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the container ACL was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the container ACL was last updated.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2189,7 +2209,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "consumers",
-					Description: `The list of the container consumers. The structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
+					Description: `The list of the container consumers. The structure is described below.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `The list of ACLs assigned to a container. The ` + "`" + `read` + "`" + ` structure is described below. The ` + "`" + `secret_refs` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -2205,7 +2229,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "url",
-					Description: `The consumer URL.`,
+					Description: `The consumer URL. The ` + "`" + `acl` + "`" + ` ` + "`" + `read` + "`" + ` attribute supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_access",
+					Description: `Whether the container is accessible project wide.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `The list of user IDs, which are allowed to access the container, when ` + "`" + `project_access` + "`" + ` is set to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the container ACL was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the container ACL was last updated.`,
 				},
 			},
 		},
@@ -2341,6 +2381,26 @@ var (
 					Name:        "metadata",
 					Description: `The map of metadata, assigned on the secret, which has been explicitly and implicitly added.`,
 				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `The list of ACLs assigned to a secret. The ` + "`" + `read` + "`" + ` structure is described below. The ` + "`" + `acl` + "`" + ` ` + "`" + `read` + "`" + ` attribute supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_access",
+					Description: `Whether the secret is accessible project wide.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `The list of user IDs, which are allowed to access the secret, when ` + "`" + `project_access` + "`" + ` is set to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the secret ACL was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the secret ACL was last updated.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -2426,6 +2486,26 @@ var (
 				resource.Attribute{
 					Name:        "metadata",
 					Description: `The map of metadata, assigned on the secret, which has been explicitly and implicitly added.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `The list of ACLs assigned to a secret. The ` + "`" + `read` + "`" + ` structure is described below. The ` + "`" + `acl` + "`" + ` ` + "`" + `read` + "`" + ` attribute supports:`,
+				},
+				resource.Attribute{
+					Name:        "project_access",
+					Description: `Whether the secret is accessible project wide.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `The list of user IDs, which are allowed to access the secret, when ` + "`" + `project_access` + "`" + ` is set to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The date the secret ACL was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The date the secret ACL was last updated.`,
 				},
 			},
 		},

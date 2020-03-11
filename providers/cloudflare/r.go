@@ -34,10 +34,43 @@ var (
 				},
 				resource.Attribute{
 					Name:        "session_duration",
-					Description: `(Optional) How often a user will be forced to re-authorise. Must be one of ` + "`" + `30m` + "`" + `, ` + "`" + `6h` + "`" + `, ` + "`" + `12h` + "`" + `, ` + "`" + `24h` + "`" + `, ` + "`" + `168h` + "`" + `, ` + "`" + `730h` + "`" + `. ## Import Access Applications can be imported using a composite ID formed of zone ID and application ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_application.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) How often a user will be forced to re-authorise. Must be one of ` + "`" + `30m` + "`" + `, ` + "`" + `6h` + "`" + `, ` + "`" + `12h` + "`" + `, ` + "`" + `24h` + "`" + `, ` + "`" + `168h` + "`" + `, ` + "`" + `730h` + "`" + `. ## Attributes Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the application`,
+				},
+				resource.Attribute{
+					Name:        "aud",
+					Description: `Application Audience (AUD) Tag of the application`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain of the application`,
+				},
+				resource.Attribute{
+					Name:        "session_duration",
+					Description: `Length of session for the application before prompting for a sign in ## Import Access Applications can be imported using a composite ID formed of zone ID and application ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_application.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the application`,
+				},
+				resource.Attribute{
+					Name:        "aud",
+					Description: `Application Audience (AUD) Tag of the application`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `Domain of the application`,
+				},
+				resource.Attribute{
+					Name:        "session_duration",
+					Description: `Length of session for the application before prompting for a sign in ## Import Access Applications can be imported using a composite ID formed of zone ID and application ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_application.staging cb029e245cfdd66dc8d2e570d5dd3322/d41d8cd98f00b204e9800998ecf8427e ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -96,6 +129,70 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "cloudflare_access_identity_provider",
+			Category:         "Resources",
+			ShortDescription: `Provides a Cloudflare Access Identity Provider resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"access",
+				"identity",
+				"provider",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "account",
+					Description: `(Required) The account ID the provider should be associated with.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Friendly name of the Access Identity Provider configuration.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The provider type to use. Must be one of: ` + "`" + `"centrify"` + "`" + `, ` + "`" + `"facebook"` + "`" + `, ` + "`" + `"google-apps"` + "`" + `, ` + "`" + `"oidc"` + "`" + `, ` + "`" + `"github"` + "`" + `, ` + "`" + `"google"` + "`" + `, ` + "`" + `"saml"` + "`" + `, ` + "`" + `"linkedin"` + "`" + `, ` + "`" + `"azureAD"` + "`" + `, ` + "`" + `"okta"` + "`" + `, ` + "`" + `"onetimepin"` + "`" + `, ` + "`" + `"onelogin"` + "`" + `, ` + "`" + `"yandex"` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Optional) Provider configuration from the [developer documentation][access_identity_provider_guide]. ## Attributes Reference The following additional attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the Access Identity Provider`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Friendly name of the Access Identity Provider configuration.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The provider type to use.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Access Identity Provider configuration. ## Import Access Identity Providers can be imported using a composite ID formed of account ID and Access Identity Provider ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_identity_provider.my_idp cb029e245cfdd66dc8d2e570d5dd3322/e00e1c13-e350-44fe-96c5-fb75c954871c ` + "`" + `` + "`" + `` + "`" + ` [access_identity_provider_guide]: https://developers.cloudflare.com/access/configuring-identity-providers/`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the Access Identity Provider`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Friendly name of the Access Identity Provider configuration.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The provider type to use.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Access Identity Provider configuration. ## Import Access Identity Providers can be imported using a composite ID formed of account ID and Access Identity Provider ID. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import cloudflare_access_identity_provider.my_idp cb029e245cfdd66dc8d2e570d5dd3322/e00e1c13-e350-44fe-96c5-fb75c954871c ` + "`" + `` + "`" + `` + "`" + ` [access_identity_provider_guide]: https://developers.cloudflare.com/access/configuring-identity-providers/`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -524,7 +621,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "action",
-					Description: `(Required) The action to apply to a matched request. Allowed values: "block", "challenge", "allow", "js_challenge". Enterprise plan also allows "log".`,
+					Description: `(Required) The action to apply to a matched request. Allowed values: "block", "challenge", "allow", "js_challenge", "bypass". Enterprise plan also allows "log".`,
 				},
 				resource.Attribute{
 					Name:        "priority",
@@ -536,7 +633,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) A description of the rule to help identify it. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) A description of the rule to help identify it.`,
+				},
+				resource.Attribute{
+					Name:        "products",
+					Description: `(Optional) List of products to bypass for a request when the bypass action is used. Allowed values: "zoneLockdown", "uaBlock", "bic", "hot", "securityLevel", "rateLimit", "waf". ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -623,7 +724,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "session_affinity",
-					Description: `(Optional) Associates all requests coming from an end-user with a single origin. Cloudflare will set a cookie on the initial response to the client, such that consequent requests with the cookie in the request will go to the same origin, so long as it is available.`,
+					Description: `(Optional) Associates all requests coming from an end-user with a single origin. Cloudflare will set a cookie on the initial response to the client, such that consequent requests with the cookie in the request will go to the same origin, so long as it is available. Valid values are: ` + "`" + `""` + "`" + `, ` + "`" + `"none"` + "`" + `, ` + "`" + `"cookie"` + "`" + `, and ` + "`" + `"ip_cookie"` + "`" + `. Default is ` + "`" + `""` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1693,6 +1794,32 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "cloudflare_workers_kv",
+			Category:         "Resources",
+			ShortDescription: `Provides the ability to manage Cloudflare Workers KV features.`,
+			Description:      ``,
+			Keywords: []string{
+				"workers",
+				"kv",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "namespace_id",
+					Description: `(Required) The ID of the Workers KV namespace in which you want to create the KV pair`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key name`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The string value to be stored in the key ## Import Workers KV Namespace settings can be imported using it's ID.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "cloudflare_workers_kv_namespace",
 			Category:         "Resources",
 			ShortDescription: `Provides the ability to manage Cloudflare Workers KV Namespace features.`,
@@ -1943,35 +2070,37 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"cloudflare_access_application":     0,
-		"cloudflare_access_group":           1,
-		"cloudflare_access_policy":          2,
-		"cloudflare_access_rule":            3,
-		"cloudflare_access_service_token":   4,
-		"cloudflare_account_member":         5,
-		"cloudflare_argo":                   6,
-		"cloudflare_custom_pages":           7,
-		"cloudflare_custom_ssl":             8,
-		"cloudflare_filter":                 9,
-		"cloudflare_firewall_rule":          10,
-		"cloudflare_load_balancer":          11,
-		"cloudflare_load_balancer_monitor":  12,
-		"cloudflare_load_balancer_pool":     13,
-		"cloudflare_logpush_job":            14,
-		"cloudflare_origin_ca_certificate":  15,
-		"cloudflare_page_rule":              16,
-		"cloudflare_rate_limit":             17,
-		"cloudflare_record":                 18,
-		"cloudflare_spectrum_application":   19,
-		"cloudflare_waf_group":              20,
-		"cloudflare_waf_package":            21,
-		"cloudflare_waf_rule":               22,
-		"cloudflare_worker_route":           23,
-		"cloudflare_worker_script":          24,
-		"cloudflare_workers_kv_namespace":   25,
-		"cloudflare_zone":                   26,
-		"cloudflare_zone_lockdown":          27,
-		"cloudflare_zone_settings_override": 28,
+		"cloudflare_access_application":       0,
+		"cloudflare_access_group":             1,
+		"cloudflare_access_identity_provider": 2,
+		"cloudflare_access_policy":            3,
+		"cloudflare_access_rule":              4,
+		"cloudflare_access_service_token":     5,
+		"cloudflare_account_member":           6,
+		"cloudflare_argo":                     7,
+		"cloudflare_custom_pages":             8,
+		"cloudflare_custom_ssl":               9,
+		"cloudflare_filter":                   10,
+		"cloudflare_firewall_rule":            11,
+		"cloudflare_load_balancer":            12,
+		"cloudflare_load_balancer_monitor":    13,
+		"cloudflare_load_balancer_pool":       14,
+		"cloudflare_logpush_job":              15,
+		"cloudflare_origin_ca_certificate":    16,
+		"cloudflare_page_rule":                17,
+		"cloudflare_rate_limit":               18,
+		"cloudflare_record":                   19,
+		"cloudflare_spectrum_application":     20,
+		"cloudflare_waf_group":                21,
+		"cloudflare_waf_package":              22,
+		"cloudflare_waf_rule":                 23,
+		"cloudflare_worker_route":             24,
+		"cloudflare_worker_script":            25,
+		"cloudflare_workers_kv":               26,
+		"cloudflare_workers_kv_namespace":     27,
+		"cloudflare_zone":                     28,
+		"cloudflare_zone_lockdown":            29,
+		"cloudflare_zone_settings_override":   30,
 	}
 )
 

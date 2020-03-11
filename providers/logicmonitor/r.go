@@ -77,6 +77,81 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logicmonitor_dashboard",
+			Category:         "Resources",
+			ShortDescription: `Provides a LogicMonitor dashboard resource. This can be used to create and manage LogicMonitor dashboards`,
+			Description:      ``,
+			Keywords: []string{
+				"dashboard",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of dashboard`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of dashboard`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Optional) The id of the parent group for this dashboard`,
+				},
+				resource.Attribute{
+					Name:        "public",
+					Description: `(Optional) Defines if it is a public or private dashboard.`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) Defines if an existing exported JSON template is used to create dashboard`,
+				},
+				resource.Attribute{
+					Name:        "widget_tokens",
+					Description: `(Optional) Dashboard tokens allow users to apply a single dashboard template to different device or website groups simply by changing the tokens’ values. ## Import Device Groups can be imported using their group id or full path ` + "`" + `` + "`" + `` + "`" + ` $ terraform import logicmonitor_dashboard.dash 12 $ terraform import logicmonitor_dashboard.dash LakersDash ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "logicmonitor_dashboard_group",
+			Category:         "Resources",
+			ShortDescription: `Provides a LogicMonitor dashboard group resource. This can be used to create and manage LogicMonitor dashboard groups`,
+			Description:      ``,
+			Keywords: []string{
+				"dashboard",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of dashboard`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of dashboard`,
+				},
+				resource.Attribute{
+					Name:        "parent_id",
+					Description: `(Optional) The id of the parent group for this dashboard group`,
+				},
+				resource.Attribute{
+					Name:        "force_delete",
+					Description: `(Optional) Force delete the dashboard group`,
+				},
+				resource.Attribute{
+					Name:        "template",
+					Description: `(Optional) Defines if an existing exported JSON template is used to create dashboard group`,
+				},
+				resource.Attribute{
+					Name:        "widget_tokens",
+					Description: `(Optional) Dashboard tokens allow users to apply a single dashboard group template to different device or website groups simply by changing the tokens’ values. ## Import Device Groups can be imported using their group id or full path ` + "`" + `` + "`" + `` + "`" + ` $ terraform import logicmonitor_dashboard_group.dashgrp 12 $ terraform import logicmonitor_dashboard_group.dashgrp LakersDash/Players ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logicmonitor_device",
 			Category:         "Resources",
 			ShortDescription: `Provides a LogicMonitor device resource. This can be used to create and manage LogicMonitor devices`,
@@ -153,10 +228,12 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"logicmonitor_collector":      0,
-		"logicmonitor_collectorgroup": 1,
-		"logicmonitor_device":         2,
-		"logicmonitor_devicegroup":    3,
+		"logicmonitor_collector":       0,
+		"logicmonitor_collectorgroup":  1,
+		"logicmonitor_dashboard":       2,
+		"logicmonitor_dashboard_group": 3,
+		"logicmonitor_device":          4,
+		"logicmonitor_devicegroup":     5,
 	}
 )
 

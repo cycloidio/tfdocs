@@ -61,6 +61,213 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_adb_account",
+			Category:         "AnalyticDB for MySQL (ADB)",
+			ShortDescription: `Provides a ADB account resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"analyticdb",
+				"for",
+				"mysql",
+				"adb",
+				"account",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "db_cluster_id",
+					Description: `(Required, ForceNew) The Id of cluster in which account belongs.`,
+				},
+				resource.Attribute{
+					Name:        "account_name",
+					Description: `(Required, ForceNew) Operation account requiring a uniqueness check. It may consist of lower case letters, numbers, and underlines, and must start with a letter and have no more than 16 characters.`,
+				},
+				resource.Attribute{
+					Name:        "account_password",
+					Description: `(Optional) Operation password. It may consist of letters, digits, or underlines, with a length of 6 to 32 characters.`,
+				},
+				resource.Attribute{
+					Name:        "kms_encrypted_password",
+					Description: `(Optional) An KMS encrypts password used to a db account. If the ` + "`" + `account_password` + "`" + ` is filled in, this field will be ignored.`,
+				},
+				resource.Attribute{
+					Name:        "kms_encryption_context",
+					Description: `(Optional) An KMS encryption context used to decrypt ` + "`" + `kms_encrypted_password` + "`" + ` before creating or updating a db account with ` + "`" + `kms_encrypted_password` + "`" + `. See [Encryption Context](https://www.alibabacloud.com/help/doc-detail/42975.htm). It is valid when ` + "`" + `kms_encrypted_password` + "`" + ` is set.`,
+				},
+				resource.Attribute{
+					Name:        "account_description",
+					Description: `(Optional) Account description. It cannot begin with https://. It must start with a Chinese character or English letter. It can include Chinese and English characters, underlines (_), hyphens (-), and numbers. The length may be 2-256 characters. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The current account resource ID. Composed of instance ID and account name with format ` + "`" + `<instance_id>:<name>` + "`" + `. ## Import ADB account can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_adb_account.example "am-12345:tf_account" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The current account resource ID. Composed of instance ID and account name with format ` + "`" + `<instance_id>:<name>` + "`" + `. ## Import ADB account can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_adb_account.example "am-12345:tf_account" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_adb_backup_policy",
+			Category:         "AnalyticDB for MySQL (ADB)",
+			ShortDescription: `Provides a ADB backup policy resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"analyticdb",
+				"for",
+				"mysql",
+				"adb",
+				"backup",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "db_cluster_id",
+					Description: `(Required, ForceNew) The Id of cluster that can run database.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_backup_period",
+					Description: `(Optional) ADB Cluster backup period. Valid values: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]. Default to ["Tuesday", "Thursday", "Saturday"].`,
+				},
+				resource.Attribute{
+					Name:        "preferred_backup_time",
+					Description: `(Optional) ADB Cluster backup time, in the format of HH:mmZ- HH:mmZ. Time setting interval is one hour. Default to "02:00Z-03:00Z". China time is 8 hours behind it. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The current backup policy resource ID. It is same as 'db_cluster_id'.`,
+				},
+				resource.Attribute{
+					Name:        "backup_retention_period",
+					Description: `Cluster backup retention days, Fixed for 7 days, not modified. ## Import ADB backup policy can be imported using the id or cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_adb_backup_policy.example "am-12345678" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The current backup policy resource ID. It is same as 'db_cluster_id'.`,
+				},
+				resource.Attribute{
+					Name:        "backup_retention_period",
+					Description: `Cluster backup retention days, Fixed for 7 days, not modified. ## Import ADB backup policy can be imported using the id or cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_adb_backup_policy.example "am-12345678" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_adb_cluster",
+			Category:         "AnalyticDB for MySQL (ADB)",
+			ShortDescription: `Provides a ADB cluster resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"analyticdb",
+				"for",
+				"mysql",
+				"adb",
+				"cluster",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "db_cluster_version",
+					Description: `(Optional, ForceNew) Cluster version. Value options: ` + "`" + `3.0` + "`" + `, Default to ` + "`" + `3.0` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "db_cluster_category",
+					Description: `(Optional, ForceNew) Cluster category. Value options: ` + "`" + `Basic` + "`" + `, ` + "`" + `Cluster` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_class",
+					Description: `(Required, ForceNew) The db_node_class of cluster node.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_count",
+					Description: `(Required, ForceNew) The db_node_count of cluster node.`,
+				},
+				resource.Attribute{
+					Name:        "db_node_storage",
+					Description: `(Required, ForceNew) The db_node_storage of cluster node.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional) The Zone to launch the DB cluster.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `(Optional, ForceNew) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `, Default to ` + "`" + `PostPaid` + "`" + `. Currently, the resource can not supports change pay type.`,
+				},
+				resource.Attribute{
+					Name:        "renewal_status",
+					Description: `(Optional) Valid values are ` + "`" + `AutoRenewal` + "`" + `, ` + "`" + `Normal` + "`" + `, ` + "`" + `NotRenewal` + "`" + `, Default to ` + "`" + `NotRenewal` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew_period",
+					Description: `(Optional) Auto-renewal period of an cluster, in the unit of the month. It is valid when pay_type is ` + "`" + `PrePaid` + "`" + `. Valid value:1, 2, 3, 6, 12, 24, 36, Default to 1.`,
+				},
+				resource.Attribute{
+					Name:        "period",
+					Description: `(Optional) The duration that you will buy DB cluster (in month). It is valid when pay_type is ` + "`" + `PrePaid` + "`" + `. Valid values: [1~9], 12, 24, 36. Default to 1.`,
+				},
+				resource.Attribute{
+					Name:        "security_ips",
+					Description: `(Optional) List of IP addresses allowed to access all databases of an cluster. The list contains up to 1,000 IP addresses, separated by commas. Supported formats include 0.0.0.0/0, 10.23.12.24 (IP), and 10.23.12.24/24 (Classless Inter-Domain Routing (CIDR) mode. /24 represents the length of the prefix in an IP address. The range of the prefix length is [1,32]).`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `(Optional, ForceNew) The virtual switch ID to launch DB instances in one VPC.`,
+				},
+				resource.Attribute{
+					Name:        "maintain_time",
+					Description: `(Optional) Maintainable time period format of the instance: HH:MMZ-HH:MMZ (UTC time)`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of cluster.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the resource. - Key: It can be up to 64 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It cannot be a null string. - Value: It can be up to 128 characters in length. It cannot begin with "aliyun", "acs:", "http://", or "https://". It can be a null string. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ADB cluster ID. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 mins) Used when creating the adb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 20 mins) Used when updating the adb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when terminating the adb cluster. ## Import ADB cluster can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_adb_cluster.example am-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ADB cluster ID. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 mins) Used when creating the adb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "update",
+					Description: `(Defaults to 20 mins) Used when updating the adb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 10 mins) Used when terminating the adb cluster. ## Import ADB cluster can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_adb_cluster.example am-abc12345678 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_alikafka_consumer_group",
 			Category:         "Alikafka",
 			ShortDescription: `Provides a Alicloud Alikafka Consumer Group resource.`,
@@ -260,7 +467,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kms_encrypted_password",
-					Description: `(Optional) An KMS encrypts password used to a db account. If the ` + "`" + `password` + "`" + ` is filled in, this field will be ignored.`,
+					Description: `(Optional) An KMS encrypts password used to a db account. You have to specify one of ` + "`" + `password` + "`" + ` and ` + "`" + `kms_encrypted_password` + "`" + ` fields.`,
 				},
 				resource.Attribute{
 					Name:        "kms_encryption_context",
@@ -307,11 +514,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "partition_num",
-					Description: `(Optional, ForceNew) The number of partitions of the topic. The number should between 1 and 48.`,
+					Description: `(Optional) The number of partitions of the topic. The number should between 1 and 48.`,
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Required, ForceNew) This attribute is a concise description of topic. The length cannot exceed 64.`,
+					Description: `(Required) This attribute is a concise description of topic. The length cannot exceed 64.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -651,13 +858,29 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the api group of api gateway. ## Import Api gateway group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_group.example "ab2351f2ce904edaa8d92a0510832b91" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the api group of api gateway.`,
+				},
+				resource.Attribute{
+					Name:        "sub_domain",
+					Description: `(Available in 1.69.0+) Second-level domain name automatically assigned to the API group.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_domain",
+					Description: `(Available in 1.69.0+) Second-level VPC domain name automatically assigned to the API group. ## Import Api gateway group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_group.example "ab2351f2ce904edaa8d92a0510832b91" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The ID of the api group of api gateway. ## Import Api gateway group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_group.example "ab2351f2ce904edaa8d92a0510832b91" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The ID of the api group of api gateway.`,
+				},
+				resource.Attribute{
+					Name:        "sub_domain",
+					Description: `(Available in 1.69.0+) Second-level domain name automatically assigned to the API group.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_domain",
+					Description: `(Available in 1.69.0+) Second-level VPC domain name automatically assigned to the API group. ## Import Api gateway group can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_api_gateway_group.example "ab2351f2ce904edaa8d92a0510832b91" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -1291,11 +1514,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of the CEN instance. Defaults to null.`,
+					Description: `(Optional) The name of the CEN instance. Defaults to null. The name must be 2 to 128 characters in length and can contain letters, numbers, periods (.), underscores (_), and hyphens (-). The name must start with a letter, but cannot start with http:// or https://.`,
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) The description of the CEN instance. Defaults to null. ### Timeouts ->`,
+					Description: `(Optional) The description of the CEN instance. Defaults to null. The description must be 2 to 256 characters in length. It must start with a letter, and cannot start with http:// or https://. ### Timeouts ->`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -1600,12 +1823,16 @@ var (
 					Description: `(Required) List contact groups of the alarm rule, which must have been created on the console.`,
 				},
 				resource.Attribute{
+					Name:        "effective_interval",
+					Description: `(Available in 1.50.0+) The interval of effecting alarm rule. It foramt as "hh:mm-hh:mm", like "0:00-4:00". Default to "0:00-24:00".`,
+				},
+				resource.Attribute{
 					Name:        "start_time",
-					Description: `Start time of the alarm effective period. Default to 0 and it indicates the time 00:00. Valid value range: [0, 24].`,
+					Description: `It has been deprecated from provider version 1.50.0 and 'effective_interval' instead.`,
 				},
 				resource.Attribute{
 					Name:        "end_time",
-					Description: `End time of the alarm effective period. Default value 24 and it indicates the time 24:00. Valid value range: [0, 24].`,
+					Description: `It has been deprecated from provider version 1.50.0 and 'effective_interval' instead.`,
 				},
 				resource.Attribute{
 					Name:        "silence_time",
@@ -1624,68 +1851,8 @@ var (
 					Description: `The ID of the alarm rule.`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `The alarm name.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `Monitor project name.`,
-				},
-				resource.Attribute{
-					Name:        "metric",
-					Description: `Name of the monitoring metrics.`,
-				},
-				resource.Attribute{
-					Name:        "dimensions",
-					Description: `Map of the resources associated with the alarm rule.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `Index query cycle.`,
-				},
-				resource.Attribute{
-					Name:        "statistics",
-					Description: `Statistical method.`,
-				},
-				resource.Attribute{
-					Name:        "operator",
-					Description: `Alarm comparison operator.`,
-				},
-				resource.Attribute{
-					Name:        "threshold",
-					Description: `Alarm threshold value.`,
-				},
-				resource.Attribute{
-					Name:        "triggered_count",
-					Description: `Number of trigger alarm.`,
-				},
-				resource.Attribute{
-					Name:        "contact_groups",
-					Description: `List contact groups of the alarm rule.`,
-				},
-				resource.Attribute{
-					Name:        "start_time",
-					Description: `Start time of the alarm effective period.`,
-				},
-				resource.Attribute{
-					Name:        "end_time",
-					Description: `End time of the alarm effective period.`,
-				},
-				resource.Attribute{
-					Name:        "silence_time",
-					Description: `Notification silence period in the alarm state.`,
-				},
-				resource.Attribute{
-					Name:        "notify_type",
-					Description: `Notification type.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Whether to enable alarm rule.`,
-				},
-				resource.Attribute{
 					Name:        "status",
-					Description: `The current alarm rule status.`,
+					Description: `The current alarm rule status. ## Import Alarm rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cms_alarm.alarm abc12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1694,68 +1861,8 @@ var (
 					Description: `The ID of the alarm rule.`,
 				},
 				resource.Attribute{
-					Name:        "name",
-					Description: `The alarm name.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `Monitor project name.`,
-				},
-				resource.Attribute{
-					Name:        "metric",
-					Description: `Name of the monitoring metrics.`,
-				},
-				resource.Attribute{
-					Name:        "dimensions",
-					Description: `Map of the resources associated with the alarm rule.`,
-				},
-				resource.Attribute{
-					Name:        "period",
-					Description: `Index query cycle.`,
-				},
-				resource.Attribute{
-					Name:        "statistics",
-					Description: `Statistical method.`,
-				},
-				resource.Attribute{
-					Name:        "operator",
-					Description: `Alarm comparison operator.`,
-				},
-				resource.Attribute{
-					Name:        "threshold",
-					Description: `Alarm threshold value.`,
-				},
-				resource.Attribute{
-					Name:        "triggered_count",
-					Description: `Number of trigger alarm.`,
-				},
-				resource.Attribute{
-					Name:        "contact_groups",
-					Description: `List contact groups of the alarm rule.`,
-				},
-				resource.Attribute{
-					Name:        "start_time",
-					Description: `Start time of the alarm effective period.`,
-				},
-				resource.Attribute{
-					Name:        "end_time",
-					Description: `End time of the alarm effective period.`,
-				},
-				resource.Attribute{
-					Name:        "silence_time",
-					Description: `Notification silence period in the alarm state.`,
-				},
-				resource.Attribute{
-					Name:        "notify_type",
-					Description: `Notification type.`,
-				},
-				resource.Attribute{
-					Name:        "enabled",
-					Description: `Whether to enable alarm rule.`,
-				},
-				resource.Attribute{
 					Name:        "status",
-					Description: `The current alarm rule status.`,
+					Description: `The current alarm rule status. ## Import Alarm rule can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_cms_alarm.alarm abc12345 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -2323,7 +2430,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_ca_cert",
-					Description: `(Optional) The path of cluster ca certificate, like ` + "`" + `~/.kube/cluster-ca-cert.pem` + "`" + ` ### Timeouts ->`,
+					Description: `(Optional) The path of cluster ca certificate, like ` + "`" + `~/.kube/cluster-ca-cert.pem` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional, Available in 1.70.1) Desired Kubernetes version. If you do not specify a value, the latest available version at resource creation is used and no upgrades will occur except you set a higher version number. The value must be configured and increased to upgrade the version when desired. Downgrades are not supported by ACK. ### Timeouts ->`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -2375,7 +2486,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connections",
-					Description: `Map of kubernetes cluster connection information. It contains several attributes to ` + "`" + `Block Connections` + "`" + `. ### Block Nodes`,
+					Description: `Map of kubernetes cluster connection information. It contains several attributes to ` + "`" + `Block Connections` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Kubernetes server version for the cluster. ### Block Nodes`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2449,7 +2564,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "connections",
-					Description: `Map of kubernetes cluster connection information. It contains several attributes to ` + "`" + `Block Connections` + "`" + `. ### Block Nodes`,
+					Description: `Map of kubernetes cluster connection information. It contains several attributes to ` + "`" + `Block Connections` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Kubernetes server version for the cluster. ### Block Nodes`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2686,7 +2805,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `Log Service project name, cluster logs will output to this project. ### Timeouts ->`,
+					Description: `Log Service project name, cluster logs will output to this project.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional, Available in 1.70.1) Desired Kubernetes version. If you do not specify a value, the latest available version at resource creation is used and no upgrades will occur except you set a higher version number. The value must be configured and increased to upgrade the version when desired. Downgrades are not supported by ACK. ### Timeouts ->`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -2750,7 +2873,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "worker_nodes",
-					Description: `List of cluster worker nodes. It contains several attributes to ` + "`" + `Block Nodes` + "`" + `. ### Block Nodes`,
+					Description: `List of cluster worker nodes. It contains several attributes to ` + "`" + `Block Nodes` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Kubernetes server version for the cluster. ### Block Nodes`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -2816,7 +2943,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "worker_nodes",
-					Description: `List of cluster worker nodes. It contains several attributes to ` + "`" + `Block Nodes` + "`" + `. ### Block Nodes`,
+					Description: `List of cluster worker nodes. It contains several attributes to ` + "`" + `Block Nodes` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The Kubernetes server version for the cluster. ### Block Nodes`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -3463,105 +3594,85 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_period",
-					Description: `(Optional) DB Instance backup period. Please set at least two days to ensure backing up at least twice a week. Valid values: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]. Default to ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].`,
+					Description: `(Deprecated) It has been deprecated from version 1.69.0, and use field 'preferred_backup_period' instead.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_backup_period",
+					Description: `(Optional, available in 1.69.0+) DB Instance backup period. Please set at least two days to ensure backing up at least twice a week. Valid values: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]. Default to ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].`,
 				},
 				resource.Attribute{
 					Name:        "backup_time",
-					Description: `(Optional) DB instance backup time, in the format of HH:mmZ- HH:mmZ. Time setting interval is one hour. Default to "02:00Z-03:00Z". China time is 8 hours behind it.`,
+					Description: `(Deprecated) It has been deprecated from version 1.69.0, and use field 'preferred_backup_time' instead.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_backup_time",
+					Description: `(Optional, available in 1.69.0+) DB instance backup time, in the format of HH:mmZ- HH:mmZ. Time setting interval is one hour. Default to "02:00Z-03:00Z". China time is 8 hours behind it.`,
 				},
 				resource.Attribute{
 					Name:        "retention_period",
-					Description: `(Optional) Instance backup retention days. Valid values: [7-730]. Default to 7.`,
+					Description: `(Deprecated) It has been deprecated from version 1.69.0, and use field 'backup_retention_period' instead.`,
+				},
+				resource.Attribute{
+					Name:        "backup_retention_period",
+					Description: `(Optional, available in 1.69.0+) Instance backup retention days. Valid values: [7-730]. Default to 7. But mysql local disk is unlimited.`,
 				},
 				resource.Attribute{
 					Name:        "log_backup",
-					Description: `(Deprecated) It has been deprecated from version 1.67.0, and use field 'enable_backup_log' to replace. Whether to backup instance log. Note: The 'Basic Edition' category Rds instance does not support setting log backup. [What is Basic Edition](https://www.alibabacloud.com/help/doc-detail/48980.htm).`,
+					Description: `(Deprecated) It has been deprecated from version 1.68.0, and use field 'enable_backup_log' instead.`,
 				},
 				resource.Attribute{
 					Name:        "enable_backup_log",
-					Description: `(Optional, available in 1.67.0+) Whether to backup instance log. Valid values are ` + "`" + `true` + "`" + `, ` + "`" + `false` + "`" + `, Default to ` + "`" + `true` + "`" + `. Note: The 'Basic Edition' category Rds instance does not support setting log backup. [What is Basic Edition](https://www.alibabacloud.com/help/doc-detail/48980.htm).`,
+					Description: `(Optional, available in 1.68.0+) Whether to backup instance log. Valid values are ` + "`" + `true` + "`" + `, ` + "`" + `false` + "`" + `, Default to ` + "`" + `true` + "`" + `. Note: The 'Basic Edition' category Rds instance does not support setting log backup. [What is Basic Edition](https://www.alibabacloud.com/help/doc-detail/48980.htm).`,
 				},
 				resource.Attribute{
 					Name:        "log_retention_period",
-					Description: `(Optional) Instance log backup retention days. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `1` + "`" + `. Valid values: [7-730]. Default to 7. It cannot be larger than ` + "`" + `retention_period` + "`" + `.`,
+					Description: `(Deprecated) It has been deprecated from version 1.69.0, and use field 'log_backup_retention_period' instead.`,
+				},
+				resource.Attribute{
+					Name:        "log_backup_retention_period",
+					Description: `(Optional, available in 1.69.0+) Instance log backup retention days. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `1` + "`" + `. Valid values: [7-730]. Default to 7. It cannot be larger than ` + "`" + `backup_retention_period` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "local_log_retention_hours",
-					Description: `(Optional, available in 1.67.0+) Instance log backup local retention hours. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + `. Valid values: [0-7`,
+					Description: `(Optional, available in 1.69.0+) Instance log backup local retention hours. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + `. Valid values: [0-7`,
 				},
 				resource.Attribute{
 					Name:        "local_log_retention_space",
-					Description: `(Optional, available in 1.67.0+) Instance log backup local retention space. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + `. Valid values: [5-50].`,
+					Description: `(Optional, available in 1.69.0+) Instance log backup local retention space. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + `. Valid values: [5-50].`,
 				},
 				resource.Attribute{
 					Name:        "high_space_usage_protection",
-					Description: `(Optional, available in 1.67.0+) Instance high space usage protection policy. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + `. Valid values are ` + "`" + `Enable` + "`" + `, ` + "`" + `Disable` + "`" + `. ->`,
+					Description: `(Optional, available in 1.69.0+) Instance high space usage protection policy. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + `. Valid values are ` + "`" + `Enable` + "`" + `, ` + "`" + `Disable` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "log_backup_frequency",
+					Description: `(Optional, available in 1.69.0+) Instance log backup frequency. Valid when the instance engine is ` + "`" + `SQLServer` + "`" + `. Valid values are ` + "`" + `LogInterval` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "compress_type",
+					Description: `(Optional, available in 1.69.0+) The compress type of instance policy. Valid values are ` + "`" + `1` + "`" + `, ` + "`" + `4` + "`" + `, ` + "`" + `8` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "archive_backup_retention_period",
+					Description: `(Optional, available in 1.69.0+) Instance archive backup retention days. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + ` and instance is mysql local disk. Valid values: [30-1095], and ` + "`" + `archive_backup_retention_period` + "`" + ` must larger than ` + "`" + `backup_retention_period` + "`" + ` 730.`,
+				},
+				resource.Attribute{
+					Name:        "archive_backup_keep_count",
+					Description: `(Optional, available in 1.69.0+) Instance archive backup keep count. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + ` and instance is mysql local disk. When ` + "`" + `archive_backup_keep_policy` + "`" + ` is ` + "`" + `ByMonth` + "`" + ` Valid values: [1-31]. When ` + "`" + `archive_backup_keep_policy` + "`" + ` is ` + "`" + `ByWeek` + "`" + ` Valid values: [1-7].`,
+				},
+				resource.Attribute{
+					Name:        "archive_backup_keep_policy",
+					Description: `(Optional, available in 1.69.0+) Instance archive backup keep policy. Valid when the ` + "`" + `enable_backup_log` + "`" + ` is ` + "`" + `true` + "`" + ` and instance is mysql local disk. Valid values are ` + "`" + `ByMonth` + "`" + `, ` + "`" + `Disable` + "`" + `, ` + "`" + `KeepAll` + "`" + `. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The current backup policy resource ID. It is same as 'instance_id'.`,
-				},
-				resource.Attribute{
-					Name:        "instance_id",
-					Description: `The Id of DB instance.`,
-				},
-				resource.Attribute{
-					Name:        "backup_period",
-					Description: `DB Instance backup period.`,
-				},
-				resource.Attribute{
-					Name:        "backup_time",
-					Description: `DB instance backup time.`,
-				},
-				resource.Attribute{
-					Name:        "retention_period",
-					Description: `Instance backup retention days.`,
-				},
-				resource.Attribute{
-					Name:        "log_backup",
-					Description: `Whether to backup instance log.`,
-				},
-				resource.Attribute{
-					Name:        "enable_backup_log",
-					Description: `Whether to backup instance log.`,
-				},
-				resource.Attribute{
-					Name:        "log_retention_period",
-					Description: `Instance log backup retention days. ## Import RDS backup policy can be imported using the id or instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_backup_policy.example "rm-12345678" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The current backup policy resource ID. It is same as 'instance_id'. ## Import RDS backup policy can be imported using the id or instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_backup_policy.example "rm-12345678" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The current backup policy resource ID. It is same as 'instance_id'.`,
-				},
-				resource.Attribute{
-					Name:        "instance_id",
-					Description: `The Id of DB instance.`,
-				},
-				resource.Attribute{
-					Name:        "backup_period",
-					Description: `DB Instance backup period.`,
-				},
-				resource.Attribute{
-					Name:        "backup_time",
-					Description: `DB instance backup time.`,
-				},
-				resource.Attribute{
-					Name:        "retention_period",
-					Description: `Instance backup retention days.`,
-				},
-				resource.Attribute{
-					Name:        "log_backup",
-					Description: `Whether to backup instance log.`,
-				},
-				resource.Attribute{
-					Name:        "enable_backup_log",
-					Description: `Whether to backup instance log.`,
-				},
-				resource.Attribute{
-					Name:        "log_retention_period",
-					Description: `Instance log backup retention days. ## Import RDS backup policy can be imported using the id or instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_backup_policy.example "rm-12345678" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The current backup policy resource ID. It is same as 'instance_id'. ## Import RDS backup policy can be imported using the id or instance id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_db_backup_policy.example "rm-12345678" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -3706,6 +3817,14 @@ var (
 					Description: `(Optional, Available in 1.68.0+) The storage type of the instance. Valid values: - local_ssd: specifies to use local SSDs. This value is recommended. - cloud_ssd: specifies to use standard SSDs. - cloud_essd: specifies to use enhanced SSDs (ESSDs). - cloud_essd2: specifies to use enhanced SSDs (ESSDs). - cloud_essd3: specifies to use enhanced SSDs (ESSDs).`,
 				},
 				resource.Attribute{
+					Name:        "sql_collector_status",
+					Description: `(Optional, Available in 1.70.0+) The sql collector status of the instance. Valid values are ` + "`" + `Enabled` + "`" + `, ` + "`" + `Disabled` + "`" + `, Default to ` + "`" + `Disabled` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "sql_collector_config_value",
+					Description: `(Optional, Available in 1.70.0+) The sql collector keep time of the instance. Valid values are ` + "`" + `1` + "`" + `, ` + "`" + `30` + "`" + `, ` + "`" + `180` + "`" + `, ` + "`" + `365` + "`" + `, ` + "`" + `1095` + "`" + `, ` + "`" + `1825` + "`" + `, ` + "`" + `1` + "`" + ` is the initial value, and can't change it to ` + "`" + `1` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "instance_name",
 					Description: `(Optional) The name of DB instance. It a string of 2 to 256 characters.`,
 				},
@@ -3755,7 +3874,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "security_group_id",
-					Description: `(Optional) Input the ECS Security Group ID to join ECS Security Group. Only support mysql 5.5, mysql 5.6`,
+					Description: `(Deprecated) It has been deprecated from 1.69.0 and use ` + "`" + `security_group_ids` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "security_group_ids",
+					Description: `(Optional, List(string), Available in 1.69.0+) The list IDs to join ECS Security Group. At most supports three security groups.`,
 				},
 				resource.Attribute{
 					Name:        "maintain_time",
@@ -4665,11 +4788,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_charge_type",
-					Description: `(Optional, ForceNew) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `, Default to ` + "`" + `PostPaid` + "`" + `.`,
+					Description: `(Optional) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `, Default to ` + "`" + `PostPaid` + "`" + `. From version 1.69.0, the Elasticsearch cluster allows you to update your instance_charge_ype from ` + "`" + `PostPaid` + "`" + ` to ` + "`" + `PrePaid` + "`" + `, the following attributes are required: ` + "`" + `period` + "`" + `. But, updating from ` + "`" + `PostPaid` + "`" + ` to ` + "`" + `PrePaid` + "`" + ` is not supported.`,
 				},
 				resource.Attribute{
 					Name:        "period",
-					Description: `(Optional) The duration that you will buy Elasticsearch instance (in month). It is valid when instance_charge_type is ` + "`" + `PrePaid` + "`" + `. Valid values: [1~9], 12, 24, 36. Default to 1.`,
+					Description: `(Optional) The duration that you will buy Elasticsearch instance (in month). It is valid when instance_charge_type is ` + "`" + `PrePaid` + "`" + `. Valid values: [1~9], 12, 24, 36. Default to 1. From version 1.69.2, when to modify this value, the resource can renewal a ` + "`" + `PrePaid` + "`" + ` instance.`,
 				},
 				resource.Attribute{
 					Name:        "data_node_amount",
@@ -4693,7 +4816,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional, Sensitive) The password of the instance. The password can be 8 to 32 characters in length and must contain three of the following conditions: uppercase letters, lowercase letters, numbers, and special characters (!@#$%^&`,
+					Description: `(Optional, Sensitive) The password of the instance. The password can be 8 to 30 characters in length and must contain three of the following conditions: uppercase letters, lowercase letters, numbers, and special characters (` + "`" + `!@#$%^&`,
 				},
 				resource.Attribute{
 					Name:        "kms_encrypted_password",
@@ -4757,7 +4880,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The Elasticsearch instance status. Includes ` + "`" + `active` + "`" + `, ` + "`" + `activating` + "`" + `, ` + "`" + `inactive` + "`" + `. Some operations are denied when status is not ` + "`" + `active` + "`" + `. ## Import Elasticsearch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_elasticsearch.example es-cn-abcde123456 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Elasticsearch instance status. Includes ` + "`" + `active` + "`" + `, ` + "`" + `activating` + "`" + `, ` + "`" + `inactive` + "`" + `. Some operations are denied when status is not ` + "`" + `active` + "`" + `. ## Import Elasticsearch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_elasticsearch_instance.example es-cn-abcde123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4783,7 +4906,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "status",
-					Description: `The Elasticsearch instance status. Includes ` + "`" + `active` + "`" + `, ` + "`" + `activating` + "`" + `, ` + "`" + `inactive` + "`" + `. Some operations are denied when status is not ` + "`" + `active` + "`" + `. ## Import Elasticsearch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_elasticsearch.example es-cn-abcde123456 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The Elasticsearch instance status. Includes ` + "`" + `active` + "`" + `, ` + "`" + `activating` + "`" + `, ` + "`" + `inactive` + "`" + `. Some operations are denied when status is not ` + "`" + `active` + "`" + `. ## Import Elasticsearch can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_elasticsearch_instance.example es-cn-abcde123456 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -4878,7 +5001,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_list",
-					Description: `(Optional) Instance list for cluster scale down. This value follows the json format, e.g. ["instance_id1","instance_id2"]. escape character for " is \". #### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+					Description: `(Optional) Instance list for cluster scale down. This value follows the json format, e.g. ["instance_id1","instance_id2"]. escape character for " is \". #### Block bootstrap_action The bootstrap_action mapping supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional, Available in 1.71.2+) bootstrap action name.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Optional, Available in 1.71.2+) bootstrap action path, e.g. "oss://bucket/path".`,
+				},
+				resource.Attribute{
+					Name:        "arg",
+					Description: `(Optional, Available in 1.71.2+) bootstrap action args, e.g. "--a=b". #### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
 				},
 				resource.Attribute{
 					Name:        "create",
@@ -6170,6 +6305,85 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_hbase_instance",
+			Category:         "HBase",
+			ShortDescription: `Provides a HBase instance resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"hbase",
+				"instance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) HBase instance name. Length must be 2-128 characters long. Only Chinese characters, English letters, numbers, period (.), underline (_), or dash (-) are permitted.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `(Optional, ForceNew) The Zone to launch the HBase instance. if vswitch_id is not empty, this zone_id can be "" or consistent.`,
+				},
+				resource.Attribute{
+					Name:        "hbase",
+					Description: `(Optional, ForceNew) "hbase".`,
+				},
+				resource.Attribute{
+					Name:        "engine_version",
+					Description: `(Required, ForceNew) hbase major version. hbase:1.1, 2.0; unsupport other engine temporarily. Value options can refer to the latest docs [CreateInstance](https://help.aliyun.com/document_detail/144607.html).`,
+				},
+				resource.Attribute{
+					Name:        "core_disk_size",
+					Description: `(Optional, ForceNew) User-defined HBase instance one core node's storage space.Unit: GB. Value range: - Custom storage space; value range: [100,2000] - 10-GB increments.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `(Optional, ForceNew) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `,System default to ` + "`" + `PostPaid` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Optional, ForceNew) 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36, 60, valid when pay_type = PrePaid. unit: month.`,
+				},
+				resource.Attribute{
+					Name:        "auto_renew",
+					Description: `(Optional, ForceNew) ` + "`" + `true` + "`" + `, ` + "`" + `false` + "`" + `, System default to ` + "`" + `false` + "`" + `, valid when pay_type = PrePaid.`,
+				},
+				resource.Attribute{
+					Name:        "vswitch_id",
+					Description: `(Optional, ForceNew) if vswitch_id is not empty, that mean net_type = vpc and has a same region. if vswitch_id is empty, net_type_classic`,
+				},
+				resource.Attribute{
+					Name:        "cold_storage_size",
+					Description: `(Optional, ForceNew) 0 or 0+. 0 means is_cold_storage = false. 0+ means is_cold_storage = true ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the HBase. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 mins) Used when creating the HBase instance (until it reaches the initial ` + "`" + `ACTIVATION` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 mins) Used when terminating the HBase instance. ## Import HBase can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_hbase_instance.example hb-wz96815u13k659fvd ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the HBase. ### Timeouts The ` + "`" + `timeouts` + "`" + ` block allows you to specify [timeouts](https://www.terraform.io/docs/configuration-0-11/resources.html#timeouts) for certain actions:`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 30 mins) Used when creating the HBase instance (until it reaches the initial ` + "`" + `ACTIVATION` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 30 mins) Used when terminating the HBase instance. ## Import HBase can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_hbase_instance.example hb-wz96815u13k659fvd ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_image",
 			Category:         "ECS",
 			ShortDescription: `Provides an ECS image resource.`,
@@ -6184,7 +6398,7 @@ var (
 					Description: `(Optional, ForceNew, Conflict with ` + "`" + `snapshot_id ` + "`" + ` and ` + "`" + `disk_device_mapping ` + "`" + `) The instance ID.`,
 				},
 				resource.Attribute{
-					Name:        "name",
+					Name:        "image_name",
 					Description: `(Optional) The image name. It must be 2 to 128 characters in length, and must begin with a letter or Chinese character (beginning with http:// or https:// is not allowed). It can contain digits, colons (:), underscores (_), or hyphens (-). Default value: null.`,
 				},
 				resource.Attribute{
@@ -6201,7 +6415,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "platform",
-					Description: `(Optional, ForceNew) Specifies the operating system platform of the system disk after you specify a data disk snapshot as the data source of the system disk for creating an image. Valid values: ` + "`" + `CentOS` + "`" + `, ` + "`" + `Ubuntu` + "`" + `, ` + "`" + `cloud_ssd` + "`" + `, ` + "`" + `SUSE` + "`" + `, ` + "`" + `OpenSUSE` + "`" + `, ` + "`" + `RedHat` + "`" + `, ` + "`" + `Debian` + "`" + `, ` + "`" + `CoreOS` + "`" + `, ` + "`" + `Aliyun Linux` + "`" + `, ` + "`" + `Windows Server 2003` + "`" + `, ` + "`" + `Windows Server 2008` + "`" + `, ` + "`" + `Windows Server 2012` + "`" + `, ` + "`" + `Windows 7` + "`" + `, Default is ` + "`" + `Others Linux` + "`" + `, ` + "`" + `Customized Linux` + "`" + `.`,
+					Description: `(Optional, ForceNew) Specifies the operating system platform of the system disk after you specify a data disk snapshot as the data source of the system disk for creating an image. Valid values: ` + "`" + `CentOS` + "`" + `, ` + "`" + `Ubuntu` + "`" + `, ` + "`" + `SUSE` + "`" + `, ` + "`" + `OpenSUSE` + "`" + `, ` + "`" + `RedHat` + "`" + `, ` + "`" + `Debian` + "`" + `, ` + "`" + `CoreOS` + "`" + `, ` + "`" + `Aliyun Linux` + "`" + `, ` + "`" + `Windows Server 2003` + "`" + `, ` + "`" + `Windows Server 2008` + "`" + `, ` + "`" + `Windows Server 2012` + "`" + `, ` + "`" + `Windows 7` + "`" + `, Default is ` + "`" + `Others Linux` + "`" + `, ` + "`" + `Customized Linux` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "tags",
@@ -6216,7 +6430,7 @@ var (
 					Description: `(Optional, ForceNew, Conflict with ` + "`" + `snapshot_id ` + "`" + ` and ` + "`" + `instance_id ` + "`" + `) Description of the system with disks and snapshots under the image.`,
 				},
 				resource.Attribute{
-					Name:        "device",
+					Name:        "disk_type",
 					Description: `(Optional, ForceNew) Specifies the type of a disk in the combined custom image. If you specify this parameter, you can use a data disk snapshot as the data source of a system disk for creating an image. If it is not specified, the disk type is determined by the corresponding snapshot. Valid values: ` + "`" + `system` + "`" + `, ` + "`" + `data` + "`" + `,`,
 				},
 				resource.Attribute{
@@ -6228,8 +6442,8 @@ var (
 					Description: `(Optional, ForceNew) Specifies a snapshot that is used to create a combined custom image.`,
 				},
 				resource.Attribute{
-					Name:        "disk_type",
-					Description: `(Optional, ForceNew)Snapshot ID.`,
+					Name:        "device",
+					Description: `(Optional, ForceNew)Specifies the name of a disk in the combined custom image. Value range: /dev/xvda to /dev/xvdz.`,
 				},
 				resource.Attribute{
 					Name:        "force",
@@ -6276,7 +6490,7 @@ var (
 					Description: `(Required, ForceNew) The ID of the region to which the source custom image belongs. You can call [DescribeRegions](https://www.alibabacloud.com/help/doc-detail/25609.htm) to view the latest regions of Alibaba Cloud.`,
 				},
 				resource.Attribute{
-					Name:        "name",
+					Name:        "image_name",
 					Description: `(Optional) The image name. It must be 2 to 128 characters in length, and must begin with a letter or Chinese character (beginning with http:// or https:// is not allowed). It can contain digits, colons (:), underscores (_), or hyphens (-). Default value: null.`,
 				},
 				resource.Attribute{
@@ -6356,6 +6570,86 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `ID of the image.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "alicloud_image_import",
+			Category:         "ECS",
+			ShortDescription: `Provides an ECS image import resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"ecs",
+				"image",
+				"import",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "architecture",
+					Description: `(Optional, ForceNew) Specifies the architecture of the system disk after you specify a data disk snapshot as the data source of the system disk for creating an image. Valid values: ` + "`" + `i386` + "`" + ` , Default is ` + "`" + `x86_64` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the image. The length is 2 to 256 English or Chinese characters, and cannot begin with http: // and https: //.`,
+				},
+				resource.Attribute{
+					Name:        "image_name",
+					Description: `(Optional) The image name. The length is 2 ~ 128 English or Chinese characters. Must start with a capital letter or Chinese, and cannot start with http: // and https: //. Can contain numbers, colons (:), underscores (_), or hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "license_type",
+					Description: `(Optional, ForceNew)`,
+				},
+				resource.Attribute{
+					Name:        "platform",
+					Description: `(Optional, ForceNew) Specifies the operating system platform of the system disk after you specify a data disk snapshot as the data source of the system disk for creating an image. Valid values: ` + "`" + `CentOS` + "`" + `, ` + "`" + `Ubuntu` + "`" + `, ` + "`" + `SUSE` + "`" + `, ` + "`" + `OpenSUSE` + "`" + `, ` + "`" + `Debian` + "`" + `, ` + "`" + `CoreOS` + "`" + `, ` + "`" + `Windows Server 2003` + "`" + `, ` + "`" + `Windows Server 2008` + "`" + `, ` + "`" + `Windows Server 2012` + "`" + `, ` + "`" + `Windows 7` + "`" + `, Default is ` + "`" + `Others Linux` + "`" + `, ` + "`" + `Customized Linux` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "os_type",
+					Description: `(Optional, ForceNew) Operating system platform type. Valid values: ` + "`" + `windows` + "`" + `, Default is ` + "`" + `linux` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "disk_device_mapping",
+					Description: `(Optional, ForceNew) Description of the system with disks and snapshots under the image.`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `(Optional, ForceNew) Specifies the type of a disk in the combined custom image. If you specify this parameter, you can use a data disk snapshot as the data source of a system disk for creating an image. If it is not specified, the disk type is determined by the corresponding snapshot. Valid values: ` + "`" + `system` + "`" + `, ` + "`" + `data` + "`" + `,`,
+				},
+				resource.Attribute{
+					Name:        "disk_image_size",
+					Description: `(Optional, ForceNew) Resolution size. You must ensure that the system disk space ≥ file system space. Ranges: When n = 1, the system disk: 5 ~ 500GiB, When n = 2 ~ 17, that is, data disk: 5 ~ 1000GiB, When temporary is introduced, the system automatically detects the size, which is subject to the detection result.`,
+				},
+				resource.Attribute{
+					Name:        "format",
+					Description: `(Optional, ForceNew) Image format. Value range: When the ` + "`" + `RAW` + "`" + `, ` + "`" + `VHD` + "`" + `, ` + "`" + `qcow2` + "`" + ` is imported into the image, the system automatically detects the image format, whichever comes first.`,
+				},
+				resource.Attribute{
+					Name:        "oss_bucket",
+					Description: `(Optional) Save the exported OSS bucket.`,
+				},
+				resource.Attribute{
+					Name:        "oss_prefix",
+					Description: `(Optional, ForceNew) The prefix of your OSS Object. It can be composed of numbers or letters, and the character length is 1 ~ 30. ->`,
+				},
+				resource.Attribute{
+					Name:        "create",
+					Description: `(Defaults to 20 mins) Used when copying the image (until it reaches the initial ` + "`" + `Available` + "`" + ` status).`,
+				},
+				resource.Attribute{
+					Name:        "delete",
+					Description: `(Defaults to 20 mins) Used when terminating the image. ## Attributes Reference0 The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the image. ## Import image can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_image_import.default m-uf66871ape`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the image. ## Import image can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_image_import.default m-uf66871ape`,
 				},
 			},
 		},
@@ -6553,7 +6847,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "force_delete",
-					Description: `(Optional, Available 1.18.0+) If it is true, the "PrePaid" instance will be change to "PostPaid" and then deleted forcibly. However, because of changing instance charge type has CPU core count quota limitation, so strongly recommand that "Don't modify instance charge type frequentlly in one month".`,
+					Description: `(Optional, Available in 1.18.0+) If it is true, the "PrePaid" instance will be change to "PostPaid" and then deleted forcibly. However, because of changing instance charge type has CPU core count quota limitation, so strongly recommand that "Don't modify instance charge type frequentlly in one month".`,
+				},
+				resource.Attribute{
+					Name:        "auto_release_time",
+					Description: `(Optional, Available in 1.70.0+) The automatic release time of the ` + "`" + `PostPaid` + "`" + ` instance. The time follows the ISO 8601 standard and is in UTC time. Format: yyyy-MM-ddTHH:mm:ssZ. It must be at least half an hour later than the current time and less than 3 years since the current time. Set it to null can cancel automatic release attribute and the ECS instance will not be released automatically.`,
 				},
 				resource.Attribute{
 					Name:        "security_enhancement_strategy",
@@ -7693,6 +7991,62 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "alicloud_market_order",
+			Category:         "Market Place",
+			ShortDescription: `Provides a market order resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"market",
+				"place",
+				"order",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "product_code",
+					Description: `(Required, ForceNew) The product_code of market place product.`,
+				},
+				resource.Attribute{
+					Name:        "pay_type",
+					Description: `(Optional, ForceNew) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `,System default to ` + "`" + `PostPaid` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Optional, ForceNew) The number of purchase cycles.`,
+				},
+				resource.Attribute{
+					Name:        "pricing_cycle",
+					Description: `(Required, ForceNew) The purchase cycle of the product, valid values are ` + "`" + `Day` + "`" + `, ` + "`" + `Month` + "`" + ` and ` + "`" + `Year` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "package_version",
+					Description: `(Required, ForceNew) The package version of the market product.`,
+				},
+				resource.Attribute{
+					Name:        "quantity",
+					Description: `(Optional, ForceNew) The quantity of the market product will be purchased.`,
+				},
+				resource.Attribute{
+					Name:        "coupon_id",
+					Description: `(Optional, ForceNew) The coupon id of the market product.`,
+				},
+				resource.Attribute{
+					Name:        "components",
+					Description: `(Optional, ForceNew) Service providers customize additional components. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the market order. ## Import Market order can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_market_order.order your-order-id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the market order. ## Import Market order can be imported using the id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_market_order.order your-order-id ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "alicloud_mns_queue",
 			Category:         "Message Notification Service (MNS)",
 			ShortDescription: `Provides a Alicloud MNS Queue resource.`,
@@ -7804,7 +8158,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "notify_content_format",
-					Description: `(Optional, ForceNew) The NotifyContentFormat attribute of Subscription. This attribute specifies the content format of the messages pushed to users. the attribute has two value SIMPLIFIED or XML.Default value to SIMPLIFIED .`,
+					Description: `(Optional, ForceNew) The NotifyContentFormat attribute of Subscription. This attribute specifies the content format of the messages pushed to users. The valid values: 'SIMPLIFIED', 'XML' and 'JSON'. Default to 'SIMPLIFIED'.`,
 				},
 				resource.Attribute{
 					Name:        "endpoint",
@@ -7851,7 +8205,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "replication_factor",
-					Description: `(Optional) Number of replica set nodes. Valid values: [3,5,7]`,
+					Description: `(Optional) Number of replica set nodes. Valid values: [3, 5, 7]`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -7859,7 +8213,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_charge_type",
-					Description: `(Optional) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `,System default to ` + "`" + `PostPaid` + "`" + `. It can be modified from ` + "`" + `PostPaid` + "`" + ` to ` + "`" + `PrePaid` + "`" + ` after version 1.63.0.`,
+					Description: `(Optional) Valid values are ` + "`" + `PrePaid` + "`" + `, ` + "`" + `PostPaid` + "`" + `, System default to ` + "`" + `PostPaid` + "`" + `. It can be modified from ` + "`" + `PostPaid` + "`" + ` to ` + "`" + `PrePaid` + "`" + ` after version 1.63.0.`,
 				},
 				resource.Attribute{
 					Name:        "period",
@@ -7895,7 +8249,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_time",
-					Description: `(Optional, Available in 1.42.0+) MongoDB instance backup time. It is required when ` + "`" + `backup_period` + "`" + ` was existed. In the format of HH:mmZ- HH:mmZ. Time setting interval is one hour. Default to a random time, like "23:00Z-24:00Z".`,
+					Description: `(Optional, Available in 1.42.0+) MongoDB instance backup time. It is required when ` + "`" + `backup_period` + "`" + ` was existed. In the format of HH:mmZ- HH:mmZ. Time setting interval is one hour. If not set, the system will return a default, like "23:00Z-24:00Z".`,
 				},
 				resource.Attribute{
 					Name:        "maintain_start_time",
@@ -8031,7 +8385,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_time",
-					Description: `(Optional, Available in 1.42.0+) MongoDB instance backup time. It is required when ` + "`" + `backup_period` + "`" + ` was existed. In the format of HH:mmZ- HH:mmZ. Time setting interval is one hour. Default to a random time, like "23:00Z-24:00Z". ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional, Available in 1.42.0+) MongoDB instance backup time. It is required when ` + "`" + `backup_period` + "`" + ` was existed. In the format of HH:mmZ- HH:mmZ. Time setting interval is one hour. If not set, the system will return a default, like "23:00Z-24:00Z". ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -9541,7 +9895,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "db_node_class",
-					Description: `(Required,ForceNew) The db_node_class of cluster node.`,
+					Description: `(Required) The db_node_class of cluster node.`,
+				},
+				resource.Attribute{
+					Name:        "modify_type",
+					Description: `(Optional, Available in 1.71.2+) Use as ` + "`" + `db_node_class` + "`" + ` change class , define upgrade or downgrade. Valid values are ` + "`" + `Upgrade` + "`" + `, ` + "`" + `Downgrade` + "`" + `, Default to ` + "`" + `Upgrade` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "zone_id",
@@ -9569,7 +9927,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vswitch_id",
-					Description: `(Optional,ForceNew) The virtual switch ID to launch DB instances in one VPC.`,
+					Description: `(Optional) The virtual switch ID to launch DB instances in one VPC.`,
 				},
 				resource.Attribute{
 					Name:        "maintain_time",
@@ -9597,7 +9955,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Defaults to 20 mins) Used when updating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+					Description: `(Defaults to 30 mins) Used when updating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
 				},
 				resource.Attribute{
 					Name:        "delete",
@@ -9615,7 +9973,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "update",
-					Description: `(Defaults to 20 mins) Used when updating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
+					Description: `(Defaults to 30 mins) Used when updating the polardb cluster (until it reaches the initial ` + "`" + `Running` + "`" + ` status).`,
 				},
 				resource.Attribute{
 					Name:        "delete",
@@ -9744,7 +10102,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "remark",
-					Description: `(Optional) The remark of the Private Zone. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The remark of the Private Zone.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_pattern",
+					Description: `(Optional, Available in 1.69.0+) The recursive DNS proxy. Valid values: - ZONE: indicates that the recursive DNS proxy is disabled. - RECORD: indicates that the recursive DNS proxy is enabled. Default to "ZONE"`,
+				},
+				resource.Attribute{
+					Name:        "user_client_ip",
+					Description: `(Optional, Available in 1.69.0+) The IP address of the client.`,
+				},
+				resource.Attribute{
+					Name:        "lang",
+					Description: `(Optional, Available in 1.69.0+) The language. Valid values: "zh", "en", "jp". ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -12121,6 +12491,10 @@ var (
 					Description: `(Optional) Bandwidth peak of Listener. For the public network instance charged per traffic consumed, the Bandwidth on Listener can be set to -1, indicating the bandwidth peak is unlimited. Valid values are [-1, 1-1000] in Mbps.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional, Available in 1.69.0+) The description of slb listener. This description can have a string of 1 to 80 characters. Default value: null.`,
+				},
+				resource.Attribute{
 					Name:        "scheduler",
 					Description: `(Optional) Scheduling algorithm, Valid values are ` + "`" + `wrr` + "`" + `, ` + "`" + `rr` + "`" + ` and ` + "`" + `wlc` + "`" + `. Default to "wrr".`,
 				},
@@ -12185,6 +12559,10 @@ var (
 					Description: `(Optional) Regular health check HTTP status code. Multiple codes are segmented by “,”. It is required when ` + "`" + `health_check` + "`" + ` is on. Default to ` + "`" + `http_2xx` + "`" + `. Valid values are: ` + "`" + `http_2xx` + "`" + `, ` + "`" + `http_3xx` + "`" + `, ` + "`" + `http_4xx` + "`" + ` and ` + "`" + `http_5xx` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "health_check_method",
+					Description: `(Optional, Available in 1.70.0+) HealthCheckMethod used for health check.` + "`" + `http` + "`" + ` and ` + "`" + `https` + "`" + ` support regions ap-northeast-1, ap-southeast-1, ap-southeast-2, ap-southeast-3, us-east-1, us-west-1, eu-central-1, ap-south-1, me-east-1, cn-huhehaote, cn-zhangjiakou, ap-southeast-5, cn-shenzhen, cn-hongkong, cn-qingdao, cn-chengdu, eu-west-1, cn-hangzhou", cn-beijing, cn-shanghai.This function does not support the TCP protocol .`,
+				},
+				resource.Attribute{
 					Name:        "ssl_certificate_id",
 					Description: `(Deprecated) It has been deprecated from 1.59.0 and using ` + "`" + `server_certificate_id` + "`" + ` instead.`,
 				},
@@ -12245,6 +12623,10 @@ var (
 					Description: `(Optional, ForceNew, Available in 1.40.0+) The port that http redirect to https.`,
 				},
 				resource.Attribute{
+					Name:        "health_check_method",
+					Description: `(Optional, ForceNew, Available in 1.70.0+) The method of health check. Valid values: ["head", "get"].`,
+				},
+				resource.Attribute{
 					Name:        "delete_protection_validation",
 					Description: `(Optional, Available in 1.63.0+) Checking DeleteProtection of SLB instance before deleting. If true, this resource will not be deleted when its SLB instance enabled DeleteProtection. Default to false. ->`,
 				},
@@ -12258,7 +12640,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "retrive_slb_proto",
-					Description: `(Optional) Whether to use the XForwardedFor_proto header to obtain the protocol used by the listener. Default to false. ## Listener fields and protocol mapping load balance support 4 protocal to listen on, they are ` + "`" + `http` + "`" + `,` + "`" + `https` + "`" + `,` + "`" + `tcp` + "`" + `,` + "`" + `udp` + "`" + `, the every listener support which portocal following: listener parameter | support protocol | value range | ------------- | ------------- | ------------- | backend_port | http & https & tcp & udp | 1-65535 | frontend_port | http & https & tcp & udp | 1-65535 | protocol | http & https & tcp & udp | bandwidth | http & https & tcp & udp | -1 / 1-1000 | scheduler | http & https & tcp & udp | wrr rr or wlc | sticky_session | http & https | on or off | sticky_session_type | http & https | insert or server | cookie_timeout | http & https | 1-86400 | cookie | http & https | | persistence_timeout | tcp & udp | 0-3600 | health_check | http & https | on or off | health_check_type | tcp | tcp or http | health_check_domain | http & https & tcp | health_check_uri | http & https & tcp | | health_check_connect_port | http & https & tcp & udp | 1-65535 or -520 | healthy_threshold | http & https & tcp & udp | 1-10 | unhealthy_threshold | http & https & tcp & udp | 1-10 | health_check_timeout | http & https & tcp & udp | 1-300 | health_check_interval | http & https & tcp & udp | 1-50 | health_check_http_code | http & https & tcp | http_2xx,http_3xx,http_4xx,http_5xx | server_certificate_id | https | | gzip | http & https | true or false | x_forwarded_for | http & https | | acl_status | http & https & tcp & udp | on or off | acl_type | http & https & tcp & udp | white or black | acl_id | http & https & tcp & udp | the id of resource alicloud_slb_acl| established_timeout | tcp | 10-900| idle_timeout |http & https | 1-60 | request_timeout |http & https | 1-180 | enable_http2 |https | on or off | tls_cipher_policy |https | tls_cipher_policy_1_0, tls_cipher_policy_1_1, tls_cipher_policy_1_2, tls_cipher_policy_1_2_strict | server_group_id | http & https & tcp & udp | the id of resource alicloud_slb_server_group | The listener mapping supports the following: ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Whether to use the XForwardedFor_proto header to obtain the protocol used by the listener. Default to false. ## Listener fields and protocol mapping load balance support 4 protocal to listen on, they are ` + "`" + `http` + "`" + `,` + "`" + `https` + "`" + `,` + "`" + `tcp` + "`" + `,` + "`" + `udp` + "`" + `, the every listener support which portocal following: listener parameter | support protocol | value range | ------------- | ------------- | ------------- | backend_port | http & https & tcp & udp | 1-65535 | frontend_port | http & https & tcp & udp | 1-65535 | protocol | http & https & tcp & udp | bandwidth | http & https & tcp & udp | -1 / 1-1000 | scheduler | http & https & tcp & udp | wrr rr or wlc | sticky_session | http & https | on or off | sticky_session_type | http & https | insert or server | cookie_timeout | http & https | 1-86400 | cookie | http & https | | persistence_timeout | tcp & udp | 0-3600 | health_check | http & https | on or off | health_check_type | tcp | tcp or http | health_check_domain | http & https & tcp | health_check_method | http & https & tcp | health_check_uri | http & https & tcp | | health_check_connect_port | http & https & tcp & udp | 1-65535 or -520 | healthy_threshold | http & https & tcp & udp | 1-10 | unhealthy_threshold | http & https & tcp & udp | 1-10 | health_check_timeout | http & https & tcp & udp | 1-300 | health_check_interval | http & https & tcp & udp | 1-50 | health_check_http_code | http & https & tcp | http_2xx,http_3xx,http_4xx,http_5xx | server_certificate_id | https | | gzip | http & https | true or false | x_forwarded_for | http & https | | acl_status | http & https & tcp & udp | on or off | acl_type | http & https & tcp & udp | white or black | acl_id | http & https & tcp & udp | the id of resource alicloud_slb_acl| established_timeout | tcp | 10-900| idle_timeout |http & https | 1-60 | request_timeout |http & https | 1-180 | enable_http2 |https | on or off | tls_cipher_policy |https | tls_cipher_policy_1_0, tls_cipher_policy_1_1, tls_cipher_policy_1_2, tls_cipher_policy_1_2_strict | server_group_id | http & https & tcp & udp | the id of resource alicloud_slb_server_group | The listener mapping supports the following: ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -12319,6 +12701,10 @@ var (
 				resource.Attribute{
 					Name:        "health_check_domain",
 					Description: `Domain name used for health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_method",
+					Description: `HealthCheckMethod used for health check.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_uri",
@@ -12413,6 +12799,10 @@ var (
 				resource.Attribute{
 					Name:        "health_check_domain",
 					Description: `Domain name used for health check.`,
+				},
+				resource.Attribute{
+					Name:        "health_check_method",
+					Description: `HealthCheckMethod used for health check.`,
 				},
 				resource.Attribute{
 					Name:        "health_check_uri",
@@ -12661,6 +13051,14 @@ var (
 					Description: `(Optional, ForceNew) an id of server certificate ssued/proxied by alibaba cloud. but it is not supported on the international site of alibaba cloud now.`,
 				},
 				resource.Attribute{
+					Name:        "alicloud_certificate_name",
+					Description: `(Optional, ForceNew) the name of the certificate specified by ` + "`" + `alicloud_certificate_id` + "`" + `.but it is not supported on the international site of alibaba cloud now.`,
+				},
+				resource.Attribute{
+					Name:        "alicloud_certificate_region_id",
+					Description: `(Optional, ForceNew, Available in 1.69.0+) the region of the certificate specified by ` + "`" + `alicloud_certificate_id` + "`" + `. but it is not supported on the international site of alibaba cloud now.`,
+				},
+				resource.Attribute{
 					Name:        "resource_group_id",
 					Description: `(Optional, ForceNew, Available in 1.58.0+) The Id of resource group which the slb server certificate belongs.`,
 				},
@@ -12867,7 +13265,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "source_vswitch_id",
-					Description: `(Required, ForceNew) The vswitch ID.`,
+					Description: `(Optional, ForceNew) The vswitch ID.`,
+				},
+				resource.Attribute{
+					Name:        "source_cidr",
+					Description: `(Optional, ForceNew, Available in 1.71.1+) The private network segment of Ecs. This parameter and the ` + "`" + `source_vswitch_id` + "`" + ` parameter are mutually exclusive and cannot appear at the same time.`,
+				},
+				resource.Attribute{
+					Name:        "snat_entry_name",
+					Description: `(Optional, Available in 1.71.2+) The name of snat entry.`,
 				},
 				resource.Attribute{
 					Name:        "snat_ip",
@@ -12895,15 +13301,15 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
-			Type:             "alicloud_ssl_vpn_cert_client",
+			Type:             "alicloud_ssl_vpn_client_cert",
 			Category:         "VPN",
 			ShortDescription: `Provides a Alicloud SSL VPN Client Cert resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"vpn",
 				"ssl",
-				"cert",
 				"client",
+				"cert",
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
@@ -12934,7 +13340,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "local_subnet",
-					Description: `(Required) The CIDR block to be accessed by the client through the SSL-VPN connection.`,
+					Description: `(Required) The CIDR block to be accessed by the client through the SSL-VPN connection. It supports to set multi CIDRs by comma join ways, like ` + "`" + `10.0.1.0/24,10.0.2.0/24,10.0.3.0/24` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "protocol",
@@ -13254,7 +13660,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "instance_charge_type",
-					Description: `(ForceNew) The charge type for instance. Valid value: PostPaid, PrePaid. Default to PostPaid.`,
+					Description: `(ForceNew) The charge type for instance. If it is an international site account, the valid value is PostPaid, otherwise PrePaid. Default to PostPaid.`,
 				},
 				resource.Attribute{
 					Name:        "period",
@@ -13262,7 +13668,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bandwidth",
-					Description: `(Required) The value should be 10, 100, 200, 500, 1000 if the user is postpaid, otherwise it can be 5, 10, 20, 50, 100, 200, 500, 1000. It can't be changed by terraform.`,
+					Description: `(Required) The value should be 10, 100, 200. if the user is postpaid, otherwise it can be 5, 10, 20, 50, 100, 200. It can't be changed by terraform.`,
 				},
 				resource.Attribute{
 					Name:        "enable_ipsec",
@@ -13270,7 +13676,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl_connections",
-					Description: `(Optional) The max connections of SSL VPN. Default to 5. This field is ignored when enable_ssl is false.`,
+					Description: `(Optional) The max connections of SSL VPN. Default to 5. The number of connections supported by each account is different. This field is ignored when enable_ssl is false.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -13350,13 +13756,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The combination id of the vpn route entry. ## Import VPN route entry can be imported using the id(VpnGatewayId +":"+ NextHop +":"+ RouteDest), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpn_gateway.example vpn-abc123456:vco-abc123456:10.0.0.10/24 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The combination id of the vpn route entry. ## Import VPN route entry can be imported using the id(VpnGatewayId +":"+ NextHop +":"+ RouteDest), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpn_route_entry.example vpn-abc123456:vco-abc123456:10.0.0.10/24 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The combination id of the vpn route entry. ## Import VPN route entry can be imported using the id(VpnGatewayId +":"+ NextHop +":"+ RouteDest), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpn_gateway.example vpn-abc123456:vco-abc123456:10.0.0.10/24 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The combination id of the vpn route entry. ## Import VPN route entry can be imported using the id(VpnGatewayId +":"+ NextHop +":"+ RouteDest), e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import alicloud_vpn_route_entry.example vpn-abc123456:vco-abc123456:10.0.0.10/24 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -13538,186 +13944,192 @@ var (
 	resourcesMap = map[string]int{
 
 		"alicloud_actiontrail":                         0,
-		"alicloud_alikafka_consumer_group":             1,
-		"alicloud_alikafka_instance":                   2,
-		"alicloud_alikafka_sasl_acl":                   3,
-		"alicloud_alikafka_sasl_user":                  4,
-		"alicloud_alikafka_topic":                      5,
-		"alicloud_api_gateway_api":                     6,
-		"alicloud_api_gateway_app":                     7,
-		"alicloud_api_gateway_app_attachment":          8,
-		"alicloud_api_gateway_group":                   9,
-		"alicloud_api_gateway_vpc_access":              10,
-		"alicloud_cas_certificate":                     11,
-		"alicloud_cdn_domain":                          12,
-		"alicloud_cdn_domain_config":                   13,
-		"alicloud_cdn_domain_new":                      14,
-		"alicloud_cen_bandwidth_limit":                 15,
-		"alicloud_cen_bandwidth_package":               16,
-		"alicloud_cen_bandwidth_package_attachment":    17,
-		"alicloud_cen_instance":                        18,
-		"alicloud_cen_instance_attachment":             19,
-		"alicloud_cen_instance_grant":                  20,
-		"alicloud_cen_route_entry":                     21,
-		"alicloud_cloud_connect_network":               22,
-		"alicloud_cloud_connect_network_attachment":    23,
-		"alicloud_cloud_connect_network_grant":         24,
-		"alicloud_cms_alarm":                           25,
-		"alicloud_common_bandwidth_package":            26,
-		"alicloud_common_bandwidth_package_attachment": 27,
-		"alicloud_container_cluster":                   28,
-		"alicloud_cr_namespace":                        29,
-		"alicloud_cr_repo":                             30,
-		"alicloud_cs_application":                      31,
-		"alicloud_cs_kubernetes":                       32,
-		"alicloud_cs_kubernetes_autoscaler":            33,
-		"alicloud_cs_managed_kubernetes":               34,
-		"alicloud_cs_serverless_kubernetes":            35,
-		"alicloud_cs_swarm":                            36,
-		"alicloud_datahub_project":                     37,
-		"alicloud_datahub_subscription":                38,
-		"alicloud_datahub_topic":                       39,
-		"alicloud_db_account":                          40,
-		"alicloud_db_account_privilege":                41,
-		"alicloud_db_backup_policy":                    42,
-		"alicloud_db_connection":                       43,
-		"alicloud_db_database":                         44,
-		"alicloud_db_instance":                         45,
-		"alicloud_db_read_write_splitting_connection":  46,
-		"alicloud_db_readonly_instance":                47,
-		"alicloud_ddosbgp_instance":                    48,
-		"alicloud_ddoscoo_instance":                    49,
-		"alicloud_disk":                                50,
-		"alicloud_disk_attachment":                     51,
-		"alicloud_dns":                                 52,
-		"alicloud_dns_group":                           53,
-		"alicloud_dns_record":                          54,
-		"alicloud_drds_instance":                       55,
-		"alicloud_eip":                                 56,
-		"alicloud_eip_association":                     57,
-		"alicloud_elasticsearch_instance":              58,
-		"alicloud_emr_cluster":                         59,
-		"alicloud_ess_alarm":                           60,
-		"alicloud_ess_attachment":                      61,
-		"alicloud_ess_notification":                    62,
-		"alicloud_ess_scaling_configuration":           63,
-		"alicloud_ess_scaling_group":                   64,
-		"alicloud_ess_lifecycle_hook":                  65,
-		"alicloud_ess_scaling_rule":                    66,
-		"alicloud_ess_scalinggroup_vserver_groups":     67,
-		"alicloud_ess_schedule":                        68,
-		"alicloud_ess_scheduled_task":                  69,
-		"alicloud_fc_function":                         70,
-		"alicloud_fc_service":                          71,
-		"alicloud_fc_trigger":                          72,
-		"alicloud_forward_entry":                       73,
-		"alicloud_gpdb_connection":                     74,
-		"alicloud_gpdb_instance":                       75,
-		"alicloud_image":                               76,
-		"alicloud_image_copy":                          77,
-		"alicloud_image_export":                        78,
-		"alicloud_image_share_permission":              79,
-		"alicloud_instance":                            80,
-		"alicloud_key_pair":                            81,
-		"alicloud_key_pair_attachment":                 82,
-		"alicloud_kms_ciphertext":                      83,
-		"alicloud_kms_key":                             84,
-		"alicloud_kvstore_account":                     85,
-		"alicloud_kvstore_backup_policy":               86,
-		"alicloud_kvstore_instance":                    87,
-		"alicloud_launch_template":                     88,
-		"alicloud_log_machine_group":                   89,
-		"alicloud_log_project":                         90,
-		"alicloud_log_store":                           91,
-		"alicloud_log_store_index":                     92,
-		"alicloud_logtail_attachment":                  93,
-		"alicloud_logtail_config":                      94,
-		"alicloud_mns_queue":                           95,
-		"alicloud_mns_topic":                           96,
-		"alicloud_mns_topic_subscription":              97,
-		"alicloud_mongodb_instance":                    98,
-		"mongodb_sharding_instance":                    99,
-		"alicloud_nas_access_group":                    100,
-		"alicloud_nas_access_rule":                     101,
-		"alicloud_nas_file_system":                     102,
-		"alicloud_nas_mount_target":                    103,
-		"alicloud_nat_gateway":                         104,
-		"alicloud_network_acl":                         105,
-		"alicloud_network_acl_attachment":              106,
-		"alicloud_network_acl_entries":                 107,
-		"alicloud_network_interface":                   108,
-		"alicloud_network_interface_attachment":        109,
-		"alicloud_ons_group":                           110,
-		"alicloud_ons_instance":                        111,
-		"alicloud_ons_topic":                           112,
-		"alicloud_oss_bucket":                          113,
-		"alicloud_oss_bucket_object":                   114,
-		"alicloud_ots_instance":                        115,
-		"alicloud_ots_instance_attachment":             116,
-		"alicloud_ots_table":                           117,
-		"alicloud_polardb_account":                     118,
-		"alicloud_polardb_account_privilege":           119,
-		"alicloud_polardb_backup_policy":               120,
-		"alicloud_polardb_cluster":                     121,
-		"alicloud_polardb_database":                    122,
-		"alicloud_polardb_endpoint_address":            123,
-		"alicloud_pvtz_zone":                           124,
-		"alicloud_pvtz_zone_attachment":                125,
-		"alicloud_pvtz_zone_record":                    126,
-		"alicloud_ram_access_key":                      127,
-		"alicloud_ram_account_alias":                   128,
-		"alicloud_ram_account_password_policy":         129,
-		"alicloud_ram_alias":                           130,
-		"alicloud_ram_group":                           131,
-		"alicloud_ram_group_membership":                132,
-		"alicloud_ram_group_policy_attachment":         133,
-		"alicloud_ram_login_profile":                   134,
-		"alicloud_ram_policy":                          135,
-		"alicloud_ram_role":                            136,
-		"alicloud_ram_role_attachment":                 137,
-		"alicloud_ram_role_policy_attachment":          138,
-		"alicloud_ram_user":                            139,
-		"alicloud_ram_user_policy_attachment":          140,
-		"alicloud_reserved_instance":                   141,
-		"alicloud_route_entry":                         142,
-		"alicloud_route_table":                         143,
-		"alicloud_route_table_attachment":              144,
-		"alicloud_router_interface":                    145,
-		"alicloud_router_interface_connection":         146,
-		"alicloud_sag_acl":                             147,
-		"alicloud_sag_acl_rule":                        148,
-		"alicloud_sag_client_user":                     149,
-		"alicloud_sag_dnat_entry":                      150,
-		"alicloud_sag_qos":                             151,
-		"alicloud_sag_qos_car":                         152,
-		"alicloud_sag_qos_policy":                      153,
-		"alicloud_sag_snat_entry":                      154,
-		"alicloud_security_group":                      155,
-		"alicloud_security_group_rule":                 156,
-		"alicloud_slb":                                 157,
-		"alicloud_slb_acl":                             158,
-		"alicloud_slb_attachment":                      159,
-		"alicloud_slb_backend_server":                  160,
-		"alicloud_slb_ca_certificate":                  161,
-		"alicloud_slb_domain_extension":                162,
-		"alicloud_slb_listener":                        163,
-		"alicloud_slb_master_slave_server_group":       164,
-		"alicloud_slb_rule":                            165,
-		"alicloud_slb_server_certificate":              166,
-		"alicloud_slb_server_group":                    167,
-		"alicloud_snapshot":                            168,
-		"alicloud_snapshot_policy":                     169,
-		"alicloud_snat_entry":                          170,
-		"alicloud_ssl_vpn_cert_client":                 171,
-		"alicloud_ssl_vpn_server":                      172,
-		"alicloud_vpc":                                 173,
-		"alicloud_vpn_connection":                      174,
-		"alicloud_vpn_customer_gateway":                175,
-		"alicloud_vpn_gateway":                         176,
-		"alicloud_vpn_route_entry":                     177,
-		"alicloud_vswitch":                             178,
-		"alicloud_yundun_bastionhost_instance":         179,
-		"alicloud_yundun_dbaudit_instance":             180,
+		"alicloud_adb_account":                         1,
+		"alicloud_adb_backup_policy":                   2,
+		"alicloud_adb_cluster":                         3,
+		"alicloud_alikafka_consumer_group":             4,
+		"alicloud_alikafka_instance":                   5,
+		"alicloud_alikafka_sasl_acl":                   6,
+		"alicloud_alikafka_sasl_user":                  7,
+		"alicloud_alikafka_topic":                      8,
+		"alicloud_api_gateway_api":                     9,
+		"alicloud_api_gateway_app":                     10,
+		"alicloud_api_gateway_app_attachment":          11,
+		"alicloud_api_gateway_group":                   12,
+		"alicloud_api_gateway_vpc_access":              13,
+		"alicloud_cas_certificate":                     14,
+		"alicloud_cdn_domain":                          15,
+		"alicloud_cdn_domain_config":                   16,
+		"alicloud_cdn_domain_new":                      17,
+		"alicloud_cen_bandwidth_limit":                 18,
+		"alicloud_cen_bandwidth_package":               19,
+		"alicloud_cen_bandwidth_package_attachment":    20,
+		"alicloud_cen_instance":                        21,
+		"alicloud_cen_instance_attachment":             22,
+		"alicloud_cen_instance_grant":                  23,
+		"alicloud_cen_route_entry":                     24,
+		"alicloud_cloud_connect_network":               25,
+		"alicloud_cloud_connect_network_attachment":    26,
+		"alicloud_cloud_connect_network_grant":         27,
+		"alicloud_cms_alarm":                           28,
+		"alicloud_common_bandwidth_package":            29,
+		"alicloud_common_bandwidth_package_attachment": 30,
+		"alicloud_container_cluster":                   31,
+		"alicloud_cr_namespace":                        32,
+		"alicloud_cr_repo":                             33,
+		"alicloud_cs_application":                      34,
+		"alicloud_cs_kubernetes":                       35,
+		"alicloud_cs_kubernetes_autoscaler":            36,
+		"alicloud_cs_managed_kubernetes":               37,
+		"alicloud_cs_serverless_kubernetes":            38,
+		"alicloud_cs_swarm":                            39,
+		"alicloud_datahub_project":                     40,
+		"alicloud_datahub_subscription":                41,
+		"alicloud_datahub_topic":                       42,
+		"alicloud_db_account":                          43,
+		"alicloud_db_account_privilege":                44,
+		"alicloud_db_backup_policy":                    45,
+		"alicloud_db_connection":                       46,
+		"alicloud_db_database":                         47,
+		"alicloud_db_instance":                         48,
+		"alicloud_db_read_write_splitting_connection":  49,
+		"alicloud_db_readonly_instance":                50,
+		"alicloud_ddosbgp_instance":                    51,
+		"alicloud_ddoscoo_instance":                    52,
+		"alicloud_disk":                                53,
+		"alicloud_disk_attachment":                     54,
+		"alicloud_dns":                                 55,
+		"alicloud_dns_group":                           56,
+		"alicloud_dns_record":                          57,
+		"alicloud_drds_instance":                       58,
+		"alicloud_eip":                                 59,
+		"alicloud_eip_association":                     60,
+		"alicloud_elasticsearch_instance":              61,
+		"alicloud_emr_cluster":                         62,
+		"alicloud_ess_alarm":                           63,
+		"alicloud_ess_attachment":                      64,
+		"alicloud_ess_notification":                    65,
+		"alicloud_ess_scaling_configuration":           66,
+		"alicloud_ess_scaling_group":                   67,
+		"alicloud_ess_lifecycle_hook":                  68,
+		"alicloud_ess_scaling_rule":                    69,
+		"alicloud_ess_scalinggroup_vserver_groups":     70,
+		"alicloud_ess_schedule":                        71,
+		"alicloud_ess_scheduled_task":                  72,
+		"alicloud_fc_function":                         73,
+		"alicloud_fc_service":                          74,
+		"alicloud_fc_trigger":                          75,
+		"alicloud_forward_entry":                       76,
+		"alicloud_gpdb_connection":                     77,
+		"alicloud_gpdb_instance":                       78,
+		"alicloud_hbase_instance":                      79,
+		"alicloud_image":                               80,
+		"alicloud_image_copy":                          81,
+		"alicloud_image_export":                        82,
+		"alicloud_image_import":                        83,
+		"alicloud_image_share_permission":              84,
+		"alicloud_instance":                            85,
+		"alicloud_key_pair":                            86,
+		"alicloud_key_pair_attachment":                 87,
+		"alicloud_kms_ciphertext":                      88,
+		"alicloud_kms_key":                             89,
+		"alicloud_kvstore_account":                     90,
+		"alicloud_kvstore_backup_policy":               91,
+		"alicloud_kvstore_instance":                    92,
+		"alicloud_launch_template":                     93,
+		"alicloud_log_machine_group":                   94,
+		"alicloud_log_project":                         95,
+		"alicloud_log_store":                           96,
+		"alicloud_log_store_index":                     97,
+		"alicloud_logtail_attachment":                  98,
+		"alicloud_logtail_config":                      99,
+		"alicloud_market_order":                        100,
+		"alicloud_mns_queue":                           101,
+		"alicloud_mns_topic":                           102,
+		"alicloud_mns_topic_subscription":              103,
+		"alicloud_mongodb_instance":                    104,
+		"mongodb_sharding_instance":                    105,
+		"alicloud_nas_access_group":                    106,
+		"alicloud_nas_access_rule":                     107,
+		"alicloud_nas_file_system":                     108,
+		"alicloud_nas_mount_target":                    109,
+		"alicloud_nat_gateway":                         110,
+		"alicloud_network_acl":                         111,
+		"alicloud_network_acl_attachment":              112,
+		"alicloud_network_acl_entries":                 113,
+		"alicloud_network_interface":                   114,
+		"alicloud_network_interface_attachment":        115,
+		"alicloud_ons_group":                           116,
+		"alicloud_ons_instance":                        117,
+		"alicloud_ons_topic":                           118,
+		"alicloud_oss_bucket":                          119,
+		"alicloud_oss_bucket_object":                   120,
+		"alicloud_ots_instance":                        121,
+		"alicloud_ots_instance_attachment":             122,
+		"alicloud_ots_table":                           123,
+		"alicloud_polardb_account":                     124,
+		"alicloud_polardb_account_privilege":           125,
+		"alicloud_polardb_backup_policy":               126,
+		"alicloud_polardb_cluster":                     127,
+		"alicloud_polardb_database":                    128,
+		"alicloud_polardb_endpoint_address":            129,
+		"alicloud_pvtz_zone":                           130,
+		"alicloud_pvtz_zone_attachment":                131,
+		"alicloud_pvtz_zone_record":                    132,
+		"alicloud_ram_access_key":                      133,
+		"alicloud_ram_account_alias":                   134,
+		"alicloud_ram_account_password_policy":         135,
+		"alicloud_ram_alias":                           136,
+		"alicloud_ram_group":                           137,
+		"alicloud_ram_group_membership":                138,
+		"alicloud_ram_group_policy_attachment":         139,
+		"alicloud_ram_login_profile":                   140,
+		"alicloud_ram_policy":                          141,
+		"alicloud_ram_role":                            142,
+		"alicloud_ram_role_attachment":                 143,
+		"alicloud_ram_role_policy_attachment":          144,
+		"alicloud_ram_user":                            145,
+		"alicloud_ram_user_policy_attachment":          146,
+		"alicloud_reserved_instance":                   147,
+		"alicloud_route_entry":                         148,
+		"alicloud_route_table":                         149,
+		"alicloud_route_table_attachment":              150,
+		"alicloud_router_interface":                    151,
+		"alicloud_router_interface_connection":         152,
+		"alicloud_sag_acl":                             153,
+		"alicloud_sag_acl_rule":                        154,
+		"alicloud_sag_client_user":                     155,
+		"alicloud_sag_dnat_entry":                      156,
+		"alicloud_sag_qos":                             157,
+		"alicloud_sag_qos_car":                         158,
+		"alicloud_sag_qos_policy":                      159,
+		"alicloud_sag_snat_entry":                      160,
+		"alicloud_security_group":                      161,
+		"alicloud_security_group_rule":                 162,
+		"alicloud_slb":                                 163,
+		"alicloud_slb_acl":                             164,
+		"alicloud_slb_attachment":                      165,
+		"alicloud_slb_backend_server":                  166,
+		"alicloud_slb_ca_certificate":                  167,
+		"alicloud_slb_domain_extension":                168,
+		"alicloud_slb_listener":                        169,
+		"alicloud_slb_master_slave_server_group":       170,
+		"alicloud_slb_rule":                            171,
+		"alicloud_slb_server_certificate":              172,
+		"alicloud_slb_server_group":                    173,
+		"alicloud_snapshot":                            174,
+		"alicloud_snapshot_policy":                     175,
+		"alicloud_snat_entry":                          176,
+		"alicloud_ssl_vpn_client_cert":                 177,
+		"alicloud_ssl_vpn_server":                      178,
+		"alicloud_vpc":                                 179,
+		"alicloud_vpn_connection":                      180,
+		"alicloud_vpn_customer_gateway":                181,
+		"alicloud_vpn_gateway":                         182,
+		"alicloud_vpn_route_entry":                     183,
+		"alicloud_vswitch":                             184,
+		"alicloud_yundun_bastionhost_instance":         185,
+		"alicloud_yundun_dbaudit_instance":             186,
 	}
 )
 

@@ -21,15 +21,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "as3_json",
-					Description: `(Required) Name of the of the Declarative AS3 JSON file`,
+					Description: `(Required) Path/Filename of Declarative AS3 JSON template file used with builtin ` + "`" + `` + "`" + `` + "`" + `templatefile` + "`" + `` + "`" + `` + "`" + ` function`,
 				},
 				resource.Attribute{
-					Name:        "config_name",
-					Description: `(Required) This is the arbitrary name used to set the terraform state changes for as3 resource`,
+					Name:        "tenant_name",
+					Description: `(Required) Tenant name used to set the terraform state changes for as3 resource`,
 				},
 				resource.Attribute{
-					Name:        "example.json",
-					Description: `Example of AS3 Declarative JSON ` + "`" + `` + "`" + `` + "`" + `hcl { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.0.0", "id": "urn:uuid:33045210-3ab8-4636-9b2a-c98d22ab915d", "label": "Sample 1", "remark": "Simple HTTP application with RR pool", "as3": { "class": "Tenant", "A1": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.0.1.10" ], "pool": "web_pool" }, "web_pool": { "class": "Pool", "monitors": [ "http" ], "members": [{ "servicePort": 80, "serverAddresses": [ "192.0.1.10", "192.0.1.11" ] }] } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
+					Name:        "as3_example.tmpl",
+					Description: `Example template file AS3 Declarative JSON ` + "`" + `` + "`" + `` + "`" + `hcl { "class": "AS3", "action": "deploy", "persist": true, "declaration": { "class": "ADC", "schemaVersion": "3.0.0", "id": "example-declaration-01", "label": "Sample 1", "remark": "Simple HTTP application with round robin pool", ${tenant_name}: { "class": "Tenant", "defaultRouteDomain": 0, "Application_1": { "class": "Application", "template": "http", "serviceMain": { "class": "Service_HTTP", "virtualAddresses": [ "10.0.2.10" ], "pool": "web_pool" }, "web_pool": { "class": "Pool", "monitors": [ "http" ], "members": [ { "servicePort": 80, "serverAddresses": [ "192.0.1.100", "192.0.1.110" ] } ] } } } } } ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "AS3 documentation",

@@ -11,8 +11,257 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloud_api_gateway_api",
+			Category:         "API Gateway (APIG)",
+			ShortDescription: `Provides an API gateway API resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"gateway",
+				"apig",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the API. An API name consists of 3–64 characters, starting with a letter. Only letters, digits, and underscores (_) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Specifies the ID of the API group. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Specifies the description of the API. The description cannot exceed 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `(Optional) Specifies whether the API is available to the public. The value can be 1 (public) and 2 (private). Defaults to 2.`,
+				},
+				resource.Attribute{
+					Name:        "auth_type",
+					Description: `(Required) Specifies the security authentication mode. The value can be 'App', 'IAM', and 'NONE'.`,
+				},
+				resource.Attribute{
+					Name:        "request_protocol",
+					Description: `(Optional) Specifies the request protocol. The value can be 'HTTP', 'HTTPS', and 'BOTH' which means the API can be accessed through both 'HTTP' and 'HTTPS'. Defaults to 'HTTPS'.`,
+				},
+				resource.Attribute{
+					Name:        "request_method",
+					Description: `(Required) Specifies the request method, including 'GET','POST','PUT' and etc..`,
+				},
+				resource.Attribute{
+					Name:        "request_uri",
+					Description: `(Required) Specifies the request path of the API. The value must comply with URI specifications.`,
+				},
+				resource.Attribute{
+					Name:        "backend_type",
+					Description: `(Required) Specifies the service backend type. The value can be: - 'HTTP': the web service backend - 'FUNCTION': the FunctionGraph service backend - 'MOCK': the Mock service backend`,
+				},
+				resource.Attribute{
+					Name:        "http_backend",
+					Description: `(Optional) Specifies the configuration when backend_type selected 'HTTP' (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "function_backend",
+					Description: `(Optional) Specifies the configuration when backend_type selected 'FUNCTION' (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "mock_backend",
+					Description: `(Optional) Specifies the configuration when backend_type selected 'MOCK' (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "request_parameter",
+					Description: `(Optional) the request parameter list (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "backend_parameter",
+					Description: `(Optional) the backend parameter list (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) the tags of API in format of string list.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the version of the API. A maximum of 16 characters are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "cors",
+					Description: `(Optional) Specifies whether CORS is supported or not.`,
+				},
+				resource.Attribute{
+					Name:        "example_success_response",
+					Description: `(Required) Specifies the example response for a successful request. The length cannot exceed 20,480 characters.`,
+				},
+				resource.Attribute{
+					Name:        "example_failure_response",
+					Description: `(Optional) Specifies the example response for a failed request The length cannot exceed 20,480 characters. The ` + "`" + `http_backend` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) Specifies the backend request protocol. The value can be 'HTTP' and 'HTTPS'.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `(Optional) Specifies the backend request method, including 'GET','POST','PUT' and etc..`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `(Required) Specifies the backend request path. The value must comply with URI specifications.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_channel",
+					Description: `(Optional) Specifies the VPC channel ID. This parameter and ` + "`" + `url_domain` + "`" + ` are alternative.`,
+				},
+				resource.Attribute{
+					Name:        "url_domain",
+					Description: `(Optional) Specifies the backend service address. An endpoint URL is in the format of "domain name (or IP address):port number", with up to 255 characters. This parameter and ` + "`" + `vpc_channel` + "`" + ` are alternative.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout duration (in ms) for API Gateway to request for the backend service. Defaults to 50000. The ` + "`" + `function_backend` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "function_urn",
+					Description: `(Required) Specifies the function URN.`,
+				},
+				resource.Attribute{
+					Name:        "invocation_type",
+					Description: `(Required) Specifies the invocation mode, which can be 'async' or 'sync'.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) Specifies the function version.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Timeout duration (in ms) for API Gateway to request for FunctionGraph. Defaults to 50000. The ` + "`" + `mock_backend` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the input parameter name. A parameter name consists of 1–32 characters, starting with a letter. Only letters, digits, periods (.), hyphens (-), and underscores (_) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the input parameter location, which can be 'PATH', 'QUERY' or 'HEADER'.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the input parameter type, which can be 'STRING' or 'NUMBER'.`,
+				},
+				resource.Attribute{
+					Name:        "required",
+					Description: `(Optional) Specifies whether the parameter is mandatory or not.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `(Optional) Specifies the default value when the parameter is optional.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Specifies the description of the parameter. The description cannot exceed 255 characters. The ` + "`" + `backend_parameter` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the parameter name. A parameter name consists of 1–32 characters, starting with a letter. Only letters, digits, periods (.), hyphens (-), and underscores (_) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) Specifies the parameter location, which can be 'PATH', 'QUERY' or 'HEADER'.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Specifies the parameter type, which can be 'REQUEST', 'CONSTANT', or 'SYSTEM'.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Specifies the parameter value, which is a string of not more than 255 characters. The value varies depending on the parameter type: - 'REQUEST': parameter name in ` + "`" + `request_parameter` + "`" + ` - 'CONSTANT': real value of the parameter - 'SYSTEM': gateway parameter name`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Specifies the description of the parameter. The description cannot exceed 255 characters. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the API group to which the API belongs. ## Import API can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_api_gateway_api.api "774438a28a574ac8a496325d1bf51807" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the API.`,
+				},
+				resource.Attribute{
+					Name:        "group_name",
+					Description: `The name of the API group to which the API belongs. ## Import API can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_api_gateway_api.api "774438a28a574ac8a496325d1bf51807" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_api_gateway_group",
+			Category:         "API Gateway (APIG)",
+			ShortDescription: `Provides an API gateway group resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"api",
+				"gateway",
+				"apig",
+				"group",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Specifies the name of the API group. An API group name consists of 3–64 characters, starting with a letter. Only letters, digits, and underscores (_) are allowed.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Specifies the description of the API group. The description cannot exceed 255 characters. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the API group.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the API group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the API group.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the API group.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloud_as_configuration_v1",
-			Category:         "Auto Scaling Resources",
+			Category:         "Auto Scaling",
 			ShortDescription: `Manages a V1 AS Configuration resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
@@ -125,7 +374,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_as_group_v1",
-			Category:         "Auto Scaling Resources",
+			Category:         "Auto Scaling",
 			ShortDescription: `Manages a V1 Autoscaling Group resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
@@ -162,7 +411,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cool_down_time",
-					Description: `(Optional) The cooling duration (in seconds). The value ranges from 0 to 86400, and is 900 by default.`,
+					Description: `(Optional) The cooling duration (in seconds). The value ranges from 0 to 86400, and is 300 by default.`,
 				},
 				resource.Attribute{
 					Name:        "lb_listener_id",
@@ -351,7 +600,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_as_policy_v1",
-			Category:         "Auto Scaling Resources",
+			Category:         "Auto Scaling",
 			ShortDescription: `Manages a V1 AS Policy resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
@@ -525,14 +774,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_blockstorage_volume_v2",
-			Category:         "Block Storage Resources",
+			Category:         "Elastic Volume Service (EVS)",
 			ShortDescription: `Manages a V2 volume resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"block",
-				"storage",
-				"blockstorage",
+				"elastic",
 				"volume",
+				"service",
+				"evs",
+				"blockstorage",
 				"v2",
 			},
 			Arguments: []resource.Attribute{
@@ -683,10 +933,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cce_cluster_v3",
-			Category:         "CCE Resources",
+			Category:         "Cloud Container Engine (CCE)",
 			ShortDescription: `Provides Cloud Container Engine(CCE) resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
 				"cce",
 				"cluster",
 				"v3",
@@ -891,10 +1144,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cce_nodes_v3",
-			Category:         "CCE Resources",
+			Category:         "Cloud Container Engine (CCE)",
 			ShortDescription: `Add a node to a container cluster.`,
 			Description:      ``,
 			Keywords: []string{
+				"cloud",
+				"container",
+				"engine",
 				"cce",
 				"nodes",
 				"v3",
@@ -989,6 +1245,14 @@ var (
 					Description: `(Optional) The Public key. Changing this parameter will create a new cluster resource.`,
 				},
 				resource.Attribute{
+					Name:        "preinstall",
+					Description: `(Optional) Script required before installation. The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "postinstall",
+					Description: `(Optional) Script required after installation. The input value can be a Base64 encoded string or not. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
 					Name:        "size",
 					Description: `(Required) Disk size in GB.`,
 				},
@@ -1043,10 +1307,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cdm_cluster_v1",
-			Category:         "CDM Resources",
+			Category:         "Cloud Data Migration (CDM)",
 			ShortDescription: `cdm cluster management`,
 			Description:      ``,
 			Keywords: []string{
+				"cloud",
+				"data",
+				"migration",
 				"cdm",
 				"cluster",
 				"v1",
@@ -1183,10 +1450,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cdn_domain_v1",
-			Category:         "CDN Resources",
+			Category:         "Content Delivery Network (CDN)",
 			ShortDescription: `cdn domain management`,
 			Description:      ``,
 			Keywords: []string{
+				"content",
+				"delivery",
+				"network",
 				"cdn",
 				"domain",
 				"v1",
@@ -1307,7 +1577,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_ces-alarmrule",
-			Category:         "Cloud Eye Resources",
+			Category:         "Cloud Eye",
 			ShortDescription: `Manages a V2 topic resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1523,7 +1793,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cloudtable_cluster_v2",
-			Category:         "Cloud Table Resources",
+			Category:         "Cloud Table",
 			ShortDescription: `cloud table cluster management`,
 			Description:      ``,
 			Keywords: []string{
@@ -1657,10 +1927,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_compute_floatingip_associate_v2",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Associate a floating IP to an instance`,
 			Description:      ``,
 			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
 				"compute",
 				"floatingip",
 				"associate",
@@ -1722,10 +1996,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_compute_floatingip_v2",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Manages a V2 floating IP resource within HuaweiCloud Nova (compute).`,
 			Description:      ``,
 			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
 				"compute",
 				"floatingip",
 				"v2",
@@ -1786,10 +2064,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_compute_instance_v2",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Manages a V2 VM instance resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
 				"compute",
 				"instance",
 				"v2",
@@ -1933,7 +2215,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "build_near_host_ip",
-					Description: `(Optional) An IP Address in CIDR form. The instance will be placed on a compute node that is in the same subnet. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) An IP Address in CIDR form. The instance will be placed on a compute node that is in the same subnet.`,
+				},
+				resource.Attribute{
+					Name:        "tenancy",
+					Description: `(Optional) The tenancy specifies whether the ECS is to be created on a Dedicated Host (DeH) or in a shared pool.`,
+				},
+				resource.Attribute{
+					Name:        "deh_id",
+					Description: `(Optional) The ID of DeH. This parameter takes effect only when the value of tenancy is dedicated. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -2094,10 +2384,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_compute_interface_attach_v2",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Attaches a Network Interface to an Instance.`,
 			Description:      ``,
 			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
 				"compute",
 				"interface",
 				"attach",
@@ -2163,10 +2457,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_compute_keypair_v2",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Manages a V2 keypair resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
 				"compute",
 				"keypair",
 				"v2",
@@ -2219,10 +2517,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_compute_secgroup_v2",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Manages a V2 security group resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
 				"compute",
 				"secgroup",
 				"v2",
@@ -2307,10 +2609,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_compute_servergroup_v2",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Manages a V2 Server Group resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
 				"compute",
 				"servergroup",
 				"v2",
@@ -2379,10 +2685,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_compute_volume_attach_v2",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Attaches a Block Storage Volume to an Instance.`,
 			Description:      ``,
 			Keywords: []string{
+				"elastic",
+				"cloud",
+				"server",
+				"ecs",
 				"compute",
 				"volume",
 				"attach",
@@ -2419,7 +2729,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "device",
-					Description: `See Argument Reference above. _NOTE_: The correctness of this information is dependent upon the hypervisor in use. In some cases, this should not be used as an authoritative piece of information. ## Import Volume Attachments can be imported using the Instance ID and Volume ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above. _NOTE_: The correctness of this information is dependent upon the hypervisor in use. In some cases, this should not be used as an authoritative piece of information.`,
+				},
+				resource.Attribute{
+					Name:        "pci_address",
+					Description: `PCI address of the block device. ## Import Volume Attachments can be imported using the Instance ID and Volume ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -2437,14 +2751,18 @@ var (
 				},
 				resource.Attribute{
 					Name:        "device",
-					Description: `See Argument Reference above. _NOTE_: The correctness of this information is dependent upon the hypervisor in use. In some cases, this should not be used as an authoritative piece of information. ## Import Volume Attachments can be imported using the Instance ID and Volume ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666 ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above. _NOTE_: The correctness of this information is dependent upon the hypervisor in use. In some cases, this should not be used as an authoritative piece of information.`,
+				},
+				resource.Attribute{
+					Name:        "pci_address",
+					Description: `PCI address of the block device. ## Import Volume Attachments can be imported using the Instance ID and Volume ID separated by a slash, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_compute_volume_attach_v2.va_1 89c60255-9bd6-460c-822a-e2b959ede9d2/45670584-225f-46c3-b33e-6707b589b666 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cs_cluster_v1",
-			Category:         "Cloud Stream Resources",
+			Category:         "Cloud Stream",
 			ShortDescription: `Cloud Stream Service cluster management`,
 			Description:      ``,
 			Keywords: []string{
@@ -2510,7 +2828,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cs_peering_connect_v1",
-			Category:         "Cloud Stream Resources",
+			Category:         "Cloud Stream",
 			ShortDescription: `Cloud Stream Service cluster peering connect management`,
 			Description:      ``,
 			Keywords: []string{
@@ -2548,7 +2866,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cs_route_v1",
-			Category:         "Cloud Stream Resources",
+			Category:         "Cloud Stream",
 			ShortDescription: `Cloud Stream Service cluster peering connect route management`,
 			Description:      ``,
 			Keywords: []string{
@@ -2577,12 +2895,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_csbs_backup_policy_v1",
-			Category:         "CSBS Resources",
+			Category:         "Cloud Server Backup Service (CSBS)",
 			ShortDescription: `Provides an HuaweiCloud Backup Policy of Resource.`,
 			Description:      ``,
 			Keywords: []string{
-				"csbs",
+				"cloud",
+				"server",
 				"backup",
+				"service",
+				"csbs",
 				"policy",
 				"v1",
 			},
@@ -2702,12 +3023,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_csbs_backup_v1",
-			Category:         "CSBS Resources",
+			Category:         "Cloud Server Backup Service (CSBS)",
 			ShortDescription: `Provides an HuaweiCloud Backup of Resources.`,
 			Description:      ``,
 			Keywords: []string{
-				"csbs",
+				"cloud",
+				"server",
 				"backup",
+				"service",
+				"csbs",
 				"v1",
 			},
 			Arguments: []resource.Attribute{
@@ -2918,10 +3242,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_css_cluster_v1",
-			Category:         "CSS Resources",
+			Category:         "Cloud Search Service (CSS)",
 			ShortDescription: `cluster management`,
 			Description:      ``,
 			Keywords: []string{
+				"cloud",
+				"search",
+				"service",
 				"css",
 				"cluster",
 				"v1",
@@ -3038,10 +3365,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_cts_tracker_v1",
-			Category:         "CTS Resources",
+			Category:         "Cloud Trace Service (CTS)",
 			ShortDescription: `CTS tracker allows you to collect, store, and query cloud resource operation records and use these records for security analysis, compliance auditing, resource tracking, and fault locating.`,
 			Description:      ``,
 			Keywords: []string{
+				"cloud",
+				"trace",
+				"service",
 				"cts",
 				"tracker",
 				"v1",
@@ -3098,10 +3428,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dcs_instance_v1",
-			Category:         "DCS Resources",
+			Category:         "Distributed Cache Service",
 			ShortDescription: `Manages a DCS instance in the huaweicloud DCS Service`,
 			Description:      ``,
 			Keywords: []string{
+				"distributed",
+				"cache",
+				"service",
 				"dcs",
 				"instance",
 				"v1",
@@ -3434,10 +3767,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dis_stream_v2",
-			Category:         "DIS Resources",
+			Category:         "Data Ingestion Service (DIS)",
 			ShortDescription: `DIS Stream management`,
 			Description:      ``,
 			Keywords: []string{
+				"data",
+				"ingestion",
+				"service",
 				"dis",
 				"stream",
 				"v2",
@@ -3526,7 +3862,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dli_queue_v1",
-			Category:         "Data Lake Insight Resources",
+			Category:         "Data Lake Insight (DLI)",
 			ShortDescription: `queue management`,
 			Description:      ``,
 			Keywords: []string{
@@ -3577,10 +3913,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dms_group_v1",
-			Category:         "DMS Resources",
+			Category:         "Distributed Message Service (DMS)",
 			ShortDescription: `Manages a DMS group in the huaweicloud DMS Service`,
 			Description:      ``,
 			Keywords: []string{
+				"distributed",
+				"message",
+				"service",
 				"dms",
 				"group",
 				"v1",
@@ -3665,10 +4004,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dms_instance_v1",
-			Category:         "DMS Resources",
+			Category:         "Distributed Message Service (DMS)",
 			ShortDescription: `Manages a DMS instance in the huaweicloud DMS Service`,
 			Description:      ``,
 			Keywords: []string{
+				"distributed",
+				"message",
+				"service",
 				"dms",
 				"instance",
 				"v1",
@@ -4013,10 +4355,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dms_queue_v1",
-			Category:         "DMS Resources",
+			Category:         "Distributed Message Service (DMS)",
 			ShortDescription: `Manages a DMS queue in the huaweicloud DMS Service`,
 			Description:      ``,
 			Keywords: []string{
+				"distributed",
+				"message",
+				"service",
 				"dms",
 				"queue",
 				"v1",
@@ -4129,10 +4474,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dns_recordset_v2",
-			Category:         "DNS Resources",
+			Category:         "Domain Name Service (DNS)",
 			ShortDescription: `Manages a DNS record set in the HuaweiCloud DNS Service`,
 			Description:      ``,
 			Keywords: []string{
+				"domain",
+				"name",
+				"service",
 				"dns",
 				"recordset",
 				"v2",
@@ -4241,10 +4589,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dns_zone_v2",
-			Category:         "DNS Resources",
+			Category:         "Domain Name Service (DNS)",
 			ShortDescription: `Manages a DNS zone in the HuaweiCloud DNS Service`,
 			Description:      ``,
 			Keywords: []string{
+				"domain",
+				"name",
+				"service",
 				"dns",
 				"zone",
 				"v2",
@@ -4361,10 +4712,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_dws_cluster",
-			Category:         "DWS Resources Resources",
+			Category:         "Data Warehouse Service (DWS)",
 			ShortDescription: `cluster management`,
 			Description:      ``,
 			Keywords: []string{
+				"data",
+				"warehouse",
+				"service",
 				"dws",
 				"cluster",
 			},
@@ -4540,11 +4894,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_ecs_instance_v1",
-			Category:         "Compute Resources",
+			Category:         "Elastic Cloud Server (ECS)",
 			ShortDescription: `Manages a V1 ECS instance resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"compute",
+				"elastic",
+				"cloud",
+				"server",
 				"ecs",
 				"instance",
 				"v1",
@@ -4628,7 +4984,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tags",
-					Description: `(Optional) Tags key/value pairs to associate with the instance. The ` + "`" + `nics` + "`" + ` block supports:`,
+					Description: `(Optional) Tags key/value pairs to associate with the instance.`,
+				},
+				resource.Attribute{
+					Name:        "op_svc_userid",
+					Description: `(Optional) User ID, required when using key_name. Changing this creates a new server. The ` + "`" + `nics` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -4656,7 +5016,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nics/mac_address",
-					Description: `The MAC address of the NIC on that network. ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_ecs_instance_v1.instance_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9`,
+					Description: `The MAC address of the NIC on that network.`,
+				},
+				resource.Attribute{
+					Name:        "nics/port_id",
+					Description: `The port ID of the NIC on that network. ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_ecs_instance_v1.instance_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4666,20 +5030,25 @@ var (
 				},
 				resource.Attribute{
 					Name:        "nics/mac_address",
-					Description: `The MAC address of the NIC on that network. ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_ecs_instance_v1.instance_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9`,
+					Description: `The MAC address of the NIC on that network.`,
+				},
+				resource.Attribute{
+					Name:        "nics/port_id",
+					Description: `The port ID of the NIC on that network. ## Import Instances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_ecs_instance_v1.instance_1 d90ce693-5ccf-4136-a0ed-152ce412b6b9`,
 				},
 			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_elb_backendecs",
-			Category:         "Classic Load Balancer Resources",
+			Category:         "Elastic Load Balance (Classic)",
 			ShortDescription: `Manages an elastic loadbalancer backendecs resource within huawei cloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"classic",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"classic",
 				"elb",
 				"backendecs",
 			},
@@ -4791,13 +5160,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_elb_healthcheck",
-			Category:         "Classic Load Balancer Resources",
+			Category:         "Elastic Load Balance (Classic)",
 			ShortDescription: `Manages an elastic loadbalancer healthcheck resource within huawei cloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"classic",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"classic",
 				"elb",
 				"healthcheck",
 			},
@@ -4929,13 +5299,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_elb_listener",
-			Category:         "Classic Load Balancer Resources",
+			Category:         "Elastic Load Balance (Classic)",
 			ShortDescription: `Manages an elastic loadbalancer listener resource within huawei cloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"classic",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"classic",
 				"elb",
 				"listener",
 			},
@@ -5219,13 +5590,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_elb_loadbalancer",
-			Category:         "Classic Load Balancer Resources",
+			Category:         "Elastic Load Balance (Classic)",
 			ShortDescription: `Manages an elastic loadbalancer resource within huawei cloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"classic",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"classic",
 				"elb",
 				"loadbalancer",
 			},
@@ -5424,13 +5796,188 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloud_fgs_function_v2",
+			Category:         "FunctionGraph",
+			ShortDescription: `Manages a V2 function resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"functiongraph",
+				"fgs",
+				"function",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) A unique name for the function. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "package",
+					Description: `(Required) Group to which the function belongs. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "code_type",
+					Description: `(Required) Function code type, which can be inline: inline code, zip: ZIP file, jar: JAR file or java functions, obs: function code stored in an OBS bucket. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "code_url",
+					Description: `(Optional) This parameter is mandatory when code_type is set to obs. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the function. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "code_filename",
+					Description: `(Optional) Name of a function file, This field is mandatory only when coe_type is set to jar or zip. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `(Required) Entry point of the function. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `(Required) Memory size(MB) allocated to the function. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `(Required) Environment for executing the function. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Required) Timeout interval of the function, ranges from 3s to 900s. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `(Optional) Key/Value information defined for the function. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "xrole",
+					Description: `(Optional) This parameter is mandatory if the function needs to access other cloud services. Changing this creates a new function.`,
+				},
+				resource.Attribute{
+					Name:        "func_code",
+					Description: `(Required) Function code. When code_type is set to inline, zip, or jar, this parameter is mandatory, and the code must be encoded using Base64. Changing this creates a new function. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "package",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code_url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code_filename",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "xrole",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "func_code",
+					Description: `See Argument Reference above. ## Import Functions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_fgs_function_v2.my-func 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "package",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code_type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code_url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "code_filename",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "handler",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "memory_size",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "runtime",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "user_data",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "xrole",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "func_code",
+					Description: `See Argument Reference above. ## Import Functions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_fgs_function_v2.my-func 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloud_fw_firewall_group_v2",
-			Category:         "Firewall Resources",
+			Category:         "Network ACL",
 			ShortDescription: `Manages a v2 firewall group resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"firewall",
+				"network",
+				"acl",
 				"fw",
+				"firewall",
 				"group",
 				"v2",
 			},
@@ -5534,11 +6081,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_fw_policy_v2",
-			Category:         "Firewall Resources",
+			Category:         "Network ACL",
 			ShortDescription: `Manages a v2 firewall policy resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"firewall",
+				"network",
+				"acl",
 				"fw",
 				"policy",
 				"v2",
@@ -5631,11 +6179,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_fw_rule_v2",
-			Category:         "Firewall Resources",
+			Category:         "Network ACL",
 			ShortDescription: `Manages a v2 firewall group rule resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"firewall",
+				"network",
+				"acl",
 				"fw",
 				"rule",
 				"v2",
@@ -5796,12 +6345,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_ges_graph_v1",
-			Category:         "GES Resources",
+			Category:         "Graph Engine Service (GES)",
 			ShortDescription: `graph management`,
 			Description:      ``,
 			Keywords: []string{
-				"ges",
 				"graph",
+				"engine",
+				"service",
+				"ges",
 				"v1",
 			},
 			Arguments: []resource.Attribute{
@@ -5952,10 +6503,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_iam_agency_v3",
-			Category:         "IAM Agency Resources",
+			Category:         "Identity and Access Management (IAM)",
 			ShortDescription: `Manages an agency resource within huawei cloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"identity",
+				"and",
+				"access",
+				"management",
 				"iam",
 				"agency",
 				"v3",
@@ -6068,11 +6623,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_identity_group_membership_v3",
-			Category:         "Identity Resources",
+			Category:         "Identity and Access Management (IAM)",
 			ShortDescription: `Manages the membership combine User Group resource and User resource within HuaweiCloud IAM service.`,
 			Description:      ``,
 			Keywords: []string{
 				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
 				"group",
 				"membership",
 				"v3",
@@ -6109,11 +6668,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_identity_group_v3",
-			Category:         "Identity Resources",
+			Category:         "Identity and Access Management (IAM)",
 			ShortDescription: `Manages a User Group resource within HuaweiCloud IAM service.`,
 			Description:      ``,
 			Keywords: []string{
 				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
 				"group",
 				"v3",
 			},
@@ -6149,11 +6712,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_identity_project_v3",
-			Category:         "Identity Resources",
+			Category:         "Identity and Access Management (IAM)",
 			ShortDescription: `Manages a Project resource within HuaweiCloud Keystone.`,
 			Description:      ``,
 			Keywords: []string{
 				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
 				"project",
 				"v3",
 			},
@@ -6201,11 +6768,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_identity_role_assignment_v3",
-			Category:         "Identity Resources",
+			Category:         "Identity and Access Management (IAM)",
 			ShortDescription: `Manages a V3 Policy assignment within HuaweiCloud IAM Service.`,
 			Description:      ``,
 			Keywords: []string{
 				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
 				"role",
 				"assignment",
 				"v3",
@@ -6266,11 +6837,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_identity_user_v3",
-			Category:         "Identity Resources",
+			Category:         "Identity and Access Management (IAM)",
 			ShortDescription: `Manages a User resource within HuaweiCloud IAM service.`,
 			Description:      ``,
 			Keywords: []string{
 				"identity",
+				"and",
+				"access",
+				"management",
+				"iam",
 				"user",
 				"v3",
 			},
@@ -6318,12 +6893,15 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_images_image_v2",
-			Category:         "Images Resources",
+			Category:         "Image Management Service (IMS)",
 			ShortDescription: `Manages a V2 Image resource within HuaweiCloud IMS.`,
 			Description:      ``,
 			Keywords: []string{
-				"images",
 				"image",
+				"management",
+				"service",
+				"ims",
+				"images",
 				"v2",
 			},
 			Arguments: []resource.Attribute{
@@ -6534,12 +7112,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_kms_key_v1",
-			Category:         "KMS Resources",
+			Category:         "Key Management Service (KMS)",
 			ShortDescription: `Manages a V1 key resource within KMS.`,
 			Description:      ``,
 			Keywords: []string{
-				"kms",
 				"key",
+				"management",
+				"service",
+				"kms",
 				"v1",
 			},
 			Arguments: []resource.Attribute{
@@ -6650,13 +7230,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_lb_certificate_v2",
-			Category:         "Enhanced Load Balancer Resources",
+			Category:         "Elastic Load Balance (Enhanced)",
 			ShortDescription: `Manages a V2 certificate resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"enhanced",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"enhanced",
 				"lb",
 				"certificate",
 				"v2",
@@ -6757,13 +7338,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_lb_l7policy_v2",
-			Category:         "Enhanced Load Balancer Resources",
+			Category:         "Elastic Load Balance (Enhanced)",
 			ShortDescription: `Manages a V2 L7 Policy resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"enhanced",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"enhanced",
 				"lb",
 				"l7policy",
 				"v2",
@@ -6904,13 +7486,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_lb_l7rule_v2",
-			Category:         "Enhanced Load Balancer Resources",
+			Category:         "Elastic Load Balance (Enhanced)",
 			ShortDescription: `Manages a V2 l7rule resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"enhanced",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"enhanced",
 				"lb",
 				"l7rule",
 				"v2",
@@ -7047,13 +7630,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_lb_listener_v2",
-			Category:         "Enhanced Load Balancer Resources",
+			Category:         "Elastic Load Balance (Enhanced)",
 			ShortDescription: `Manages a V2 listener resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"enhanced",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"enhanced",
 				"lb",
 				"listener",
 				"v2",
@@ -7202,13 +7786,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_lb_loadbalancer_v2",
-			Category:         "Enhanced Load Balancer Resources",
+			Category:         "Elastic Load Balance (Enhanced)",
 			ShortDescription: `Manages a V2 loadbalancer resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"enhanced",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"enhanced",
 				"lb",
 				"loadbalancer",
 				"v2",
@@ -7349,13 +7934,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_lb_member_v2",
-			Category:         "Enhanced Load Balancer Resources",
+			Category:         "Elastic Load Balance (Enhanced)",
 			ShortDescription: `Manages a V2 member resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"enhanced",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"enhanced",
 				"lb",
 				"member",
 				"v2",
@@ -7476,13 +8062,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_lb_monitor_v2",
-			Category:         "Enhanced Load Balancer Resources",
+			Category:         "Elastic Load Balance (Enhanced)",
 			ShortDescription: `Manages a V2 monitor resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"enhanced",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"enhanced",
 				"lb",
 				"monitor",
 				"v2",
@@ -7518,7 +8105,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_retries",
-					Description: `(Required) Number of permissible ping failures before changing the member's status to INACTIVE. Must be a number between 1 and 10..`,
+					Description: `(Required) Number of permissible ping failures before changing the member's status to INACTIVE. Must be a number between 1 and 10.`,
 				},
 				resource.Attribute{
 					Name:        "url_path",
@@ -7619,13 +8206,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_lb_pool_v2",
-			Category:         "Enhanced Load Balancer Resources",
+			Category:         "Elastic Load Balance (Enhanced)",
 			ShortDescription: `Manages a V2 pool resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"enhanced",
+				"elastic",
 				"load",
-				"balancer",
+				"balance",
+				"enhanced",
 				"lb",
 				"pool",
 				"v2",
@@ -7745,11 +8333,91 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloud_lb_whitelist_v2",
+			Category:         "Elastic Load Balance (Enhanced)",
+			ShortDescription: `Manages a Load Balancer whitelist resource within HuaweiCloud.`,
+			Description:      ``,
+			Keywords: []string{
+				"elastic",
+				"load",
+				"balance",
+				"enhanced",
+				"lb",
+				"whitelist",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `(Optional) Required for admins. The UUID of the tenant who owns the whitelist. Only administrative users can specify a tenant UUID other than their own. Changing this creates a new whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `(Required) The Listener ID that the whitelist will be associated with. Changing this creates a new whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `(Optional) Specify whether to enable access control.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `(Optional) Specifies the IP addresses in the whitelist. Use commas(,) to separate the multiple IP addresses. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the whitelist.`,
+				},
+				resource.Attribute{
+					Name:        "tenant_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "listener_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "enable_whitelist",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "whitelist",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloud_maas_task_v1",
-			Category:         "MAAS Resources",
+			Category:         "Object Storage Migration Service",
 			ShortDescription: `Manages resource task within HuaweiCloud MAAS.`,
 			Description:      ``,
 			Keywords: []string{
+				"object",
+				"storage",
+				"migration",
+				"service",
 				"maas",
 				"task",
 				"v1",
@@ -7906,10 +8574,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_mls_instance",
-			Category:         "MLS Resources",
+			Category:         "Machine Learning Service (MLS)",
 			ShortDescription: `mls instance`,
 			Description:      ``,
 			Keywords: []string{
+				"machine",
+				"learning",
+				"service",
 				"mls",
 				"instance",
 			},
@@ -8041,10 +8712,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_mrs_cluster_v1",
-			Category:         "MRS Resources",
+			Category:         "MapReduce Service (MRS)",
 			ShortDescription: `Manages resource cluster within HuaweiCloud MRS.`,
 			Description:      ``,
 			Keywords: []string{
+				"mapreduce",
+				"service",
 				"mrs",
 				"cluster",
 				"v1",
@@ -8573,10 +9246,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_mrs_job_v1",
-			Category:         "MRS Resources",
+			Category:         "MapReduce Service (MRS)",
 			ShortDescription: `Manages resource job within HuaweiCloud MRS.`,
 			Description:      ``,
 			Keywords: []string{
+				"mapreduce",
+				"service",
 				"mrs",
 				"job",
 				"v1",
@@ -8720,8 +9395,78 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloud_nat_dnat_rule_v2",
+			Category:         "NAT Gateway (NAT)",
+			ShortDescription: `Manages a V2 dnat rule resource within HuaweiCloud Nat.`,
+			Description:      ``,
+			Keywords: []string{
+				"nat",
+				"gateway",
+				"dnat",
+				"rule",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "floating_ip_id",
+					Description: `(Required) Specifies the ID of the floating IP address. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "internal_service_port",
+					Description: `(Required) Specifies port used by ECSs or BMSs to provide services for external systems. Changing this creates a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "nat_gateway_id",
+					Description: `(Required) ID of the nat gateway this dnat rule belongs to. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "port_id",
+					Description: `(Optional) Specifies the port ID of an ECS or a BMS. This parameter and private_ip are alternative. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `(Optional) Specifies the private IP address of a user, for example, the IP address of a VPC for dedicated connection. This parameter and port_id are alternative. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "protocol",
+					Description: `(Required) Specifies the protocol type. Currently, TCP, UDP, and ANY are supported. Changing this creates a new dnat rule.`,
+				},
+				resource.Attribute{
+					Name:        "external_service_port",
+					Description: `(Required) Specifies port used by ECSs or BMSs to provide services for external systems. Changing this creates a new dnat rule. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Dnat rule creation time.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dnat rule status.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_address",
+					Description: `The actual floating IP address. ## Import Dnat can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Dnat rule creation time.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Dnat rule status.`,
+				},
+				resource.Attribute{
+					Name:        "floating_ip_address",
+					Description: `The actual floating IP address. ## Import Dnat can be imported using the following format: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_nat_dnat_rule_v2.dnat_1 f4f783a7-b908-4215-b018-724960e5df4a ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloud_nat_gateway_v2",
-			Category:         "Nat Resources",
+			Category:         "NAT Gateway (NAT)",
 			ShortDescription: `Manages a V2 nat gateway resource within HuaweiCloud Nat.`,
 			Description:      ``,
 			Keywords: []string{
@@ -8821,11 +9566,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_nat_snat_rule_v2",
-			Category:         "Nat Resources",
+			Category:         "NAT Gateway (NAT)",
 			ShortDescription: `Manages a V2 snat rule resource within HuaweiCloud Nat.`,
 			Description:      ``,
 			Keywords: []string{
 				"nat",
+				"gateway",
 				"snat",
 				"rule",
 				"v2",
@@ -8886,10 +9632,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_floatingip_associate_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Associates a Floating IP to a Port`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"floatingip",
 				"associate",
@@ -8939,10 +9689,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_floatingip_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 floating IP resource within HuaweiCloud Neutron (networking).`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"floatingip",
 				"v2",
@@ -9027,10 +9781,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_network_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 Neutron network resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"network",
 				"v2",
@@ -9123,10 +9881,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_port_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 port resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"port",
 				"v2",
@@ -9311,10 +10073,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_router_interface_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 router interface resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"router",
 				"interface",
@@ -9376,10 +10142,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_router_route_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Creates a routing entry on a HuaweiCloud V2 router.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"router",
 				"route",
@@ -9441,10 +10211,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_router_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 router resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"router",
 				"v2",
@@ -9573,10 +10347,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_secgroup_rule_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 Neutron security group rule resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"secgroup",
 				"rule",
@@ -9710,10 +10488,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_secgroup_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 Neutron security group resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"secgroup",
 				"v2",
@@ -9778,10 +10560,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_subnet_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 Neutron subnet resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"subnet",
 				"v2",
@@ -9950,10 +10736,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_vip_associate_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 vip associate resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"vip",
 				"associate",
@@ -10007,10 +10797,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_networking_vip_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 vip resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"cloud",
+				"vpc",
 				"networking",
 				"vip",
 				"v2",
@@ -10102,13 +10896,251 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "huaweicloud_obs_bucket",
+			Category:         "Object Storage Service (OBS)",
+			ShortDescription: `Provides an OBS bucket resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+				"service",
+				"obs",
+				"bucket",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) Specifies the name of the bucket. Changing this parameter will create a new resource. A bucket must be named according to the globally applied DNS naming regulations as follows:`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Optional) Specifies the storage class of the bucket. OBS provides three storage classes: "STANDARD", "WARM" (Infrequent Access) and "COLD" (Archive). Defaults to ` + "`" + `STANDARD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) Specifies the ACL policy for a bucket. The predefined common policies are as follows: "private", "public-read", "public-read-write" and "log-delivery-write". Defaults to ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the bucket. Each tag is represented by one key-value pair.`,
+				},
+				resource.Attribute{
+					Name:        "versioning",
+					Description: `(Optional) Whether enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.`,
+				},
+				resource.Attribute{
+					Name:        "logging",
+					Description: `(Optional) A settings of bucket logging (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "website",
+					Description: `(Optional) A website object (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "cors_rule",
+					Description: `(Optional) A rule of Cross-Origin Resource Sharing (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_rule",
+					Description: `(Optional) A configuration of object lifecycle management (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "force_destroy",
+					Description: `(Optional) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. Default to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) If specified, the region this bucket should reside in. Otherwise, the region used by the provider. The ` + "`" + `logging` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "target_bucket",
+					Description: `(Required) The name of the bucket that will receive the log objects. The acl policy of the target bucket should be ` + "`" + `log-delivery-write` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "target_prefix",
+					Description: `(Optional) To specify a key prefix for log objects. The ` + "`" + `website` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "index_document",
+					Description: `(Required, unless using ` + "`" + `redirect_all_requests_to` + "`" + `) Specifies the default homepage of the static website, only HTML web pages are supported. OBS only allows files such as ` + "`" + `index.html` + "`" + ` in the root directory of a bucket to function as the default homepage. That is to say, do not set the default homepage with a multi-level directory structure (for example, /page/index.html).`,
+				},
+				resource.Attribute{
+					Name:        "error_document",
+					Description: `(Optional) Specifies the error page returned when an error occurs during static website access. Only HTML, JPG, PNG, BMP, and WEBP files under the root directory are supported.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_all_requests_to",
+					Description: `(Optional) A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (` + "`" + `http://` + "`" + ` or ` + "`" + `https://` + "`" + `) to use when redirecting requests. The default is the protocol that is used in the original request.`,
+				},
+				resource.Attribute{
+					Name:        "routing_rules",
+					Description: `(Optional) A JSON or XML format containing routing rules describing redirect behavior and when redirects are applied. Each rule contains a ` + "`" + `Condition` + "`" + ` and a ` + "`" + `Redirect` + "`" + ` as shown in the following table: Parameter | Key -|- Condition | KeyPrefixEquals, HttpErrorCodeReturnedEquals Redirect | Protocol, HostName, ReplaceKeyPrefixWith, ReplaceKeyWith, HttpRedirectCode The ` + "`" + `cors_rule` + "`" + ` object supports the following:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique identifier for lifecycle rules. The Rule Name contains a maximum of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Required) Specifies lifecycle rule status.`,
+				},
+				resource.Attribute{
+					Name:        "prefix",
+					Description: `(Optional) Object key prefix identifying one or more objects to which the rule applies. If omitted, all objects in the bucket will be managed by the lifecycle rule. The prefix cannot start or end with a slash (/), cannot have consecutive slashes (/), and cannot contain the following special characters: \:`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `(Optional) Specifies a period when objects that have been last updated are automatically deleted. (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "transition",
+					Description: `(Optional) Specifies a period when objects that have been last updated are automatically transitioned to ` + "`" + `WARM` + "`" + ` or ` + "`" + `COLD` + "`" + ` storage class (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "noncurrent_version_expiration",
+					Description: `(Optional) Specifies a period when noncurrent object versions are automatically deleted. (documented below).`,
+				},
+				resource.Attribute{
+					Name:        "noncurrent_version_transition",
+					Description: `(Optional) Specifies a period when noncurrent object versions are automatically transitioned to ` + "`" + `WARM` + "`" + ` or ` + "`" + `COLD` + "`" + ` storage class (documented below). At least one of ` + "`" + `expiration` + "`" + `, ` + "`" + `transition` + "`" + `, ` + "`" + `noncurrent_version_expiration` + "`" + `, ` + "`" + `noncurrent_version_transition` + "`" + ` must be specified. The ` + "`" + `expiration` + "`" + ` object supports the following`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Required) The class of storage used to store the object. Only ` + "`" + `WARM` + "`" + ` and ` + "`" + `COLD` + "`" + ` are supported. The ` + "`" + `noncurrent_version_expiration` + "`" + ` object supports the following`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Required) The class of storage used to store the object. Only ` + "`" + `WARM` + "`" + ` and ` + "`" + `COLD` + "`" + ` are supported. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_domain_name",
+					Description: `The bucket domain name. Will be of format ` + "`" + `bucketname.obs.region.myhuaweicloud.com` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "bucket_domain_name",
+					Description: `The bucket domain name. Will be of format ` + "`" + `bucketname.obs.region.myhuaweicloud.com` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `The region this bucket resides in. ## Import OBS bucket can be imported using the ` + "`" + `bucket` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import huaweicloud_obs_bucket.bucket bucket-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "huaweicloud_obs_bucket_object",
+			Category:         "Object Storage Service (OBS)",
+			ShortDescription: `Provides an OBS bucket object resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+				"service",
+				"obs",
+				"bucket",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `(Required) The name of the bucket to put the file in.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The name of the object once it is in the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Optional) The path to the source file being uploaded to the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional) The literal content being uploaded to the bucket.`,
+				},
+				resource.Attribute{
+					Name:        "acl",
+					Description: `(Optional) The ACL policy to apply. Defaults to ` + "`" + `private` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "storage_class",
+					Description: `(Optioanl) Specifies the storage class of the object. Defaults to ` + "`" + `STANDARD` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "content_type",
+					Description: `(Optional) A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.`,
+				},
+				resource.Attribute{
+					Name:        "encryption",
+					Description: `(Optional) Whether enable server-side encryption of the object in SSE-KMS mode.`,
+				},
+				resource.Attribute{
+					Name:        "sse_kms_key_id",
+					Description: `(Optional) The ID of the kms key. If omitted, the default master key will be used.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Optional) Specifies the unique identifier of the object content. It can be used to trigger updates. The only meaningful value is ` + "`" + `md5(file("path_to_file"))` + "`" + `. Either ` + "`" + `source` + "`" + ` or ` + "`" + `content` + "`" + ` must be provided to specify the bucket content. These two arguments are mutually-exclusive. ## Attributes Reference The following attributes are exported`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `the ETag generated for the object (an MD5 sum of the object content). When the object is encrypted on the server side, the ETag value is not the MD5 value of the object, but the unique identifier calculated through the server-side encryption.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `the size of the object in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `the ` + "`" + `key` + "`" + ` of the resource supplied above.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `the ETag generated for the object (an MD5 sum of the object content). When the object is encrypted on the server side, the ETag value is not the MD5 value of the object, but the unique identifier calculated through the server-side encryption.`,
+				},
+				resource.Attribute{
+					Name:        "size",
+					Description: `the size of the object in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `A unique version ID value for the object, if bucket versioning is enabled.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "huaweicloud_rds_instance_v1",
-			Category:         "RDS Resource",
+			Category:         "Relational Database Service (RDS)",
 			ShortDescription: `Manages rds instance resource within HuaweiCloud`,
 			Description:      ``,
 			Keywords: []string{
+				"relational",
+				"database",
+				"service",
 				"rds",
-				"resource",
 				"instance",
 				"v1",
 			},
@@ -10372,12 +11404,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_rds_instance_v3",
-			Category:         "RDS Resource",
+			Category:         "Relational Database Service (RDS)",
 			ShortDescription: `instance management`,
 			Description:      ``,
 			Keywords: []string{
+				"relational",
+				"database",
+				"service",
 				"rds",
-				"resource",
 				"instance",
 				"v3",
 			},
@@ -10545,12 +11579,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_rds_parametergroup_v3",
-			Category:         "RDS Resource",
+			Category:         "Relational Database Service (RDS)",
 			ShortDescription: `Manages a V3 RDS parametergroup resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"relational",
+				"database",
+				"service",
 				"rds",
-				"resource",
 				"parametergroup",
 				"v3",
 			},
@@ -10658,10 +11694,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_rts_software_config_v1",
-			Category:         "RTS Resources",
+			Category:         "Resources Template Service (RTS)",
 			ShortDescription: `Provides an RTS software config resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"template",
+				"service",
 				"rts",
 				"software",
 				"config",
@@ -10673,10 +11711,12 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_rts_stack_v1",
-			Category:         "RTS Resources",
+			Category:         "Resources Template Service (RTS)",
 			ShortDescription: `Provides an Huawei cloud RTS Stack resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"template",
+				"service",
 				"rts",
 				"stack",
 				"v1",
@@ -10757,12 +11797,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_s3_bucket",
-			Category:         "S3 Resource",
+			Category:         "S3",
 			ShortDescription: `Provides a S3 bucket resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"s3",
-				"resource",
 				"bucket",
 			},
 			Arguments: []resource.Attribute{
@@ -10779,12 +11818,16 @@ var (
 					Description: `(Optional) The [canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl) to apply. Defaults to "private".`,
 				},
 				resource.Attribute{
-					Name:        "policy",
-					Description: `(Optional) A valid [bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy as constantly changing in a ` + "`" + `terraform plan` + "`" + `. In this case, please make sure you use the verbose/specific version of the policy.`,
+					Name:        "tags",
+					Description: `(Optional) A mapping of tags to assign to the bucket.`,
 				},
 				resource.Attribute{
 					Name:        "force_destroy",
 					Description: `(Optional, Default:false ) A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `(Optional) A valid [bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy as constantly changing in a ` + "`" + `terraform plan` + "`" + `. In this case, please make sure you use the verbose/specific version of the policy.`,
 				},
 				resource.Attribute{
 					Name:        "website",
@@ -10949,12 +11992,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_s3_bucket_object",
-			Category:         "S3 Resource",
+			Category:         "S3",
 			ShortDescription: `Provides a S3 bucket object resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"s3",
-				"resource",
 				"bucket",
 				"object",
 			},
@@ -11046,12 +12088,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_s3_object_policy",
-			Category:         "S3 Resource",
+			Category:         "S3",
 			ShortDescription: `Attaches a policy to an S3 bucket resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"s3",
-				"resource",
 				"object",
 				"policy",
 			},
@@ -11070,12 +12111,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_sfs_file_system_v2",
-			Category:         "SFS Resources",
+			Category:         "Scalable File Service (SFS)",
 			ShortDescription: `Provides an Scalable File Resource (SFS) resource.`,
 			Description:      ``,
 			Keywords: []string{
-				"sfs",
+				"scalable",
 				"file",
+				"service",
+				"sfs",
 				"system",
 				"v2",
 			},
@@ -11191,12 +12234,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_smn_subscription_v2",
-			Category:         "SMN Resource",
+			Category:         "Simple Message Notification (SMN)",
 			ShortDescription: `Manages a V2 subscription resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"simple",
+				"message",
+				"notification",
 				"smn",
-				"resource",
 				"subscription",
 				"v2",
 			},
@@ -11292,12 +12337,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_smn_topic_v2",
-			Category:         "SMN Resource",
+			Category:         "Simple Message Notification (SMN)",
 			ShortDescription: `Manages a V2 topic resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"simple",
+				"message",
+				"notification",
 				"smn",
-				"resource",
 				"topic",
 				"v2",
 			},
@@ -11381,10 +12428,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud-vbs-backup-policy-v2",
-			Category:         "VBS Resources",
+			Category:         "Volume Backup Service (VBS)",
 			ShortDescription: `Provides an VBS Backup Policy resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"volume",
+				"backup",
+				"service",
 				"vbs",
 				"huaweicloud-vbs-backup-policy-v2",
 			},
@@ -11394,10 +12444,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud-vbs-backup-v2",
-			Category:         "VBS Resources",
+			Category:         "Volume Backup Service (VBS)",
 			ShortDescription: `Provides an VBS Backup resource.`,
 			Description:      ``,
 			Keywords: []string{
+				"volume",
+				"backup",
+				"service",
 				"vbs",
 				"huaweicloud-vbs-backup-v2",
 			},
@@ -11407,11 +12460,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpc_bandwidth_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V2 Shared Bandwidth resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"networking",
+				"virtual",
+				"private",
+				"cloud",
 				"vpc",
 				"bandwidth",
 				"v2",
@@ -11468,11 +12523,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpc_eip_v1",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V1 EIP resource within Huawei Cloud VPC.`,
 			Description:      ``,
 			Keywords: []string{
-				"networking",
+				"virtual",
+				"private",
+				"cloud",
 				"vpc",
 				"eip",
 				"v1",
@@ -11593,11 +12650,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpc_peering_connection_accepter_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manage the accepter's side of a VPC Peering Connection.`,
 			Description:      ``,
 			Keywords: []string{
-				"networking",
+				"virtual",
+				"private",
+				"cloud",
 				"vpc",
 				"peering",
 				"connection",
@@ -11660,11 +12719,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpc_peering_connection_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manage a VPC Peering Connection resource.`,
 			Description:      ``,
 			Keywords: []string{
-				"networking",
+				"virtual",
+				"private",
+				"cloud",
 				"vpc",
 				"peering",
 				"connection",
@@ -11694,11 +12755,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpc_route_v2",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Provides an VPC route resource.`,
 			Description:      ``,
 			Keywords: []string{
-				"networking",
+				"virtual",
+				"private",
+				"cloud",
 				"vpc",
 				"route",
 				"v2",
@@ -11719,11 +12782,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpc_subnet_v1",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Provides an VPC subnet resource.`,
 			Description:      ``,
 			Keywords: []string{
-				"networking",
+				"virtual",
+				"private",
+				"cloud",
 				"vpc",
 				"subnet",
 				"v1",
@@ -11734,11 +12799,13 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpc_v1",
-			Category:         "Networking Resources",
+			Category:         "Virtual Private Cloud (VPC)",
 			ShortDescription: `Manages a V1 VPC resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
-				"networking",
+				"virtual",
+				"private",
+				"cloud",
 				"vpc",
 				"v1",
 			},
@@ -11810,10 +12877,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpnaas_endpoint_group_v2",
-			Category:         "VPNaaS Resources",
+			Category:         "Virtual Private Network (VPN)",
 			ShortDescription: `Manages a V2 Endpoint Group resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"network",
+				"vpn",
 				"vpnaas",
 				"endpoint",
 				"group",
@@ -11911,10 +12982,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpnaas_ike_policy_v2",
-			Category:         "VPNaaS Resources",
+			Category:         "Virtual Private Network (VPN)",
 			ShortDescription: `Manages a V2 IKE policy resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"network",
+				"vpn",
 				"vpnaas",
 				"ike",
 				"policy",
@@ -12060,10 +13135,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpnaas_ipsec_policy_v2",
-			Category:         "VPNaaS Resources",
+			Category:         "Virtual Private Network (VPN)",
 			ShortDescription: `Manages a V2 IPSec policy resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"network",
+				"vpn",
 				"vpnaas",
 				"ipsec",
 				"policy",
@@ -12209,10 +13288,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpnaas_service_v2",
-			Category:         "VPNaaS Resources",
+			Category:         "Virtual Private Network (VPN)",
 			ShortDescription: `Manages a V2 VPN service resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"network",
+				"vpn",
 				"vpnaas",
 				"service",
 				"v2",
@@ -12345,10 +13428,14 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "huaweicloud_vpnaas_site_connection_v2",
-			Category:         "VPNaaS Resources",
+			Category:         "Virtual Private Network (VPN)",
 			ShortDescription: `Manages a V2 IPSec site connection resource within HuaweiCloud.`,
 			Description:      ``,
 			Keywords: []string{
+				"virtual",
+				"private",
+				"network",
+				"vpn",
 				"vpnaas",
 				"site",
 				"connection",
@@ -12583,108 +13670,115 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"huaweicloud_as_configuration_v1":                0,
-		"huaweicloud_as_group_v1":                        1,
-		"huaweicloud_as_policy_v1":                       2,
-		"huaweicloud_blockstorage_volume_v2":             3,
-		"huaweicloud_cce_cluster_v3":                     4,
-		"huaweicloud_cce_nodes_v3":                       5,
-		"huaweicloud_cdm_cluster_v1":                     6,
-		"huaweicloud_cdn_domain_v1":                      7,
-		"huaweicloud_ces-alarmrule":                      8,
-		"huaweicloud_cloudtable_cluster_v2":              9,
-		"huaweicloud_compute_floatingip_associate_v2":    10,
-		"huaweicloud_compute_floatingip_v2":              11,
-		"huaweicloud_compute_instance_v2":                12,
-		"huaweicloud_compute_interface_attach_v2":        13,
-		"huaweicloud_compute_keypair_v2":                 14,
-		"huaweicloud_compute_secgroup_v2":                15,
-		"huaweicloud_compute_servergroup_v2":             16,
-		"huaweicloud_compute_volume_attach_v2":           17,
-		"huaweicloud_cs_cluster_v1":                      18,
-		"huaweicloud_cs_peering_connect_v1":              19,
-		"huaweicloud_cs_route_v1":                        20,
-		"huaweicloud_csbs_backup_policy_v1":              21,
-		"huaweicloud_csbs_backup_v1":                     22,
-		"huaweicloud_css_cluster_v1":                     23,
-		"huaweicloud_cts_tracker_v1":                     24,
-		"huaweicloud_dcs_instance_v1":                    25,
-		"huaweicloud_dis_stream_v2":                      26,
-		"huaweicloud_dli_queue_v1":                       27,
-		"huaweicloud_dms_group_v1":                       28,
-		"huaweicloud_dms_instance_v1":                    29,
-		"huaweicloud_dms_queue_v1":                       30,
-		"huaweicloud_dns_recordset_v2":                   31,
-		"huaweicloud_dns_zone_v2":                        32,
-		"huaweicloud_dws_cluster":                        33,
-		"huaweicloud_ecs_instance_v1":                    34,
-		"huaweicloud_elb_backendecs":                     35,
-		"huaweicloud_elb_healthcheck":                    36,
-		"huaweicloud_elb_listener":                       37,
-		"huaweicloud_elb_loadbalancer":                   38,
-		"huaweicloud_fw_firewall_group_v2":               39,
-		"huaweicloud_fw_policy_v2":                       40,
-		"huaweicloud_fw_rule_v2":                         41,
-		"huaweicloud_ges_graph_v1":                       42,
-		"huaweicloud_iam_agency_v3":                      43,
-		"huaweicloud_identity_group_membership_v3":       44,
-		"huaweicloud_identity_group_v3":                  45,
-		"huaweicloud_identity_project_v3":                46,
-		"huaweicloud_identity_role_assignment_v3":        47,
-		"huaweicloud_identity_user_v3":                   48,
-		"huaweicloud_images_image_v2":                    49,
-		"huaweicloud_kms_key_v1":                         50,
-		"huaweicloud_lb_certificate_v2":                  51,
-		"huaweicloud_lb_l7policy_v2":                     52,
-		"huaweicloud_lb_l7rule_v2":                       53,
-		"huaweicloud_lb_listener_v2":                     54,
-		"huaweicloud_lb_loadbalancer_v2":                 55,
-		"huaweicloud_lb_member_v2":                       56,
-		"huaweicloud_lb_monitor_v2":                      57,
-		"huaweicloud_lb_pool_v2":                         58,
-		"huaweicloud_maas_task_v1":                       59,
-		"huaweicloud_mls_instance":                       60,
-		"huaweicloud_mrs_cluster_v1":                     61,
-		"huaweicloud_mrs_job_v1":                         62,
-		"huaweicloud_nat_gateway_v2":                     63,
-		"huaweicloud_nat_snat_rule_v2":                   64,
-		"huaweicloud_networking_floatingip_associate_v2": 65,
-		"huaweicloud_networking_floatingip_v2":           66,
-		"huaweicloud_networking_network_v2":              67,
-		"huaweicloud_networking_port_v2":                 68,
-		"huaweicloud_networking_router_interface_v2":     69,
-		"huaweicloud_networking_router_route_v2":         70,
-		"huaweicloud_networking_router_v2":               71,
-		"huaweicloud_networking_secgroup_rule_v2":        72,
-		"huaweicloud_networking_secgroup_v2":             73,
-		"huaweicloud_networking_subnet_v2":               74,
-		"huaweicloud_networking_vip_associate_v2":        75,
-		"huaweicloud_networking_vip_v2":                  76,
-		"huaweicloud_rds_instance_v1":                    77,
-		"huaweicloud_rds_instance_v3":                    78,
-		"huaweicloud_rds_parametergroup_v3":              79,
-		"huaweicloud_rts_software_config_v1":             80,
-		"huaweicloud_rts_stack_v1":                       81,
-		"huaweicloud_s3_bucket":                          82,
-		"huaweicloud_s3_bucket_object":                   83,
-		"huaweicloud_s3_object_policy":                   84,
-		"huaweicloud_sfs_file_system_v2":                 85,
-		"huaweicloud_smn_subscription_v2":                86,
-		"huaweicloud_smn_topic_v2":                       87,
-		"huaweicloud-vbs-backup-policy-v2":               88,
-		"huaweicloud-vbs-backup-v2":                      89,
-		"huaweicloud_vpc_bandwidth_v2":                   90,
-		"huaweicloud_vpc_eip_v1":                         91,
-		"huaweicloud_vpc_peering_connection_accepter_v2": 92,
-		"huaweicloud_vpc_peering_connection_v2":          93,
-		"huaweicloud_vpc_route_v2":                       94,
-		"huaweicloud_vpc_subnet_v1":                      95,
-		"huaweicloud_vpc_v1":                             96,
-		"huaweicloud_vpnaas_endpoint_group_v2":           97,
-		"huaweicloud_vpnaas_ike_policy_v2":               98,
-		"huaweicloud_vpnaas_ipsec_policy_v2":             99,
-		"huaweicloud_vpnaas_service_v2":                  100,
-		"huaweicloud_vpnaas_site_connection_v2":          101,
+		"huaweicloud_api_gateway_api":                    0,
+		"huaweicloud_api_gateway_group":                  1,
+		"huaweicloud_as_configuration_v1":                2,
+		"huaweicloud_as_group_v1":                        3,
+		"huaweicloud_as_policy_v1":                       4,
+		"huaweicloud_blockstorage_volume_v2":             5,
+		"huaweicloud_cce_cluster_v3":                     6,
+		"huaweicloud_cce_nodes_v3":                       7,
+		"huaweicloud_cdm_cluster_v1":                     8,
+		"huaweicloud_cdn_domain_v1":                      9,
+		"huaweicloud_ces-alarmrule":                      10,
+		"huaweicloud_cloudtable_cluster_v2":              11,
+		"huaweicloud_compute_floatingip_associate_v2":    12,
+		"huaweicloud_compute_floatingip_v2":              13,
+		"huaweicloud_compute_instance_v2":                14,
+		"huaweicloud_compute_interface_attach_v2":        15,
+		"huaweicloud_compute_keypair_v2":                 16,
+		"huaweicloud_compute_secgroup_v2":                17,
+		"huaweicloud_compute_servergroup_v2":             18,
+		"huaweicloud_compute_volume_attach_v2":           19,
+		"huaweicloud_cs_cluster_v1":                      20,
+		"huaweicloud_cs_peering_connect_v1":              21,
+		"huaweicloud_cs_route_v1":                        22,
+		"huaweicloud_csbs_backup_policy_v1":              23,
+		"huaweicloud_csbs_backup_v1":                     24,
+		"huaweicloud_css_cluster_v1":                     25,
+		"huaweicloud_cts_tracker_v1":                     26,
+		"huaweicloud_dcs_instance_v1":                    27,
+		"huaweicloud_dis_stream_v2":                      28,
+		"huaweicloud_dli_queue_v1":                       29,
+		"huaweicloud_dms_group_v1":                       30,
+		"huaweicloud_dms_instance_v1":                    31,
+		"huaweicloud_dms_queue_v1":                       32,
+		"huaweicloud_dns_recordset_v2":                   33,
+		"huaweicloud_dns_zone_v2":                        34,
+		"huaweicloud_dws_cluster":                        35,
+		"huaweicloud_ecs_instance_v1":                    36,
+		"huaweicloud_elb_backendecs":                     37,
+		"huaweicloud_elb_healthcheck":                    38,
+		"huaweicloud_elb_listener":                       39,
+		"huaweicloud_elb_loadbalancer":                   40,
+		"huaweicloud_fgs_function_v2":                    41,
+		"huaweicloud_fw_firewall_group_v2":               42,
+		"huaweicloud_fw_policy_v2":                       43,
+		"huaweicloud_fw_rule_v2":                         44,
+		"huaweicloud_ges_graph_v1":                       45,
+		"huaweicloud_iam_agency_v3":                      46,
+		"huaweicloud_identity_group_membership_v3":       47,
+		"huaweicloud_identity_group_v3":                  48,
+		"huaweicloud_identity_project_v3":                49,
+		"huaweicloud_identity_role_assignment_v3":        50,
+		"huaweicloud_identity_user_v3":                   51,
+		"huaweicloud_images_image_v2":                    52,
+		"huaweicloud_kms_key_v1":                         53,
+		"huaweicloud_lb_certificate_v2":                  54,
+		"huaweicloud_lb_l7policy_v2":                     55,
+		"huaweicloud_lb_l7rule_v2":                       56,
+		"huaweicloud_lb_listener_v2":                     57,
+		"huaweicloud_lb_loadbalancer_v2":                 58,
+		"huaweicloud_lb_member_v2":                       59,
+		"huaweicloud_lb_monitor_v2":                      60,
+		"huaweicloud_lb_pool_v2":                         61,
+		"huaweicloud_lb_whitelist_v2":                    62,
+		"huaweicloud_maas_task_v1":                       63,
+		"huaweicloud_mls_instance":                       64,
+		"huaweicloud_mrs_cluster_v1":                     65,
+		"huaweicloud_mrs_job_v1":                         66,
+		"huaweicloud_nat_dnat_rule_v2":                   67,
+		"huaweicloud_nat_gateway_v2":                     68,
+		"huaweicloud_nat_snat_rule_v2":                   69,
+		"huaweicloud_networking_floatingip_associate_v2": 70,
+		"huaweicloud_networking_floatingip_v2":           71,
+		"huaweicloud_networking_network_v2":              72,
+		"huaweicloud_networking_port_v2":                 73,
+		"huaweicloud_networking_router_interface_v2":     74,
+		"huaweicloud_networking_router_route_v2":         75,
+		"huaweicloud_networking_router_v2":               76,
+		"huaweicloud_networking_secgroup_rule_v2":        77,
+		"huaweicloud_networking_secgroup_v2":             78,
+		"huaweicloud_networking_subnet_v2":               79,
+		"huaweicloud_networking_vip_associate_v2":        80,
+		"huaweicloud_networking_vip_v2":                  81,
+		"huaweicloud_obs_bucket":                         82,
+		"huaweicloud_obs_bucket_object":                  83,
+		"huaweicloud_rds_instance_v1":                    84,
+		"huaweicloud_rds_instance_v3":                    85,
+		"huaweicloud_rds_parametergroup_v3":              86,
+		"huaweicloud_rts_software_config_v1":             87,
+		"huaweicloud_rts_stack_v1":                       88,
+		"huaweicloud_s3_bucket":                          89,
+		"huaweicloud_s3_bucket_object":                   90,
+		"huaweicloud_s3_object_policy":                   91,
+		"huaweicloud_sfs_file_system_v2":                 92,
+		"huaweicloud_smn_subscription_v2":                93,
+		"huaweicloud_smn_topic_v2":                       94,
+		"huaweicloud-vbs-backup-policy-v2":               95,
+		"huaweicloud-vbs-backup-v2":                      96,
+		"huaweicloud_vpc_bandwidth_v2":                   97,
+		"huaweicloud_vpc_eip_v1":                         98,
+		"huaweicloud_vpc_peering_connection_accepter_v2": 99,
+		"huaweicloud_vpc_peering_connection_v2":          100,
+		"huaweicloud_vpc_route_v2":                       101,
+		"huaweicloud_vpc_subnet_v1":                      102,
+		"huaweicloud_vpc_v1":                             103,
+		"huaweicloud_vpnaas_endpoint_group_v2":           104,
+		"huaweicloud_vpnaas_ike_policy_v2":               105,
+		"huaweicloud_vpnaas_ipsec_policy_v2":             106,
+		"huaweicloud_vpnaas_service_v2":                  107,
+		"huaweicloud_vpnaas_site_connection_v2":          108,
 	}
 )
 

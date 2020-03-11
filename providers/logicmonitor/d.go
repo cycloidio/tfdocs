@@ -50,6 +50,76 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "logicmonitor_dashboard",
+			Category:         "Data Sources",
+			ShortDescription: `Use this datasource to get the ID of an available dashboard.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) The number of results to display. Max is 1000. Default is 50`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `(Optional) The number of results to offset the displayed results by. Default is 0`,
+				},
+				resource.Attribute{
+					Name:        "filters",
+					Description: `(Optional) Filters the response according to the operator and value specified. Note that you can use`,
+				},
+				resource.Attribute{
+					Name:        "property",
+					Description: `(Required if using filters) The name of filtered property. Currently the properties supported are ` + "`" + `hostname` + "`" + ` and ` + "`" + `description` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Required if using filters) The type of operator. Currently the operators supported are ` + "`" + `:` + "`" + ` ` + "`" + `~` + "`" + ` ` + "`" + `!:` + "`" + ` ` + "`" + `!~` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required if using filters) The value of the filtered property.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "logicmonitor_dashboard_group",
+			Category:         "Data Sources",
+			ShortDescription: `Use this datasource to get the ID of an available dashboard group.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "size",
+					Description: `(Optional) The number of results to display. Max is 1000. Default is 50`,
+				},
+				resource.Attribute{
+					Name:        "offset",
+					Description: `(Optional) The number of results to offset the displayed results by. Default is 0`,
+				},
+				resource.Attribute{
+					Name:        "filters",
+					Description: `(Optional) Filters the response according to the operator and value specified. Note that you can use`,
+				},
+				resource.Attribute{
+					Name:        "property",
+					Description: `(Required if using filters) The name of filtered property. Currently the properties supported are ` + "`" + `hostname` + "`" + ` and ` + "`" + `description` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `(Required if using filters) The type of operator. Currently the operators supported are ` + "`" + `:` + "`" + ` ` + "`" + `~` + "`" + ` ` + "`" + `!:` + "`" + ` ` + "`" + `!~` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required if using filters) The value of the filtered property.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "logicmonitor_device_group",
 			Category:         "Data Sources",
 			ShortDescription: `Use this datasource to get the ID of an available device group.`,
@@ -99,8 +169,10 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"logicmonitor_collectors":   0,
-		"logicmonitor_device_group": 1,
+		"logicmonitor_collectors":      0,
+		"logicmonitor_dashboard":       1,
+		"logicmonitor_dashboard_group": 2,
+		"logicmonitor_device_group":    3,
 	}
 )
 

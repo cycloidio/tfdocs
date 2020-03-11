@@ -616,6 +616,26 @@ example to supply credentials for a dependency microservice.
 					Name:        "value",
 					Description: `Set to the value of the API Key.`,
 				},
+				resource.Attribute{
+					Name:        "created_date",
+					Description: `The date and time when the API Key was created.`,
+				},
+				resource.Attribute{
+					Name:        "last_updated_date",
+					Description: `The date and time when the API Key was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the API Key.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Specifies whether the API Key is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags for the resource.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -629,6 +649,26 @@ example to supply credentials for a dependency microservice.
 				resource.Attribute{
 					Name:        "value",
 					Description: `Set to the value of the API Key.`,
+				},
+				resource.Attribute{
+					Name:        "created_date",
+					Description: `The date and time when the API Key was created.`,
+				},
+				resource.Attribute{
+					Name:        "last_updated_date",
+					Description: `The date and time when the API Key was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the API Key.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Specifies whether the API Key is enabled.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags for the resource.`,
 				},
 			},
 		},
@@ -703,22 +743,94 @@ error if there is more than one match.
 					Description: `(Required) The name of the REST API to look up. If no REST API is found with this name, an error will be returned. If multiple REST APIs are found with this name, an error will be returned. ## Attributes Reference`,
 				},
 				resource.Attribute{
+					Name:        "api_key_source",
+					Description: `The source of the API key for requests.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The ARN of the REST API.`,
+				},
+				resource.Attribute{
+					Name:        "binary_media_types",
+					Description: `The list of binary media types supported by the REST API.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the REST API.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_configuration",
+					Description: `The endpoint configuration of this RestApi showing the endpoint types of the API.`,
+				},
+				resource.Attribute{
+					Name:        "execution_arn",
+					Description: `The execution ARN part to be used in [` + "`" + `lambda_permission` + "`" + `](/docs/providers/aws/r/lambda_permission.html)'s ` + "`" + `source_arn` + "`" + ` when allowing API Gateway to invoke a Lambda function, e.g. ` + "`" + `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j` + "`" + `, which can be concatenated with allowed stage, method and resource path.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `Set to the ID of the found REST API.`,
 				},
 				resource.Attribute{
+					Name:        "minimum_compression_size",
+					Description: `Minimum response size to compress for the REST API.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `JSON formatted policy document that controls access to the API Gateway.`,
+				},
+				resource.Attribute{
 					Name:        "root_resource_id",
 					Description: `Set to the ID of the API Gateway Resource on the found REST API where the route matches '/'.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value mapping of resource tags.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "api_key_source",
+					Description: `The source of the API key for requests.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The ARN of the REST API.`,
+				},
+				resource.Attribute{
+					Name:        "binary_media_types",
+					Description: `The list of binary media types supported by the REST API.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the REST API.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_configuration",
+					Description: `The endpoint configuration of this RestApi showing the endpoint types of the API.`,
+				},
+				resource.Attribute{
+					Name:        "execution_arn",
+					Description: `The execution ARN part to be used in [` + "`" + `lambda_permission` + "`" + `](/docs/providers/aws/r/lambda_permission.html)'s ` + "`" + `source_arn` + "`" + ` when allowing API Gateway to invoke a Lambda function, e.g. ` + "`" + `arn:aws:execute-api:eu-west-2:123456789012:z4675bid1j` + "`" + `, which can be concatenated with allowed stage, method and resource path.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `Set to the ID of the found REST API.`,
 				},
 				resource.Attribute{
+					Name:        "minimum_compression_size",
+					Description: `Minimum response size to compress for the REST API.`,
+				},
+				resource.Attribute{
+					Name:        "policy",
+					Description: `JSON formatted policy document that controls access to the API Gateway.`,
+				},
+				resource.Attribute{
 					Name:        "root_resource_id",
 					Description: `Set to the ID of the API Gateway Resource on the found REST API where the route matches '/'.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value mapping of resource tags.`,
 				},
 			},
 		},
@@ -746,11 +858,51 @@ error if there is more than one match.
 					Name:        "id",
 					Description: `Set to the ID of the found API Gateway VPC Link.`,
 				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the VPC link.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the VPC link.`,
+				},
+				resource.Attribute{
+					Name:        "status_message",
+					Description: `The status message of the VPC link.`,
+				},
+				resource.Attribute{
+					Name:        "target_arns",
+					Description: `The list of network load balancer arns in the VPC targeted by the VPC link. Currently AWS only supports 1 target.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value mapping of resource tags`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
 					Description: `Set to the ID of the found API Gateway VPC Link.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the VPC link.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the VPC link.`,
+				},
+				resource.Attribute{
+					Name:        "status_message",
+					Description: `The status message of the VPC link.`,
+				},
+				resource.Attribute{
+					Name:        "target_arns",
+					Description: `The list of network load balancer arns in the VPC targeted by the VPC link. Currently AWS only supports 1 target.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `Key-value mapping of resource tags`,
 				},
 			},
 		},
@@ -1703,6 +1855,18 @@ Use this data source to get information about an AWS Cloudwatch Log Group
 					Name:        "creation_time",
 					Description: `The creation time of the log group, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.`,
 				},
+				resource.Attribute{
+					Name:        "retention_in_days",
+					Description: `The number of days log events retained in the specified log group.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `The ARN of the KMS Key to use when encrypting log data.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -1712,6 +1876,18 @@ Use this data source to get information about an AWS Cloudwatch Log Group
 				resource.Attribute{
 					Name:        "creation_time",
 					Description: `The creation time of the log group, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC.`,
+				},
+				resource.Attribute{
+					Name:        "retention_in_days",
+					Description: `The number of days log events retained in the specified log group.`,
+				},
+				resource.Attribute{
+					Name:        "kms_key_id",
+					Description: `The ARN of the KMS Key to use when encrypting log data.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags to assign to the resource.`,
 				},
 			},
 		},
@@ -2870,6 +3046,7 @@ Provides information about a DynamoDB table.
 			Category:         "Data Sources",
 			ShortDescription: `Provides metadata about the KMS key set for EBS default encryption`,
 			Description: `
+
 Use this data source to get the default EBS encryption KMS key in the current region.
 
 `,
@@ -3173,6 +3350,90 @@ resources.
 				resource.Attribute{
 					Name:        "tags",
 					Description: `A mapping of tags for the resource. [1]: http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-volumes.html`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_ec2_instance_type_offering",
+			Category:         "Data Sources",
+			ShortDescription: `Information about single EC2 Instance Type Offering.`,
+			Description: `
+
+Information about single EC2 Instance Type Offering.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstanceTypeOfferings.html) for supported filters. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "location_type",
+					Description: `(Optional) Location type. Defaults to ` + "`" + `region` + "`" + `. Valid values: ` + "`" + `availability-zone` + "`" + `, ` + "`" + `availability-zone-id` + "`" + `, and ` + "`" + `region` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "preferred_instance_types",
+					Description: `(Optional) Ordered list of preferred EC2 Instance Types. The first match in this list will be returned. If no preferred matches are found and the original search returned more than one result, an error is returned. ### filter Argument Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the filter. The ` + "`" + `location` + "`" + ` filter depends on the top-level ` + "`" + `location_type` + "`" + ` argument and if not specified, defaults to the current region.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) List of one or more values for the filter. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `EC2 Instance Type.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_type",
+					Description: `EC2 Instance Type.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_ec2_instance_type_offerings",
+			Category:         "Data Sources",
+			ShortDescription: `Information about EC2 Instance Type Offerings.`,
+			Description: `
+
+Information about EC2 Instance Type Offerings.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) One or more configuration blocks containing name-values filters. See the [EC2 API Reference](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstanceTypeOfferings.html) for supported filters. Detailed below.`,
+				},
+				resource.Attribute{
+					Name:        "location_type",
+					Description: `(Optional) Location type. Defaults to ` + "`" + `region` + "`" + `. Valid values: ` + "`" + `availability-zone` + "`" + `, ` + "`" + `availability-zone-id` + "`" + `, and ` + "`" + `region` + "`" + `. ### filter Argument Reference`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the filter. The ` + "`" + `location` + "`" + ` filter depends on the top-level ` + "`" + `location_type` + "`" + ` argument and if not specified, defaults to the current region.`,
+				},
+				resource.Attribute{
+					Name:        "values",
+					Description: `(Required) List of one or more values for the filter. ## Attribute Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "instance_types",
+					Description: `Set of EC2 Instance Types.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_types",
+					Description: `Set of EC2 Instance Types.`,
 				},
 			},
 		},
@@ -3983,12 +4244,8 @@ Provides information about an Elastic File System (EFS).
 					Description: `Amazon Resource Name of the file system.`,
 				},
 				resource.Attribute{
-					Name:        "performance_mode",
-					Description: `The PerformanceMode of the file system.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `The list of tags assigned to the file system.`,
+					Name:        "dns_name",
+					Description: `The DNS name for the filesystem per [documented convention](http://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-cmd-dns-name.html).`,
 				},
 				resource.Attribute{
 					Name:        "encrypted",
@@ -3999,8 +4256,20 @@ Provides information about an Elastic File System (EFS).
 					Description: `The ARN for the KMS encryption key.`,
 				},
 				resource.Attribute{
-					Name:        "dns_name",
-					Description: `The DNS name for the filesystem per [documented convention](http://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-cmd-dns-name.html).`,
+					Name:        "lifecycle_policy",
+					Description: `A file system [lifecycle policy](https://docs.aws.amazon.com/efs/latest/ug/API_LifecyclePolicy.html) object.`,
+				},
+				resource.Attribute{
+					Name:        "performance_mode",
+					Description: `The file system performance mode.`,
+				},
+				resource.Attribute{
+					Name:        "provisioned_throughput_in_mibps",
+					Description: `The throughput, measured in MiB/s, that you want to provision for the file system.`,
+				},
+				resource.Attribute{
+					Name:        "throughput_mode",
+					Description: `Throughput mode for the file system.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -4009,12 +4278,8 @@ Provides information about an Elastic File System (EFS).
 					Description: `Amazon Resource Name of the file system.`,
 				},
 				resource.Attribute{
-					Name:        "performance_mode",
-					Description: `The PerformanceMode of the file system.`,
-				},
-				resource.Attribute{
-					Name:        "tags",
-					Description: `The list of tags assigned to the file system.`,
+					Name:        "dns_name",
+					Description: `The DNS name for the filesystem per [documented convention](http://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-cmd-dns-name.html).`,
 				},
 				resource.Attribute{
 					Name:        "encrypted",
@@ -4025,8 +4290,20 @@ Provides information about an Elastic File System (EFS).
 					Description: `The ARN for the KMS encryption key.`,
 				},
 				resource.Attribute{
-					Name:        "dns_name",
-					Description: `The DNS name for the filesystem per [documented convention](http://docs.aws.amazon.com/efs/latest/ug/mounting-fs-mount-cmd-dns-name.html).`,
+					Name:        "lifecycle_policy",
+					Description: `A file system [lifecycle policy](https://docs.aws.amazon.com/efs/latest/ug/API_LifecyclePolicy.html) object.`,
+				},
+				resource.Attribute{
+					Name:        "performance_mode",
+					Description: `The file system performance mode.`,
+				},
+				resource.Attribute{
+					Name:        "provisioned_throughput_in_mibps",
+					Description: `The throughput, measured in MiB/s, that you want to provision for the file system.`,
+				},
+				resource.Attribute{
+					Name:        "throughput_mode",
+					Description: `Throughput mode for the file system.`,
 				},
 			},
 		},
@@ -6422,7 +6699,7 @@ Use this data source to get the IP ranges of various AWS products and services. 
 				},
 				resource.Attribute{
 					Name:        "services",
-					Description: `(Required) Filter IP ranges by services. Valid items are ` + "`" + `amazon` + "`" + ` (for amazon.com), ` + "`" + `cloudfront` + "`" + `, ` + "`" + `codebuild` + "`" + `, ` + "`" + `ec2` + "`" + `, ` + "`" + `route53` + "`" + `, ` + "`" + `route53_healthchecks` + "`" + ` and ` + "`" + `S3` + "`" + `. ~>`,
+					Description: `(Required) Filter IP ranges by services. Valid items are ` + "`" + `amazon` + "`" + ` (for amazon.com), ` + "`" + `amazon_connect` + "`" + `, ` + "`" + `api_gateway` + "`" + `, ` + "`" + `cloud9` + "`" + `, ` + "`" + `cloudfront` + "`" + `, ` + "`" + `codebuild` + "`" + `, ` + "`" + `dynamodb` + "`" + `, ` + "`" + `ec2` + "`" + `, ` + "`" + `ec2_instance_connect` + "`" + `, ` + "`" + `globalaccelerator` + "`" + `, ` + "`" + `route53` + "`" + `, ` + "`" + `route53_healthchecks` + "`" + `, ` + "`" + `s3` + "`" + ` and ` + "`" + `workspaces_gateways` + "`" + `. See the [` + "`" + `service` + "`" + ` attribute][2] documentation for other possible values. ~>`,
 				},
 				resource.Attribute{
 					Name:        "url",
@@ -6442,7 +6719,7 @@ Use this data source to get the IP ranges of various AWS products and services. 
 				},
 				resource.Attribute{
 					Name:        "sync_token",
-					Description: `The publication time of the IP ranges, in Unix epoch time format (e.g. ` + "`" + `1470267965` + "`" + `). [1]: https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html`,
+					Description: `The publication time of the IP ranges, in Unix epoch time format (e.g. ` + "`" + `1470267965` + "`" + `). [1]: https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html [2]: https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-syntax`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -6460,7 +6737,7 @@ Use this data source to get the IP ranges of various AWS products and services. 
 				},
 				resource.Attribute{
 					Name:        "sync_token",
-					Description: `The publication time of the IP ranges, in Unix epoch time format (e.g. ` + "`" + `1470267965` + "`" + `). [1]: https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html`,
+					Description: `The publication time of the IP ranges, in Unix epoch time format (e.g. ` + "`" + `1470267965` + "`" + `). [1]: https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html [2]: https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-syntax`,
 				},
 			},
 		},
@@ -6708,6 +6985,63 @@ Decrypt multiple secrets from data encrypted with the AWS KMS service.
 				resource.Attribute{
 					Name:        "plaintext",
 					Description: `Map containing each ` + "`" + `secret` + "`" + ` ` + "`" + `name` + "`" + ` as the key with its decrypted plaintext value`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_lambda_alias",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Lambda Alias data source.`,
+			Description: `
+
+Provides information about a Lambda Alias.
+
+`,
+			Icon:     "Compute/AWS-Lambda.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "function_name",
+					Description: `(Required) Name of the aliased Lambda function.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the Lambda alias. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) identifying the Lambda function alias.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of alias.`,
+				},
+				resource.Attribute{
+					Name:        "function_version",
+					Description: `Lambda function version which the alias uses.`,
+				},
+				resource.Attribute{
+					Name:        "invoke_arn",
+					Description: `The ARN to be used for invoking Lambda Function from API Gateway - to be used in aws_api_gateway_integration's ` + "`" + `uri` + "`" + `.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arn",
+					Description: `The Amazon Resource Name (ARN) identifying the Lambda function alias.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of alias.`,
+				},
+				resource.Attribute{
+					Name:        "function_version",
+					Description: `Lambda function version which the alias uses.`,
+				},
+				resource.Attribute{
+					Name:        "invoke_arn",
+					Description: `The ARN to be used for invoking Lambda Function from API Gateway - to be used in aws_api_gateway_integration's ` + "`" + `uri` + "`" + `.`,
 				},
 			},
 		},
@@ -7794,7 +8128,7 @@ Get information on an Amazon MSK Cluster.
 				},
 				resource.Attribute{
 					Name:        "zookeeper_connect_string",
-					Description: `A comma separated list of one or more IP:port pairs to use to connect to the Apache Zookeeper cluster.`,
+					Description: `A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -7824,7 +8158,7 @@ Get information on an Amazon MSK Cluster.
 				},
 				resource.Attribute{
 					Name:        "zookeeper_connect_string",
-					Description: `A comma separated list of one or more IP:port pairs to use to connect to the Apache Zookeeper cluster.`,
+					Description: `A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster.`,
 				},
 			},
 		},
@@ -9647,7 +9981,7 @@ _optionally_ (see below) content of an object stored inside S3 bucket.
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
-					Description: `(Required) The name of the bucket to read the object from`,
+					Description: `(Required) The name of the bucket to read the object from. Alternatively, an [S3 access point](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html) ARN can be specified`,
 				},
 				resource.Attribute{
 					Name:        "key",
@@ -9837,7 +10171,7 @@ The bucket-objects data source returns keys (i.e., file names) and other metadat
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "bucket",
-					Description: `(Required) Lists object keys in this S3 bucket`,
+					Description: `(Required) Lists object keys in this S3 bucket. Alternatively, an [S3 access point](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html) ARN can be specified`,
 				},
 				resource.Attribute{
 					Name:        "prefix",
@@ -10284,6 +10618,118 @@ Retrieve information about a Service Quota.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "aws_sfn_activity",
+			Category:         "Data Sources",
+			ShortDescription: `Use this data source to get information about a Step Functions Activity.`,
+			Description: `
+
+Provides a Step Functions Activity data source
+
+`,
+			Icon:     "Application_Integration/AWS-Step-Functions.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name that identifies the activity.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `(Optional) The Amazon Resource Name (ARN) that identifies the activity. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Amazon Resource Name (ARN) that identifies the activity.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `The date the activity was created.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Amazon Resource Name (ARN) that identifies the activity.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `The date the activity was created.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_sfn_state_machine",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an Amazon Step Function State Machine`,
+			Description: `
+
+Use this data source to get the ARN of a State Machine in AWS Step
+Function (SFN). By using this data source, you can reference a
+state machine without having to hard code the ARNs as input.
+
+`,
+			Icon:     "Application_Integration/AWS-Step-Functions.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The friendly name of the state machine to match. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Set to the ARN of the found state machine, suitable for referencing in other resources that support State Machines.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Set to the arn of the state function.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `Set to the role_arn used by the state function.`,
+				},
+				resource.Attribute{
+					Name:        "definition",
+					Description: `Set to the state machine definition.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `The date the state machine was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Set to the current status of the state machine.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Set to the ARN of the found state machine, suitable for referencing in other resources that support State Machines.`,
+				},
+				resource.Attribute{
+					Name:        "arn",
+					Description: `Set to the arn of the state function.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `Set to the role_arn used by the state function.`,
+				},
+				resource.Attribute{
+					Name:        "definition",
+					Description: `Set to the state machine definition.`,
+				},
+				resource.Attribute{
+					Name:        "creation_date",
+					Description: `The date the state machine was created.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Set to the current status of the state machine.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "aws_sns_topic",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on a Amazon Simple Notification Service (SNS) Topic`,
@@ -10340,6 +10786,10 @@ the ARNs as input.
 					Name:        "url",
 					Description: `The URL of the queue.`,
 				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags for the resource.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -10349,6 +10799,10 @@ the ARNs as input.
 				resource.Attribute{
 					Name:        "url",
 					Description: `The URL of the queue.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `A mapping of tags for the resource.`,
 				},
 			},
 		},
@@ -10448,6 +10902,63 @@ Provides an SSM Parameter data source.
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "aws_ssm_patch_baseline",
+			Category:         "Data Sources",
+			ShortDescription: `Provides an SSM Patch Baseline data source`,
+			Description: `
+
+Provides an SSM Patch Baseline data source. Useful if you wish to reuse the default baselines provided.
+
+`,
+			Icon:     "Management_Governance/AWS-Systems-Manager_Patch-Manager_light-bg.svg",
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Required) The owner of the baseline. Valid values: ` + "`" + `All` + "`" + `, ` + "`" + `AWS` + "`" + `, ` + "`" + `Self` + "`" + ` (the current account).`,
+				},
+				resource.Attribute{
+					Name:        "name_prefix",
+					Description: `(Optional) Filter results by the baseline name prefix.`,
+				},
+				resource.Attribute{
+					Name:        "default_baseline",
+					Description: `(Optional) Filters the results against the baselines default_baseline field.`,
+				},
+				resource.Attribute{
+					Name:        "operating_system",
+					Description: `(Optional) The specified OS for the baseline. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the baseline.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the baseline.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the baseline.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The id of the baseline.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the baseline.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the baseline.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10582,12 +11093,12 @@ VPC that the subnet belongs to.
 			Name:             "",
 			Type:             "aws_subnet_ids",
 			Category:         "Data Sources",
-			ShortDescription: `Provides a list of subnet Ids for a VPC`,
+			ShortDescription: `Provides a set of subnet Ids for a VPC`,
 			Description: `
 
-` + "`" + `aws_subnet_ids` + "`" + ` provides a list of ids for a vpc_id
+` + "`" + `aws_subnet_ids` + "`" + ` provides a set of ids for a vpc_id
 
-This resource can be useful for getting back a list of subnet ids for a vpc.
+This resource can be useful for getting back a set of subnet ids for a vpc.
 
 `,
 			Keywords: []string{},
@@ -11734,121 +12245,127 @@ Use this data source to get information about a WorkSpaces Bundle.
 		"aws_ebs_snapshot":                              36,
 		"aws_ebs_snapshot_ids":                          37,
 		"aws_ebs_volume":                                38,
-		"aws_ec2_transit_gateway":                       39,
-		"aws_ec2_transit_gateway_dx_gateway_attachment": 40,
-		"aws_ec2_transit_gateway_route_table":           41,
-		"aws_ec2_transit_gateway_vpc_attachment":        42,
-		"aws_ec2_transit_gateway_vpn_attachment":        43,
-		"aws_ecr_image":                                 44,
-		"aws_ecr_repository":                            45,
-		"aws_ecs_cluster":                               46,
-		"aws_ecs_container_definition":                  47,
-		"aws_ecs_service":                               48,
-		"aws_ecs_task_definition":                       49,
-		"aws_efs_file_system":                           50,
-		"aws_efs_mount_target":                          51,
-		"aws_eip":                                       52,
-		"aws_eks_cluster":                               53,
-		"aws_eks_cluster_auth":                          54,
-		"aws_elastic_beanstalk_application":             55,
-		"aws_elastic_beanstalk_hosted_zone":             56,
-		"aws_elastic_beanstalk_solution_stack":          57,
-		"aws_elasticache_cluster":                       58,
-		"aws_elasticache_replication_group":             59,
-		"aws_elasticsearch_domain":                      60,
-		"aws_elb":                                       61,
-		"aws_elb_hosted_zone_id":                        62,
-		"aws_elb_service_account":                       63,
-		"aws_glue_script":                               64,
-		"aws_guardduty_detector":                        65,
-		"aws_iam_account_alias":                         66,
-		"aws_iam_group":                                 67,
-		"aws_iam_instance_profile":                      68,
-		"aws_iam_policy":                                69,
-		"aws_iam_policy_document":                       70,
-		"aws_iam_role":                                  71,
-		"aws_iam_server_certificate":                    72,
-		"aws_iam_user":                                  73,
-		"aws_inspector_rules_packages":                  74,
-		"aws_instance":                                  75,
-		"aws_instances":                                 76,
-		"aws_internet_gateway":                          77,
-		"aws_iot_endpoint":                              78,
-		"aws_ip_ranges":                                 79,
-		"aws_kinesis_stream":                            80,
-		"aws_kms_alias":                                 81,
-		"aws_kms_ciphertext":                            82,
-		"aws_kms_key":                                   83,
-		"aws_kms_secrets":                               84,
-		"aws_lambda_function":                           85,
-		"aws_lambda_invocation":                         86,
-		"aws_lambda_layer_version":                      87,
-		"aws_launch_configuration":                      88,
-		"aws_launch_template":                           89,
-		"aws_lb":                                        90,
-		"aws_alb":                                       91,
-		"aws_lb_listener":                               92,
-		"aws_alb_listener":                              93,
-		"aws_lb_target_group":                           94,
-		"aws_alb_target_group":                          95,
-		"aws_mq_broker":                                 96,
-		"aws_msk_cluster":                               97,
-		"aws_msk_configuration":                         98,
-		"aws_nat_gateway":                               99,
-		"aws_network_acls":                              100,
-		"aws_network_interface":                         101,
-		"aws_network_interfaces":                        102,
-		"aws_organizations_organization":                103,
-		"aws_organizations_organizational_units":        104,
-		"aws_partition":                                 105,
-		"aws_prefix_list":                               106,
-		"aws_pricing_product":                           107,
-		"aws_qldb_ledger":                               108,
-		"aws_ram_resource_share":                        109,
-		"aws_rds_cluster":                               110,
-		"aws_redshift_cluster":                          111,
-		"aws_redshift_service_account":                  112,
-		"aws_region":                                    113,
-		"aws_route":                                     114,
-		"aws_route53_delegation_set":                    115,
-		"aws_route53_resolver_rule":                     116,
-		"aws_route53_resolver_rules":                    117,
-		"aws_route53_zone":                              118,
-		"aws_route_table":                               119,
-		"aws_route_tables":                              120,
-		"aws_s3_bucket":                                 121,
-		"aws_s3_bucket_object":                          122,
-		"aws_s3_bucket_objects":                         123,
-		"aws_secretsmanager_secret":                     124,
-		"aws_secretsmanager_secret_version":             125,
-		"aws_security_group":                            126,
-		"aws_security_groups":                           127,
-		"aws_servicequotas_service":                     128,
-		"aws_servicequotas_service_quota":               129,
-		"aws_sns_topic":                                 130,
-		"aws_sqs_queue":                                 131,
-		"aws_ssm_document":                              132,
-		"aws_ssm_parameter":                             133,
-		"aws_storagegateway_local_disk":                 134,
-		"aws_subnet":                                    135,
-		"aws_subnet_ids":                                136,
-		"aws_transfer_server":                           137,
-		"aws_vpc":                                       138,
-		"aws_vpc_dhcp_options":                          139,
-		"aws_vpc_endpoint":                              140,
-		"aws_vpc_endpoint_service":                      141,
-		"aws_vpc_peering_connection":                    142,
-		"aws_vpcs":                                      143,
-		"aws_vpn_gateway":                               144,
-		"aws_waf_ipset":                                 145,
-		"aws_waf_rate_based_rule":                       146,
-		"aws_waf_rule":                                  147,
-		"aws_waf_web_acl":                               148,
-		"aws_wafregional_ipset":                         149,
-		"aws_wafregional_rate_based_rule":               150,
-		"aws_wafregional_rule":                          151,
-		"aws_wafregional_web_acl":                       152,
-		"aws_workspaces_bundle":                         153,
+		"aws_ec2_instance_type_offering":                39,
+		"aws_ec2_instance_type_offerings":               40,
+		"aws_ec2_transit_gateway":                       41,
+		"aws_ec2_transit_gateway_dx_gateway_attachment": 42,
+		"aws_ec2_transit_gateway_route_table":           43,
+		"aws_ec2_transit_gateway_vpc_attachment":        44,
+		"aws_ec2_transit_gateway_vpn_attachment":        45,
+		"aws_ecr_image":                                 46,
+		"aws_ecr_repository":                            47,
+		"aws_ecs_cluster":                               48,
+		"aws_ecs_container_definition":                  49,
+		"aws_ecs_service":                               50,
+		"aws_ecs_task_definition":                       51,
+		"aws_efs_file_system":                           52,
+		"aws_efs_mount_target":                          53,
+		"aws_eip":                                       54,
+		"aws_eks_cluster":                               55,
+		"aws_eks_cluster_auth":                          56,
+		"aws_elastic_beanstalk_application":             57,
+		"aws_elastic_beanstalk_hosted_zone":             58,
+		"aws_elastic_beanstalk_solution_stack":          59,
+		"aws_elasticache_cluster":                       60,
+		"aws_elasticache_replication_group":             61,
+		"aws_elasticsearch_domain":                      62,
+		"aws_elb":                                       63,
+		"aws_elb_hosted_zone_id":                        64,
+		"aws_elb_service_account":                       65,
+		"aws_glue_script":                               66,
+		"aws_guardduty_detector":                        67,
+		"aws_iam_account_alias":                         68,
+		"aws_iam_group":                                 69,
+		"aws_iam_instance_profile":                      70,
+		"aws_iam_policy":                                71,
+		"aws_iam_policy_document":                       72,
+		"aws_iam_role":                                  73,
+		"aws_iam_server_certificate":                    74,
+		"aws_iam_user":                                  75,
+		"aws_inspector_rules_packages":                  76,
+		"aws_instance":                                  77,
+		"aws_instances":                                 78,
+		"aws_internet_gateway":                          79,
+		"aws_iot_endpoint":                              80,
+		"aws_ip_ranges":                                 81,
+		"aws_kinesis_stream":                            82,
+		"aws_kms_alias":                                 83,
+		"aws_kms_ciphertext":                            84,
+		"aws_kms_key":                                   85,
+		"aws_kms_secrets":                               86,
+		"aws_lambda_alias":                              87,
+		"aws_lambda_function":                           88,
+		"aws_lambda_invocation":                         89,
+		"aws_lambda_layer_version":                      90,
+		"aws_launch_configuration":                      91,
+		"aws_launch_template":                           92,
+		"aws_lb":                                        93,
+		"aws_alb":                                       94,
+		"aws_lb_listener":                               95,
+		"aws_alb_listener":                              96,
+		"aws_lb_target_group":                           97,
+		"aws_alb_target_group":                          98,
+		"aws_mq_broker":                                 99,
+		"aws_msk_cluster":                               100,
+		"aws_msk_configuration":                         101,
+		"aws_nat_gateway":                               102,
+		"aws_network_acls":                              103,
+		"aws_network_interface":                         104,
+		"aws_network_interfaces":                        105,
+		"aws_organizations_organization":                106,
+		"aws_organizations_organizational_units":        107,
+		"aws_partition":                                 108,
+		"aws_prefix_list":                               109,
+		"aws_pricing_product":                           110,
+		"aws_qldb_ledger":                               111,
+		"aws_ram_resource_share":                        112,
+		"aws_rds_cluster":                               113,
+		"aws_redshift_cluster":                          114,
+		"aws_redshift_service_account":                  115,
+		"aws_region":                                    116,
+		"aws_route":                                     117,
+		"aws_route53_delegation_set":                    118,
+		"aws_route53_resolver_rule":                     119,
+		"aws_route53_resolver_rules":                    120,
+		"aws_route53_zone":                              121,
+		"aws_route_table":                               122,
+		"aws_route_tables":                              123,
+		"aws_s3_bucket":                                 124,
+		"aws_s3_bucket_object":                          125,
+		"aws_s3_bucket_objects":                         126,
+		"aws_secretsmanager_secret":                     127,
+		"aws_secretsmanager_secret_version":             128,
+		"aws_security_group":                            129,
+		"aws_security_groups":                           130,
+		"aws_servicequotas_service":                     131,
+		"aws_servicequotas_service_quota":               132,
+		"aws_sfn_activity":                              133,
+		"aws_sfn_state_machine":                         134,
+		"aws_sns_topic":                                 135,
+		"aws_sqs_queue":                                 136,
+		"aws_ssm_document":                              137,
+		"aws_ssm_parameter":                             138,
+		"aws_ssm_patch_baseline":                        139,
+		"aws_storagegateway_local_disk":                 140,
+		"aws_subnet":                                    141,
+		"aws_subnet_ids":                                142,
+		"aws_transfer_server":                           143,
+		"aws_vpc":                                       144,
+		"aws_vpc_dhcp_options":                          145,
+		"aws_vpc_endpoint":                              146,
+		"aws_vpc_endpoint_service":                      147,
+		"aws_vpc_peering_connection":                    148,
+		"aws_vpcs":                                      149,
+		"aws_vpn_gateway":                               150,
+		"aws_waf_ipset":                                 151,
+		"aws_waf_rate_based_rule":                       152,
+		"aws_waf_rule":                                  153,
+		"aws_waf_web_acl":                               154,
+		"aws_wafregional_ipset":                         155,
+		"aws_wafregional_rate_based_rule":               156,
+		"aws_wafregional_rule":                          157,
+		"aws_wafregional_web_acl":                       158,
+		"aws_workspaces_bundle":                         159,
 	}
 )
 

@@ -127,7 +127,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_type",
-					Description: `The type of event being observed. For example: ` + "`" + `"providers/cloud.storage/eventTypes/object.change"` + "`" + ` and ` + "`" + `"providers/cloud.pubsub/eventTypes/topic.publish"` + "`" + `. See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a full reference.`,
+					Description: `The type of event to observe. For example: ` + "`" + `"google.storage.object.finalize"` + "`" + `. See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a full reference of accepted triggers.`,
 				},
 				resource.Attribute{
 					Name:        "resource",
@@ -197,7 +197,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_type",
-					Description: `The type of event being observed. For example: ` + "`" + `"providers/cloud.storage/eventTypes/object.change"` + "`" + ` and ` + "`" + `"providers/cloud.pubsub/eventTypes/topic.publish"` + "`" + `. See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a full reference.`,
+					Description: `The type of event to observe. For example: ` + "`" + `"google.storage.object.finalize"` + "`" + `. See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a full reference of accepted triggers.`,
 				},
 				resource.Attribute{
 					Name:        "resource",
@@ -1082,10 +1082,6 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
 				},
 				resource.Attribute{
-					Name:        "network",
-					Description: `The network name or resource link to the parent network of this network.`,
-				},
-				resource.Attribute{
 					Name:        "description",
 					Description: `Description of this network.`,
 				},
@@ -1103,10 +1099,6 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "network",
-					Description: `The network name or resource link to the parent network of this network.`,
-				},
 				resource.Attribute{
 					Name:        "description",
 					Description: `Description of this network.`,
@@ -1477,6 +1469,122 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_dns_keys",
+			Category:         "Data Sources",
+			ShortDescription: `Get DNSKEY and DS records of DNSSEC-signed managed zones.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "managed_zone",
+					Description: `(Required) The name or id of the Cloud DNS managed zone.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If ` + "`" + `project` + "`" + ` is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "key_signing_keys",
+					Description: `A list of Key-signing key (KSK) records. Structure is documented below. Additionally, the DS record is provided:`,
+				},
+				resource.Attribute{
+					Name:        "ds_record",
+					Description: `The DS record based on the KSK record. This is used when [delegating](https://cloud.google.com/dns/docs/dnssec-advanced#subdelegation) DNSSEC-signed subdomains.`,
+				},
+				resource.Attribute{
+					Name:        "zone_signing_keys",
+					Description: `A list of Zone-signing key (ZSK) records. Structure is documented below. --- The ` + "`" + `key_signing_keys` + "`" + ` and ` + "`" + `zone_signing_keys` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time. Possible values are ` + "`" + `ecdsap256sha256` + "`" + `, ` + "`" + `ecdsap384sha384` + "`" + `, ` + "`" + `rsasha1` + "`" + `, ` + "`" + `rsasha256` + "`" + `, and ` + "`" + `rsasha512` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `The time that this resource was created in the control plane. This is in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A mutable string of at most 1024 characters associated with this resource for the user's convenience.`,
+				},
+				resource.Attribute{
+					Name:        "digests",
+					Description: `A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains: - ` + "`" + `digest` + "`" + ` - The base-16 encoded bytes of this digest. Suitable for use in a DS resource record. - ` + "`" + `type` + "`" + ` - Specifies the algorithm used to calculate this digest. Possible values are ` + "`" + `sha1` + "`" + `, ` + "`" + `sha256` + "`" + ` and ` + "`" + `sha384` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier for the resource; defined by the server.`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.`,
+				},
+				resource.Attribute{
+					Name:        "key_length",
+					Description: `Length of the key in bits. Specified at creation time then immutable.`,
+				},
+				resource.Attribute{
+					Name:        "key_tag",
+					Description: `The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `Base64 encoded public half of this key.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_signing_keys",
+					Description: `A list of Key-signing key (KSK) records. Structure is documented below. Additionally, the DS record is provided:`,
+				},
+				resource.Attribute{
+					Name:        "ds_record",
+					Description: `The DS record based on the KSK record. This is used when [delegating](https://cloud.google.com/dns/docs/dnssec-advanced#subdelegation) DNSSEC-signed subdomains.`,
+				},
+				resource.Attribute{
+					Name:        "zone_signing_keys",
+					Description: `A list of Zone-signing key (ZSK) records. Structure is documented below. --- The ` + "`" + `key_signing_keys` + "`" + ` and ` + "`" + `zone_signing_keys` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `String mnemonic specifying the DNSSEC algorithm of this key. Immutable after creation time. Possible values are ` + "`" + `ecdsap256sha256` + "`" + `, ` + "`" + `ecdsap384sha384` + "`" + `, ` + "`" + `rsasha1` + "`" + `, ` + "`" + `rsasha256` + "`" + `, and ` + "`" + `rsasha512` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "creation_time",
+					Description: `The time that this resource was created in the control plane. This is in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A mutable string of at most 1024 characters associated with this resource for the user's convenience.`,
+				},
+				resource.Attribute{
+					Name:        "digests",
+					Description: `A list of cryptographic hashes of the DNSKEY resource record associated with this DnsKey. These digests are needed to construct a DS record that points at this DNS key. Each contains: - ` + "`" + `digest` + "`" + ` - The base-16 encoded bytes of this digest. Suitable for use in a DS resource record. - ` + "`" + `type` + "`" + ` - Specifies the algorithm used to calculate this digest. Possible values are ` + "`" + `sha1` + "`" + `, ` + "`" + `sha256` + "`" + ` and ` + "`" + `sha384` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier for the resource; defined by the server.`,
+				},
+				resource.Attribute{
+					Name:        "is_active",
+					Description: `Active keys will be used to sign subsequent changes to the ManagedZone. Inactive keys will still be present as DNSKEY Resource Records for the use of resolvers validating existing signatures.`,
+				},
+				resource.Attribute{
+					Name:        "key_length",
+					Description: `Length of the key in bits. Specified at creation time then immutable.`,
+				},
+				resource.Attribute{
+					Name:        "key_tag",
+					Description: `The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B.`,
+				},
+				resource.Attribute{
+					Name:        "public_key",
+					Description: `Base64 encoded public half of this key.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_client_openid_userinfo",
 			Category:         "Data Sources",
 			ShortDescription: `Get OpenID userinfo about the credentials used with the Google provider, specifically the email.`,
@@ -1536,6 +1644,90 @@ var (
 				resource.Attribute{
 					Name:        "supported_python_versions",
 					Description: `Supported python versions for this image version`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_backend_bucket",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a BackendBucket.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the resource. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `Cloud Storage bucket name.`,
+				},
+				resource.Attribute{
+					Name:        "cdn_policy",
+					Description: `Cloud CDN configuration for this Backend Bucket. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional textual description of the resource; provided by the client when the resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "enable_cdn",
+					Description: `Whether Cloud CDN is enabled for this BackendBucket.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. The ` + "`" + `cdn_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "signed_url_cache_max_age_sec",
+					Description: `Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket_name",
+					Description: `Cloud Storage bucket name.`,
+				},
+				resource.Attribute{
+					Name:        "cdn_policy",
+					Description: `Cloud CDN configuration for this Backend Bucket. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional textual description of the resource; provided by the client when the resource is created.`,
+				},
+				resource.Attribute{
+					Name:        "enable_cdn",
+					Description: `Whether Cloud CDN is enabled for this BackendBucket.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. The ` + "`" + `cdn_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "signed_url_cache_max_age_sec",
+					Description: `Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.`,
 				},
 			},
 		},
@@ -1867,6 +2059,70 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_secret_manager_secret_version",
+			Category:         "Data Sources",
+			ShortDescription: `Get a Secret Manager secret's version.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The project to get the secret version for. If it is not provided, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Required) The secret to get the secret version for.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) The version of the secret to get. If it is not provided, the latest version is retrieved. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "secret_data",
+					Description: `The secret data. No larger than 64KiB.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the SecretVersion. Format: ` + "`" + `projects/{{project}}/secrets/{{secret_id}}/versions/{{version}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time at which the Secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "destroy_time",
+					Description: `The time at which the Secret was destroyed. Only present if state is DESTROYED.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `True if the current state of the SecretVersion is enabled.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret_data",
+					Description: `The secret data. No larger than 64KiB.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the SecretVersion. Format: ` + "`" + `projects/{{project}}/secrets/{{secret_id}}/versions/{{version}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time at which the Secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "destroy_time",
+					Description: `The time at which the Secret was destroyed. Only present if state is DESTROYED.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `True if the current state of the SecretVersion is enabled.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_service_account",
 			Category:         "Data Sources",
 			ShortDescription: `Get the service account from a project.`,
@@ -1962,6 +2218,162 @@ var (
 				resource.Attribute{
 					Name:        "public_key",
 					Description: `The public key, base64 encoded`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_sql_ca_certs",
+			Category:         "Data Sources",
+			ShortDescription: `Get all of the trusted Certificate Authorities (CAs) for the specified SQL database instance.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance",
+					Description: `(Required) The name or self link of the instance. ---`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If ` + "`" + `project` + "`" + ` is not provided, the provider project is used. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "active_version",
+					Description: `SHA1 fingerprint of the currently active CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certs",
+					Description: `A list of server CA certificates for the instance. Each contains:`,
+				},
+				resource.Attribute{
+					Name:        "cert",
+					Description: `The CA certificate used to connect to the SQL instance via SSL.`,
+				},
+				resource.Attribute{
+					Name:        "common_name",
+					Description: `The CN valid for the CA cert.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the CA cert.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `Expiration time of the CA cert.`,
+				},
+				resource.Attribute{
+					Name:        "sha1_fingerprint",
+					Description: `SHA1 fingerprint of the CA cert.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "active_version",
+					Description: `SHA1 fingerprint of the currently active CA certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certs",
+					Description: `A list of server CA certificates for the instance. Each contains:`,
+				},
+				resource.Attribute{
+					Name:        "cert",
+					Description: `The CA certificate used to connect to the SQL instance via SSL.`,
+				},
+				resource.Attribute{
+					Name:        "common_name",
+					Description: `The CN valid for the CA cert.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Creation time of the CA cert.`,
+				},
+				resource.Attribute{
+					Name:        "expiration_time",
+					Description: `Expiration time of the CA cert.`,
+				},
+				resource.Attribute{
+					Name:        "sha1_fingerprint",
+					Description: `SHA1 fingerprint of the CA cert.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_monitoring_notification_channel",
+			Category:         "Data Sources",
+			ShortDescription: `A NotificationChannel is a medium through which an alert is delivered when a policy violation is detected.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) The display name for this notification channel.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Optional) The type of the notification channel. - - - Other optional fields include:`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Labels (corresponding to the NotificationChannelDescriptor schema) to filter the notification channels by.`,
+				},
+				resource.Attribute{
+					Name:        "user_labels",
+					Description: `(Optional) User-provided key-value labels to filter by.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_status",
+					Description: `Indicates whether this channel has been verified or not.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Configuration fields that define the channel and its behavior.`,
+				},
+				resource.Attribute{
+					Name:        "user_labels",
+					Description: `User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional human-readable description of this notification channel.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether notifications are forwarded to the described channel.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The full REST resource name for this channel. The syntax is: ` + "`" + `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "verification_status",
+					Description: `Indicates whether this channel has been verified or not.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `Configuration fields that define the channel and its behavior.`,
+				},
+				resource.Attribute{
+					Name:        "user_labels",
+					Description: `User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional human-readable description of this notification channel.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Whether notifications are forwarded to the described channel.`,
 				},
 			},
 		},
@@ -2994,45 +3406,50 @@ var (
 		"google_compute_ssl_policy":                       12,
 		"google_compute_subnetwork":                       13,
 		"google_compute_vpn_gateway":                      14,
-		"google_client_openid_userinfo":                   15,
-		"google_composer_image_versions":                  16,
-		"google_compute_backend_service":                  17,
-		"google_compute_network_endpoint_group":           18,
-		"google_folder_organization_policy":               19,
-		"google_iam_role":                                 20,
-		"google_netblock_ip_ranges":                       21,
-		"google_project_organization_policy":              22,
-		"google_service_account":                          23,
-		"google_service_account_access_token":             24,
-		"google_service_account_key":                      25,
-		"google_tpu_tensorflow_versions":                  26,
-		"google_dns_managed_zone":                         27,
-		"google_active_folder":                            28,
-		"google_billing_account":                          29,
-		"google_compute_default_service_account":          30,
-		"google_compute_instance_group":                   31,
-		"google_compute_node_types":                       32,
-		"google_compute_regions":                          33,
-		"google_compute_resource_policy":                  34,
-		"google_compute_zones":                            35,
-		"google_container_cluster":                        36,
-		"google_container_engine_versions":                37,
-		"google_container_registry_image":                 38,
-		"google_container_registry_repository":            39,
-		"google_folder":                                   40,
-		"google_iam_policy":                               41,
-		"google_kms_crypto_key":                           42,
-		"google_kms_crypto_key_version":                   43,
-		"google_kms_key_ring":                             44,
-		"google_kms_secret":                               45,
-		"google_kms_secret_ciphertext":                    46,
-		"google_organization":                             47,
-		"google_project":                                  48,
-		"google_projects":                                 49,
-		"google_storage_project_service_account":          50,
-		"google_storage_transfer_project_service_account": 51,
-		"google_storage_object_signed_url":                52,
-		"google_storage_bucket_object":                    53,
+		"google_dns_keys":                                 15,
+		"google_client_openid_userinfo":                   16,
+		"google_composer_image_versions":                  17,
+		"google_compute_backend_bucket":                   18,
+		"google_compute_backend_service":                  19,
+		"google_compute_network_endpoint_group":           20,
+		"google_folder_organization_policy":               21,
+		"google_iam_role":                                 22,
+		"google_netblock_ip_ranges":                       23,
+		"google_project_organization_policy":              24,
+		"google_secret_manager_secret_version":            25,
+		"google_service_account":                          26,
+		"google_service_account_access_token":             27,
+		"google_service_account_key":                      28,
+		"google_sql_ca_certs":                             29,
+		"google_monitoring_notification_channel":          30,
+		"google_tpu_tensorflow_versions":                  31,
+		"google_dns_managed_zone":                         32,
+		"google_active_folder":                            33,
+		"google_billing_account":                          34,
+		"google_compute_default_service_account":          35,
+		"google_compute_instance_group":                   36,
+		"google_compute_node_types":                       37,
+		"google_compute_regions":                          38,
+		"google_compute_resource_policy":                  39,
+		"google_compute_zones":                            40,
+		"google_container_cluster":                        41,
+		"google_container_engine_versions":                42,
+		"google_container_registry_image":                 43,
+		"google_container_registry_repository":            44,
+		"google_folder":                                   45,
+		"google_iam_policy":                               46,
+		"google_kms_crypto_key":                           47,
+		"google_kms_crypto_key_version":                   48,
+		"google_kms_key_ring":                             49,
+		"google_kms_secret":                               50,
+		"google_kms_secret_ciphertext":                    51,
+		"google_organization":                             52,
+		"google_project":                                  53,
+		"google_projects":                                 54,
+		"google_storage_project_service_account":          55,
+		"google_storage_transfer_project_service_account": 56,
+		"google_storage_object_signed_url":                57,
+		"google_storage_bucket_object":                    58,
 	}
 )
 

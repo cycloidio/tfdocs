@@ -240,6 +240,10 @@ var (
 					Name:        "allow_volume_expansion",
 					Description: `Indicates whether the storage class allow volume expand.`,
 				},
+				resource.Attribute{
+					Name:        "mount_options",
+					Description: `Persistent Volumes that are dynamically created by a storage class will have the mount options specified.`,
+				},
 			},
 			Attributes: []resource.Attribute{},
 		},

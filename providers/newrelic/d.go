@@ -34,6 +34,10 @@ Use this data source to get information about a specific alert channel in New Re
 					Description: `Alert channel type, either: ` + "`" + `email` + "`" + `, ` + "`" + `opsgenie` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `victorops` + "`" + `, or ` + "`" + `webhook` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "config",
+					Description: `Alert channel configuration.`,
+				},
+				resource.Attribute{
 					Name:        "policy_ids",
 					Description: `A list of policy IDs associated with the alert channel.`,
 				},
@@ -46,6 +50,10 @@ Use this data source to get information about a specific alert channel in New Re
 				resource.Attribute{
 					Name:        "type",
 					Description: `Alert channel type, either: ` + "`" + `email` + "`" + `, ` + "`" + `opsgenie` + "`" + `, ` + "`" + `pagerduty` + "`" + `, ` + "`" + `slack` + "`" + `, ` + "`" + `victorops` + "`" + `, or ` + "`" + `webhook` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Alert channel configuration.`,
 				},
 				resource.Attribute{
 					Name:        "policy_ids",
@@ -279,17 +287,64 @@ Use this data source to get information about a specific synthetics monitor in N
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "newrelic_synthetics_secure_credential",
+			Category:         "Data Sources",
+			ShortDescription: `Grabs a Synthetics secure credential by its key.`,
+			Description: `\_synthetics\_secure\_credential
+
+Use this data source to get information about a specific Synthetics secure credential in New Relic that already exists.
+
+Note that the secure credential's value is not returned as an attribute for security reasons.
+
+`,
+			Keywords: []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The secure credential's key name. Regardless of the case used in the configuration, the provider will provide an upcased key to the underlying API. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The secure credential's description.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time the secure credential was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The time the secure credential was last updated.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "description",
+					Description: `The secure credential's description.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The time the secure credential was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated_at",
+					Description: `The time the secure credential was last updated.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"newrelic_alert_channel":      0,
-		"newrelic_alert_policy":       1,
-		"newrelic_application":        2,
-		"newrelic_key_transaction":    3,
-		"newrelic_plugin":             4,
-		"newrelic_plugin_component":   5,
-		"newrelic_synthetics_monitor": 6,
+		"newrelic_alert_channel":                0,
+		"newrelic_alert_policy":                 1,
+		"newrelic_application":                  2,
+		"newrelic_key_transaction":              3,
+		"newrelic_plugin":                       4,
+		"newrelic_plugin_component":             5,
+		"newrelic_synthetics_monitor":           6,
+		"newrelic_synthetics_secure_credential": 7,
 	}
 )
 

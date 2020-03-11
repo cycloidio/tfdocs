@@ -11,6 +11,26 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "nomad_acl_policy",
+			Category:         "Data Sources",
+			ShortDescription: `Retrieve information on an ACL Policy.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "nomad_acl_token",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an ACL token.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "nomad_deployments",
 			Category:         "Data Sources",
 			ShortDescription: `Retrieve a list of deployments and a summary of their attributes.`,
@@ -53,10 +73,12 @@ var (
 
 	dataSourcesMap = map[string]int{
 
-		"nomad_deployments": 0,
-		"nomad_job":         1,
-		"nomad_namespaces":  2,
-		"nomad_regions":     3,
+		"nomad_acl_policy":  0,
+		"nomad_acl_token":   1,
+		"nomad_deployments": 2,
+		"nomad_job":         3,
+		"nomad_namespaces":  4,
+		"nomad_regions":     5,
 	}
 )
 

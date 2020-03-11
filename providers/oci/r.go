@@ -2451,6 +2451,10 @@ var (
 					Description: `The status of the HTTP response encountered in the upstream error.`,
 				},
 				resource.Attribute{
+					Name:        "fault_domain",
+					Description: `The fault domain of this node.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `The OCID of the compute instance backing this node.`,
 				},
@@ -2465,6 +2469,10 @@ var (
 				resource.Attribute{
 					Name:        "node_pool_id",
 					Description: `The OCID of the node pool to which this node belongs.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `The private IP address of this node.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
@@ -2601,6 +2609,10 @@ var (
 					Description: `The status of the HTTP response encountered in the upstream error.`,
 				},
 				resource.Attribute{
+					Name:        "fault_domain",
+					Description: `The fault domain of this node.`,
+				},
+				resource.Attribute{
 					Name:        "id",
 					Description: `The OCID of the compute instance backing this node.`,
 				},
@@ -2615,6 +2627,10 @@ var (
 				resource.Attribute{
 					Name:        "node_pool_id",
 					Description: `The OCID of the node pool to which this node belongs.`,
+				},
+				resource.Attribute{
+					Name:        "private_ip",
+					Description: `The private IP address of this node.`,
 				},
 				resource.Attribute{
 					Name:        "public_ip",
@@ -3760,6 +3776,10 @@ var (
 					Description: `(Required) (Updatable) The OCID of the compartment to contain the CPE.`,
 				},
 				resource.Attribute{
+					Name:        "cpe_device_shape_id",
+					Description: `(Optional) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide a value if you want to later generate CPE device configuration content for IPSec connections that use this CPE. You can also call [UpdateCpe](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/Cpe/UpdateCpe) later to provide a value. For a list of possible values, see [ListCpeDeviceShapes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes). For more information about generating CPE device configuration content, see:`,
+				},
+				resource.Attribute{
 					Name:        "defined_tags",
 					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
@@ -3778,6 +3798,10 @@ var (
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the CPE.`,
+				},
+				resource.Attribute{
+					Name:        "cpe_device_shape_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE's device type. The Networking service maintains a general list of CPE device types (for example, Cisco ASA). For each type, Oracle provides CPE configuration content that can help a network engineer configure the CPE. The OCID uniquely identifies the type of device. To get the OCIDs for the device types on the list, see [ListCpeDeviceShapes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes). For information about how to generate CPE configuration content for a CPE device type, see:`,
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
@@ -3808,6 +3832,10 @@ var (
 				resource.Attribute{
 					Name:        "compartment_id",
 					Description: `The OCID of the compartment containing the CPE.`,
+				},
+				resource.Attribute{
+					Name:        "cpe_device_shape_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE's device type. The Networking service maintains a general list of CPE device types (for example, Cisco ASA). For each type, Oracle provides CPE configuration content that can help a network engineer configure the CPE. The OCID uniquely identifies the type of device. To get the OCIDs for the device types on the list, see [ListCpeDeviceShapes](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/CpeDeviceShapeSummary/ListCpeDeviceShapes). For information about how to generate CPE configuration content for a CPE device type, see:`,
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
@@ -4441,6 +4469,10 @@ var (
 					Description: `The DRG's Oracle ID (OCID).`,
 				},
 				resource.Attribute{
+					Name:        "redundancy_status",
+					Description: `The redundancy status of the DRG specified.`,
+				},
+				resource.Attribute{
 					Name:        "state",
 					Description: `The DRG's current state.`,
 				},
@@ -4469,6 +4501,10 @@ var (
 				resource.Attribute{
 					Name:        "id",
 					Description: `The DRG's Oracle ID (OCID).`,
+				},
+				resource.Attribute{
+					Name:        "redundancy_status",
+					Description: `The redundancy status of the DRG specified.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -5064,7 +5100,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) A private IP address of your choice to assign to the VNIC. Must be an available IP address within the subnet's CIDR. If you don't specify a value, Oracle automatically assigns a private IP address from the subnet. This is the VNIC's`,
+					Description: `(Optional) A private IP address of your choice to assign to the VNIC. Value is ignored if a ` + "`" + `vlanId` + "`" + ` value is specified. Must be an available IP address within the subnet's CIDR. If you don't specify a value, Oracle automatically assigns a private IP address from the subnet. This is the VNIC's`,
 				},
 				resource.Attribute{
 					Name:        "skip_source_dest_check",
@@ -5072,7 +5108,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Required) The OCID of the subnet to create the VNIC in. When launching an instance, use this ` + "`" + `subnetId` + "`" + ` instead of the deprecated ` + "`" + `subnetId` + "`" + ` in [LaunchInstanceDetails](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails). At least one of them is required; if you provide both, the values must match.`,
+					Description: `(Required) The OCID of the subnet to create the VNIC in. When launching an instance, use this ` + "`" + `subnetId` + "`" + ` instead of the deprecated ` + "`" + `subnetId` + "`" + ` in [LaunchInstanceDetails](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails). Alternatively, the ` + "`" + `vlanId` + "`" + ` can be used instead of a ` + "`" + `subnetId` + "`" + `. At least one ` + "`" + `subnetId` + "`" + ` value is required if this field is populated; if you provide both, the values must match. If both the ` + "`" + `vlanId` + "`" + ` and ` + "`" + `subnetId` + "`" + ` fields are provided, the launch will fail.`,
 				},
 				resource.Attribute{
 					Name:        "dedicated_vm_host_id",
@@ -7705,8 +7741,12 @@ var (
 					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group.`,
 				},
 				resource.Attribute{
+					Name:        "security_rules",
+					Description: `(Optional) The NSG security rules to add.`,
+				},
+				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) An optional description of your choice for the rule.`,
+					Description: `(Optional) An optional description of your choice for the rule. Avoid entering confidential information.`,
 				},
 				resource.Attribute{
 					Name:        "destination",
@@ -7805,8 +7845,8 @@ var (
 					Description: `(Required) The minimum port number. Must not be greater than the maximum port number.`,
 				},
 				resource.Attribute{
-					Name:        "network_security_group_id",
-					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group.`,
+					Name:        "security_rules",
+					Description: `The NSG security rules that were added.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -7838,7 +7878,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `An Oracle-assigned identifier for the security rule. You specify this ID when you want to update or delete the rule.`,
+					Description: `An Oracle-assigned identifier for the security rule. You specify this ID when you want to update or delete the rule. Example: ` + "`" + `04ABEC` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "is_valid",
@@ -7923,8 +7963,8 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
-					Name:        "network_security_group_id",
-					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group.`,
+					Name:        "security_rules",
+					Description: `The NSG security rules that were added.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -7956,7 +7996,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `An Oracle-assigned identifier for the security rule. You specify this ID when you want to update or delete the rule.`,
+					Description: `An Oracle-assigned identifier for the security rule. You specify this ID when you want to update or delete the rule. Example: ` + "`" + `04ABEC` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "is_valid",
@@ -8514,6 +8554,10 @@ var (
 					Description: `(Optional) (Updatable) Deprecated. Instead use ` + "`" + `destination` + "`" + ` and ` + "`" + `destinationType` + "`" + `. Requests that include both ` + "`" + `cidrBlock` + "`" + ` and ` + "`" + `destination` + "`" + ` will be rejected. A destination IP address range in CIDR notation. Matching packets will be routed to the indicated network entity (the target). Cannot be an IPv6 CIDR. Example: ` + "`" + `0.0.0.0/0` + "`" + ``,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) (Updatable) An optional description of your choice for the rule.`,
+				},
+				resource.Attribute{
 					Name:        "destination",
 					Description: `(Optional) (Updatable) Conceptually, this is the range of IP addresses used for matching when routing traffic. Required if you provide a ` + "`" + `destinationType` + "`" + `. Allowed values:`,
 				},
@@ -8556,6 +8600,10 @@ var (
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `Deprecated. Instead use ` + "`" + `destination` + "`" + ` and ` + "`" + `destinationType` + "`" + `. Requests that include both ` + "`" + `cidrBlock` + "`" + ` and ` + "`" + `destination` + "`" + ` will be rejected. A destination IP address range in CIDR notation. Matching packets will be routed to the indicated network entity (the target). Cannot be an IPv6 CIDR. Example: ` + "`" + `0.0.0.0/0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional description of your choice for the rule.`,
 				},
 				resource.Attribute{
 					Name:        "destination",
@@ -8610,6 +8658,10 @@ var (
 				resource.Attribute{
 					Name:        "cidr_block",
 					Description: `Deprecated. Instead use ` + "`" + `destination` + "`" + ` and ` + "`" + `destinationType` + "`" + `. Requests that include both ` + "`" + `cidrBlock` + "`" + ` and ` + "`" + `destination` + "`" + ` will be rejected. A destination IP address range in CIDR notation. Matching packets will be routed to the indicated network entity (the target). Cannot be an IPv6 CIDR. Example: ` + "`" + `0.0.0.0/0` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional description of your choice for the rule.`,
 				},
 				resource.Attribute{
 					Name:        "destination",
@@ -8707,6 +8759,10 @@ var (
 					Description: `(Optional) (Updatable) Rules for allowing egress IP packets.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) (Updatable) An optional description of your choice for the rule.`,
+				},
+				resource.Attribute{
 					Name:        "destination",
 					Description: `(Required) (Updatable) Conceptually, this is the range of IP addresses that a packet originating from the instance can go to. Allowed values:`,
 				},
@@ -8797,6 +8853,10 @@ var (
 				resource.Attribute{
 					Name:        "ingress_security_rules",
 					Description: `(Optional) (Updatable) Rules for allowing ingress IP packets.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) (Updatable) An optional description of your choice for the rule.`,
 				},
 				resource.Attribute{
 					Name:        "icmp_options",
@@ -8903,6 +8963,10 @@ var (
 					Description: `Rules for allowing egress IP packets.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `An optional description of your choice for the rule.`,
+				},
+				resource.Attribute{
 					Name:        "destination",
 					Description: `Conceptually, this is the range of IP addresses that a packet originating from the instance can go to. Allowed values:`,
 				},
@@ -8989,6 +9053,10 @@ var (
 				resource.Attribute{
 					Name:        "ingress_security_rules",
 					Description: `Rules for allowing ingress IP packets.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional description of your choice for the rule.`,
 				},
 				resource.Attribute{
 					Name:        "icmp_options",
@@ -9097,6 +9165,10 @@ var (
 					Description: `Rules for allowing egress IP packets.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `An optional description of your choice for the rule.`,
+				},
+				resource.Attribute{
 					Name:        "destination",
 					Description: `Conceptually, this is the range of IP addresses that a packet originating from the instance can go to. Allowed values:`,
 				},
@@ -9183,6 +9255,10 @@ var (
 				resource.Attribute{
 					Name:        "ingress_security_rules",
 					Description: `Rules for allowing ingress IP packets.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `An optional description of your choice for the rule.`,
 				},
 				resource.Attribute{
 					Name:        "icmp_options",
@@ -9527,7 +9603,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv6cidr_block",
-					Description: `For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's private IP address space. The subnet size is always /64. Note that IPv6 addressing is currently supported only in the Government Cloud. Example: ` + "`" + `2001:0db8:0123:1111::/64` + "`" + ``,
+					Description: `For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's private IP address space. The subnet size is always /64. Note that IPv6 addressing is currently supported only in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm). Example: ` + "`" + `2001:0db8:0123:1111::/64` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "ipv6public_cidr_block",
@@ -9613,7 +9689,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv6cidr_block",
-					Description: `For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's private IP address space. The subnet size is always /64. Note that IPv6 addressing is currently supported only in the Government Cloud. Example: ` + "`" + `2001:0db8:0123:1111::/64` + "`" + ``,
+					Description: `For an IPv6-enabled subnet, this is the IPv6 CIDR block for the subnet's private IP address space. The subnet size is always /64. Note that IPv6 addressing is currently supported only in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm). Example: ` + "`" + `2001:0db8:0123:1111::/64` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "ipv6public_cidr_block",
@@ -9866,7 +9942,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customer_bgp_peering_ipv6",
-					Description: `(Optional) (Updatable) IPv6 is currently supported only in the Government Cloud. The BGP IPv6 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv6 address of the customer's edge router. If the session goes from Oracle to a provider, this is the BGP IPv6 address of the provider's edge router. Only subnet masks from /64 up to /127 are allowed. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in the Government Cloud. Example: ` + "`" + `2001:db8::1/64` + "`" + ``,
+					Description: `(Optional) (Updatable) IPv6 is currently supported only in the Government Cloud. The BGP IPv6 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv6 address of the customer's edge router. If the session goes from Oracle to a provider, this is the BGP IPv6 address of the provider's edge router. Only subnet masks from /64 up to /127 are allowed. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm). Example: ` + "`" + `2001:db8::1/64` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "oracle_bgp_peering_ip",
@@ -9874,7 +9950,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oracle_bgp_peering_ipv6",
-					Description: `(Optional) (Updatable) IPv6 is currently supported only in the Government Cloud. The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed. If the session goes from Oracle to a customer's edge router, the customer specifies this information. If the session goes from Oracle to a provider's edge router, the provider specifies this. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in the Government Cloud. Example: ` + "`" + `2001:db8::2/64` + "`" + ``,
+					Description: `(Optional) (Updatable) IPv6 is currently supported only in the Government Cloud. The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed. If the session goes from Oracle to a customer's edge router, the customer specifies this information. If the session goes from Oracle to a provider's edge router, the provider specifies this. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm). Example: ` + "`" + `2001:db8::2/64` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "vlan",
@@ -9918,7 +9994,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cidr_block",
-					Description: `(Required) (Updatable) An individual public IP prefix (CIDR) to add to the public virtual circuit. Must be /31 or less specific.`,
+					Description: `(Required) (Updatable) An individual public IP prefix (CIDR) to add to the public virtual circuit. All prefix sizes are allowed.`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -9962,7 +10038,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customer_bgp_peering_ipv6",
-					Description: `The BGP IPv6 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv6 address of the customer's edge router. If the session goes from Oracle to a provider, this is the BGP IPv6 address of the provider's edge router. Only subnet masks from /64 up to /127 are allowed. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in the Government Cloud. Example: ` + "`" + `2001:db8::1/64` + "`" + ``,
+					Description: `The BGP IPv6 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv6 address of the customer's edge router. If the session goes from Oracle to a provider, this is the BGP IPv6 address of the provider's edge router. Only subnet masks from /64 up to /127 are allowed. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm). Example: ` + "`" + `2001:db8::1/64` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "oracle_bgp_peering_ip",
@@ -9970,7 +10046,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oracle_bgp_peering_ipv6",
-					Description: `The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed. If the session goes from Oracle to a customer's edge router, the customer specifies this information. If the session goes from Oracle to a provider's edge router, the provider specifies this. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in the Government Cloud. Example: ` + "`" + `2001:db8::2/64` + "`" + ``,
+					Description: `The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed. If the session goes from Oracle to a customer's edge router, the customer specifies this information. If the session goes from Oracle to a provider's edge router, the provider specifies this. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm). Example: ` + "`" + `2001:db8::2/64` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "vlan",
@@ -10022,7 +10098,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_prefixes",
-					Description: `For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to advertise across the connection. Each prefix must be /31 or less specific.`,
+					Description: `For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to advertise across the connection. All prefix sizes are allowed.`,
 				},
 				resource.Attribute{
 					Name:        "reference_comment",
@@ -10084,7 +10160,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "customer_bgp_peering_ipv6",
-					Description: `The BGP IPv6 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv6 address of the customer's edge router. If the session goes from Oracle to a provider, this is the BGP IPv6 address of the provider's edge router. Only subnet masks from /64 up to /127 are allowed. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in the Government Cloud. Example: ` + "`" + `2001:db8::1/64` + "`" + ``,
+					Description: `The BGP IPv6 address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IPv6 address of the customer's edge router. If the session goes from Oracle to a provider, this is the BGP IPv6 address of the provider's edge router. Only subnet masks from /64 up to /127 are allowed. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm). Example: ` + "`" + `2001:db8::1/64` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "oracle_bgp_peering_ip",
@@ -10092,7 +10168,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oracle_bgp_peering_ipv6",
-					Description: `The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed. If the session goes from Oracle to a customer's edge router, the customer specifies this information. If the session goes from Oracle to a provider's edge router, the provider specifies this. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in the Government Cloud. Example: ` + "`" + `2001:db8::2/64` + "`" + ``,
+					Description: `The IPv6 address for Oracle's end of the BGP session. Only subnet masks from /64 up to /127 are allowed. If the session goes from Oracle to a customer's edge router, the customer specifies this information. If the session goes from Oracle to a provider's edge router, the provider specifies this. There's one exception: for a public virtual circuit, Oracle specifies the BGP IPv6 addresses. Note that IPv6 addressing is currently supported only in certain regions. See [IPv6 Addresses](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm). Example: ` + "`" + `2001:db8::2/64` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "vlan",
@@ -10144,7 +10220,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_prefixes",
-					Description: `For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to advertise across the connection. Each prefix must be /31 or less specific.`,
+					Description: `For a public virtual circuit. The public IP prefixes (CIDRs) the customer wants to advertise across the connection. All prefix sizes are allowed.`,
 				},
 				resource.Attribute{
 					Name:        "reference_comment",
@@ -10214,7 +10290,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "private_ip",
-					Description: `(Optional) A private IP address of your choice to assign to the VNIC. Must be an available IP address within the subnet's CIDR. If you don't specify a value, Oracle automatically assigns a private IP address from the subnet. This is the VNIC's`,
+					Description: `(Optional) A private IP address of your choice to assign to the VNIC. Value is ignored if a ` + "`" + `vlanId` + "`" + ` value is specified. Must be an available IP address within the subnet's CIDR. If you don't specify a value, Oracle automatically assigns a private IP address from the subnet. This is the VNIC's`,
 				},
 				resource.Attribute{
 					Name:        "skip_source_dest_check",
@@ -10222,7 +10298,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Required) The OCID of the subnet to create the VNIC in. When launching an instance, use this ` + "`" + `subnetId` + "`" + ` instead of the deprecated ` + "`" + `subnetId` + "`" + ` in [LaunchInstanceDetails](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails). At least one of them is required; if you provide both, the values must match.`,
+					Description: `(Required) The OCID of the subnet to create the VNIC in. When launching an instance, use this ` + "`" + `subnetId` + "`" + ` instead of the deprecated ` + "`" + `subnetId` + "`" + ` in [LaunchInstanceDetails](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/requests/LaunchInstanceDetails). Alternatively, the ` + "`" + `vlanId` + "`" + ` can be used instead of a ` + "`" + `subnetId` + "`" + `. At least one ` + "`" + `subnetId` + "`" + ` value is required if this field is populated; if you provide both, the values must match. If both the ` + "`" + `vlanId` + "`" + ` and ` + "`" + `subnetId` + "`" + ` fields are provided, the launch will fail.`,
 				},
 				resource.Attribute{
 					Name:        "display_name",
@@ -10266,7 +10342,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `The OCID of the VNIC's subnet.`,
+					Description: `The OCID of the subnet to create the VNIC in.`,
 				},
 				resource.Attribute{
 					Name:        "time_created",
@@ -10312,7 +10388,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `The OCID of the VNIC's subnet.`,
+					Description: `The OCID of the subnet to create the VNIC in.`,
 				},
 				resource.Attribute{
 					Name:        "time_created",
@@ -12170,8 +12246,16 @@ var (
 					Description: `(Optional) The Autonomous Container Database [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).`,
 				},
 				resource.Attribute{
+					Name:        "autonomous_database_backup_id",
+					Description: `(Required when source=BACKUP_FROM_ID) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the source Autonomous Database Backup that you will clone to create a new Autonomous Database.`,
+				},
+				resource.Attribute{
+					Name:        "autonomous_database_id",
+					Description: `(Required when source=BACKUP_FROM_TIMESTAMP) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create a new Autonomous Database.`,
+				},
+				resource.Attribute{
 					Name:        "clone_type",
-					Description: `(Required when source=DATABASE) The clone type when cloning an Autonomous Database using a ` + "`" + `source` + "`" + `. Supported values:`,
+					Description: `(Required when source=BACKUP_FROM_ID | BACKUP_FROM_TIMESTAMP | DATABASE) The Autonomous Database clone type.`,
 				},
 				resource.Attribute{
 					Name:        "FULL",
@@ -12202,6 +12286,10 @@ var (
 					Description: `(Required) The database name. The name must begin with an alphabetic character and can contain a maximum of 14 alphanumeric characters. Special characters are not permitted. The database name must be unique in the tenancy.`,
 				},
 				resource.Attribute{
+					Name:        "db_version",
+					Description: `(Optional) A valid Oracle Database version for Autonomous Database.`,
+				},
+				resource.Attribute{
 					Name:        "db_workload",
 					Description: `(Optional) The Autonomous Database workload type. OLTP indicates an Autonomous Transaction Processing database and DW indicates an Autonomous Data Warehouse. The default is OLTP.`,
 				},
@@ -12227,11 +12315,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `(Optional) (Updatable) Indicates if auto scaling is enabled for the Autonomous Database OCPU core count. The default value is ` + "`" + `FALSE` + "`" + `. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
+					Description: `(Optional) (Updatable) Indicates if auto scaling is enabled for the Autonomous Database OCPU core count. The default value is ` + "`" + `FALSE` + "`" + `. Note that auto scaling is available for databases on [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `(Optional) True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
+					Description: `(Optional) True if the database is on [dedicated Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm).`,
 				},
 				resource.Attribute{
 					Name:        "is_free_tier",
@@ -12239,11 +12327,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_preview_version_with_service_terms_accepted",
-					Description: `(Optional) If set to ` + "`" + `TRUE` + "`" + `, indicates that an Autonomous Database preview version is being provisioned, and that the preview version's terms of service have been accepted. Note that preview version software is only available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI).`,
+					Description: `(Optional) If set to ` + "`" + `TRUE` + "`" + `, indicates that an Autonomous Database preview version is being provisioned, and that the preview version's terms of service have been accepted. Note that preview version software is only available for databases on [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI).`,
 				},
 				resource.Attribute{
 					Name:        "license_model",
-					Description: `(Optional) (Updatable) The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database using the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option, this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using the [serverless deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#DeploymentTypes) option, if a value is not specified, the system will supply the value of ` + "`" + `BRING_YOUR_OWN_LICENSE` + "`" + `.`,
+					Description: `(Optional) (Updatable) The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on [dedicated Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will supply the value of ` + "`" + `BRING_YOUR_OWN_LICENSE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "nsg_ids",
+					Description: `(Optional) (Updatable) A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
+				},
+				resource.Attribute{
+					Name:        "private_endpoint_label",
+					Description: `(Optional) The private endpoint label for the resource.`,
 				},
 				resource.Attribute{
 					Name:        "source",
@@ -12254,8 +12350,16 @@ var (
 					Description: `(Required when source=DATABASE) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create a new Autonomous Database.`,
 				},
 				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.`,
+				},
+				resource.Attribute{
+					Name:        "timestamp",
+					Description: `(Required when source=BACKUP_FROM_TIMESTAMP) The timestamp specified for the point-in-time clone of the source Autonomous Database. The timestamp must be in the past.`,
+				},
+				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `(Optional) (Updatable) The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs. Example: ` + "`" + `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]` + "`" + ``,
+					Description: `(Optional) (Updatable) The client IP access control list (ACL). This feature is available for databases on [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs. Example: ` + "`" + `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]` + "`" + `. To remove all whitelisted IPs, set the field to a list with an empty string ` + "`" + `[""]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "autonomous_container_database_id",
@@ -12347,11 +12451,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
+					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for databases on [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
+					Description: `True if the database uses [dedicated Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm).`,
 				},
 				resource.Attribute{
 					Name:        "is_free_tier",
@@ -12363,11 +12467,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "license_model",
-					Description: `The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database using the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option, this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using the [serverless deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#DeploymentTypes) option, if a value is not specified, the system will supply the value of ` + "`" + `BRING_YOUR_OWN_LICENSE` + "`" + `.`,
+					Description: `The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on [dedicated Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will supply the value of ` + "`" + `BRING_YOUR_OWN_LICENSE` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "lifecycle_details",
 					Description: `Information about the current lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "nsg_ids",
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
+				},
+				resource.Attribute{
+					Name:        "private_endpoint",
+					Description: `The private endpoint for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "private_endpoint_label",
+					Description: `The private endpoint label for the resource.`,
 				},
 				resource.Attribute{
 					Name:        "service_console_url",
@@ -12376,6 +12492,10 @@ var (
 				resource.Attribute{
 					Name:        "state",
 					Description: `The current state of the Autonomous Database.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.`,
 				},
 				resource.Attribute{
 					Name:        "system_tags",
@@ -12407,7 +12527,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs. Example: ` + "`" + `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]` + "`" + ` ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The client IP access control list (ACL). This feature is available for databases on [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs. Example: ` + "`" + `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]` + "`" + ` ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -12501,11 +12621,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "is_auto_scaling_enabled",
-					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
+					Description: `Indicates if auto scaling is enabled for the Autonomous Database CPU core count. Note that auto scaling is available for databases on [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only.`,
 				},
 				resource.Attribute{
 					Name:        "is_dedicated",
-					Description: `True if the database uses the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option.`,
+					Description: `True if the database uses [dedicated Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm).`,
 				},
 				resource.Attribute{
 					Name:        "is_free_tier",
@@ -12517,11 +12637,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "license_model",
-					Description: `The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database using the [dedicated deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm) option, this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using the [serverless deployment](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#DeploymentTypes) option, if a value is not specified, the system will supply the value of ` + "`" + `BRING_YOUR_OWN_LICENSE` + "`" + `.`,
+					Description: `The Oracle license model that applies to the Oracle Autonomous Database. Note that when provisioning an Autonomous Database on [dedicated Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adbddoverview.htm), this attribute must be null because the attribute is already set at the Autonomous Exadata Infrastructure level. When using [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI), if a value is not specified, the system will supply the value of ` + "`" + `BRING_YOUR_OWN_LICENSE` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "lifecycle_details",
 					Description: `Information about the current lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "nsg_ids",
+					Description: `A list of the [OCIDs](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).`,
+				},
+				resource.Attribute{
+					Name:        "private_endpoint",
+					Description: `The private endpoint for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "private_endpoint_label",
+					Description: `The private endpoint label for the resource.`,
 				},
 				resource.Attribute{
 					Name:        "service_console_url",
@@ -12530,6 +12662,10 @@ var (
 				resource.Attribute{
 					Name:        "state",
 					Description: `The current state of the Autonomous Database.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet the resource is associated with.`,
 				},
 				resource.Attribute{
 					Name:        "system_tags",
@@ -12561,7 +12697,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "whitelisted_ips",
-					Description: `The client IP access control list (ACL). This feature is available for [serverless deployments](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs. Example: ` + "`" + `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]` + "`" + ` ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `The client IP access control list (ACL). This feature is available for databases on [shared Exadata infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/adboverview.htm#AEI) only. Only clients connecting from an IP address included in the ACL may access the Autonomous Database instance. This is an array of CIDR (Classless Inter-Domain Routing) notations for a subnet or VCN OCID. To add the whitelist VCN specific subnet or IP, use a semicoln ';' as a deliminator to add the VCN specific subnets or IPs. Example: ` + "`" + `["1.1.1.1","1.1.1.0/24","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.1.1","ocid1.vcn.oc1.sea.aaaaaaaard2hfx2nn3e5xeo6j6o62jga44xjizkw;1.1.0.0/16"]` + "`" + ` ## Import AutonomousDatabases can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_database_autonomous_database.test_autonomous_database "id" ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -12610,6 +12746,10 @@ var (
 					Description: `Indicates whether the backup is user-initiated or automatic.`,
 				},
 				resource.Attribute{
+					Name:        "is_restorable",
+					Description: `Indicates whether the backup can be used to restore the associated Autonomous Database.`,
+				},
+				resource.Attribute{
 					Name:        "lifecycle_details",
 					Description: `Additional information about the current lifecycle state.`,
 				},
@@ -12654,6 +12794,10 @@ var (
 				resource.Attribute{
 					Name:        "is_automatic",
 					Description: `Indicates whether the backup is user-initiated or automatic.`,
+				},
+				resource.Attribute{
+					Name:        "is_restorable",
+					Description: `Indicates whether the backup can be used to restore the associated Autonomous Database.`,
 				},
 				resource.Attribute{
 					Name:        "lifecycle_details",
@@ -13407,6 +13551,10 @@ var (
 					Description: `(Required) The protection mode to set up between the primary and standby databases. For more information, see [Oracle Data Guard Protection Modes](http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000) in the Oracle Data Guard documentation.`,
 				},
 				resource.Attribute{
+					Name:        "shape",
+					Description: `(Applicable when creation_type=NewDbSystem) The shape of the DB system to launch to set up the Data Guard association. The shape determines the number of CPU cores and the amount of memory available for the DB system. Only virtual machine shapes are valid shapes. If you do not supply this parameter, the default shape is the shape of the primary DB system. To get a list of all shapes, use the [ListDbSystemShapes](https://docs.cloud.oracle.com/iaas/api/#/en/database/20160918/DbSystemShapeSummary/ListDbSystemShapes) operation.`,
+				},
+				resource.Attribute{
 					Name:        "subnet_id",
 					Description: `(Applicable when creation_type=NewDbSystem) The OCID of the subnet the DB system is associated with.`,
 				},
@@ -13540,6 +13688,332 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "oci_database_database",
+			Category:         "Database",
+			ShortDescription: `Provides the Database resource in Oracle Cloud Infrastructure Database service`,
+			Description:      ``,
+			Keywords: []string{
+				"database",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Required) (Updatable)`,
+				},
+				resource.Attribute{
+					Name:        "admin_password",
+					Description: `(Required) A strong password for SYS, SYSTEM, and PDB Admin. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, \#, or -.`,
+				},
+				resource.Attribute{
+					Name:        "character_set",
+					Description: `(Optional) The character set for the database. The default is AL32UTF8. Allowed values are: AL32UTF8, AR8ADOS710, AR8ADOS720, AR8APTEC715, AR8ARABICMACS, AR8ASMO8X, AR8ISO8859P6, AR8MSWIN1256, AR8MUSSAD768, AR8NAFITHA711, AR8NAFITHA721, AR8SAKHR706, AR8SAKHR707, AZ8ISO8859P9E, BG8MSWIN, BG8PC437S, BLT8CP921, BLT8ISO8859P13, BLT8MSWIN1257, BLT8PC775, BN8BSCII, CDN8PC863, CEL8ISO8859P14, CL8ISO8859P5, CL8ISOIR111, CL8KOI8R, CL8KOI8U, CL8MACCYRILLICS, CL8MSWIN1251, EE8ISO8859P2, EE8MACCES, EE8MACCROATIANS, EE8MSWIN1250, EE8PC852, EL8DEC, EL8ISO8859P7, EL8MACGREEKS, EL8MSWIN1253, EL8PC437S, EL8PC851, EL8PC869, ET8MSWIN923, HU8ABMOD, HU8CWI2, IN8ISCII, IS8PC861, IW8ISO8859P8, IW8MACHEBREWS, IW8MSWIN1255, IW8PC1507, JA16EUC, JA16EUCTILDE, JA16SJIS, JA16SJISTILDE, JA16VMS, KO16KSC5601, KO16KSCCS, KO16MSWIN949, LA8ISO6937, LA8PASSPORT, LT8MSWIN921, LT8PC772, LT8PC774, LV8PC1117, LV8PC8LR, LV8RST104090, N8PC865, NE8ISO8859P10, NEE8ISO8859P4, RU8BESTA, RU8PC855, RU8PC866, SE8ISO8859P3, TH8MACTHAIS, TH8TISASCII, TR8DEC, TR8MACTURKISHS, TR8MSWIN1254, TR8PC857, US7ASCII, US8PC437, UTF8, VN8MSWIN1258, VN8VN3, WE8DEC, WE8DG, WE8ISO8859P1, WE8ISO8859P15, WE8ISO8859P9, WE8MACROMAN8S, WE8MSWIN1252, WE8NCR4970, WE8NEXTSTEP, WE8PC850, WE8PC858, WE8PC860, WE8ROMAN8, ZHS16CGB231280, ZHS16GBK, ZHT16BIG5, ZHT16CCDC, ZHT16DBT, ZHT16HKSCS, ZHT16MSWIN950, ZHT32EUC, ZHT32SOPS, ZHT32TRIS`,
+				},
+				resource.Attribute{
+					Name:        "db_backup_config",
+					Description: `(Optional) (Updatable)`,
+				},
+				resource.Attribute{
+					Name:        "auto_backup_enabled",
+					Description: `(Optional) (Updatable) If set to true, configures automatic backups. If you previously used RMAN or dbcli to configure backups and then you switch to using the Console or the API for backups, a new backup configuration is created and associated with your database. This means that you can no longer rely on your previously configured unmanaged backups to work.`,
+				},
+				resource.Attribute{
+					Name:        "auto_backup_window",
+					Description: `(Optional) (Updatable) Time window selected for initiating automatic backup for the database system. There are twelve available two-hour time windows. If no option is selected, a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM (exclusive). Example: ` + "`" + `SLOT_TWO` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "backup_destination_details",
+					Description: `(Optional) Backup destination details.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the backup destination.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Type of the database backup destination.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_window_in_days",
+					Description: `(Optional) (Updatable) Number of days between the current and the earliest point of recoverability covered by automatic backups. This value applies to automatic backups only. After a new automatic backup has been created, Oracle removes old automatic backups that are created before the window. When the value is updated, it is applied to all existing automatic backups.`,
+				},
+				resource.Attribute{
+					Name:        "db_name",
+					Description: `(Required) The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.`,
+				},
+				resource.Attribute{
+					Name:        "db_unique_name",
+					Description: `(Optional) The ` + "`" + `DB_UNIQUE_NAME` + "`" + ` of the Oracle Database being backed up.`,
+				},
+				resource.Attribute{
+					Name:        "db_workload",
+					Description: `(Optional) The database workload type.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "ncharacter_set",
+					Description: `(Optional) The national character set for the database. The default is AL16UTF16. Allowed values are: AL16UTF16 or UTF8.`,
+				},
+				resource.Attribute{
+					Name:        "pdb_name",
+					Description: `(Optional) The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.`,
+				},
+				resource.Attribute{
+					Name:        "db_home_id",
+					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Database Home.`,
+				},
+				resource.Attribute{
+					Name:        "db_version",
+					Description: `(Optional) A valid Oracle Database version. To get a list of supported versions, use the [ListDbVersions](https://docs.cloud.oracle.com/iaas/api/#/en/database/20160918/DbVersionSummary/ListDbVersions) operation.`,
+				},
+				resource.Attribute{
+					Name:        "source",
+					Description: `(Required) The source of the database: Use ` + "`" + `NONE` + "`" + ` for creating a new database. The default is ` + "`" + `NONE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "character_set",
+					Description: `The character set for the database.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings",
+					Description: `The Connection strings used to connect to the Oracle Database.`,
+				},
+				resource.Attribute{
+					Name:        "all_connection_strings",
+					Description: `All connection strings to use to connect to the Database.`,
+				},
+				resource.Attribute{
+					Name:        "cdb_default",
+					Description: `Host name based CDB Connection String.`,
+				},
+				resource.Attribute{
+					Name:        "cdb_ip_default",
+					Description: `IP based CDB Connection String.`,
+				},
+				resource.Attribute{
+					Name:        "db_backup_config",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "auto_backup_enabled",
+					Description: `If set to true, configures automatic backups. If you previously used RMAN or dbcli to configure backups and then you switch to using the Console or the API for backups, a new backup configuration is created and associated with your database. This means that you can no longer rely on your previously configured unmanaged backups to work.`,
+				},
+				resource.Attribute{
+					Name:        "auto_backup_window",
+					Description: `Time window selected for initiating automatic backup for the database system. There are twelve available two-hour time windows. If no option is selected, a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM (exclusive). Example: ` + "`" + `SLOT_TWO` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "backup_destination_details",
+					Description: `Backup destination details.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the backup destination.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the database backup destination.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_password",
+					Description: `For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_user",
+					Description: `For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_window_in_days",
+					Description: `Number of days between the current and the earliest point of recoverability covered by automatic backups. This value applies to automatic backups only. After a new automatic backup has been created, Oracle removes old automatic backups that are created before the window. When the value is updated, it is applied to all existing automatic backups.`,
+				},
+				resource.Attribute{
+					Name:        "db_home_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Database Home.`,
+				},
+				resource.Attribute{
+					Name:        "db_name",
+					Description: `The database name.`,
+				},
+				resource.Attribute{
+					Name:        "db_system_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DB system.`,
+				},
+				resource.Attribute{
+					Name:        "db_unique_name",
+					Description: `A system-generated name for the database to ensure uniqueness within an Oracle Data Guard group (a primary database and its standby databases). The unique name cannot be changed.`,
+				},
+				resource.Attribute{
+					Name:        "db_workload",
+					Description: `The database workload type.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `Additional information about the current lifecycleState.`,
+				},
+				resource.Attribute{
+					Name:        "ncharacter_set",
+					Description: `The national character set for the database.`,
+				},
+				resource.Attribute{
+					Name:        "pdb_name",
+					Description: `The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the database.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the database was created.`,
+				},
+				resource.Attribute{
+					Name:        "vm_cluster_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VM cluster. ## Import Import is not supported for this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "character_set",
+					Description: `The character set for the database.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
+				},
+				resource.Attribute{
+					Name:        "connection_strings",
+					Description: `The Connection strings used to connect to the Oracle Database.`,
+				},
+				resource.Attribute{
+					Name:        "all_connection_strings",
+					Description: `All connection strings to use to connect to the Database.`,
+				},
+				resource.Attribute{
+					Name:        "cdb_default",
+					Description: `Host name based CDB Connection String.`,
+				},
+				resource.Attribute{
+					Name:        "cdb_ip_default",
+					Description: `IP based CDB Connection String.`,
+				},
+				resource.Attribute{
+					Name:        "db_backup_config",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "auto_backup_enabled",
+					Description: `If set to true, configures automatic backups. If you previously used RMAN or dbcli to configure backups and then you switch to using the Console or the API for backups, a new backup configuration is created and associated with your database. This means that you can no longer rely on your previously configured unmanaged backups to work.`,
+				},
+				resource.Attribute{
+					Name:        "auto_backup_window",
+					Description: `Time window selected for initiating automatic backup for the database system. There are twelve available two-hour time windows. If no option is selected, a start time between 12:00 AM to 7:00 AM in the region of the database is automatically chosen. For example, if the user selects SLOT_TWO from the enum list, the automatic backup job will start in between 2:00 AM (inclusive) to 4:00 AM (exclusive). Example: ` + "`" + `SLOT_TWO` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "backup_destination_details",
+					Description: `Backup destination details.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the backup destination.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `Type of the database backup destination.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_password",
+					Description: `For a RECOVERY_APPLIANCE backup destination, the password for the VPC user that is used to access the Recovery Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "vpc_user",
+					Description: `For a RECOVERY_APPLIANCE backup destination, the Virtual Private Catalog (VPC) user that is used to access the Recovery Appliance.`,
+				},
+				resource.Attribute{
+					Name:        "recovery_window_in_days",
+					Description: `Number of days between the current and the earliest point of recoverability covered by automatic backups. This value applies to automatic backups only. After a new automatic backup has been created, Oracle removes old automatic backups that are created before the window. When the value is updated, it is applied to all existing automatic backups.`,
+				},
+				resource.Attribute{
+					Name:        "db_home_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Database Home.`,
+				},
+				resource.Attribute{
+					Name:        "db_name",
+					Description: `The database name.`,
+				},
+				resource.Attribute{
+					Name:        "db_system_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DB system.`,
+				},
+				resource.Attribute{
+					Name:        "db_unique_name",
+					Description: `A system-generated name for the database to ensure uniqueness within an Oracle Data Guard group (a primary database and its standby databases). The unique name cannot be changed.`,
+				},
+				resource.Attribute{
+					Name:        "db_workload",
+					Description: `The database workload type.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `Additional information about the current lifecycleState.`,
+				},
+				resource.Attribute{
+					Name:        "ncharacter_set",
+					Description: `The national character set for the database.`,
+				},
+				resource.Attribute{
+					Name:        "pdb_name",
+					Description: `The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the database.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the database was created.`,
+				},
+				resource.Attribute{
+					Name:        "vm_cluster_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VM cluster. ## Import Import is not supported for this resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "oci_database_db_home",
 			Category:         "Database",
 			ShortDescription: `Provides the Db Home resource in Oracle Cloud Infrastructure Database service`,
@@ -13647,6 +14121,10 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
 				},
 				resource.Attribute{
+					Name:        "db_home_location",
+					Description: `The location of the Oracle Database Home.`,
+				},
+				resource.Attribute{
 					Name:        "character_set",
 					Description: `The character set for the database.`,
 				},
@@ -13757,6 +14235,10 @@ var (
 				resource.Attribute{
 					Name:        "last_patch_history_entry_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as a patch operation is started.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `Additional information about the current lifecycleState.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -13777,6 +14259,10 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.`,
 				},
 				resource.Attribute{
+					Name:        "db_home_location",
+					Description: `The location of the Oracle Database Home.`,
+				},
+				resource.Attribute{
 					Name:        "character_set",
 					Description: `The character set for the database.`,
 				},
@@ -13887,6 +14373,10 @@ var (
 				resource.Attribute{
 					Name:        "last_patch_history_entry_id",
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the last patch history. This value is updated as soon as a patch operation is started.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `Additional information about the current lifecycleState.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -14084,7 +14574,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "shape",
-					Description: `(Required) The shape of the DB system. The shape determines resources allocated to the DB system.`,
+					Description: `(Required) (Updatable) The shape of the DB system. The shape determines resources allocated to the DB system.`,
 				},
 				resource.Attribute{
 					Name:        "source",
@@ -15682,6 +16172,1585 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "oci_datacatalog_catalog",
+			Category:         "Data Catalog",
+			ShortDescription: `Provides the Catalog resource in Oracle Cloud Infrastructure Data Catalog service`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"catalog",
+				"datacatalog",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) (Updatable) Compartment identifier.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) (Updatable) Data catalog identifier.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `Compartment identifier.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Data catalog identifier, which can be renamed.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier that is immutable on creation.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `An message describing the current state in more detail. For example, it can be used to provide actionable information for a resource in 'Failed' state.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_objects",
+					Description: `The number of data objects added to the data catalog. Please see the data catalog documentation for further information on how this is calculated.`,
+				},
+				resource.Attribute{
+					Name:        "service_api_url",
+					Description: `The REST front endpoint URL to the data catalog instance.`,
+				},
+				resource.Attribute{
+					Name:        "service_console_url",
+					Description: `The console front endpoint URL to the data catalog instance.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the data catalog resource.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The time the data catalog was created. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The time the data catalog was updated. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string. ## Import Catalogs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_datacatalog_catalog.test_catalog "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `Compartment identifier.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: ` + "`" + `{"foo-namespace.bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Data catalog identifier, which can be renamed.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier that is immutable on creation.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `An message describing the current state in more detail. For example, it can be used to provide actionable information for a resource in 'Failed' state.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_objects",
+					Description: `The number of data objects added to the data catalog. Please see the data catalog documentation for further information on how this is calculated.`,
+				},
+				resource.Attribute{
+					Name:        "service_api_url",
+					Description: `The REST front endpoint URL to the data catalog instance.`,
+				},
+				resource.Attribute{
+					Name:        "service_console_url",
+					Description: `The console front endpoint URL to the data catalog instance.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the data catalog resource.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The time the data catalog was created. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The time the data catalog was updated. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string. ## Import Catalogs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_datacatalog_catalog.test_catalog "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_datacatalog_connection",
+			Category:         "Data Catalog",
+			ShortDescription: `Provides the Connection resource in Oracle Cloud Infrastructure Data Catalog service`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"catalog",
+				"datacatalog",
+				"connection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Required) Unique catalog identifier.`,
+				},
+				resource.Attribute{
+					Name:        "data_asset_key",
+					Description: `(Required) Unique data asset key.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) (Updatable) A description of the connection.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) (Updatable) A user-friendly display name. Does not have to be unique, and it's changeable. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "enc_properties",
+					Description: `(Optional) (Updatable) A map of maps that contains the encrypted values for sensitive properties which are specific to the connection type. Each connection type definition defines it's set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most connections have required properties within the "default" category. To determine the set of optional and required properties for a connection type, a query can be done on '/types?type=connection' that returns a collection of all connection types. The appropriate connection type, which will include definitions of all of it's properties, can be identified from this collection. Example: ` + "`" + `{"encProperties": { "default": { "password": "pwd"}}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `(Optional) (Updatable) Indicates whether this connection is the default connection. The first connection of a data asset defaults to being the default, subsequent connections default to not being the default. If a default connection already exists, then trying to create a connection as the default will fail. In this case the default connection would need to be updated not to be the default and then the new connection can then be created as the default.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Required) (Updatable) A map of maps that contains the properties which are specific to the connection type. Each connection type definition defines it's set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most connections have required properties within the "default" category. To determine the set of optional and required properties for a connection type, a query can be done on '/types?type=connection' that returns a collection of all connection types. The appropriate connection type, which will include definitions of all of it's properties, can be identified from this collection. Example: ` + "`" + `{"properties": { "default": { "username": "user1"}}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "type_key",
+					Description: `(Required) The key of the object type. Type key's can be found via the '/types' endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "created_by_id",
+					Description: `OCID of the user who created the connection.`,
+				},
+				resource.Attribute{
+					Name:        "data_asset_key",
+					Description: `Unique key of the parent data asset.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the connection.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name. Does not have to be unique, and it's changeable. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "external_key",
+					Description: `Unique external key of this object from the source system.`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `Indicates whether this connection is the default connection.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Unique connection key that is immutable.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `A map of maps that contains the properties which are specific to the connection type. Each connection type definition defines it's set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most connections have required properties within the "default" category. Example: ` + "`" + `{"properties": { "default": { "username": "user1"}}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the connection.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the connection was created, in the format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: ` + "`" + `2019-03-25T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_status_updated",
+					Description: `Time that the connections status was last updated. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The last time that any change was made to the connection. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "type_key",
+					Description: `The key of the object type. Type key's can be found via the '/types' endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "updated_by_id",
+					Description: `OCID of the user who modified the connection.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `URI to the connection instance in the API. ## Import Import is not supported for this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "created_by_id",
+					Description: `OCID of the user who created the connection.`,
+				},
+				resource.Attribute{
+					Name:        "data_asset_key",
+					Description: `Unique key of the parent data asset.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A description of the connection.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name. Does not have to be unique, and it's changeable. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "external_key",
+					Description: `Unique external key of this object from the source system.`,
+				},
+				resource.Attribute{
+					Name:        "is_default",
+					Description: `Indicates whether this connection is the default connection.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Unique connection key that is immutable.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `A map of maps that contains the properties which are specific to the connection type. Each connection type definition defines it's set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most connections have required properties within the "default" category. Example: ` + "`" + `{"properties": { "default": { "username": "user1"}}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the connection.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the connection was created, in the format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: ` + "`" + `2019-03-25T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_status_updated",
+					Description: `Time that the connections status was last updated. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The last time that any change was made to the connection. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "type_key",
+					Description: `The key of the object type. Type key's can be found via the '/types' endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "updated_by_id",
+					Description: `OCID of the user who modified the connection.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `URI to the connection instance in the API. ## Import Import is not supported for this resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_datacatalog_data_asset",
+			Category:         "Data Catalog",
+			ShortDescription: `Provides the Data Asset resource in Oracle Cloud Infrastructure Data Catalog service`,
+			Description:      ``,
+			Keywords: []string{
+				"data",
+				"catalog",
+				"datacatalog",
+				"asset",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `(Required) Unique catalog identifier.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) (Updatable) Detailed description of the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) (Updatable) A user-friendly display name. Does not have to be unique, and it's changeable. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) (Updatable) A map of maps that contains the properties which are specific to the data asset type. Each data asset type definition defines it's set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most data assets have required properties within the "default" category. To determine the set of optional and required properties for a data asset type, a query can be done on '/types?type=dataAsset' that returns a collection of all data asset types. The appropriate data asset type, which includes definitions of all of it's properties, can be identified from this collection. Example: ` + "`" + `{"properties": { "default": { "host": "host1", "port": "1521", "database": "orcl"}}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "type_key",
+					Description: `(Required) The key of the data asset type. This can be obtained via the '/types' endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `The data catalog's OCID.`,
+				},
+				resource.Attribute{
+					Name:        "created_by_id",
+					Description: `OCID of the user who created the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Detailed description of the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name. Does not have to be unique, and it's changeable. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "external_key",
+					Description: `External URI that can be used to reference the object. Format will differ based on the type of object.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Unique data asset key that is immutable.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `A map of maps that contains the properties which are specific to the asset type. Each data asset type definition defines it's set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most data assets have required properties within the "default" category. Example: ` + "`" + `{"properties": { "default": { "host": "host1", "port": "1521", "database": "orcl"}}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the data asset was created, in the format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: ` + "`" + `2019-03-25T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The last time that any change was made to the data asset. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "type_key",
+					Description: `The key of the object type. Type key's can be found via the '/types' endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "updated_by_id",
+					Description: `OCID of the user who last modified the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `URI to the data asset instance in the API. ## Import Import is not supported for this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "catalog_id",
+					Description: `The data catalog's OCID.`,
+				},
+				resource.Attribute{
+					Name:        "created_by_id",
+					Description: `OCID of the user who created the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Detailed description of the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name. Does not have to be unique, and it's changeable. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "external_key",
+					Description: `External URI that can be used to reference the object. Format will differ based on the type of object.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `Unique data asset key that is immutable.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `A map of maps that contains the properties which are specific to the asset type. Each data asset type definition defines it's set of required and optional properties. The map keys are category names and the values are maps of property name to property value. Every property is contained inside of a category. Most data assets have required properties within the "default" category. Example: ` + "`" + `{"properties": { "default": { "host": "host1", "port": "1521", "database": "orcl"}}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the data asset was created, in the format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: ` + "`" + `2019-03-25T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The last time that any change was made to the data asset. An [RFC3339](https://tools.ietf.org/html/rfc3339) formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "type_key",
+					Description: `The key of the object type. Type key's can be found via the '/types' endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "updated_by_id",
+					Description: `OCID of the user who last modified the data asset.`,
+				},
+				resource.Attribute{
+					Name:        "uri",
+					Description: `URI to the data asset instance in the API. ## Import Import is not supported for this resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_dataflow_application",
+			Category:         "Dataflow",
+			ShortDescription: `Provides the Application resource in Oracle Cloud Infrastructure Dataflow service`,
+			Description:      ``,
+			Keywords: []string{
+				"dataflow",
+				"application",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arguments",
+					Description: `(Optional) (Updatable) The arguments passed to the running application as command line arguments. An argument is either a plain text or a placeholder. Placeholders are replaced using values from the parameters map. Each placeholder specified must be represented in the parameters map else the request (POST or PUT) will fail with a HTTP 400 status code. Placeholders are specified as ` + "`" + `Service Api Spec` + "`" + `, where ` + "`" + `name` + "`" + ` is the name of the parameter. Example: ` + "`" + `[ "--input", "${input_file}", "--name", "John Doe" ]` + "`" + ` If "input_file" has a value of "mydata.xml", then the value above will be translated to ` + "`" + `--input mydata.xml --name "John Doe"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "class_name",
+					Description: `(Optional) The class for the application.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) The OCID of the compartment that contains this application.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) (Updatable) The Spark configuration passed to the running process. See https://spark.apache.org/docs/latest/configuration.html#available-properties Example: { "spark.app.name" : "My App Name", "spark.shuffle.io.maxRetries" : "4" } Note: Not all Spark properties are permitted to be set. Attempting to set a property that is not allowed to be overwritten will cause a 400 status to be returned.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) (Updatable) A user-friendly description. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) (Updatable) A user-friendly name. It does not have to be unique. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "driver_shape",
+					Description: `(Required) (Updatable) The VM shape for the driver. Sets the driver cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "executor_shape",
+					Description: `(Required) (Updatable) The VM shape for the executors. Sets the executor cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "file_uri",
+					Description: `(Required) An Oracle Cloud Infrastructure URI of the file containing the application to execute. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "language",
+					Description: `(Required) The Spark language.`,
+				},
+				resource.Attribute{
+					Name:        "logs_bucket_uri",
+					Description: `(Optional) (Updatable) An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "num_executors",
+					Description: `(Required) (Updatable) The number of executor VMs requested.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) (Updatable) An array of name/value pairs used to fill placeholders found in properties like ` + "`" + `Application.arguments` + "`" + `. The name must be a string of one or more word characters (a-z, A-Z, 0-9, _). The value can be a string of 0 or more characters of any kind. Example: [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) (Updatable) The name of the parameter. It must be a string of one or more word characters (a-z, A-Z, 0-9, _). Examples: "iterations", "input_file"`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) (Updatable) The value of the parameter. It must be a string of 0 or more characters of any kind. Examples: "" (empty string), "10", "mydata.xml", "${x}"`,
+				},
+				resource.Attribute{
+					Name:        "spark_version",
+					Description: `(Required) The Spark version utilized to run the application.`,
+				},
+				resource.Attribute{
+					Name:        "warehouse_bucket_uri",
+					Description: `(Optional) (Updatable) An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "arguments",
+					Description: `The arguments passed to the running application as command line arguments. An argument is either a plain text or a placeholder. Placeholders are replaced using values from the parameters map. Each placeholder specified must be represented in the parameters map else the request (POST or PUT) will fail with a HTTP 400 status code. Placeholders are specified as ` + "`" + `Service Api Spec` + "`" + `, where ` + "`" + `name` + "`" + ` is the name of the parameter. Example: ` + "`" + `[ "--input", "${input_file}", "--name", "John Doe" ]` + "`" + ` If "input_file" has a value of "mydata.xml", then the value above will be translated to ` + "`" + `--input mydata.xml --name "John Doe"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "class_name",
+					Description: `The class for the application.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The OCID of the compartment that contains this application.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The Spark configuration passed to the running process. See https://spark.apache.org/docs/latest/configuration.html#available-properties Example: { "spark.app.name" : "My App Name", "spark.shuffle.io.maxRetries" : "4" } Note: Not all Spark properties are permitted to be set. Attempting to set a property that is not allowed to be overwritten will cause a 400 status to be returned.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A user-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly name. This name is not necessarily unique.`,
+				},
+				resource.Attribute{
+					Name:        "driver_shape",
+					Description: `The VM shape for the driver. Sets the driver cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "executor_shape",
+					Description: `The VM shape for the executors. Sets the executor cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "file_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the file containing the application to execute. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The application ID.`,
+				},
+				resource.Attribute{
+					Name:        "language",
+					Description: `The Spark language.`,
+				},
+				resource.Attribute{
+					Name:        "logs_bucket_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "num_executors",
+					Description: `The number of executor VMs requested.`,
+				},
+				resource.Attribute{
+					Name:        "owner_principal_id",
+					Description: `The OCID of the user who created the resource.`,
+				},
+				resource.Attribute{
+					Name:        "owner_user_name",
+					Description: `The username of the user who created the resource. If the username of the owner does not exist, ` + "`" + `null` + "`" + ` will be returned and the caller should refer to the ownerPrincipalId value instead.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `An array of name/value pairs used to fill placeholders found in properties like ` + "`" + `Application.arguments` + "`" + `. The name must be a string of one or more word characters (a-z, A-Z, 0-9, _). The value can be a string of 0 or more characters of any kind. Example: [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the parameter. It must be a string of one or more word characters (a-z, A-Z, 0-9, _). Examples: "iterations", "input_file"`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the parameter. It must be a string of 0 or more characters of any kind. Examples: "" (empty string), "10", "mydata.xml", "${x}"`,
+				},
+				resource.Attribute{
+					Name:        "spark_version",
+					Description: `The Spark version utilized to run the application.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of this application.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time a application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-04-03T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The date and time a application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-04-03T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "warehouse_bucket_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat ## Import Applications can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_dataflow_application.test_application "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "arguments",
+					Description: `The arguments passed to the running application as command line arguments. An argument is either a plain text or a placeholder. Placeholders are replaced using values from the parameters map. Each placeholder specified must be represented in the parameters map else the request (POST or PUT) will fail with a HTTP 400 status code. Placeholders are specified as ` + "`" + `Service Api Spec` + "`" + `, where ` + "`" + `name` + "`" + ` is the name of the parameter. Example: ` + "`" + `[ "--input", "${input_file}", "--name", "John Doe" ]` + "`" + ` If "input_file" has a value of "mydata.xml", then the value above will be translated to ` + "`" + `--input mydata.xml --name "John Doe"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "class_name",
+					Description: `The class for the application.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The OCID of the compartment that contains this application.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The Spark configuration passed to the running process. See https://spark.apache.org/docs/latest/configuration.html#available-properties Example: { "spark.app.name" : "My App Name", "spark.shuffle.io.maxRetries" : "4" } Note: Not all Spark properties are permitted to be set. Attempting to set a property that is not allowed to be overwritten will cause a 400 status to be returned.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A user-friendly description.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly name. This name is not necessarily unique.`,
+				},
+				resource.Attribute{
+					Name:        "driver_shape",
+					Description: `The VM shape for the driver. Sets the driver cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "executor_shape",
+					Description: `The VM shape for the executors. Sets the executor cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "file_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the file containing the application to execute. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The application ID.`,
+				},
+				resource.Attribute{
+					Name:        "language",
+					Description: `The Spark language.`,
+				},
+				resource.Attribute{
+					Name:        "logs_bucket_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "num_executors",
+					Description: `The number of executor VMs requested.`,
+				},
+				resource.Attribute{
+					Name:        "owner_principal_id",
+					Description: `The OCID of the user who created the resource.`,
+				},
+				resource.Attribute{
+					Name:        "owner_user_name",
+					Description: `The username of the user who created the resource. If the username of the owner does not exist, ` + "`" + `null` + "`" + ` will be returned and the caller should refer to the ownerPrincipalId value instead.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `An array of name/value pairs used to fill placeholders found in properties like ` + "`" + `Application.arguments` + "`" + `. The name must be a string of one or more word characters (a-z, A-Z, 0-9, _). The value can be a string of 0 or more characters of any kind. Example: [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the parameter. It must be a string of one or more word characters (a-z, A-Z, 0-9, _). Examples: "iterations", "input_file"`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the parameter. It must be a string of 0 or more characters of any kind. Examples: "" (empty string), "10", "mydata.xml", "${x}"`,
+				},
+				resource.Attribute{
+					Name:        "spark_version",
+					Description: `The Spark version utilized to run the application.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of this application.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time a application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-04-03T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The date and time a application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-04-03T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "warehouse_bucket_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat ## Import Applications can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_dataflow_application.test_application "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_dataflow_invoke_run",
+			Category:         "Dataflow",
+			ShortDescription: `Provides the Invoke Run resource in Oracle Cloud Infrastructure Dataflow service`,
+			Description:      ``,
+			Keywords: []string{
+				"dataflow",
+				"invoke",
+				"run",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `(Required) The application ID.`,
+				},
+				resource.Attribute{
+					Name:        "arguments",
+					Description: `(Optional) The arguments passed to the running application as command line arguments. An argument is either a plain text or a placeholder. Placeholders are replaced using values from the parameters map. Each placeholder specified must be represented in the parameters map else the request (POST or PUT) will fail with a HTTP 400 status code. Placeholders are specified as ` + "`" + `Service Api Spec` + "`" + `, where ` + "`" + `name` + "`" + ` is the name of the parameter. Example: ` + "`" + `[ "--input", "${input_file}", "--name", "John Doe" ]` + "`" + ` If "input_file" has a value of "mydata.xml", then the value above will be translated to ` + "`" + `--input mydata.xml --name "John Doe"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "asynchronous",
+					Description: `(Optional) Flag to invoke run asynchronously. The default is true.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) The OCID of the compartment that contains this application.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `(Optional) The Spark configuration passed to the running process. See https://spark.apache.org/docs/latest/configuration.html#available-properties Example: { "spark.app.name" : "My App Name", "spark.shuffle.io.maxRetries" : "4" } Note: Not all Spark properties are permitted to be set. Attempting to set a property that is not allowed to be overwritten will cause a 400 status to be returned.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Required) A user-friendly name. It does not have to be unique. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "driver_shape",
+					Description: `(Optional) The VM shape for the driver. Sets the driver cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "executor_shape",
+					Description: `(Optional) The VM shape for the executors. Sets the executor cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "logs_bucket_uri",
+					Description: `(Optional) An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "num_executors",
+					Description: `(Optional) The number of executor VMs requested.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `(Optional) An array of name/value pairs used to fill placeholders found in properties like ` + "`" + `Application.arguments` + "`" + `. The name must be a string of one or more word characters (a-z, A-Z, 0-9, _). The value can be a string of 0 or more characters of any kind. Example: [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the parameter. It must be a string of one or more word characters (a-z, A-Z, 0-9, _). Examples: "iterations", "input_file"`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the parameter. It must be a string of 0 or more characters of any kind. Examples: "" (empty string), "10", "mydata.xml", "${x}"`,
+				},
+				resource.Attribute{
+					Name:        "warehouse_bucket_uri",
+					Description: `(Optional) An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `The application ID.`,
+				},
+				resource.Attribute{
+					Name:        "arguments",
+					Description: `The arguments passed to the running application as command line arguments. An argument is either a plain text or a placeholder. Placeholders are replaced using values from the parameters map. Each placeholder specified must be represented in the parameters map else the request (POST or PUT) will fail with a HTTP 400 status code. Placeholders are specified as ` + "`" + `Service Api Spec` + "`" + `, where ` + "`" + `name` + "`" + ` is the name of the parameter. Example: ` + "`" + `[ "--input", "${input_file}", "--name", "John Doe" ]` + "`" + ` If "input_file" has a value of "mydata.xml", then the value above will be translated to ` + "`" + `--input mydata.xml --name "John Doe"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "class_name",
+					Description: `The class for the application.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The OCID of the compartment that contains this application.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The Spark configuration passed to the running process. See https://spark.apache.org/docs/latest/configuration.html#available-properties Example: { "spark.app.name" : "My App Name", "spark.shuffle.io.maxRetries" : "4" } Note: Not all Spark properties are permitted to be set. Attempting to set a property that is not allowed to be overwritten will cause a 400 status to be returned.`,
+				},
+				resource.Attribute{
+					Name:        "data_read_in_bytes",
+					Description: `The data read by the run in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "data_written_in_bytes",
+					Description: `The data written by the run in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly name. This name is not necessarily unique.`,
+				},
+				resource.Attribute{
+					Name:        "driver_shape",
+					Description: `The VM shape for the driver. Sets the driver cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "executor_shape",
+					Description: `The VM shape for the executors. Sets the executor cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "file_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the file containing the application to execute. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of a run.`,
+				},
+				resource.Attribute{
+					Name:        "language",
+					Description: `The Spark language.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `The detailed messages about the lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "logs_bucket_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "num_executors",
+					Description: `The number of executor VMs requested.`,
+				},
+				resource.Attribute{
+					Name:        "opc_request_id",
+					Description: `Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.`,
+				},
+				resource.Attribute{
+					Name:        "owner_principal_id",
+					Description: `The OCID of the user who created the resource.`,
+				},
+				resource.Attribute{
+					Name:        "owner_user_name",
+					Description: `The username of the user who created the resource. If the username of the owner does not exist, ` + "`" + `null` + "`" + ` will be returned and the caller should refer to the ownerPrincipalId value instead.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `An array of name/value pairs used to fill placeholders found in properties like ` + "`" + `Application.arguments` + "`" + `. The name must be a string of one or more word characters (a-z, A-Z, 0-9, _). The value can be a string of 0 or more characters of any kind. Example: [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the parameter. It must be a string of one or more word characters (a-z, A-Z, 0-9, _). Examples: "iterations", "input_file"`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the parameter. It must be a string of 0 or more characters of any kind. Examples: "" (empty string), "10", "mydata.xml", "${x}"`,
+				},
+				resource.Attribute{
+					Name:        "run_duration_in_milliseconds",
+					Description: `The duration of the run in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "spark_version",
+					Description: `The Spark version utilized to run the application.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of this run.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time a application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-04-03T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The date and time a application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-04-03T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "total_ocpu",
+					Description: `The total number of oCPU requested by the run.`,
+				},
+				resource.Attribute{
+					Name:        "warehouse_bucket_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat ## Import InvokeRuns can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_dataflow_invoke_run.test_invoke_run "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "application_id",
+					Description: `The application ID.`,
+				},
+				resource.Attribute{
+					Name:        "arguments",
+					Description: `The arguments passed to the running application as command line arguments. An argument is either a plain text or a placeholder. Placeholders are replaced using values from the parameters map. Each placeholder specified must be represented in the parameters map else the request (POST or PUT) will fail with a HTTP 400 status code. Placeholders are specified as ` + "`" + `Service Api Spec` + "`" + `, where ` + "`" + `name` + "`" + ` is the name of the parameter. Example: ` + "`" + `[ "--input", "${input_file}", "--name", "John Doe" ]` + "`" + ` If "input_file" has a value of "mydata.xml", then the value above will be translated to ` + "`" + `--input mydata.xml --name "John Doe"` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "class_name",
+					Description: `The class for the application.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The OCID of the compartment that contains this application.`,
+				},
+				resource.Attribute{
+					Name:        "configuration",
+					Description: `The Spark configuration passed to the running process. See https://spark.apache.org/docs/latest/configuration.html#available-properties Example: { "spark.app.name" : "My App Name", "spark.shuffle.io.maxRetries" : "4" } Note: Not all Spark properties are permitted to be set. Attempting to set a property that is not allowed to be overwritten will cause a 400 status to be returned.`,
+				},
+				resource.Attribute{
+					Name:        "data_read_in_bytes",
+					Description: `The data read by the run in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "data_written_in_bytes",
+					Description: `The data written by the run in bytes.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly name. This name is not necessarily unique.`,
+				},
+				resource.Attribute{
+					Name:        "driver_shape",
+					Description: `The VM shape for the driver. Sets the driver cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "executor_shape",
+					Description: `The VM shape for the executors. Sets the executor cores and memory.`,
+				},
+				resource.Attribute{
+					Name:        "file_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the file containing the application to execute. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of a run.`,
+				},
+				resource.Attribute{
+					Name:        "language",
+					Description: `The Spark language.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `The detailed messages about the lifecycle state.`,
+				},
+				resource.Attribute{
+					Name:        "logs_bucket_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat`,
+				},
+				resource.Attribute{
+					Name:        "num_executors",
+					Description: `The number of executor VMs requested.`,
+				},
+				resource.Attribute{
+					Name:        "opc_request_id",
+					Description: `Unique Oracle-assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID.`,
+				},
+				resource.Attribute{
+					Name:        "owner_principal_id",
+					Description: `The OCID of the user who created the resource.`,
+				},
+				resource.Attribute{
+					Name:        "owner_user_name",
+					Description: `The username of the user who created the resource. If the username of the owner does not exist, ` + "`" + `null` + "`" + ` will be returned and the caller should refer to the ownerPrincipalId value instead.`,
+				},
+				resource.Attribute{
+					Name:        "parameters",
+					Description: `An array of name/value pairs used to fill placeholders found in properties like ` + "`" + `Application.arguments` + "`" + `. The name must be a string of one or more word characters (a-z, A-Z, 0-9, _). The value can be a string of 0 or more characters of any kind. Example: [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ]`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the parameter. It must be a string of one or more word characters (a-z, A-Z, 0-9, _). Examples: "iterations", "input_file"`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value of the parameter. It must be a string of 0 or more characters of any kind. Examples: "" (empty string), "10", "mydata.xml", "${x}"`,
+				},
+				resource.Attribute{
+					Name:        "run_duration_in_milliseconds",
+					Description: `The duration of the run in milliseconds.`,
+				},
+				resource.Attribute{
+					Name:        "spark_version",
+					Description: `The Spark version utilized to run the application.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The current state of this run.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time a application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-04-03T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The date and time a application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: ` + "`" + `2018-04-03T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "total_ocpu",
+					Description: `The total number of oCPU requested by the run.`,
+				},
+				resource.Attribute{
+					Name:        "warehouse_bucket_uri",
+					Description: `An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat ## Import InvokeRuns can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_dataflow_invoke_run.test_invoke_run "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_datascience_model",
+			Category:         "Datascience",
+			ShortDescription: `Provides the Model resource in Oracle Cloud Infrastructure Datascience service`,
+			Description:      ``,
+			Keywords: []string{
+				"datascience",
+				"model",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "artifact_content_length",
+					Description: `(Required) The length of the artifact to upload.`,
+				},
+				resource.Attribute{
+					Name:        "artifact_content_disposition",
+					Description: `(Optional) The content disposition of the artifact to upload.`,
+				},
+				resource.Attribute{
+					Name:        "model_artifact",
+					Description: `(Required) The model artifact to upload.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment to create the model in.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) (Updatable) A short blurb describing the model.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) (Updatable) A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information. Example: ` + "`" + `My Model` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project to associate with the model.`,
+				},
+				resource.Attribute{
+					Name:        "artifact_content_length",
+					Description: `The length of the artifact.`,
+				},
+				resource.Attribute{
+					Name:        "artifact_content_disposition",
+					Description: `The content disposition of the artifact.`,
+				},
+				resource.Attribute{
+					Name:        "artifact_content_md5",
+					Description: `The base-64 encoded MD5 hash of the artifact.`,
+				},
+				resource.Attribute{
+					Name:        "artifact_last_modified",
+					Description: `The artifact modification time.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model’s compartment.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the model.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A short blurb describing the model.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the model.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the model.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the resource was created, in the timestamp format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: 2019-08-25T21:10:29.41Z ## Import Import is not supported for this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "artifact_content_length",
+					Description: `The length of the artifact.`,
+				},
+				resource.Attribute{
+					Name:        "artifact_content_disposition",
+					Description: `The content disposition of the artifact.`,
+				},
+				resource.Attribute{
+					Name:        "artifact_content_md5",
+					Description: `The base-64 encoded MD5 hash of the artifact.`,
+				},
+				resource.Attribute{
+					Name:        "artifact_last_modified",
+					Description: `The artifact modification time.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model’s compartment.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the model.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A short blurb describing the model.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the model.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the model.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the resource was created, in the timestamp format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: 2019-08-25T21:10:29.41Z ## Import Import is not supported for this resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_datascience_model_provenance",
+			Category:         "Datascience",
+			ShortDescription: `Provides the Model Provenance resource in Oracle Cloud Infrastructure Datascience service`,
+			Description:      ``,
+			Keywords: []string{
+				"datascience",
+				"model",
+				"provenance",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "git_branch",
+					Description: `(Optional) (Updatable) For model reproducibility purposes. Branch of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "git_commit",
+					Description: `(Optional) (Updatable) For model reproducibility purposes. Commit ID of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "model_id",
+					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the model.`,
+				},
+				resource.Attribute{
+					Name:        "repository_url",
+					Description: `(Optional) (Updatable) For model reproducibility purposes. URL of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "script_dir",
+					Description: `(Optional) (Updatable) For model reproducibility purposes. Path to model artifacts.`,
+				},
+				resource.Attribute{
+					Name:        "training_script",
+					Description: `(Optional) (Updatable) For model reproducibility purposes. Path to the python script or notebook in which the model was trained."`,
+				},
+				resource.Attribute{
+					Name:        "git_branch",
+					Description: `For model reproducibility purposes. Branch of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "git_commit",
+					Description: `For model reproducibility purposes. Commit ID of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "repository_url",
+					Description: `For model reproducibility purposes. URL of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "script_dir",
+					Description: `For model reproducibility purposes. Path to model artifacts.`,
+				},
+				resource.Attribute{
+					Name:        "training_script",
+					Description: `For model reproducibility purposes. Path to the python script or notebook in which the model was trained." ## Import ModelProvenances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_datascience_model_provenance.test_model_provenance "models/{modelId}/provenance" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "git_branch",
+					Description: `For model reproducibility purposes. Branch of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "git_commit",
+					Description: `For model reproducibility purposes. Commit ID of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "repository_url",
+					Description: `For model reproducibility purposes. URL of the git repository associated with model training.`,
+				},
+				resource.Attribute{
+					Name:        "script_dir",
+					Description: `For model reproducibility purposes. Path to model artifacts.`,
+				},
+				resource.Attribute{
+					Name:        "training_script",
+					Description: `For model reproducibility purposes. Path to the python script or notebook in which the model was trained." ## Import ModelProvenances can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_datascience_model_provenance.test_model_provenance "models/{modelId}/provenance" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_datascience_notebook_session",
+			Category:         "Datascience",
+			ShortDescription: `Provides the Notebook Session resource in Oracle Cloud Infrastructure Datascience service`,
+			Description:      ``,
+			Keywords: []string{
+				"datascience",
+				"notebook",
+				"session",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment where you want to create the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) (Updatable) A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information. Example: ` + "`" + `My NotebookSession` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "notebook_session_configuration_details",
+					Description: `(Required) (Updatable)`,
+				},
+				resource.Attribute{
+					Name:        "block_storage_size_in_gbs",
+					Description: `(Optional) (Updatable) A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.`,
+				},
+				resource.Attribute{
+					Name:        "shape",
+					Description: `(Required) (Updatable) The shape used to launch the notebook session compute instance. The list of available shapes in a given compartment can be retrieved from the ` + "`" + `ListNotebookSessionShapes` + "`" + ` endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Required) (Updatable) A notebook session instance is provided with a VNIC for network access. This specifies the [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the subnet to create a VNIC in. The subnet should be in a VCN with a NAT gateway for egress to the internet.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project to associate with the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session's compartment.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information. Example: ` + "`" + `My NotebookSession` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `Details about the state of the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "notebook_session_configuration_details",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "block_storage_size_in_gbs",
+					Description: `A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.`,
+				},
+				resource.Attribute{
+					Name:        "shape",
+					Description: `The shape used to launch the notebook session compute instance. The list of available shapes in a given compartment can be retrieved from the ` + "`" + `ListNotebookSessionShapes` + "`" + ` endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `A notebook session instance is provided with a VNIC for network access. This specifies the [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the subnet to create a VNIC in. The subnet should be in a VCN with a NAT gateway for egress to the internet.`,
+				},
+				resource.Attribute{
+					Name:        "notebook_session_url",
+					Description: `The URL to interact with the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the resource was created, in the timestamp format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: 2019-08-25T21:10:29.41Z ## Import NotebookSessions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_datascience_notebook_session.test_notebook_session "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session's compartment.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information. Example: ` + "`" + `My NotebookSession` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `Details about the state of the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "notebook_session_configuration_details",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "block_storage_size_in_gbs",
+					Description: `A notebook session instance is provided with a block storage volume. This specifies the size of the volume in GBs.`,
+				},
+				resource.Attribute{
+					Name:        "shape",
+					Description: `The shape used to launch the notebook session compute instance. The list of available shapes in a given compartment can be retrieved from the ` + "`" + `ListNotebookSessionShapes` + "`" + ` endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `A notebook session instance is provided with a VNIC for network access. This specifies the [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the subnet to create a VNIC in. The subnet should be in a VCN with a NAT gateway for egress to the internet.`,
+				},
+				resource.Attribute{
+					Name:        "notebook_session_url",
+					Description: `The URL to interact with the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project associated with the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the notebook session.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the resource was created, in the timestamp format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: 2019-08-25T21:10:29.41Z ## Import NotebookSessions can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_datascience_notebook_session.test_notebook_session "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_datascience_project",
+			Category:         "Datascience",
+			ShortDescription: `Provides the Project resource in Oracle Cloud Infrastructure Datascience service`,
+			Description:      ``,
+			Keywords: []string{
+				"datascience",
+				"project",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the compartment to create the project in.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) (Updatable) A short blurb describing the project.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `(Optional) (Updatable) A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project's compartment.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created this project.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A short blurb describing the project.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the project.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the resource was created, in the timestamp format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: 2019-08-25T21:10:29.41Z ## Import Projects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_datascience_project.test_project "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project's compartment.`,
+				},
+				resource.Attribute{
+					Name:        "created_by",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the user who created this project.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `A short blurb describing the project.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/API/Concepts/identifiers.htm) of the project.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of the project.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The date and time the resource was created, in the timestamp format defined by [RFC3339](https://tools.ietf.org/html/rfc3339). Example: 2019-08-25T21:10:29.41Z ## Import Projects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_datascience_project.test_project "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "oci_dns_record",
 			Category:         "Dns",
 			ShortDescription: `Provides the Record resource in Oracle Cloud Infrastructure Dns service`,
@@ -17037,8 +19106,12 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the action.`,
 				},
 				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `Whether or not this action is currently enabled. Example: ` + "`" + `true` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "lifecycle_message",
-					Description: `A message generated by the Events service about the current state of this rule.`,
+					Description: `A message generated by the Events service about the current state of this action.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -17123,8 +19196,12 @@ var (
 					Description: `The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the action.`,
 				},
 				resource.Attribute{
+					Name:        "is_enabled",
+					Description: `Whether or not this action is currently enabled. Example: ` + "`" + `true` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "lifecycle_message",
-					Description: `A message generated by the Events service about the current state of this rule.`,
+					Description: `A message generated by the Events service about the current state of this action.`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -19817,6 +21894,150 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "oci_identity_network_source",
+			Category:         "Identity",
+			ShortDescription: `Provides the Network Source resource in Oracle Cloud Infrastructure Identity service`,
+			Description:      ``,
+			Keywords: []string{
+				"identity",
+				"network",
+				"source",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) The OCID of the tenancy containing the network source object.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Required) (Updatable) The description you assign to the network source during creation. Does not have to be unique, and it's changeable.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name you assign to the network source during creation. The name must be unique across all groups in the tenancy and cannot be changed.`,
+				},
+				resource.Attribute{
+					Name:        "public_source_list",
+					Description: `(Optional) (Updatable) A list of allowed public IPs and CIDR ranges`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `(Optional) (Updatable) A list of OCIservices allowed to make on behalf of requests which may have different source ips. At this time only the values of all or none are supported.`,
+				},
+				resource.Attribute{
+					Name:        "virtual_source_list",
+					Description: `(Optional) (Updatable) A list of allowed VCN ocid/IP range pairs`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The OCID of the tenancy containing the network source.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description you assign to the network source. Does not have to be unique, and it's changeable.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The OCID of the network source.`,
+				},
+				resource.Attribute{
+					Name:        "inactive_state",
+					Description: `The detailed status of INACTIVE lifecycleState.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name you assign to the network source during creation. The name must be unique across the tenancy and cannot be changed.`,
+				},
+				resource.Attribute{
+					Name:        "public_source_list",
+					Description: `A list of allowed public IPs and CIDR ranges`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `A list of OCIservices allowed to make on behalf of requests which may have different source ips. At this time only the values of all or none are supported.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The network source object's current state. After creating a network source, make sure its ` + "`" + `lifecycleState` + "`" + ` changes from CREATING to ACTIVE before using it.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `Date and time the group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "virtual_source_list",
+					Description: `A list of allowed VCN ocid/IP range pairs ## Import NetworkSources can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_network_source.test_network_source "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `The OCID of the tenancy containing the network source.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description you assign to the network source. Does not have to be unique, and it's changeable.`,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Department": "Finance"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The OCID of the network source.`,
+				},
+				resource.Attribute{
+					Name:        "inactive_state",
+					Description: `The detailed status of INACTIVE lifecycleState.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name you assign to the network source during creation. The name must be unique across the tenancy and cannot be changed.`,
+				},
+				resource.Attribute{
+					Name:        "public_source_list",
+					Description: `A list of allowed public IPs and CIDR ranges`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `A list of OCIservices allowed to make on behalf of requests which may have different source ips. At this time only the values of all or none are supported.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The network source object's current state. After creating a network source, make sure its ` + "`" + `lifecycleState` + "`" + ` changes from CREATING to ACTIVE before using it.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `Date and time the group was created, in the format defined by RFC3339. Example: ` + "`" + `2016-08-25T21:10:29.600Z` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "virtual_source_list",
+					Description: `A list of allowed VCN ocid/IP range pairs ## Import NetworkSources can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import oci_identity_network_source.test_network_source "id" ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "oci_identity_policy",
 			Category:         "Identity",
 			ShortDescription: `Provides the Policy resource in Oracle Cloud Infrastructure Identity service`,
@@ -20167,7 +22388,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "validator",
-					Description: `(Optional) (Updatable) Additional validation rule for values specified for the tag definition. If no validator is defined for a tag definition, then any (valid) value will be accepted. Remove the ` + "`" + `validator` + "`" + ` from config to update the tag to default.`,
+					Description: `(Optional) (Updatable) The tag must have a value type, which is specified with a validator. Tags can use either a static value or a list of possible values. Static values are entered by a user applying the tag to a resource. Lists are created by you and the user must apply a value from the list. Lists are validiated. If you use the default validiator (or don't define a validator), the user applying the tag enters a value. No additional validation is performed. Remove the ` + "`" + `validator` + "`" + ` from config to update the tag to default.`,
 				},
 				resource.Attribute{
 					Name:        "validator_type",
@@ -20183,7 +22404,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + `` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -20223,11 +22444,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "validator",
-					Description: `Additional validation rule for values specified for the tag definition.`,
+					Description: `The tag must have a value type, which is specified with a validator. Tags can use either a static value or a list of possible values. Static values are entered by a user applying the tag to a resource. Lists are created by you and the user must apply a value from the list. Lists are validiated.`,
 				},
 				resource.Attribute{
 					Name:        "validator_type",
-					Description: `The primitive that any value set for this definedTag must be parseable as.`,
+					Description: `Specifies the type of validation: a static value (no validation) or a list.`,
 				},
 				resource.Attribute{
 					Name:        "values",
@@ -20237,7 +22458,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "defined_tags",
-					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + `` + "`" + ``,
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: ` + "`" + `{"Operations.CostCenter": "42"}` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -20277,11 +22498,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "validator",
-					Description: `Additional validation rule for values specified for the tag definition.`,
+					Description: `The tag must have a value type, which is specified with a validator. Tags can use either a static value or a list of possible values. Static values are entered by a user applying the tag to a resource. Lists are created by you and the user must apply a value from the list. Lists are validiated.`,
 				},
 				resource.Attribute{
 					Name:        "validator_type",
-					Description: `The primitive that any value set for this definedTag must be parseable as.`,
+					Description: `Specifies the type of validation: a static value (no validation) or a list.`,
 				},
 				resource.Attribute{
 					Name:        "values",
@@ -20621,6 +22842,10 @@ var (
 					Description: `Indicates if the user can use SigV4 symmetric keys.`,
 				},
 				resource.Attribute{
+					Name:        "can_use_oauth2client_credentials",
+					Description: `Indicates if the user can use OAuth2 credentials and tokens.`,
+				},
+				resource.Attribute{
 					Name:        "can_use_smtp_credentials",
 					Description: `Indicates if the user can use SMTP passwords.`,
 				},
@@ -20693,6 +22918,10 @@ var (
 				resource.Attribute{
 					Name:        "can_use_customer_secret_keys",
 					Description: `Indicates if the user can use SigV4 symmetric keys.`,
+				},
+				resource.Attribute{
+					Name:        "can_use_oauth2client_credentials",
+					Description: `Indicates if the user can use OAuth2 credentials and tokens.`,
 				},
 				resource.Attribute{
 					Name:        "can_use_smtp_credentials",
@@ -22320,6 +24549,10 @@ var (
 					Description: `(Optional) (Updatable)`,
 				},
 				resource.Attribute{
+					Name:        "backend_tcp_proxy_protocol_version",
+					Description: `(Required when ` + "`" + `protocol` + "`" + ` = ` + "`" + `TCP` + "`" + `) (Updatable) The backend TCP Proxy Protocol version. Example: ` + "`" + `1` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "idle_timeout_in_seconds",
 					Description: `(Required) (Updatable) The maximum idle time, in seconds, allowed between two successive receive or two successive send operations between the client and backend servers. A send operation does not reset the timer for receive operations. A receive operation does not reset the timer for send operations. For more information, see [Connection Configuration](https://docs.cloud.oracle.com/iaas/Content/Balance/Reference/connectionreuse.htm#ConnectionConfiguration). Example: ` + "`" + `1200` + "`" + ``,
 				},
@@ -23434,6 +25667,368 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "oci_nosql_index",
+			Category:         "Nosql",
+			ShortDescription: `Provides the Index resource in Oracle Cloud Infrastructure Nosql service`,
+			Description:      ``,
+			Keywords: []string{
+				"nosql",
+				"index",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Optional) The OCID of the table's compartment. Required if the tableNameOrId path parameter is a table name. Optional if tableNameOrId is an OCID. If tableNameOrId is an OCID, and compartmentId is supplied, the latter must match the identified table's compartmentId.`,
+				},
+				resource.Attribute{
+					Name:        "is_if_not_exists",
+					Description: `(Optional) If true, the operation completes successfully even when the index exists. Otherwise, an attempt to create an index that already exists will return an error.`,
+				},
+				resource.Attribute{
+					Name:        "keys",
+					Description: `(Required) A set of keys for a secondary index.`,
+				},
+				resource.Attribute{
+					Name:        "column_name",
+					Description: `(Required) The name of a column to be included as an index key.`,
+				},
+				resource.Attribute{
+					Name:        "json_field_type",
+					Description: `(Optional) If the specified column is of type JSON, jsonFieldType contains the type of the field indicated by jsonPath.`,
+				},
+				resource.Attribute{
+					Name:        "json_path",
+					Description: `(Optional) If the specified column is of type JSON, jsonPath contains a dotted path indicating the field within the JSON object that will be the index key.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Index name.`,
+				},
+				resource.Attribute{
+					Name:        "table_name_or_id",
+					Description: `(Required) A table name within the compartment, or a table OCID.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `Compartment Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "keys",
+					Description: `A set of keys for a secondary index.`,
+				},
+				resource.Attribute{
+					Name:        "column_name",
+					Description: `The name of a column to be included as an index key.`,
+				},
+				resource.Attribute{
+					Name:        "json_field_type",
+					Description: `If the specified column is of type JSON, jsonFieldType contains the type of the field indicated by jsonPath.`,
+				},
+				resource.Attribute{
+					Name:        "json_path",
+					Description: `If the specified column is of type JSON, jsonPath contains a dotted path indicating the field within the JSON object that will be the index key.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `A message describing the current state in more detail.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Index name.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of an index.`,
+				},
+				resource.Attribute{
+					Name:        "table_id",
+					Description: `the OCID of the table to which this index belongs.`,
+				},
+				resource.Attribute{
+					Name:        "table_name",
+					Description: `The name of the table to which this index belongs. ## Import Import is not supported for this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `Compartment Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "keys",
+					Description: `A set of keys for a secondary index.`,
+				},
+				resource.Attribute{
+					Name:        "column_name",
+					Description: `The name of a column to be included as an index key.`,
+				},
+				resource.Attribute{
+					Name:        "json_field_type",
+					Description: `If the specified column is of type JSON, jsonFieldType contains the type of the field indicated by jsonPath.`,
+				},
+				resource.Attribute{
+					Name:        "json_path",
+					Description: `If the specified column is of type JSON, jsonPath contains a dotted path indicating the field within the JSON object that will be the index key.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `A message describing the current state in more detail.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Index name.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of an index.`,
+				},
+				resource.Attribute{
+					Name:        "table_id",
+					Description: `the OCID of the table to which this index belongs.`,
+				},
+				resource.Attribute{
+					Name:        "table_name",
+					Description: `The name of the table to which this index belongs. ## Import Import is not supported for this resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "oci_nosql_table",
+			Category:         "Nosql",
+			ShortDescription: `Provides the Table resource in Oracle Cloud Infrastructure Nosql service`,
+			Description:      ``,
+			Keywords: []string{
+				"nosql",
+				"table",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `(Required) (Updatable) Compartment Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "ddl_statement",
+					Description: `(Required) (Updatable) Complete CREATE TABLE DDL statement.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: ` + "`" + `{"foo-namespace": {"bar-key": "value"}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `(Optional) (Updatable) Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Table name.`,
+				},
+				resource.Attribute{
+					Name:        "table_limits",
+					Description: `(Required) (Updatable)`,
+				},
+				resource.Attribute{
+					Name:        "max_read_units",
+					Description: `(Required) (Updatable) Maximum sustained read throughput limit for the table.`,
+				},
+				resource.Attribute{
+					Name:        "max_storage_in_gbs",
+					Description: `(Required) (Updatable) Maximum size of storage used by the table.`,
+				},
+				resource.Attribute{
+					Name:        "max_write_units",
+					Description: `(Required) (Updatable) Maximum sustained write throughput limit for the table.`,
+				},
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `Compartment Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "ddl_statement",
+					Description: `A DDL statement representing the schema.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: ` + "`" + `{"foo-namespace": {"bar-key": "value"}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier that is immutable.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `A message describing the current state in more detail.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Human-friendly table name, immutable.`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "columns",
+					Description: `The columns of a table.`,
+				},
+				resource.Attribute{
+					Name:        "default_value",
+					Description: `The column default value.`,
+				},
+				resource.Attribute{
+					Name:        "is_nullable",
+					Description: `The column nullable flag.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The column name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The column type.`,
+				},
+				resource.Attribute{
+					Name:        "primary_key",
+					Description: `A list of column names that make up a key.`,
+				},
+				resource.Attribute{
+					Name:        "shard_key",
+					Description: `A list of column names that make up a key.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The default Time-to-Live for the table, in days.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of a table.`,
+				},
+				resource.Attribute{
+					Name:        "table_limits",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "max_read_units",
+					Description: `Maximum sustained read throughput limit for the table.`,
+				},
+				resource.Attribute{
+					Name:        "max_storage_in_gbs",
+					Description: `Maximum size of storage used by the table.`,
+				},
+				resource.Attribute{
+					Name:        "max_write_units",
+					Description: `Maximum sustained write throughput limit for the table.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The time the the table was created. An RFC3339 formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The time the the table's metadata was last updated. An RFC3339 formatted datetime string. ## Import Import is not supported for this resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "compartment_id",
+					Description: `Compartment Identifier.`,
+				},
+				resource.Attribute{
+					Name:        "ddl_statement",
+					Description: `A DDL statement representing the schema.`,
+				},
+				resource.Attribute{
+					Name:        "defined_tags",
+					Description: `Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: ` + "`" + `{"foo-namespace": {"bar-key": "value"}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "freeform_tags",
+					Description: `Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: ` + "`" + `{"bar-key": "value"}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier that is immutable.`,
+				},
+				resource.Attribute{
+					Name:        "lifecycle_details",
+					Description: `A message describing the current state in more detail.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Human-friendly table name, immutable.`,
+				},
+				resource.Attribute{
+					Name:        "schema",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "columns",
+					Description: `The columns of a table.`,
+				},
+				resource.Attribute{
+					Name:        "default_value",
+					Description: `The column default value.`,
+				},
+				resource.Attribute{
+					Name:        "is_nullable",
+					Description: `The column nullable flag.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The column name.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The column type.`,
+				},
+				resource.Attribute{
+					Name:        "primary_key",
+					Description: `A list of column names that make up a key.`,
+				},
+				resource.Attribute{
+					Name:        "shard_key",
+					Description: `A list of column names that make up a key.`,
+				},
+				resource.Attribute{
+					Name:        "ttl",
+					Description: `The default Time-to-Live for the table, in days.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `The state of a table.`,
+				},
+				resource.Attribute{
+					Name:        "table_limits",
+					Description: ``,
+				},
+				resource.Attribute{
+					Name:        "max_read_units",
+					Description: `Maximum sustained read throughput limit for the table.`,
+				},
+				resource.Attribute{
+					Name:        "max_storage_in_gbs",
+					Description: `Maximum size of storage used by the table.`,
+				},
+				resource.Attribute{
+					Name:        "max_write_units",
+					Description: `Maximum sustained write throughput limit for the table.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `The time the the table was created. An RFC3339 formatted datetime string.`,
+				},
+				resource.Attribute{
+					Name:        "time_updated",
+					Description: `The time the the table's metadata was last updated. An RFC3339 formatted datetime string. ## Import Import is not supported for this resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "oci_objectstorage_bucket",
 			Category:         "Object Storage",
 			ShortDescription: `Provides the Bucket resource in Oracle Cloud Infrastructure Object Storage service`,
@@ -24175,6 +26770,10 @@ var (
 					Description: `(Required) Identity Cloud Service access token identifying a stripe and service administrator user.`,
 				},
 				resource.Attribute{
+					Name:        "instance_usage_type",
+					Description: `(Optional) Instance type based on its usage`,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) OceInstance Name`,
 				},
@@ -24221,6 +26820,10 @@ var (
 				resource.Attribute{
 					Name:        "idcs_tenancy",
 					Description: `IDCS Tenancy Identifier`,
+				},
+				resource.Attribute{
+					Name:        "instance_usage_type",
+					Description: `Instance type based on its usage`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -24291,6 +26894,10 @@ var (
 				resource.Attribute{
 					Name:        "idcs_tenancy",
 					Description: `IDCS Tenancy Identifier`,
+				},
+				resource.Attribute{
+					Name:        "instance_usage_type",
+					Description: `Instance type based on its usage`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -24518,7 +27125,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "api_endpoint",
-					Description: `The endpoint for managing topic subscriptions or publishing messages to the topic.`,
+					Description: `The endpoint for managing subscriptions or publishing messages to the topic.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -24560,7 +27167,7 @@ var (
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "api_endpoint",
-					Description: `The endpoint for managing topic subscriptions or publishing messages to the topic.`,
+					Description: `The endpoint for managing subscriptions or publishing messages to the topic.`,
 				},
 				resource.Attribute{
 					Name:        "compartment_id",
@@ -28464,90 +31071,103 @@ var (
 		"oci_database_backup":                                         60,
 		"oci_database_backup_destination":                             61,
 		"oci_database_data_guard_association":                         62,
-		"oci_database_db_home":                                        63,
-		"oci_database_db_system":                                      64,
-		"oci_database_exadata_infrastructure":                         65,
-		"oci_database_exadata_iorm_config":                            66,
-		"oci_database_maintenance_run":                                67,
-		"oci_database_vm_cluster":                                     68,
-		"oci_database_vm_cluster_network":                             69,
-		"oci_dns_record":                                              70,
-		"oci_dns_steering_policy":                                     71,
-		"oci_dns_steering_policy_attachment":                          72,
-		"oci_dns_tsig_key":                                            73,
-		"oci_dns_zone":                                                74,
-		"oci_email_sender":                                            75,
-		"oci_email_suppression":                                       76,
-		"oci_events_rule":                                             77,
-		"oci_file_storage_export":                                     78,
-		"oci_file_storage_export_set":                                 79,
-		"oci_file_storage_file_system":                                80,
-		"oci_file_storage_mount_target":                               81,
-		"oci_file_storage_snapshot":                                   82,
-		"oci_functions_application":                                   83,
-		"oci_functions_function":                                      84,
-		"oci_functions_invoke_function":                               85,
-		"oci_health_checks_http_monitor":                              86,
-		"oci_health_checks_http_probe":                                87,
-		"oci_health_checks_ping_monitor":                              88,
-		"oci_health_checks_ping_probe":                                89,
-		"oci_identity_api_key":                                        90,
-		"oci_identity_auth_token":                                     91,
-		"oci_identity_authentication_policy":                          92,
-		"oci_identity_compartment":                                    93,
-		"oci_identity_customer_secret_key":                            94,
-		"oci_identity_dynamic_group":                                  95,
-		"oci_identity_group":                                          96,
-		"oci_identity_identity_provider":                              97,
-		"oci_identity_idp_group_mapping":                              98,
-		"oci_identity_policy":                                         99,
-		"oci_identity_smtp_credential":                                100,
-		"oci_identity_swift_password":                                 101,
-		"oci_identity_tag":                                            102,
-		"oci_identity_tag_default":                                    103,
-		"oci_identity_tag_namespace":                                  104,
-		"oci_identity_ui_password":                                    105,
-		"oci_identity_user":                                           106,
-		"oci_identity_user_capabilities_management":                   107,
-		"oci_identity_user_group_membership":                          108,
-		"oci_integration_integration_instance":                        109,
-		"oci_kms_encrypted_data":                                      110,
-		"oci_kms_generated_key":                                       111,
-		"oci_kms_key":                                                 112,
-		"oci_kms_key_version":                                         113,
-		"oci_kms_vault":                                               114,
-		"oci_limits_quota":                                            115,
-		"oci_load_balancer_backend":                                   116,
-		"oci_load_balancer_backend_set":                               117,
-		"oci_load_balancer_certificate":                               118,
-		"oci_load_balancer_hostname":                                  119,
-		"oci_load_balancer_listener":                                  120,
-		"oci_load_balancer_load_balancer":                             121,
-		"oci_load_balancer_path_route_set":                            122,
-		"oci_load_balancer_rule_set":                                  123,
-		"oci_marketplace_accepted_agreement":                          124,
-		"oci_monitoring_alarm":                                        125,
-		"oci_objectstorage_bucket":                                    126,
-		"oci_objectstorage_object":                                    127,
-		"oci_objectstorage_object_lifecycle_policy":                   128,
-		"oci_objectstorage_preauthrequest":                            129,
-		"oci_oce_oce_instance":                                        130,
-		"oci_oda_oda_instance":                                        131,
-		"oci_ons_notification_topic":                                  132,
-		"oci_ons_subscription":                                        133,
-		"oci_osmanagement_managed_instance_group":                     134,
-		"oci_osmanagement_managed_instance_management":                135,
-		"oci_osmanagement_software_source":                            136,
-		"oci_streaming_connect_harness":                               137,
-		"oci_streaming_stream":                                        138,
-		"oci_streaming_stream_archiver":                               139,
-		"oci_streaming_stream_pool":                                   140,
-		"oci_waas_address_list":                                       141,
-		"oci_waas_certificate":                                        142,
-		"oci_waas_custom_protection_rule":                             143,
-		"oci_waas_http_redirect":                                      144,
-		"oci_waas_purge_cache":                                        145,
-		"oci_waas_waas_policy":                                        146,
+		"oci_database_database":                                       63,
+		"oci_database_db_home":                                        64,
+		"oci_database_db_system":                                      65,
+		"oci_database_exadata_infrastructure":                         66,
+		"oci_database_exadata_iorm_config":                            67,
+		"oci_database_maintenance_run":                                68,
+		"oci_database_vm_cluster":                                     69,
+		"oci_database_vm_cluster_network":                             70,
+		"oci_datacatalog_catalog":                                     71,
+		"oci_datacatalog_connection":                                  72,
+		"oci_datacatalog_data_asset":                                  73,
+		"oci_dataflow_application":                                    74,
+		"oci_dataflow_invoke_run":                                     75,
+		"oci_datascience_model":                                       76,
+		"oci_datascience_model_provenance":                            77,
+		"oci_datascience_notebook_session":                            78,
+		"oci_datascience_project":                                     79,
+		"oci_dns_record":                                              80,
+		"oci_dns_steering_policy":                                     81,
+		"oci_dns_steering_policy_attachment":                          82,
+		"oci_dns_tsig_key":                                            83,
+		"oci_dns_zone":                                                84,
+		"oci_email_sender":                                            85,
+		"oci_email_suppression":                                       86,
+		"oci_events_rule":                                             87,
+		"oci_file_storage_export":                                     88,
+		"oci_file_storage_export_set":                                 89,
+		"oci_file_storage_file_system":                                90,
+		"oci_file_storage_mount_target":                               91,
+		"oci_file_storage_snapshot":                                   92,
+		"oci_functions_application":                                   93,
+		"oci_functions_function":                                      94,
+		"oci_functions_invoke_function":                               95,
+		"oci_health_checks_http_monitor":                              96,
+		"oci_health_checks_http_probe":                                97,
+		"oci_health_checks_ping_monitor":                              98,
+		"oci_health_checks_ping_probe":                                99,
+		"oci_identity_api_key":                                        100,
+		"oci_identity_auth_token":                                     101,
+		"oci_identity_authentication_policy":                          102,
+		"oci_identity_compartment":                                    103,
+		"oci_identity_customer_secret_key":                            104,
+		"oci_identity_dynamic_group":                                  105,
+		"oci_identity_group":                                          106,
+		"oci_identity_identity_provider":                              107,
+		"oci_identity_idp_group_mapping":                              108,
+		"oci_identity_network_source":                                 109,
+		"oci_identity_policy":                                         110,
+		"oci_identity_smtp_credential":                                111,
+		"oci_identity_swift_password":                                 112,
+		"oci_identity_tag":                                            113,
+		"oci_identity_tag_default":                                    114,
+		"oci_identity_tag_namespace":                                  115,
+		"oci_identity_ui_password":                                    116,
+		"oci_identity_user":                                           117,
+		"oci_identity_user_capabilities_management":                   118,
+		"oci_identity_user_group_membership":                          119,
+		"oci_integration_integration_instance":                        120,
+		"oci_kms_encrypted_data":                                      121,
+		"oci_kms_generated_key":                                       122,
+		"oci_kms_key":                                                 123,
+		"oci_kms_key_version":                                         124,
+		"oci_kms_vault":                                               125,
+		"oci_limits_quota":                                            126,
+		"oci_load_balancer_backend":                                   127,
+		"oci_load_balancer_backend_set":                               128,
+		"oci_load_balancer_certificate":                               129,
+		"oci_load_balancer_hostname":                                  130,
+		"oci_load_balancer_listener":                                  131,
+		"oci_load_balancer_load_balancer":                             132,
+		"oci_load_balancer_path_route_set":                            133,
+		"oci_load_balancer_rule_set":                                  134,
+		"oci_marketplace_accepted_agreement":                          135,
+		"oci_monitoring_alarm":                                        136,
+		"oci_nosql_index":                                             137,
+		"oci_nosql_table":                                             138,
+		"oci_objectstorage_bucket":                                    139,
+		"oci_objectstorage_object":                                    140,
+		"oci_objectstorage_object_lifecycle_policy":                   141,
+		"oci_objectstorage_preauthrequest":                            142,
+		"oci_oce_oce_instance":                                        143,
+		"oci_oda_oda_instance":                                        144,
+		"oci_ons_notification_topic":                                  145,
+		"oci_ons_subscription":                                        146,
+		"oci_osmanagement_managed_instance_group":                     147,
+		"oci_osmanagement_managed_instance_management":                148,
+		"oci_osmanagement_software_source":                            149,
+		"oci_streaming_connect_harness":                               150,
+		"oci_streaming_stream":                                        151,
+		"oci_streaming_stream_archiver":                               152,
+		"oci_streaming_stream_pool":                                   153,
+		"oci_waas_address_list":                                       154,
+		"oci_waas_certificate":                                        155,
+		"oci_waas_custom_protection_rule":                             156,
+		"oci_waas_http_redirect":                                      157,
+		"oci_waas_purge_cache":                                        158,
+		"oci_waas_waas_policy":                                        159,
 	}
 )
 

@@ -371,6 +371,151 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_dedicated_server_reboot_task",
+			Category:         "Dedicated Server",
+			ShortDescription: `Reboot your Dedicated Server`,
+			Description:      ``,
+			Keywords: []string{
+				"dedicated",
+				"server",
+				"reboot",
+				"task",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The service_name of your dedicated server.`,
+				},
+				resource.Attribute{
+					Name:        "keepers",
+					Description: `List of values traccked to trigger reboot, used also to form implicit dependencies ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The task id`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Details of this task. (should be ` + "`" + `Reboot asked` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "done_date",
+					Description: `Completion date in RFC3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "function",
+					Description: `Function name (should be ` + "`" + `hardReboot` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "last_update",
+					Description: `Last update in RFC3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "start_date",
+					Description: `Task creation date in RFC3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Task status (should be ` + "`" + `done` + "`" + `)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The task id`,
+				},
+				resource.Attribute{
+					Name:        "comment",
+					Description: `Details of this task. (should be ` + "`" + `Reboot asked` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "done_date",
+					Description: `Completion date in RFC3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "function",
+					Description: `Function name (should be ` + "`" + `hardReboot` + "`" + `).`,
+				},
+				resource.Attribute{
+					Name:        "last_update",
+					Description: `Last update in RFC3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "start_date",
+					Description: `Task creation date in RFC3339 format.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Task status (should be ` + "`" + `done` + "`" + `)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_dedicated_server_update",
+			Category:         "Dedicated Server",
+			ShortDescription: `Update various properties of your Dedicated Server`,
+			Description:      ``,
+			Keywords: []string{
+				"dedicated",
+				"server",
+				"update",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The service_name of your dedicated server.`,
+				},
+				resource.Attribute{
+					Name:        "boot_id",
+					Description: `boot id of the server`,
+				},
+				resource.Attribute{
+					Name:        "monitoring",
+					Description: `Icmp monitoring state`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `error, hacked, hackedBlocked, ok ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "boot_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "boot_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "monitoring",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_ip_reverse",
 			Category:         "IP Resources",
 			ShortDescription: `Provides a OVH IP reverse resource.`,
@@ -409,6 +554,512 @@ var (
 				resource.Attribute{
 					Name:        "reverse",
 					Description: `The value of the reverse`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing_http_farm",
+			Category:         "IP Load Balancing Resources",
+			ShortDescription: `Creates a backend server group (farm).`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"load",
+				"balancing",
+				"iploadbalancing",
+				"http",
+				"farm",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "balance",
+					Description: `Load balancing algorithm. ` + "`" + `roundrobin` + "`" + ` if null (` + "`" + `first` + "`" + `, ` + "`" + `leastconn` + "`" + `, ` + "`" + `roundrobin` + "`" + `, ` + "`" + `source` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Readable label for loadbalancer farm`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port attached to your farm ([1..49151]). Inherited from frontend if null`,
+				},
+				resource.Attribute{
+					Name:        "stickiness",
+					Description: `Stickiness type. No stickiness if null (` + "`" + `sourceIp` + "`" + `, ` + "`" + `cookie` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "vrack_network_id",
+					Description: `Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) Zone where the farm will be defined (ie. ` + "`" + `GRA` + "`" + `, ` + "`" + `BHS` + "`" + ` also supports ` + "`" + `ALL` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "probe",
+					Description: `define a backend healthcheck probe`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) Valid values : ` + "`" + `http` + "`" + `, ` + "`" + `internal` + "`" + `, ` + "`" + `mysql` + "`" + `, ` + "`" + `oko` + "`" + `, ` + "`" + `pgsql` + "`" + `, ` + "`" + `smtp` + "`" + `, ` + "`" + `tcp` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `probe interval, Value between 30 and 3600 seconds, default 30`,
+				},
+				resource.Attribute{
+					Name:        "match",
+					Description: `What to mach ` + "`" + `pattern` + "`" + ` against (` + "`" + `contains` + "`" + `, ` + "`" + `default` + "`" + `, ` + "`" + `internal` + "`" + `, ` + "`" + `matches` + "`" + `, ` + "`" + `status` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port for backends to recieve traffic on.`,
+				},
+				resource.Attribute{
+					Name:        "negate",
+					Description: `Negate probe result`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `Pattern to match against ` + "`" + `match` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "force_ssl",
+					Description: `Force use of SSL (TLS)`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `URL for HTTP probe type.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `HTTP probe method (` + "`" + `GET` + "`" + `, ` + "`" + `HEAD` + "`" + `, ` + "`" + `OPTIONS` + "`" + `, ` + "`" + `internal` + "`" + `) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "balance",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "stickiness",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vrack_network_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "probe",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "match",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "negate",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "force_ssl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "balance",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "stickiness",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vrack_network_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "probe",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "match",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "negate",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "force_ssl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "method",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing_http_farm_server",
+			Category:         "IP Load Balancing Resources",
+			ShortDescription: `Creates a backend server entry linked to farm.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"load",
+				"balancing",
+				"iploadbalancing",
+				"http",
+				"farm",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "farm_id",
+					Description: `ID of the farm this server is attached to`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Label for the server`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `Address of the backend server (IP from either internal or OVH network)`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `backend status - ` + "`" + `active` + "`" + ` or ` + "`" + `inactive` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port that backend will respond on`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol_version",
+					Description: `version of the PROXY protocol used to pass origin connection information from loadbalancer to recieving service (` + "`" + `v1` + "`" + `, ` + "`" + `v2` + "`" + `, ` + "`" + `v2-ssl` + "`" + `, ` + "`" + `v2-ssl-cn` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `used in loadbalancing algorithm`,
+				},
+				resource.Attribute{
+					Name:        "probe",
+					Description: `defines if backend will be probed to determine health and keep as active in farm if healthy`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `is the connection ciphered with SSL (TLS)`,
+				},
+				resource.Attribute{
+					Name:        "backup",
+					Description: `is it a backup server used in case of failure of all the non-backup backends ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "farm_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "probe",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cookie",
+					Description: `Value of the stickiness cookie used for this backend.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "farm_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_protocol_version",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "probe",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "backup",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "cookie",
+					Description: `Value of the stickiness cookie used for this backend.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing_http_frontend",
+			Category:         "IP Load Balancing Resources",
+			ShortDescription: `Creates a frontend for an IP Load balancing service.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"load",
+				"balancing",
+				"iploadbalancing",
+				"http",
+				"frontend",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Human readable name for your frontend, this field is for you`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) Zone where the frontend will be defined (ie. ` + "`" + `gra` + "`" + `, ` + "`" + `bhs` + "`" + ` also supports ` + "`" + `all` + "`" + `)`,
+				},
+				resource.Attribute{
+					Name:        "allowed_source",
+					Description: `Restrict IP Load Balancing access to these ip block. No restriction if null. List of IP blocks.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_ipfo",
+					Description: `Only attach frontend on these ip. No restriction if null. List of Ip blocks.`,
+				},
+				resource.Attribute{
+					Name:        "default_farm_id",
+					Description: `Default TCP Farm of your frontend`,
+				},
+				resource.Attribute{
+					Name:        "default_ssl_id",
+					Description: `Default ssl served to your customer`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `Disable your frontend. Default: 'false'`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `SSL deciphering. Default: 'false' ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of your frontend`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_source",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_ipfo",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_farm_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_ssl_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of your frontend`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_source",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "dedicated_ipfo",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_farm_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default_ssl_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ssl",
+					Description: `See Argument Reference above.`,
 				},
 			},
 		},
@@ -627,6 +1278,48 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sub_field",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing_refresh",
+			Category:         "IP Load Balancing Resources",
+			ShortDescription: `Applies changes from other ovh_iploadbalancing_* resourcesto the production configuration of loadbalancers.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"load",
+				"balancing",
+				"iploadbalancing",
+				"refresh",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "keepers",
+					Description: `List of values traccked to trigger refresh, used also to form implicit dependencies ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "keepers",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "keepers",
 					Description: `See Argument Reference above.`,
 				},
 			},
@@ -1133,6 +1826,173 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ssl",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing_vrack_network",
+			Category:         "IP Load Balancing Resources",
+			ShortDescription: `Manage a vrack network for your IP Loadbalancing service.`,
+			Description:      ``,
+			Keywords: []string{
+				"ip",
+				"load",
+				"balancing",
+				"iploadbalancing",
+				"vrack",
+				"network",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Human readable name for your vrack network`,
+				},
+				resource.Attribute{
+					Name:        "farm_id",
+					Description: `List of existing farm ids your vRack network is attached to`,
+				},
+				resource.Attribute{
+					Name:        "nat_ip",
+					Description: `(Required) An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `(Required) IP block of the private network in the vRack`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `VLAN of the private network in the vRack. 0 if the private network is not in a VLAN ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vrack_network_id",
+					Description: `(Required) Internal Load Balancer identifier of the vRack private network`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrack_network_id",
+					Description: `(Required) Internal Load Balancer identifier of the vRack private network`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_installation_template",
+			Category:         "Me Resources",
+			ShortDescription: `Creates a custom installation template available for dedicated servers.`,
+			Description:      ``,
+			Keywords: []string{
+				"me",
+				"installation",
+				"template",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_installation_template_partition_scheme",
+			Category:         "Me Resources",
+			ShortDescription: `Creates a partition scheme for a custom installation template available for dedicated servers.`,
+			Description:      ``,
+			Keywords: []string{
+				"me",
+				"installation",
+				"template",
+				"partition",
+				"scheme",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_installation_template_partition_scheme_hardware_raid",
+			Category:         "Me Resources",
+			ShortDescription: `Creates a hardware raid group in the partition scheme of a custom installation template available for dedicated servers.`,
+			Description:      ``,
+			Keywords: []string{
+				"me",
+				"installation",
+				"template",
+				"partition",
+				"scheme",
+				"hardware",
+				"raid",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_installation_template_partition_scheme_partition",
+			Category:         "Me Resources",
+			ShortDescription: `Creates a partition in the partition scheme of a custom installation template available for dedicated servers.`,
+			Description:      ``,
+			Keywords: []string{
+				"me",
+				"installation",
+				"template",
+				"partition",
+				"scheme",
+			},
+			Arguments:  []resource.Attribute{},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_ssh_key",
+			Category:         "Me Resources",
+			ShortDescription: `Creates an SSH Key.`,
+			Description:      ``,
+			Keywords: []string{
+				"me",
+				"ssh",
+				"key",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `(Required) The friendly name of this SSH key.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The content of the public key in the form "ssh-algo content", e.g. "ssh-ed25519 AAAAC3...".`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `True when this public SSH key is used for rescue mode and reinstallations. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "default",
 					Description: `See Argument Reference above.`,
 				},
 			},
@@ -1696,7 +2556,7 @@ var (
 			Name:             "",
 			Type:             "ovh_vrack_cloudproject",
 			Category:         "vRack Resources",
-			ShortDescription: `Attach an existing public cloud project to an existing VRack.`,
+			ShortDescription: `Attach a Public Cloud Project to a VRack.`,
 			Description:      ``,
 			Keywords: []string{
 				"vrack",
@@ -1705,11 +2565,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "vrack_id",
-					Description: `(Required) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_ID` + "`" + ` environment variable is used.`,
+					Description: `(Required) The id of the vrack. If omitted, the ` + "`" + `OVH_VRACK_ID` + "`" + ` environment variable is used. Note: The use of environment variable is deprecated.`,
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. Note: The use of environment variable is deprecated. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "vrack_id",
@@ -1717,7 +2577,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `See Argument Reference above. ## Notes The vrack attachment isn't a proper resource with an ID. As such, the resource id will be forged from the vrack and project ids and there's no correct way to import the resource in terraform. When the resource is created by terraform, it first checks if the attachment already exists within OVH infrastructure; if it exists it set the resource id without modifying anything. Otherwise, it will try to attach the vrack with the public cloud project.`,
+					Description: `See Argument Reference above.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1727,7 +2587,127 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `See Argument Reference above. ## Notes The vrack attachment isn't a proper resource with an ID. As such, the resource id will be forged from the vrack and project ids and there's no correct way to import the resource in terraform. When the resource is created by terraform, it first checks if the attachment already exists within OVH infrastructure; if it exists it set the resource id without modifying anything. Otherwise, it will try to attach the vrack with the public cloud project.`,
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_vrack_dedicated_server",
+			Category:         "vRack Resources",
+			ShortDescription: `Attach a Dedicated Server to a VRack.`,
+			Description:      ``,
+			Keywords: []string{
+				"vrack",
+				"dedicated",
+				"server",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrack_id",
+					Description: `(Required) The id of the vrack.`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `(Required) The id of the dedicated server. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vrack_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrack_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_vrack_dedicated_server_interface",
+			Category:         "vRack Resources",
+			ShortDescription: `Attach a Dedicated Server Network Interface to a VRack.`,
+			Description:      ``,
+			Keywords: []string{
+				"vrack",
+				"dedicated",
+				"server",
+				"interface",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrack_id",
+					Description: `(Required) The id of the vrack.`,
+				},
+				resource.Attribute{
+					Name:        "interface_id",
+					Description: `(Required) The id of dedicated server network interface. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "vrack_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "interface_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "vrack_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "interface_id",
+					Description: `See Argument Reference above.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_vrack_iploadbalancing",
+			Category:         "vRack Resources",
+			ShortDescription: `Attach a IP Loadbalanging to a VRack.`,
+			Description:      ``,
+			Keywords: []string{
+				"vrack",
+				"iploadbalancing",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The id of the vrack.`,
+				},
+				resource.Attribute{
+					Name:        "ip_loadbalancing",
+					Description: `(Required) The id of the ip loadbalancing. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ip_loadbalancing",
+					Description: `See Argument Reference above.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "ip_loadbalancing",
+					Description: `See Argument Reference above.`,
 				},
 			},
 		},
@@ -1775,22 +2755,37 @@ var (
 
 	resourcesMap = map[string]int{
 
-		"ovh_cloud_network_private":              0,
-		"ovh_cloud_network_private_subnet":       1,
-		"ovh_cloud_user":                         2,
-		"ovh_ip_reverse":                         3,
-		"ovh_iploadbalancing_http_route":         4,
-		"ovh_iploadbalancing_http_route_rule":    5,
-		"ovh_iploadbalancing_tcp_farm":           6,
-		"ovh_iploadbalancing_tcp_farm_server":    7,
-		"ovh_iploadbalancing_tcp_frontend":       8,
-		"ovh_domain_zone_record":                 9,
-		"ovh_domain_zone_redirection":            10,
-		"ovh_publiccloud_private_network":        11,
-		"ovh_publiccloud_private_network_subnet": 12,
-		"ovh_publiccloud_user":                   13,
-		"ovh_vrack_cloudproject":                 14,
-		"ovh_vrack_publiccloud_attachment":       15,
+		"ovh_cloud_network_private":                                   0,
+		"ovh_cloud_network_private_subnet":                            1,
+		"ovh_cloud_user":                                              2,
+		"ovh_dedicated_server_reboot_task":                            3,
+		"ovh_dedicated_server_update":                                 4,
+		"ovh_ip_reverse":                                              5,
+		"ovh_iploadbalancing_http_farm":                               6,
+		"ovh_iploadbalancing_http_farm_server":                        7,
+		"ovh_iploadbalancing_http_frontend":                           8,
+		"ovh_iploadbalancing_http_route":                              9,
+		"ovh_iploadbalancing_http_route_rule":                         10,
+		"ovh_iploadbalancing_refresh":                                 11,
+		"ovh_iploadbalancing_tcp_farm":                                12,
+		"ovh_iploadbalancing_tcp_farm_server":                         13,
+		"ovh_iploadbalancing_tcp_frontend":                            14,
+		"ovh_iploadbalancing_vrack_network":                           15,
+		"ovh_me_installation_template":                                16,
+		"ovh_me_installation_template_partition_scheme":               17,
+		"ovh_me_installation_template_partition_scheme_hardware_raid": 18,
+		"ovh_me_installation_template_partition_scheme_partition":     19,
+		"ovh_me_ssh_key":                                              20,
+		"ovh_domain_zone_record":                                      21,
+		"ovh_domain_zone_redirection":                                 22,
+		"ovh_publiccloud_private_network":                             23,
+		"ovh_publiccloud_private_network_subnet":                      24,
+		"ovh_publiccloud_user":                                        25,
+		"ovh_vrack_cloudproject":                                      26,
+		"ovh_vrack_dedicated_server":                                  27,
+		"ovh_vrack_dedicated_server_interface":                        28,
+		"ovh_vrack_iploadbalancing":                                   29,
+		"ovh_vrack_publiccloud_attachment":                            30,
 	}
 )
 

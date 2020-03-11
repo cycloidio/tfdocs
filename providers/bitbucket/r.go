@@ -11,6 +11,44 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "bitbucket_branch_restriction",
+			Category:         "Resources",
+			ShortDescription: `Provides a Bitbucket Branch Restriction`,
+			Description:      ``,
+			Keywords: []string{
+				"branch",
+				"restriction",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Required) The owner of this repository. Can be you or any team you have write access to.`,
+				},
+				resource.Attribute{
+					Name:        "repository",
+					Description: `(Required) The name of the repository.`,
+				},
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Required) The type of restriction that is being applied. List of possible stages is [here](https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Busername%7D/%7Brepo_slug%7D/branch-restrictions).`,
+				},
+				resource.Attribute{
+					Name:        "pattern",
+					Description: `(Required) The pattern to determine which branches will be restricted.`,
+				},
+				resource.Attribute{
+					Name:        "users",
+					Description: `(Optional) A list of users to use.`,
+				},
+				resource.Attribute{
+					Name:        "groups",
+					Description: `(Optional) A list of groups to use.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "bitbucket_default_reviewers",
 			Category:         "Resources",
 			ShortDescription: `Provides support for setting up default reviews for bitbucket.`,
@@ -64,6 +102,39 @@ var (
 				resource.Attribute{
 					Name:        "events",
 					Description: `(Required) The event you want to react on.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bitbucket_project",
+			Category:         "Resources",
+			ShortDescription: `Create and manage a Bitbucket project`,
+			Description:      ``,
+			Keywords: []string{
+				"project",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "owner",
+					Description: `(Required) The owner of this project. Can be you or any team you have write access to.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the project`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) The key used for this project`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the project`,
+				},
+				resource.Attribute{
+					Name:        "is_private",
+					Description: `(Optional) If you want to keep the project private - defaults to true`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -124,18 +195,38 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) What the description of the repo is. ## Computed Arguments The following arguments are computed. You can access both ` + "`" + `clone_ssh` + "`" + ` and ` + "`" + `clone_https` + "`" + ` for getting a clone URL. ## Import Repositories can be imported using their ` + "`" + `owner/name` + "`" + ` ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import bitbucket_repository.my-repo my-account/my-repo ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) What the description of the repo is.`,
+				},
+				resource.Attribute{
+					Name:        "pipelines_enabled",
+					Description: `(Optional) Turn on to enable pipelines support ## Computed Arguments The following arguments are computed. You can access both ` + "`" + `clone_ssh` + "`" + ` and ` + "`" + `clone_https` + "`" + ` for getting a clone URL. ## Import Repositories can be imported using their ` + "`" + `owner/name` + "`" + ` ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import bitbucket_repository.my-repo my-account/my-repo ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "bitbucket_repository_variable",
+			Category:         "Resources",
+			ShortDescription: `Manage your pipelines repository variables and configuration`,
+			Description:      ``,
+			Keywords: []string{
+				"repository",
+				"variable",
+			},
+			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
 		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"bitbucket_default_reviewers": 0,
-		"bitbucket_hook":              1,
-		"bitbucket_repository":        2,
+		"bitbucket_branch_restriction":  0,
+		"bitbucket_default_reviewers":   1,
+		"bitbucket_hook":                2,
+		"bitbucket_project":             3,
+		"bitbucket_repository":          4,
+		"bitbucket_repository_variable": 5,
 	}
 )
 

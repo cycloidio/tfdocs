@@ -294,6 +294,10 @@ var (
 					Description: `The boot disk for the instance. Structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "network_acceleration_type",
+					Description: `Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software-accelerated` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "network_interface",
 					Description: `The networks attached to the instance. Structure is documented below.`,
 				},
@@ -462,6 +466,10 @@ var (
 				resource.Attribute{
 					Name:        "boot_disk",
 					Description: `The boot disk for the instance. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "network_acceleration_type",
+					Description: `Type of network acceleration. The default is ` + "`" + `standard` + "`" + `. Values: ` + "`" + `standard` + "`" + `, ` + "`" + `software-accelerated` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "network_interface",
@@ -719,7 +727,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `Target metric value level. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `Target metric value level.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of labels of metric. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1113,7 +1125,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `Target metric value level. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
+					Description: `Target metric value level.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A map of labels of metric. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1527,6 +1543,214 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "yandex_dataproc_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Data Proc cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) The ID of the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the Data Proc cluster. ~>`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `Name of the Object Storage bucket used for Data Proc jobs.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `Configuration and resources of the cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Data Proc cluster creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs assigned to the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_id",
+					Description: `Service account used by the Data Proc agent to access resources of Yandex.Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `ID of the availability zone where the cluster resides. --- The ` + "`" + `cluster_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `Version of Data Proc image.`,
+				},
+				resource.Attribute{
+					Name:        "hadoop",
+					Description: `Data Proc specific options. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "subcluster_spec",
+					Description: `Configuration of the Data Proc subcluster. The structure is documented below. --- The ` + "`" + `hadoop` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `List of services launched on Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `A set of key/value pairs used to configure cluster services.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_public_keys",
+					Description: `List of SSH public keys distributed to the hosts of the cluster. --- The ` + "`" + `subcluster_spec` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the Data Proc subcluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the Data Proc subcluster.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role of the subcluster in the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to each host of the Data Proc subcluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which hosts of the subcluster belong.`,
+				},
+				resource.Attribute{
+					Name:        "hosts_count",
+					Description: `Number of hosts within Data Proc subcluster. --- The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resource_preset_id",
+					Description: `The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `Type of the storage of a host.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket",
+					Description: `Name of the Object Storage bucket used for Data Proc jobs.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_config",
+					Description: `Configuration and resources of the cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `The Data Proc cluster creation timestamp.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Id of the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs assigned to the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "service_account_id",
+					Description: `Service account used by the Data Proc agent to access resources of Yandex.Cloud.`,
+				},
+				resource.Attribute{
+					Name:        "zone_id",
+					Description: `ID of the availability zone where the cluster resides. --- The ` + "`" + `cluster_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version_id",
+					Description: `Version of Data Proc image.`,
+				},
+				resource.Attribute{
+					Name:        "hadoop",
+					Description: `Data Proc specific options. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "subcluster_spec",
+					Description: `Configuration of the Data Proc subcluster. The structure is documented below. --- The ` + "`" + `hadoop` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "services",
+					Description: `List of services launched on Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `A set of key/value pairs used to configure cluster services.`,
+				},
+				resource.Attribute{
+					Name:        "ssh_public_keys",
+					Description: `List of SSH public keys distributed to the hosts of the cluster. --- The ` + "`" + `subcluster_spec` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the Data Proc subcluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the Data Proc subcluster.`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `Role of the subcluster in the Data Proc cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to each host of the Data Proc subcluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which hosts of the subcluster belong.`,
+				},
+				resource.Attribute{
+					Name:        "hosts_count",
+					Description: `Number of hosts within Data Proc subcluster. --- The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resource_preset_id",
+					Description: `The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `Type of the storage of a host.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "yandex_iam_policy",
 			Category:         "Data Sources",
 			ShortDescription: `Generates an IAM policy that can be referenced by other resources and applied to them.`,
@@ -1644,6 +1868,14 @@ var (
 					Description: `The ID of the cluster network.`,
 				},
 				resource.Attribute{
+					Name:        "cluster_ipv4_range",
+					Description: `IP range for allocating pod addresses.`,
+				},
+				resource.Attribute{
+					Name:        "service_ipv4_range",
+					Description: `IP range Kubernetes services Kubernetes cluster IP addresses will be allocated from`,
+				},
+				resource.Attribute{
 					Name:        "service_account_id",
 					Description: `Service account to be used for provisioning Compute Cloud and VPC resources for Kubernetes cluster. Selected service account should have ` + "`" + `edit` + "`" + ` role on the folder where the Kubernetes cluster will be located and on the folder where selected network resides.`,
 				},
@@ -1657,7 +1889,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "master",
-					Description: `IP allocation policy of the Kubernetes cluster. The structure is documented below.`,
+					Description: `Kubernetes master configuration options. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -1669,7 +1901,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health",
-					Description: `Health of the Kubernetes cluster. --- The ` + "`" + `master` + "`" + ` block supports:`,
+					Description: `Health of the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "network_policy_provider",
+					Description: `Network policy provider for the cluster, if present. Possible values: ` + "`" + `CALICO` + "`" + `. --- The ` + "`" + `master` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of Kubernetes master.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Boolean flag. When ` + "`" + `true` + "`" + `, Kubernetes master have visible ipv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `Maintenance policy for Kubernetes master. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "zonal",
@@ -1701,7 +1949,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_info",
-					Description: `Information about cluster version. The structure is documented below. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
+					Description: `Information about cluster version. The structure is documented below. --- The ` + "`" + `maintenance_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_upgrade",
+					Description: `Boolean flag that specifies if master can be upgraded automatically.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Set of day intervals, when maintenance is allowed, when update for master is allowed. When omitted, it defaults to any time. Weekly maintenance policy expands to one element, with only two fields set: ` + "`" + `start_time` + "`" + `, ` + "`" + `duration` + "`" + `, and ` + "`" + `day` + "`" + ` field omitted. Daily maintenance policy expands to list of elements, with all fields set, that specify time interval for selected days. Only one interval is possible for any week day. Some days can be omitted, when there is no allowed interval for maintenance specified. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -1742,6 +1998,14 @@ var (
 					Description: `The ID of the cluster network.`,
 				},
 				resource.Attribute{
+					Name:        "cluster_ipv4_range",
+					Description: `IP range for allocating pod addresses.`,
+				},
+				resource.Attribute{
+					Name:        "service_ipv4_range",
+					Description: `IP range Kubernetes services Kubernetes cluster IP addresses will be allocated from`,
+				},
+				resource.Attribute{
 					Name:        "service_account_id",
 					Description: `Service account to be used for provisioning Compute Cloud and VPC resources for Kubernetes cluster. Selected service account should have ` + "`" + `edit` + "`" + ` role on the folder where the Kubernetes cluster will be located and on the folder where selected network resides.`,
 				},
@@ -1755,7 +2019,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "master",
-					Description: `IP allocation policy of the Kubernetes cluster. The structure is documented below.`,
+					Description: `Kubernetes master configuration options. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "created_at",
@@ -1767,7 +2031,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "health",
-					Description: `Health of the Kubernetes cluster. --- The ` + "`" + `master` + "`" + ` block supports:`,
+					Description: `Health of the Kubernetes cluster.`,
+				},
+				resource.Attribute{
+					Name:        "network_policy_provider",
+					Description: `Network policy provider for the cluster, if present. Possible values: ` + "`" + `CALICO` + "`" + `. --- The ` + "`" + `master` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of Kubernetes master.`,
+				},
+				resource.Attribute{
+					Name:        "public_ip",
+					Description: `Boolean flag. When ` + "`" + `true` + "`" + `, Kubernetes master have visible ipv4 address.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_policy",
+					Description: `Maintenance policy for Kubernetes master. The structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "zonal",
@@ -1799,7 +2079,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version_info",
-					Description: `Information about cluster version. The structure is documented below. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
+					Description: `Information about cluster version. The structure is documented below. --- The ` + "`" + `maintenance_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "auto_upgrade",
+					Description: `Boolean flag that specifies if master can be upgraded automatically.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Set of day intervals, when maintenance is allowed, when update for master is allowed. When omitted, it defaults to any time. Weekly maintenance policy expands to one element, with only two fields set: ` + "`" + `start_time` + "`" + `, ` + "`" + `duration` + "`" + `, and ` + "`" + `day` + "`" + ` field omitted. Daily maintenance policy expands to list of elements, with all fields set, that specify time interval for selected days. Only one interval is possible for any week day. Some days can be omitted, when there is no allowed interval for maintenance specified. --- The ` + "`" + `zonal` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "zone",
@@ -1888,6 +2176,18 @@ var (
 					Description: `Information about maintenance policy for this Kubernetes node group. The structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "node_labels",
+					Description: `A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_unsafe_sysctls",
+					Description: `A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).`,
+				},
+				resource.Attribute{
 					Name:        "version_info",
 					Description: `Information about Kubernetes node group version. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
@@ -1941,11 +2241,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fixed_scale",
-					Description: `The fixed scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `Scale policy for a fixed scale node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scale",
+					Description: `Scale policy for an autoscaled node group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `The number of instances in the node group. --- The ` + "`" + `allocation_policy` + "`" + ` block supports:`,
+					Description: `The number of instances in the node group. --- The ` + "`" + `auto_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `Minimum number of instances in the node group.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `Maximum number of instances in the node group.`,
+				},
+				resource.Attribute{
+					Name:        "initial",
+					Description: `Initial number of instances in the node group. --- The ` + "`" + `allocation_policy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -1962,6 +2278,14 @@ var (
 				resource.Attribute{
 					Name:        "auto_upgrade",
 					Description: `Boolean flag.`,
+				},
+				resource.Attribute{
+					Name:        "auto_repair",
+					Description: `Boolean flag.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time. Weekly maintenance policy expands to one element, with only two fields set: ` + "`" + `start_time` + "`" + `, ` + "`" + `duration` + "`" + `, and ` + "`" + `day` + "`" + ` field omitted. Daily maintenance policy expands to list of elements, with all fields set, that specify time interval for selected days. Only one interval is possible for any week day. Some days can be omitted, when there is no allowed interval for maintenance specified. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "current_version",
@@ -2022,6 +2346,18 @@ var (
 					Description: `Information about maintenance policy for this Kubernetes node group. The structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "node_labels",
+					Description: `A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "node_taints",
+					Description: `A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.`,
+				},
+				resource.Attribute{
+					Name:        "allowed_unsafe_sysctls",
+					Description: `A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).`,
+				},
+				resource.Attribute{
 					Name:        "version_info",
 					Description: `Information about Kubernetes node group version. The structure is documented below. --- The ` + "`" + `instance_template` + "`" + ` block supports:`,
 				},
@@ -2075,11 +2411,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "fixed_scale",
-					Description: `The fixed scaling policy of the instance group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
+					Description: `Scale policy for a fixed scale node group. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "auto_scale",
+					Description: `Scale policy for an autoscaled node group. The structure is documented below. --- The ` + "`" + `fixed_scale` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "size",
-					Description: `The number of instances in the node group. --- The ` + "`" + `allocation_policy` + "`" + ` block supports:`,
+					Description: `The number of instances in the node group. --- The ` + "`" + `auto_scale` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "min",
+					Description: `Minimum number of instances in the node group.`,
+				},
+				resource.Attribute{
+					Name:        "max",
+					Description: `Maximum number of instances in the node group.`,
+				},
+				resource.Attribute{
+					Name:        "initial",
+					Description: `Initial number of instances in the node group. --- The ` + "`" + `allocation_policy` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -2096,6 +2448,14 @@ var (
 				resource.Attribute{
 					Name:        "auto_upgrade",
 					Description: `Boolean flag.`,
+				},
+				resource.Attribute{
+					Name:        "auto_repair",
+					Description: `Boolean flag.`,
+				},
+				resource.Attribute{
+					Name:        "maintenance_window",
+					Description: `Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time. Weekly maintenance policy expands to one element, with only two fields set: ` + "`" + `start_time` + "`" + `, ` + "`" + `duration` + "`" + `, and ` + "`" + `day` + "`" + ` field omitted. Daily maintenance policy expands to list of elements, with all fields set, that specify time interval for selected days. Only one interval is possible for any week day. Some days can be omitted, when there is no allowed interval for maintenance specified. --- The ` + "`" + `version_info` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "current_version",
@@ -2551,6 +2911,10 @@ var (
 					Name:        "data_lens",
 					Description: `Allow access for Web SQL.`,
 				},
+				resource.Attribute{
+					Name:        "metrika",
+					Description: `Allow access for Yandex.Metrika.`,
+				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
@@ -2688,6 +3052,10 @@ var (
 				resource.Attribute{
 					Name:        "data_lens",
 					Description: `Allow access for Web SQL.`,
+				},
+				resource.Attribute{
+					Name:        "metrika",
+					Description: `Allow access for Yandex.Metrika.`,
 				},
 			},
 		},
@@ -2992,6 +3360,614 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the database.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_mysql_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Managed MySQL cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) The ID of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the MySQL cluster. ~>`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the MySQL cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `A user of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `A database of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the MySQL cluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a MySQL host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mysql/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a MySQL host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `Type of the storage for MySQL hosts. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `Allow access for Web SQL. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `The name of the database that the permission grants access to.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `List user's roles in the database. Allowed roles: ` + "`" + `ALL` + "`" + `,` + "`" + `ALTER` + "`" + `,` + "`" + `ALTER_ROUTINE` + "`" + `,` + "`" + `CREATE` + "`" + `,` + "`" + `CREATE_ROUTINE` + "`" + `,` + "`" + `CREATE_TEMPORARY_TABLES` + "`" + `, ` + "`" + `CREATE_VIEW` + "`" + `,` + "`" + `DELETE` + "`" + `,` + "`" + `DROP` + "`" + `,` + "`" + `EVENT` + "`" + `,` + "`" + `EXECUTE` + "`" + `,` + "`" + `INDEX` + "`" + `,` + "`" + `INSERT` + "`" + `,` + "`" + `LOCK_TABLES` + "`" + `,` + "`" + `SELECT` + "`" + `,` + "`" + `SHOW_VIEW` + "`" + `,` + "`" + `TRIGGER` + "`" + `,` + "`" + `UPDATE` + "`" + `. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the database. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The availability zone where the MySQL host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the MySQL cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Creation timestamp of the key.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of the MySQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `A user of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `A database of the MySQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the MySQL cluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a MySQL host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mysql/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a MySQL host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `Type of the storage for MySQL hosts. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `Allow access for Web SQL. The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Set of permissions granted to the user. The structure is documented below. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `The name of the database that the permission grants access to.`,
+				},
+				resource.Attribute{
+					Name:        "roles",
+					Description: `List user's roles in the database. Allowed roles: ` + "`" + `ALL` + "`" + `,` + "`" + `ALTER` + "`" + `,` + "`" + `ALTER_ROUTINE` + "`" + `,` + "`" + `CREATE` + "`" + `,` + "`" + `CREATE_ROUTINE` + "`" + `,` + "`" + `CREATE_TEMPORARY_TABLES` + "`" + `, ` + "`" + `CREATE_VIEW` + "`" + `,` + "`" + `DELETE` + "`" + `,` + "`" + `DROP` + "`" + `,` + "`" + `EVENT` + "`" + `,` + "`" + `EXECUTE` + "`" + `,` + "`" + `INDEX` + "`" + `,` + "`" + `INSERT` + "`" + `,` + "`" + `LOCK_TABLES` + "`" + `,` + "`" + `SELECT` + "`" + `,` + "`" + `SHOW_VIEW` + "`" + `,` + "`" + `TRIGGER` + "`" + `,` + "`" + `UPDATE` + "`" + `. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the database. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The availability zone where the MySQL host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "yandex_mdb_postgresql_cluster",
+			Category:         "Data Sources",
+			ShortDescription: `Get information about a Yandex Managed PostgreSQL cluster.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) The ID of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the PostgreSQL cluster. ~>`,
+				},
+				resource.Attribute{
+					Name:        "folder_id",
+					Description: `(Optional) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the PostgreSQL cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Timestamp of cluster creation.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Configuration of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `A user of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `A database of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the PostgreSQL cluster. The structure is documented below. The ` + "`" + `config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "autofailover",
+					Description: `Configuration setting which enables/disables autofailover in cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "pooler_config",
+					Description: `Configuration of the connection pooler. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `Access policy to the PostgreSQL cluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a PostgreSQL host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a PostgreSQL host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `Type of the storage for PostgreSQL hosts. The ` + "`" + `pooler_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "pooling_mode",
+					Description: `Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for PgBouncer](https://pgbouncer.github.io/usage).`,
+				},
+				resource.Attribute{
+					Name:        "pool_discard",
+					Description: `Setting ` + "`" + `server_reset_query_always` + "`" + ` parameter in PgBouncer. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens). The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Set of permissions granted to the user. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "login",
+					Description: `User's ability to login.`,
+				},
+				resource.Attribute{
+					Name:        "grants",
+					Description: `List of the user's grants. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the database.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Name of the user assigned as the owner of the database.`,
+				},
+				resource.Attribute{
+					Name:        "lc_collate",
+					Description: `POSIX locale for string sorting order. Forbidden to change in an existing database.`,
+				},
+				resource.Attribute{
+					Name:        "lc_type",
+					Description: `POSIX locale for character classification. Forbidden to change in an existing database.`,
+				},
+				resource.Attribute{
+					Name:        "extension",
+					Description: `Set of database extensions. The structure is documented below The ` + "`" + `extension` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of the extension. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The availability zone where the PostgreSQL host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "network_id",
+					Description: `ID of the network, to which the PostgreSQL cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "created_at",
+					Description: `Timestamp of cluster creation.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Description of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `A set of key/value label pairs to assign to the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "environment",
+					Description: `Deployment environment of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "health",
+					Description: `Aggregated health of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `Configuration of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "user",
+					Description: `A user of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `A database of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `A host of the PostgreSQL cluster. The structure is documented below. The ` + "`" + `config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of the PostgreSQL cluster.`,
+				},
+				resource.Attribute{
+					Name:        "autofailover",
+					Description: `Configuration setting which enables/disables autofailover in cluster.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "pooler_config",
+					Description: `Configuration of the connection pooler. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "backup_window_start",
+					Description: `Time to start the daily backup, in the UTC timezone. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "access",
+					Description: `Access policy to the PostgreSQL cluster. The structure is documented below. The ` + "`" + `resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "resources_preset_id",
+					Description: `The ID of the preset for computational resources available to a PostgreSQL host (CPU, memory etc.). For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/concepts/instance-types).`,
+				},
+				resource.Attribute{
+					Name:        "disk_size",
+					Description: `Volume of the storage available to a PostgreSQL host, in gigabytes.`,
+				},
+				resource.Attribute{
+					Name:        "disk_type_id",
+					Description: `Type of the storage for PostgreSQL hosts. The ` + "`" + `pooler_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "pooling_mode",
+					Description: `Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for PgBouncer](https://pgbouncer.github.io/usage).`,
+				},
+				resource.Attribute{
+					Name:        "pool_discard",
+					Description: `Setting ` + "`" + `server_reset_query_always` + "`" + ` parameter in PgBouncer. The ` + "`" + `backup_window_start` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "hours",
+					Description: `The hour at which backup will be started.`,
+				},
+				resource.Attribute{
+					Name:        "minutes",
+					Description: `The minute at which backup will be started. The ` + "`" + `access` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "data_lens",
+					Description: `Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens). The ` + "`" + `user` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the user.`,
+				},
+				resource.Attribute{
+					Name:        "password",
+					Description: `The password of the user.`,
+				},
+				resource.Attribute{
+					Name:        "permission",
+					Description: `Set of permissions granted to the user. The structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "login",
+					Description: `User's ability to login.`,
+				},
+				resource.Attribute{
+					Name:        "grants",
+					Description: `List of the user's grants. The ` + "`" + `permission` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "database_name",
+					Description: `The name of the database that the permission grants access to. The ` + "`" + `database` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the database.`,
+				},
+				resource.Attribute{
+					Name:        "owner",
+					Description: `Name of the user assigned as the owner of the database.`,
+				},
+				resource.Attribute{
+					Name:        "lc_collate",
+					Description: `POSIX locale for string sorting order. Forbidden to change in an existing database.`,
+				},
+				resource.Attribute{
+					Name:        "lc_type",
+					Description: `POSIX locale for character classification. Forbidden to change in an existing database.`,
+				},
+				resource.Attribute{
+					Name:        "extension",
+					Description: `Set of database extensions. The structure is documented below The ` + "`" + `extension` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `Version of the extension. The ` + "`" + `host` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fqdn",
+					Description: `The fully qualified domain name of the host.`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `The availability zone where the PostgreSQL host will be created.`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.`,
+				},
+				resource.Attribute{
+					Name:        "assign_public_ip",
+					Description: `Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment`,
 				},
 			},
 		},
@@ -3481,22 +4457,25 @@ var (
 		"yandex_compute_instance_group":   3,
 		"yandex_compute_snapshot":         4,
 		"yandex_container_registry":       5,
-		"yandex_iam_policy":               6,
-		"yandex_iam_role":                 7,
-		"yandex_iam_service_account":      8,
-		"yandex_iam_user":                 9,
-		"yandex_kubernetes_cluster":       10,
-		"yandex_kubernetes_node_group":    11,
-		"yandex_lb_network_load_balancer": 12,
-		"yandex_lb_target_group":          13,
-		"yandex_mdb_clickhouse_cluster":   14,
-		"yandex_mdb_mongodb_cluster":      15,
-		"yandex_mdb_redis_cluster":        16,
-		"yandex_resourcemanager_cloud":    17,
-		"yandex_resourcemanager_folder":   18,
-		"yandex_vpc_network":              19,
-		"yandex_vpc_route_table":          20,
-		"yandex_vpc_subnet":               21,
+		"yandex_dataproc_cluster":         6,
+		"yandex_iam_policy":               7,
+		"yandex_iam_role":                 8,
+		"yandex_iam_service_account":      9,
+		"yandex_iam_user":                 10,
+		"yandex_kubernetes_cluster":       11,
+		"yandex_kubernetes_node_group":    12,
+		"yandex_lb_network_load_balancer": 13,
+		"yandex_lb_target_group":          14,
+		"yandex_mdb_clickhouse_cluster":   15,
+		"yandex_mdb_mongodb_cluster":      16,
+		"yandex_mdb_mysql_cluster":        17,
+		"yandex_mdb_postgresql_cluster":   18,
+		"yandex_mdb_redis_cluster":        19,
+		"yandex_resourcemanager_cloud":    20,
+		"yandex_resourcemanager_folder":   21,
+		"yandex_vpc_network":              22,
+		"yandex_vpc_route_table":          23,
+		"yandex_vpc_subnet":               24,
 	}
 )
 

@@ -95,17 +95,321 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
+				},
+				resource.Attribute{
+					Name:        "has_services_up",
+					Description: `(Optional) List of services which has to be UP in regions. Example: "image", "instance", "network", "storage", "volume", "workflow", ... If left blank, returns all regions associated with the project_id. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "names",
-					Description: `The list of regions associated with the project`,
+					Description: `The list of regions associated with the project, filtered by services UP.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
-					Description: `The list of regions associated with the project`,
+					Description: `The list of regions associated with the project, filtered by services UP.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_dedicated_installation_templates",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of installation templates available for dedicated servers.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of installation templates IDs available for dedicated servers.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of installation templates IDs available for dedicated servers.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_dedicated_server",
+			Category:         "Data Sources",
+			ShortDescription: `Get information of a dedicated server associated with your OVH Account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The service_name of your dedicated server. ## Attributes Reference ` + "`" + `id` + "`" + ` is set with the service_name of the dedicated server. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "boot_id",
+					Description: `boot id of the server`,
+				},
+				resource.Attribute{
+					Name:        "commercial_range",
+					Description: `dedicater server commercial range`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `dedicated datacenter localisation (bhs1,bhs2,...)`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `dedicated server ip (IPv4)`,
+				},
+				resource.Attribute{
+					Name:        "link_speed",
+					Description: `link speed of the server`,
+				},
+				resource.Attribute{
+					Name:        "monitoring",
+					Description: `Icmp monitoring state`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `dedicated server name`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `Operating system`,
+				},
+				resource.Attribute{
+					Name:        "professional_use",
+					Description: `Does this server have professional use option`,
+				},
+				resource.Attribute{
+					Name:        "rack",
+					Description: `rack id of the server`,
+				},
+				resource.Attribute{
+					Name:        "rescue_mail",
+					Description: `rescue mail of the server`,
+				},
+				resource.Attribute{
+					Name:        "reverse",
+					Description: `dedicated server reverse`,
+				},
+				resource.Attribute{
+					Name:        "root_device",
+					Description: `root device of the server`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `your server id`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `error, hacked, hackedBlocked, ok`,
+				},
+				resource.Attribute{
+					Name:        "support_level",
+					Description: `Dedicated server support level (critical, fastpath, gs, pro)`,
+				},
+				resource.Attribute{
+					Name:        "vnis",
+					Description: `the list of Virtualnetworkinterface assiociated with this server`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `VirtualNetworkInterface activation state`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `VirtualNetworkInterface mode (public,vrack,vrack_aggregation)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `User defined VirtualNetworkInterface name`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `Server bound to this VirtualNetworkInterface`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `VirtualNetworkInterface unique id`,
+				},
+				resource.Attribute{
+					Name:        "vrack",
+					Description: `vRack name`,
+				},
+				resource.Attribute{
+					Name:        "ncis",
+					Description: `NetworkInterfaceControllers bound to this VirtualNetworkInterface`,
+				},
+				resource.Attribute{
+					Name:        "enabled_vrack_vnis",
+					Description: `List of enabled vrack VNI uuids`,
+				},
+				resource.Attribute{
+					Name:        "enabled_vrack_aggregation_vnis",
+					Description: `List of enabled vrack_aggregation VNI uuids`,
+				},
+				resource.Attribute{
+					Name:        "enabled_public_vnis",
+					Description: `List of enabled public VNI uuids`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "boot_id",
+					Description: `boot id of the server`,
+				},
+				resource.Attribute{
+					Name:        "commercial_range",
+					Description: `dedicater server commercial range`,
+				},
+				resource.Attribute{
+					Name:        "datacenter",
+					Description: `dedicated datacenter localisation (bhs1,bhs2,...)`,
+				},
+				resource.Attribute{
+					Name:        "ip",
+					Description: `dedicated server ip (IPv4)`,
+				},
+				resource.Attribute{
+					Name:        "link_speed",
+					Description: `link speed of the server`,
+				},
+				resource.Attribute{
+					Name:        "monitoring",
+					Description: `Icmp monitoring state`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `dedicated server name`,
+				},
+				resource.Attribute{
+					Name:        "os",
+					Description: `Operating system`,
+				},
+				resource.Attribute{
+					Name:        "professional_use",
+					Description: `Does this server have professional use option`,
+				},
+				resource.Attribute{
+					Name:        "rack",
+					Description: `rack id of the server`,
+				},
+				resource.Attribute{
+					Name:        "rescue_mail",
+					Description: `rescue mail of the server`,
+				},
+				resource.Attribute{
+					Name:        "reverse",
+					Description: `dedicated server reverse`,
+				},
+				resource.Attribute{
+					Name:        "root_device",
+					Description: `root device of the server`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `your server id`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `error, hacked, hackedBlocked, ok`,
+				},
+				resource.Attribute{
+					Name:        "support_level",
+					Description: `Dedicated server support level (critical, fastpath, gs, pro)`,
+				},
+				resource.Attribute{
+					Name:        "vnis",
+					Description: `the list of Virtualnetworkinterface assiociated with this server`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `VirtualNetworkInterface activation state`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `VirtualNetworkInterface mode (public,vrack,vrack_aggregation)`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `User defined VirtualNetworkInterface name`,
+				},
+				resource.Attribute{
+					Name:        "server_name",
+					Description: `Server bound to this VirtualNetworkInterface`,
+				},
+				resource.Attribute{
+					Name:        "uuid",
+					Description: `VirtualNetworkInterface unique id`,
+				},
+				resource.Attribute{
+					Name:        "vrack",
+					Description: `vRack name`,
+				},
+				resource.Attribute{
+					Name:        "ncis",
+					Description: `NetworkInterfaceControllers bound to this VirtualNetworkInterface`,
+				},
+				resource.Attribute{
+					Name:        "enabled_vrack_vnis",
+					Description: `List of enabled vrack VNI uuids`,
+				},
+				resource.Attribute{
+					Name:        "enabled_vrack_aggregation_vnis",
+					Description: `List of enabled vrack_aggregation VNI uuids`,
+				},
+				resource.Attribute{
+					Name:        "enabled_public_vnis",
+					Description: `List of enabled public VNI uuids`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_dedicated_server_boots",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of compatible netboots for a dedicated server associated with your OVH Account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your dedicated server.`,
+				},
+				resource.Attribute{
+					Name:        "boot_type",
+					Description: `(Optional) Filter the value of bootType property (harddisk, rescue, ipxeCustomerScript, internal, network) ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of dedicated server netboots.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of dedicated server netboots.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_dedicated_servers",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of dedicated servers associated with your OVH Account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of dedicated servers IDs associated with your OVH Account.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of dedicated servers IDs associated with your OVH Account.`,
 				},
 			},
 		},
@@ -247,6 +551,144 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_iploadbalancing_vrack_network",
+			Category:         "Data Sources",
+			ShortDescription: `Get the details of Vrack network available for your IPLoadbalancer associated with your OVH account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "vrack_network_id",
+					Description: `(Required) Internal Load Balancer identifier of the vRack private network ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Human readable name for your vrack network`,
+				},
+				resource.Attribute{
+					Name:        "farm_id",
+					Description: `Farm id your vRack network is attached to and their type`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `farm type`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `farm id`,
+				},
+				resource.Attribute{
+					Name:        "nat_ip",
+					Description: `An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `IP block of the private network in the vRack`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `VLAN of the private network in the vRack. 0 if the private network is not in a VLAN`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "display_name",
+					Description: `Human readable name for your vrack network`,
+				},
+				resource.Attribute{
+					Name:        "farm_id",
+					Description: `Farm id your vRack network is attached to and their type`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `farm type`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `farm id`,
+				},
+				resource.Attribute{
+					Name:        "nat_ip",
+					Description: `An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `IP block of the private network in the vRack`,
+				},
+				resource.Attribute{
+					Name:        "vlan",
+					Description: `VLAN of the private network in the vRack. 0 if the private network is not in a VLAN`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_iploadbalancing_vrack_networks",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of Vrack network ids available for your IPLoadbalancer associated with your OVH account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The internal name of your IP load balancing`,
+				},
+				resource.Attribute{
+					Name:        "subnet",
+					Description: `Filters networks on the subnet.`,
+				},
+				resource.Attribute{
+					Name:        "vlan_id",
+					Description: `Filters networks on the vlan id. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of vrack network ids.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of vrack network ids.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_installation_template",
+			Category:         "Data Sources",
+			ShortDescription: `Get a custom installation template available for dedicated servers.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_installation_templates",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of custom installation templates available for dedicated servers.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of custom installation templates IDs available for dedicated servers.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "result",
+					Description: `The list of custom installation templates IDs available for dedicated servers.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_me_paymentmean_bankaccount",
 			Category:         "Data Sources",
 			ShortDescription: `Get information & status of an ovh bank account payment mean`,
@@ -343,6 +785,66 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ovh_me_ssh_key",
+			Category:         "Data Sources",
+			ShortDescription: `Get information & status of an SSH key.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `(Required) The name of the SSH key. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The content of the public key. E.g.: "ssh-ed25519 AAAAC3..."`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `True when this public SSH key is used for rescue mode and reinstallations.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key_name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The content of the public key. E.g.: "ssh-ed25519 AAAAC3..."`,
+				},
+				resource.Attribute{
+					Name:        "default",
+					Description: `True when this public SSH key is used for rescue mode and reinstallations.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_me_ssh_keys",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of the SSH keys of the account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `The list of the names of all the SSH keys.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "names",
+					Description: `The list of the names of all the SSH keys.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ovh_publiccloud_region",
 			Category:         "Data Sources",
 			ShortDescription: `Get information & status of a region associated with a public cloud project.`,
@@ -427,32 +929,57 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
+					Description: `(Required) The id of the public cloud project. If omitted, the ` + "`" + `OVH_PROJECT_ID` + "`" + ` environment variable is used.`,
+				},
+				resource.Attribute{
+					Name:        "has_services_up",
+					Description: `(Optional) List of services which has to be UP in regions. Example: "image", "instance", "network", "storage", "volume", "workflow", ... If left blank, returns all regions associated with the project_id. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the project. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "names",
-					Description: `The list of regions associated with the project`,
+					Description: `The list of regions associated with the project, filtered by services UP.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "names",
-					Description: `The list of regions associated with the project`,
+					Description: `The list of regions associated with the project, filtered by services UP.`,
 				},
 			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "ovh_vracks",
+			Category:         "Data Sources",
+			ShortDescription: `Get the list of Vrack ids available for your OVH account.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments:        []resource.Attribute{},
+			Attributes:       []resource.Attribute{},
 		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"ovh_cloud_region":               0,
-		"ovh_cloud_regions":              1,
-		"ovh_domain_zone":                2,
-		"ovh_iploadbalancing":            3,
-		"ovh_me_paymentmean_bankaccount": 4,
-		"ovh_me_paymentmean_creditcard":  5,
-		"ovh_publiccloud_region":         6,
-		"ovh_publiccloud_regions":        7,
+		"ovh_cloud_region":                     0,
+		"ovh_cloud_regions":                    1,
+		"ovh_dedicated_installation_templates": 2,
+		"ovh_dedicated_server":                 3,
+		"ovh_dedicated_server_boots":           4,
+		"ovh_dedicated_servers":                5,
+		"ovh_domain_zone":                      6,
+		"ovh_iploadbalancing":                  7,
+		"ovh_iploadbalancing_vrack_network":    8,
+		"ovh_iploadbalancing_vrack_networks":   9,
+		"ovh_me_installation_template":         10,
+		"ovh_me_installation_templates":        11,
+		"ovh_me_paymentmean_bankaccount":       12,
+		"ovh_me_paymentmean_creditcard":        13,
+		"ovh_me_ssh_key":                       14,
+		"ovh_me_ssh_keys":                      15,
+		"ovh_publiccloud_region":               16,
+		"ovh_publiccloud_regions":              17,
+		"ovh_vracks":                           18,
 	}
 )
 

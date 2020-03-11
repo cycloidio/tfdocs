@@ -273,6 +273,77 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "tfe_policy_set_parameter",
+			Category:         "Resources",
+			ShortDescription: `Manages policy set parameters.`,
+			Description:      ``,
+			Keywords: []string{
+				"policy",
+				"set",
+				"parameter",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Required) Name of the parameter.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) Value of the parameter.`,
+				},
+				resource.Attribute{
+					Name:        "sensitive",
+					Description: `(Optional) Whether the value is sensitive. If true then the parameter is written once and not visible thereafter. Defaults to ` + "`" + `false` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_set_id",
+					Description: `(Required) The ID of the policy set that owns the parameter. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the parameter. ## Import Parameters can be imported; use ` + "`" + `<POLICY SET ID>/<PARAMETER ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_policy_set_parameter.test polset-wAs3zYmWAhYK7peR/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the parameter. ## Import Parameters can be imported; use ` + "`" + `<POLICY SET ID>/<PARAMETER ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_policy_set_parameter.test polset-wAs3zYmWAhYK7peR/var-5rTwnSaRPogw6apb ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "tfe_run_trigger",
+			Category:         "Resources",
+			ShortDescription: `Manages run triggers`,
+			Description:      ``,
+			Keywords: []string{
+				"run",
+				"trigger",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "workspace_external_id",
+					Description: `(Required) The external id of the workspace that owns the run trigger. This is the workspace where runs will be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "sourceable_id",
+					Description: `(Required) The external id of the sourceable. The sourceable must be a workspace. ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the run trigger. ## Import Run triggers can be imported; use ` + "`" + `<RUN TRIGGER ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_run_trigger.test rt-qV9JnKRkmtMa4zcA ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The ID of the run trigger. ## Import Run triggers can be imported; use ` + "`" + `<RUN TRIGGER ID>` + "`" + ` as the import ID. For example: ` + "`" + `` + "`" + `` + "`" + `shell terraform import tfe_run_trigger.test rt-qV9JnKRkmtMa4zcA ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "tfe_sentinel_policy",
 			Category:         "Resources",
 			ShortDescription: `Manages Sentinel policies.`,
@@ -502,6 +573,10 @@ var (
 					Description: `(Required) Whether this is a Terraform or environment variable. Valid values are ` + "`" + `terraform` + "`" + ` or ` + "`" + `env` + "`" + `.`,
 				},
 				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of the variable.`,
+				},
+				resource.Attribute{
 					Name:        "hcl",
 					Description: `(Optional) Whether to evaluate the value of the variable as a string of HCL code. Has no effect for environment variables. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
@@ -624,15 +699,17 @@ var (
 		"tfe_organization":               2,
 		"tfe_organization_token":         3,
 		"tfe_policy_set":                 4,
-		"tfe_sentinel_policy":            5,
-		"tfe_ssh_key":                    6,
-		"tfe_team":                       7,
-		"tfe_team_access":                8,
-		"tfe_team_member":                9,
-		"tfe_team_members":               10,
-		"tfe_team_token":                 11,
-		"tfe_variable":                   12,
-		"tfe_workspace":                  13,
+		"tfe_policy_set_parameter":       5,
+		"tfe_run_trigger":                6,
+		"tfe_sentinel_policy":            7,
+		"tfe_ssh_key":                    8,
+		"tfe_team":                       9,
+		"tfe_team_access":                10,
+		"tfe_team_member":                11,
+		"tfe_team_members":               12,
+		"tfe_team_token":                 13,
+		"tfe_variable":                   14,
+		"tfe_workspace":                  15,
 	}
 )
 

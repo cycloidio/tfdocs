@@ -127,7 +127,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Optional) The type of credentials to read. Defaults to ` + "`" + `"creds"` + "`" + `, which just returns an AWS Access Key ID and Secret Key. Can also be set to ` + "`" + `"sts"` + "`" + `, which will return a security token in addition to the keys. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
+					Description: `(Optional) The type of credentials to read. Defaults to ` + "`" + `"creds"` + "`" + `, which just returns an AWS Access Key ID and Secret Key. Can also be set to ` + "`" + `"sts"` + "`" + `, which will return a security token in addition to the keys.`,
+				},
+				resource.Attribute{
+					Name:        "role_arn",
+					Description: `(Required if role has multiple ARNs) The specific AWS ARN to use from the configured role. If the role does not have multiple ARNs, this does not need to be specified. ## Attributes Reference In addition to the arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "access_key",

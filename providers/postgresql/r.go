@@ -234,7 +234,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "skip_reassign_owned",
-					Description: `(Optional) When a PostgreSQL ROLE exists in multiple databases and the ROLE is dropped, a [` + "`" + `REASSIGN OWNED` + "`" + `](https://www.postgresql.org/docs/current/static/sql-reassign-owned.html) in must be executed on each of the respective databases before the ` + "`" + `DROP ROLE` + "`" + ` can be executed to dropped the ROLE from the catalog. This is the first and second steps taken when removing a ROLE from a database (the second step being an implicit [` + "`" + `DROP OWNED` + "`" + `](https://www.postgresql.org/docs/current/static/sql-drop-owned.html)). ## Import Example ` + "`" + `postgresql_role` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "postgresql" { alias = "admindb" } resource "postgresql_role" "replication_role" { provider = "postgresql.admindb" name = "replication_name" } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `postgresql_role` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import postgresql_role.replication_role replication_name ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `replication_name` + "`" + ` is the name of the role to import and ` + "`" + `postgresql_role.replication_role` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
+					Description: `(Optional) When a PostgreSQL ROLE exists in multiple databases and the ROLE is dropped, a [` + "`" + `REASSIGN OWNED` + "`" + `](https://www.postgresql.org/docs/current/static/sql-reassign-owned.html) in must be executed on each of the respective databases before the ` + "`" + `DROP ROLE` + "`" + ` can be executed to dropped the ROLE from the catalog. This is the first and second steps taken when removing a ROLE from a database (the second step being an implicit [` + "`" + `DROP OWNED` + "`" + `](https://www.postgresql.org/docs/current/static/sql-drop-owned.html)).`,
+				},
+				resource.Attribute{
+					Name:        "statement_timeout",
+					Description: `(Optional) Defines [` + "`" + `statement_timeout` + "`" + `](https://www.postgresql.org/docs/current/runtime-config-client.html#RUNTIME-CONFIG-CLIENT-STATEMENT) setting for this role which allows to abort any statement that takes more than the specified amount of time. ## Import Example ` + "`" + `postgresql_role` + "`" + ` supports importing resources. Supposing the following Terraform: ` + "`" + `` + "`" + `` + "`" + `hcl provider "postgresql" { alias = "admindb" } resource "postgresql_role" "replication_role" { provider = "postgresql.admindb" name = "replication_name" } ` + "`" + `` + "`" + `` + "`" + ` It is possible to import a ` + "`" + `postgresql_role` + "`" + ` resource with the following command: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import postgresql_role.replication_role replication_name ` + "`" + `` + "`" + `` + "`" + ` Where ` + "`" + `replication_name` + "`" + ` is the name of the role to import and ` + "`" + `postgresql_role.replication_role` + "`" + ` is the name of the resource whose state will be populated as a result of the command.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -252,6 +256,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) The name of the schema. Must be unique in the PostgreSQL database instance where it is configured.`,
+				},
+				resource.Attribute{
+					Name:        "database",
+					Description: `(Optional) The DATABASE in which where this schema will be created. (Default: The database used by your ` + "`" + `provider` + "`" + ` configuration)`,
 				},
 				resource.Attribute{
 					Name:        "owner",

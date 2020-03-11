@@ -23,7 +23,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of database instance IDs, all the database instances belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of database instance IDs, all the database instances belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -243,7 +243,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of Disk IDs, all the Disks belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of Disk IDs, all the Disks belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_type",
@@ -367,7 +367,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of Elastic IP IDs, all the EIPs belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of Elastic IP IDs, all the EIPs belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -506,10 +506,6 @@ var (
 					Description: `(Optional) Availability zone where images are located. such as: ` + "`" + `cn-bj2-02` + "`" + `. You may refer to [list of availability zone](https://docs.ucloud.cn/api/summary/regionlist).`,
 				},
 				resource.Attribute{
-					Name:        "image_id",
-					Description: `(Optional) The ID of image.`,
-				},
-				resource.Attribute{
 					Name:        "name_regex",
 					Description: `(Optional) A regex string to filter resulting images by name. (Such as: ` + "`" + `^CentOS 7.[1-2] 64` + "`" + ` means CentOS 7.1 of 64-bit operating system or CentOS 7.2 of 64-bit operating system, "^Ubuntu 16.04 64" means Ubuntu 16.04 of 64-bit operating system).`,
 				},
@@ -524,6 +520,14 @@ var (
 				resource.Attribute{
 					Name:        "most_recent",
 					Description: `(Optional) If more than one result is returned, use the most recent image.`,
+				},
+				resource.Attribute{
+					Name:        "image_id",
+					Description: `(Optional) The ID of image. ~>`,
+				},
+				resource.Attribute{
+					Name:        "ids",
+					Description: `(Optional) A list of image IDs, all the images belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `. ~>`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
@@ -651,7 +655,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of instance IDs, all the instances belongs to the defined region will be retrieved if this argument is "".`,
+					Description: `(Optional) A list of instance IDs, all the instances belongs to the defined region will be retrieved if this argument is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -895,7 +899,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of LB Attachment IDs, all the LB Attachments belong to the Load Balancer listener will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of LB Attachment IDs, all the LB Attachments belong to the Load Balancer listener will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
@@ -975,7 +979,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of LB Listener IDs, all the LB Listeners belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of LB Listener IDs, all the LB Listeners belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -1127,7 +1131,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of LB Rule IDs, all the LB Rules belong to the Load Balancer listener will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of LB Rule IDs, all the LB Rules belong to the Load Balancer listener will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "output_file",
@@ -1187,7 +1191,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of LB SSL certificate resource IDs, all the LB SSL certificate resources in the current region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of LB SSL certificate resource IDs, all the LB SSL certificate resources in the current region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -1251,7 +1255,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of Load Balancer IDs, all the LBs belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of Load Balancer IDs, all the LBs belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -1387,7 +1391,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of Nat Gateway IDs, all the Nat Gateways belongs to the defined region will be retrieved if this argument is "".`,
+					Description: `(Optional) A list of Nat Gateway IDs, all the Nat Gateways belongs to the defined region will be retrieved if this argument is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -1603,7 +1607,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of Security Group IDs, all the Security Group resources belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of Security Group IDs, all the Security Group resources belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -1743,7 +1747,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of Subnet IDs, all the Subnet resources belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of Subnet IDs, all the Subnet resources belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "vpc_id",
@@ -1835,7 +1839,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of VPC IDs, all the VPC resources belong to this region will be retrieved if the ID is ` + "`" + `""` + "`" + `.`,
+					Description: `(Optional) A list of VPC IDs, all the VPC resources belong to this region will be retrieved if the ID is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -1923,7 +1927,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of VPN Connection IDs, all the VPN Connections belongs to the defined region will be retrieved if this argument is "".`,
+					Description: `(Optional) A list of VPN Connection IDs, all the VPN Connections belongs to the defined region will be retrieved if this argument is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -2187,7 +2191,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of VPN Customer Gateway IDs, all the VPN Customer Gateways belongs to the defined region will be retrieved if this argument is "".`,
+					Description: `(Optional) A list of VPN Customer Gateway IDs, all the VPN Customer Gateways belongs to the defined region will be retrieved if this argument is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",
@@ -2279,7 +2283,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "ids",
-					Description: `(Optional) A list of VPN Gateway IDs, all the VPN Gateways belongs to the defined region will be retrieved if this argument is "".`,
+					Description: `(Optional) A list of VPN Gateway IDs, all the VPN Gateways belongs to the defined region will be retrieved if this argument is ` + "`" + `[]` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "name_regex",

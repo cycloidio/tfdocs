@@ -11,6 +11,235 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "mongodbatlas_alert_configuration",
+			Category:         "Resources",
+			ShortDescription: `Provides an Alert Configuration resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"alert",
+				"configuration",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of the project where the alert configuration will create.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.`,
+				},
+				resource.Attribute{
+					Name:        "event_type",
+					Description: `(Required) The type of event that will trigger an alert. Alert type Possible values:`,
+				},
+				resource.Attribute{
+					Name:        "field_name",
+					Description: `Name of the field in the target object to match on. Host alerts support these fields: - ` + "`" + `TYPE_NAME` + "`" + ` - ` + "`" + `HOSTNAME` + "`" + ` - ` + "`" + `PORT` + "`" + ` - ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` - ` + "`" + `REPLICA_SET_NAME` + "`" + ` Replica set alerts support these fields: - ` + "`" + `REPLICA_SET_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` - ` + "`" + `CLUSTER_NAME` + "`" + ` Sharded cluster alerts support these fields: - ` + "`" + `CLUSTER_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` All other types of alerts do not support matchers.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `If omitted, the configuration is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `If omitted, the configuration is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `The operator to test the field’s value. Accepted values are: - ` + "`" + `EQUALS` + "`" + ` - ` + "`" + `NOT_EQUALS` + "`" + ` - ` + "`" + `CONTAINS` + "`" + ` - ` + "`" + `NOT_CONTAINS` + "`" + ` - ` + "`" + `STARTS_WITH` + "`" + ` - ` + "`" + `ENDS_WITH` + "`" + ` - ` + "`" + `REGEX` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `Name of the metric to check.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `Operator to apply when checking the current metric value against the threshold value. Accepted values are: - ` + "`" + `GREATER_THAN` + "`" + ` - ` + "`" + `LESS_THAN` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `Threshold value outside of which an alert will be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "units",
+					Description: `The units for the threshold value. Depends on the type of metric. Accepted values are: - ` + "`" + `RAW` + "`" + ` - ` + "`" + `BITS` + "`" + ` - ` + "`" + `BYTES` + "`" + ` - ` + "`" + `KILOBITS` + "`" + ` - ` + "`" + `KILOBYTES` + "`" + ` - ` + "`" + `MEGABITS` + "`" + ` - ` + "`" + `MEGABYTES` + "`" + ` - ` + "`" + `GIGABITS` + "`" + ` - ` + "`" + `GIGABYTES` + "`" + ` - ` + "`" + `TERABYTES` + "`" + ` - ` + "`" + `PETABYTES` + "`" + ` - ` + "`" + `MILLISECONDS` + "`" + ` - ` + "`" + `SECONDS` + "`" + ` - ` + "`" + `MINUTES` + "`" + ` - ` + "`" + `HOURS` + "`" + ` - ` + "`" + `DAYS` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Notifications Notifications to send when an alert condition is detected.`,
+				},
+				resource.Attribute{
+					Name:        "api_token",
+					Description: `Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "channel_name",
+					Description: `Slack channel name. Required for the SLACK notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "datadog_api_key",
+					Description: `Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "datadog_region",
+					Description: `Region that indicates which API URL to use. Accepted regions are: ` + "`" + `US` + "`" + `, ` + "`" + `EU` + "`" + `. The default Datadog region is US.`,
+				},
+				resource.Attribute{
+					Name:        "delay_min",
+					Description: `Number of minutes to wait after an alert condition is detected before sending out the first notification.`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `Email address to which alert notifications are sent. Required for the EMAIL notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "email_enabled",
+					Description: `Flag indicating if email notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+				},
+				resource.Attribute{
+					Name:        "flowdock_api_token",
+					Description: `The Flowdock personal API token. Required for the ` + "`" + `FLOWDOCK` + "`" + ` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "flow_name",
+					Description: `Flowdock flow name in lower-case letters. Required for the ` + "`" + `FLOWDOCK` + "`" + ` notifications type`,
+				},
+				resource.Attribute{
+					Name:        "interval_min",
+					Description: `Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "mobile_number",
+					Description: `Mobile number to which alert notifications are sent. Required for the SMS notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "ops_genie_api_key",
+					Description: `Opsgenie API Key. Required for the ` + "`" + `OPS_GENIE` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "ops_genie_region",
+					Description: `Region that indicates which API URL to use. Accepted regions are: ` + "`" + `US` + "`" + ` ,` + "`" + `EU` + "`" + `. The default Opsgenie region is US.`,
+				},
+				resource.Attribute{
+					Name:        "org_name",
+					Description: `Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "sms_enabled",
+					Description: `Flag indicating if text message notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `Unique identifier of a team.`,
+				},
+				resource.Attribute{
+					Name:        "type_name",
+					Description: `Type of alert notification. Accepted values are: - ` + "`" + `DATADOG` + "`" + ` - ` + "`" + `EMAIL` + "`" + ` - ` + "`" + `FLOWDOCK` + "`" + ` - ` + "`" + `GROUP` + "`" + ` (Project) - ` + "`" + `OPS_GENIE` + "`" + ` - ` + "`" + `ORG` + "`" + ` - ` + "`" + `PAGER_DUTY` + "`" + ` - ` + "`" + `SLACK` + "`" + ` - ` + "`" + `SMS` + "`" + ` - ` + "`" + `TEAM` + "`" + ` - ` + "`" + `USER` + "`" + ` - ` + "`" + `VICTOR_OPS` + "`" + ` - ` + "`" + `WEBHOOK` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the ` + "`" + `USER` + "`" + ` notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "victor_ops_api_key",
+					Description: `VictorOps API key. Required for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "victor_ops_routing_key",
+					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier used for terraform for internal manages and can be used to import.`,
+				},
+				resource.Attribute{
+					Name:        "alert_configuration_id",
+					Description: `Unique identifier for the alert configuration.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Unique identifier of the project that owns this alert configuration.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated. ## Import Alert Configuration can be imported using the ` + "`" + `project_id-alert_configuration_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_alert_configuration.test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier used for terraform for internal manages and can be used to import.`,
+				},
+				resource.Attribute{
+					Name:        "alert_configuration_id",
+					Description: `Unique identifier for the alert configuration.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Unique identifier of the project that owns this alert configuration.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated. ## Import Alert Configuration can be imported using the ` + "`" + `project_id-alert_configuration_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_alert_configuration.test 5d0f1f74cf09a29120e123cd-5d0f1f74cf09a29120e1fscg ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_auditing",
+			Category:         "Resources",
+			ShortDescription: `Provides a Auditing resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"auditing",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique ID for the project to configure auditing.`,
+				},
+				resource.Attribute{
+					Name:        "audit_filter",
+					Description: `Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess`,
+				},
+				resource.Attribute{
+					Name:        "audit_authorization_success",
+					Description: `JSON-formatted audit filter used by the project`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Denotes whether or not the project associated with the {project_id} has database auditing enabled. ~>`,
+				},
+				resource.Attribute{
+					Name:        "configuration_type",
+					Description: `Denotes the configuration method for the audit filter. Possible values are:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "configuration_type",
+					Description: `Denotes the configuration method for the audit filter. Possible values are:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mongodbatlas_cloud_provider_snapshot",
 			Category:         "Resources",
 			ShortDescription: `Provides an Cloud Provider Snapshot resource.`,
@@ -307,7 +536,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "provider_instance_size_name",
-					Description: `(Required) Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) ` + "`" + `providerSettings.instanceSizeName` + "`" + ` for valid values and default resources.`,
+					Description: `(Required) Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) ` + "`" + `providerSettings.instanceSizeName` + "`" + ` for valid values and default resources. Note free tier (M0) creation is not supported by the Atlas API and hence not supported by this provider.`,
 				},
 				resource.Attribute{
 					Name:        "auto_scaling_disk_gb_enabled",
@@ -315,7 +544,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backup_enabled",
-					Description: `(Optional) Set to true to enable Atlas continuous backups for the cluster. Set to false to disable continuous backups for the cluster. Atlas deletes any stored snapshots. See the continuous backup Snapshot Schedule for more information. You cannot enable continuous backups if you have an existing cluster in the project with Cloud Provider Snapshots enabled. The default value is false.`,
+					Description: `(Optional) Set to true to enable Atlas continuous backups for the cluster. Set to false to disable continuous backups for the cluster. Atlas deletes any stored snapshots. See the continuous backup Snapshot Schedule for more information. You cannot enable continuous backups if you have an existing cluster in the project with Cloud Provider Snapshots enabled. You cannot enable continuous backups for new AWS clusters. If backup is required for a new cluster use ` + "`" + `provider_backup_enabled` + "`" + ` to enable Cloud Provider Snapshots. The default value is false. M10 and above only.`,
 				},
 				resource.Attribute{
 					Name:        "bi_connector",
@@ -335,11 +564,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "mongo_db_major_version",
-					Description: `(Optional) Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: ` + "`" + `3.4` + "`" + `, ` + "`" + `3.6` + "`" + ` or ` + "`" + `4.0` + "`" + `. You must set this value to ` + "`" + `4.0` + "`" + ` if ` + "`" + `provider_instance_size_name` + "`" + ` is either M2 or M5.`,
+					Description: `(Optional) Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: ` + "`" + `3.6` + "`" + `, ` + "`" + `4.0` + "`" + `, or ` + "`" + `4.2` + "`" + `. You must set this value to ` + "`" + `4.2` + "`" + ` if ` + "`" + `provider_instance_size_name` + "`" + ` is either M2 or M5.`,
 				},
 				resource.Attribute{
 					Name:        "num_shards",
 					Description: `(Optional) Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.`,
+				},
+				resource.Attribute{
+					Name:        "pit_enabled",
+					Description: `(Optional) - Flag that indicates if the cluster uses Point-in-Time backups. If set to true, provider_backup_enabled must also be set to true.`,
 				},
 				resource.Attribute{
 					Name:        "provider_backup_enabled",
@@ -347,7 +580,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "backing_provider_name",
-					Description: `(Optional) Cloud service provider on which the server for a multi-tenant cluster is provisioned. (Note: When upgrading from a multi-tenant cluster to a dedicated cluster remove this argument.) This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5. The possible values are: - AWS - Amazon AWS - GCP - Google Cloud Platform - AZURE - Microsoft Azure`,
+					Description: `(Optional) Cloud service provider on which the server for a multi-tenant cluster is provisioned. This setting is only valid when providerSetting.providerName is TENANT and providerSetting.instanceSizeName is M2 or M5. The possible values are: - AWS - Amazon AWS - GCP - Google Cloud Platform - AZURE - Microsoft Azure`,
 				},
 				resource.Attribute{
 					Name:        "provider_disk_iops",
@@ -447,7 +680,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sample_refresh_interval_bi_connector",
-					Description: `(Optional) Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that you want to write.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that you want to write. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cluster_id",
@@ -519,6 +760,50 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mongodbatlas_custom_db_role",
+			Category:         "Resources",
+			ShortDescription: `Provides a Custom DB Role resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"custom",
+				"db",
+				"role",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique ID for the project to create the database user.`,
+				},
+				resource.Attribute{
+					Name:        "role_name",
+					Description: `(Required) Name of the custom role. ->`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions) ->`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "resources.#.collection",
+					Description: `(Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field. ->`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier used for terraform for internal manages and can be used to import. ## Import Database users can be imported using project ID and username, in the format ` + "`" + `PROJECTID-ROLENAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_custom_db_role.my_role 1112222b3bf99403840e8934-MyCustomRole ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Unique identifier used for terraform for internal manages and can be used to import. ## Import Database users can be imported using project ID and username, in the format ` + "`" + `PROJECTID-ROLENAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_custom_db_role.my_role 1112222b3bf99403840e8934-MyCustomRole ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mongodbatlas_database_user",
 			Category:         "Resources",
 			ShortDescription: `Provides a Database User resource.`,
@@ -529,7 +814,7 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
-					Name:        "database_name",
+					Name:        "auth_database_name",
 					Description: `(Required) The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.`,
 				},
 				resource.Attribute{
@@ -546,7 +831,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) User's initial password. This is required to create the user but may be removed after. Password may show up in logs, and it will be stored in the state file as plain-text. Password can be changed in the web interface to increase security. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Description: `(Required) User's initial password. A value is required to create the database user, however the argument but may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security. If you do change management of the password to outside of Terraform be sure to remove the argument from the Terraform configuration so it is not inadvertently updated to the original password.`,
+				},
+				resource.Attribute{
+					Name:        "x509_type",
+					Description: `(Optional) X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `The user does not use X.509 authentication.`,
+				},
+				resource.Attribute{
+					Name:        "MANAGED",
+					Description: `The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the ` + "`" + `$external` + "`" + ` database.`,
+				},
+				resource.Attribute{
+					Name:        "CUSTOMER",
+					Description: `The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the ` + "`" + `$external` + "`" + ` database. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -558,17 +859,25 @@ var (
 				},
 				resource.Attribute{
 					Name:        "collection_name",
-					Description: `(Optional) Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). ### Labels Containing key-value pairs that tag and categorize the database user. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that you want to write.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that you want to write. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
-					Description: `The database user's name. ## Import Database users can be imported using project ID and username, in the format ` + "`" + `PROJECTID-USERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user ` + "`" + `` + "`" + `` + "`" + ` ~>`,
+					Description: `The database user's name. ## Import Database users can be imported using project ID and username, in the format ` + "`" + `project_id` + "`" + `-` + "`" + `username` + "`" + `-` + "`" + `auth_database_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user-admin ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "id",
-					Description: `The database user's name. ## Import Database users can be imported using project ID and username, in the format ` + "`" + `PROJECTID-USERNAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user ` + "`" + `` + "`" + `` + "`" + ` ~>`,
+					Description: `The database user's name. ## Import Database users can be imported using project ID and username, in the format ` + "`" + `project_id` + "`" + `-` + "`" + `username` + "`" + `-` + "`" + `auth_database_name` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user-admin ` + "`" + `` + "`" + `` + "`" + ` ~>`,
 				},
 			},
 		},
@@ -667,6 +976,100 @@ var (
 				resource.Attribute{
 					Name:        "key_version_resource_id",
 					Description: `The Key Version Resource ID from your GCP account. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/encryption-at-rest/)`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "global_cluster_config",
+			Category:         "Resources",
+			ShortDescription: `Provides a Global Cluster Configuration resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"global",
+				"cluster",
+				"config",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique ID for the project to create the database user.`,
+				},
+				resource.Attribute{
+					Name:        "collection",
+					Description: `(Required) The name of the collection associated with the managed namespace.`,
+				},
+				resource.Attribute{
+					Name:        "custom_shard_key",
+					Description: `(Required) The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.`,
+				},
+				resource.Attribute{
+					Name:        "db",
+					Description: `(Required) The name of the database containing the collection. ### Custom Zone Mapping`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).`,
+				},
+				resource.Attribute{
+					Name:        "zone",
+					Description: `(Required) The name of the zone in your Global Cluster that you want to map to location. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "custom_zone_mapping",
+					Description: `A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty. ## Import Database users can be imported using project ID and cluster name, in the format ` + "`" + `PROJECTID-CLUSTER_NAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_global_cluster_config.config 1112222b3bf99403840e8934-my-cluster ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "custom_zone_mapping",
+					Description: `A map of all custom zone mappings defined for the Global Cluster. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty. ## Import Database users can be imported using project ID and cluster name, in the format ` + "`" + `PROJECTID-CLUSTER_NAME` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_global_cluster_config.config 1112222b3bf99403840e8934-my-cluster ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_maintenance_window",
+			Category:         "Resources",
+			ShortDescription: `Provides an Maintenance Window resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"maintenance",
+				"window",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The unique identifier of the project for the Maintenance Window.`,
+				},
+				resource.Attribute{
+					Name:        "day_of_week",
+					Description: `Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.`,
+				},
+				resource.Attribute{
+					Name:        "hour_of_day",
+					Description: `Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).`,
+				},
+				resource.Attribute{
+					Name:        "start_asap",
+					Description: `Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_deferrals",
+					Description: `Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals.`,
+				},
+				resource.Attribute{
+					Name:        "defer",
+					Description: `Defer maintenance for the given project for one week. ->`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -802,16 +1205,16 @@ var (
 					Description: `(Required) Unique identifier of the Atlas VPC container for the region. You can create an Atlas VPC container using the Create Container endpoint. You cannot create more than one container per region. To retrieve a list of container IDs, use the Get list of VPC containers endpoint.`,
 				},
 				resource.Attribute{
+					Name:        "provider_name",
+					Description: `(Required) Cloud provider for this VPC peering connection. (Possible Values ` + "`" + `AWS` + "`" + `, ` + "`" + `AZURE` + "`" + `, ` + "`" + `GCP` + "`" + `).`,
+				},
+				resource.Attribute{
 					Name:        "accepter_region_name",
 					Description: `(Optional |`,
 				},
 				resource.Attribute{
 					Name:        "aws_account_id",
 					Description: `(Optional |`,
-				},
-				resource.Attribute{
-					Name:        "provider_name",
-					Description: `(Optional) Cloud provider for this VPC peering connection. If omitted, Atlas sets this parameter to AWS. (Possible Values ` + "`" + `AWS` + "`" + `, ` + "`" + `AZURE` + "`" + `, ` + "`" + `GCP` + "`" + `).`,
 				},
 				resource.Attribute{
 					Name:        "route_table_cidr_block",
@@ -1031,6 +1434,190 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "mongodbatlas_private_endpoint",
+			Category:         "Resources",
+			ShortDescription: `Provides a Private Endpoint resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"endpoint",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `Required Unique identifier for the project.`,
+				},
+				resource.Attribute{
+					Name:        "providerName",
+					Description: `(Required) Name of the cloud provider you want to create the private endpoint connection for. Must be AWS.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) Cloud provider region in which you want to create the private endpoint connection. Accepted values are:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "private_link_id",
+					Description: `Unique identifier of the AWS PrivateLink connection.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_service_name",
+					Description: `Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.`,
+				},
+				resource.Attribute{
+					Name:        "interface_endpoints",
+					Description: `Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the AWS PrivateLink connection. Returns one of the following values:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "private_link_id",
+					Description: `Unique identifier of the AWS PrivateLink connection.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_service_name",
+					Description: `Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.`,
+				},
+				resource.Attribute{
+					Name:        "interface_endpoints",
+					Description: `Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the AWS PrivateLink connection. Returns one of the following values:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_private_endpoint_interface_link",
+			Category:         "Resources",
+			ShortDescription: `Provides a Private Endpoint Link resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"private",
+				"endpoint",
+				"interface",
+				"link",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Unique identifier for the project.`,
+				},
+				resource.Attribute{
+					Name:        "private_link_id",
+					Description: `(Required) Unique identifier of the AWS PrivateLink connection which is created by ` + "`" + `mongodbatlas_private_endpoint` + "`" + ` resource.`,
+				},
+				resource.Attribute{
+					Name:        "interface_endpoint_id",
+					Description: `(Required) Unique identifier of the interface endpoint you created in your VPC with the AWS resource. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "delete_requested",
+					Description: `Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `Error message pertaining to the interface endpoint. Returns null if there are no errors.`,
+				},
+				resource.Attribute{
+					Name:        "connection_status",
+					Description: `Status of the interface endpoint. Returns one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "PENDING_ACCEPTANCE",
+					Description: `AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "PENDING",
+					Description: `AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "AVAILABLE",
+					Description: `Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.`,
+				},
+				resource.Attribute{
+					Name:        "REJECTED",
+					Description: `AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.`,
+				},
+				resource.Attribute{
+					Name:        "DELETING",
+					Description: `Atlas is removing the interface endpoint from the private endpoint connection. ## Import Private Endpoint Link Connection can be imported using project ID and username, in the format ` + "`" + `{project_id}-{private_link_id}-{interface_endpoint_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_private_endpoint_link.test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "delete_requested",
+					Description: `Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `Error message pertaining to the interface endpoint. Returns null if there are no errors.`,
+				},
+				resource.Attribute{
+					Name:        "connection_status",
+					Description: `Status of the interface endpoint. Returns one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "PENDING_ACCEPTANCE",
+					Description: `AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "PENDING",
+					Description: `AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "AVAILABLE",
+					Description: `Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.`,
+				},
+				resource.Attribute{
+					Name:        "REJECTED",
+					Description: `AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.`,
+				},
+				resource.Attribute{
+					Name:        "DELETING",
+					Description: `Atlas is removing the interface endpoint from the private endpoint connection. ## Import Private Endpoint Link Connection can be imported using project ID and username, in the format ` + "`" + `{project_id}-{private_link_id}-{interface_endpoint_id}` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_private_endpoint_link.test 1112222b3bf99403840e8934-3242342343112-vpce-4242342343 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoint-create-one-interface-endpoint/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mongodbatlas_private_ip_mode",
 			Category:         "Resources",
 			ShortDescription: `Provides a Private IP Mode resource.`,
@@ -1073,11 +1660,19 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the project you want to create.`,
+					Description: `(Required) The name of the project you want to create. (Cannot be changed via this Provider after creation.)`,
 				},
 				resource.Attribute{
 					Name:        "org_id",
-					Description: `(Required) The ID of the organization you want to create the project within. ~>`,
+					Description: `(Required) The ID of the organization you want to create the project within. ### Teams Teams attribute is optional ~>`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Required) The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.`,
+				},
+				resource.Attribute{
+					Name:        "role_names",
+					Description: `(Required) Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team. The following are valid roles:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1089,7 +1684,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_count",
-					Description: `The number of Atlas clusters deployed in the project.. ## Import Project must be imported using project ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_project.my_project 5d09d6a59ccf6445652a444a ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/)`,
+					Description: `The number of Atlas clusters deployed in the project.. ## Import Project must be imported using project ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_project.my_project 5d09d6a59ccf6445652a444a ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1103,7 +1698,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_count",
-					Description: `The number of Atlas clusters deployed in the project.. ## Import Project must be imported using project ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_project.my_project 5d09d6a59ccf6445652a444a ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/)`,
+					Description: `The number of Atlas clusters deployed in the project.. ## Import Project must be imported using project ID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_project.my_project 5d09d6a59ccf6445652a444a ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/projects/) - [and MongoDB Atlas API - Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.`,
 				},
 			},
 		},
@@ -1124,16 +1719,20 @@ var (
 					Description: `(Required) The ID of the project in which to add the whitelist entry.`,
 				},
 				resource.Attribute{
+					Name:        "aws_security_group",
+					Description: `(Optional) ID of the whitelisted AWS security group. Mutually exclusive with ` + "`" + `cidr_block` + "`" + ` and ` + "`" + `ip_address` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "cidr_block",
-					Description: `(Optional) The whitelist entry in Classless Inter-Domain Routing (CIDR) notation. Mutually exclusive with ` + "`" + `ip_address` + "`" + `.`,
+					Description: `(Optional) Whitelist entry in Classless Inter-Domain Routing (CIDR) notation. Mutually exclusive with ` + "`" + `aws_security_group` + "`" + ` and ` + "`" + `ip_address` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) The whitelisted IP address. Mutually exclusive with ` + "`" + `cidr_block` + "`" + `.`,
+					Description: `(Optional) Whitelisted IP address. Mutually exclusive with ` + "`" + `aws_security_group` + "`" + ` and ` + "`" + `cidr_block` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "comment",
-					Description: `(Optional) Comment to add to the whitelist entry. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) Comment to add to the whitelist entry. ->`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1147,20 +1746,160 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_team",
+			Category:         "Resources",
+			ShortDescription: `Provides a Team resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"team",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `(Required) The unique identifier for the organization you want to associate the team with.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the team you want to create.`,
+				},
+				resource.Attribute{
+					Name:        "usernames",
+					Description: `(Required) You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `The unique identifier for the team. ## Import Teams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_teams.my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `The unique identifier for the team. ## Import Teams can be imported using the organization ID and team id, in the format ORGID-TEAMID, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_teams.my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935 ` + "`" + `` + "`" + `` + "`" + ` See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_x509_authentication_database_user",
+			Category:         "Resources",
+			ShortDescription: `Provides a X509 Authentication Database User resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"x509",
+				"authentication",
+				"database",
+				"user",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Identifier for the Atlas project associated with the X.509 configuration.`,
+				},
+				resource.Attribute{
+					Name:        "months_until_expiration",
+					Description: `(Required) A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) Username of the database user to create a certificate for.`,
+				},
+				resource.Attribute{
+					Name:        "customer_x509_cas",
+					Description: `(Optional) PEM string containing one or more customer CAs for database user authentication. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "current_certificate",
+					Description: `Contains the last X.509 certificate and private key created for a database user. #### Certificates`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `Array of objects where each details one unexpired database user certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.id",
+					Description: `Serial number of this certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.created_at",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when Atlas created this X.509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.group_id",
+					Description: `Unique identifier of the Atlas project to which this certificate belongs.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.not_after",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.subject",
+					Description: `Fully distinguished name of the database user to which this certificate belongs. To learn more, see RFC 2253. ## Import X.509 Certificates for a User can be imported using project ID and username, in the format ` + "`" + `project_id-username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_x509_authentication_database_user.test 1112222b3bf99403840e8934-myUsername ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) Current X.509 Configuration can be imported using project ID, in the format ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_x509_authentication_database_user.test 1112222b3bf99403840e8934 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "current_certificate",
+					Description: `Contains the last X.509 certificate and private key created for a database user. #### Certificates`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `Array of objects where each details one unexpired database user certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.id",
+					Description: `Serial number of this certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.created_at",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when Atlas created this X.509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.group_id",
+					Description: `Unique identifier of the Atlas project to which this certificate belongs.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.not_after",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.subject",
+					Description: `Fully distinguished name of the database user to which this certificate belongs. To learn more, see RFC 2253. ## Import X.509 Certificates for a User can be imported using project ID and username, in the format ` + "`" + `project_id-username` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_x509_authentication_database_user.test 1112222b3bf99403840e8934-myUsername ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) Current X.509 Configuration can be imported using project ID, in the format ` + "`" + `project_id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import mongodbatlas_x509_authentication_database_user.test 1112222b3bf99403840e8934 ` + "`" + `` + "`" + `` + "`" + ` For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)`,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
-		"mongodbatlas_cloud_provider_snapshot":             0,
-		"mongodbatlas_cloud_provider_snapshot_restore_job": 1,
-		"mongodbatlas_cluster":                             2,
-		"mongodbatlas_database_user":                       3,
-		"mongodbatlas_encryption_at_rest":                  4,
-		"mongodbatlas_network_container":                   5,
-		"mongodbatlas_network_peering":                     6,
-		"mongodbatlas_private_ip_mode":                     7,
-		"mongodbatlas_project":                             8,
-		"mongodbatlas_project_ip_whitelist":                9,
+		"mongodbatlas_alert_configuration":                 0,
+		"mongodbatlas_auditing":                            1,
+		"mongodbatlas_cloud_provider_snapshot":             2,
+		"mongodbatlas_cloud_provider_snapshot_restore_job": 3,
+		"mongodbatlas_cluster":                             4,
+		"mongodbatlas_custom_db_role":                      5,
+		"mongodbatlas_database_user":                       6,
+		"mongodbatlas_encryption_at_rest":                  7,
+		"global_cluster_config":                            8,
+		"mongodbatlas_maintenance_window":                  9,
+		"mongodbatlas_network_container":                   10,
+		"mongodbatlas_network_peering":                     11,
+		"mongodbatlas_private_endpoint":                    12,
+		"mongodbatlas_private_endpoint_interface_link":     13,
+		"mongodbatlas_private_ip_mode":                     14,
+		"mongodbatlas_project":                             15,
+		"mongodbatlas_project_ip_whitelist":                16,
+		"mongodbatlas_team":                                17,
+		"mongodbatlas_x509_authentication_database_user":   18,
 	}
 )
 

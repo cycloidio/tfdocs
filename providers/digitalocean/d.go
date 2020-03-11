@@ -227,8 +227,12 @@ var (
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The ID of the Droplet`,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `(Optional) The name of Droplet.`,
+					Description: `(Optional) The name of the Droplet.`,
 				},
 				resource.Attribute{
 					Name:        "tag",

@@ -12,7 +12,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_db_instance",
-			Category:         "UDB Resources",
+			Category:         "UDB",
 			ShortDescription: `Provides a Database instance resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -140,7 +140,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_disk",
-			Category:         "UHost Resources",
+			Category:         "UHost",
 			ShortDescription: `Provides a Cloud Disk resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -207,7 +207,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_disk_attachment",
-			Category:         "UHost Resources",
+			Category:         "UHost",
 			ShortDescription: `Provides a Cloud Disk Attachment resource for attaching Cloud Disk to UHost Instance.`,
 			Description:      ``,
 			Keywords: []string{
@@ -234,7 +234,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_eip",
-			Category:         "UNet Resources",
+			Category:         "UNet",
 			ShortDescription: `Provides an Elastic IP resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -353,7 +353,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_eip_association",
-			Category:         "UNet Resources",
+			Category:         "UNet",
 			ShortDescription: `Provides an EIP Association resource for associating Elastic IP to UHost Instance, Load Balancer, etc..`,
 			Description:      ``,
 			Keywords: []string{
@@ -376,7 +376,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_instance",
-			Category:         "UHost Resources",
+			Category:         "UHost",
 			ShortDescription: `Provides an UHost Instance resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -579,7 +579,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_isolation_group",
-			Category:         "UHost Resources",
+			Category:         "UHost",
 			ShortDescription: `Provides an Isolation Group resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -602,7 +602,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_lb",
-			Category:         "ULB Resources",
+			Category:         "ULB",
 			ShortDescription: `Provides a Load Balancer resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -681,7 +681,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_lb_attachment",
-			Category:         "ULB Resources",
+			Category:         "ULB",
 			ShortDescription: `Provides a Load Balancer Attachment resource for attaching Load Balancer to UHost Instance, etc.`,
 			Description:      ``,
 			Keywords: []string{
@@ -704,7 +704,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port",
-					Description: `(Optional) Port opened on the backend server to receive requests, range: 1-65535, (Default: ` + "`" + `80` + "`" + `). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Optional) The listening port of the backend server, range: 1-65535, (Default: ` + "`" + `80` + "`" + `). Backend server port have the following restrictions: If the LB listener type is ` + "`" + `request_proxy` + "`" + `, the backend serve can add different ports to implement different service instances of the same IP. Else if LB listener type is ` + "`" + `packets_transmit` + "`" + `, the port of the backend server must be consistent with the LB listening port. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "private_ip",
@@ -729,7 +729,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_lb_listener",
-			Category:         "ULB Resources",
+			Category:         "ULB",
 			ShortDescription: `Provides a Load Balancer Listener resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -752,7 +752,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "listen_type",
-					Description: `(Optional) The type of listener. Possible values are ` + "`" + `request_proxy` + "`" + ` and ` + "`" + `packets_transmit` + "`" + `. When ` + "`" + `packets_transmit` + "`" + ` was specified, you need to config the instances by yourself if the instances attach to the load balancer. You may refer to [configuration instruction](https://docs.ucloud.cn/network/ulb/guide/fu-wu-jie-dian-xiang-guan-cao-zuo/editrealserver).`,
+					Description: `(Optional) The type of listener. Possible values are ` + "`" + `request_proxy` + "`" + ` and ` + "`" + `packets_transmit` + "`" + `. When ` + "`" + `packets_transmit` + "`" + ` was specified, you need to config the instances by yourself if the instances attach to the load balancer. You may refer to [configuration instruction](https://docs.ucloud.cn/network/ulb/fast/createulb/vservertype).`,
 				},
 				resource.Attribute{
 					Name:        "port",
@@ -760,7 +760,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "idle_timeout",
-					Description: `(Optional) Amount of time in seconds to wait for the response for in between two sessions if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `request_proxy` + "`" + `, range: 0-86400. (Default: ` + "`" + `60` + "`" + `). Amount of time in seconds to wait for one session if ` + "`" + `listen_type` + "`" + ` is ` + "`" + `packets_transmit` + "`" + `, range: 60-900. The session will be closed as soon as no response if it is ` + "`" + `0` + "`" + `.`,
+					Description: `(Optional) Keep alive timeout of the connection between the client and LB, measured in second. Range: 0-86400 when ` + "`" + `listen_type` + "`" + ` is ` + "`" + `request_proxy` + "`" + `, range: 60-900 when ` + "`" + `listen_type` + "`" + ` is ` + "`" + `packets_transmit` + "`" + ` (Default: ` + "`" + `60` + "`" + `). The connection will be closed as soon as no response between the client and LB if it set by ` + "`" + `0` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "method",
@@ -801,7 +801,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_lb_rule",
-			Category:         "ULB Resources",
+			Category:         "ULB",
 			ShortDescription: `Provides a Load Balancer Rule resource to add content forwarding policies for Load Balancer backend resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -836,7 +836,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_lb_ssl",
-			Category:         "ULB Resources",
+			Category:         "ULB",
 			ShortDescription: `Provides a Load Balancer SSL certificate resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -876,7 +876,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_lb_ssl_attachment",
-			Category:         "ULB Resources",
+			Category:         "ULB",
 			ShortDescription: `Provides a Load Balancer SSL attachment resource for attaching SSL certificate to Load Balancer Listener.`,
 			Description:      ``,
 			Keywords: []string{
@@ -904,12 +904,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_memcache_instance",
-			Category:         "UMem Resources UDB Resources",
+			Category:         "UMem",
 			ShortDescription: `Provides a Memcache instance resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"umem",
-				"udb",
 				"memcache",
 				"instance",
 			},
@@ -1001,7 +1000,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_nat_gateway",
-			Category:         "VPC Resources",
+			Category:         "VPC",
 			ShortDescription: `Provides a Nat Gateway resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1061,7 +1060,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_nat_gateway_rule",
-			Category:         "VPC Resources",
+			Category:         "VPC",
 			ShortDescription: `Provides a Nat Gateway Rule resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1105,12 +1104,11 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_redis_instance",
-			Category:         "UMem Resources UDB Resources",
+			Category:         "UMem",
 			ShortDescription: `Provides a Redis instance resource.`,
 			Description:      ``,
 			Keywords: []string{
 				"umem",
-				"udb",
 				"redis",
 				"instance",
 			},
@@ -1210,7 +1208,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_security_group",
-			Category:         "UNet Resources",
+			Category:         "UNet",
 			ShortDescription: `Provides a Security Group resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1270,7 +1268,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_subnet",
-			Category:         "VPC Resources",
+			Category:         "VPC",
 			ShortDescription: `Provides a Subnet resource under VPC resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1312,8 +1310,55 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "ucloud_udpn_connection",
+			Category:         "UDPN",
+			ShortDescription: `Provides an UDPN Connection resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"udpn",
+				"connection",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bandwidth",
+					Description: `(Optional) Maximum bandwidth to the elastic public network, measured in Mbps (Mega bit per second). range from 2 - 1000M. The default value is "1"`,
+				},
+				resource.Attribute{
+					Name:        "duration",
+					Description: `(Optional) The duration that you will buy the resource, the default value is "1". It is not required when "dynamic" (pay by hour), the value is "0" when pay by month and the instance will be valid till the last day of that month.`,
+				},
+				resource.Attribute{
+					Name:        "charge_type",
+					Description: `(Optional) Charge type. Possible values are: "year" as pay by year, "month" as pay by month, "dynamic" as pay by hour. The default value is "month".`,
+				},
+				resource.Attribute{
+					Name:        "peer_region",
+					Description: `(Optional) The correspondent region of dedicated connection, please refer to the region and [availability zone list](https://docs.ucloud.cn/api/summary/regionlist) and [UDPN price list](https://docs.ucloud.cn/network/udpn/udpn_price). ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for UDPN connection, formatted by RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time for UDPN connection, formatted by RFC3339 time string. ## Import UDPN connection can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_udpn_connection.example udpn-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time of creation for UDPN connection, formatted by RFC3339 time string.`,
+				},
+				resource.Attribute{
+					Name:        "expire_time",
+					Description: `The expiration time for UDPN connection, formatted by RFC3339 time string. ## Import UDPN connection can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import ucloud_udpn_connection.example udpn-abc123456 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "ucloud_vip",
-			Category:         "VPC Resources",
+			Category:         "VPC",
 			ShortDescription: `Provides a VIP resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1364,7 +1409,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_vpc",
-			Category:         "VPC Resources",
+			Category:         "VPC",
 			ShortDescription: `Provides a VPC resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1426,7 +1471,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_vpc_peering_connection",
-			Category:         "VPC Resources",
+			Category:         "VPC",
 			ShortDescription: `Provides an VPC Peering Connection for establishing a connection between multiple VPC.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1453,7 +1498,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_vpn_connection",
-			Category:         "IPSec VPN Resources",
+			Category:         "IPSec VPN",
 			ShortDescription: `Provides a IPSec VPN Gateway Connection resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1585,7 +1630,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_vpn_customer_gateway",
-			Category:         "IPSec VPN Resources",
+			Category:         "IPSec VPN",
 			ShortDescription: `Provides a VPN Customer Gateway resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1626,7 +1671,7 @@ var (
 		&resource.Resource{
 			Name:             "",
 			Type:             "ucloud_vpn_gateway",
-			Category:         "IPSec VPN Resources",
+			Category:         "IPSec VPN",
 			ShortDescription: `Provides a VPN Gateway resource.`,
 			Description:      ``,
 			Keywords: []string{
@@ -1714,12 +1759,13 @@ var (
 		"ucloud_redis_instance":         16,
 		"ucloud_security_group":         17,
 		"ucloud_subnet":                 18,
-		"ucloud_vip":                    19,
-		"ucloud_vpc":                    20,
-		"ucloud_vpc_peering_connection": 21,
-		"ucloud_vpn_connection":         22,
-		"ucloud_vpn_customer_gateway":   23,
-		"ucloud_vpn_gateway":            24,
+		"ucloud_udpn_connection":        19,
+		"ucloud_vip":                    20,
+		"ucloud_vpc":                    21,
+		"ucloud_vpc_peering_connection": 22,
+		"ucloud_vpn_connection":         23,
+		"ucloud_vpn_customer_gateway":   24,
+		"ucloud_vpn_gateway":            25,
 	}
 )
 

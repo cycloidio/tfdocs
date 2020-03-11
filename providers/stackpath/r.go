@@ -333,7 +333,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol",
-					Description: `(Optional) The network port's protocol, either "tcp" or "udp". Defaults to "tcp". ### Volume Claims ` + "`" + `volume_claim` + "`" + ` supports the following arguments:`,
+					Description: `(Optional) The network port's protocol, either "tcp" or "udp". Defaults to "tcp".`,
+				},
+				resource.Attribute{
+					Name:        "enable_implicit_network_policy",
+					Description: `(Optional) Whether or not the network port has access to the public Internet. Defaults to ` + "`" + `false` + "`" + `. ### Volume Claims ` + "`" + `volume_claim` + "`" + ` supports the following arguments:`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -570,12 +574,49 @@ var (
 			},
 			Attributes: []resource.Attribute{},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "stackpath_object_storage_bucket",
+			Category:         "Resources",
+			ShortDescription: `An S3 compatible object storage bucket deployed to StackPath's edge network.`,
+			Description:      ``,
+			Keywords: []string{
+				"object",
+				"storage",
+				"bucket",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "label",
+					Description: `(Required) A human readable label for the bucket. Bucket label only supports (a-z, 0-9, -) and must start/end with a letter or number.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Required) Bucket region (us-east-2 us-west-1 eu-central-1)`,
+				},
+				resource.Attribute{
+					Name:        "visibility",
+					Description: `(Optional) PRIVATE or PUBLIC, defaults to PRIVATE ## Attributes Reference`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_url",
+					Description: `S3 compatible region endpoint for the bucket, e.g. https://s3.us-east-2.stackpathstorage.com ## Import StackPath object storage buckets can be imported by their UUID v4 formatted id. e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import stackpath_object_storage_bucket.bucket bdb77768-2938-4ad8-a736-be5290add801 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "endpoint_url",
+					Description: `S3 compatible region endpoint for the bucket, e.g. https://s3.us-east-2.stackpathstorage.com ## Import StackPath object storage buckets can be imported by their UUID v4 formatted id. e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import stackpath_object_storage_bucket.bucket bdb77768-2938-4ad8-a736-be5290add801 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
 	}
 
 	resourcesMap = map[string]int{
 
 		"stackpath_compute_network_policy": 0,
 		"stackpath_compute_workload":       1,
+		"stackpath_object_storage_bucket":  2,
 	}
 )
 

@@ -285,7 +285,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firmware",
-					Description: `The firmware type for this virtual machine. Can be ` + "`" + `bios` + "`" + ` or ` + "`" + `efi` + "`" + `. ~>`,
+					Description: `The firmware type for this virtual machine. Can be ` + "`" + `bios` + "`" + ` or ` + "`" + `efi` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "guest_ip_addresses",
+					Description: `A list of IP addresses as reported by VMWare tools. ~>`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -331,7 +335,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "firmware",
-					Description: `The firmware type for this virtual machine. Can be ` + "`" + `bios` + "`" + ` or ` + "`" + `efi` + "`" + `. ~>`,
+					Description: `The firmware type for this virtual machine. Can be ` + "`" + `bios` + "`" + ` or ` + "`" + `efi` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "guest_ip_addresses",
+					Description: `A list of IP addresses as reported by VMWare tools. ~>`,
 				},
 			},
 		},

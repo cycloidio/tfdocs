@@ -11,6 +11,362 @@ var (
 
 		&resource.Resource{
 			Name:             "",
+			Type:             "mongodbatlas_alert_configuration",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Alert Configuration.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The ID of the project where the alert configuration will create.`,
+				},
+				resource.Attribute{
+					Name:        "alert_configuration_id",
+					Description: `(Required) Unique identifier for the alert configuration. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Unique identifier of the project that owns this alert configuration.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.`,
+				},
+				resource.Attribute{
+					Name:        "event_type",
+					Description: `The type of event that will trigger an alert. Alert type. Possible values: - Host - ` + "`" + `OUTSIDE_METRIC_THRESHOLD` + "`" + ` - ` + "`" + `HOST_RESTARTED` + "`" + ` - ` + "`" + `HOST_UPGRADED` + "`" + ` - ` + "`" + `HOST_NOW_SECONDARY` + "`" + ` - ` + "`" + `HOST_NOW_PRIMARY` + "`" + ` - Replica set - ` + "`" + `NO_PRIMARY` + "`" + ` - ` + "`" + `TOO_MANY_ELECTIONS` + "`" + ` Sharded cluster - ` + "`" + `CLUSTER_MONGOS_IS_MISSING` + "`" + ` - ` + "`" + `User` + "`" + ` - ` + "`" + `JOINED_GROUP` + "`" + ` - ` + "`" + `REMOVED_FROM_GROUP` + "`" + ` - ` + "`" + `USER_ROLES_CHANGED_AUDIT` + "`" + ` - Project - ` + "`" + `USERS_AWAITING_APPROVAL` + "`" + ` - ` + "`" + `USERS_WITHOUT_MULTI_FACTOR_AUTH` + "`" + ` - ` + "`" + `GROUP_CREATED` + "`" + ` - Team - ` + "`" + `JOINED_TEAM` + "`" + ` - ` + "`" + `REMOVED_FROM_TEAM` + "`" + ` - Organization - ` + "`" + `INVITED_TO_ORG` + "`" + ` - ` + "`" + `JOINED_ORG` + "`" + ` - Data Explorer - ` + "`" + `DATA_EXPLORER` + "`" + ` - ` + "`" + `DATA_EXPLORER_CRUD` + "`" + ` - Billing - ` + "`" + `CREDIT_CARD_ABOUT_TO_EXPIRE` + "`" + ` - ` + "`" + `CHARGE_SUCCEEDED` + "`" + ` - ` + "`" + `INVOICE_CLOSED` + "`" + ` ->`,
+				},
+				resource.Attribute{
+					Name:        "field_name",
+					Description: `Name of the field in the target object to match on. Host alerts support these fields: - ` + "`" + `TYPE_NAME` + "`" + ` - ` + "`" + `HOSTNAME` + "`" + ` - ` + "`" + `PORT` + "`" + ` - ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` - ` + "`" + `REPLICA_SET_NAME` + "`" + ` Replica set alerts support these fields: - ` + "`" + `REPLICA_SET_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` - ` + "`" + `CLUSTER_NAME` + "`" + ` Sharded cluster alerts support these fields: - ` + "`" + `CLUSTER_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` All other types of alerts do not support matchers.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `If omitted, the configuration is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `If omitted, the configuration is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `The operator to test the field’s value. Accepted values are: - ` + "`" + `EQUALS` + "`" + ` - ` + "`" + `NOT_EQUALS` + "`" + ` - ` + "`" + `CONTAINS` + "`" + ` - ` + "`" + `NOT_CONTAINS` + "`" + ` - ` + "`" + `STARTS_WITH` + "`" + ` - ` + "`" + `ENDS_WITH` + "`" + ` - ` + "`" + `REGEX` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `Name of the metric to check.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `Operator to apply when checking the current metric value against the threshold value. Accepted values are: - ` + "`" + `GREATER_THAN` + "`" + ` - ` + "`" + `LESS_THAN` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `Threshold value outside of which an alert will be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "units",
+					Description: `The units for the threshold value. Depends on the type of metric. Accepted values are: - ` + "`" + `RAW` + "`" + ` - ` + "`" + `BITS` + "`" + ` - ` + "`" + `BYTES` + "`" + ` - ` + "`" + `KILOBITS` + "`" + ` - ` + "`" + `KILOBYTES` + "`" + ` - ` + "`" + `MEGABITS` + "`" + ` - ` + "`" + `MEGABYTES` + "`" + ` - ` + "`" + `GIGABITS` + "`" + ` - ` + "`" + `GIGABYTES` + "`" + ` - ` + "`" + `TERABYTES` + "`" + ` - ` + "`" + `PETABYTES` + "`" + ` - ` + "`" + `MILLISECONDS` + "`" + ` - ` + "`" + `SECONDS` + "`" + ` - ` + "`" + `MINUTES` + "`" + ` - ` + "`" + `HOURS` + "`" + ` - ` + "`" + `DAYS` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Notifications Notifications to send when an alert condition is detected.`,
+				},
+				resource.Attribute{
+					Name:        "api_token",
+					Description: `Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "channel_name",
+					Description: `Slack channel name. Required for the SLACK notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "datadog_api_key",
+					Description: `Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "datadog_region",
+					Description: `Region that indicates which API URL to use. Accepted regions are: ` + "`" + `US` + "`" + `, ` + "`" + `EU` + "`" + `. The default Datadog region is US.`,
+				},
+				resource.Attribute{
+					Name:        "delay_min",
+					Description: `Number of minutes to wait after an alert condition is detected before sending out the first notification.`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `Email address to which alert notifications are sent. Required for the EMAIL notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "email_enabled",
+					Description: `Flag indicating if email notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+				},
+				resource.Attribute{
+					Name:        "flowdock_api_token",
+					Description: `The Flowdock personal API token. Required for the ` + "`" + `FLOWDOCK` + "`" + ` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "flow_name",
+					Description: `Flowdock flow name in lower-case letters. Required for the ` + "`" + `FLOWDOCK` + "`" + ` notifications type`,
+				},
+				resource.Attribute{
+					Name:        "interval_min",
+					Description: `Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "mobile_number",
+					Description: `Mobile number to which alert notifications are sent. Required for the SMS notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "ops_genie_api_key",
+					Description: `Opsgenie API Key. Required for the ` + "`" + `OPS_GENIE` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "ops_genie_region",
+					Description: `Region that indicates which API URL to use. Accepted regions are: ` + "`" + `US` + "`" + ` ,` + "`" + `EU` + "`" + `. The default Opsgenie region is US.`,
+				},
+				resource.Attribute{
+					Name:        "org_name",
+					Description: `Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "sms_enabled",
+					Description: `Flag indicating if text message notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `Unique identifier of a team.`,
+				},
+				resource.Attribute{
+					Name:        "type_name",
+					Description: `Type of alert notification. Accepted values are: - ` + "`" + `DATADOG` + "`" + ` - ` + "`" + `EMAIL` + "`" + ` - ` + "`" + `FLOWDOCK` + "`" + ` - ` + "`" + `GROUP` + "`" + ` (Project) - ` + "`" + `OPS_GENIE` + "`" + ` - ` + "`" + `ORG` + "`" + ` - ` + "`" + `PAGER_DUTY` + "`" + ` - ` + "`" + `SLACK` + "`" + ` - ` + "`" + `SMS` + "`" + ` - ` + "`" + `TEAM` + "`" + ` - ` + "`" + `USER` + "`" + ` - ` + "`" + `VICTOR_OPS` + "`" + ` - ` + "`" + `WEBHOOK` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the ` + "`" + `USER` + "`" + ` notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "victor_ops_api_key",
+					Description: `VictorOps API key. Required for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "victor_ops_routing_key",
+					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key. See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `Unique identifier of the project that owns this alert configuration.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `If set to true, the alert configuration is enabled. If enabled is not exported it is set to false.`,
+				},
+				resource.Attribute{
+					Name:        "event_type",
+					Description: `The type of event that will trigger an alert. Alert type. Possible values: - Host - ` + "`" + `OUTSIDE_METRIC_THRESHOLD` + "`" + ` - ` + "`" + `HOST_RESTARTED` + "`" + ` - ` + "`" + `HOST_UPGRADED` + "`" + ` - ` + "`" + `HOST_NOW_SECONDARY` + "`" + ` - ` + "`" + `HOST_NOW_PRIMARY` + "`" + ` - Replica set - ` + "`" + `NO_PRIMARY` + "`" + ` - ` + "`" + `TOO_MANY_ELECTIONS` + "`" + ` Sharded cluster - ` + "`" + `CLUSTER_MONGOS_IS_MISSING` + "`" + ` - ` + "`" + `User` + "`" + ` - ` + "`" + `JOINED_GROUP` + "`" + ` - ` + "`" + `REMOVED_FROM_GROUP` + "`" + ` - ` + "`" + `USER_ROLES_CHANGED_AUDIT` + "`" + ` - Project - ` + "`" + `USERS_AWAITING_APPROVAL` + "`" + ` - ` + "`" + `USERS_WITHOUT_MULTI_FACTOR_AUTH` + "`" + ` - ` + "`" + `GROUP_CREATED` + "`" + ` - Team - ` + "`" + `JOINED_TEAM` + "`" + ` - ` + "`" + `REMOVED_FROM_TEAM` + "`" + ` - Organization - ` + "`" + `INVITED_TO_ORG` + "`" + ` - ` + "`" + `JOINED_ORG` + "`" + ` - Data Explorer - ` + "`" + `DATA_EXPLORER` + "`" + ` - ` + "`" + `DATA_EXPLORER_CRUD` + "`" + ` - Billing - ` + "`" + `CREDIT_CARD_ABOUT_TO_EXPIRE` + "`" + ` - ` + "`" + `CHARGE_SUCCEEDED` + "`" + ` - ` + "`" + `INVOICE_CLOSED` + "`" + ` ->`,
+				},
+				resource.Attribute{
+					Name:        "field_name",
+					Description: `Name of the field in the target object to match on. Host alerts support these fields: - ` + "`" + `TYPE_NAME` + "`" + ` - ` + "`" + `HOSTNAME` + "`" + ` - ` + "`" + `PORT` + "`" + ` - ` + "`" + `HOSTNAME_AND_PORT` + "`" + ` - ` + "`" + `REPLICA_SET_NAME` + "`" + ` Replica set alerts support these fields: - ` + "`" + `REPLICA_SET_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` - ` + "`" + `CLUSTER_NAME` + "`" + ` Sharded cluster alerts support these fields: - ` + "`" + `CLUSTER_NAME` + "`" + ` - ` + "`" + `SHARD_NAME` + "`" + ` All other types of alerts do not support matchers.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `If omitted, the configuration is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `If omitted, the configuration is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `The operator to test the field’s value. Accepted values are: - ` + "`" + `EQUALS` + "`" + ` - ` + "`" + `NOT_EQUALS` + "`" + ` - ` + "`" + `CONTAINS` + "`" + ` - ` + "`" + `NOT_CONTAINS` + "`" + ` - ` + "`" + `STARTS_WITH` + "`" + ` - ` + "`" + `ENDS_WITH` + "`" + ` - ` + "`" + `REGEX` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `Value to test with the specified operator. If ` + "`" + `field_name` + "`" + ` is set to TYPE_NAME, you can match on the following values: - ` + "`" + `PRIMARY` + "`" + ` - ` + "`" + `SECONDARY` + "`" + ` - ` + "`" + `STANDALONE` + "`" + ` - ` + "`" + `CONFIG` + "`" + ` - ` + "`" + `MONGOS` + "`" + ` ### Metric Threshold The threshold that causes an alert to be triggered. Required if ` + "`" + `event_type_name` + "`" + ` : "OUTSIDE_METRIC_THRESHOLD".`,
+				},
+				resource.Attribute{
+					Name:        "metric_name",
+					Description: `Name of the metric to check.`,
+				},
+				resource.Attribute{
+					Name:        "operator",
+					Description: `Operator to apply when checking the current metric value against the threshold value. Accepted values are: - ` + "`" + `GREATER_THAN` + "`" + ` - ` + "`" + `LESS_THAN` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "threshold",
+					Description: `Threshold value outside of which an alert will be triggered.`,
+				},
+				resource.Attribute{
+					Name:        "units",
+					Description: `The units for the threshold value. Depends on the type of metric. Accepted values are: - ` + "`" + `RAW` + "`" + ` - ` + "`" + `BITS` + "`" + ` - ` + "`" + `BYTES` + "`" + ` - ` + "`" + `KILOBITS` + "`" + ` - ` + "`" + `KILOBYTES` + "`" + ` - ` + "`" + `MEGABITS` + "`" + ` - ` + "`" + `MEGABYTES` + "`" + ` - ` + "`" + `GIGABITS` + "`" + ` - ` + "`" + `GIGABYTES` + "`" + ` - ` + "`" + `TERABYTES` + "`" + ` - ` + "`" + `PETABYTES` + "`" + ` - ` + "`" + `MILLISECONDS` + "`" + ` - ` + "`" + `SECONDS` + "`" + ` - ` + "`" + `MINUTES` + "`" + ` - ` + "`" + `HOURS` + "`" + ` - ` + "`" + `DAYS` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `This must be set to AVERAGE. Atlas computes the current metric value as an average. ### Notifications Notifications to send when an alert condition is detected.`,
+				},
+				resource.Attribute{
+					Name:        "api_token",
+					Description: `Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "channel_name",
+					Description: `Slack channel name. Required for the SLACK notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "datadog_api_key",
+					Description: `Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "datadog_region",
+					Description: `Region that indicates which API URL to use. Accepted regions are: ` + "`" + `US` + "`" + `, ` + "`" + `EU` + "`" + `. The default Datadog region is US.`,
+				},
+				resource.Attribute{
+					Name:        "delay_min",
+					Description: `Number of minutes to wait after an alert condition is detected before sending out the first notification.`,
+				},
+				resource.Attribute{
+					Name:        "email_address",
+					Description: `Email address to which alert notifications are sent. Required for the EMAIL notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "email_enabled",
+					Description: `Flag indicating if email notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+				},
+				resource.Attribute{
+					Name:        "flowdock_api_token",
+					Description: `The Flowdock personal API token. Required for the ` + "`" + `FLOWDOCK` + "`" + ` notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "flow_name",
+					Description: `Flowdock flow name in lower-case letters. Required for the ` + "`" + `FLOWDOCK` + "`" + ` notifications type`,
+				},
+				resource.Attribute{
+					Name:        "interval_min",
+					Description: `Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5.`,
+				},
+				resource.Attribute{
+					Name:        "mobile_number",
+					Description: `Mobile number to which alert notifications are sent. Required for the SMS notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "ops_genie_api_key",
+					Description: `Opsgenie API Key. Required for the ` + "`" + `OPS_GENIE` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.`,
+				},
+				resource.Attribute{
+					Name:        "ops_genie_region",
+					Description: `Region that indicates which API URL to use. Accepted regions are: ` + "`" + `US` + "`" + ` ,` + "`" + `EU` + "`" + `. The default Opsgenie region is US.`,
+				},
+				resource.Attribute{
+					Name:        "org_name",
+					Description: `Flowdock organization name in lower-case letters. This is the name that appears after www.flowdock.com/app/ in the URL string. Required for the FLOWDOCK notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "service_key",
+					Description: `PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "sms_enabled",
+					Description: `Flag indicating if text message notifications should be sent. Configurable for ` + "`" + `ORG` + "`" + `, ` + "`" + `GROUP` + "`" + `, and ` + "`" + `USER` + "`" + ` notifications types.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `Unique identifier of a team.`,
+				},
+				resource.Attribute{
+					Name:        "type_name",
+					Description: `Type of alert notification. Accepted values are: - ` + "`" + `DATADOG` + "`" + ` - ` + "`" + `EMAIL` + "`" + ` - ` + "`" + `FLOWDOCK` + "`" + ` - ` + "`" + `GROUP` + "`" + ` (Project) - ` + "`" + `OPS_GENIE` + "`" + ` - ` + "`" + `ORG` + "`" + ` - ` + "`" + `PAGER_DUTY` + "`" + ` - ` + "`" + `SLACK` + "`" + ` - ` + "`" + `SMS` + "`" + ` - ` + "`" + `TEAM` + "`" + ` - ` + "`" + `USER` + "`" + ` - ` + "`" + `VICTOR_OPS` + "`" + ` - ` + "`" + `WEBHOOK` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the ` + "`" + `USER` + "`" + ` notifications type.`,
+				},
+				resource.Attribute{
+					Name:        "victor_ops_api_key",
+					Description: `VictorOps API key. Required for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.`,
+				},
+				resource.Attribute{
+					Name:        "victor_ops_routing_key",
+					Description: `VictorOps routing key. Optional for the ` + "`" + `VICTOR_OPS` + "`" + ` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key. See detailed information for arguments and attributes: [MongoDB API Alert Configuration](https://docs.atlas.mongodb.com/reference/api/alert-configurations-get-config/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_auditing",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Auditing.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique ID for the project to create the database user. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "configuration_type",
+					Description: `Denotes the configuration method for the audit filter. Possible values are: NONE - auditing not configured for the project.m FILTER_BUILDER - auditing configured via Atlas UI filter builderm FILTER_JSON - auditing configured via Atlas custom filter or API.`,
+				},
+				resource.Attribute{
+					Name:        "audit_filter",
+					Description: `Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess`,
+				},
+				resource.Attribute{
+					Name:        "audit_authorization_success",
+					Description: `JSON-formatted audit filter used by the project`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Denotes whether or not the project associated with the {GROUP-ID} has database auditing enabled. See detailed information for arguments and attributes: [MongoDB API Auditing](https://docs.atlas.mongodb.com/reference/api/auditing/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "configuration_type",
+					Description: `Denotes the configuration method for the audit filter. Possible values are: NONE - auditing not configured for the project.m FILTER_BUILDER - auditing configured via Atlas UI filter builderm FILTER_JSON - auditing configured via Atlas custom filter or API.`,
+				},
+				resource.Attribute{
+					Name:        "audit_filter",
+					Description: `Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see auditAuthorizationSuccess`,
+				},
+				resource.Attribute{
+					Name:        "audit_authorization_success",
+					Description: `JSON-formatted audit filter used by the project`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `Denotes whether or not the project associated with the {GROUP-ID} has database auditing enabled. See detailed information for arguments and attributes: [MongoDB API Auditing](https://docs.atlas.mongodb.com/reference/api/auditing/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "mongodbatlas_cloud_provider_snapshot",
 			Category:         "Data Sources",
 			ShortDescription: `Provides an Cloud Provider Snapshot Datasource.`,
@@ -518,6 +874,10 @@ var (
 					Description: `Flag that indicates whether the cluster is paused or not.`,
 				},
 				resource.Attribute{
+					Name:        "pit_enabled",
+					Description: `Flag that indicates if the cluster uses Point-in-Time backups.`,
+				},
+				resource.Attribute{
 					Name:        "srv_address",
 					Description: `Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.`,
 				},
@@ -647,7 +1007,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that was set.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that represents the key. ### Plugin Contains a key-value pair that tags that the cluster was created by a Terraform Provider and notes the version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the current plugin`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current version of the plugin. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -672,6 +1048,10 @@ var (
 					Description: `Flag that indicates whether the cluster is paused or not.`,
 				},
 				resource.Attribute{
+					Name:        "pit_enabled",
+					Description: `Flag that indicates if the cluster uses Point-in-Time backups.`,
+				},
+				resource.Attribute{
 					Name:        "srv_address",
 					Description: `Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.`,
 				},
@@ -801,7 +1181,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that was set.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that represents the key. ### Plugin Contains a key-value pair that tags that the cluster was created by a Terraform Provider and notes the version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the current plugin`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current version of the plugin. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 		},
@@ -846,6 +1242,10 @@ var (
 					Description: `Flag that indicates whether the cluster is paused or not.`,
 				},
 				resource.Attribute{
+					Name:        "pit_enabled",
+					Description: `Flag that indicates if the cluster uses Point-in-Time backups.`,
+				},
+				resource.Attribute{
 					Name:        "srv_address",
 					Description: `Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.`,
 				},
@@ -971,7 +1371,23 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that was set.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that represents the key. ### Plugin Contains a key-value pair that tags that the cluster was created by a Terraform Provider and notes the version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the current plugin`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current version of the plugin. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1004,6 +1420,10 @@ var (
 					Description: `Flag that indicates whether the cluster is paused or not.`,
 				},
 				resource.Attribute{
+					Name:        "pit_enabled",
+					Description: `Flag that indicates if the cluster uses Point-in-Time backups.`,
+				},
+				resource.Attribute{
 					Name:        "srv_address",
 					Description: `Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.`,
 				},
@@ -1129,7 +1549,79 @@ var (
 				},
 				resource.Attribute{
 					Name:        "analytics_nodes",
-					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+					Description: `Indicates the number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. ### Labels Contains key-value pairs that tag and categorize the cluster. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that was set.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that represents the key. ### Plugin Contains a key-value pair that tags that the cluster was created by a Terraform Provider and notes the version.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the current plugin`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `The current version of the plugin. See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_custom_db_roles",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Custom DB Roles.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) The unique ID for the project to get all custom db roles. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `Autogenerated Unique ID for this data source.`,
+				},
+				resource.Attribute{
+					Name:        "results",
+					Description: `A list where each represents a custom db roles. ### Actions Each object in the actions array represents an individual privilege action granted by the role. It is an required field.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "resources.#.collection",
+					Description: `(Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Autogenerated Unique ID for this data source.`,
+				},
+				resource.Attribute{
+					Name:        "results",
+					Description: `A list where each represents a custom db roles. ### Actions Each object in the actions array represents an individual privilege action granted by the role. It is an required field.`,
+				},
+				resource.Attribute{
+					Name:        "action",
+					Description: `(Required) Name of the privilege action. For a complete list of actions available in the Atlas API, see Custom Role Actions.`,
+				},
+				resource.Attribute{
+					Name:        "resources",
+					Description: `(Required) Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "resources.#.collection",
+					Description: `(Optional) Collection on which the action is granted. If this value is an empty string, the action is granted on all collections within the database specified in the actions.resources.db field.`,
 				},
 			},
 		},
@@ -1147,7 +1639,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The unique ID for the project to create the database user. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The unique ID for the project to create the database user.`,
+				},
+				resource.Attribute{
+					Name:        "auth_database_name",
+					Description: `(Required) The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1158,8 +1654,8 @@ var (
 					Description: `List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See [Roles](#roles) below for more details.`,
 				},
 				resource.Attribute{
-					Name:        "database_name",
-					Description: `The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Name:        "x509_type",
+					Description: `X.509 method by which the provided username is authenticated. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1171,7 +1667,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "collection_name",
-					Description: `Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/) Documentation for more information.`,
+					Description: `Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). ### Labels Containing key-value pairs that tag and categorize the database user. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that you want to write.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that you want to write. See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/) Documentation for more information.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1184,8 +1688,8 @@ var (
 					Description: `List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See [Roles](#roles) below for more details.`,
 				},
 				resource.Attribute{
-					Name:        "database_name",
-					Description: `The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Name:        "x509_type",
+					Description: `X.509 method by which the provided username is authenticated. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1197,7 +1701,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "collection_name",
-					Description: `Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/) Documentation for more information.`,
+					Description: `Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). ### Labels Containing key-value pairs that tag and categorize the database user. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that you want to write.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that you want to write. See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/) Documentation for more information.`,
 				},
 			},
 		},
@@ -1234,8 +1746,12 @@ var (
 					Description: `List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See [Roles](#roles) below for more details.`,
 				},
 				resource.Attribute{
-					Name:        "database_name",
-					Description: `The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Name:        "auth_database_name",
+					Description: `The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.`,
+				},
+				resource.Attribute{
+					Name:        "x509_type",
+					Description: `X.509 method by which the provided username is authenticated. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1247,7 +1763,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "collection_name",
-					Description: `Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/) Documentation for more information.`,
+					Description: `Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). ### Labels Containing key-value pairs that tag and categorize the database user. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that you want to write.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that you want to write. See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/) Documentation for more information.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -1272,8 +1796,12 @@ var (
 					Description: `List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See [Roles](#roles) below for more details.`,
 				},
 				resource.Attribute{
-					Name:        "database_name",
-					Description: `The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
+					Name:        "auth_database_name",
+					Description: `The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is always the admin database.`,
+				},
+				resource.Attribute{
+					Name:        "x509_type",
+					Description: `X.509 method by which the provided username is authenticated. ### Roles Block mapping a user's role to a database / collection. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. ->`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -1285,7 +1813,63 @@ var (
 				},
 				resource.Attribute{
 					Name:        "collection_name",
-					Description: `Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/) Documentation for more information.`,
+					Description: `Collection for which the role applies. You can specify a collection for the ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + ` roles. If you do not specify a collection for ` + "`" + `read` + "`" + ` and ` + "`" + `readWrite` + "`" + `, the role applies to all collections in the database (excluding some collections in the ` + "`" + `system` + "`" + `. database). ### Labels Containing key-value pairs that tag and categorize the database user. Each key and value has a maximum length of 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `The key that you want to write.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `The value that you want to write. See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/database-users-get-single-user/) Documentation for more information.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_maintenance_window",
+			Category:         "Data Sources",
+			ShortDescription: `Provides a Maintenance Window Datasource.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `The unique identifier of the project for the Maintenance Window. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "day_of_week",
+					Description: `Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.`,
+				},
+				resource.Attribute{
+					Name:        "hour_of_day",
+					Description: `Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).`,
+				},
+				resource.Attribute{
+					Name:        "start_asap",
+					Description: `Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_deferrals",
+					Description: `Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "day_of_week",
+					Description: `Day of the week when you would like the maintenance window to start as a 1-based integer: S=1, M=2, T=3, W=4, T=5, F=6, S=7.`,
+				},
+				resource.Attribute{
+					Name:        "hour_of_day",
+					Description: `Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC).`,
+				},
+				resource.Attribute{
+					Name:        "start_asap",
+					Description: `Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.`,
+				},
+				resource.Attribute{
+					Name:        "number_of_deferrals",
+					Description: `Number of times the current maintenance event for this project has been deferred, you can set a maximum of 2 deferrals. For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)`,
 				},
 			},
 		},
@@ -1399,7 +1983,11 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "project_id",
-					Description: `(Required) The unique ID for the project to create the database user. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+					Description: `(Required) The unique ID for the project to create the database user.`,
+				},
+				resource.Attribute{
+					Name:        "provider_name",
+					Description: `(Required) Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -1857,22 +2445,407 @@ var (
 				},
 			},
 		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_private_endpoint",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Private Endpoint.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Unique identifier for the project.`,
+				},
+				resource.Attribute{
+					Name:        "private_link_id",
+					Description: `(Required) Unique identifier of the AWS PrivateLink connection. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_service_name",
+					Description: `Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.`,
+				},
+				resource.Attribute{
+					Name:        "interface_endpoints",
+					Description: `Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the AWS PrivateLink connection. Returns one of the following values:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "endpoint_service_name",
+					Description: `Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.`,
+				},
+				resource.Attribute{
+					Name:        "interface_endpoints",
+					Description: `Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Status of the AWS PrivateLink connection. Returns one of the following values:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_private_endpoint_interface_link",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Private Endpoint Link.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Unique identifier for the project.`,
+				},
+				resource.Attribute{
+					Name:        "private_link_id",
+					Description: `(Required) Unique identifier of the AWS PrivateLink connection.`,
+				},
+				resource.Attribute{
+					Name:        "interface_endpoints",
+					Description: `(Required) Unique identifiers of the interface endpoints in your VPC. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "delete_requested",
+					Description: `Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `Error message pertaining to the interface endpoint. Returns null if there are no errors.`,
+				},
+				resource.Attribute{
+					Name:        "connection_status",
+					Description: `Status of the interface endpoint. Returns one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "PENDING_ACCEPTANCE",
+					Description: `AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "PENDING",
+					Description: `AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "AVAILABLE",
+					Description: `Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.`,
+				},
+				resource.Attribute{
+					Name:        "REJECTED",
+					Description: `AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.`,
+				},
+				resource.Attribute{
+					Name:        "DELETING",
+					Description: `Atlas is removing the interface endpoint from the private endpoint connection. See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/private-endpoint-get-one-interface-endpoint/) Documentation for more information.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "delete_requested",
+					Description: `Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.`,
+				},
+				resource.Attribute{
+					Name:        "error_message",
+					Description: `Error message pertaining to the interface endpoint. Returns null if there are no errors.`,
+				},
+				resource.Attribute{
+					Name:        "connection_status",
+					Description: `Status of the interface endpoint. Returns one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "NONE",
+					Description: `Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.`,
+				},
+				resource.Attribute{
+					Name:        "PENDING_ACCEPTANCE",
+					Description: `AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "PENDING",
+					Description: `AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.`,
+				},
+				resource.Attribute{
+					Name:        "AVAILABLE",
+					Description: `Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.`,
+				},
+				resource.Attribute{
+					Name:        "REJECTED",
+					Description: `AWS failed to establish a connection between Atlas VPC resources to the VPC endpoint in your VPC.`,
+				},
+				resource.Attribute{
+					Name:        "DELETING",
+					Description: `Atlas is removing the interface endpoint from the private endpoint connection. See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/private-endpoint-get-one-interface-endpoint/) Documentation for more information.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_project",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Project.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Optional) The unique ID for the project.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The unique ID for the project. ~>`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the project you want to create. (Cannot be changed via this Provider after creation.)`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The ID of the organization you want to create the project within.`,
+				},
+				resource.Attribute{
+					Name:        "teams.#.team_id",
+					Description: `The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.`,
+				},
+				resource.Attribute{
+					Name:        "teams.#.role_names",
+					Description: `Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The following are valid roles:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the project you want to create. (Cannot be changed via this Provider after creation.)`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The ID of the organization you want to create the project within.`,
+				},
+				resource.Attribute{
+					Name:        "teams.#.team_id",
+					Description: `The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.`,
+				},
+				resource.Attribute{
+					Name:        "teams.#.role_names",
+					Description: `Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The following are valid roles:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_projects",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Projects.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `Autogenerated Unique ID for this data source.`,
+				},
+				resource.Attribute{
+					Name:        "total_count",
+					Description: `Represents the total of the projects`,
+				},
+				resource.Attribute{
+					Name:        "results",
+					Description: `A list where each represents a Projects. ### Project`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the project you want to create. (Cannot be changed via this Provider after creation.)`,
+				},
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `The ID of the organization you want to create the project within.`,
+				},
+				resource.Attribute{
+					Name:        "teams.#.team_id",
+					Description: `The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.`,
+				},
+				resource.Attribute{
+					Name:        "teams.#.role_names",
+					Description: `Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The following are valid roles:`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_team",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Team.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "org_id",
+					Description: `(Required) The unique identifier for the organization you want to associate the team with.`,
+				},
+				resource.Attribute{
+					Name:        "team_id",
+					Description: `(Required) The unique identifier for the team. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the team you want to create.`,
+				},
+				resource.Attribute{
+					Name:        "usernames",
+					Description: `The users who are part of the organization. See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The Terraform's unique identifier used internally for state management.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The name of the team you want to create.`,
+				},
+				resource.Attribute{
+					Name:        "usernames",
+					Description: `The users who are part of the organization. See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "mongodbatlas_x509_authentication_database_user",
+			Category:         "Data Sources",
+			ShortDescription: `Describes a Custom DB Role.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project_id",
+					Description: `(Required) Identifier for the Atlas project associated with the X.509 configuration.`,
+				},
+				resource.Attribute{
+					Name:        "username",
+					Description: `(Optional) Username of the database user to create a certificate for. ## Attributes Reference In addition to all arguments above, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "current_certificate",
+					Description: `Contains the last X.509 certificate and private key created for a database user. #### Certificates`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `Array of objects where each details one unexpired database user certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.id",
+					Description: `Serial number of this certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.created_at",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when Atlas created this X.509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.group_id",
+					Description: `Unique identifier of the Atlas project to which this certificate belongs.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.not_after",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.subject",
+					Description: `Fully distinguished name of the database user to which this certificate belongs. To learn more, see RFC 2253. See [MongoDB Atlas - X509 User Certificates](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) and [MongoDB Atlas - Current X509 Configuratuion](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-current/) Documentation for more information.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "current_certificate",
+					Description: `Contains the last X.509 certificate and private key created for a database user. #### Certificates`,
+				},
+				resource.Attribute{
+					Name:        "certificates",
+					Description: `Array of objects where each details one unexpired database user certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.id",
+					Description: `Serial number of this certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.created_at",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when Atlas created this X.509 certificate.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.group_id",
+					Description: `Unique identifier of the Atlas project to which this certificate belongs.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.not_after",
+					Description: `Timestamp in ISO 8601 date and time format in UTC when this certificate expires.`,
+				},
+				resource.Attribute{
+					Name:        "certificates.#.subject",
+					Description: `Fully distinguished name of the database user to which this certificate belongs. To learn more, see RFC 2253. See [MongoDB Atlas - X509 User Certificates](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/) and [MongoDB Atlas - Current X509 Configuratuion](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-current/) Documentation for more information.`,
+				},
+			},
+		},
 	}
 
 	dataSourcesMap = map[string]int{
 
-		"mongodbatlas_cloud_provider_snapshot":              0,
-		"mongodbatlas_cloud_provider_snapshot_restore_job":  1,
-		"mongodbatlas_cloud_provider_snapshot_restore_jobs": 2,
-		"mongodbatlas_cloud_provider_snapshots":             3,
-		"mongodbatlas_cluster":                              4,
-		"mongodbatlas_clusters":                             5,
-		"mongodbatlas_database_user":                        6,
-		"mongodbatlas_database_users":                       7,
-		"mongodbatlas_network_container":                    8,
-		"mongodbatlas_network_containers":                   9,
-		"mongodbatlas_network_peering":                      10,
-		"mongodbatlas_network_peerings":                     11,
+		"mongodbatlas_alert_configuration":                  0,
+		"mongodbatlas_auditing":                             1,
+		"mongodbatlas_cloud_provider_snapshot":              2,
+		"mongodbatlas_cloud_provider_snapshot_restore_job":  3,
+		"mongodbatlas_cloud_provider_snapshot_restore_jobs": 4,
+		"mongodbatlas_cloud_provider_snapshots":             5,
+		"mongodbatlas_cluster":                              6,
+		"mongodbatlas_clusters":                             7,
+		"mongodbatlas_custom_db_roles":                      8,
+		"mongodbatlas_database_user":                        9,
+		"mongodbatlas_database_users":                       10,
+		"mongodbatlas_maintenance_window":                   11,
+		"mongodbatlas_network_container":                    12,
+		"mongodbatlas_network_containers":                   13,
+		"mongodbatlas_network_peering":                      14,
+		"mongodbatlas_network_peerings":                     15,
+		"mongodbatlas_private_endpoint":                     16,
+		"mongodbatlas_private_endpoint_interface_link":      17,
+		"mongodbatlas_project":                              18,
+		"mongodbatlas_projects":                             19,
+		"mongodbatlas_team":                                 20,
+		"mongodbatlas_x509_authentication_database_user":    21,
 	}
 )
 

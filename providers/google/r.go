@@ -103,10 +103,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "os_type",
-					Description: `(Required) The operating system type of the device. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import AccessLevel can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_access_level.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
+					Description: `(Required) The operating system type of the device. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import AccessLevel can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_access_level.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import AccessLevel can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_access_level.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -133,6 +142,10 @@ var (
 					Description: `(Required) Human readable title. Does not affect behavior. - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Resource name of the AccessPolicy. Format: {policy_id}`,
 				},
@@ -146,6 +159,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Resource name of the AccessPolicy. Format: {policy_id}`,
@@ -213,6 +230,10 @@ var (
 					Description: `(Optional) GCP services that are subject to the Service Perimeter restrictions. Must contain a list of services. For example, if ` + "`" + `storage.googleapis.com` + "`" + ` is specified, access to the storage buckets inside the perimeter must meet the perimeter's access restrictions. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Time the AccessPolicy was created in UTC.`,
 				},
@@ -223,12 +244,53 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Time the AccessPolicy was created in UTC.`,
 				},
 				resource.Attribute{
 					Name:        "update_time",
 					Description: `Time the AccessPolicy was updated in UTC. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import ServicePerimeter can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_service_perimeter.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_access_context_manager_service_perimeter_resource",
+			Category:         "Google Access Context Manager / VPC Service Control Resources",
+			ShortDescription: `Allows configuring a single GCP resource that should be inside of a service perimeter.`,
+			Description:      ``,
+			Keywords: []string{
+				"access",
+				"context",
+				"manager",
+				"vpc",
+				"service",
+				"control",
+				"perimeter",
+				"resource",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "resource",
+					Description: `(Required) A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format: projects/{project_number}`,
+				},
+				resource.Attribute{
+					Name:        "perimeter_name",
+					Description: `(Required) The name of the Service Perimeter to add this resource to. - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{perimeter_name}}/{{resource}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ServicePerimeterResource can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_service_perimeter_resource.default {{perimeter_name}}/{{resource}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{perimeter_name}}/{{resource}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ServicePerimeterResource can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_access_context_manager_service_perimeter_resource.default {{perimeter_name}}/{{resource}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
 		},
@@ -269,6 +331,10 @@ var (
 					Description: `(Required) Set to false to use the legacy health check instead of the readiness and liveness checks. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Unique name of the app, usually ` + "`" + `apps/{PROJECT_ID}` + "`" + ``,
 				},
@@ -298,6 +364,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Unique name of the app, usually ` + "`" + `apps/{PROJECT_ID}` + "`" + ``,
@@ -361,10 +431,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ApplicationUrlDispatchRules can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_application_url_dispatch_rules.default {{project}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ApplicationUrlDispatchRules can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_application_url_dispatch_rules.default {{project}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ApplicationUrlDispatchRules can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_application_url_dispatch_rules.default {{project}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -408,6 +487,10 @@ var (
 					Description: `ID of the managed ` + "`" + `AuthorizedCertificate` + "`" + ` resource currently being provisioned, if applicable. Until the new managed certificate has been successfully provisioned, the previous SSL state will be preserved. Once the provisioning process completes, the ` + "`" + `certificateId` + "`" + ` field will reflect the new managed certificate and this field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the ` + "`" + `certificateId` + "`" + ` field with an update request. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `apps/{{project}}/domainMappings/{{domain_name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Full path to the DomainMapping resource in the API. Example: apps/myapp/domainMapping/example.com.`,
 				},
@@ -429,6 +512,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `apps/{{project}}/domainMappings/{{domain_name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Full path to the DomainMapping resource in the API. Example: apps/myapp/domainMapping/example.com.`,
@@ -482,15 +569,73 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FirewallRule can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_firewall_rule.default apps/{{project}}/firewall/ingressRules/{{priority}} $ terraform import google_app_engine_firewall_rule.default {{project}}/{{priority}} $ terraform import google_app_engine_firewall_rule.default {{priority}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `apps/{{project}}/firewall/ingressRules/{{priority}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FirewallRule can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_firewall_rule.default apps/{{project}}/firewall/ingressRules/{{priority}} $ terraform import google_app_engine_firewall_rule.default {{project}}/{{priority}} $ terraform import google_app_engine_firewall_rule.default {{priority}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `apps/{{project}}/firewall/ingressRules/{{priority}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FirewallRule can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_firewall_rule.default apps/{{project}}/firewall/ingressRules/{{priority}} $ terraform import google_app_engine_firewall_rule.default {{project}}/{{priority}} $ terraform import google_app_engine_firewall_rule.default {{priority}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "google_app_engine_standard_app_version",
-			Category:         "Google App Engine Resources",
+			Category:         "Google App Engine Resources Google App Engine Resources",
+			ShortDescription: `Traffic routing configuration for versions within a single service.`,
+			Description:      ``,
+			Keywords: []string{
+				"app",
+				"engine",
+				"standard",
+				"version",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Required) The name of the service these settings apply to.`,
+				},
+				resource.Attribute{
+					Name:        "split",
+					Description: `(Required) Mapping that defines fractional HTTP traffic diversion to different versions within the service. Structure is documented below. The ` + "`" + `split` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "shard_by",
+					Description: `(Optional) Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.`,
+				},
+				resource.Attribute{
+					Name:        "allocations",
+					Description: `(Required) Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits. - - -`,
+				},
+				resource.Attribute{
+					Name:        "migrate_traffic",
+					Description: `(Optional) If set to true traffic will be migrated to this version.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `apps/{{project}}/services/{{service}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ServiceSplitTraffic can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_service_split_traffic.default apps/{{project}}/services/{{service}} $ terraform import google_app_engine_service_split_traffic.default {{project}}/{{service}} $ terraform import google_app_engine_service_split_traffic.default {{service}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `apps/{{project}}/services/{{service}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ServiceSplitTraffic can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_service_split_traffic.default apps/{{project}}/services/{{service}} $ terraform import google_app_engine_service_split_traffic.default {{project}}/{{service}} $ terraform import google_app_engine_service_split_traffic.default {{service}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_app_engine_standard_app_version",
+			Category:         "Google App Engine Resources Google App Engine Resources",
 			ShortDescription: `Standard App Version resource to create a new version of standard GAE Application.`,
 			Description:      ``,
 			Keywords: []string{
@@ -657,11 +802,19 @@ var (
 					Description: `(Required) The format should be a shell command that can be fed to bash -c. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `apps/{{project}}/services/{{service}}/versions/{{version_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Full path to the Version resource in the API. Example, "v1". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import StandardAppVersion can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_standard_app_version.default apps/{{project}}/services/{{service}}/versions/{{version_id}} $ terraform import google_app_engine_standard_app_version.default {{project}}/{{service}}/{{version_id}} $ terraform import google_app_engine_standard_app_version.default {{service}}/{{version_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `apps/{{project}}/services/{{service}}/versions/{{version_id}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Full path to the Version resource in the API. Example, "v1". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import StandardAppVersion can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_app_engine_standard_app_version.default apps/{{project}}/services/{{service}}/versions/{{version_id}} $ terraform import google_app_engine_standard_app_version.default {{project}}/{{service}}/{{version_id}} $ terraform import google_app_engine_standard_app_version.default {{service}}/{{version_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -718,11 +871,19 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The resource name of the transfer config. Transfer config names have the form projects/{projectId}/locations/{location}/transferConfigs/{configId}. Where configId is usually a uuid, but this is not required. The name is ignored when creating a transfer config. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Config can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigquery_data_transfer_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `The resource name of the transfer config. Transfer config names have the form projects/{projectId}/locations/{location}/transferConfigs/{configId}. Where configId is usually a uuid, but this is not required. The name is ignored when creating a transfer config. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Config can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigquery_data_transfer_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -825,6 +986,10 @@ var (
 					Description: `(Required) Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table. The BigQuery Service Account associated with your project requires access to this encryption key. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/datasets/{{dataset_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_time",
 					Description: `The time when this dataset was created, in milliseconds since the epoch.`,
 				},
@@ -842,6 +1007,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/datasets/{{dataset_id}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_time",
 					Description: `The time when this dataset was created, in milliseconds since the epoch.`,
@@ -916,6 +1085,10 @@ var (
 					Description: `(Optional) If specified, configures time-based partitioning for this table. Structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "range_partitioning",
+					Description: `(Optional, Beta) If specified, configures range-based partitioning for this table. Structure is documented below.`,
+				},
+				resource.Attribute{
 					Name:        "clustering",
 					Description: `(Optional) Specifies column names to use for data clustering. Up to four top-level columns are allowed, and should be specified in descending priority order.`,
 				},
@@ -945,7 +1118,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "require_partition_filter",
-					Description: `(Optional) If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified. The ` + "`" + `view` + "`" + ` block supports:`,
+					Description: `(Optional) If set to true, queries over this table require a partition filter that can be used for partition elimination to be specified. The ` + "`" + `range_partitioning` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "field",
+					Description: `(Required) The field used to determine how to create a range-based partition.`,
+				},
+				resource.Attribute{
+					Name:        "range",
+					Description: `(Required) Information required to partition based on ranges. Structure is documented below. The ` + "`" + `range` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start",
+					Description: `(Required) Start of the range partitioning, inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "end",
+					Description: `(Required) End of the range partitioning, exclusive.`,
+				},
+				resource.Attribute{
+					Name:        "interval",
+					Description: `(Required) The width of each range within the partition. The ` + "`" + `view` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "query",
@@ -1084,11 +1277,19 @@ var (
 					Description: `(Optional) If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile. It is unsafe to send these requests to the same table/row/column in multiple clusters. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/instances/{{instance}}/appProfiles/{{app_profile_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The unique name of the requested app profile. Values are of the form ` + "`" + `projects/<project>/instances/<instance>/appProfiles/<appProfileId>` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import AppProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_app_profile.default projects/{{project}}/instances/{{instance}}/appProfiles/{{app_profile_id}} $ terraform import google_bigtable_app_profile.default {{project}}/{{instance}}/{{app_profile_id}} $ terraform import google_bigtable_app_profile.default {{instance}}/{{app_profile_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/instances/{{instance}}/appProfiles/{{app_profile_id}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `The unique name of the requested app profile. Values are of the form ` + "`" + `projects/<project>/instances/<instance>/appProfiles/<appProfileId>` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import AppProfile can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_app_profile.default projects/{{project}}/instances/{{instance}}/appProfiles/{{app_profile_id}} $ terraform import google_bigtable_app_profile.default {{project}}/{{instance}}/{{app_profile_id}} $ terraform import google_bigtable_app_profile.default {{instance}}/{{app_profile_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -1191,7 +1392,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_type",
-					Description: `(Optional) The storage type to use. One of ` + "`" + `"SSD"` + "`" + ` or ` + "`" + `"HDD"` + "`" + `. Defaults to ` + "`" + `"SSD"` + "`" + `. ## Attributes Reference Only the arguments listed above are exposed as attributes. ## Import Bigtable Instances can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_instance.default projects/{{project}}/instances/{{name}} $ terraform import google_bigtable_instance.default {{project}}/{{name}} $ terraform import google_bigtable_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Optional) The storage type to use. One of ` + "`" + `"SSD"` + "`" + ` or ` + "`" + `"HDD"` + "`" + `. Defaults to ` + "`" + `"SSD"` + "`" + `. !>`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -1231,13 +1432,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the instances's IAM policy. ## Import Instance IAM resources can be imported using the project, instance name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_instance_iam_policy.editor "projects/{project}/instances/{instance}" $ terraform import google_bigtable_instance_iam_binding.editor "projects/{project}/instances/{instance} roles/editor" $ terraform import google_bigtable_instance_iam_member.editor "projects/{project}/instances/{instance} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the instances's IAM policy. ## Import Instance IAM resources can be imported using the project, instance name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_instance_iam_policy.editor "projects/{project}/instances/{instance}" $ terraform import google_bigtable_instance_iam_binding.editor "projects/{project}/instances/{instance} roles/editor" $ terraform import google_bigtable_instance_iam_member.editor "projects/{project}/instances/{instance} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the instances's IAM policy. ## Import Instance IAM resources can be imported using the project, instance name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_instance_iam_policy.editor "projects/{project}/instances/{instance}" $ terraform import google_bigtable_instance_iam_binding.editor "projects/{project}/instances/{instance} roles/editor" $ terraform import google_bigtable_instance_iam_member.editor "projects/{project}/instances/{instance} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the instances's IAM policy. ## Import Instance IAM resources can be imported using the project, instance name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_bigtable_instance_iam_policy.editor "projects/{project}/instances/{instance}" $ terraform import google_bigtable_instance_iam_binding.editor "projects/{project}/instances/{instance} roles/editor" $ terraform import google_bigtable_instance_iam_member.editor "projects/{project}/instances/{instance} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -1361,11 +1562,19 @@ var (
 					Description: `(Optional) Defines notifications that are sent on every update to the billing account's spend, regardless of the thresholds defined using threshold rules. Structure is documented below. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `Resource name of the budget. The resource name implies the scope of a budget. Values are of the form billingAccounts/{billingAccountId}/budgets/{budgetId}. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Budget can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_billing_budget.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `Resource name of the budget. The resource name implies the scope of a budget. Values are of the form billingAccounts/{billingAccountId}/budgets/{budgetId}. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Budget can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_billing_budget.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -1434,16 +1643,25 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Attestor can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_binary_authorization_attestor.default projects/{{project}}/attestors/{{name}} $ terraform import google_binary_authorization_attestor.default {{project}}/{{name}} $ terraform import google_binary_authorization_attestor.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/attestors/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Attestor can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_binary_authorization_attestor.default projects/{{project}}/attestors/{{name}} $ terraform import google_binary_authorization_attestor.default {{project}}/{{name}} $ terraform import google_binary_authorization_attestor.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/attestors/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Attestor can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_binary_authorization_attestor.default projects/{{project}}/attestors/{{name}} $ terraform import google_binary_authorization_attestor.default {{project}}/{{name}} $ terraform import google_binary_authorization_attestor.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "google_binary_authorization_attestor_iam_policy",
 			Category:         "Google Binary Authorization Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for BinaryAuthorizationAttestor`,
+			ShortDescription: `Collection of resources to manage IAM policy for Binary Authorization Attestor`,
 			Description:      ``,
 			Keywords: []string{
 				"binary",
@@ -1551,10 +1769,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enforcement_mode",
-					Description: `(Required) The action when a pod creation is denied by the admission rule. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Policy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_binary_authorization_policy.default projects/{{project}} $ terraform import google_binary_authorization_policy.default {{project}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Required) The action when a pod creation is denied by the admission rule. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Policy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_binary_authorization_policy.default projects/{{project}} $ terraform import google_binary_authorization_policy.default {{project}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Policy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_binary_authorization_policy.default projects/{{project}} $ terraform import google_binary_authorization_policy.default {{project}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -1630,6 +1857,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `locations/{{location}}/namespaces/{{project}}/domainmappings/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `The current status of the DomainMapping. Structure is documented below. The ` + "`" + `status` + "`" + ` block contains:`,
 				},
@@ -1679,6 +1910,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `locations/{{location}}/namespaces/{{project}}/domainmappings/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `The current status of the DomainMapping. Structure is documented below. The ` + "`" + `status` + "`" + ` block contains:`,
@@ -1942,6 +2177,10 @@ var (
 					Description: `(Optional) Annotations is a key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. More info: http://kubernetes.io/docs/user-guide/annotations ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `locations/{{location}}/namespaces/{{project}}/services/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "status",
 					Description: `The current status of the Service. Structure is documented below. The ` + "`" + `status` + "`" + ` block contains:`,
 				},
@@ -1983,6 +2222,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `locations/{{location}}/namespaces/{{project}}/services/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "status",
 					Description: `The current status of the Service. Structure is documented below. The ` + "`" + `status` + "`" + ` block contains:`,
@@ -2029,7 +2272,7 @@ var (
 			Name:             "",
 			Type:             "google_cloud_run_service_iam_policy",
 			Category:         "Google Cloud Run Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for CloudRunService`,
+			ShortDescription: `Collection of resources to manage IAM policy for Cloud Run Service`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
@@ -2106,6 +2349,10 @@ var (
 				resource.Attribute{
 					Name:        "time_zone",
 					Description: `(Optional) Specifies the time zone to be used in interpreting schedule. The value of this field must be a time zone name from the tz database.`,
+				},
+				resource.Attribute{
+					Name:        "attempt_deadline",
+					Description: `(Optional) The deadline for job attempts. If the request handler does not respond by this deadline then the request is cancelled and the attempt is marked as a DEADLINE_EXCEEDED failure. The failed attempt can be viewed in execution logs. Cloud Scheduler will retry the job according to the RetryConfig. The allowed duration for this deadline is:`,
 				},
 				resource.Attribute{
 					Name:        "retry_config",
@@ -2229,10 +2476,115 @@ var (
 				},
 				resource.Attribute{
 					Name:        "audience",
-					Description: `(Optional) Audience to be used when generating OIDC token. If not specified, the URI specified in target will be used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Job can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloud_scheduler_job.default projects/{{project}}/locations/{{region}}/jobs/{{name}} $ terraform import google_cloud_scheduler_job.default {{project}}/{{region}}/{{name}} $ terraform import google_cloud_scheduler_job.default {{region}}/{{name}} $ terraform import google_cloud_scheduler_job.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) Audience to be used when generating OIDC token. If not specified, the URI specified in target will be used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/jobs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Job can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloud_scheduler_job.default projects/{{project}}/locations/{{region}}/jobs/{{name}} $ terraform import google_cloud_scheduler_job.default {{project}}/{{region}}/{{name}} $ terraform import google_cloud_scheduler_job.default {{region}}/{{name}} $ terraform import google_cloud_scheduler_job.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/jobs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Job can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloud_scheduler_job.default projects/{{project}}/locations/{{region}}/jobs/{{name}} $ terraform import google_cloud_scheduler_job.default {{project}}/{{region}}/{{name}} $ terraform import google_cloud_scheduler_job.default {{region}}/{{name}} $ terraform import google_cloud_scheduler_job.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_cloud_tasks_queue",
+			Category:         "Google Cloud Tasks",
+			ShortDescription: `A named resource to which messages are sent by publishers.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"tasks",
+				"queue",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The location of the queue - - -`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The queue name.`,
+				},
+				resource.Attribute{
+					Name:        "app_engine_routing_override",
+					Description: `(Optional) Overrides for task-level appEngineRouting. These settings apply only to App Engine tasks in this queue Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "rate_limits",
+					Description: `(Optional) Rate limits for task dispatches. The queue's actual dispatch rate is the result of:`,
+				},
+				resource.Attribute{
+					Name:        "retry_config",
+					Description: `(Optional) Settings that determine the retry behavior. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `app_engine_routing_override` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Optional) App service. By default, the task is sent to the service which is the default service when the task is attempted.`,
+				},
+				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) App version. By default, the task is sent to the version which is the default version when the task is attempted.`,
+				},
+				resource.Attribute{
+					Name:        "instance",
+					Description: `(Optional) App instance. By default, the task is sent to an instance which is available when the task is attempted.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `The host that the task is sent to. The ` + "`" + `rate_limits` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "max_dispatches_per_second",
+					Description: `(Optional) The maximum rate at which tasks are dispatched from this queue. If unspecified when the queue is created, Cloud Tasks will pick the default.`,
+				},
+				resource.Attribute{
+					Name:        "max_concurrent_dispatches",
+					Description: `(Optional) The maximum number of concurrent tasks that Cloud Tasks allows to be dispatched for this queue. After this threshold has been reached, Cloud Tasks stops dispatching tasks until the number of concurrent requests decreases.`,
+				},
+				resource.Attribute{
+					Name:        "max_burst_size",
+					Description: `The max burst size. Max burst size limits how fast tasks in queue are processed when many tasks are in the queue and the rate is high. This field allows the queue to have a high rate so processing starts shortly after a task is enqueued, but still limits resource usage when many tasks are enqueued in a short period of time. The ` + "`" + `retry_config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "max_attempts",
+					Description: `(Optional) Number of attempts per task. Cloud Tasks will attempt the task maxAttempts times (that is, if the first attempt fails, then there will be maxAttempts - 1 retries). Must be >= -1. If unspecified when the queue is created, Cloud Tasks will pick the default. -1 indicates unlimited attempts.`,
+				},
+				resource.Attribute{
+					Name:        "max_retry_duration",
+					Description: `(Optional) If positive, maxRetryDuration specifies the time limit for retrying a failed task, measured from when the task was first attempted. Once maxRetryDuration time has passed and the task has been attempted maxAttempts times, no further attempts will be made and the task will be deleted. If zero, then the task age is unlimited.`,
+				},
+				resource.Attribute{
+					Name:        "min_backoff",
+					Description: `(Optional) A task will be scheduled for retry between minBackoff and maxBackoff duration after it fails, if the queue's RetryConfig specifies that the task should be retried.`,
+				},
+				resource.Attribute{
+					Name:        "max_backoff",
+					Description: `(Optional) A task will be scheduled for retry between minBackoff and maxBackoff duration after it fails, if the queue's RetryConfig specifies that the task should be retried.`,
+				},
+				resource.Attribute{
+					Name:        "max_doublings",
+					Description: `(Optional) The time between retries will double maxDoublings times. A task's retry interval starts at minBackoff, then doubles maxDoublings times, then increases linearly, and finally retries retries at intervals of maxBackoff up to maxAttempts times. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/queues/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Queue can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloud_tasks_queue.default projects/{{project}}/locations/{{location}}/queues/{{name}} $ terraform import google_cloud_tasks_queue.default {{project}}/{{location}}/{{name}} $ terraform import google_cloud_tasks_queue.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/queues/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Queue can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_cloud_tasks_queue.default projects/{{project}}/locations/{{location}}/queues/{{name}} $ terraform import google_cloud_tasks_queue.default {{project}}/{{location}}/{{name}} $ terraform import google_cloud_tasks_queue.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -2269,7 +2621,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ignored_files",
-					Description: `(Optional) ignoredFiles and includedFiles are file glob matches using http://godoc/pkg/path/filepath#Match extended with support for ` + "`" + ``,
+					Description: `(Optional) ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with support for ` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "included_files",
@@ -2416,6 +2768,10 @@ var (
 					Description: `(Required) Path at which to mount the volume. Paths must be absolute and cannot conflict with other volume paths on the same build step or with certain reserved volume paths. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/triggers/{{trigger_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "trigger_id",
 					Description: `The unique identifier for the trigger.`,
 				},
@@ -2425,6 +2781,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/triggers/{{trigger_id}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "trigger_id",
 					Description: `The unique identifier for the trigger.`,
@@ -2439,7 +2799,7 @@ var (
 			Name:             "",
 			Type:             "google_cloudfunctions_function_iam_policy",
 			Category:         "Google Cloud Functions Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for CloudFunctionsCloudFunction`,
+			ShortDescription: `Collection of resources to manage IAM policy for Cloud Functions CloudFunction`,
 			Description:      ``,
 			Keywords: []string{
 				"cloud",
@@ -2565,7 +2925,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "event_type",
-					Description: `(Required) The type of event to observe. For example: ` + "`" + `"google.storage.object.finalize"` + "`" + `. See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a full reference. Cloud Storage, Cloud Pub/Sub and Cloud Firestore triggers are supported at this time. Legacy triggers are supported, such as ` + "`" + `"providers/cloud.storage/eventTypes/object.change"` + "`" + `, ` + "`" + `"providers/cloud.pubsub/eventTypes/topic.publish"` + "`" + ` and ` + "`" + `"providers/cloud.firestore/eventTypes/document.create"` + "`" + `.`,
+					Description: `(Required) The type of event to observe. For example: ` + "`" + `"google.storage.object.finalize"` + "`" + `. See the documentation on [calling Cloud Functions](https://cloud.google.com/functions/docs/calling/) for a full reference of accepted triggers.`,
 				},
 				resource.Attribute{
 					Name:        "resource",
@@ -2905,6 +3265,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/addresses/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -2926,6 +3290,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/addresses/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -3030,7 +3398,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metric",
-					Description: `(Optional) Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group. Structure is documented below.`,
+					Description: `(Optional) Configuration parameters of autoscaling based on a custom metric. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "load_balancing_utilization",
@@ -3077,6 +3445,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/autoscalers/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -3086,6 +3458,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/autoscalers/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -3138,6 +3514,10 @@ var (
 					Description: `(Required) Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -3147,6 +3527,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -3187,10 +3571,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{backend_bucket}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendBuckets/{{backend_bucket}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3510,6 +3903,10 @@ var (
 					Description: `(Optional) This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -3523,6 +3920,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -3567,10 +3968,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{backend_service}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/backendServices/{{backend_service}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3677,6 +4087,10 @@ var (
 					Description: `The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/disks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
 				},
@@ -3710,6 +4124,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/disks/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
@@ -3748,7 +4166,7 @@ var (
 			Name:             "",
 			Type:             "google_compute_disk_resource_policy_attachment",
 			Category:         "Google Compute Engine Resources",
-			ShortDescription: `Disk resource policies define a schedule for taking snapshots and a retention period for these snapshots.`,
+			ShortDescription: `Adds existing resource policies to a disk.`,
 			Description:      ``,
 			Keywords: []string{
 				"compute",
@@ -3773,10 +4191,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DiskResourcePolicyAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_disk_resource_policy_attachment.default projects/{{project}}/zones/{{zone}}/disks/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{project}}/{{zone}}/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{zone}}/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{disk}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{zone}}/{{disk}}/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DiskResourcePolicyAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_disk_resource_policy_attachment.default projects/{{project}}/zones/{{zone}}/disks/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{project}}/{{zone}}/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{zone}}/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{disk}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{zone}}/{{disk}}/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DiskResourcePolicyAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_disk_resource_policy_attachment.default projects/{{project}}/zones/{{zone}}/disks/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{project}}/{{zone}}/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{zone}}/{{disk}}/{{name}} $ terraform import google_compute_disk_resource_policy_attachment.default {{disk}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3818,10 +4245,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ip_address",
-					Description: `(Optional) IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider’s VPN gateway, it cannot be an IP address from Google Compute Engine. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ExternalVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default projects/{{project}}/global/externalVpnGateways/{{name}} $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default {{project}}/{{name}} $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider’s VPN gateway, it cannot be an IP address from Google Compute Engine. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/externalVpnGateways/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ExternalVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default projects/{{project}}/global/externalVpnGateways/{{name}} $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default {{project}}/{{name}} $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/externalVpnGateways/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ExternalVpnGateway can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default projects/{{project}}/global/externalVpnGateways/{{name}} $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default {{project}}/{{name}} $ terraform import -provider=google-beta google_compute_external_vpn_gateway.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -3916,6 +4360,10 @@ var (
 					Description: `(Optional) An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: ["22"], ["80","443"], and ["12345-12349"]. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/firewalls/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -3925,6 +4373,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/firewalls/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -3951,6 +4403,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Required) Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
+				},
+				resource.Attribute{
+					Name:        "is_mirroring_collector",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Indicates whether or not this load balancer can be used as a collector for packet mirroring. To prevent mirroring loops, instances behind this load balancer will not have their traffic mirrored even if a PacketMirroring rule applies to them. This can only be set to true for load balancers that have their loadBalancingScheme set to INTERNAL.`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -3990,7 +4446,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "target",
-					Description: `(Optional) This field is only used for EXTERNAL load balancing. A reference to a TargetPool resource to receive the matched traffic. This target must live in the same region as the forwarding rule. The forwarded traffic must be of a type appropriate to the target object.`,
+					Description: `(Optional) The URL of the target resource to receive the matched traffic. The target must live in the same region as the forwarding rule. The forwarded traffic must be of a type appropriate to the target object.`,
 				},
 				resource.Attribute{
 					Name:        "allow_global_access",
@@ -4021,6 +4477,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/forwardingRules/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -4038,6 +4498,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/forwardingRules/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4110,6 +4574,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/addresses/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -4123,6 +4591,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/addresses/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4216,6 +4688,10 @@ var (
 					Description: `(Required) The value that the label must match. The value has a maximum length of 1024 characters. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/forwardingRules/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
 				},
@@ -4225,6 +4701,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/forwardingRules/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
@@ -4270,6 +4750,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "vpn_interfaces",
 					Description: `A list of interfaces on this VPN gateway. Structure is documented below.`,
 				},
@@ -4287,6 +4771,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/vpnGateways/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "vpn_interfaces",
 					Description: `A list of interfaces on this VPN gateway. Structure is documented below.`,
@@ -4499,6 +4987,10 @@ var (
 					Description: `(Optional) Specifies how port is selected for health checking, can be one of the following values:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/healthChecks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -4512,6 +5004,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/healthChecks/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4581,6 +5077,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/httpHealthChecks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -4590,6 +5090,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/httpHealthChecks/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4655,6 +5159,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/httpsHealthChecks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -4664,6 +5172,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/httpsHealthChecks/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -4743,6 +5255,10 @@ var (
 					Description: `(Required) The full Google Cloud Storage URL where disk storage is stored You must provide either this property or the sourceDisk property but not both. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/images/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "archive_size_bytes",
 					Description: `Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).`,
 				},
@@ -4760,6 +5276,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/images/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "archive_size_bytes",
 					Description: `Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).`,
@@ -4825,6 +5345,10 @@ var (
 				resource.Attribute{
 					Name:        "description",
 					Description: `(Optional) A brief description of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "desired_status",
+					Description: `(Optional) Desired status of the instance. Either ` + "`" + `"RUNNING"` + "`" + ` or ` + "`" + `"TERMINATED"` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "deletion_protection",
@@ -5354,7 +5878,7 @@ var (
 			Name:             "",
 			Type:             "google_compute_instance_iam_policy",
 			Category:         "Google Compute Engine Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for ComputeInstance`,
+			ShortDescription: `Collection of resources to manage IAM policy for Compute Engine Instance`,
 			Description:      ``,
 			Keywords: []string{
 				"compute",
@@ -5715,6 +6239,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/interconnectAttachments/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "cloud_router_ip_address",
 					Description: `IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.`,
 				},
@@ -5752,11 +6280,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag8021q",
-					Description: `802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import InterconnectAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_interconnect_attachment.default projects/{{project}}/regions/{{region}}/interconnectAttachments/{{name}} $ terraform import google_compute_interconnect_attachment.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import InterconnectAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_interconnect_attachment.default projects/{{project}}/regions/{{region}}/interconnectAttachments/{{name}} $ terraform import google_compute_interconnect_attachment.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/interconnectAttachments/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "cloud_router_ip_address",
 					Description: `IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.`,
 				},
@@ -5794,7 +6326,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tag8021q",
-					Description: `802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import InterconnectAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_interconnect_attachment.default projects/{{project}}/regions/{{region}}/interconnectAttachments/{{name}} $ terraform import google_compute_interconnect_attachment.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import InterconnectAttachment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_interconnect_attachment.default projects/{{project}}/regions/{{region}}/interconnectAttachments/{{name}} $ terraform import google_compute_interconnect_attachment.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{region}}/{{name}} $ terraform import google_compute_interconnect_attachment.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -5837,6 +6369,10 @@ var (
 					Description: `(Required) Domains for which a managed SSL certificate will be valid. Currently, there can be up to 100 domains in this list. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/sslCertificates/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -5858,6 +6394,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/sslCertificates/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -5917,6 +6457,10 @@ var (
 					Description: `(Optional) If set to ` + "`" + `true` + "`" + `, default routes (` + "`" + `0.0.0.0/0` + "`" + `) will be deleted immediately after network creation. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/networks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "gateway_ipv4",
 					Description: `The gateway address for default routing out of the network. This value is selected by GCP.`,
 				},
@@ -5926,6 +6470,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/networks/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "gateway_ipv4",
 					Description: `The gateway address for default routing out of the network. This value is selected by GCP.`,
@@ -5971,10 +6519,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import NetworkEndpoint can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network_endpoint.default projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{project}}/{{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import NetworkEndpoint can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network_endpoint.default projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{project}}/{{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import NetworkEndpoint can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network_endpoint.default projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{project}}/{{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{zone}}/{{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} $ terraform import google_compute_network_endpoint.default {{network_endpoint_group}}/{{instance}}/{{ip_address}}/{{port}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -6023,6 +6580,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "size",
 					Description: `Number of network endpoints in the network endpoint group.`,
 				},
@@ -6032,6 +6593,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/networkEndpointGroups/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "size",
 					Description: `Number of network endpoints in the network endpoint group.`,
@@ -6069,11 +6634,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "export_custom_routes",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Whether to export the custom routes to the peer network. Defaults to ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Whether to export the custom routes to the peer network. Defaults to ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "import_custom_routes",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Whether to export the custom routes from the peer network. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Optional) Whether to export the custom routes from the peer network. Defaults to ` + "`" + `false` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "state",
@@ -6092,6 +6657,53 @@ var (
 				resource.Attribute{
 					Name:        "state_details",
 					Description: `Details about the current state of the peering. ## Import VPC network peerings can be imported using the name and project of the primary network the peering exists in and the name of the network peering ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network_peering.peering_network project-name/network-name/peering-name ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_network_peering_routes_config",
+			Category:         "Google Compute Engine Resources",
+			ShortDescription: `Manage a network peering's route settings without managing the peering as a whole.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"engine",
+				"network",
+				"peering",
+				"routes",
+				"config",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "peering",
+					Description: `(Required) Name of the peering.`,
+				},
+				resource.Attribute{
+					Name:        "export_custom_routes",
+					Description: `(Required) Whether to export the custom routes to the peer network.`,
+				},
+				resource.Attribute{
+					Name:        "import_custom_routes",
+					Description: `(Required) Whether to import the custom routes to the peer network.`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Required) The name of the primary network for the peering. - - -`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/networks/{{network}}/networkPeerings/{{peering}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import NetworkPeeringRoutesConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network_peering_routes_config.default projects/{{project}}/global/networks/{{network}}/networkPeerings/{{peering}} $ terraform import google_compute_network_peering_routes_config.default {{project}}/{{network}}/{{peering}} $ terraform import google_compute_network_peering_routes_config.default {{network}}/{{peering}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/networks/{{network}}/networkPeerings/{{peering}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 6 minutes. ## Import NetworkPeeringRoutesConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_network_peering_routes_config.default projects/{{project}}/global/networks/{{network}}/networkPeerings/{{peering}} $ terraform import google_compute_network_peering_routes_config.default {{project}}/{{network}}/{{peering}} $ terraform import google_compute_network_peering_routes_config.default {{network}}/{{peering}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -6133,6 +6745,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/nodeGroups/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -6142,6 +6758,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/nodeGroups/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6214,6 +6834,10 @@ var (
 					Description: `(Required) Type of server binding policy. If ` + "`" + `RESTART_NODE_ON_ANY_SERVER` + "`" + `, nodes using this template will restart on any physical server following a maintenance event. If ` + "`" + `RESTART_NODE_ON_MINIMAL_SERVER` + "`" + `, nodes using this template will restart on the same physical server following a maintenance event, instead of being live migrated to or restarted on a new physical server. This option may be useful if you are using software licenses tied to the underlying server characteristics such as physical sockets or cores, to avoid the need for additional licenses when maintenance occurs. However, VMs on such nodes will experience outages while maintenance is applied. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/nodeTemplates/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -6224,12 +6848,113 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/nodeTemplates/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import NodeTemplate can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_node_template.default projects/{{project}}/regions/{{region}}/nodeTemplates/{{name}} $ terraform import google_compute_node_template.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_node_template.default {{region}}/{{name}} $ terraform import google_compute_node_template.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_packet_mirroring",
+			Category:         "Google Compute Engine Resources",
+			ShortDescription: `Packet Mirroring mirrors traffic to and from particular VM instances.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"engine",
+				"packet",
+				"mirroring",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the packet mirroring rule`,
+				},
+				resource.Attribute{
+					Name:        "network",
+					Description: `(Required) Specifies the mirrored VPC network. Only packets in this network will be mirrored. All mirrored VMs should have a NIC in the given network. All mirrored subnetworks should belong to the given network. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "collector_ilb",
+					Description: `(Required) The Forwarding Rule resource (of type load_balancing_scheme=INTERNAL) that will be used as collector for mirrored traffic. The specified forwarding rule must have is_mirroring_collector set to true. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "mirrored_resources",
+					Description: `(Required) A means of specifying which resources to mirror. Structure is documented below. The ` + "`" + `network` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The full self_link URL of the network where this rule is active. The ` + "`" + `collector_ilb` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL of the forwarding rule. The ` + "`" + `mirrored_resources` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "subnetworks",
+					Description: `(Optional) All instances in one of these subnetworks will be mirrored. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "instances",
+					Description: `(Optional) All the listed instances will be mirrored. Specify at most 50. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) All instances with these tags will be mirrored. The ` + "`" + `subnetworks` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL of the subnetwork where this rule should be active. The ` + "`" + `instances` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "url",
+					Description: `(Required) The URL of the instances where this rule should be active. - - -`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) A human-readable description of the rule.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The Region in which the created address should reside. If it is not provided, the provider region is used.`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Optional) Since only one rule can be active at a time, priority is used to break ties in the case of two rules that apply to the same instances.`,
+				},
+				resource.Attribute{
+					Name:        "filter",
+					Description: `(Optional) A filter for mirrored traffic. If unset, all traffic is mirrored. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `filter` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "ip_protocols",
+					Description: `(Optional) Protocols that apply as a filter on mirrored traffic.`,
+				},
+				resource.Attribute{
+					Name:        "cidr_ranges",
+					Description: `(Optional) IP CIDR ranges that apply as a filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/packetMirrorings/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import PacketMirroring can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_packet_mirroring.default projects/{{project}}/regions/{{region}}/packetMirrorings/{{name}} $ terraform import -provider=google-beta google_compute_packet_mirroring.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_compute_packet_mirroring.default {{region}}/{{name}} $ terraform import -provider=google-beta google_compute_packet_mirroring.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/packetMirrorings/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import PacketMirroring can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_packet_mirroring.default projects/{{project}}/regions/{{region}}/packetMirrorings/{{name}} $ terraform import -provider=google-beta google_compute_packet_mirroring.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_compute_packet_mirroring.default {{region}}/{{name}} $ terraform import -provider=google-beta google_compute_packet_mirroring.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -6355,7 +7080,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "metric",
-					Description: `(Optional) Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group. Structure is documented below.`,
+					Description: `(Optional) Configuration parameters of autoscaling based on a custom metric. Structure is documented below.`,
 				},
 				resource.Attribute{
 					Name:        "load_balancing_utilization",
@@ -6402,6 +7127,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/autoscalers/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -6411,6 +7140,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/autoscalers/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6517,7 +7250,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "capacity_scaler",
-					Description: `(Optional) A multiplier applied to the group's maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). A setting of 0 means the group is completely drained, offering 0% of its available Capacity. Valid range is [0.0,1.0].`,
+					Description: `(Optional) A multiplier applied to the group's maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). ~>`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -6533,31 +7266,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_connections",
-					Description: `(Optional) The max number of simultaneous connections for the group. Can be used with either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or one of maxConnectionsPerInstance or maxConnectionsPerEndpoint, as appropriate for group type, must be set.`,
+					Description: `(Optional) The max number of simultaneous connections for the group. Can be used with either CONNECTION or UTILIZATION balancing modes. Cannot be set for INTERNAL backend services. For CONNECTION mode, either maxConnections or one of maxConnectionsPerInstance or maxConnectionsPerEndpoint, as appropriate for group type, must be set.`,
 				},
 				resource.Attribute{
 					Name:        "max_connections_per_instance",
-					Description: `(Optional) The max number of simultaneous connections that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.`,
+					Description: `(Optional) The max number of simultaneous connections that a single backend instance can handle. Cannot be set for INTERNAL backend services. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.`,
 				},
 				resource.Attribute{
 					Name:        "max_connections_per_endpoint",
-					Description: `(Optional) The max number of simultaneous connections that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerEndpoint must be set.`,
+					Description: `(Optional) The max number of simultaneous connections that a single backend network endpoint can handle. Cannot be set for INTERNAL backend services. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerEndpoint must be set.`,
 				},
 				resource.Attribute{
 					Name:        "max_rate",
-					Description: `(Optional) The max requests per second (RPS) of the group. Can be used with either RATE or UTILIZATION balancing modes, but required if RATE mode. Either maxRate or one of maxRatePerInstance or maxRatePerEndpoint, as appropriate for group type, must be set.`,
+					Description: `(Optional) The max requests per second (RPS) of the group. Cannot be set for INTERNAL backend services. Can be used with either RATE or UTILIZATION balancing modes, but required if RATE mode. Either maxRate or one of maxRatePerInstance or maxRatePerEndpoint, as appropriate for group type, must be set.`,
 				},
 				resource.Attribute{
 					Name:        "max_rate_per_instance",
-					Description: `(Optional) The max requests per second (RPS) that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.`,
+					Description: `(Optional) The max requests per second (RPS) that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set. Cannot be set for INTERNAL backend services.`,
 				},
 				resource.Attribute{
 					Name:        "max_rate_per_endpoint",
-					Description: `(Optional) The max requests per second (RPS) that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerEndpoint must be set.`,
+					Description: `(Optional) The max requests per second (RPS) that a single backend network endpoint can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerEndpoint must be set. Cannot be set for INTERNAL backend services.`,
 				},
 				resource.Attribute{
 					Name:        "max_utilization",
-					Description: `(Optional) Used when balancingMode is UTILIZATION. This ratio defines the CPU utilization target for the group. Valid range is [0.0, 1.0]. The ` + "`" + `circuit_breakers` + "`" + ` block supports:`,
+					Description: `(Optional) Used when balancingMode is UTILIZATION. This ratio defines the CPU utilization target for the group. Valid range is [0.0, 1.0]. Cannot be set for INTERNAL backend services. The ` + "`" + `circuit_breakers` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "connect_timeout",
@@ -6704,6 +7437,10 @@ var (
 					Description: `(Optional) This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/backendServices/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -6717,6 +7454,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/backendServices/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -6817,6 +7558,10 @@ var (
 					Description: `The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/disks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
 				},
@@ -6847,6 +7592,10 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/disks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "label_fingerprint",
 					Description: `The fingerprint used for optimistic locking of this resource. Used internally during updates.`,
 				},
@@ -6873,6 +7622,240 @@ var (
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 5 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionDisk can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_disk.default projects/{{project}}/regions/{{region}}/disks/{{name}} $ terraform import google_compute_region_disk.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_region_disk.default {{region}}/{{name}} $ terraform import google_compute_region_disk.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_region_health_check",
+			Category:         "Google Compute Engine Resources",
+			ShortDescription: `Health Checks determine whether instances are responsive and able to do work.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"engine",
+				"region",
+				"health",
+				"check",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
+				},
+				resource.Attribute{
+					Name:        "check_interval_sec",
+					Description: `(Optional) How often (in seconds) to send a health check. The default value is 5 seconds.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of this resource. Provide this property when you create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "healthy_threshold",
+					Description: `(Optional) A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.`,
+				},
+				resource.Attribute{
+					Name:        "unhealthy_threshold",
+					Description: `(Optional) A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.`,
+				},
+				resource.Attribute{
+					Name:        "timeout_sec",
+					Description: `(Optional) How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.`,
+				},
+				resource.Attribute{
+					Name:        "http_health_check",
+					Description: `(Optional) A nested object resource Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "https_health_check",
+					Description: `(Optional) A nested object resource Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "tcp_health_check",
+					Description: `(Optional) A nested object resource Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ssl_health_check",
+					Description: `(Optional) A nested object resource Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "http2_health_check",
+					Description: `(Optional) A nested object resource Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The Region in which the created health check should reside. If it is not provided, the provider region is used.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `http_health_check` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Optional) The value of the host header in the HTTP health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.`,
+				},
+				resource.Attribute{
+					Name:        "request_path",
+					Description: `(Optional) The request path of the HTTP health check request. The default value is /.`,
+				},
+				resource.Attribute{
+					Name:        "response",
+					Description: `(Optional) The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The TCP port number for the HTTP health check request. The default value is 80.`,
+				},
+				resource.Attribute{
+					Name:        "port_name",
+					Description: `(Optional) Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_header",
+					Description: `(Optional) Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.`,
+				},
+				resource.Attribute{
+					Name:        "port_specification",
+					Description: `(Optional) Specifies how port is selected for health checking, can be one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Optional) The value of the host header in the HTTPS health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.`,
+				},
+				resource.Attribute{
+					Name:        "request_path",
+					Description: `(Optional) The request path of the HTTPS health check request. The default value is /.`,
+				},
+				resource.Attribute{
+					Name:        "response",
+					Description: `(Optional) The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The TCP port number for the HTTPS health check request. The default value is 443.`,
+				},
+				resource.Attribute{
+					Name:        "port_name",
+					Description: `(Optional) Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_header",
+					Description: `(Optional) Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.`,
+				},
+				resource.Attribute{
+					Name:        "port_specification",
+					Description: `(Optional) Specifies how port is selected for health checking, can be one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "request",
+					Description: `(Optional) The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.`,
+				},
+				resource.Attribute{
+					Name:        "response",
+					Description: `(Optional) The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The TCP port number for the TCP health check request. The default value is 80.`,
+				},
+				resource.Attribute{
+					Name:        "port_name",
+					Description: `(Optional) Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_header",
+					Description: `(Optional) Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.`,
+				},
+				resource.Attribute{
+					Name:        "port_specification",
+					Description: `(Optional) Specifies how port is selected for health checking, can be one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "request",
+					Description: `(Optional) The application data to send once the SSL connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.`,
+				},
+				resource.Attribute{
+					Name:        "response",
+					Description: `(Optional) The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The TCP port number for the SSL health check request. The default value is 443.`,
+				},
+				resource.Attribute{
+					Name:        "port_name",
+					Description: `(Optional) Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_header",
+					Description: `(Optional) Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.`,
+				},
+				resource.Attribute{
+					Name:        "port_specification",
+					Description: `(Optional) Specifies how port is selected for health checking, can be one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Optional) The value of the host header in the HTTP2 health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.`,
+				},
+				resource.Attribute{
+					Name:        "request_path",
+					Description: `(Optional) The request path of the HTTP2 health check request. The default value is /.`,
+				},
+				resource.Attribute{
+					Name:        "response",
+					Description: `(Optional) The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.`,
+				},
+				resource.Attribute{
+					Name:        "port",
+					Description: `(Optional) The TCP port number for the HTTP2 health check request. The default value is 443.`,
+				},
+				resource.Attribute{
+					Name:        "port_name",
+					Description: `(Optional) Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.`,
+				},
+				resource.Attribute{
+					Name:        "proxy_header",
+					Description: `(Optional) Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.`,
+				},
+				resource.Attribute{
+					Name:        "port_specification",
+					Description: `(Optional) Specifies how port is selected for health checking, can be one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/healthChecks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the health check. One of HTTP, HTTP2, HTTPS, TCP, or SSL.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionHealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_health_check.default projects/{{project}}/regions/{{region}}/healthChecks/{{name}} $ terraform import google_compute_region_health_check.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_region_health_check.default {{region}}/{{name}} $ terraform import google_compute_region_health_check.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/healthChecks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the health check. One of HTTP, HTTP2, HTTPS, TCP, or SSL.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionHealthCheck can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_region_health_check.default projects/{{project}}/regions/{{region}}/healthChecks/{{name}} $ terraform import google_compute_region_health_check.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_region_health_check.default {{region}}/{{name}} $ terraform import google_compute_region_health_check.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -7082,6 +8065,10 @@ var (
 					Description: `(Optional) Creates a unique name beginning with the specified prefix. Conflicts with ` + "`" + `name` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/sslCertificates/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -7095,6 +8082,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/sslCertificates/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -7145,6 +8136,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/targetHttpProxies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -7158,6 +8153,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/targetHttpProxies/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -7212,6 +8211,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/targetHttpsProxies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -7226,6 +8229,10 @@ var (
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/targetHttpsProxies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -7236,6 +8243,740 @@ var (
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionTargetHttpsProxy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_region_target_https_proxy.default projects/{{project}}/regions/{{region}}/targetHttpsProxies/{{name}} $ terraform import -provider=google-beta google_compute_region_target_https_proxy.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_compute_region_target_https_proxy.default {{region}}/{{name}} $ terraform import -provider=google-beta google_compute_region_target_https_proxy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_compute_region_url_map",
+			Category:         "Google Compute Engine Resources",
+			ShortDescription: `UrlMaps are used to route requests to a backend service based on rules that you define for the host and path of an incoming URL.`,
+			Description:      ``,
+			Keywords: []string{
+				"compute",
+				"engine",
+				"region",
+				"url",
+				"map",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "default_service",
+					Description: `(Required) A reference to RegionBackendService resource if none of the hostRules match.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression ` + "`" + `[a-z]([-a-z0-9]`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of this resource. Provide this property when you create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "host_rule",
+					Description: `(Optional) The list of HostRules to use against the URL. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "path_matcher",
+					Description: `(Optional) The list of named PathMatchers to use against the URL. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "test",
+					Description: `(Optional) The list of expected URL mappings. Requests to update this UrlMap will succeed only if all of the test cases pass. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The Region in which the url map should reside. If it is not provided, the provider region is used.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `host_rule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of this HostRule. Provide this property when you create the resource.`,
+				},
+				resource.Attribute{
+					Name:        "hosts",
+					Description: `(Required) The list of host patterns to match. They must be valid hostnames, except`,
+				},
+				resource.Attribute{
+					Name:        "path_matcher",
+					Description: `(Required) The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion. The ` + "`" + `path_matcher` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "default_service",
+					Description: `(Required) A reference to a RegionBackendService resource. This will be used if none of the pathRules defined by this PathMatcher is matched by the URL's path portion.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name to which this PathMatcher is referred by the HostRule.`,
+				},
+				resource.Attribute{
+					Name:        "route_rules",
+					Description: `(Optional) The list of ordered HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. The order of specifying routeRules matters: the first rule that matches will cause its specified routing action to take effect. Within a given pathMatcher, only one of pathRules or routeRules must be set. routeRules are not supported in UrlMaps intended for External load balancers. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "path_rule",
+					Description: `(Optional) The list of path rules. Use this list instead of routeRules when routing based on simple path matching is all that's required. The order by which path rules are specified does not matter. Matches are always done on the longest-path-first basis. For example: a pathRule with a path /a/b/c/`,
+				},
+				resource.Attribute{
+					Name:        "priority",
+					Description: `(Required) For routeRules within a given pathMatcher, priority determines the order in which load balancer will interpret routeRules. RouteRules are evaluated in order of priority, from the lowest to highest number. The priority of a rule decreases as its number increases (1, 2, 3, N+1). The first rule that matches the request is applied. You cannot configure two or more routeRules with the same priority. Priority for each rule must be set to a number between 0 and 2147483647 inclusive. Priority numbers can have gaps, which enable you to add or remove rules in the future without affecting the rest of the rules. For example, 1, 2, 3, 4, 5, 9, 12, 16 is a valid series of priority numbers to which you could add rules numbered from 6 to 8, 10 to 11, and 13 to 15 in the future without any impact on existing rules.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Optional) The region backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any weightedBackendServices, service must not be specified. Only one of urlRedirect, service or routeAction.weightedBackendService must be set.`,
+				},
+				resource.Attribute{
+					Name:        "header_action",
+					Description: `(Optional) Specifies changes to request and response headers that need to take effect for the selected backendService. The headerAction specified here are applied before the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].r outeAction.weightedBackendService.backendServiceWeightAction[].headerAction Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "match_rules",
+					Description: `(Optional) The rules for determining a match. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "route_action",
+					Description: `(Optional) In response to a matching matchRule, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If routeAction specifies any weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any weightedBackendServices. Only one of routeAction or urlRedirect must be set. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "url_redirect",
+					Description: `(Optional) When this rule is matched, the request is redirected to a URL specified by urlRedirect. If urlRedirect is specified, service or routeAction must not be set. Structure is documented below. The ` + "`" + `header_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "request_headers_to_add",
+					Description: `(Optional) Headers to add to a matching request prior to forwarding the request to the backendService. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "request_headers_to_remove",
+					Description: `(Optional) A list of header names for headers that need to be removed from the request prior to forwarding the request to the backendService.`,
+				},
+				resource.Attribute{
+					Name:        "response_headers_to_add",
+					Description: `(Optional) Headers to add the response prior to sending the response back to the client. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "response_headers_to_remove",
+					Description: `(Optional) A list of header names for headers that need to be removed from the response prior to sending the response back to the client. The ` + "`" + `request_headers_to_add` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) The name of the header.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) The value of the header to add.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Required) If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The ` + "`" + `response_headers_to_add` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) The name of the header.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) The value of the header to add.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Required) If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The ` + "`" + `match_rules` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "full_path_match",
+					Description: `(Optional) For satifying the matchRule condition, the path of the request must exactly match the value specified in fullPathMatch after removing any query parameters and anchor that may be part of the original URL. FullPathMatch must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "header_matches",
+					Description: `(Optional) Specifies a list of header match criteria, all of which must match corresponding headers in the request. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "ignore_case",
+					Description: `(Optional) Specifies that prefixMatch and fullPathMatch matches are case sensitive. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "metadata_filters",
+					Description: `(Optional) Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place, the relevant routing configuration is made available to those proxies. For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified here can be overrides those specified in ForwardingRule that refers to this UrlMap. metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_match",
+					Description: `(Optional) For satifying the matchRule condition, the request's path must begin with the specified prefixMatch. prefixMatch must begin with a /. The value must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.`,
+				},
+				resource.Attribute{
+					Name:        "query_parameter_matches",
+					Description: `(Optional) Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "regex_match",
+					Description: `(Optional) For satifying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript Only one of prefixMatch, fullPathMatch or regexMatch must be specified. The ` + "`" + `header_matches` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "exact_match",
+					Description: `(Optional) The value should exactly match contents of exactMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) The name of the HTTP header to match. For matching against the HTTP request's authority, use a headerMatch with the header name ":authority". For matching a request's method, use the headerName ":method".`,
+				},
+				resource.Attribute{
+					Name:        "invert_match",
+					Description: `(Optional) If set to false, the headerMatch is considered a match if the match criteria above are met. If set to true, the headerMatch is considered a match if the match criteria above are NOT met. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_match",
+					Description: `(Optional) The value of the header must start with the contents of prefixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.`,
+				},
+				resource.Attribute{
+					Name:        "present_match",
+					Description: `(Optional) A header with the contents of headerName must exist. The match takes place whether or not the request's header has a value or not. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.`,
+				},
+				resource.Attribute{
+					Name:        "range_match",
+					Description: `(Optional) The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails. For example for a range [-5, 0] - -3 will match. - 0 will not match. - 0.25 will not match. - -3someString will not match. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "regex_match",
+					Description: `(Optional) The value of the header must match the regualar expression specified in regexMatch. For regular expression grammar, please see: en.cppreference.com/w/cpp/regex/ecmascript For matching against a port specified in the HTTP request, use a headerMatch with headerName set to PORT and a regular expression that satisfies the RFC2616 Host header's port specifier. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.`,
+				},
+				resource.Attribute{
+					Name:        "suffix_match",
+					Description: `(Optional) The value of the header must end with the contents of suffixMatch. Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set. The ` + "`" + `range_match` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "range_end",
+					Description: `(Required) The end of the range (exclusive).`,
+				},
+				resource.Attribute{
+					Name:        "range_start",
+					Description: `(Required) The start of the range (inclusive). The ` + "`" + `metadata_filters` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "filter_labels",
+					Description: `(Required) The list of label value pairs that must match labels in the provided metadata based on filterMatchCriteria This list must not be empty and can have at the most 64 entries. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "filter_match_criteria",
+					Description: `(Required) Specifies how individual filterLabel matches within the list of filterLabels contribute towards the overall metadataFilter match. Supported values are: - MATCH_ANY: At least one of the filterLabels must have a matching label in the provided metadata. - MATCH_ALL: All filterLabels must have matching labels in the provided metadata. The ` + "`" + `filter_labels` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Name of metadata label. The name can have a maximum length of 1024 characters and must be at least 1 character long.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Required) The value of the label must match the specified value. value can have a maximum length of 1024 characters. The ` + "`" + `query_parameter_matches` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "exact_match",
+					Description: `(Optional) The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch must be set.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.`,
+				},
+				resource.Attribute{
+					Name:        "present_match",
+					Description: `(Optional) Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch and regexMatch must be set.`,
+				},
+				resource.Attribute{
+					Name:        "regex_match",
+					Description: `(Optional) The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript Only one of presentMatch, exactMatch and regexMatch must be set. The ` + "`" + `route_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cors_policy",
+					Description: `(Optional) The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "fault_injection_policy",
+					Description: `(Optional) The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests. timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "request_mirror_policy",
+					Description: `(Optional) Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "retry_policy",
+					Description: `(Optional) Specifies the retry policy associated with this route. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Specifies the timeout for the selected route. Timeout is computed from the time the request is has been fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries. If not specified, the default value is 15 seconds. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "url_rewrite",
+					Description: `(Optional) The spec to modify the URL of the request, prior to forwarding the request to the matched service Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "weighted_backend_services",
+					Description: `(Optional) A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one weightedBackendService with weight set to a non 0 number. Once a backendService is identified and before forwarding the request to the backend service, advanced routing actions like Url rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction. Structure is documented below. The ` + "`" + `cors_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "allow_credentials",
+					Description: `(Optional) In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access- Control-Allow-Credentials header. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "allow_headers",
+					Description: `(Optional) Specifies the content for the Access-Control-Allow-Headers header.`,
+				},
+				resource.Attribute{
+					Name:        "allow_methods",
+					Description: `(Optional) Specifies the content for the Access-Control-Allow-Methods header.`,
+				},
+				resource.Attribute{
+					Name:        "allow_origin_regexes",
+					Description: `(Optional) Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript An origin is allowed if it matches either allow_origins or allow_origin_regex.`,
+				},
+				resource.Attribute{
+					Name:        "allow_origins",
+					Description: `(Optional) Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either allow_origins or allow_origin_regex.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(Optional) If true, specifies the CORS policy is disabled. which indicates that the CORS policy is in effect. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "expose_headers",
+					Description: `(Optional) Specifies the content for the Access-Control-Expose-Headers header.`,
+				},
+				resource.Attribute{
+					Name:        "max_age",
+					Description: `(Optional) Specifies how long the results of a preflight request can be cached. This translates to the content for the Access-Control-Max-Age header. The ` + "`" + `fault_injection_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "abort",
+					Description: `(Optional) The specification for how client requests are aborted as part of fault injection. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `(Optional) The specification for how client requests are delayed as part of fault injection, before being sent to a backend service. Structure is documented below. The ` + "`" + `abort` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "http_status",
+					Description: `(Optional) The HTTP status code used to abort the request. The value must be between 200 and 599 inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "percentage",
+					Description: `(Optional) The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection. The value must be between 0.0 and 100.0 inclusive. The ` + "`" + `delay` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fixed_delay",
+					Description: `(Optional) Specifies the value of the fixed delay interval. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "percentage",
+					Description: `(Optional) The percentage of traffic (connections/operations/requests) on which delay will be introduced as part of fault injection. The value must be between 0.0 and 100.0 inclusive. The ` + "`" + `fixed_delay` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "nanos",
+					Description: `(Optional) Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 ` + "`" + `seconds` + "`" + ` field and a positive ` + "`" + `nanos` + "`" + ` field. Must be from 0 to 999,999,999 inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "seconds",
+					Description: `(Required) Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. The ` + "`" + `request_mirror_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "backend_service",
+					Description: `(Required) The RegionBackendService resource being mirrored to. The ` + "`" + `retry_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "num_retries",
+					Description: `(Required) Specifies the allowed number retries. This number must be > 0.`,
+				},
+				resource.Attribute{
+					Name:        "per_try_timeout",
+					Description: `(Optional) Specifies a non-zero timeout per retry attempt. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "retry_conditions",
+					Description: `(Optional) Specfies one or more conditions when this retry rule applies. Valid values are: - 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code, or if the backend service does not respond at all, example: disconnects, reset, read timeout, connection failure, and refused streams. - gateway-error: Similar to 5xx, but only applies to response codes 502, 503 or 504. - connect-failure: Loadbalancer will retry on failures connecting to backend services, for example due to connection timeouts. - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes. Currently the only retriable error supported is 409. - refused-stream: Loadbalancer will retry if the backend service resets the stream with a REFUSED_STREAM error code. This reset type indicates that it is safe to retry. - cancelled: Loadbalancer will retry if the gRPC status code in the response header is set to cancelled - deadline-exceeded: Loadbalancer will retry if the gRPC status code in the response header is set to deadline-exceeded - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response header is set to resource-exhausted - unavailable: Loadbalancer will retry if the gRPC status code in the response header is set to unavailable The ` + "`" + `per_try_timeout` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "nanos",
+					Description: `(Optional) Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 ` + "`" + `seconds` + "`" + ` field and a positive ` + "`" + `nanos` + "`" + ` field. Must be from 0 to 999,999,999 inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "seconds",
+					Description: `(Required) Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. The ` + "`" + `timeout` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "nanos",
+					Description: `(Optional) Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 ` + "`" + `seconds` + "`" + ` field and a positive ` + "`" + `nanos` + "`" + ` field. Must be from 0 to 999,999,999 inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "seconds",
+					Description: `(Required) Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. The ` + "`" + `url_rewrite` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "host_rewrite",
+					Description: `(Optional) Prior to forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be between 1 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "path_prefix_rewrite",
+					Description: `(Optional) Prior to forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be between 1 and 1024 characters. The ` + "`" + `weighted_backend_services` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "backend_service",
+					Description: `(Required) The default RegionBackendService resource. Before forwarding the request to backendService, the loadbalancer applies any relevant headerActions specified as part of this backendServiceWeight.`,
+				},
+				resource.Attribute{
+					Name:        "header_action",
+					Description: `(Optional) Specifies changes to request and response headers that need to take effect for the selected backendService. headerAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Required) Specifies the fraction of traffic sent to backendService, computed as weight / (sum of all weightedBackendService weights in routeAction) . The selection of a backend service is determined only for new traffic. Once a user's request has been directed to a backendService, subsequent requests will be sent to the same backendService as determined by the BackendService's session affinity policy. The value must be between 0 and 1000 The ` + "`" + `header_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "request_headers_to_add",
+					Description: `(Optional) Headers to add to a matching request prior to forwarding the request to the backendService. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "request_headers_to_remove",
+					Description: `(Optional) A list of header names for headers that need to be removed from the request prior to forwarding the request to the backendService.`,
+				},
+				resource.Attribute{
+					Name:        "response_headers_to_add",
+					Description: `(Optional) Headers to add the response prior to sending the response back to the client. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "response_headers_to_remove",
+					Description: `(Optional) A list of header names for headers that need to be removed from the response prior to sending the response back to the client. The ` + "`" + `request_headers_to_add` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) The name of the header.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) The value of the header to add.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Required) If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The ` + "`" + `response_headers_to_add` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) The name of the header.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) The value of the header to add.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Required) If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The ` + "`" + `url_redirect` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "host_redirect",
+					Description: `(Optional) The host that will be used in the redirect response instead of the one that was supplied in the request. The value must be between 1 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "https_redirect",
+					Description: `(Optional) If set to true, the URL scheme in the redirected request is set to https. If set to false, the URL scheme of the redirected request will remain the same as that of the request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this true for TargetHttpsProxy is not permitted. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "path_redirect",
+					Description: `(Optional) The path that will be used in the redirect response instead of the one that was supplied in the request. Only one of pathRedirect or prefixRedirect must be specified. The value must be between 1 and 1024 characters.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_redirect",
+					Description: `(Optional) The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_response_code",
+					Description: `(Optional) The HTTP Status code to use for this RedirectAction. Supported values are: - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301. - FOUND, which corresponds to 302. - SEE_OTHER which corresponds to 303. - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method will be retained. - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method will be retained.`,
+				},
+				resource.Attribute{
+					Name:        "strip_query",
+					Description: `(Optional) If set to true, any accompanying query portion of the original URL is removed prior to redirecting the request. If set to false, the query portion of the original URL is retained. Defaults to false. The ` + "`" + `path_rule` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Optional) The region backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any weightedBackendServices, service must not be specified. Only one of urlRedirect, service or routeAction.weightedBackendService must be set.`,
+				},
+				resource.Attribute{
+					Name:        "paths",
+					Description: `(Required) The list of path patterns to match. Each must start with / and the only place a`,
+				},
+				resource.Attribute{
+					Name:        "route_action",
+					Description: `(Optional) In response to a matching path, the load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If routeAction specifies any weightedBackendServices, service must not be set. Conversely if service is set, routeAction cannot contain any weightedBackendServices. Only one of routeAction or urlRedirect must be set. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "url_redirect",
+					Description: `(Optional) When a path pattern is matched, the request is redirected to a URL specified by urlRedirect. If urlRedirect is specified, service or routeAction must not be set. Structure is documented below. The ` + "`" + `route_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cors_policy",
+					Description: `(Optional) The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "fault_injection_policy",
+					Description: `(Optional) The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests. timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "request_mirror_policy",
+					Description: `(Optional) Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "retry_policy",
+					Description: `(Optional) Specifies the retry policy associated with this route. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "timeout",
+					Description: `(Optional) Specifies the timeout for the selected route. Timeout is computed from the time the request is has been fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries. If not specified, the default value is 15 seconds. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "url_rewrite",
+					Description: `(Optional) The spec to modify the URL of the request, prior to forwarding the request to the matched service Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "weighted_backend_services",
+					Description: `(Optional) A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one weightedBackendService with weight set to a non 0 number. Once a backendService is identified and before forwarding the request to the backend service, advanced routing actions like Url rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction. Structure is documented below. The ` + "`" + `cors_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "allow_credentials",
+					Description: `(Optional) In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access- Control-Allow-Credentials header. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "allow_headers",
+					Description: `(Optional) Specifies the content for the Access-Control-Allow-Headers header.`,
+				},
+				resource.Attribute{
+					Name:        "allow_methods",
+					Description: `(Optional) Specifies the content for the Access-Control-Allow-Methods header.`,
+				},
+				resource.Attribute{
+					Name:        "allow_origin_regexes",
+					Description: `(Optional) Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript An origin is allowed if it matches either allow_origins or allow_origin_regex.`,
+				},
+				resource.Attribute{
+					Name:        "allow_origins",
+					Description: `(Optional) Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either allow_origins or allow_origin_regex.`,
+				},
+				resource.Attribute{
+					Name:        "disabled",
+					Description: `(Required) If true, specifies the CORS policy is disabled.`,
+				},
+				resource.Attribute{
+					Name:        "expose_headers",
+					Description: `(Optional) Specifies the content for the Access-Control-Expose-Headers header.`,
+				},
+				resource.Attribute{
+					Name:        "max_age",
+					Description: `(Optional) Specifies how long the results of a preflight request can be cached. This translates to the content for the Access-Control-Max-Age header. The ` + "`" + `fault_injection_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "abort",
+					Description: `(Optional) The specification for how client requests are aborted as part of fault injection. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "delay",
+					Description: `(Optional) The specification for how client requests are delayed as part of fault injection, before being sent to a backend service. Structure is documented below. The ` + "`" + `abort` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "http_status",
+					Description: `(Required) The HTTP status code used to abort the request. The value must be between 200 and 599 inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "percentage",
+					Description: `(Required) The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection. The value must be between 0.0 and 100.0 inclusive. The ` + "`" + `delay` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fixed_delay",
+					Description: `(Required) Specifies the value of the fixed delay interval. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "percentage",
+					Description: `(Required) The percentage of traffic (connections/operations/requests) on which delay will be introduced as part of fault injection. The value must be between 0.0 and 100.0 inclusive. The ` + "`" + `fixed_delay` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "nanos",
+					Description: `(Optional) Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 ` + "`" + `seconds` + "`" + ` field and a positive ` + "`" + `nanos` + "`" + ` field. Must be from 0 to 999,999,999 inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "seconds",
+					Description: `(Required) Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. The ` + "`" + `request_mirror_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "backend_service",
+					Description: `(Required) The RegionBackendService resource being mirrored to. The ` + "`" + `retry_policy` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "num_retries",
+					Description: `(Optional) Specifies the allowed number retries. This number must be > 0.`,
+				},
+				resource.Attribute{
+					Name:        "per_try_timeout",
+					Description: `(Optional) Specifies a non-zero timeout per retry attempt. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "retry_conditions",
+					Description: `(Optional) Specifies one or more conditions when this retry rule applies. Valid values are: - 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code, or if the backend service does not respond at all, example: disconnects, reset, read timeout, connection failure, and refused streams. - gateway-error: Similar to 5xx, but only applies to response codes 502, 503 or 504. - connect-failure: Loadbalancer will retry on failures connecting to backend services, for example due to connection timeouts. - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes. Currently the only retriable error supported is 409. - refused-stream: Loadbalancer will retry if the backend service resets the stream with a REFUSED_STREAM error code. This reset type indicates that it is safe to retry. - cancelled: Loadbalancer will retry if the gRPC status code in the response header is set to cancelled - deadline-exceeded: Loadbalancer will retry if the gRPC status code in the response header is set to deadline-exceeded - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response header is set to resource-exhausted - unavailable: Loadbalancer will retry if the gRPC status code in the response header is set to unavailable The ` + "`" + `per_try_timeout` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "nanos",
+					Description: `(Optional) Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 ` + "`" + `seconds` + "`" + ` field and a positive ` + "`" + `nanos` + "`" + ` field. Must be from 0 to 999,999,999 inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "seconds",
+					Description: `(Required) Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. The ` + "`" + `timeout` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "nanos",
+					Description: `(Optional) Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 ` + "`" + `seconds` + "`" + ` field and a positive ` + "`" + `nanos` + "`" + ` field. Must be from 0 to 999,999,999 inclusive.`,
+				},
+				resource.Attribute{
+					Name:        "seconds",
+					Description: `(Required) Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. The ` + "`" + `url_rewrite` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "host_rewrite",
+					Description: `(Optional) Prior to forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be between 1 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "path_prefix_rewrite",
+					Description: `(Optional) Prior to forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be between 1 and 1024 characters. The ` + "`" + `weighted_backend_services` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "backend_service",
+					Description: `(Required) The default RegionBackendService resource. Before forwarding the request to backendService, the loadbalancer applies any relevant headerActions specified as part of this backendServiceWeight.`,
+				},
+				resource.Attribute{
+					Name:        "header_action",
+					Description: `(Optional) Specifies changes to request and response headers that need to take effect for the selected backendService. headerAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Required) Specifies the fraction of traffic sent to backendService, computed as weight / (sum of all weightedBackendService weights in routeAction) . The selection of a backend service is determined only for new traffic. Once a user's request has been directed to a backendService, subsequent requests will be sent to the same backendService as determined by the BackendService's session affinity policy. The value must be between 0 and 1000 The ` + "`" + `header_action` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "request_headers_to_add",
+					Description: `(Optional) Headers to add to a matching request prior to forwarding the request to the backendService. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "request_headers_to_remove",
+					Description: `(Optional) A list of header names for headers that need to be removed from the request prior to forwarding the request to the backendService.`,
+				},
+				resource.Attribute{
+					Name:        "response_headers_to_add",
+					Description: `(Optional) Headers to add the response prior to sending the response back to the client. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "response_headers_to_remove",
+					Description: `(Optional) A list of header names for headers that need to be removed from the response prior to sending the response back to the client. The ` + "`" + `request_headers_to_add` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) The name of the header.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) The value of the header to add.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Required) If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The ` + "`" + `response_headers_to_add` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "header_name",
+					Description: `(Required) The name of the header.`,
+				},
+				resource.Attribute{
+					Name:        "header_value",
+					Description: `(Required) The value of the header to add.`,
+				},
+				resource.Attribute{
+					Name:        "replace",
+					Description: `(Required) If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The ` + "`" + `url_redirect` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "host_redirect",
+					Description: `(Optional) The host that will be used in the redirect response instead of the one that was supplied in the request. The value must be between 1 and 255 characters.`,
+				},
+				resource.Attribute{
+					Name:        "https_redirect",
+					Description: `(Optional) If set to true, the URL scheme in the redirected request is set to https. If set to false, the URL scheme of the redirected request will remain the same as that of the request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this true for TargetHttpsProxy is not permitted. Defaults to false.`,
+				},
+				resource.Attribute{
+					Name:        "path_redirect",
+					Description: `(Optional) The path that will be used in the redirect response instead of the one that was supplied in the request. Only one of pathRedirect or prefixRedirect must be specified. The value must be between 1 and 1024 characters.`,
+				},
+				resource.Attribute{
+					Name:        "prefix_redirect",
+					Description: `(Optional) The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request.`,
+				},
+				resource.Attribute{
+					Name:        "redirect_response_code",
+					Description: `(Optional) The HTTP Status code to use for this RedirectAction. Supported values are: - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301. - FOUND, which corresponds to 302. - SEE_OTHER which corresponds to 303. - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method will be retained. - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method will be retained.`,
+				},
+				resource.Attribute{
+					Name:        "strip_query",
+					Description: `(Required) If set to true, any accompanying query portion of the original URL is removed prior to redirecting the request. If set to false, the query portion of the original URL is retained. The ` + "`" + `test` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Description of this test case.`,
+				},
+				resource.Attribute{
+					Name:        "host",
+					Description: `(Required) Host portion of the URL.`,
+				},
+				resource.Attribute{
+					Name:        "path",
+					Description: `(Required) Path portion of the URL.`,
+				},
+				resource.Attribute{
+					Name:        "service",
+					Description: `(Required) A reference to expected RegionBackendService resource the given URL should be mapped to. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/urlMaps/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "map_id",
+					Description: `The unique identifier for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprint",
+					Description: `Fingerprint of this resource. This field is used internally during updates of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionUrlMap can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_region_url_map.default projects/{{project}}/regions/{{region}}/urlMaps/{{name}} $ terraform import -provider=google-beta google_compute_region_url_map.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_compute_region_url_map.default {{region}}/{{name}} $ terraform import -provider=google-beta google_compute_region_url_map.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/urlMaps/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "creation_timestamp",
+					Description: `Creation timestamp in RFC3339 text format.`,
+				},
+				resource.Attribute{
+					Name:        "map_id",
+					Description: `The unique identifier for the resource.`,
+				},
+				resource.Attribute{
+					Name:        "fingerprint",
+					Description: `Fingerprint of this resource. This field is used internally during updates of this resource.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import RegionUrlMap can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_compute_region_url_map.default projects/{{project}}/regions/{{region}}/urlMaps/{{name}} $ terraform import -provider=google-beta google_compute_region_url_map.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_compute_region_url_map.default {{region}}/{{name}} $ terraform import -provider=google-beta google_compute_region_url_map.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -7320,6 +9061,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/reservations/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -7337,6 +9082,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/reservations/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -7414,7 +9163,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "start_time",
-					Description: `(Required) Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT. The ` + "`" + `daily_schedule` + "`" + ` block supports:`,
+					Description: `(Required) Time within the window to start the operations. It must be in an hourly format "HH:MM", where HH : [00-23] and MM : [00] GMT. eg: 21:00 The ` + "`" + `daily_schedule` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "days_in_cycle",
@@ -7450,14 +9199,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "storage_locations",
-					Description: `(Optional) GCS bucket location in which to store the snapshot (regional or multi-regional).`,
+					Description: `(Optional) Cloud Storage bucket location to store the auto snapshot (regional or multi-regional)`,
 				},
 				resource.Attribute{
 					Name:        "guest_flush",
-					Description: `(Optional) Whether to perform a 'guest aware' snapshot. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ResourcePolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_resource_policy.default projects/{{project}}/regions/{{region}}/resourcePolicies/{{name}} $ terraform import google_compute_resource_policy.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_resource_policy.default {{region}}/{{name}} $ terraform import google_compute_resource_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) Whether to perform a 'guest aware' snapshot. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/resourcePolicies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ResourcePolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_resource_policy.default projects/{{project}}/regions/{{region}}/resourcePolicies/{{name}} $ terraform import google_compute_resource_policy.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_resource_policy.default {{region}}/{{name}} $ terraform import google_compute_resource_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/resourcePolicies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ResourcePolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_resource_policy.default projects/{{project}}/regions/{{region}}/resourcePolicies/{{name}} $ terraform import google_compute_resource_policy.default {{project}}/{{region}}/{{name}} $ terraform import google_compute_resource_policy.default {{region}}/{{name}} $ terraform import google_compute_resource_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -7524,6 +9290,10 @@ var (
 					Description: `(Optional when ` + "`" + `next_hop_instance` + "`" + ` is specified) The zone of the instance specified in ` + "`" + `next_hop_instance` + "`" + `. Omit if ` + "`" + `next_hop_instance` + "`" + ` is specified as a URL. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/routes/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "next_hop_network",
 					Description: `URL to a Network that should handle matching packets.`,
 				},
@@ -7533,6 +9303,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/routes/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "next_hop_network",
 					Description: `URL to a Network that should handle matching packets.`,
@@ -7604,6 +9378,10 @@ var (
 					Description: `(Optional) User-specified description for the IP range. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/routers/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -7613,6 +9391,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/routers/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -7689,6 +9471,10 @@ var (
 					Description: `(Optional) User-specified description for the IP range. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "ip_address",
 					Description: `IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.`,
 				},
@@ -7698,6 +9484,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "ip_address",
 					Description: `IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.`,
@@ -7787,7 +9577,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "drain_nat_ips",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT.`,
+					Description: `(Optional) A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT.`,
 				},
 				resource.Attribute{
 					Name:        "subnetwork",
@@ -7843,10 +9633,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "filter",
-					Description: `(Required) Specifies the desired filtering of logs on this NAT. Valid values are: ` + "`" + `"ERRORS_ONLY"` + "`" + `, ` + "`" + `"TRANSLATIONS_ONLY"` + "`" + `, ` + "`" + `"ALL"` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `update` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import RouterNat can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router_nat.default projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{project}}/{{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{router}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Required) Specifies the desired filtering of logs on this NAT. Valid values are: ` + "`" + `"ERRORS_ONLY"` + "`" + `, ` + "`" + `"TRANSLATIONS_ONLY"` + "`" + `, ` + "`" + `"ALL"` + "`" + ` ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{region}}/{{router}}/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `update` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import RouterNat can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router_nat.default projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{project}}/{{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{router}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{region}}/{{router}}/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `update` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import RouterNat can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_compute_router_nat.default projects/{{project}}/regions/{{region}}/routers/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{project}}/{{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{region}}/{{router}}/{{name}} $ terraform import google_compute_router_nat.default {{router}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -8042,6 +9841,10 @@ var (
 					Description: `(Optional) Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/snapshots/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8071,6 +9874,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/snapshots/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8139,6 +9946,10 @@ var (
 					Description: `(Optional) Creates a unique name beginning with the specified prefix. Conflicts with ` + "`" + `name` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/sslCertificates/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8152,6 +9963,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/sslCertificates/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8204,6 +10019,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/sslPolicies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8221,6 +10040,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/sslPolicies/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8277,7 +10100,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "secondary_ip_range",
-					Description: `(Optional) An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges. This field uses attr-as-block mode to avoid breaking users during the 0.12 upgrade. See [the Attr-as-Block page](https://www.terraform.io/docs/configuration/attr-as-blocks.html) for more details. Structure is documented below.`,
+					Description: `(Optional) An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges.`,
 				},
 				resource.Attribute{
 					Name:        "private_ip_google_access",
@@ -8316,6 +10139,10 @@ var (
 					Description: `(Optional) Can only be specified if VPC flow logging for this subnetwork is enabled. Configures whether metadata fields should be added to the reported VPC flow logs. Default is ` + "`" + `INCLUDE_ALL_METADATA` + "`" + `. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/subnetworks/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8329,6 +10156,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/subnetworks/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8347,7 +10178,7 @@ var (
 			Name:             "",
 			Type:             "google_compute_subnetwork_iam_policy",
 			Category:         "Google Compute Engine Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for ComputeSubnetwork`,
+			ShortDescription: `Collection of resources to manage IAM policy for Compute Engine Subnetwork`,
 			Description:      ``,
 			Keywords: []string{
 				"compute",
@@ -8424,6 +10255,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/targetHttpProxies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8437,6 +10272,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/targetHttpProxies/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8494,6 +10333,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/targetHttpsProxies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8507,6 +10350,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/targetHttpsProxies/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8559,6 +10406,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/targetInstances/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8568,6 +10419,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/zones/{{zone}}/targetInstances/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8682,6 +10537,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/targetSslProxies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8695,6 +10554,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/targetSslProxies/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -8744,6 +10607,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/targetTcpProxies/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -8757,6 +10624,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/targetTcpProxies/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -9545,6 +11416,10 @@ var (
 					Description: `(Required) The backend service or backend bucket link that should be matched by this test. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/urlMaps/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -9562,6 +11437,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/global/urlMaps/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -9614,6 +11493,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/targetVpnGateways/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -9627,6 +11510,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/targetVpnGateways/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "creation_timestamp",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -9723,6 +11610,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/vpnTunnels/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "tunnel_id",
 					Description: `The unique identifier for the resource. This identifier is defined by the server.`,
 				},
@@ -9748,6 +11639,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/regions/{{region}}/vpnTunnels/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "tunnel_id",
 					Description: `The unique identifier for the resource. This identifier is defined by the server.`,
@@ -9804,10 +11699,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Note can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_container_analysis_note.default projects/{{project}}/notes/{{name}} $ terraform import google_container_analysis_note.default {{project}}/{{name}} $ terraform import google_container_analysis_note.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/notes/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Note can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_container_analysis_note.default projects/{{project}}/notes/{{name}} $ terraform import google_container_analysis_note.default {{project}}/{{name}} $ terraform import google_container_analysis_note.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/notes/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Note can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_container_analysis_note.default projects/{{project}}/notes/{{name}} $ terraform import google_container_analysis_note.default {{project}}/{{name}} $ terraform import google_container_analysis_note.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -9860,7 +11764,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "enable_binary_authorization",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Google Binary Authorization.`,
+					Description: `(Optional) Enable Binary Authorization for this cluster. If enabled, all container images will be validated by Google Binary Authorization.`,
 				},
 				resource.Attribute{
 					Name:        "enable_kubernetes_alpha",
@@ -9888,7 +11792,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "logging_service",
-					Description: `(Optional) The logging service that the cluster should write logs to. Available options include ` + "`" + `logging.googleapis.com` + "`" + `, ` + "`" + `logging.googleapis.com/kubernetes` + "`" + `, and ` + "`" + `none` + "`" + `. Defaults to ` + "`" + `logging.googleapis.com/kubernetes` + "`" + ``,
+					Description: `(Optional) The logging service that the cluster should write logs to. Available options include ` + "`" + `logging.googleapis.com` + "`" + `(Legacy Stackdriver), ` + "`" + `logging.googleapis.com/kubernetes` + "`" + `(Stackdriver Kubernetes Engine Logging), and ` + "`" + `none` + "`" + `. Defaults to ` + "`" + `logging.googleapis.com/kubernetes` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "maintenance_policy",
@@ -9908,7 +11812,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "monitoring_service",
-					Description: `(Optional) The monitoring service that the cluster should write metrics to. Automatically send metrics from pods in the cluster to the Google Cloud Monitoring API. VM metrics will be collected by Google Compute Engine regardless of this setting Available options include ` + "`" + `monitoring.googleapis.com` + "`" + `, ` + "`" + `monitoring.googleapis.com/kubernetes` + "`" + `, and ` + "`" + `none` + "`" + `. Defaults to ` + "`" + `monitoring.googleapis.com/kubernetes` + "`" + ``,
+					Description: `(Optional) The monitoring service that the cluster should write metrics to. Automatically send metrics from pods in the cluster to the Google Cloud Monitoring API. VM metrics will be collected by Google Compute Engine regardless of this setting Available options include ` + "`" + `monitoring.googleapis.com` + "`" + `(Legacy Stackdriver), ` + "`" + `monitoring.googleapis.com/kubernetes` + "`" + `(Stackdriver Kubernetes Engine Monitoring), and ` + "`" + `none` + "`" + `. Defaults to ` + "`" + `monitoring.googleapis.com/kubernetes` + "`" + ``,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -10024,7 +11928,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "auto_provisioning_defaults",
-					Description: `(Optional) Contains defaults for a node pool created by NAP. Structure is documented below. The ` + "`" + `resource_limits` + "`" + ` block supports:`,
+					Description: `(Optional) Contains defaults for a node pool created by NAP. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "autoscaling_profile",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/provider_versions.html)) Configuration options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles) feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability when deciding to remove nodes from a cluster. Can be ` + "`" + `BALANCED` + "`" + ` or ` + "`" + `OPTIMIZE_UTILIZATION` + "`" + `. Defaults to ` + "`" + `BALANCED` + "`" + `. The ` + "`" + `resource_limits` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "resource_type",
@@ -10040,11 +11948,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "oauth_scopes",
-					Description: `(Optional) Scopes that are used by NAP when creating node pools. If ` + "`" + `oauth_scopes` + "`" + ` are specified, ` + "`" + `service_account` + "`" + ` must be empty. -> ` + "`" + `monitoring.write` + "`" + ` is always enabled regardless of user input. ` + "`" + `monitoring` + "`" + ` and ` + "`" + `logging.write` + "`" + ` may also be enabled depending on the values for ` + "`" + `monitoring_service` + "`" + ` and ` + "`" + `logging_service` + "`" + `.`,
+					Description: `(Optional) Scopes that are used by NAP when creating node pools. -> ` + "`" + `monitoring.write` + "`" + ` is always enabled regardless of user input. ` + "`" + `monitoring` + "`" + ` and ` + "`" + `logging.write` + "`" + ` may also be enabled depending on the values for ` + "`" + `monitoring_service` + "`" + ` and ` + "`" + `logging_service` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "service_account",
-					Description: `(Optional) The Google Cloud Platform Service Account to be used by the node VMs. If ` + "`" + `service_account` + "`" + ` is specified, ` + "`" + `oauth_scopes` + "`" + ` must be empty. The ` + "`" + `authenticator_groups_config` + "`" + ` block supports:`,
+					Description: `(Optional) The Google Cloud Platform Service Account to be used by the node VMs. The ` + "`" + `authenticator_groups_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "security_group",
@@ -10155,6 +12063,10 @@ var (
 					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify ` + "`" + `image_type = "COS_CONTAINERD"` + "`" + ` and ` + "`" + `node_version = "1.12.7-gke.17"` + "`" + ` or later to use it. Structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "boot_disk_kms_key",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption`,
+				},
+				resource.Attribute{
 					Name:        "service_account",
 					Description: `(Optional) The service account to be used by the Node VMs. If not specified, the "default" service account is used. In order to use the configured ` + "`" + `oauth_scopes` + "`" + ` for logging and monitoring, the service account being used needs the [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles. -> Projects that enable the [Cloud Compute Engine API](https://cloud.google.com/compute/) with Terraform may need these roles added manually to the service account. Projects that enable the API in the Cloud Console should have them added automatically.`,
 				},
@@ -10184,7 +12096,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "public_endpoint",
-					Description: `The external IP address of this cluster's master endpoint. !> The Google provider is unable to validate certain configurations of ` + "`" + `private_cluster_config` + "`" + ` when ` + "`" + `enable_private_nodes` + "`" + ` is ` + "`" + `false` + "`" + `. It's recommended that you omit the block entirely if the field is not set to ` + "`" + `true` + "`" + `. The ` + "`" + `sandbox_type` + "`" + ` block supports:`,
+					Description: `The external IP address of this cluster's master endpoint. !> The Google provider is unable to validate certain configurations of ` + "`" + `private_cluster_config` + "`" + ` when ` + "`" + `enable_private_nodes` + "`" + ` is ` + "`" + `false` + "`" + `. It's recommended that you omit the block entirely if the field is not set to ` + "`" + `true` + "`" + `. The ` + "`" + `sandbox_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "channel",
@@ -10197,6 +12109,10 @@ var (
 				resource.Attribute{
 					Name:        "instance_group_urls",
 					Description: `List of instance group URLs which have been assigned to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "label_fingerprint",
+					Description: `The fingerprint of the set of labels for this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "maintenance_policy.0.daily_maintenance_window.0.duration",
@@ -10235,6 +12151,10 @@ var (
 				resource.Attribute{
 					Name:        "instance_group_urls",
 					Description: `List of instance group URLs which have been assigned to the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "label_fingerprint",
+					Description: `The fingerprint of the set of labels for this cluster.`,
 				},
 				resource.Attribute{
 					Name:        "maintenance_policy.0.daily_maintenance_window.0.duration",
@@ -10302,7 +12222,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_pods_per_node",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The maximum number of pods per node in this node pool. Note that this does not work on node pools which are "route-based" - that is, node pools belonging to clusters that do not have IP Aliasing enabled. See the [official documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr) for more information.`,
+					Description: `(Optional) The maximum number of pods per node in this node pool. Note that this does not work on node pools which are "route-based" - that is, node pools belonging to clusters that do not have IP Aliasing enabled. See the [official documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr) for more information.`,
 				},
 				resource.Attribute{
 					Name:        "node_locations",
@@ -10311,6 +12231,10 @@ var (
 				resource.Attribute{
 					Name:        "name",
 					Description: `(Optional) The name of the node pool. If left blank, Terraform will auto-generate a unique name.`,
+				},
+				resource.Attribute{
+					Name:        "name_prefix",
+					Description: `(Optional) Creates a unique name for the node pool beginning with the specified prefix. Conflicts with ` + "`" + `name` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "node_config",
@@ -10350,10 +12274,58 @@ var (
 				},
 				resource.Attribute{
 					Name:        "max_unavailable",
-					Description: `(Required) The number of nodes that can be simultaneously unavailable during an upgrade. Increasing ` + "`" + `max_unavailable` + "`" + ` raises the number of nodes that can be upgraded in parallel. Can be set to 0 or greater. ` + "`" + `max_surge` + "`" + ` and ` + "`" + `max_unavailable` + "`" + ` must not be negative and at least one of them must be greater than zero. <a id="timeouts"></a> ## Timeouts ` + "`" + `google_container_node_pool` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for adding node pools - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for updates to node pools - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for removing node pools. ## Import Node pools can be imported using the ` + "`" + `project` + "`" + `, ` + "`" + `zone` + "`" + `, ` + "`" + `cluster` + "`" + ` and ` + "`" + `name` + "`" + `. If the project is omitted, the default provider value will be used. Examples: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_container_node_pool.mainpool my-gcp-project/us-east1-a/my-cluster/main-pool $ terraform import google_container_node_pool.mainpool us-east1-a/my-cluster/main-pool ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Required) The number of nodes that can be simultaneously unavailable during an upgrade. Increasing ` + "`" + `max_unavailable` + "`" + ` raises the number of nodes that can be upgraded in parallel. Can be set to 0 or greater. ` + "`" + `max_surge` + "`" + ` and ` + "`" + `max_unavailable` + "`" + ` must not be negative and at least one of them must be greater than zero. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "instance_group_urls",
+					Description: `The resource URLs of the managed instance groups associated with this node pool. <a id="timeouts"></a> ## Timeouts ` + "`" + `google_container_node_pool` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for adding node pools - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for updates to node pools - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for removing node pools. ## Import Node pools can be imported using the ` + "`" + `project` + "`" + `, ` + "`" + `zone` + "`" + `, ` + "`" + `cluster` + "`" + ` and ` + "`" + `name` + "`" + `. If the project is omitted, the default provider value will be used. Examples: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_container_node_pool.mainpool my-gcp-project/us-east1-a/my-cluster/main-pool $ terraform import google_container_node_pool.mainpool us-east1-a/my-cluster/main-pool ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_group_urls",
+					Description: `The resource URLs of the managed instance groups associated with this node pool. <a id="timeouts"></a> ## Timeouts ` + "`" + `google_container_node_pool` + "`" + ` provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for adding node pools - ` + "`" + `update` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for updates to node pools - ` + "`" + `delete` + "`" + ` - (Default ` + "`" + `30 minutes` + "`" + `) Used for removing node pools. ## Import Node pools can be imported using the ` + "`" + `project` + "`" + `, ` + "`" + `zone` + "`" + `, ` + "`" + `cluster` + "`" + ` and ` + "`" + `name` + "`" + `. If the project is omitted, the default provider value will be used. Examples: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_container_node_pool.mainpool my-gcp-project/us-east1-a/my-cluster/main-pool $ terraform import google_container_node_pool.mainpool us-east1-a/my-cluster/main-pool ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_container_registry",
+			Category:         "Google Container Registry Resources",
+			ShortDescription: `Ensures the GCS bucket backing Google Container Registry exists.`,
+			Description:      ``,
+			Keywords: []string{
+				"container",
+				"registry",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Optional) The location of the registry. One of ` + "`" + `ASIA` + "`" + `, ` + "`" + `EU` + "`" + `, ` + "`" + `US` + "`" + ` or not specified. See [the official documentation](https://cloud.google.com/container-registry/docs/pushing-and-pulling#pushing_an_image_to_a_registry) for more information on registry locations.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "bucket_self_link",
+					Description: `The URI of the created resource.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the bucket that supports the Container Registry. In the form of ` + "`" + `artifacts.{project}.appspot.com` + "`" + ` or ` + "`" + `{location}.artifacts.{project}.appspot.com` + "`" + ` if location is specified.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "bucket_self_link",
+					Description: `The URI of the created resource.`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The name of the bucket that supports the Container Registry. In the form of ` + "`" + `artifacts.{project}.appspot.com` + "`" + ` or ` + "`" + `{location}.artifacts.{project}.appspot.com` + "`" + ` if location is specified.`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -10420,6 +12392,10 @@ var (
 					Description: `(Required) Name of the network in the project with which the tenant project will be peered for executing pipelines. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id}/global/networks/{network} ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/instances/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time the instance was created in RFC3339 UTC "Zulu" format, accurate to nanoseconds.`,
 				},
@@ -10441,11 +12417,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `Current version of the Data Fusion. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 60 minutes. - ` + "`" + `update` + "`" + ` - Default is 25 minutes. - ` + "`" + `delete` + "`" + ` - Default is 50 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_data_fusion_instance.default projects/{{project}}/locations/{{region}}/instances/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{region}}/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `Current version of the Data Fusion.`,
+				},
+				resource.Attribute{
+					Name:        "service_account",
+					Description: `Service account which will be used to access resources in the customer project. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 60 minutes. - ` + "`" + `update` + "`" + ` - Default is 25 minutes. - ` + "`" + `delete` + "`" + ` - Default is 50 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_data_fusion_instance.default projects/{{project}}/locations/{{region}}/instances/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{region}}/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/instances/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time the instance was created in RFC3339 UTC "Zulu" format, accurate to nanoseconds.`,
 				},
@@ -10467,7 +12451,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "version",
-					Description: `Current version of the Data Fusion. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 60 minutes. - ` + "`" + `update` + "`" + ` - Default is 25 minutes. - ` + "`" + `delete` + "`" + ` - Default is 50 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_data_fusion_instance.default projects/{{project}}/locations/{{region}}/instances/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{region}}/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `Current version of the Data Fusion.`,
+				},
+				resource.Attribute{
+					Name:        "service_account",
+					Description: `Service account which will be used to access resources in the customer project. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 60 minutes. - ` + "`" + `update` + "`" + ` - Default is 25 minutes. - ` + "`" + `delete` + "`" + ` - Default is 50 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_data_fusion_instance.default projects/{{project}}/locations/{{region}}/instances/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{region}}/{{name}} $ terraform import -provider=google-beta google_data_fusion_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -10539,11 +12527,27 @@ var (
 					Description: `(Optional) The configuration for VM IPs. Options are ` + "`" + `"WORKER_IP_PUBLIC"` + "`" + ` or ` + "`" + `"WORKER_IP_PRIVATE"` + "`" + `. ## Attributes Reference`,
 				},
 				resource.Attribute{
+					Name:        "job_id",
+					Description: `The unique ID of this job.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of this job, selected from the [JobType enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobType)`,
+				},
+				resource.Attribute{
 					Name:        "state",
 					Description: `The current state of the resource, selected from the [JobState enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobState)`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "job_id",
+					Description: `The unique ID of this job.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of this job, selected from the [JobType enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobType)`,
+				},
 				resource.Attribute{
 					Name:        "state",
 					Description: `The current state of the resource, selected from the [JobState enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobState)`,
@@ -10639,11 +12643,19 @@ var (
 					Description: `(Optional) Minimum scale-down threshold as a fraction of total cluster size before scaling occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must recommend at least a 2 worker scale-down for the cluster to scale. A threshold of 0 means the autoscaler will scale down on any recommended change. Bounds: [0.0, 1.0]. Default: 0.0. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/autoscalingPolicies/{{policy_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The "resource name" of the autoscaling policy. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import AutoscalingPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_autoscaling_policy.default projects/{{project}}/locations/{{location}}/autoscalingPolicies/{{policy_id}} $ terraform import google_dataproc_autoscaling_policy.default {{project}}/{{location}}/{{policy_id}} $ terraform import google_dataproc_autoscaling_policy.default {{location}}/{{policy_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/autoscalingPolicies/{{policy_id}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `The "resource name" of the autoscaling policy. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import AutoscalingPolicy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_autoscaling_policy.default projects/{{project}}/locations/{{location}}/autoscalingPolicies/{{policy_id}} $ terraform import google_dataproc_autoscaling_policy.default {{project}}/{{location}}/{{policy_id}} $ terraform import google_dataproc_autoscaling_policy.default {{location}}/{{policy_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -10863,7 +12875,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "kms_key_name",
-					Description: `(Required) The Cloud KMS key name to use for PD disk encryption for all instances in the cluster. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+					Description: `(Required) The Cloud KMS key name to use for PD disk encryption for all instances in the cluster. - - - The ` + "`" + `lifecycle_config` + "`" + ` block supports: ` + "`" + `` + "`" + `` + "`" + `hcl cluster_config { lifecycle_config { idle_delete_ttl = "10m" auto_delete_time = "2120-01-01T12:00:00.01Z" } } ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "idle_delete_ttl",
+					Description: `(Optional) The duration to keep the cluster alive while idling (no jobs running). After this TTL, the cluster will be deleted. Valid range: [10m, 14d].`,
+				},
+				resource.Attribute{
+					Name:        "auto_delete_time",
+					Description: `(Optional) The time when cluster will be auto-deleted. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z". ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "cluster_config.0.master_config.0.instance_names",
@@ -10883,7 +12903,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_config.0.software_config.0.properties",
-					Description: `A list of the properties used to set the daemon config files. This will include any values supplied by the user via ` + "`" + `cluster_config.software_config.override_properties` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes.`,
+					Description: `A list of the properties used to set the daemon config files. This will include any values supplied by the user via ` + "`" + `cluster_config.software_config.override_properties` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "cluster_config.0.lifecycle_config.0.idle_start_time",
+					Description: `Time when the cluster became idle (most recent job finished) and became eligible for deletion due to idleness. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes.`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -10905,7 +12929,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_config.0.software_config.0.properties",
-					Description: `A list of the properties used to set the daemon config files. This will include any values supplied by the user via ` + "`" + `cluster_config.software_config.override_properties` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes.`,
+					Description: `A list of the properties used to set the daemon config files. This will include any values supplied by the user via ` + "`" + `cluster_config.software_config.override_properties` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "cluster_config.0.lifecycle_config.0.idle_start_time",
+					Description: `Time when the cluster became idle (most recent job finished) and became eligible for deletion due to idleness. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `update` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 20 minutes.`,
 				},
 			},
 		},
@@ -10948,13 +12976,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the clusters's IAM policy. ## Import Cluster IAM resources can be imported using the project, region, cluster name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_cluster_iam_policy.editor "projects/{project}/regions/{region}/clusters/{cluster}" $ terraform import google_dataproc_cluster_iam_binding.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor" $ terraform import google_dataproc_cluster_iam_member.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the clusters's IAM policy. ## Import Cluster IAM resources can be imported using the project, region, cluster name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_cluster_iam_policy.editor "projects/{project}/regions/{region}/clusters/{cluster}" $ terraform import google_dataproc_cluster_iam_binding.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor" $ terraform import google_dataproc_cluster_iam_member.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the clusters's IAM policy. ## Import Cluster IAM resources can be imported using the project, region, cluster name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_cluster_iam_policy.editor "projects/{project}/regions/{region}/clusters/{cluster}" $ terraform import google_dataproc_cluster_iam_binding.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor" $ terraform import google_dataproc_cluster_iam_member.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the clusters's IAM policy. ## Import Cluster IAM resources can be imported using the project, region, cluster name, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_cluster_iam_policy.editor "projects/{project}/regions/{region}/clusters/{cluster}" $ terraform import google_dataproc_cluster_iam_binding.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor" $ terraform import google_dataproc_cluster_iam_member.editor "projects/{project}/regions/{region}/clusters/{cluster} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -11224,13 +13252,175 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the jobs's IAM policy. ## Import Job IAM resources can be imported using the project, region, job id, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_job_iam_policy.editor "projects/{project}/regions/{region}/jobs/{job_id}" $ terraform import google_dataproc_job_iam_binding.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor" $ terraform import google_dataproc_job_iam_member.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the jobs's IAM policy. ## Import Job IAM resources can be imported using the project, region, job id, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_job_iam_policy.editor "projects/{project}/regions/{region}/jobs/{job_id}" $ terraform import google_dataproc_job_iam_binding.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor" $ terraform import google_dataproc_job_iam_member.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the jobs's IAM policy. ## Import Job IAM resources can be imported using the project, region, job id, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_job_iam_policy.editor "projects/{project}/regions/{region}/jobs/{job_id}" $ terraform import google_dataproc_job_iam_binding.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor" $ terraform import google_dataproc_job_iam_member.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the jobs's IAM policy. ## Import Job IAM resources can be imported using the project, region, job id, role and/or member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dataproc_job_iam_policy.editor "projects/{project}/regions/{region}/jobs/{job_id}" $ terraform import google_dataproc_job_iam_binding.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor" $ terraform import google_dataproc_job_iam_member.editor "projects/{project}/regions/{region}/jobs/{job_id} roles/editor user:jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_datastore_index",
+			Category:         "Google Datastore Resources",
+			ShortDescription: `Describes a composite index for Cloud Datastore.`,
+			Description:      ``,
+			Keywords: []string{
+				"datastore",
+				"index",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "kind",
+					Description: `(Required) The entity kind which the index applies to. - - -`,
+				},
+				resource.Attribute{
+					Name:        "ancestor",
+					Description: `(Optional) Policy for including ancestors in the index. Either ` + "`" + `ALL_ANCESTORS` + "`" + ` or ` + "`" + `NONE` + "`" + `, the default is ` + "`" + `NONE` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "properties",
+					Description: `(Optional) An ordered list of properties to index on. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `properties` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The property name to index.`,
+				},
+				resource.Attribute{
+					Name:        "direction",
+					Description: `(Required) The direction the index should optimize for sorting. Possible values are ASCENDING and DESCENDING. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/indexes/{{index_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "index_id",
+					Description: `The index id. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Index can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_datastore_index.default projects/{{project}}/indexes/{{index_id}} $ terraform import google_datastore_index.default {{project}}/{{index_id}} $ terraform import google_datastore_index.default {{index_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/indexes/{{index_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "index_id",
+					Description: `The index id. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 20 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Index can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_datastore_index.default projects/{{project}}/indexes/{{index_id}} $ terraform import google_datastore_index.default {{project}}/{{index_id}} $ terraform import google_datastore_index.default {{index_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_deployment_manager_deployment",
+			Category:         "Google Deployment Manager Resources",
+			ShortDescription: `A collection of resources that are deployed and managed together using a configuration file`,
+			Description:      ``,
+			Keywords: []string{
+				"deployment",
+				"manager",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) Unique name for the deployment`,
+				},
+				resource.Attribute{
+					Name:        "target",
+					Description: `(Required) Parameters that define your deployment, including the deployment configuration and relevant templates. Structure is documented below. The ` + "`" + `target` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) The root configuration file to use for this deployment. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "imports",
+					Description: `(Optional) Specifies import files for this configuration. This can be used to import templates or other files. For example, you might import a text file in order to use the file in a template. Structure is documented below. The ` + "`" + `config` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Required) The full YAML contents of your configuration file. The ` + "`" + `imports` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "content",
+					Description: `(Optional) The full contents of the template that you want to import.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the template to import, as declared in the YAML configuration. - - -`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Optional user-provided description of deployment.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Key-value pairs to apply to this labels. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "create_policy",
+					Description: `(Optional) Set the policy to use for creating new resources. Only used on create and update. Valid values are ` + "`" + `CREATE_OR_ACQUIRE` + "`" + ` (default) or ` + "`" + `ACQUIRE` + "`" + `. If set to ` + "`" + `ACQUIRE` + "`" + ` and resources do not already exist, the deployment will fail. Note that updating this field does not actually affect the deployment, just how it is updated.`,
+				},
+				resource.Attribute{
+					Name:        "delete_policy",
+					Description: `(Optional) Set the policy to use for deleting new resources on update/delete. Valid values are ` + "`" + `DELETE` + "`" + ` (default) or ` + "`" + `ABANDON` + "`" + `. If ` + "`" + `DELETE` + "`" + `, resource is deleted after removal from Deployment Manager. If ` + "`" + `ABANDON` + "`" + `, the resource is only removed from Deployment Manager and is not actually deleted. Note that updating this field does not actually change the deployment, just how it is updated.`,
+				},
+				resource.Attribute{
+					Name:        "preview",
+					Description: `(Optional) If set to true, a deployment is created with "shell" resources that are not actually instantiated. This allows you to preview a deployment. It can be updated to false to actually deploy with real resources. ~>`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `labels` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "key",
+					Description: `(Optional) Key for label.`,
+				},
+				resource.Attribute{
+					Name:        "value",
+					Description: `(Optional) Value of label. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/deployments/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "deployment_id",
+					Description: `Unique identifier for deployment. Output only.`,
+				},
+				resource.Attribute{
+					Name:        "manifest",
+					Description: `Output only. URL of the manifest representing the last manifest that was successfully deployed.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `Output only. Server defined URL for the resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 60 minutes. - ` + "`" + `update` + "`" + ` - Default is 60 minutes. - ` + "`" + `delete` + "`" + ` - Default is 60 minutes. ## Import Deployment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_deployment_manager_deployment.default projects/{{project}}/deployments/{{name}} $ terraform import google_deployment_manager_deployment.default {{project}}/{{name}} $ terraform import google_deployment_manager_deployment.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/deployments/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "deployment_id",
+					Description: `Unique identifier for deployment. Output only.`,
+				},
+				resource.Attribute{
+					Name:        "manifest",
+					Description: `Output only. URL of the manifest representing the last manifest that was successfully deployed.`,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `Output only. Server defined URL for the resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 60 minutes. - ` + "`" + `update` + "`" + ` - Default is 60 minutes. - ` + "`" + `delete` + "`" + ` - Default is 60 minutes. ## Import Deployment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_deployment_manager_deployment.default projects/{{project}}/deployments/{{name}} $ terraform import google_deployment_manager_deployment.default {{project}}/{{name}} $ terraform import google_deployment_manager_deployment.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -11283,6 +13473,10 @@ var (
 					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The presence of this field indicates that DNS Peering is enabled for this zone. The value of this field contains the network to peer with. Structure is documented below.`,
 				},
 				resource.Attribute{
+					Name:        "reverse_lookup",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Specifies if this is a managed reverse lookup zone. If true, Cloud DNS will resolve reverse lookup queries using automatically configured records for VPC resources. This only applies to networks listed under ` + "`" + `private_visibility_config` + "`" + `.`,
+				},
+				resource.Attribute{
 					Name:        "project",
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `dnssec_config` + "`" + ` block supports:`,
 				},
@@ -11332,7 +13526,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ipv4_address",
-					Description: `(Required) IPv4 address of a target name server. The ` + "`" + `peering_config` + "`" + ` block supports:`,
+					Description: `(Required) IPv4 address of a target name server.`,
+				},
+				resource.Attribute{
+					Name:        "forwarding_path",
+					Description: `(Optional) Forwarding path for this TargetNameServer. If unset or ` + "`" + `default` + "`" + ` Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go to the Internet. When set to ` + "`" + `private` + "`" + `, Cloud DNS will always send queries through VPC for this target The ` + "`" + `peering_config` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "target_network",
@@ -11343,11 +13541,19 @@ var (
 					Description: `(Required) The fully qualified URL of the VPC network to forward queries to. This should be formatted like ` + "`" + `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}` + "`" + ` ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/managedZones/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name_servers",
 					Description: `Delegate your managed_zone to these virtual name servers; defined by the server ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ManagedZone can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_managed_zone.default projects/{{project}}/managedZones/{{name}} $ terraform import google_dns_managed_zone.default {{project}}/{{name}} $ terraform import google_dns_managed_zone.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/managedZones/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name_servers",
 					Description: `Delegate your managed_zone to these virtual name servers; defined by the server ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ManagedZone can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_dns_managed_zone.default projects/{{project}}/managedZones/{{name}} $ terraform import google_dns_managed_zone.default {{project}}/{{name}} $ terraform import google_dns_managed_zone.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -11403,10 +13609,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "network_url",
-					Description: `(Required) The fully qualified URL of the VPC network to bind to. This should be formatted like ` + "`" + `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Policy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_dns_policy.default projects/{{project}}/policies/{{name}} $ terraform import -provider=google-beta google_dns_policy.default {{project}}/{{name}} $ terraform import -provider=google-beta google_dns_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Required) The fully qualified URL of the VPC network to bind to. This should be formatted like ` + "`" + `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}` + "`" + ` ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/policies/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Policy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_dns_policy.default projects/{{project}}/policies/{{name}} $ terraform import -provider=google-beta google_dns_policy.default {{project}}/{{name}} $ terraform import -provider=google-beta google_dns_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/policies/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Policy can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_dns_policy.default projects/{{project}}/policies/{{name}} $ terraform import -provider=google-beta google_dns_policy.default {{project}}/{{name}} $ terraform import -provider=google-beta google_dns_policy.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -11459,6 +13674,47 @@ var (
 			},
 			Arguments:  []resource.Attribute{},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_endpoints_service_iam_policy",
+			Category:         "Google Endpoints Resources",
+			ShortDescription: `Collection of resources to manage IAM policy for Service Management Service`,
+			Description:      ``,
+			Keywords: []string{
+				"endpoints",
+				"service",
+				"iam",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_name",
+					Description: `(Required) The name of the service. Used to find the parent resource to bind the IAM policy to`,
+				},
+				resource.Attribute{
+					Name:        "member/members",
+					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_endpoints_service_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `(Required only by ` + "`" + `google_endpoints_service_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -11528,6 +13784,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{zone}}/instances/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation timestamp in RFC3339 text format.`,
 				},
@@ -11537,6 +13797,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{zone}}/instances/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `Creation timestamp in RFC3339 text format.`,
@@ -11591,14 +13855,393 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/databases/{{database}}/collectionGroups/{{collection}}/indexes/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Index can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_firestore_index.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/databases/{{database}}/collectionGroups/{{collection}}/indexes/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Index can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_firestore_index.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "game_services_game_server_cluster.html",
+			Category:         "Google Cloud Game Servers",
+			ShortDescription: `A game server cluster resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"game",
+				"servers",
+				"services",
+				"server",
+				"cluster.html",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Required) Required. The resource name of the game server cluster`,
+				},
+				resource.Attribute{
+					Name:        "realm_id",
+					Description: `(Required) The realm id of the game server realm.`,
+				},
+				resource.Attribute{
+					Name:        "connection_info",
+					Description: `(Required) Game server cluster connection information. This information is used to manage game server clusters. Structure is documented below. The ` + "`" + `connection_info` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "gke_cluster_reference",
+					Description: `(Required) Reference of the GKE cluster where the game servers are installed. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "namespace",
+					Description: `(Required) Namespace designated on the game server cluster where the game server instances will be created. The namespace existence will be validated during creation. The ` + "`" + `gke_cluster_reference` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "cluster",
+					Description: `(Required) The full or partial name of a GKE cluster, using one of the following forms:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Optional) Location of the Cluster.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) The labels associated with this game server cluster. Each label is a key-value pair.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human readable description of the cluster.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/realms/{{realm_id}}/gameServerClusters/{{cluster_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the game server cluster, eg: ` + "`" + `projects/{project_id}/locations/{location}/realms/{realm_id}/gameServerClusters/{cluster_id}` + "`" + `. For example, ` + "`" + `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GameServerCluster can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_game_server_cluster.default projects/{{project}}/locations/{{location}}/realms/{{realm_id}}/gameServerClusters/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_cluster.default {{project}}/{{location}}/{{realm_id}}/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_cluster.default {{location}}/{{realm_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/realms/{{realm_id}}/gameServerClusters/{{cluster_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the game server cluster, eg: ` + "`" + `projects/{project_id}/locations/{location}/realms/{realm_id}/gameServerClusters/{cluster_id}` + "`" + `. For example, ` + "`" + `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GameServerCluster can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_game_server_cluster.default projects/{{project}}/locations/{{location}}/realms/{{realm_id}}/gameServerClusters/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_cluster.default {{project}}/{{location}}/{{realm_id}}/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_cluster.default {{location}}/{{realm_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "game_services_game_server_config.html",
+			Category:         "Google Cloud Game Servers",
+			ShortDescription: `A game server config resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"game",
+				"servers",
+				"services",
+				"server",
+				"config.html",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config_id",
+					Description: `(Required) A unique id for the deployment config.`,
+				},
+				resource.Attribute{
+					Name:        "deployment_id",
+					Description: `(Required) A unique id for the deployment.`,
+				},
+				resource.Attribute{
+					Name:        "fleet_configs",
+					Description: `(Required) The fleet config contains list of fleet specs. In the Single Cloud, there will be only one. Structure is documented below. The ` + "`" + `fleet_configs` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "fleet_spec",
+					Description: `(Required) The fleet spec, which is sent to Agones to configure fleet. The spec can be passed as inline json but it is recommended to use a file reference instead. File references can contain the json or yaml format of the fleet spec. Eg:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the FleetConfig. - - -`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Optional) Location of the Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of the game server config.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) The labels associated with this game server config. Each label is a key-value pair.`,
+				},
+				resource.Attribute{
+					Name:        "scaling_configs",
+					Description: `(Optional) Optional. This contains the autoscaling settings. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `scaling_configs` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of the ScalingConfig`,
+				},
+				resource.Attribute{
+					Name:        "fleet_autoscaler_spec",
+					Description: `(Required) Fleet autoscaler spec, which is sent to Agones. Example spec can be found : https://agones.dev/site/docs/reference/fleetautoscaler/`,
+				},
+				resource.Attribute{
+					Name:        "selectors",
+					Description: `(Optional) Labels used to identify the clusters to which this scaling config applies. A cluster is subject to this scaling config if its labels match any of the selector entries. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "schedules",
+					Description: `(Optional) The schedules to which this scaling config applies. Structure is documented below. The ` + "`" + `selectors` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) Set of labels to group by. The ` + "`" + `schedules` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "start_time",
+					Description: `(Optional) The start time of the event. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "end_time",
+					Description: `(Optional) The end time of the event. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".`,
+				},
+				resource.Attribute{
+					Name:        "cron_job_duration",
+					Description: `(Optional) The duration for the cron job event. The duration of the event is effective after the cron job's start time. A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".`,
+				},
+				resource.Attribute{
+					Name:        "cron_spec",
+					Description: `(Optional) The cron definition of the scheduled event. See https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as defined by the realm. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}/configs/{{config_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the game server config, in the form: ` + "`" + `projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GameServerConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_game_server_config.default projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}/configs/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_config.default {{project}}/{{location}}/{{deployment_id}}/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_config.default {{location}}/{{deployment_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}/configs/{{config_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the game server config, in the form: ` + "`" + `projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GameServerConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_game_server_config.default projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}/configs/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_config.default {{project}}/{{location}}/{{deployment_id}}/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_config.default {{location}}/{{deployment_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "game_services_game_server_deployment.html",
+			Category:         "Google Cloud Game Servers",
+			ShortDescription: `A game server deployment resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"game",
+				"servers",
+				"services",
+				"server",
+				"deployment.html",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "deployment_id",
+					Description: `(Required) A unique id for the deployment. - - -`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human readable description of the game server deployment.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Optional) Location of the Deployment.`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) The labels associated with this game server deployment. Each label is a key-value pair.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the game server deployment, eg: ` + "`" + `projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}` + "`" + `. For example, ` + "`" + `projects/my-project/locations/{location}/gameServerDeployments/my-deployment` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GameServerDeployment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_game_server_deployment.default projects/{{project}}/locations/{{location}}/gameServerDeployments/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_deployment.default {{project}}/{{location}}/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_deployment.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/gameServerDeployments/{{deployment_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the game server deployment, eg: ` + "`" + `projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}` + "`" + `. For example, ` + "`" + `projects/my-project/locations/{location}/gameServerDeployments/my-deployment` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GameServerDeployment can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_game_server_deployment.default projects/{{project}}/locations/{{location}}/gameServerDeployments/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_deployment.default {{project}}/{{location}}/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_deployment.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "game_services_game_server_deployment_rollout.html",
+			Category:         "Google Cloud Game Servers",
+			ShortDescription: `This represents the rollout state.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"game",
+				"servers",
+				"services",
+				"server",
+				"deployment",
+				"rollout.html",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "deployment_id",
+					Description: `(Required) The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.`,
+				},
+				resource.Attribute{
+					Name:        "default_game_server_config",
+					Description: `(Required) This field points to the game server config that is applied by default to all realms and clusters. For example, ` + "`" + `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config` + "`" + `. - - -`,
+				},
+				resource.Attribute{
+					Name:        "game_server_config_overrides",
+					Description: `(Optional) The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. The ` + "`" + `game_server_config_overrides` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "realms_selector",
+					Description: `(Optional) Selection by realms. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "config_version",
+					Description: `(Optional) Version of the configuration. The ` + "`" + `realms_selector` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "realms",
+					Description: `(Optional) List of realms to match against. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/global/gameServerDeployments/{{deployment_id}}/rollout` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the game server deployment eg: ` + "`" + `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GameServerDeploymentRollout can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_game_server_deployment_rollout.default projects/{{project}}/locations/global/gameServerDeployments/{{deployment_id}}/rollout/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_deployment_rollout.default {{project}}/{{deployment_id}}/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_deployment_rollout.default {{deployment_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/global/gameServerDeployments/{{deployment_id}}/rollout` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the game server deployment eg: ` + "`" + `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import GameServerDeploymentRollout can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_game_server_deployment_rollout.default projects/{{project}}/locations/global/gameServerDeployments/{{deployment_id}}/rollout/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_deployment_rollout.default {{project}}/{{deployment_id}}/{{name}} $ terraform import -provider=google-beta google_game_services_game_server_deployment_rollout.default {{deployment_id}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "game_services_realm.html",
+			Category:         "Google Cloud Game Servers",
+			ShortDescription: `A Realm resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"cloud",
+				"game",
+				"servers",
+				"services",
+				"realm.html",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "time_zone",
+					Description: `(Required) Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from the IANA time zone database: https://www.iana.org/time-zones.`,
+				},
+				resource.Attribute{
+					Name:        "realm_id",
+					Description: `(Required) GCP region of the Realm. - - -`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) The labels associated with this realm. Each label is a key-value pair.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human readable description of the realm.`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Optional) Location of the Realm.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/realms/{{realm_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the realm, of the form: ` + "`" + `projects/{project_id}/locations/{location}/realms/{realm_id}` + "`" + `. For example, ` + "`" + `projects/my-project/locations/{location}/realms/my-realm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `ETag of the resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Realm can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_realm.default projects/{{project}}/locations/{{location}}/realms//{{name}} $ terraform import -provider=google-beta google_game_services_realm.default {{project}}/{{location}}/{{name}} $ terraform import -provider=google-beta google_game_services_realm.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/realms/{{realm_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource id of the realm, of the form: ` + "`" + `projects/{project_id}/locations/{location}/realms/{realm_id}` + "`" + `. For example, ` + "`" + `projects/my-project/locations/{location}/realms/my-realm` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `ETag of the resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Realm can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_game_services_realm.default projects/{{project}}/locations/{{location}}/realms//{{name}} $ terraform import -provider=google-beta google_game_services_realm.default {{project}}/{{location}}/{{name}} $ terraform import -provider=google-beta google_game_services_realm.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -11670,13 +14313,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the billing account's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `billing_account_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_member.binding "your-billing-account-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the billing account's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `billing_account_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_member.binding "your-billing-account-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the billing account's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `billing_account_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_member.binding "your-billing-account-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the billing account's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `billing_account_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_billing_account_iam_member.binding "your-billing-account-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -11778,13 +14421,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `folder` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_binding.viewer "folder-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `folder` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_binding.viewer "folder-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `folder` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_binding.viewer "folder-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `folder` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_binding.viewer "folder-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -11816,13 +14459,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `folder` + "`" + `, role, and member identity e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_member.my_project "folder-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `folder` + "`" + `, role, and member identity e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_member.my_project "folder-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `folder` + "`" + `, role, and member identity e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_member.my_project "folder-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the folder's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `folder` + "`" + `, role, and member identity e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_iam_member.my_project "folder-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -11939,56 +14582,6 @@ var (
 				resource.Attribute{
 					Name:        "update_time",
 					Description: `(Computed) The timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds, representing when the variable was last updated. Example: "2016-10-09T12:33:37.578138407Z". ## Import Folder organization policies can be imported using any of the follow formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_folder_organization_policy.policy folders/folder-1234/constraints/serviceuser.services $ terraform import google_folder_organization_policy.policy folder-1234/serviceuser.services ` + "`" + `` + "`" + `` + "`" + ``,
-				},
-			},
-		},
-		&resource.Resource{
-			Name:             "",
-			Type:             "google_iap_tunnel_instance_iam_policy",
-			Category:         "Google IAP Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for a IAP Tunnel Instance.`,
-			Description:      ``,
-			Keywords: []string{
-				"iap",
-				"tunnel",
-				"instance",
-				"iam",
-				"policy",
-			},
-			Arguments: []resource.Attribute{
-				resource.Attribute{
-					Name:        "instance",
-					Description: `(Required) The name of the instance.`,
-				},
-				resource.Attribute{
-					Name:        "member/members",
-					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
-				},
-				resource.Attribute{
-					Name:        "role",
-					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_iap_tunnel_instance_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
-				},
-				resource.Attribute{
-					Name:        "policy_data",
-					Description: `(Required only by ` + "`" + `google_iap_tunnel_instance_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source.`,
-				},
-				resource.Attribute{
-					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used.`,
-				},
-				resource.Attribute{
-					Name:        "zone",
-					Description: `(Optional) The zone of the instance. If unspecified, this defaults to the zone configured in the provider. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
-				},
-				resource.Attribute{
-					Name:        "etag",
-					Description: `(Computed) The etag of the instance's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
-				},
-			},
-			Attributes: []resource.Attribute{
-				resource.Attribute{
-					Name:        "etag",
-					Description: `(Computed) The etag of the instance's IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
 				},
 			},
 		},
@@ -12178,13 +14771,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `org_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_binding.my_org "your-org-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `org_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_binding.my_org "your-org-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `org_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_binding.my_org "your-org-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the ` + "`" + `org_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_binding.my_org "your-org-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -12263,13 +14856,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `org_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_member.my_org "your-org-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `org_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_member.my_org "your-org-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `org_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_member.my_org "your-org-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the organization's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `org_id` + "`" + `, role, and member identity, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_organization_iam_member.my_org "your-org-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -12499,13 +15092,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the project's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `project_id` + "`" + `, role, and member e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_member.my_project "your-project-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `project_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_binding.my_project "your-project-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `project_id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_policy.my_project your-project-id ` + "`" + `` + "`" + `` + "`" + ` IAM audit config imports use the identifier of the resource in question and the service, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_audit_config.my_project "your-project-id foo.googleapis.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the project's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `project_id` + "`" + `, role, and member e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_member.my_project "your-project-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `project_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_binding.my_project "your-project-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `project_id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_policy.my_project your-project-id ` + "`" + `` + "`" + `` + "`" + ` IAM audit config imports use the identifier of the resource in question and the service, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_audit_config.my_project "your-project-id foo.googleapis.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the project's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `project_id` + "`" + `, role, and member e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_member.my_project "your-project-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `project_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_binding.my_project "your-project-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `project_id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_policy.my_project your-project-id ` + "`" + `` + "`" + `` + "`" + ` IAM audit config imports use the identifier of the resource in question and the service, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_audit_config.my_project "your-project-id foo.googleapis.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the project's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `project_id` + "`" + `, role, and member e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_member.my_project "your-project-id roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `project_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_binding.my_project "your-project-id roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `project_id` + "`" + `. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_iam_policy.my_project your-project-id ` + "`" + `` + "`" + `` + "`" + ` IAM audit config imports use the identifier of the resource in question and the service, e.g. ` + "`" + `` + "`" + `` + "`" + ` terraform import google_project_iam_audit_config.my_project "your-project-id foo.googleapis.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -12526,7 +15119,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "role_id",
-					Description: `(Required) The role id to use for this role.`,
+					Description: `(Required) The camel case role id to use for this role. Cannot contain ` + "`" + `-` + "`" + ` characters.`,
 				},
 				resource.Attribute{
 					Name:        "title",
@@ -12665,7 +15258,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "disable_on_destroy",
-					Description: `(Optional) If true, disable the service when the terraform resource is destroyed. Defaults to true. May be useful in the event that a project is long-lived but the infrastructure running in that project changes frequently. ## Import Project services can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `service` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_service.my_project your-project-id/iam.googleapis.com ` + "`" + `` + "`" + `` + "`" + ` Note that unlike other resources that fail if they already exist, ` + "`" + `terraform apply` + "`" + ` can be successfully used to re-enable already enabled services. This means that when importing existing resources into Terraform, you can either import the ` + "`" + `google_project_service` + "`" + ` resources or treat them as new infrastructure and run ` + "`" + `terraform apply` + "`" + ` to re-enable them and add them to state.`,
+					Description: `(Optional) If true, disable the service when the terraform resource is destroyed. Defaults to true. May be useful in the event that a project is long-lived but the infrastructure running in that project changes frequently. ## Import Project services can be imported using the ` + "`" + `project_id` + "`" + ` and ` + "`" + `service` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_project_service.my_project your-project-id/iam.googleapis.com ` + "`" + `` + "`" + `` + "`" + ` Note that unlike other resources that fail if they already exist, ` + "`" + `terraform apply` + "`" + ` can be successfully used to verify already enabled services. This means that when importing existing resources into Terraform, you can either import the ` + "`" + `google_project_service` + "`" + ` resources or treat them as new infrastructure and run ` + "`" + `terraform apply` + "`" + ` to add them to state.`,
 				},
 			},
 			Attributes: []resource.Attribute{},
@@ -12693,7 +15286,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) A text description of the service account.`,
+					Description: `(Optional) A text description of the service account. Must be less than or equal to 256 UTF-8 bytes.`,
 				},
 				resource.Attribute{
 					Name:        "project",
@@ -12776,13 +15369,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the service account IAM policy. ## Import Service account IAM resources can be imported using the project, service account email, role, member identity, and condition (beta). ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_service_account_iam_policy.admin-account-iam projects/{your-project-id}/serviceAccounts/{your-service-account-email} $ terraform import google_service_account_iam_binding.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser" $ terraform import google_service_account_iam_member.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` With conditions: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_service_account_iam_binding.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser expires_after_2019_12_31" $ terraform import -provider=google-beta google_service_account_iam_member.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser user:foo@example.com expires_after_2019_12_31" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the service account IAM policy. ## Import Service account IAM resources can be imported using the project, service account email, role, member identity, and condition (beta). ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_service_account_iam_policy.admin-account-iam projects/{your-project-id}/serviceAccounts/{your-service-account-email} $ terraform import google_service_account_iam_binding.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser" $ terraform import google_service_account_iam_member.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the service account IAM policy. ## Import Service account IAM resources can be imported using the project, service account email, role, member identity, and condition (beta). ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_service_account_iam_policy.admin-account-iam projects/{your-project-id}/serviceAccounts/{your-service-account-email} $ terraform import google_service_account_iam_binding.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser" $ terraform import google_service_account_iam_member.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` With conditions: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_service_account_iam_binding.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser expires_after_2019_12_31" $ terraform import -provider=google-beta google_service_account_iam_member.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser user:foo@example.com expires_after_2019_12_31" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the service account IAM policy. ## Import Service account IAM resources can be imported using the project, service account email, role, member identity, and condition (beta). ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_service_account_iam_policy.admin-account-iam projects/{your-project-id}/serviceAccounts/{your-service-account-email} $ terraform import google_service_account_iam_binding.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} iam.serviceAccountUser" $ terraform import google_service_account_iam_member.admin-account-iam "projects/{your-project-id}/serviceAccounts/{your-service-account-email} roles/editor user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -12880,11 +15473,19 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/datasets/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualified name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Dataset can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_dataset.default projects/{{project}}/locations/{{location}}/datasets/{{name}} $ terraform import -provider=google-beta google_healthcare_dataset.default {{project}}/{{location}}/{{name}} $ terraform import -provider=google-beta google_healthcare_dataset.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/datasets/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualified name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Dataset can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_dataset.default projects/{{project}}/locations/{{location}}/datasets/{{name}} $ terraform import -provider=google-beta google_healthcare_dataset.default {{project}}/{{location}}/{{name}} $ terraform import -provider=google-beta google_healthcare_dataset.default {{location}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -12922,13 +15523,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the dataset's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_member.dataset_iam "your-project-id/location-name/dataset-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `dataset_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_binding.dataset_iam "your-project-id/location-name/dataset-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_policy.dataset_iam your-project-id/location-name/dataset-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the dataset's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_member.dataset_iam "your-project-id/location-name/dataset-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `dataset_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_binding.dataset_iam "your-project-id/location-name/dataset-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_policy.dataset_iam your-project-id/location-name/dataset-name ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the dataset's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_member.dataset_iam "your-project-id/location-name/dataset-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `dataset_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_binding.dataset_iam "your-project-id/location-name/dataset-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_policy.dataset_iam your-project-id/location-name/dataset-name ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the dataset's IAM policy. ## Import IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_member.dataset_iam "your-project-id/location-name/dataset-name roles/viewer user:foo@example.com" ` + "`" + `` + "`" + `` + "`" + ` IAM binding imports use space-delimited identifiers; the resource in question and the role. This binding resource can be imported using the ` + "`" + `dataset_id` + "`" + ` and role, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_binding.dataset_iam "your-project-id/location-name/dataset-name roles/viewer" ` + "`" + `` + "`" + `` + "`" + ` IAM policy imports use the identifier of the resource in question. This policy resource can be imported using the ` + "`" + `dataset_id` + "`" + `, role, and account e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_healthcare_dataset_iam_policy.dataset_iam your-project-id/location-name/dataset-name ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -12965,11 +15566,19 @@ var (
 					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{dataset}}/dicomStores/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualified name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DicomStore can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_dicom_store.default {{dataset}}/dicomStores/{{name}} $ terraform import -provider=google-beta google_healthcare_dicom_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{dataset}}/dicomStores/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualified name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DicomStore can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_dicom_store.default {{dataset}}/dicomStores/{{name}} $ terraform import -provider=google-beta google_healthcare_dicom_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -13039,6 +15648,10 @@ var (
 					Description: `(Required) Identifies the dataset addressed by this request. Must be in the format 'projects/{project}/locations/{location}/datasets/{dataset}' - - -`,
 				},
 				resource.Attribute{
+					Name:        "version",
+					Description: `(Optional) The FHIR specification version. Supported values include DSTU2, STU3 and R4. Defaults to STU3.`,
+				},
+				resource.Attribute{
 					Name:        "enable_update_create",
 					Description: `(Optional) Whether this FHIR store has the updateCreate capability. This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to Update a non-existent resource will return errors. Please treat the audit logs with appropriate levels of care if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs will be part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.`,
 				},
@@ -13067,11 +15680,19 @@ var (
 					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{dataset}}/fhirStores/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualified name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FhirStore can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_fhir_store.default {{dataset}}/fhirStores/{{name}} $ terraform import -provider=google-beta google_healthcare_fhir_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{dataset}}/fhirStores/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualified name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import FhirStore can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_fhir_store.default {{dataset}}/fhirStores/{{name}} $ terraform import -provider=google-beta google_healthcare_fhir_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -13166,11 +15787,19 @@ var (
 					Description: `(Required) The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client. PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message. It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{dataset}}/hl7V2Stores/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualified name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Hl7V2Store can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_hl7_v2_store.default {{dataset}}/hl7V2Stores/{{name}} $ terraform import -provider=google-beta google_healthcare_hl7_v2_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{dataset}}/hl7V2Stores/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "self_link",
 					Description: `The fully qualified name of this dataset ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Hl7V2Store can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_healthcare_hl7_v2_store.default {{dataset}}/hl7V2Stores/{{name}} $ terraform import -provider=google-beta google_healthcare_hl7_v2_store.default {{dataset}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
@@ -13224,7 +15853,7 @@ var (
 			Name:             "",
 			Type:             "google_iap_app_engine_service_iam_policy",
 			Category:         "Google IAP Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for IapAppEngineService`,
+			ShortDescription: `Collection of resources to manage IAM policy for Identity-Aware Proxy AppEngineService`,
 			Description:      ``,
 			Keywords: []string{
 				"iap",
@@ -13291,7 +15920,7 @@ var (
 			Name:             "",
 			Type:             "google_iap_app_engine_version_iam_policy",
 			Category:         "Google IAP Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for IapAppEngineVersion`,
+			ShortDescription: `Collection of resources to manage IAM policy for Identity-Aware Proxy AppEngineVersion`,
 			Description:      ``,
 			Keywords: []string{
 				"iap",
@@ -13360,9 +15989,71 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_iap_tunnel_instance_iam_policy",
+			Category:         "Google IAP Resources",
+			ShortDescription: `Collection of resources to manage IAM policy for Identity-Aware Proxy TunnelInstance`,
+			Description:      ``,
+			Keywords: []string{
+				"iap",
+				"tunnel",
+				"instance",
+				"iam",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance",
+					Description: `(Required) Used to find the parent resource to bind the IAM policy to`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "member/members",
+					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_iap_tunnel_instance_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `(Required only by ` + "`" + `google_iap_tunnel_instance_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source.`,
+				},
+				resource.Attribute{
+					Name:        "condition",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/provider_versions.html)) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding. Structure is documented below. --- The ` + "`" + `condition` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "expression",
+					Description: `(Required) Textual representation of an expression in Common Expression Language syntax.`,
+				},
+				resource.Attribute{
+					Name:        "title",
+					Description: `(Required) A title for the expression, i.e. a short string describing its purpose.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. ~>`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_iap_web_backend_service_iam_policy",
 			Category:         "Google IAP Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for IapWebBackendService`,
+			ShortDescription: `Collection of resources to manage IAM policy for Identity-Aware Proxy WebBackendService`,
 			Description:      ``,
 			Keywords: []string{
 				"iap",
@@ -13425,7 +16116,7 @@ var (
 			Name:             "",
 			Type:             "google_iap_web_iam_policy",
 			Category:         "Google IAP Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for IapWeb`,
+			ShortDescription: `Collection of resources to manage IAM policy for Identity-Aware Proxy Web`,
 			Description:      ``,
 			Keywords: []string{
 				"iap",
@@ -13482,7 +16173,7 @@ var (
 			Name:             "",
 			Type:             "google_iap_web_type_app_engine_iam_policy",
 			Category:         "Google IAP Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for IapWebTypeAppEngine`,
+			ShortDescription: `Collection of resources to manage IAM policy for Identity-Aware Proxy WebTypeAppEngine`,
 			Description:      ``,
 			Keywords: []string{
 				"iap",
@@ -13546,7 +16237,7 @@ var (
 			Name:             "",
 			Type:             "google_iap_web_type_compute_iam_policy",
 			Category:         "Google IAP Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for IapWebTypeCompute`,
+			ShortDescription: `Collection of resources to manage IAM policy for Identity-Aware Proxy WebTypeCompute`,
 			Description:      ``,
 			Keywords: []string{
 				"iap",
@@ -13617,6 +16308,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "idp_id",
+					Description: `(Required) ID of the IDP. Possible values include:`,
+				},
+				resource.Attribute{
 					Name:        "client_id",
 					Description: `(Required) OAuth client ID`,
 				},
@@ -13633,14 +16328,22 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/defaultSupportedIdpConfigs/{{idp_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the DefaultSupportedIdpConfig resource ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DefaultSupportedIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_default_supported_idp_config.default projects/{{project}}/defaultSupportedIdpConfigs/{{client_id}} $ terraform import google_identity_platform_default_supported_idp_config.default {{project}}/{{client_id}} $ terraform import google_identity_platform_default_supported_idp_config.default {{client_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `The name of the DefaultSupportedIdpConfig resource ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DefaultSupportedIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_default_supported_idp_config.default projects/{{project}}/defaultSupportedIdpConfigs/{{idp_id}} $ terraform import google_identity_platform_default_supported_idp_config.default {{project}}/{{idp_id}} $ terraform import google_identity_platform_default_supported_idp_config.default {{idp_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/defaultSupportedIdpConfigs/{{idp_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the DefaultSupportedIdpConfig resource ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DefaultSupportedIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_default_supported_idp_config.default projects/{{project}}/defaultSupportedIdpConfigs/{{client_id}} $ terraform import google_identity_platform_default_supported_idp_config.default {{project}}/{{client_id}} $ terraform import google_identity_platform_default_supported_idp_config.default {{client_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `The name of the DefaultSupportedIdpConfig resource ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import DefaultSupportedIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_default_supported_idp_config.default projects/{{project}}/defaultSupportedIdpConfigs/{{idp_id}} $ terraform import google_identity_platform_default_supported_idp_config.default {{project}}/{{idp_id}} $ terraform import google_identity_platform_default_supported_idp_config.default {{idp_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -13716,10 +16419,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import InboundSamlConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_inbound_saml_config.default projects/{{project}}/inboundSamlConfigs/{{name}} $ terraform import google_identity_platform_inbound_saml_config.default {{project}}/{{name}} $ terraform import google_identity_platform_inbound_saml_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/inboundSamlConfigs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import InboundSamlConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_inbound_saml_config.default projects/{{project}}/inboundSamlConfigs/{{name}} $ terraform import google_identity_platform_inbound_saml_config.default {{project}}/{{name}} $ terraform import google_identity_platform_inbound_saml_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/inboundSamlConfigs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import InboundSamlConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_inbound_saml_config.default projects/{{project}}/inboundSamlConfigs/{{name}} $ terraform import google_identity_platform_inbound_saml_config.default {{project}}/{{name}} $ terraform import google_identity_platform_inbound_saml_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -13761,10 +16473,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import OauthIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_oauth_idp_config.default projects/{{project}}/oauthIdpConfigs/{{name}} $ terraform import google_identity_platform_oauth_idp_config.default {{project}}/{{name}} $ terraform import google_identity_platform_oauth_idp_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/oauthIdpConfigs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import OauthIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_oauth_idp_config.default projects/{{project}}/oauthIdpConfigs/{{name}} $ terraform import google_identity_platform_oauth_idp_config.default {{project}}/{{name}} $ terraform import google_identity_platform_oauth_idp_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/oauthIdpConfigs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import OauthIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_oauth_idp_config.default projects/{{project}}/oauthIdpConfigs/{{name}} $ terraform import google_identity_platform_oauth_idp_config.default {{project}}/{{name}} $ terraform import google_identity_platform_oauth_idp_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -13799,11 +16520,19 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/tenants/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the tenant that is generated by the server ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Tenant can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant.default projects/{{project}}/tenants/{{name}} $ terraform import google_identity_platform_tenant.default {{project}}/{{name}} $ terraform import google_identity_platform_tenant.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/tenants/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `The name of the tenant that is generated by the server ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Tenant can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant.default projects/{{project}}/tenants/{{name}} $ terraform import google_identity_platform_tenant.default {{project}}/{{name}} $ terraform import google_identity_platform_tenant.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -13827,6 +16556,10 @@ var (
 			},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
+					Name:        "idp_id",
+					Description: `(Required) ID of the IDP. Possible values include:`,
+				},
+				resource.Attribute{
 					Name:        "tenant",
 					Description: `(Required) The name of the tenant where this DefaultSupportedIdpConfig resource exists`,
 				},
@@ -13847,14 +16580,22 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/tenants/{{tenant}}/defaultSupportedIdpConfigs/{{idp_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the default supported IDP config resource ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantDefaultSupportedIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_default_supported_idp_config.default projects/{{project}}/tenants/{{tenant}}/defaultSupportedIdpConfigs/{{client_id}} $ terraform import google_identity_platform_tenant_default_supported_idp_config.default {{project}}/{{tenant}}/{{client_id}} $ terraform import google_identity_platform_tenant_default_supported_idp_config.default {{tenant}}/{{client_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `The name of the default supported IDP config resource ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantDefaultSupportedIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_default_supported_idp_config.default projects/{{project}}/tenants/{{tenant}}/defaultSupportedIdpConfigs/{{idp_id}} $ terraform import google_identity_platform_tenant_default_supported_idp_config.default {{project}}/{{tenant}}/{{idp_id}} $ terraform import google_identity_platform_tenant_default_supported_idp_config.default {{tenant}}/{{idp_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/tenants/{{tenant}}/defaultSupportedIdpConfigs/{{idp_id}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
-					Description: `The name of the default supported IDP config resource ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantDefaultSupportedIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_default_supported_idp_config.default projects/{{project}}/tenants/{{tenant}}/defaultSupportedIdpConfigs/{{client_id}} $ terraform import google_identity_platform_tenant_default_supported_idp_config.default {{project}}/{{tenant}}/{{client_id}} $ terraform import google_identity_platform_tenant_default_supported_idp_config.default {{tenant}}/{{client_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `The name of the default supported IDP config resource ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantDefaultSupportedIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_default_supported_idp_config.default projects/{{project}}/tenants/{{tenant}}/defaultSupportedIdpConfigs/{{idp_id}} $ terraform import google_identity_platform_tenant_default_supported_idp_config.default {{project}}/{{tenant}}/{{idp_id}} $ terraform import google_identity_platform_tenant_default_supported_idp_config.default {{tenant}}/{{idp_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -13935,10 +16676,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantInboundSamlConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_inbound_saml_config.default projects/{{project}}/tenants/{{tenant}}/inboundSamlConfigs/{{name}} $ terraform import google_identity_platform_tenant_inbound_saml_config.default {{project}}/{{tenant}}/{{name}} $ terraform import google_identity_platform_tenant_inbound_saml_config.default {{tenant}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/tenants/{{tenant}}/inboundSamlConfigs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantInboundSamlConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_inbound_saml_config.default projects/{{project}}/tenants/{{tenant}}/inboundSamlConfigs/{{name}} $ terraform import google_identity_platform_tenant_inbound_saml_config.default {{project}}/{{tenant}}/{{name}} $ terraform import google_identity_platform_tenant_inbound_saml_config.default {{tenant}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/tenants/{{tenant}}/inboundSamlConfigs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantInboundSamlConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_inbound_saml_config.default projects/{{project}}/tenants/{{tenant}}/inboundSamlConfigs/{{name}} $ terraform import google_identity_platform_tenant_inbound_saml_config.default {{project}}/{{tenant}}/{{name}} $ terraform import google_identity_platform_tenant_inbound_saml_config.default {{tenant}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -13985,10 +16735,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantOauthIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_oauth_idp_config.default projects/{{project}}/tenants/{{tenant}}/oauthIdpConfigs/{{name}} $ terraform import google_identity_platform_tenant_oauth_idp_config.default {{project}}/{{tenant}}/{{name}} $ terraform import google_identity_platform_tenant_oauth_idp_config.default {{tenant}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/tenants/{{tenant}}/oauthIdpConfigs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantOauthIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_oauth_idp_config.default projects/{{project}}/tenants/{{tenant}}/oauthIdpConfigs/{{name}} $ terraform import google_identity_platform_tenant_oauth_idp_config.default {{project}}/{{tenant}}/{{name}} $ terraform import google_identity_platform_tenant_oauth_idp_config.default {{tenant}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/tenants/{{tenant}}/oauthIdpConfigs/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import TenantOauthIdpConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_identity_platform_tenant_oauth_idp_config.default projects/{{project}}/tenants/{{tenant}}/oauthIdpConfigs/{{name}} $ terraform import google_identity_platform_tenant_oauth_idp_config.default {{project}}/{{tenant}}/{{name}} $ terraform import google_identity_platform_tenant_oauth_idp_config.default {{tenant}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -14036,8 +16795,17 @@ var (
 					Name:        "protection_level",
 					Description: `(Optional) The protection level to use when creating a version based on this template. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{key_ring}}/cryptoKeys/{{name}}` + "`" + ``,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{key_ring}}/cryptoKeys/{{name}}` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -14065,8 +16833,17 @@ var (
 					Name:        "project",
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/keyRings/{{name}}` + "`" + ``,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{location}}/keyRings/{{name}}` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -14092,11 +16869,19 @@ var (
 					Description: `(Required) The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format: ` + "`" + `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'` + "`" + ` - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{crypto_key}}/{{ciphertext}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "ciphertext",
 					Description: `Contains the result of encrypting the provided plaintext, encoded in base64. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{crypto_key}}/{{ciphertext}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "ciphertext",
 					Description: `Contains the result of encrypting the provided plaintext, encoded in base64. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -14393,10 +17178,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "bounds",
-					Description: `(Required) The values must be monotonically increasing. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Metric can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_metric.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Required) The values must be monotonically increasing. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Metric can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_metric.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Metric can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_logging_metric.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -14622,10 +17416,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name specified for the version when it was created. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Model can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_ml_engine_model.default projects/{{project}}/models/{{name}} $ terraform import google_ml_engine_model.default {{project}}/{{name}} $ terraform import google_ml_engine_model.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Required) The name specified for the version when it was created. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/models/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Model can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_ml_engine_model.default projects/{{project}}/models/{{name}} $ terraform import google_ml_engine_model.default {{project}}/{{name}} $ terraform import google_ml_engine_model.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/models/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Model can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_ml_engine_model.default projects/{{project}}/models/{{name}} $ terraform import google_ml_engine_model.default {{project}}/{{name}} $ terraform import google_ml_engine_model.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -14809,6 +17612,10 @@ var (
 					Description: `(Optional) The format of the content field. Presently, only the value "text/markdown" is supported. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The unique resource name for this policy. Its syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]`,
 				},
@@ -14826,6 +17633,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `The unique resource name for this policy. Its syntax is: projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]`,
@@ -14877,11 +17688,19 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `A unique identifier for this group. The format is "projects/{project_id_or_number}/groups/{group_id}". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Group can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_group.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `A unique identifier for this group. The format is "projects/{project_id_or_number}/groups/{group_id}". ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Group can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_monitoring_group.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -14930,6 +17749,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The full REST resource name for this channel. The syntax is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.`,
 				},
@@ -14939,6 +17762,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `The full REST resource name for this channel. The syntax is: projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.`,
@@ -15064,6 +17891,10 @@ var (
 					Description: `(Required) Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "project_id", "instance_id", and "zone". ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `A unique resource name for this UptimeCheckConfig. The format is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].`,
 				},
@@ -15073,6 +17904,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `A unique resource name for this UptimeCheckConfig. The format is projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].`,
@@ -15154,8 +17989,17 @@ var (
 					Name:        "ttl",
 					Description: `(Required) Specifies the "time-to-live" duration for an associated resource. The resource expires if it is not active for a period of ttl. If ttl is not set, the associated resource never expires. A duration in seconds with up to nine fractional digits, terminated by 's'. Example - "3.5s". ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/subscriptions/{{name}}` + "`" + ``,
+				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/subscriptions/{{name}}` + "`" + ``,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -15192,13 +18036,13 @@ var (
 				},
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the subscription's IAM policy. ## Import Pubsub subscription IAM resources can be imported using the project, subscription name, role and member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_subscription_iam_policy.editor projects/{your-project-id}/subscriptions/{your-subscription-name} $ terraform import google_pubsub_subscription_iam_binding.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor" $ terraform import google_pubsub_subscription_iam_member.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the subscription's IAM policy. ## Import Pubsub subscription IAM resources can be imported using the project, subscription name, role and member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_subscription_iam_policy.editor projects/{your-project-id}/subscriptions/{your-subscription-name} $ terraform import google_pubsub_subscription_iam_binding.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor" $ terraform import google_pubsub_subscription_iam_member.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "etag",
-					Description: `(Computed) The etag of the subscription's IAM policy. ## Import Pubsub subscription IAM resources can be imported using the project, subscription name, role and member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_subscription_iam_policy.editor projects/{your-project-id}/subscriptions/{your-subscription-name} $ terraform import google_pubsub_subscription_iam_binding.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor" $ terraform import google_pubsub_subscription_iam_member.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor jane@example.com" ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `(Computed) The etag of the subscription's IAM policy. ## Import Pubsub subscription IAM resources can be imported using the project, subscription name, role and member. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_subscription_iam_policy.editor projects/{your-project-id}/subscriptions/{your-subscription-name} $ terraform import google_pubsub_subscription_iam_binding.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor" $ terraform import google_pubsub_subscription_iam_member.editor "projects/{your-project-id}/subscriptions/{your-subscription-name} roles/editor jane@example.com" ` + "`" + `` + "`" + `` + "`" + ` ->`,
 				},
 			},
 		},
@@ -15235,16 +18079,25 @@ var (
 				},
 				resource.Attribute{
 					Name:        "allowed_persistence_regions",
-					Description: `(Required) A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Topic can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_topic.default projects/{{project}}/topics/{{name}} $ terraform import google_pubsub_topic.default {{project}}/{{name}} $ terraform import google_pubsub_topic.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Required) A list of IDs of GCP regions where messages that are published to the topic may be persisted in storage. Messages published by publishers running in non-allowed GCP regions (or running outside of GCP altogether) will be routed for storage in one of the allowed regions. An empty list means that no regions are allowed, and is not a valid configuration. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/topics/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Topic can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_topic.default projects/{{project}}/topics/{{name}} $ terraform import google_pubsub_topic.default {{project}}/{{name}} $ terraform import google_pubsub_topic.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/topics/{{name}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `update` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Topic can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_pubsub_topic.default projects/{{project}}/topics/{{name}} $ terraform import google_pubsub_topic.default {{project}}/{{name}} $ terraform import google_pubsub_topic.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
 			Type:             "google_pubsub_topic_iam_policy",
 			Category:         "Google PubSub Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for PubsubTopic`,
+			ShortDescription: `Collection of resources to manage IAM policy for Cloud Pub/Sub Topic`,
 			Description:      ``,
 			Keywords: []string{
 				"pubsub",
@@ -15351,6 +18204,10 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/instances/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time the instance was created in RFC3339 UTC "Zulu" format, accurate to nanoseconds.`,
 				},
@@ -15368,6 +18225,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/instances/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "create_time",
 					Description: `The time the instance was created in RFC3339 UTC "Zulu" format, accurate to nanoseconds.`,
@@ -15417,6 +18278,10 @@ var (
 					Description: `(Required) The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM permission. The server will validate the permissions against those for which Liens are supported. An empty list is meaningless and will be rejected. e.g. ['resourcemanager.projects.delete'] - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `A system-generated unique identifier for this Lien.`,
 				},
@@ -15426,6 +18291,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `A system-generated unique identifier for this Lien.`,
@@ -15461,6 +18330,50 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_runtimeconfig_config_iam",
+			Category:         "Google RuntimeConfig Resources Google RuntimeConfig Resources Google RuntimeConfig Resources",
+			ShortDescription: `Collection of resources to manage IAM policy for Cloud Runtime Configuration Config`,
+			Description:      ``,
+			Keywords: []string{
+				"runtimeconfig",
+				"config",
+				"iam",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "config",
+					Description: `(Required) Used to find the parent resource to bind the IAM policy to`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "member/members",
+					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_runtimeconfig_config_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `(Required only by ` + "`" + `google_runtimeconfig_config_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -15525,14 +18438,194 @@ var (
 					Description: `(Optional) The description of the source (max of 1024 characters). ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The resource name of this source, in the format ` + "`" + `organizations/{{organization}}/sources/{{source}}` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Source can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_scc_source.default organizations/{{organization}}/sources/{{name}} $ terraform import google_scc_source.default {{organization}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `The resource name of this source, in the format ` + "`" + `organizations/{{organization}}/sources/{{source}}` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Source can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_scc_source.default organizations/{{organization}}/sources/{{name}} $ terraform import google_scc_source.default {{organization}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_secret_manager_secret",
+			Category:         "Google Secret Manager Resources",
+			ShortDescription: `A Secret is a logical secret whose value and versions can be accessed.`,
+			Description:      ``,
+			Keywords: []string{
+				"secret",
+				"manager",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "replication",
+					Description: `(Required) The replication policy of the secret data attached to the Secret. It cannot be changed after the Secret has been created. Structure is documented below.`,
+				},
+				resource.Attribute{
+					Name:        "secret_id",
+					Description: `(Required) This must be unique within the project. The ` + "`" + `replication` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "automatic",
+					Description: `(Optional) The Secret will automatically be replicated without any restrictions.`,
+				},
+				resource.Attribute{
+					Name:        "user_managed",
+					Description: `(Optional) The Secret will automatically be replicated without any restrictions. Structure is documented below. The ` + "`" + `user_managed` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "replicas",
+					Description: `(Required) The list of Replicas for this Secret. Cannot be empty. Structure is documented below. The ` + "`" + `replicas` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "location",
+					Description: `(Required) The canonical IDs of the location to replicate data. For example: "us-east1". - - -`,
+				},
+				resource.Attribute{
+					Name:        "labels",
+					Description: `(Optional) The labels assigned to this Secret. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values must be between 0 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be assigned to a given resource. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/secrets/{{secret_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the Secret. Format: ` + "`" + `projects/{{project}}/secrets/{{secret_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time at which the Secret was created. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Secret can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_secret_manager_secret.default projects/{{project}}/secrets/{{secret_id}} $ terraform import -provider=google-beta google_secret_manager_secret.default {{project}}/{{secret_id}} $ terraform import -provider=google-beta google_secret_manager_secret.default {{secret_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/secrets/{{secret_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the Secret. Format: ` + "`" + `projects/{{project}}/secrets/{{secret_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time at which the Secret was created. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Secret can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_secret_manager_secret.default projects/{{project}}/secrets/{{secret_id}} $ terraform import -provider=google-beta google_secret_manager_secret.default {{project}}/{{secret_id}} $ terraform import -provider=google-beta google_secret_manager_secret.default {{secret_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_secret_manager_secret_iam_policy",
+			Category:         "Google Secret Manager Resources",
+			ShortDescription: `Collection of resources to manage IAM policy for Secret Manager Secret`,
+			Description:      ``,
+			Keywords: []string{
+				"secret",
+				"manager",
+				"iam",
+				"policy",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.`,
+				},
+				resource.Attribute{
+					Name:        "member/members",
+					Description: `(Required) Identities that will be granted the privilege in ` + "`" + `role` + "`" + `. Each entry can have one of the following values:`,
+				},
+				resource.Attribute{
+					Name:        "role",
+					Description: `(Required) The role that should be applied. Only one ` + "`" + `google_secret_manager_secret_iam_binding` + "`" + ` can be used per role. Note that custom roles must be of the format ` + "`" + `[projects|organizations]/{parent-name}/roles/{role-name}` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "policy_data",
+					Description: `(Required only by ` + "`" + `google_secret_manager_secret_iam_policy` + "`" + `) The policy data generated by a ` + "`" + `google_iam_policy` + "`" + ` data source. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "etag",
+					Description: `(Computed) The etag of the IAM policy. ## Import For all import syntaxes, the "resource in question" can take any of the following forms:`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "google_secret_manager_secret_version",
+			Category:         "Google Secret Manager Resources",
+			ShortDescription: `A secret version resource.`,
+			Description:      ``,
+			Keywords: []string{
+				"secret",
+				"manager",
+				"version",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "secret",
+					Description: `(Required) Secret Manager secret resource - - -`,
+				},
+				resource.Attribute{
+					Name:        "enabled",
+					Description: `(Optional) The current state of the SecretVersion.`,
+				},
+				resource.Attribute{
+					Name:        "secret_data",
+					Description: `(Optional) The secret data. Must be no larger than 64KiB. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the SecretVersion. Format: ` + "`" + `projects/{{project}}/secrets/{{secret_id}}/versions/{{version}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time at which the Secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "destroy_time",
+					Description: `The time at which the Secret was destroyed. Only present if state is DESTROYED. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import SecretVersion can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_secret_manager_secret_version.default {{name}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `The resource name of the SecretVersion. Format: ` + "`" + `projects/{{project}}/secrets/{{secret_id}}/versions/{{version}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `The time at which the Secret was created.`,
+				},
+				resource.Attribute{
+					Name:        "destroy_time",
+					Description: `The time at which the Secret was destroyed. Only present if state is DESTROYED. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import SecretVersion can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_secret_manager_secret_version.default {{name}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource.`,
 				},
 			},
 		},
@@ -15627,11 +18720,19 @@ var (
 					Description: `(Required) The duration of time between executions in days ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "name",
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/scanConfigs/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ScanConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_security_scanner_scan_config.default projects/{{project}}/scanConfigs/{{name}} $ terraform import -provider=google-beta google_security_scanner_scan_config.default {{project}}/{{name}} $ terraform import -provider=google-beta google_security_scanner_scan_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "name",
 					Description: `A server defined name for this index. Format: ` + "`" + `projects/{{project}}/scanConfigs/{{server_generated_id}}` + "`" + ` ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import ScanConfig can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_security_scanner_scan_config.default projects/{{project}}/scanConfigs/{{name}} $ terraform import -provider=google-beta google_security_scanner_scan_config.default {{project}}/{{name}} $ terraform import -provider=google-beta google_security_scanner_scan_config.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -15703,6 +18804,10 @@ var (
 					Description: `(Optional) Email address of the service account used for publishing Cloud Pub/Sub messages. This service account needs to be in the same project as the PubsubConfig. When added, the caller needs to have iam.serviceAccounts.actAs permission on this service account. If unspecified, it defaults to the compute engine default service account. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/repos/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "url",
 					Description: `URL to clone the repository from Google Cloud Source Repositories.`,
 				},
@@ -15712,6 +18817,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/repos/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "url",
 					Description: `URL to clone the repository from Google Cloud Source Repositories.`,
@@ -15726,7 +18835,7 @@ var (
 			Name:             "",
 			Type:             "google_sourcerepo_repository_iam_policy",
 			Category:         "Google Source Repositories Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for SourceRepoRepository`,
+			ShortDescription: `Collection of resources to manage IAM policy for Cloud Source Repositories Repository`,
 			Description:      ``,
 			Keywords: []string{
 				"source",
@@ -15797,11 +18906,19 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/instances/{{instance}}/databases/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "state",
 					Description: `An explanation of the status of the database. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Database can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_spanner_database.default projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_spanner_database.default instances/{{instance}}/databases/{{name}} $ terraform import google_spanner_database.default {{project}}/{{instance}}/{{name}} $ terraform import google_spanner_database.default {{instance}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/instances/{{instance}}/databases/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "state",
 					Description: `An explanation of the status of the database. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Database can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_spanner_database.default projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_spanner_database.default instances/{{instance}}/databases/{{name}} $ terraform import google_spanner_database.default {{project}}/{{instance}}/{{name}} $ terraform import google_spanner_database.default {{instance}}/{{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -15893,11 +19010,19 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "state",
 					Description: `Instance status: ` + "`" + `CREATING` + "`" + ` or ` + "`" + `READY` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_spanner_instance.default projects/{{project}}/instances/{{name}} $ terraform import google_spanner_instance.default {{project}}/{{name}} $ terraform import google_spanner_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{project}}/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "state",
 					Description: `Instance status: ` + "`" + `CREATING` + "`" + ` or ` + "`" + `READY` + "`" + `. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import Instance can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_spanner_instance.default projects/{{project}}/instances/{{name}} $ terraform import google_spanner_instance.default {{project}}/{{name}} $ terraform import google_spanner_instance.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
@@ -15978,10 +19103,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "project",
-					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 15 minutes. - ` + "`" + `update` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Database can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database.default projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_sql_database.default instances/{{instance}}/databases/{{name}} $ terraform import google_sql_database.default {{project}}/{{instance}}/{{name}} $ terraform import google_sql_database.default {{instance}}/{{name}} $ terraform import google_sql_database.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/instances/{{instance}}/databases/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 15 minutes. - ` + "`" + `update` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Database can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database.default projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_sql_database.default instances/{{instance}}/databases/{{name}} $ terraform import google_sql_database.default {{project}}/{{instance}}/{{name}} $ terraform import google_sql_database.default {{instance}}/{{name}} $ terraform import google_sql_database.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
-			Attributes: []resource.Attribute{},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/instances/{{instance}}/databases/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "self_link",
+					Description: `The URI of the created resource. ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 15 minutes. - ` + "`" + `update` + "`" + ` - Default is 10 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Database can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_sql_database.default projects/{{project}}/instances/{{instance}}/databases/{{name}} $ terraform import google_sql_database.default instances/{{instance}}/databases/{{name}} $ terraform import google_sql_database.default {{project}}/{{instance}}/{{name}} $ terraform import google_sql_database.default {{instance}}/{{name}} $ terraform import google_sql_database.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
 		},
 		&resource.Resource{
 			Name:             "",
@@ -15997,7 +19139,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Required) The region the instance will sit in. Note, first-generation Cloud SQL instance regions do not line up with the Google Compute Engine (GCE) regions, and Cloud SQL is not available in all regions - choose from one of the options listed [here](https://cloud.google.com/sql/docs/mysql/instance-locations). A valid region must be provided to use this resource. If a region is not provided in the resource definition, the provider region will be used instead, but this will be an apply-time error for all first-generation instances`,
+					Description: `(Optional) The region the instance will sit in. Note, Cloud SQL is not available in all regions - choose from one of the options listed [here](https://cloud.google.com/sql/docs/mysql/instance-locations). A valid region must be provided to use this resource. If a region is not provided in the resource definition, the provider region will be used instead, but this will be an apply-time error for instances if the provider region is not supported with Cloud SQL. If you choose not to provide the ` + "`" + `region` + "`" + ` argument for this resource, make sure you understand this.`,
 				},
 				resource.Attribute{
 					Name:        "settings",
@@ -16005,7 +19147,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "database_version",
-					Description: `(Optional, Default: ` + "`" + `MYSQL_5_6` + "`" + `) The MySQL, PostgreSQL or SQL Server (beta) version to use. Supported values include ` + "`" + `MYSQL_5_6` + "`" + `, ` + "`" + `MYSQL_5_7` + "`" + `, ` + "`" + `POSTGRES_9_6` + "`" + `,` + "`" + `POSTGRES_11` + "`" + `, ` + "`" + `SQLSERVER_2017_STANDARD` + "`" + `, ` + "`" + `SQLSERVER_2017_ENTERPRISE` + "`" + `, ` + "`" + `SQLSERVER_2017_EXPRESS` + "`" + `, ` + "`" + `SQLSERVER_2017_WEB` + "`" + `. [Database Version Policies](https://cloud.google.com/sql/docs/sqlserver/db-versions) includes an up-to-date reference of supported versions. First-generation instances support ` + "`" + `MYSQL_5_5` + "`" + ` or ` + "`" + `MYSQL_5_6` + "`" + `.`,
+					Description: `(Optional, Default: ` + "`" + `MYSQL_5_6` + "`" + `) The MySQL, PostgreSQL or SQL Server (beta) version to use. Supported values include ` + "`" + `MYSQL_5_6` + "`" + `, ` + "`" + `MYSQL_5_7` + "`" + `, ` + "`" + `POSTGRES_9_6` + "`" + `,` + "`" + `POSTGRES_11` + "`" + `, ` + "`" + `SQLSERVER_2017_STANDARD` + "`" + `, ` + "`" + `SQLSERVER_2017_ENTERPRISE` + "`" + `, ` + "`" + `SQLSERVER_2017_EXPRESS` + "`" + `, ` + "`" + `SQLSERVER_2017_WEB` + "`" + `. [Database Version Policies](https://cloud.google.com/sql/docs/sqlserver/db-versions) includes an up-to-date reference of supported versions.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -16025,11 +19167,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "root_password",
-					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Initial root password. Required for MS SQL Server, ignored by MySQL and PostgreSQL. The required ` + "`" + `settings` + "`" + ` block supports:`,
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) Initial root password. Required for MS SQL Server, ignored by MySQL and PostgreSQL.`,
+				},
+				resource.Attribute{
+					Name:        "encryption_key_name",
+					Description: `(Optional, [Beta](https://terraform.io/docs/providers/google/guides/provider_versions.html)) The full path to the encryption key used for the CMEK disk encryption. Setting up disk encryption currently requires manual steps outside of Terraform. The provided key must be in the same region as the SQL instance. In order to use this feature, a special kind of service account must be created and granted permission on this key. This step can currently only be done manually, please see [this step](https://cloud.google.com/sql/docs/mysql/configure-cmek#service-account). That service account needs the ` + "`" + `Cloud KMS > Cloud KMS CryptoKey Encrypter/Decrypter` + "`" + ` role on your key - please see [this step](https://cloud.google.com/sql/docs/mysql/configure-cmek#grantkey). The required ` + "`" + `settings` + "`" + ` block supports:`,
 				},
 				resource.Attribute{
 					Name:        "tier",
-					Description: `(Required) The machine tier (First Generation) or type (Second Generation) to use. See [tiers](https://cloud.google.com/sql/docs/admin-api/v1beta4/tiers) for more details and supported versions. Postgres supports only shared-core machine types such as ` + "`" + `db-f1-micro` + "`" + `, and custom machine types such as ` + "`" + `db-custom-2-13312` + "`" + `. See the [Custom Machine Type Documentation](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) to learn about specifying custom machine types.`,
+					Description: `(Required) The machine type to use. See [tiers](https://cloud.google.com/sql/docs/admin-api/v1beta4/tiers) for more details and supported versions. Postgres supports only shared-core machine types such as ` + "`" + `db-f1-micro` + "`" + `, and custom machine types such as ` + "`" + `db-custom-2-13312` + "`" + `. See the [Custom Machine Type Documentation](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) to learn about specifying custom machine types.`,
 				},
 				resource.Attribute{
 					Name:        "activation_policy",
@@ -16037,7 +19183,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "authorized_gae_applications",
-					Description: `(Optional) A list of Google App Engine (GAE) project names that are allowed to access this instance.`,
+					Description: `(Optional, Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen) for information on how to upgrade to Second Generation instances. A list of Google App Engine (GAE) project names that are allowed to access this instance.`,
 				},
 				resource.Attribute{
 					Name:        "availability_type",
@@ -16045,27 +19191,27 @@ var (
 				},
 				resource.Attribute{
 					Name:        "crash_safe_replication",
-					Description: `(Optional) Specific to read instances, indicates when crash-safe replication flags are enabled.`,
+					Description: `(Optional, Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen) for information on how to upgrade to Second Generation instances. Specific to read instances, indicates when crash-safe replication flags are enabled.`,
 				},
 				resource.Attribute{
 					Name:        "disk_autoresize",
-					Description: `(Optional, Second Generation, Default: ` + "`" + `true` + "`" + `) Configuration to increase storage size automatically. Note that future ` + "`" + `terraform apply` + "`" + ` calls will attempt to resize the disk to the value specified in ` + "`" + `disk_size` + "`" + ` - if this is set, do not set ` + "`" + `disk_size` + "`" + `.`,
+					Description: `(Optional, Default: ` + "`" + `true` + "`" + `) Configuration to increase storage size automatically. Note that future ` + "`" + `terraform apply` + "`" + ` calls will attempt to resize the disk to the value specified in ` + "`" + `disk_size` + "`" + ` - if this is set, do not set ` + "`" + `disk_size` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "disk_size",
-					Description: `(Optional, Second Generation, Default: ` + "`" + `10` + "`" + `) The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.`,
+					Description: `(Optional, Default: ` + "`" + `10` + "`" + `) The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.`,
 				},
 				resource.Attribute{
 					Name:        "disk_type",
-					Description: `(Optional, Second Generation, Default: ` + "`" + `PD_SSD` + "`" + `) The type of data disk: PD_SSD or PD_HDD.`,
+					Description: `(Optional, Default: ` + "`" + `PD_SSD` + "`" + `) The type of data disk: PD_SSD or PD_HDD.`,
 				},
 				resource.Attribute{
 					Name:        "pricing_plan",
-					Description: `(Optional, First Generation) Pricing plan for this instance, can be one of ` + "`" + `PER_USE` + "`" + ` or ` + "`" + `PACKAGE` + "`" + `.`,
+					Description: `(Optional) Pricing plan for this instance, can only be ` + "`" + `PER_USE` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "replication_type",
-					Description: `(Optional) Replication type for this instance, can be one of ` + "`" + `ASYNCHRONOUS` + "`" + ` or ` + "`" + `SYNCHRONOUS` + "`" + `.`,
+					Description: `(Optional, Deprecated) This property is only applicable to First Generation instances. First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen) for information on how to upgrade to Second Generation instances. Replication type for this instance, can be one of ` + "`" + `ASYNCHRONOUS` + "`" + ` or ` + "`" + `SYNCHRONOUS` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "user_labels",
@@ -16121,7 +19267,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "zone",
-					Description: `(Optional) The preferred compute engine [zone](https://cloud.google.com/compute/docs/zones?hl=en). The optional ` + "`" + `settings.maintenance_window` + "`" + ` subblock for Second Generation instances declares a one-hour [maintenance window](https://cloud.google.com/sql/docs/instance-settings?hl=en#maintenance-window-2ndgen) when an Instance can automatically restart to apply updates. The maintenance window is specified in UTC time. It supports:`,
+					Description: `(Optional) The preferred compute engine [zone](https://cloud.google.com/compute/docs/zones?hl=en). The optional ` + "`" + `settings.maintenance_window` + "`" + ` subblock for instances declares a one-hour [maintenance window](https://cloud.google.com/sql/docs/instance-settings?hl=en#maintenance-window-2ndgen) when an Instance can automatically restart to apply updates. The maintenance window is specified in UTC time. It supports:`,
 				},
 				resource.Attribute{
 					Name:        "day",
@@ -16189,7 +19335,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account_email_address",
-					Description: `The service account email address assigned to the instance. This property is applicable only to Second Generation instances.`,
+					Description: `The service account email address assigned to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address.0.ip_address",
@@ -16251,7 +19397,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "service_account_email_address",
-					Description: `The service account email address assigned to the instance. This property is applicable only to Second Generation instances.`,
+					Description: `The service account email address assigned to the instance.`,
 				},
 				resource.Attribute{
 					Name:        "ip_address.0.ip_address",
@@ -16408,7 +19554,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "password",
-					Description: `(Optional) The password for the user. Can be updated. - - -`,
+					Description: `(Optional) The password for the user. Can be updated. For Postgres instances this is a Required field. - - -`,
 				},
 				resource.Attribute{
 					Name:        "host",
@@ -16596,7 +19742,7 @@ var (
 			Name:             "",
 			Type:             "google_storage_bucket_access_control",
 			Category:         "Google Storage Resources",
-			ShortDescription: `The BucketAccessControls resource represents the Access Control Lists (ACLs) for buckets within Google Cloud Storage.`,
+			ShortDescription: `Bucket ACLs can be managed authoritatively using the [` + "`" + `storage_bucket_acl` + "`" + `](https://www.`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -16618,6 +19764,10 @@ var (
 					Description: `(Optional) The access permission for the entity. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{bucket}}/{{entity}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "domain",
 					Description: `The domain associated with the entity.`,
 				},
@@ -16627,6 +19777,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{bucket}}/{{entity}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "domain",
 					Description: `The domain associated with the entity.`,
@@ -16672,7 +19826,7 @@ var (
 			Name:             "",
 			Type:             "google_storage_bucket_iam_policy",
 			Category:         "Google Storage Resources",
-			ShortDescription: `Collection of resources to manage IAM policy for StorageBucket`,
+			ShortDescription: `Collection of resources to manage IAM policy for Cloud Storage Bucket`,
 			Description:      ``,
 			Keywords: []string{
 				"storage",
@@ -16747,7 +19901,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "name",
-					Description: `(Required) The name of the object. If you're interpolating the name of this object, see ` + "`" + `output_name` + "`" + ` instead. One of the following is required:`,
+					Description: `(Required) The name of the object. If you're interpolating the name of this object, see ` + "`" + `output_name` + "`" + ` instead.`,
+				},
+				resource.Attribute{
+					Name:        "metadata",
+					Description: `(Optional) User-provided metadata, in key/value pairs. One of the following is required:`,
 				},
 				resource.Attribute{
 					Name:        "content",
@@ -16848,6 +20006,10 @@ var (
 					Description: `(Optional) The name of the object, if applied to an object. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{bucket}}/{{entity}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "domain",
 					Description: `The domain associated with the entity.`,
 				},
@@ -16877,6 +20039,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{bucket}}/{{entity}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "domain",
 					Description: `The domain associated with the entity.`,
@@ -16933,6 +20099,74 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "google_storage_hmac_key",
+			Category:         "Google Storage Resources",
+			ShortDescription: `The hmacKeys resource represents an HMAC key within Cloud Storage.`,
+			Description:      ``,
+			Keywords: []string{
+				"storage",
+				"hmac",
+				"key",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "service_account_email",
+					Description: `(Required) The email address of the key's associated service account. - - -`,
+				},
+				resource.Attribute{
+					Name:        "state",
+					Description: `(Optional) The state of the key. Can be set to one of ACTIVE, INACTIVE.`,
+				},
+				resource.Attribute{
+					Name:        "project",
+					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/hmacKeys/{{access_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `HMAC secret key material.`,
+				},
+				resource.Attribute{
+					Name:        "access_id",
+					Description: `The access ID of the HMAC Key.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `'The creation time of the HMAC key in RFC 3339 format. '`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `'The last modification time of the HMAC key metadata in RFC 3339 format.' ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HmacKey can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_hmac_key.default projects/{{project}}/hmacKeys/{{access_id}} $ terraform import google_storage_hmac_key.default {{project}}/{{access_id}} $ terraform import google_storage_hmac_key.default {{access_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/hmacKeys/{{access_id}}` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "secret",
+					Description: `HMAC secret key material.`,
+				},
+				resource.Attribute{
+					Name:        "access_id",
+					Description: `The access ID of the HMAC Key.`,
+				},
+				resource.Attribute{
+					Name:        "time_created",
+					Description: `'The creation time of the HMAC key in RFC 3339 format. '`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `'The last modification time of the HMAC key metadata in RFC 3339 format.' ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 4 minutes. - ` + "`" + `update` + "`" + ` - Default is 4 minutes. - ` + "`" + `delete` + "`" + ` - Default is 4 minutes. ## Import HmacKey can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_storage_hmac_key.default projects/{{project}}/hmacKeys/{{access_id}} $ terraform import google_storage_hmac_key.default {{project}}/{{access_id}} $ terraform import google_storage_hmac_key.default {{access_id}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "google_storage_notification",
 			Category:         "Google Storage Resources",
 			ShortDescription: `Creates a new notification configuration on a specified bucket.`,
@@ -16952,7 +20186,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "topic",
-					Description: `(Required) The Cloud PubSub topic to which this subscription publishes. Expects either the topic name, assumed to belong to the default GCP provider project, or the project-level name, i.e. ` + "`" + `projects/my-gcp-project/topics/my-topic` + "`" + ` or ` + "`" + `my-topic` + "`" + `. - - -`,
+					Description: `(Required) The Cloud PubSub topic to which this subscription publishes. Expects either the topic name, assumed to belong to the default GCP provider project, or the project-level name, i.e. ` + "`" + `projects/my-gcp-project/topics/my-topic` + "`" + ` or ` + "`" + `my-topic` + "`" + `. If the project is not set in the provider, you will need to use the project-level name. - - -`,
 				},
 				resource.Attribute{
 					Name:        "custom_attributes",
@@ -17016,6 +20250,10 @@ var (
 					Description: `(Required) The access permission for the entity. - - - ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{bucket}}/{{object}}/{{entity}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "domain",
 					Description: `The domain associated with the entity.`,
 				},
@@ -17045,6 +20283,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `{{bucket}}/{{object}}/{{entity}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "domain",
 					Description: `The domain associated with the entity.`,
@@ -17351,6 +20593,10 @@ var (
 					Description: `(Required) Defines whether the TPU instance is preemptible. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{zone}}/nodes/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "service_account",
 					Description: `The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.`,
 				},
@@ -17368,6 +20614,10 @@ var (
 				},
 			},
 			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{zone}}/nodes/{{name}}` + "`" + ``,
+				},
 				resource.Attribute{
 					Name:        "service_account",
 					Description: `The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.`,
@@ -17445,22 +20695,30 @@ var (
 					Description: `(Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used. ## Attributes Reference In addition to the arguments listed above, the following computed attributes are exported:`,
 				},
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/connectors/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "state",
 					Description: `State of the VPC access connector.`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
-					Description: `The fully qualified name of this VPC connector ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Connector can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_vpc_access_connector.default projects/{{project}}/locations/{{region}}/connectors/{{name}} $ terraform import -provider=google-beta google_vpc_access_connector.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_vpc_access_connector.default {{region}}/{{name}} $ terraform import -provider=google-beta google_vpc_access_connector.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `The fully qualified name of this VPC connector ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Connector can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_vpc_access_connector.default projects/{{project}}/locations/{{region}}/connectors/{{name}} $ terraform import google_vpc_access_connector.default {{project}}/{{region}}/{{name}} $ terraform import google_vpc_access_connector.default {{region}}/{{name}} $ terraform import google_vpc_access_connector.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "id",
+					Description: `an identifier for the resource with format ` + "`" + `projects/{{project}}/locations/{{region}}/connectors/{{name}}` + "`" + ``,
+				},
+				resource.Attribute{
 					Name:        "state",
 					Description: `State of the VPC access connector.`,
 				},
 				resource.Attribute{
 					Name:        "self_link",
-					Description: `The fully qualified name of this VPC connector ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Connector can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import -provider=google-beta google_vpc_access_connector.default projects/{{project}}/locations/{{region}}/connectors/{{name}} $ terraform import -provider=google-beta google_vpc_access_connector.default {{project}}/{{region}}/{{name}} $ terraform import -provider=google-beta google_vpc_access_connector.default {{region}}/{{name}} $ terraform import -provider=google-beta google_vpc_access_connector.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
+					Description: `The fully qualified name of this VPC connector ## Timeouts This resource provides the following [Timeouts](/docs/configuration/resources.html#timeouts) configuration options: - ` + "`" + `create` + "`" + ` - Default is 6 minutes. - ` + "`" + `delete` + "`" + ` - Default is 10 minutes. ## Import Connector can be imported using any of these accepted formats: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import google_vpc_access_connector.default projects/{{project}}/locations/{{region}}/connectors/{{name}} $ terraform import google_vpc_access_connector.default {{project}}/{{region}}/{{name}} $ terraform import google_vpc_access_connector.default {{region}}/{{name}} $ terraform import google_vpc_access_connector.default {{name}} ` + "`" + `` + "`" + `` + "`" + ` -> If you're importing a resource with beta features, make sure to include ` + "`" + `-provider=google-beta` + "`" + ` as an argument so that Terraform uses the correct provider to import your resource. ## User Project Overrides This resource supports [User Project Overrides](https://www.terraform.io/docs/providers/google/guides/provider_reference.html#user_project_override).`,
 				},
 			},
 		},
@@ -17471,213 +20729,234 @@ var (
 		"google_access_context_manager_access_level":                   0,
 		"google_access_context_manager_access_policy":                  1,
 		"google_access_context_manager_service_perimeter":              2,
-		"google_app_engine_application":                                3,
-		"google_app_engine_application_url_dispatch_rules":             4,
-		"google_app_engine_domain_mapping":                             5,
-		"google_app_engine_firewall_rule":                              6,
-		"google_app_engine_standard_app_version":                       7,
-		"google_bigquery_data_transfer_config":                         8,
-		"google_bigquery_dataset":                                      9,
-		"google_bigquery_table":                                        10,
-		"google_bigtable_app_profile":                                  11,
-		"google_bigtable_gc_policy":                                    12,
-		"google_bigtable_instance":                                     13,
-		"google_bigtable_instance_iam_policy":                          14,
-		"google_bigtable_table":                                        15,
-		"google_billing_budget":                                        16,
-		"google_binary_authorization_attestor":                         17,
-		"google_binary_authorization_attestor_iam_policy":              18,
-		"google_binary_authorization_policy":                           19,
-		"google_cloud_run_domain_mapping":                              20,
-		"google_cloud_run_service":                                     21,
-		"google_cloud_run_service_iam_policy":                          22,
-		"google_cloud_scheduler_job":                                   23,
-		"google_cloudbuild_trigger":                                    24,
-		"google_cloudfunctions_function_iam_policy":                    25,
-		"google_cloudfunctions_function":                               26,
-		"google_cloudiot_registry":                                     27,
-		"google_composer_environment":                                  28,
-		"google_compute_address":                                       29,
-		"google_compute_attached_disk":                                 30,
-		"google_compute_autoscaler":                                    31,
-		"google_compute_backend_bucket":                                32,
-		"google_compute_backend_bucket_signed_url_key":                 33,
-		"google_compute_backend_service":                               34,
-		"google_compute_backend_service_signed_url_key":                35,
-		"google_compute_disk":                                          36,
-		"google_compute_disk_resource_policy_attachment":               37,
-		"google_compute_external_vpn_gateway":                          38,
-		"google_compute_firewall":                                      39,
-		"google_compute_forwarding_rule":                               40,
-		"google_compute_global_address":                                41,
-		"google_compute_global_forwarding_rule":                        42,
-		"google_compute_ha_vpn_gateway":                                43,
-		"google_compute_health_check":                                  44,
-		"google_compute_http_health_check":                             45,
-		"google_compute_https_health_check":                            46,
-		"google_compute_image":                                         47,
-		"google_compute_instance":                                      48,
-		"google_compute_instance_from_template":                        49,
-		"google_compute_instance_group":                                50,
-		"google_compute_instance_group_manager":                        51,
-		"google_compute_instance_iam_policy":                           52,
-		"google_compute_instance_template":                             53,
-		"google_compute_interconnect_attachment":                       54,
-		"google_compute_managed_ssl_certificate":                       55,
-		"google_compute_network":                                       56,
-		"google_compute_network_endpoint":                              57,
-		"google_compute_network_endpoint_group":                        58,
-		"google_compute_network_peering":                               59,
-		"google_compute_node_group":                                    60,
-		"google_compute_node_template":                                 61,
-		"google_compute_project_default_network_tier":                  62,
-		"google_compute_project_metadata":                              63,
-		"google_compute_project_metadata_item":                         64,
-		"google_compute_region_autoscaler":                             65,
-		"google_compute_region_backend_service":                        66,
-		"google_compute_region_disk":                                   67,
-		"google_compute_region_instance_group_manager":                 68,
-		"google_compute_region_ssl_certificate":                        69,
-		"google_compute_region_target_http_proxy":                      70,
-		"google_compute_region_target_https_proxy":                     71,
-		"google_compute_reservation":                                   72,
-		"google_compute_resource_policy":                               73,
-		"google_compute_route":                                         74,
-		"google_compute_router":                                        75,
-		"google_compute_router_peer":                                   76,
-		"google_compute_router_interface":                              77,
-		"google_compute_router_nat":                                    78,
-		"google_compute_security_policy":                               79,
-		"google_compute_shared_vpc_host_project":                       80,
-		"google_compute_shared_vpc_service_project":                    81,
-		"google_compute_snapshot":                                      82,
-		"google_compute_ssl_certificate":                               83,
-		"google_compute_ssl_policy":                                    84,
-		"google_compute_subnetwork":                                    85,
-		"google_compute_subnetwork_iam_policy":                         86,
-		"google_compute_target_http_proxy":                             87,
-		"google_compute_target_https_proxy":                            88,
-		"google_compute_target_instance":                               89,
-		"google_compute_target_pool":                                   90,
-		"google_compute_target_ssl_proxy":                              91,
-		"google_compute_target_tcp_proxy":                              92,
-		"google_compute_url_map":                                       93,
-		"google_compute_vpn_gateway":                                   94,
-		"google_compute_vpn_tunnel":                                    95,
-		"google_container_analysis_note":                               96,
-		"google_container_cluster":                                     97,
-		"google_container_node_pool":                                   98,
-		"google_data_fusion_instance":                                  99,
-		"google_dataflow_job":                                          100,
-		"google_dataproc_autoscaling_policy":                           101,
-		"google_dataproc_cluster":                                      102,
-		"google_dataproc_cluster_iam_policy":                           103,
-		"google_dataproc_job":                                          104,
-		"google_dataproc_job_iam_policy":                               105,
-		"google_dns_managed_zone":                                      106,
-		"google_dns_policy":                                            107,
-		"google_dns_record_set":                                        108,
-		"google_endpoints_service":                                     109,
-		"google_filestore_instance":                                    110,
-		"google_firestore_index":                                       111,
-		"google_billing_account_iam_binding":                           112,
-		"google_billing_account_iam_member":                            113,
-		"google_billing_account_iam_policy":                            114,
-		"google_folder":                                                115,
-		"google_folder_iam_binding":                                    116,
-		"google_folder_iam_member":                                     117,
-		"google_folder_iam_policy":                                     118,
-		"google_folder_organization_policy":                            119,
-		"google_iap_tunnel_instance_iam_policy":                        120,
-		"google_kms_crypto_key_iam_policy":                             121,
-		"google_kms_key_ring_iam_policy":                               122,
-		"google_organization_iam_audit_config":                         123,
-		"google_organization_iam_binding":                              124,
-		"google_organization_iam_custom_role":                          125,
-		"google_organization_iam_member":                               126,
-		"google_organization_iam_policy":                               127,
-		"google_organization_policy":                                   128,
-		"google_project":                                               129,
-		"google_project_iam_policy":                                    130,
-		"google_project_iam_custom_role":                               131,
-		"google_project_organization_policy":                           132,
-		"google_project_service":                                       133,
-		"google_service_account":                                       134,
-		"google_service_account_iam_policy":                            135,
-		"google_service_account_key":                                   136,
-		"google_healthcare_dataset":                                    137,
-		"google_healthcare_dataset_iam_policy":                         138,
-		"google_healthcare_dicom_store":                                139,
-		"google_healthcare_dicom_store_iam_policy":                     140,
-		"google_healthcare_fhir_store":                                 141,
-		"google_healthcare_fhir_store_iam_policy":                      142,
-		"google_healthcare_hl7_v2_store":                               143,
-		"google_healthcare_hl7_v2_store_iam_policy":                    144,
-		"google_iap_app_engine_service_iam_policy":                     145,
-		"google_iap_app_engine_version_iam_policy":                     146,
-		"google_iap_web_backend_service_iam_policy":                    147,
-		"google_iap_web_iam_policy":                                    148,
-		"google_iap_web_type_app_engine_iam_policy":                    149,
-		"google_iap_web_type_compute_iam_policy":                       150,
-		"google_identity_platform_default_supported_idp_config":        151,
-		"google_identity_platform_inbound_saml_config":                 152,
-		"google_identity_platform_oauth_idp_config":                    153,
-		"google_identity_platform_tenant":                              154,
-		"google_identity_platform_tenant_default_supported_idp_config": 155,
-		"google_identity_platform_tenant_inbound_saml_config":          156,
-		"google_identity_platform_tenant_oauth_idp_config":             157,
-		"google_kms_crypto_key":                                        158,
-		"google_kms_key_ring":                                          159,
-		"google_kms_secret_ciphertext":                                 160,
-		"google_logging_billing_account_exclusion":                     161,
-		"google_logging_billing_account_sink":                          162,
-		"google_logging_folder_exclusion":                              163,
-		"google_logging_folder_sink":                                   164,
-		"google_logging_metric":                                        165,
-		"google_logging_organization_exclusion":                        166,
-		"google_logging_organization_sink":                             167,
-		"google_logging_project_exclusion":                             168,
-		"google_logging_project_sink":                                  169,
-		"google_ml_engine_model":                                       170,
-		"google_monitoring_alert_policy":                               171,
-		"google_monitoring_group":                                      172,
-		"google_monitoring_notification_channel":                       173,
-		"google_monitoring_uptime_check_config":                        174,
-		"google_pubsub_subscription":                                   175,
-		"google_pubsub_subscription_iam_policy":                        176,
-		"google_pubsub_topic":                                          177,
-		"google_pubsub_topic_iam_policy":                               178,
-		"google_redis_instance":                                        179,
-		"google_resource_manager_lien":                                 180,
-		"google_runtimeconfig_config":                                  181,
-		"google_runtimeconfig_variable":                                182,
-		"google_scc_source":                                            183,
-		"google_security_scanner_scan_config":                          184,
-		"google_service_networking_connection":                         185,
-		"google_sourcerepo_repository":                                 186,
-		"google_sourcerepo_repository_iam_policy":                      187,
-		"google_spanner_database":                                      188,
-		"google_spanner_database_iam_policy":                           189,
-		"google_spanner_instance":                                      190,
-		"google_spanner_instance_iam_policy":                           191,
-		"google_sql_database":                                          192,
-		"google_sql_database_instance":                                 193,
-		"google_sql_ssl_cert":                                          194,
-		"google_sql_user":                                              195,
-		"google_storage_bucket":                                        196,
-		"google_storage_bucket_access_control":                         197,
-		"google_storage_bucket_acl":                                    198,
-		"google_storage_bucket_iam_policy":                             199,
-		"google_storage_bucket_object":                                 200,
-		"google_storage_default_object_access_control":                 201,
-		"google_storage_default_object_acl":                            202,
-		"google_storage_notification":                                  203,
-		"google_storage_object_access_control":                         204,
-		"google_storage_object_acl":                                    205,
-		"google_storage_transfer_job":                                  206,
-		"google_tpu_node":                                              207,
-		"google_project_usage_export_bucket":                           208,
-		"google_vpc_access_connector":                                  209,
+		"google_access_context_manager_service_perimeter_resource":     3,
+		"google_app_engine_application":                                4,
+		"google_app_engine_application_url_dispatch_rules":             5,
+		"google_app_engine_domain_mapping":                             6,
+		"google_app_engine_firewall_rule":                              7,
+		"google_app_engine_standard_app_version":                       8,
+		"google_app_engine_standard_app_version":                       9,
+		"google_bigquery_data_transfer_config":                         10,
+		"google_bigquery_dataset":                                      11,
+		"google_bigquery_table":                                        12,
+		"google_bigtable_app_profile":                                  13,
+		"google_bigtable_gc_policy":                                    14,
+		"google_bigtable_instance":                                     15,
+		"google_bigtable_instance_iam_policy":                          16,
+		"google_bigtable_table":                                        17,
+		"google_billing_budget":                                        18,
+		"google_binary_authorization_attestor":                         19,
+		"google_binary_authorization_attestor_iam_policy":              20,
+		"google_binary_authorization_policy":                           21,
+		"google_cloud_run_domain_mapping":                              22,
+		"google_cloud_run_service":                                     23,
+		"google_cloud_run_service_iam_policy":                          24,
+		"google_cloud_scheduler_job":                                   25,
+		"google_cloud_tasks_queue":                                     26,
+		"google_cloudbuild_trigger":                                    27,
+		"google_cloudfunctions_function_iam_policy":                    28,
+		"google_cloudfunctions_function":                               29,
+		"google_cloudiot_registry":                                     30,
+		"google_composer_environment":                                  31,
+		"google_compute_address":                                       32,
+		"google_compute_attached_disk":                                 33,
+		"google_compute_autoscaler":                                    34,
+		"google_compute_backend_bucket":                                35,
+		"google_compute_backend_bucket_signed_url_key":                 36,
+		"google_compute_backend_service":                               37,
+		"google_compute_backend_service_signed_url_key":                38,
+		"google_compute_disk":                                          39,
+		"google_compute_disk_resource_policy_attachment":               40,
+		"google_compute_external_vpn_gateway":                          41,
+		"google_compute_firewall":                                      42,
+		"google_compute_forwarding_rule":                               43,
+		"google_compute_global_address":                                44,
+		"google_compute_global_forwarding_rule":                        45,
+		"google_compute_ha_vpn_gateway":                                46,
+		"google_compute_health_check":                                  47,
+		"google_compute_http_health_check":                             48,
+		"google_compute_https_health_check":                            49,
+		"google_compute_image":                                         50,
+		"google_compute_instance":                                      51,
+		"google_compute_instance_from_template":                        52,
+		"google_compute_instance_group":                                53,
+		"google_compute_instance_group_manager":                        54,
+		"google_compute_instance_iam_policy":                           55,
+		"google_compute_instance_template":                             56,
+		"google_compute_interconnect_attachment":                       57,
+		"google_compute_managed_ssl_certificate":                       58,
+		"google_compute_network":                                       59,
+		"google_compute_network_endpoint":                              60,
+		"google_compute_network_endpoint_group":                        61,
+		"google_compute_network_peering":                               62,
+		"google_compute_network_peering_routes_config":                 63,
+		"google_compute_node_group":                                    64,
+		"google_compute_node_template":                                 65,
+		"google_compute_packet_mirroring":                              66,
+		"google_compute_project_default_network_tier":                  67,
+		"google_compute_project_metadata":                              68,
+		"google_compute_project_metadata_item":                         69,
+		"google_compute_region_autoscaler":                             70,
+		"google_compute_region_backend_service":                        71,
+		"google_compute_region_disk":                                   72,
+		"google_compute_region_health_check":                           73,
+		"google_compute_region_instance_group_manager":                 74,
+		"google_compute_region_ssl_certificate":                        75,
+		"google_compute_region_target_http_proxy":                      76,
+		"google_compute_region_target_https_proxy":                     77,
+		"google_compute_region_url_map":                                78,
+		"google_compute_reservation":                                   79,
+		"google_compute_resource_policy":                               80,
+		"google_compute_route":                                         81,
+		"google_compute_router":                                        82,
+		"google_compute_router_peer":                                   83,
+		"google_compute_router_interface":                              84,
+		"google_compute_router_nat":                                    85,
+		"google_compute_security_policy":                               86,
+		"google_compute_shared_vpc_host_project":                       87,
+		"google_compute_shared_vpc_service_project":                    88,
+		"google_compute_snapshot":                                      89,
+		"google_compute_ssl_certificate":                               90,
+		"google_compute_ssl_policy":                                    91,
+		"google_compute_subnetwork":                                    92,
+		"google_compute_subnetwork_iam_policy":                         93,
+		"google_compute_target_http_proxy":                             94,
+		"google_compute_target_https_proxy":                            95,
+		"google_compute_target_instance":                               96,
+		"google_compute_target_pool":                                   97,
+		"google_compute_target_ssl_proxy":                              98,
+		"google_compute_target_tcp_proxy":                              99,
+		"google_compute_url_map":                                       100,
+		"google_compute_vpn_gateway":                                   101,
+		"google_compute_vpn_tunnel":                                    102,
+		"google_container_analysis_note":                               103,
+		"google_container_cluster":                                     104,
+		"google_container_node_pool":                                   105,
+		"google_container_registry":                                    106,
+		"google_data_fusion_instance":                                  107,
+		"google_dataflow_job":                                          108,
+		"google_dataproc_autoscaling_policy":                           109,
+		"google_dataproc_cluster":                                      110,
+		"google_dataproc_cluster_iam_policy":                           111,
+		"google_dataproc_job":                                          112,
+		"google_dataproc_job_iam_policy":                               113,
+		"google_datastore_index":                                       114,
+		"google_deployment_manager_deployment":                         115,
+		"google_dns_managed_zone":                                      116,
+		"google_dns_policy":                                            117,
+		"google_dns_record_set":                                        118,
+		"google_endpoints_service":                                     119,
+		"google_endpoints_service_iam_policy":                          120,
+		"google_filestore_instance":                                    121,
+		"google_firestore_index":                                       122,
+		"game_services_game_server_cluster.html":                       123,
+		"game_services_game_server_config.html":                        124,
+		"game_services_game_server_deployment.html":                    125,
+		"game_services_game_server_deployment_rollout.html":            126,
+		"game_services_realm.html":                                     127,
+		"google_billing_account_iam_binding":                           128,
+		"google_billing_account_iam_member":                            129,
+		"google_billing_account_iam_policy":                            130,
+		"google_folder":                                                131,
+		"google_folder_iam_binding":                                    132,
+		"google_folder_iam_member":                                     133,
+		"google_folder_iam_policy":                                     134,
+		"google_folder_organization_policy":                            135,
+		"google_kms_crypto_key_iam_policy":                             136,
+		"google_kms_key_ring_iam_policy":                               137,
+		"google_organization_iam_audit_config":                         138,
+		"google_organization_iam_binding":                              139,
+		"google_organization_iam_custom_role":                          140,
+		"google_organization_iam_member":                               141,
+		"google_organization_iam_policy":                               142,
+		"google_organization_policy":                                   143,
+		"google_project":                                               144,
+		"google_project_iam_policy":                                    145,
+		"google_project_iam_custom_role":                               146,
+		"google_project_organization_policy":                           147,
+		"google_project_service":                                       148,
+		"google_service_account":                                       149,
+		"google_service_account_iam_policy":                            150,
+		"google_service_account_key":                                   151,
+		"google_healthcare_dataset":                                    152,
+		"google_healthcare_dataset_iam_policy":                         153,
+		"google_healthcare_dicom_store":                                154,
+		"google_healthcare_dicom_store_iam_policy":                     155,
+		"google_healthcare_fhir_store":                                 156,
+		"google_healthcare_fhir_store_iam_policy":                      157,
+		"google_healthcare_hl7_v2_store":                               158,
+		"google_healthcare_hl7_v2_store_iam_policy":                    159,
+		"google_iap_app_engine_service_iam_policy":                     160,
+		"google_iap_app_engine_version_iam_policy":                     161,
+		"google_iap_tunnel_instance_iam_policy":                        162,
+		"google_iap_web_backend_service_iam_policy":                    163,
+		"google_iap_web_iam_policy":                                    164,
+		"google_iap_web_type_app_engine_iam_policy":                    165,
+		"google_iap_web_type_compute_iam_policy":                       166,
+		"google_identity_platform_default_supported_idp_config":        167,
+		"google_identity_platform_inbound_saml_config":                 168,
+		"google_identity_platform_oauth_idp_config":                    169,
+		"google_identity_platform_tenant":                              170,
+		"google_identity_platform_tenant_default_supported_idp_config": 171,
+		"google_identity_platform_tenant_inbound_saml_config":          172,
+		"google_identity_platform_tenant_oauth_idp_config":             173,
+		"google_kms_crypto_key":                                        174,
+		"google_kms_key_ring":                                          175,
+		"google_kms_secret_ciphertext":                                 176,
+		"google_logging_billing_account_exclusion":                     177,
+		"google_logging_billing_account_sink":                          178,
+		"google_logging_folder_exclusion":                              179,
+		"google_logging_folder_sink":                                   180,
+		"google_logging_metric":                                        181,
+		"google_logging_organization_exclusion":                        182,
+		"google_logging_organization_sink":                             183,
+		"google_logging_project_exclusion":                             184,
+		"google_logging_project_sink":                                  185,
+		"google_ml_engine_model":                                       186,
+		"google_monitoring_alert_policy":                               187,
+		"google_monitoring_group":                                      188,
+		"google_monitoring_notification_channel":                       189,
+		"google_monitoring_uptime_check_config":                        190,
+		"google_pubsub_subscription":                                   191,
+		"google_pubsub_subscription_iam_policy":                        192,
+		"google_pubsub_topic":                                          193,
+		"google_pubsub_topic_iam_policy":                               194,
+		"google_redis_instance":                                        195,
+		"google_resource_manager_lien":                                 196,
+		"google_runtimeconfig_config":                                  197,
+		"google_runtimeconfig_config_iam":                              198,
+		"google_runtimeconfig_variable":                                199,
+		"google_scc_source":                                            200,
+		"google_secret_manager_secret":                                 201,
+		"google_secret_manager_secret_iam_policy":                      202,
+		"google_secret_manager_secret_version":                         203,
+		"google_security_scanner_scan_config":                          204,
+		"google_service_networking_connection":                         205,
+		"google_sourcerepo_repository":                                 206,
+		"google_sourcerepo_repository_iam_policy":                      207,
+		"google_spanner_database":                                      208,
+		"google_spanner_database_iam_policy":                           209,
+		"google_spanner_instance":                                      210,
+		"google_spanner_instance_iam_policy":                           211,
+		"google_sql_database":                                          212,
+		"google_sql_database_instance":                                 213,
+		"google_sql_ssl_cert":                                          214,
+		"google_sql_user":                                              215,
+		"google_storage_bucket":                                        216,
+		"google_storage_bucket_access_control":                         217,
+		"google_storage_bucket_acl":                                    218,
+		"google_storage_bucket_iam_policy":                             219,
+		"google_storage_bucket_object":                                 220,
+		"google_storage_default_object_access_control":                 221,
+		"google_storage_default_object_acl":                            222,
+		"google_storage_hmac_key":                                      223,
+		"google_storage_notification":                                  224,
+		"google_storage_object_access_control":                         225,
+		"google_storage_object_acl":                                    226,
+		"google_storage_transfer_job":                                  227,
+		"google_tpu_node":                                              228,
+		"google_project_usage_export_bucket":                           229,
+		"google_vpc_access_connector":                                  230,
 	}
 )
 

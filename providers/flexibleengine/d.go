@@ -1851,6 +1851,90 @@ CTS Tracker data source allows access of Cloud Tracker.
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_lb_certificate_v2",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an FlexibleEngine LB Certificate.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `(Optional) The id of the specific Certificate to retrieve.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the Certificate. Does not have to be unique.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) Human-readable description for the Certificate.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `(Optional) The domain of the Certificate. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `The private encrypted key of the Certificate, PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The public encrypted key of the Certificate, PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Indicates the update time.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Indicates the creation time.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "domain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "private_key",
+					Description: `The private encrypted key of the Certificate, PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "certificate",
+					Description: `The public encrypted key of the Certificate, PEM format.`,
+				},
+				resource.Attribute{
+					Name:        "update_time",
+					Description: `Indicates the update time.`,
+				},
+				resource.Attribute{
+					Name:        "create_time",
+					Description: `Indicates the creation time.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_networking_network_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine Network.`,
@@ -2471,6 +2555,38 @@ The FlexibleEngine RTS Stack data source allows access to stack outputs and othe
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_sdrs_domain_v1",
+			Category:         "Data Sources",
+			ShortDescription: `Get information on an FlexibleEngine SDRS Active-Active Domain.`,
+			Description:      ``,
+			Keywords:         []string{},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Specifies the name of an active-active domain. Currently only support SDRS_HypeDomain01. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the active-active domain. In addition, the following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Specifies the description of an active-active domain.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `Specifies the description of an active-active domain.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_sfs_file_system_v2",
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an FlexibleEngine shared file system.`,
@@ -3056,23 +3172,25 @@ VPC that the subnet belongs to.
 		"flexibleengine_images_image_v2":           16,
 		"flexibleengine_kms_data_key_v1":           17,
 		"flexibleengine_kms_key_v1":                18,
-		"flexibleengine_networking_network_v2":     19,
-		"flexibleengine_networking_secgroup_v2":    20,
-		"flexibleengine_rds_flavors_v1":            21,
-		"flexibleengine_rds_flavors_v3":            22,
-		"flexibleengine_rts_software_config_v1":    23,
-		"flexibleengine_rts_stack_resource_v1":     24,
-		"flexibleengine_rts_stack_v1":              25,
-		"flexibleengine_s3_bucket_object":          26,
-		"flexibleengine_sfs_file_system_v2":        27,
-		"flexibleengine_vbs_backup_policy_v2":      28,
-		"flexibleengine_vbs_backup_v2":             29,
-		"flexibleengine_vpc_peering_connection_v2": 30,
-		"flexibleengine_vpc_route_ids_v2":          31,
-		"flexibleengine_vpc_route_v2":              32,
-		"flexibleengine_vpc_subnet_ids_v1":         33,
-		"flexibleengine_vpc_subnet_v1":             34,
-		"flexibleengine_vpc_v1":                    35,
+		"flexibleengine_lb_certificate_v2":         19,
+		"flexibleengine_networking_network_v2":     20,
+		"flexibleengine_networking_secgroup_v2":    21,
+		"flexibleengine_rds_flavors_v1":            22,
+		"flexibleengine_rds_flavors_v3":            23,
+		"flexibleengine_rts_software_config_v1":    24,
+		"flexibleengine_rts_stack_resource_v1":     25,
+		"flexibleengine_rts_stack_v1":              26,
+		"flexibleengine_s3_bucket_object":          27,
+		"flexibleengine_sdrs_domain_v1":            28,
+		"flexibleengine_sfs_file_system_v2":        29,
+		"flexibleengine_vbs_backup_policy_v2":      30,
+		"flexibleengine_vbs_backup_v2":             31,
+		"flexibleengine_vpc_peering_connection_v2": 32,
+		"flexibleengine_vpc_route_ids_v2":          33,
+		"flexibleengine_vpc_route_v2":              34,
+		"flexibleengine_vpc_subnet_ids_v1":         35,
+		"flexibleengine_vpc_subnet_v1":             36,
+		"flexibleengine_vpc_v1":                    37,
 	}
 )
 

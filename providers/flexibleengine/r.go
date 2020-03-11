@@ -901,27 +901,27 @@ var (
 					Description: `Security group ID of the cluster.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_clusters/name",
+					Name:        "certificate_clusters.name",
 					Description: `The cluster name.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_clusters/server",
+					Name:        "certificate_clusters.server",
 					Description: `The server IP address.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_clusters/certificate_authority_data",
+					Name:        "certificate_clusters.certificate_authority_data",
 					Description: `The certificate data.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_users/name",
+					Name:        "certificate_users.name",
 					Description: `The user name.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_users/client_certificate_data",
+					Name:        "certificate_users.client_certificate_data",
 					Description: `The client certificate data.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_users/client_key_data",
+					Name:        "certificate_users.client_key_data",
 					Description: `The client key data. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -951,27 +951,27 @@ var (
 					Description: `Security group ID of the cluster.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_clusters/name",
+					Name:        "certificate_clusters.name",
 					Description: `The cluster name.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_clusters/server",
+					Name:        "certificate_clusters.server",
 					Description: `The server IP address.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_clusters/certificate_authority_data",
+					Name:        "certificate_clusters.certificate_authority_data",
 					Description: `The certificate data.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_users/name",
+					Name:        "certificate_users.name",
 					Description: `The user name.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_users/client_certificate_data",
+					Name:        "certificate_users.client_certificate_data",
 					Description: `The client certificate data.`,
 				},
 				resource.Attribute{
-					Name:        "certificate_users/client_key_data",
+					Name:        "certificate_users.client_key_data",
 					Description: `The client key data. ## Import Cluster can be imported using the cluster id, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_cce_cluster_v3.cluster_1 4779ab1c-7c1a-44b1-a02e-93dfc361b32d ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -1072,6 +1072,14 @@ var (
 				resource.Attribute{
 					Name:        "public_key",
 					Description: `(Optional) The Public key. Changing this parameter will create a new cluster resource.`,
+				},
+				resource.Attribute{
+					Name:        "preinstall",
+					Description: `(Optional) Script required before installation. The input value must be encoded using Base64. Changing this parameter will create a new resource.`,
+				},
+				resource.Attribute{
+					Name:        "postinstall",
+					Description: `(Optional) Script required after installation. The input value must be encoded using Base64. Changing this parameter will create a new resource.`,
 				},
 				resource.Attribute{
 					Name:        "size",
@@ -5679,6 +5687,10 @@ var (
 					Description: `(Optional) A list of references to Barbican Secrets containers which store SNI information. See [here](https://wiki.openstack.org/wiki/Network/LBaaS/docs/how-to-create-tls-loadbalancer) for more information.`,
 				},
 				resource.Attribute{
+					Name:        "tls_ciphers_policy",
+					Description: `(Optional) Specifies the security policy used by the listener. This parameter is valid only when the load balancer protocol is set to TERMINATED_HTTPS. The value can be tls-1-0, tls-1-1, tls-1-2, or tls-1-2-strict, and the default value is tls-1-0. For details of cipher suites for each security policy, see the table below. <table> <tr> <th>Security Policy</th> <th>TLS Version</th> <th>Cipher Suite</th> </tr > <tr > <td>tls-1-0</td> <td>TLSv1.2 TLSv1.1 TLSv1</td> <td rowspan="3">ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:AES128-SHA256:AES256-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:AES128-SHA:AES256-SHA</td> </tr> <tr> <td>tls-1-1</td> <td>TLSv1.2 TLSv1.1</td> </tr> <tr> <td>tls-1-2</td> <td>TLSv1.2</td> </tr> <tr> <td >tls-1-2-strict</td> <td >TLSv1.2</td> <td >ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:AES128-SHA256:AES256-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384</td> </tr> </table>`,
+				},
+				resource.Attribute{
 					Name:        "admin_state_up",
 					Description: `(Optional) The administrative state of the Listener. A valid value is true (UP) or false (DOWN). ## Attributes Reference The following attributes are exported:`,
 				},
@@ -5720,6 +5732,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sni_container_refs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tls_ciphers_policy",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -5766,6 +5782,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "sni_container_refs",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tls_ciphers_policy",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -6678,7 +6698,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "cluster_version",
-					Description: `(Optional) Version of the clusters Currently, MRS 1.3.0 and MRS 1.5.0 are supported. The latest version of MRS is used by default. Currently, the latest version is MRS 1.5.0.`,
+					Description: `(Optional) Version of the clusters.You can refer to the online documentation to have the full list of available versions. The latest version of MRS is used by default.`,
 				},
 				resource.Attribute{
 					Name:        "cluster_type",
@@ -7434,19 +7454,19 @@ var (
 				},
 				resource.Attribute{
 					Name:        "spec",
-					Description: `(Required) The specification of the nat gateway, valid values are "1", "2", "3", "4".`,
+					Description: `(Required) The specification of the nat gateway, valid values are "1", "2", "3", "4" (for Small, Medium, Large, Extra-Large)`,
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) The target tenant ID in which to allocate the nat gateway. Changing this creates a new nat gateway.`,
+					Description: `(Optional) The target tenant/project ID in which to allocate the nat gateway. Changing this creates a new nat gateway .`,
 				},
 				resource.Attribute{
 					Name:        "router_id",
-					Description: `(Required) ID of the router this nat gateway belongs to. Changing this creates a new nat gateway.`,
+					Description: `(Required) ID of the router/VPC this nat gateway belongs to. Changing this creates a new nat gateway.`,
 				},
 				resource.Attribute{
 					Name:        "internal_network_id",
-					Description: `(Required) ID of the network this nat gateway connects to. Changing this creates a new nat gateway. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Required) ID of the subnet (!) this nat gateway connects to. Changing this creates a new nat gateway. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -9681,6 +9701,303 @@ var (
 		},
 		&resource.Resource{
 			Name:             "",
+			Type:             "flexibleengine_sdrs_drill_v1",
+			Category:         "SDRS Resources",
+			ShortDescription: `Manages a Disaster Recovery Drill resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"sdrs",
+				"drill",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of a DR drill. The name can contain a maximum of 64 bytes. The value can contain only letters (a to z and A to Z), digits (0 to 9), decimal points (.), underscores (_), and hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Specifies the ID of a protection group. Changing this creates a new drill.`,
+				},
+				resource.Attribute{
+					Name:        "drill_vpc_id",
+					Description: `(Required) Specifies the ID used for a DR drill. Changing this creates a new drill. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of a DR drill.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "drill_vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of a DR drill. For details, see [DR Drill Status](https://docs.prod-cloud-ocb.orange-business.com/en-us/api/sdrs/en-us_topic_0126152933.html). ## Import DR drill can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_sdrs_drill_v1.drill_1 22fce838-4bfb-4a92-b9aa-fc80a583eb59 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of a DR drill.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "drill_vpc_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of a DR drill. For details, see [DR Drill Status](https://docs.prod-cloud-ocb.orange-business.com/en-us/api/sdrs/en-us_topic_0126152933.html). ## Import DR drill can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_sdrs_drill_v1.drill_1 22fce838-4bfb-4a92-b9aa-fc80a583eb59 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_sdrs_protectedinstance_v1",
+			Category:         "SDRS Resources",
+			ShortDescription: `Manages a V1 SDRS protected instance resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"sdrs",
+				"protectedinstance",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of a protected instance.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of a protected instance. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Specifies the ID of the protection group where a protected instance is added. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "server_id",
+					Description: `(Required) Specifies the ID of the source server. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "cluster_id",
+					Description: `(Optional) Specifies the ID of a storage pool. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "primary_subnet_id",
+					Description: `(Optional) Specifies the subnet ID of the primary NIC on the target server. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "primary_ip_address",
+					Description: `(Optional) Specifies the IP address of the primary NIC on the target server. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "delete_target_server",
+					Description: `(Optional) Specifies whether to delete the target server. The default value is false.. Changing this creates a new instance.`,
+				},
+				resource.Attribute{
+					Name:        "delete_target_eip",
+					Description: `(Optional) Specifies whether to delete the EIP of the target server. The default value is false. Changing this creates a new instance. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the protected instance.`,
+				},
+				resource.Attribute{
+					Name:        "target_server",
+					Description: `ID of the target server.`,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the protected instance.`,
+				},
+				resource.Attribute{
+					Name:        "target_server",
+					Description: `ID of the target server.`,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_sdrs_protectiongroup_v1",
+			Category:         "SDRS Resources",
+			ShortDescription: `Manages a V1 SDRS protection group resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"sdrs",
+				"protectiongroup",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of a protection group.`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of a protection group. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "source_availability_zone",
+					Description: `(Required) Specifies the source AZ of a protection group. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "target_availability_zone",
+					Description: `(Required) Specifies the target AZ of a protection group. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "domain_id",
+					Description: `(Required) Specifies the ID of an active-active domain. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "source_vpc_id",
+					Description: `(Required) Specifies the ID of the source VPC. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "dr_type",
+					Description: `(Optional) Specifies the deployment model. The default value is migration indicating migration within a VPC. Changing this creates a new group.`,
+				},
+				resource.Attribute{
+					Name:        "enable",
+					Description: `(Optional) Enable protection or not. It can only be set to true when there's replication pairs within the protection group. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the protection group. ## Import Protection groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_sdrs_protectiongroup_v1.group_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the protection group. ## Import Protection groups can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_sdrs_protectiongroup_v1.group_1 7117d38e-4c8f-4624-a505-bd96b97d024c ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_sdrs_replication_attach_v1",
+			Category:         "SDRS Resources",
+			ShortDescription: `Manages a V1 SDRS replication attach resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"sdrs",
+				"replication",
+				"attach",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "instance_id",
+					Description: `(Required) Specifies the ID of a protected instance. Changing this creates a new replication attach.`,
+				},
+				resource.Attribute{
+					Name:        "replication_id",
+					Description: `(Required) Specifies the ID of a replication pair. Changing this creates a new replication attach.`,
+				},
+				resource.Attribute{
+					Name:        "device",
+					Description: `(Required) Specifies the device name, eg. /dev/vdb. Changing this creates a new replication attach.`,
+				},
+			},
+			Attributes: []resource.Attribute{},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "flexibleengine_sdrs_replication_pair_v1",
+			Category:         "SDRS Resources",
+			ShortDescription: `Manages a V1 SDRS replication pair resource within FlexibleEngine.`,
+			Description:      ``,
+			Keywords: []string{
+				"sdrs",
+				"replication",
+				"pair",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Required) The name of a replication pair. The name can contain a maximum of 64 bytes. The value can contain only letters (a to z and A to Z), digits (0 to 9), decimal points (.), underscores (_), and hyphens (-).`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `(Optional) The description of a replication pair. Changing this creates a new pair.`,
+				},
+				resource.Attribute{
+					Name:        "group_id",
+					Description: `(Required) Specifies the ID of a protection group. Changing this creates a new pair.`,
+				},
+				resource.Attribute{
+					Name:        "volume_id",
+					Description: `(Required) Specifies the ID of a source disk. Changing this creates a new pair.`,
+				},
+				resource.Attribute{
+					Name:        "delete_target_volume",
+					Description: `(Optional) Specifies whether to delete the target disk. The default value is ` + "`" + `false` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the replication pair.`,
+				},
+				resource.Attribute{
+					Name:        "fault_level",
+					Description: `Specifies the fault level of a replication pair.`,
+				},
+				resource.Attribute{
+					Name:        "replication_model",
+					Description: `Specifies the replication mode of a replication pair. The default value is ` + "`" + `hypermetro` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Specifies the status of a replication pair.`,
+				},
+				resource.Attribute{
+					Name:        "target_volume_id",
+					Description: `Specifies the ID of the disk in the protection availability zone. ## Import Replication pairs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_sdrs_replication_pair_v1.replication_1 43b28b66-770b-4e9e-b5c6-cfc43f0593d9 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `ID of the replication pair.`,
+				},
+				resource.Attribute{
+					Name:        "fault_level",
+					Description: `Specifies the fault level of a replication pair.`,
+				},
+				resource.Attribute{
+					Name:        "replication_model",
+					Description: `Specifies the replication mode of a replication pair. The default value is ` + "`" + `hypermetro` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `Specifies the status of a replication pair.`,
+				},
+				resource.Attribute{
+					Name:        "target_volume_id",
+					Description: `Specifies the ID of the disk in the protection availability zone. ## Import Replication pairs can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import flexibleengine_sdrs_replication_pair_v1.replication_1 43b28b66-770b-4e9e-b5c6-cfc43f0593d9 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
 			Type:             "flexibleengine_sfs_file_system_v2",
 			Category:         "SFS Resources",
 			ShortDescription: `Provides an Scalable File Resource (SFS) resource.`,
@@ -10420,17 +10737,22 @@ var (
 		"flexibleengine_s3_bucket":                          67,
 		"flexibleengine_s3_bucket_object":                   68,
 		"flexibleengine_s3_bucket_policy":                   69,
-		"flexibleengine_sfs_file_system_v2":                 70,
-		"flexibleengine_smn_subscription_v2":                71,
-		"flexibleengine_smn_topic_v2":                       72,
-		"flexibleengine-vbs-backup-policy-v2":               73,
-		"flexibleengine-vbs-backup-v2":                      74,
-		"flexibleengine_vpc_eip_v1":                         75,
-		"flexibleengine_vpc_peering_connection_accepter_v2": 76,
-		"flexibleengine_vpc_peering_connection_v2":          77,
-		"flexibleengine_vpc_route_v2":                       78,
-		"flexibleengine_vpc_subnet_v1":                      79,
-		"flexibleengine_vpc_v1":                             80,
+		"flexibleengine_sdrs_drill_v1":                      70,
+		"flexibleengine_sdrs_protectedinstance_v1":          71,
+		"flexibleengine_sdrs_protectiongroup_v1":            72,
+		"flexibleengine_sdrs_replication_attach_v1":         73,
+		"flexibleengine_sdrs_replication_pair_v1":           74,
+		"flexibleengine_sfs_file_system_v2":                 75,
+		"flexibleengine_smn_subscription_v2":                76,
+		"flexibleengine_smn_topic_v2":                       77,
+		"flexibleengine-vbs-backup-policy-v2":               78,
+		"flexibleengine-vbs-backup-v2":                      79,
+		"flexibleengine_vpc_eip_v1":                         80,
+		"flexibleengine_vpc_peering_connection_accepter_v2": 81,
+		"flexibleengine_vpc_peering_connection_v2":          82,
+		"flexibleengine_vpc_route_v2":                       83,
+		"flexibleengine_vpc_subnet_v1":                      84,
+		"flexibleengine_vpc_v1":                             85,
 	}
 )
 
