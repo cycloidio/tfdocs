@@ -34,3 +34,4 @@ To add icons we need a JSON that connects the resource name (`aws_lb`) to the ac
 
 The path has to be the one from the official Provider source after download:
 * aws: https://aws.amazon.com/architecture/icons/
+* openstack: https://github.com/openstack/horizon/tree/master/openstack_dashboard/static/dashboard/img
