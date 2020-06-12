@@ -649,7 +649,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "volume_type",
-					Description: `(Optional) The type of volume to create. Changing this creates a new volume. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The type of volume to create. Changing this creates a new volume.`,
+				},
+				resource.Attribute{
+					Name:        "scheduler_hints",
+					Description: `(Optional) Provide the Cinder scheduler with hints on where to instantiate a volume in the OpenStack cloud. The available hints are described below. The ` + "`" + `scheduler_hints` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "different_host",
+					Description: `(Optional) The volume should be scheduled on a different host from the set of volumes specified in the list provided.`,
+				},
+				resource.Attribute{
+					Name:        "same_host",
+					Description: `(Optional) A list of volume UUIDs. The volume should be scheduled on the same host as another volume specified in the list provided.`,
+				},
+				resource.Attribute{
+					Name:        "local_to_instance",
+					Description: `(Optional) An instance UUID. The volume should be scheduled on the same host as the instance.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Optional) A conditional query that a back-end must pass in order to host a volume. The query must use the ` + "`" + `JsonFilter` + "`" + ` syntax which is described [here](https://docs.openstack.org/cinder/latest/configuration/block-storage/scheduler-filters.html#jsonfilter). At this time, only simple queries are supported. Compound queries using ` + "`" + `and` + "`" + `, ` + "`" + `or` + "`" + `, or ` + "`" + `not` + "`" + ` are not supported. An example of a simple query is: ` + "`" + `` + "`" + `` + "`" + ` [“=”, “$backend_id”, “rbd:vol@ceph#cloud”] ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "additional_properties",
+					Description: `(Optional) Arbitrary key/value pairs of additional properties to pass to the scheduler. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -811,7 +835,31 @@ var (
 				},
 				resource.Attribute{
 					Name:        "multiattach",
-					Description: `(Optional) Allow the volume to be attached to more than one Compute instance. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Allow the volume to be attached to more than one Compute instance.`,
+				},
+				resource.Attribute{
+					Name:        "scheduler_hints",
+					Description: `(Optional) Provide the Cinder scheduler with hints on where to instantiate a volume in the OpenStack cloud. The available hints are described below. The ` + "`" + `scheduler_hints` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "different_host",
+					Description: `(Optional) The volume should be scheduled on a different host from the set of volumes specified in the list provided.`,
+				},
+				resource.Attribute{
+					Name:        "same_host",
+					Description: `(Optional) A list of volume UUIDs. The volume should be scheduled on the same host as another volume specified in the list provided.`,
+				},
+				resource.Attribute{
+					Name:        "local_to_instance",
+					Description: `(Optional) An instance UUID. The volume should be scheduled on the same host as the instance.`,
+				},
+				resource.Attribute{
+					Name:        "query",
+					Description: `(Optional) A conditional query that a back-end must pass in order to host a volume. The query must use the ` + "`" + `JsonFilter` + "`" + ` syntax which is described [here](https://docs.openstack.org/cinder/latest/configuration/block-storage/scheduler-filters.html#jsonfilter). At this time, only simple queries are supported. Compound queries using ` + "`" + `and` + "`" + `, ` + "`" + `or` + "`" + `, or ` + "`" + `not` + "`" + ` are not supported. An example of a simple query is: ` + "`" + `` + "`" + `` + "`" + ` [“=”, “$backend_id”, “rbd:vol@ceph#cloud”] ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+				resource.Attribute{
+					Name:        "additional_properties",
+					Description: `(Optional) Arbitrary key/value pairs of additional properties to pass to the scheduler. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -972,6 +1020,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 flavor resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "flavor-gray.svg",
 			Keywords: []string{
 				"compute",
 				"flavor",
@@ -1165,6 +1214,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 floating IP resource within OpenStack Nova (compute).`,
 			Description:      ``,
+			Icon:             "floatingip-gray.svg",
 			Keywords: []string{
 				"compute",
 				"floatingip",
@@ -1229,6 +1279,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 VM instance resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "server-gray.svg",
 			Keywords: []string{
 				"compute",
 				"instance",
@@ -1268,8 +1319,12 @@ var (
 					Description: `(Optional) An array of one or more security group names or ids to associate with the server. Changing this results in adding/removing security groups from the existing server.`,
 				},
 				resource.Attribute{
+					Name:        "availability_zone_hints",
+					Description: `(Optional) The availability zone in which to create the server. This argument is preferred to ` + "`" + `availability_zone` + "`" + `, when scheduling the server on a [particular](https://docs.openstack.org/nova/latest/admin/availability-zones.html) host or node. Conflicts with ` + "`" + `availability_zone` + "`" + `. Changing this creates a new server.`,
+				},
+				resource.Attribute{
 					Name:        "availability_zone",
-					Description: `(Optional) The availability zone in which to create the server. Changing this creates a new server.`,
+					Description: `(Optional) The availability zone in which to create the server. Conflicts with ` + "`" + `availability_zone_hints` + "`" + `. Changing this creates a new server.`,
 				},
 				resource.Attribute{
 					Name:        "network",
@@ -1417,7 +1472,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "ignore_resize_confirmation",
-					Description: `(Optional) Boolean to control whether to ignore manual confirmation of the instance resizing. This can be helpful to work with some OpenStack clouds which automatically confirm resizing of instances after some timeout. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) Boolean to control whether to ignore manual confirmation of the instance resizing. This can be helpful to work with some OpenStack clouds which automatically confirm resizing of instances after some timeout.`,
+				},
+				resource.Attribute{
+					Name:        "detach_ports_before_destroy",
+					Description: `(Optional) Whether to try to detach all attached ports to the vm before destroying it to make sure the port state is correct after the vm destruction. This is helpful when the port is not deleted. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "region",
@@ -1634,6 +1693,7 @@ var (
 			Category:         "Compute Resources",
 			ShortDescription: `Manages a V2 keypair resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "keypair-gray.svg",
 			Keywords: []string{
 				"compute",
 				"keypair",
@@ -2300,6 +2360,7 @@ var (
 			Category:         "Database Resources",
 			ShortDescription: `Manages a V1 database resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "db-gray.svg",
 			Keywords: []string{
 				"database",
 				"db",
@@ -2348,6 +2409,7 @@ var (
 			Category:         "Database Resources",
 			ShortDescription: `Manages a V1 DB instance resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "db-gray.svg",
 			Keywords: []string{
 				"database",
 				"db",
@@ -2906,6 +2968,7 @@ var (
 			Category:         "Firewall Resources",
 			ShortDescription: `Manages a v1 firewall resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "firewall-gray.svg",
 			Keywords: []string{
 				"firewall",
 				"fw",
@@ -3545,24 +3608,76 @@ var (
 				},
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V3 Keystone client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new User. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The region in which to obtain the V3 Keystone client. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new project.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags for the project. Changing this updates the existing project. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the project.`,
 				},
 				resource.Attribute{
 					Name:        "domain_id",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "is_domain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "parent_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "region",
 					Description: `See Argument Reference above. ## Import Projects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_identity_project_v3.project_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
+					Name:        "description",
+					Description: `The description of the project.`,
+				},
+				resource.Attribute{
 					Name:        "domain_id",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
+					Name:        "enabled",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "is_domain",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
 					Name:        "parent_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "region",
 					Description: `See Argument Reference above. ## Import Projects can be imported using the ` + "`" + `id` + "`" + `, e.g. ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_identity_project_v3.project_1 89c60255-9bd6-460c-822a-e2b959ede9d2 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
@@ -3973,6 +4088,7 @@ var (
 			Category:         "Images Resources",
 			ShortDescription: `Manages a V2 Image resource within OpenStack Glance.`,
 			Description:      ``,
+			Icon:             "image-gray.svg",
 			Keywords: []string{
 				"images",
 				"image",
@@ -3989,7 +4105,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "local_file_path",
-					Description: `(Optional) This is the filepath of the raw image file that will be uploaded to Glance. Conflicts with ` + "`" + `image_source_url` + "`" + `.`,
+					Description: `(Optional) This is the filepath of the raw image file that will be uploaded to Glance. Conflicts with ` + "`" + `image_source_url` + "`" + ` and ` + "`" + `web_download` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "image_cache_path",
@@ -3997,7 +4113,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "image_source_url",
-					Description: `(Optional) This is the url of the raw image that will be downloaded in the ` + "`" + `image_cache_path` + "`" + ` before being uploaded to Glance. Glance is able to download image from internet but the ` + "`" + `gophercloud` + "`" + ` library does not yet provide a way to do so. Conflicts with ` + "`" + `local_file_path` + "`" + `.`,
+					Description: `(Optional) This is the url of the raw image. If ` + "`" + `web_download` + "`" + ` is not used, then the image will be downloaded in the ` + "`" + `image_cache_path` + "`" + ` before being uploaded to Glance. Conflicts with ` + "`" + `local_file_path` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "min_disk_gb",
@@ -4029,11 +4145,15 @@ var (
 				},
 				resource.Attribute{
 					Name:        "verify_checksum",
-					Description: `(Optional) If false, the checksum will not be verified once the image is finished uploading. Defaults to true.`,
+					Description: `(Optional) If false, the checksum will not be verified once the image is finished uploading. Conflicts with ` + "`" + `web_download` + "`" + `. Defaults to true when not using ` + "`" + `web_download` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "visibility",
-					Description: `(Optional) The visibility of the image. Must be one of "public", "private", "community", or "shared". The ability to set the visibility depends upon the configuration of the OpenStack cloud. ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The visibility of the image. Must be one of "public", "private", "community", or "shared". The ability to set the visibility depends upon the configuration of the OpenStack cloud.`,
+				},
+				resource.Attribute{
+					Name:        "web_download",
+					Description: `(Optional) If true, the "web-download" import method will be used to let Openstack download the image directly from the remote source. Conflicts with ` + "`" + `local_file_path` + "`" + `. Defaults to false. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "checksum",
@@ -4370,6 +4490,156 @@ var (
 				resource.Attribute{
 					Name:        "url",
 					Description: `The consumer URL. ## Import Containers can be imported using the container id (the last part of the container reference), e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_keymanager_container_v1.container_1 0c6cd26a-c012-4d7b-8034-057c0f1c2953 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_keymanager_order_v1",
+			Category:         "Key Manager Resources",
+			ShortDescription: `Manages a V1 Barbican order resource within OpenStack.`,
+			Description:      ``,
+			Keywords: []string{
+				"key",
+				"manager",
+				"keymanager",
+				"order",
+				"v1",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V1 KeyManager client. A KeyManager client is needed to create a order. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new V1 order.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `(Required) The type of key to be generated. Must be one of ` + "`" + `asymmetric` + "`" + `, ` + "`" + `key` + "`" + `.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `(Required) Dictionary containing the order metadata used to generate the order. The structure is described below. The ` + "`" + `meta` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "algorithm",
+					Description: `(Required) Algorithm to use for key generation.`,
+				},
+				resource.Attribute{
+					Name:        "bit_length",
+					Description: `(Required) - Bit lenght of key to be generated.`,
+				},
+				resource.Attribute{
+					Name:        "expiration",
+					Description: `(Optional) This is a UTC timestamp in ISO 8601 format YYYY-MM-DDTHH:MM:SSZ. If set, the secret will not be available after this time.`,
+				},
+				resource.Attribute{
+					Name:        "mode",
+					Description: `(Optional) The mode to use for key generation.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) The name of the secret set by the user.`,
+				},
+				resource.Attribute{
+					Name:        "payload_content_type",
+					Description: `(Optional) The media type for the content of the secrets payload. Must be one of ` + "`" + `text/plain` + "`" + `, ` + "`" + `text/plain;charset=utf-8` + "`" + `, ` + "`" + `text/plain; charset=utf-8` + "`" + `, ` + "`" + `application/octet-stream` + "`" + `, ` + "`" + `application/pkcs8` + "`" + `. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "container_ref",
+					Description: `The container reference / where to find the container.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date the order was created.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the order.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "order_ref",
+					Description: `The order reference / where to find the order.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `The secret reference / where to find the secret.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the order.`,
+				},
+				resource.Attribute{
+					Name:        "sub_status",
+					Description: `The sub status of the order.`,
+				},
+				resource.Attribute{
+					Name:        "sub_status_message",
+					Description: `The sub status message of the order.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the order.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `The date the order was last updated. ## Import Orders can be imported using the order id (the last part of the order reference), e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_keymanager_order_v1.order_1 0c6cd26a-c012-4d7b-8034-057c0f1c2953 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "container_ref",
+					Description: `The container reference / where to find the container.`,
+				},
+				resource.Attribute{
+					Name:        "created",
+					Description: `The date the order was created.`,
+				},
+				resource.Attribute{
+					Name:        "creator_id",
+					Description: `The creator of the order.`,
+				},
+				resource.Attribute{
+					Name:        "meta",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "order_ref",
+					Description: `The order reference / where to find the order.`,
+				},
+				resource.Attribute{
+					Name:        "region",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "secret_ref",
+					Description: `The secret reference / where to find the secret.`,
+				},
+				resource.Attribute{
+					Name:        "status",
+					Description: `The status of the order.`,
+				},
+				resource.Attribute{
+					Name:        "sub_status",
+					Description: `The sub status of the order.`,
+				},
+				resource.Attribute{
+					Name:        "sub_status_message",
+					Description: `The sub status message of the order.`,
+				},
+				resource.Attribute{
+					Name:        "type",
+					Description: `The type of the order.`,
+				},
+				resource.Attribute{
+					Name:        "updated",
+					Description: `The date the order was last updated. ## Import Orders can be imported using the order id (the last part of the order reference), e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_keymanager_order_v1.order_1 0c6cd26a-c012-4d7b-8034-057c0f1c2953 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5111,6 +5381,7 @@ var (
 			Category:         "Load Balancer Resources",
 			ShortDescription: `Manages a V2 loadbalancer resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "lb-gray.svg",
 			Keywords: []string{
 				"load",
 				"balancer",
@@ -5125,7 +5396,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vip_subnet_id",
-					Description: `(Required) The network on which to allocate the Loadbalancer's address. A tenant can only create Loadbalancers on networks authorized by policy (e.g. networks that belong to them or networks that are shared). Changing this creates a new loadbalancer.`,
+					Description: `(Optional) The subnet on which to allocate the Loadbalancer's address. A tenant can only create Loadbalancers on networks authorized by policy (e.g. networks that belong to them or networks that are shared). Changing this creates a new loadbalancer. It is required to Neutron LBaaS but optional for Octavia.`,
+				},
+				resource.Attribute{
+					Name:        "vip_network_id",
+					Description: `(Optional) The network on which to allocate the Loadbalancer's address. A tenant can only create Loadbalancers on networks authorized by policy (e.g. networks that belong to them or networks that are shared). Changing this creates a new loadbalancer. It is available only for Octavia.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5165,6 +5440,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vip_subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_network_id",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -5211,6 +5490,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "vip_subnet_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "vip_network_id",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -5357,15 +5640,15 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create an . If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new member.`,
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a member. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new member.`,
 				},
 				resource.Attribute{
 					Name:        "pool_id",
-					Description: `(Required) The id of the pool that this member will be assigned to.`,
+					Description: `(Required) The id of the pool that this member will be assigned to. Changing this creates a new member.`,
 				},
 				resource.Attribute{
 					Name:        "subnet_id",
-					Description: `(Optional) The subnet in which to access the member`,
+					Description: `(Optional) The subnet in which to access the member. Changing this creates a new member.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -5385,11 +5668,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "weight",
-					Description: `(Optional) A positive integer value that indicates the relative portion of traffic that this member should receive from the pool. For example, a member with a weight of 10 receives five times as much traffic as a member with a weight of 2.`,
+					Description: `(Optional) A positive integer value that indicates the relative portion of traffic that this member should receive from the pool. For example, a member with a weight of 10 receives five times as much traffic as a member with a weight of 2. Defaults to 1.`,
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `(Optional) The administrative state of the member. A valid value is true (UP) or false (DOWN). ## Attributes Reference The following attributes are exported:`,
+					Description: `(Optional) The administrative state of the member. A valid value is true (UP) or false (DOWN). Defaults to true. ## Attributes Reference The following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "id",
@@ -5425,7 +5708,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol_port",
-					Description: `See Argument Reference above. ## Import Load Balancer Pool Member can be imported using the Pool ID and Member ID separated by a slash. e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_member_v2.member_1 c22974d2-4c95-4bcb-9819-0afc5ed303d5/9563b79c-8460-47da-8a95-2711b746510f ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above. ## Import Load Balancer Pool Member can be imported using the Pool ID and Member ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_member_v2.member_1 c22974d2-4c95-4bcb-9819-0afc5ed303d5/9563b79c-8460-47da-8a95-2711b746510f ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -5463,7 +5746,85 @@ var (
 				},
 				resource.Attribute{
 					Name:        "protocol_port",
-					Description: `See Argument Reference above. ## Import Load Balancer Pool Member can be imported using the Pool ID and Member ID separated by a slash. e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_member_v2.member_1 c22974d2-4c95-4bcb-9819-0afc5ed303d5/9563b79c-8460-47da-8a95-2711b746510f ` + "`" + `` + "`" + `` + "`" + ``,
+					Description: `See Argument Reference above. ## Import Load Balancer Pool Member can be imported using the Pool ID and Member ID separated by a slash, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_member_v2.member_1 c22974d2-4c95-4bcb-9819-0afc5ed303d5/9563b79c-8460-47da-8a95-2711b746510f ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+		},
+		&resource.Resource{
+			Name:             "",
+			Type:             "openstack_lb_members_v2",
+			Category:         "Load Balancer Resources",
+			ShortDescription: `Manages a V2 members resource within OpenStack (batch members update).`,
+			Description:      ``,
+			Keywords: []string{
+				"load",
+				"balancer",
+				"lb",
+				"members",
+				"v2",
+			},
+			Arguments: []resource.Attribute{
+				resource.Attribute{
+					Name:        "region",
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create pool members. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new members resource.`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `(Required) The id of the pool that members will be assigned to. Changing this creates a new members resource.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `(Optional) A set of dictionaries containing member parameters. The structure is described below. The ` + "`" + `member` + "`" + ` block supports:`,
+				},
+				resource.Attribute{
+					Name:        "subnet_id",
+					Description: `(Optional) The subnet in which to access the member.`,
+				},
+				resource.Attribute{
+					Name:        "name",
+					Description: `(Optional) Human-readable name for the member.`,
+				},
+				resource.Attribute{
+					Name:        "address",
+					Description: `(Required) The IP address of the members to receive traffic from the load balancer.`,
+				},
+				resource.Attribute{
+					Name:        "protocol_port",
+					Description: `(Required) The port on which to listen for client traffic.`,
+				},
+				resource.Attribute{
+					Name:        "weight",
+					Description: `(Optional) A positive integer value that indicates the relative portion of traffic that this members should receive from the pool. For example, a member with a weight of 10 receives five times as much traffic as a member with a weight of 2. Defaults to 1.`,
+				},
+				resource.Attribute{
+					Name:        "admin_state_up",
+					Description: `(Optional) The administrative state of the member. A valid value is true (UP) or false (DOWN). Defaults to true. ## Attributes Reference The following attributes are exported:`,
+				},
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the members.`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `See Argument Reference above. ## Import Load Balancer Pool Members can be imported using the Pool ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_members_v2.members_1 c22974d2-4c95-4bcb-9819-0afc5ed303d5 ` + "`" + `` + "`" + `` + "`" + ``,
+				},
+			},
+			Attributes: []resource.Attribute{
+				resource.Attribute{
+					Name:        "id",
+					Description: `The unique ID for the members.`,
+				},
+				resource.Attribute{
+					Name:        "pool_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "member",
+					Description: `See Argument Reference above. ## Import Load Balancer Pool Members can be imported using the Pool ID, e.g.: ` + "`" + `` + "`" + `` + "`" + ` $ terraform import openstack_lb_members_v2.members_1 c22974d2-4c95-4bcb-9819-0afc5ed303d5 ` + "`" + `` + "`" + `` + "`" + ``,
 				},
 			},
 		},
@@ -5945,7 +6306,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "lb_method",
-					Description: `(Required) The load balancing algorithm to distribute traffic to the pool's members. Must be one of ROUND_ROBIN, LEAST_CONNECTIONS, or SOURCE_IP.`,
+					Description: `(Required) The load balancing algorithm to distribute traffic to the pool's members. Must be one of ROUND_ROBIN, LEAST_CONNECTIONS, SOURCE_IP, or SOURCE_IP_PORT (supported only in Octavia).`,
 				},
 				resource.Attribute{
 					Name:        "persistence",
@@ -6508,6 +6869,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 Neutron network resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "network-gray.svg",
 			Keywords: []string{
 				"networking",
 				"network",
@@ -6794,7 +7156,7 @@ var (
 			Arguments: []resource.Attribute{
 				resource.Attribute{
 					Name:        "region",
-					Description: `(Optional) The region in which to obtain the V2 networking client. A networking client is needed to create a port. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new port.`,
+					Description: `(Optional) The region in which to obtain the V2 Networking client. A Networking client is needed to create a port. If omitted, the ` + "`" + `region` + "`" + ` argument of the provider is used. Changing this creates a new port.`,
 				},
 				resource.Attribute{
 					Name:        "name",
@@ -6802,7 +7164,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "description",
-					Description: `(Optional) Human-readable description of the floating IP. Changing this updates the ` + "`" + `description` + "`" + ` of an existing port.`,
+					Description: `(Optional) Human-readable description of the port. Changing this updates the ` + "`" + `description` + "`" + ` of an existing port.`,
 				},
 				resource.Attribute{
 					Name:        "network_id",
@@ -6810,7 +7172,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "admin_state_up",
-					Description: `(Optional) Administrative up/down status for the port (must be "true" or "false" if provided). Changing this updates the ` + "`" + `admin_state_up` + "`" + ` of an existing port.`,
+					Description: `(Optional) Administrative up/down status for the port (must be ` + "`" + `true` + "`" + ` or ` + "`" + `false` + "`" + ` if provided). Changing this updates the ` + "`" + `admin_state_up` + "`" + ` of an existing port.`,
 				},
 				resource.Attribute{
 					Name:        "mac_address",
@@ -6818,11 +7180,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "tenant_id",
-					Description: `(Optional) The owner of the Port. Required if admin wants to create a port for another tenant. Changing this creates a new port.`,
+					Description: `(Optional) The owner of the port. Required if admin wants to create a port for another tenant. Changing this creates a new port.`,
 				},
 				resource.Attribute{
 					Name:        "device_owner",
-					Description: `(Optional) The device owner of the Port. Changing this creates a new port.`,
+					Description: `(Optional) The device owner of the port. Changing this creates a new port.`,
 				},
 				resource.Attribute{
 					Name:        "security_group_ids",
@@ -6830,7 +7192,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "no_security_groups",
-					Description: `(Optional - Conflicts with ` + "`" + `security_group_ids` + "`" + `) If set to ` + "`" + `true` + "`" + `, then no security groups are applied to the port. If set to ` + "`" + `false` + "`" + ` and no ` + "`" + `security_group_ids` + "`" + ` are specified, then the Port will yield to the default behavior of the Networking service, which is to usually apply the "default" security group.`,
+					Description: `(Optional - Conflicts with ` + "`" + `security_group_ids` + "`" + `) If set to ` + "`" + `true` + "`" + `, then no security groups are applied to the port. If set to ` + "`" + `false` + "`" + ` and no ` + "`" + `security_group_ids` + "`" + ` are specified, then the port will yield to the default behavior of the Networking service, which is to usually apply the "default" security group.`,
 				},
 				resource.Attribute{
 					Name:        "device_id",
@@ -6854,7 +7216,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "port_security_enabled",
-					Description: `(Optional) Whether to explicitly enable or disable port security on the port. Port Security is usually enabled by default, so omitting argument will usually result in a value of "true". Setting this explicitly to ` + "`" + `false` + "`" + ` will disable port security. In order to disable port security, the port must not have any security groups. Valid values are ` + "`" + `true` + "`" + ` and ` + "`" + `false` + "`" + `.`,
+					Description: `(Optional) Whether to explicitly enable or disable port security on the port. Port Security is usually enabled by default, so omitting argument will usually result in a value of ` + "`" + `true` + "`" + `. Setting this explicitly to ` + "`" + `false` + "`" + ` will disable port security. In order to disable port security, the port must not have any security groups. Valid values are ` + "`" + `true` + "`" + ` and ` + "`" + `false` + "`" + `.`,
 				},
 				resource.Attribute{
 					Name:        "value_specs",
@@ -7657,6 +8019,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 router interface resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "router-gray.svg",
 			Keywords: []string{
 				"networking",
 				"router",
@@ -8285,6 +8648,7 @@ var (
 			Category:         "Networking Resources",
 			ShortDescription: `Manages a V2 Neutron subnet resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "network-gray.svg",
 			Keywords: []string{
 				"networking",
 				"subnet",
@@ -8931,7 +9295,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "type",
-					Description: `(Required) Versioning type which can be ` + "`" + `versions` + "`" + ` or ` + "`" + `history` + "`" + ` according to [Openstack documentation](https://docs.openstack.org/swift/latest/overview_object_versioning.html).`,
+					Description: `(Required) Versioning type which can be ` + "`" + `versions` + "`" + ` or ` + "`" + `history` + "`" + ` according to [Openstack documentation](https://docs.openstack.org/swift/latest/api/object_versioning.html).`,
 				},
 				resource.Attribute{
 					Name:        "location",
@@ -8971,7 +9335,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "content_type",
-					Description: `See Argument Reference above.`,
+					Description: `See Argument Reference above. ## Import This resource can be imported by specifying the name of the container: Some attributes can't be imported :`,
 				},
 			},
 			Attributes: []resource.Attribute{
@@ -9009,7 +9373,7 @@ var (
 				},
 				resource.Attribute{
 					Name:        "content_type",
-					Description: `See Argument Reference above.`,
+					Description: `See Argument Reference above. ## Import This resource can be imported by specifying the name of the container: Some attributes can't be imported :`,
 				},
 			},
 		},
@@ -9342,6 +9706,7 @@ var (
 			Category:         "Orchestration Resources",
 			ShortDescription: `Manages a V1 stack resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "stack-gray.svg",
 			Keywords: []string{
 				"orchestration",
 				"stack",
@@ -10506,6 +10871,7 @@ var (
 			Category:         "VPNaaS Resources",
 			ShortDescription: `Manages a V2 Neutron VPN service resource within OpenStack.`,
 			Description:      ``,
+			Icon:             "vpn-gray.svg",
 			Keywords: []string{
 				"vpnaas",
 				"service",
@@ -10917,52 +11283,54 @@ var (
 		"openstack_images_image_access_v2":                   37,
 		"openstack_images_image_v2":                          38,
 		"openstack_keymanager_container_v1":                  39,
-		"openstack_keymanager_secret_v1":                     40,
-		"openstack_lb_l7policy_v2":                           41,
-		"openstack_lb_l7rule_v2":                             42,
-		"openstack_lb_listener_v2":                           43,
-		"openstack_lb_loadbalancer_v2":                       44,
-		"openstack_lb_member_v1":                             45,
-		"openstack_lb_member_v2":                             46,
-		"openstack_lb_monitor_v1":                            47,
-		"openstack_lb_monitor_v2":                            48,
-		"openstack_lb_pool_v1":                               49,
-		"openstack_lb_pool_v2":                               50,
-		"openstack_lb_vip_v1":                                51,
-		"openstack_networking_addressscope_v2":               52,
-		"openstack_networking_floatingip_associate_v2":       53,
-		"openstack_networking_floatingip_v2":                 54,
-		"openstack_networking_network_v2":                    55,
-		"openstack_networking_port_secgroup_associate_v2":    56,
-		"openstack_networking_port_v2":                       57,
-		"openstack_networking_qos_bandwidth_limit_rule_v2":   58,
-		"openstack_networking_qos_dscp_marking_rule_v2":      59,
-		"openstack_networking_qos_minimum_bandwidth_rule_v2": 60,
-		"openstack_networking_qos_policy_v2":                 61,
-		"openstack_networking_quota_v2":                      62,
-		"openstack_networking_rbac_policy_v2":                63,
-		"openstack_networking_router_interface_v2":           64,
-		"openstack_networking_router_route_v2":               65,
-		"openstack_networking_router_v2":                     66,
-		"openstack_networking_secgroup_rule_v2":              67,
-		"openstack_networking_secgroup_v2":                   68,
-		"openstack_networking_subnet_route_v2":               69,
-		"openstack_networking_subnet_v2":                     70,
-		"openstack_networking_subnetpool_v2":                 71,
-		"openstack_networking_trunk_v2":                      72,
-		"openstack_objectstorage_container_v1":               73,
-		"openstack_objectstorage_object_v1":                  74,
-		"openstack_objectstorage_tempurl_v1":                 75,
-		"openstack_orchestration_stack_v1":                   76,
-		"openstack_sharedfilesystem_securityservice_v2":      77,
-		"openstack_sharedfilesystem_share_access_v2":         78,
-		"openstack_sharedfilesystem_share_v2":                79,
-		"openstack_sharedfilesystem_sharenetwork_v2":         80,
-		"openstack_vpnaas_endpoint_group_v2":                 81,
-		"openstack_vpnaas_ike_policy_v2":                     82,
-		"openstack_vpnaas_ipsec_policy_v2":                   83,
-		"openstack_vpnaas_service_v2":                        84,
-		"openstack_vpnaas_site_connection_v2":                85,
+		"openstack_keymanager_order_v1":                      40,
+		"openstack_keymanager_secret_v1":                     41,
+		"openstack_lb_l7policy_v2":                           42,
+		"openstack_lb_l7rule_v2":                             43,
+		"openstack_lb_listener_v2":                           44,
+		"openstack_lb_loadbalancer_v2":                       45,
+		"openstack_lb_member_v1":                             46,
+		"openstack_lb_member_v2":                             47,
+		"openstack_lb_members_v2":                            48,
+		"openstack_lb_monitor_v1":                            49,
+		"openstack_lb_monitor_v2":                            50,
+		"openstack_lb_pool_v1":                               51,
+		"openstack_lb_pool_v2":                               52,
+		"openstack_lb_vip_v1":                                53,
+		"openstack_networking_addressscope_v2":               54,
+		"openstack_networking_floatingip_associate_v2":       55,
+		"openstack_networking_floatingip_v2":                 56,
+		"openstack_networking_network_v2":                    57,
+		"openstack_networking_port_secgroup_associate_v2":    58,
+		"openstack_networking_port_v2":                       59,
+		"openstack_networking_qos_bandwidth_limit_rule_v2":   60,
+		"openstack_networking_qos_dscp_marking_rule_v2":      61,
+		"openstack_networking_qos_minimum_bandwidth_rule_v2": 62,
+		"openstack_networking_qos_policy_v2":                 63,
+		"openstack_networking_quota_v2":                      64,
+		"openstack_networking_rbac_policy_v2":                65,
+		"openstack_networking_router_interface_v2":           66,
+		"openstack_networking_router_route_v2":               67,
+		"openstack_networking_router_v2":                     68,
+		"openstack_networking_secgroup_rule_v2":              69,
+		"openstack_networking_secgroup_v2":                   70,
+		"openstack_networking_subnet_route_v2":               71,
+		"openstack_networking_subnet_v2":                     72,
+		"openstack_networking_subnetpool_v2":                 73,
+		"openstack_networking_trunk_v2":                      74,
+		"openstack_objectstorage_container_v1":               75,
+		"openstack_objectstorage_object_v1":                  76,
+		"openstack_objectstorage_tempurl_v1":                 77,
+		"openstack_orchestration_stack_v1":                   78,
+		"openstack_sharedfilesystem_securityservice_v2":      79,
+		"openstack_sharedfilesystem_share_access_v2":         80,
+		"openstack_sharedfilesystem_share_v2":                81,
+		"openstack_sharedfilesystem_sharenetwork_v2":         82,
+		"openstack_vpnaas_endpoint_group_v2":                 83,
+		"openstack_vpnaas_ike_policy_v2":                     84,
+		"openstack_vpnaas_ipsec_policy_v2":                   85,
+		"openstack_vpnaas_service_v2":                        86,
+		"openstack_vpnaas_site_connection_v2":                87,
 	}
 )
 

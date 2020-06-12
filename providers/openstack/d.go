@@ -455,6 +455,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Flavor.`,
 			Description:      ``,
+			Icon:             "flavor-gray.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -495,25 +496,21 @@ var (
 				},
 				resource.Attribute{
 					Name:        "rx_tx_factor",
-					Description: `(Optional) The ` + "`" + `rx_tx_factor` + "`" + ` of the flavor. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found flavor. In addition, the following attributes are exported:`,
+					Description: `(Optional) The ` + "`" + `rx_tx_factor` + "`" + ` of the flavor.`,
+				},
+				resource.Attribute{
+					Name:        "is_public",
+					Description: `(Optional) The flavor visibility. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found flavor. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "extra_specs",
 					Description: `Key/Value pairs of metadata for the flavor.`,
-				},
-				resource.Attribute{
-					Name:        "is_public",
-					Description: `Whether the flavor is public or private.`,
 				},
 			},
 			Attributes: []resource.Attribute{
 				resource.Attribute{
 					Name:        "extra_specs",
 					Description: `Key/Value pairs of metadata for the flavor.`,
-				},
-				resource.Attribute{
-					Name:        "is_public",
-					Description: `Whether the flavor is public or private.`,
 				},
 			},
 		},
@@ -523,6 +520,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Keypair.`,
 			Description:      ``,
+			Icon:             "keypair-gray.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -1619,7 +1617,11 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parent_id",
-					Description: `(Optional) The parent of this project. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found project. In addition, the following attributes are exported:`,
+					Description: `(Optional) The parent of this project.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
+					Description: `(Optional) Tags for the project. ## Attributes Reference ` + "`" + `id` + "`" + ` is set to the ID of the found project. In addition, the following attributes are exported:`,
 				},
 				resource.Attribute{
 					Name:        "description",
@@ -1643,6 +1645,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parent_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -1673,6 +1679,10 @@ var (
 				},
 				resource.Attribute{
 					Name:        "parent_id",
+					Description: `See Argument Reference above.`,
+				},
+				resource.Attribute{
+					Name:        "tags",
 					Description: `See Argument Reference above.`,
 				},
 				resource.Attribute{
@@ -1927,6 +1937,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Image.`,
 			Description:      ``,
+			Icon:             "image-gray.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -2651,6 +2662,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Network.`,
 			Description:      ``,
+			Icon:             "network-gray.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
@@ -3602,6 +3614,7 @@ var (
 			Category:         "Data Sources",
 			ShortDescription: `Get information on an OpenStack Subnet.`,
 			Description:      ``,
+			Icon:             "network-gray.svg",
 			Keywords:         []string{},
 			Arguments: []resource.Attribute{
 				resource.Attribute{
